@@ -6,7 +6,7 @@
     'summary': 'Locations, Orders, Calls',
     'version': '11.0.0.0.1',
     'category': 'Field Service',
-    'author': 'Open Source Integrators, Odoo Communication Association (OCA)',
+    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'base',
