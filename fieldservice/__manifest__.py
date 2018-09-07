@@ -14,6 +14,7 @@
     'data': [
         'data/module_category.xml',
         'security/res_groups.xml',
+        'views/res_config_settings.xml',
         'views/menu.xml',
     ],
     'application': True,
