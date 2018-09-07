@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem id="root"
+              name="Field Service"
+              sequence="10"
+              groups="group_fsm_user"
+              web_icon="fieldservice,static/description/icon.png"/>
+    <menuitem id="dashboard" name="Dashboard" sequence="10" parent="root"/>
+    <menuitem id="operations" name="Operations" sequence="20" parent="root"/>
+    <menuitem id="data" name="Master Data" sequence="30" parent="root"/>
+    <menuitem id="reporting"
+              name="Reporting"
+              sequence="40"
+              parent="root"
+              groups="group_fsm_dispatcher"/>
+    <menuitem id="config"
+              name="Configuration"
+              sequence="100"
+              parent="root"
+              groups="group_fsm_manager"/>
+
+    <!-- Operations Menu -->
+
+    <!-- Master Data Menu -->
+
+    <!-- Reporting Menu -->
+
+    <!-- Configuration Menu -->
+    <menuitem id="settings" name="Settings" sequence="10" parent="config"/>
+
+</odoo>
