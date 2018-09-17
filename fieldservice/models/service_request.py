@@ -82,7 +82,7 @@ class Skill(models.Model):
     _name = 'skill'
     _description = 'Skill to be used later'
 
-    name = fields.Char(strin ='Name', required=True)
+    name = fields.Char(string='Name', required=True)
     mandatory = fields.Boolean(string='Mandatory')
     description = fields.Char(string='Description')
 
