@@ -1,7 +1,8 @@
 # Copyright 2017 Ursa Information Systems <http://www.ursainfosystems.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
+from odoo import fields, models
+# from odoo import api, _
 
 class ServiceLocation(models.Model):
     _name = 'service.location'
@@ -28,18 +29,19 @@ class ServiceRequest(models.Model):
     route_id = fields.Many2one('routes')
     customer_id = fields.Many2one('res.partner', string='Customer')
     location = fields.Many2one('service.location', string='Location')
-    field_service_person = fields.Many2one('field.service.person', string='Field Service Person')
+    field_service_person = fields.Many2one('field.service.person',
+                     string='Field Service Person')
     date = fields.Datetime(string='Scheduled Date')
     description = fields.Char(string='Description')
     stage = fields.Selection([
-            ('new','New'), 
-            ('confirmed', 'Confirmed'), 
-            ('scheduled','Scheduled'), 
-            ('assigned', 'Assigned'), 
-            ('en_route','En Route'), 
-            ('started', 'Started'), 
-            ('complete', 'Complete'), 
-            ('cancelled', 'Cancelled')], 
+            ('new', 'New'),
+            ('confirmed', 'Confirmed'),
+            ('scheduled', 'Scheduled'),
+            ('assigned', 'Assigned'),
+            ('en_route','En Route'),
+            ('started', 'Started'),
+            ('complete', 'Complete'),
+            ('cancelled', 'Cancelled')],
         default='new', string='Status', required=True)
 
 
@@ -47,7 +49,8 @@ class Activites(models.Model):
     _name = 'service.activities'
     _description = 'Create an Activity'
 
-    service_request = fields.Many2one('service.request', string='Service Request')
+    service_request = fields.Many2one('service.request',
+                     string='Service Request')
     customer_id = fields.Many2one('res.partner', string='Customer')
     status = fields.Many2one('activity.status', string='Status')
     task = fields.Many2one('type.of.activity', string='Task')
@@ -63,11 +66,11 @@ class Activites(models.Model):
     actual_end = fields.Datetime(string='Actual End')
     actual_duration = fields.Float(string='Actual Duration')
     priority = fields.Selection([
-            ('0', 'Priority 0'), 
-            ('1', 'Priority 1'), 
-            ('2', 'Priority 2'), 
-            ('3', 'Priority 3'), 
-            ('4', 'Priority 4'), 
+            ('0', 'Priority 0'),
+            ('1', 'Priority 1'),
+            ('2', 'Priority 2'),
+            ('3', 'Priority 3'),
+            ('4', 'Priority 4'),
             ('5', 'Priority 5')], 
         string='Priority')
     sequence = fields.Integer(string='Sequence')
@@ -163,15 +166,10 @@ class Routes(models.Model):
     _name = 'field.service.routes'
     _description = 'Routes made using a series of Service Requests'
 
-    orders = fields.One2many('service.request', 'route_id', string='Service Requests')
-    field_service_person = fields.Many2one('field.service.person', 
+    orders = fields.One2many('service.request', 'route_id',
+                    string='Service Requests')
+    field_service_person = fields.Many2one('field.service.person',
                     string='Field Service Person')
     date = fields.Date(string='Date')
 
-# Ask Max
-# @api.onchange('date')
-# def on_change_routes_date(self):
-#     if(self.field_service_person != null and self.date != null):
-#         self.orders.readonly = False
     
-
