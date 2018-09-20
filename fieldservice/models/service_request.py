@@ -7,18 +7,17 @@ class ServiceLocation(models.Model):
     _name = 'service.location'
     _description = 'Location of the service'
 
-    owner = fields.Many2one('res.partner', string='Owner')
-    customer_id = fields.Many2one('res.partner', string='Customer')
-    name = fields.Char(string = 'Name')
+    # customer_id = fields.Many2one('res.partner', string='Customer')
+    name = fields.Char(string='Name')
     location_type = fields.Char(string='Location Type', size=35)
-    building = fields.Char(string='Building', size=35)
-    floor = fields.Char(string='Floor', size=35)
-    longitude = fields.Float(string='Longitude')
-    latitude = fields.Float(string='Latitude')
+    # building = fields.Char(string='Building', size=35)
+    # floor = fields.Char(string='Floor', size=35)
+    # longitude = fields.Float(string='Longitude')
+    # latitude = fields.Float(string='Latitude')
     description = fields.Char(string='Description')
-    branch = fields.Char(string='Branch', size = 35)
-    territory = fields.Char(string='Territory', size=35)
-    timezone = fields.Char(string='TimeZone', size=35)
+    # branch = fields.Char(string='Branch', size=35)
+    # territory = fields.Char(string='Territory', size=35)
+    # timezone = fields.Char(string='TimeZone', size=35)
 
 
 class ServiceRequest(models.Model):
@@ -27,7 +26,7 @@ class ServiceRequest(models.Model):
 
     name = fields.Char(string='Name', required=True)
     route_id = fields.Many2one('routes')
-    customer_id = fields.Many2one('res.partner', strin ='Customer')
+    customer_id = fields.Many2one('res.partner', string='Customer')
     location = fields.Many2one('service.location', string='Location')
     field_service_person = fields.Many2one('field.service.person', string='Field Service Person')
     date = fields.Datetime(string='Scheduled Date')
@@ -56,7 +55,7 @@ class Activites(models.Model):
     # activity_type = fields.Many2one('type.of.activity', string='Type')
     name = fields.Char(string='Name', required=True)
     planned_duration = fields.Float(string='Planned Duration')
-    # equipment = fields.One2many('equipment', string ='Equipment')
+    # equipment = fields.One2many('equipment', string='Equipment')
     # assigned_to = fields.Many2one('', string='Assigned to')
     scheduled_start = fields.Datetime(string='Scheduled Start')
     scheduled_end = fields.Datetime(string='Scheduled End')
@@ -75,7 +74,6 @@ class Activites(models.Model):
     signature_needed = fields.Boolean(string='Signature Needed')
     description = fields.Char(string='Descrition')
     # parts_needed = fields.Many2Many(string='Parts needed')
-
 
 
 class Skill(models.Model):
@@ -146,6 +144,7 @@ class PreferredAppointmentTimes(models.Model):
     earliest_start = fields.Datetime(string='Earliest Start time and date')
     lastest_start = fields.Datetime(string='Latest Start time and date')
 
+
 class ActivityStatus(models.Model):
     _name = 'activity.status'
     _description = 'Status of an Activity'
@@ -164,8 +163,15 @@ class Routes(models.Model):
     _name = 'field.service.routes'
     _description = 'Routes made using a series of Service Requests'
 
-    orders = fields.One2many('service.request', 'route_id', string='Customer')
+    orders = fields.One2many('service.request', 'route_id', string='Service Requests')
     field_service_person = fields.Many2one('field.service.person', 
-                    string ='Field Service Person')
+                    string='Field Service Person')
     date = fields.Date(string='Date')
+
+# Ask Max
+# @api.onchange('date')
+# def on_change_routes_date(self):
+#     if(self.field_service_person != null and self.date != null):
+#         self.orders.readonly = False
+    
 
