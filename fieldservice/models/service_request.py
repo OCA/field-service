@@ -30,7 +30,8 @@ class ServiceRequest(models.Model):
     route_id = fields.Many2one('routes')
     customer_id = fields.Many2one('res.partner', string='Customer')
     location = fields.Many2one('service.location', string='Location')
-    field_service_person = fields.Many2one('field.service.person',
+    field_service_person = fields.Many2one(
+        'field.service.person',
         string='Field Service Person')
     date = fields.Datetime(string='Scheduled Date')
     description = fields.Char(string='Description')
@@ -50,7 +51,8 @@ class Activites(models.Model):
     _name = 'service.activities'
     _description = 'Create an Activity'
 
-    service_request = fields.Many2one('service.request',
+    service_request = fields.Many2one(
+        'service.request',
         string='Service Request')
     customer_id = fields.Many2one('res.partner', string='Customer')
     status = fields.Many2one('activity.status', string='Status')
@@ -103,8 +105,11 @@ class Territory(models.Model):
 
     name = fields.Char(string='Name', size=35, required=True)
     branch = fields.Char(string='Branch', size=35)
-    postal_based = fields.Boolean(default=False,
-        string='Postal-based', size=35, required=True)
+    postal_based = fields.Boolean(
+        default=False,
+        string='Postal-based',
+        size=35,
+        required=True)
 
 
 class District(models.Model):
@@ -126,7 +131,7 @@ class TypeOfServiceRequest(models.Model):
 class TypeOfActivity(models.Model):
     _name = 'type.of.activity'
     _description = 'Type of Activity'
-    
+
     # activity_type =
     # description =
     # default_parts_needed =
@@ -167,8 +172,12 @@ class Routes(models.Model):
     _name = 'field.service.routes'
     _description = 'Routes made using a series of Service Requests'
 
-    orders = fields.One2many('service.request', 'route_id',
+    orders = fields.One2many(
+        'service.request',
+        'route_id',
         string='Service Requests')
-    field_service_person = fields.Many2one('field.service.person',
-        string='Field Service Person')
+    field_service_person = fields.Many2one(
+        'field.service.person',
+        string='Field Service Person'
+    )
     date = fields.Date(string='Date')
