@@ -4,6 +4,7 @@
 from odoo import fields, models
 # from odoo import api, _
 
+
 class ServiceLocation(models.Model):
     _name = 'service.location'
     _description = 'Location of the service'
@@ -30,18 +31,18 @@ class ServiceRequest(models.Model):
     customer_id = fields.Many2one('res.partner', string='Customer')
     location = fields.Many2one('service.location', string='Location')
     field_service_person = fields.Many2one('field.service.person',
-                     string='Field Service Person')
+        string='Field Service Person')
     date = fields.Datetime(string='Scheduled Date')
     description = fields.Char(string='Description')
     stage = fields.Selection([
-            ('new', 'New'),
-            ('confirmed', 'Confirmed'),
-            ('scheduled', 'Scheduled'),
-            ('assigned', 'Assigned'),
-            ('en_route','En Route'),
-            ('started', 'Started'),
-            ('complete', 'Complete'),
-            ('cancelled', 'Cancelled')],
+        ('new', 'New'),
+        ('confirmed', 'Confirmed'),
+        ('scheduled', 'Scheduled'),
+        ('assigned', 'Assigned'),
+        ('en_route', 'En Route'),
+        ('started', 'Started'),
+        ('complete', 'Complete'),
+        ('cancelled', 'Cancelled')],
         default='new', string='Status', required=True)
 
 
@@ -50,7 +51,7 @@ class Activites(models.Model):
     _description = 'Create an Activity'
 
     service_request = fields.Many2one('service.request',
-                     string='Service Request')
+        string='Service Request')
     customer_id = fields.Many2one('res.partner', string='Customer')
     status = fields.Many2one('activity.status', string='Status')
     task = fields.Many2one('type.of.activity', string='Task')
@@ -66,12 +67,12 @@ class Activites(models.Model):
     actual_end = fields.Datetime(string='Actual End')
     actual_duration = fields.Float(string='Actual Duration')
     priority = fields.Selection([
-            ('0', 'Priority 0'),
-            ('1', 'Priority 1'),
-            ('2', 'Priority 2'),
-            ('3', 'Priority 3'),
-            ('4', 'Priority 4'),
-            ('5', 'Priority 5')], 
+        ('0', 'Priority 0'),
+        ('1', 'Priority 1'),
+        ('2', 'Priority 2'),
+        ('3', 'Priority 3'),
+        ('4', 'Priority 4'),
+        ('5', 'Priority 5')],
         string='Priority')
     sequence = fields.Integer(string='Sequence')
     signature_needed = fields.Boolean(string='Signature Needed')
@@ -102,8 +103,8 @@ class Territory(models.Model):
 
     name = fields.Char(string='Name', size=35, required=True)
     branch = fields.Char(string='Branch', size=35)
-    postal_based = fields.Boolean(default=False, 
-                    string='Postal-based', size=35, required=True)
+    postal_based = fields.Boolean(default=False,
+        string='Postal-based', size=35, required=True)
 
 
 class District(models.Model):
@@ -118,7 +119,7 @@ class TypeOfServiceRequest(models.Model):
     _name = 'type.of.service.request'
     _description = 'Type of Service Request'
 
-    # service_request_type = 
+    # service_request_type =
     # description =
 
 
@@ -127,8 +128,8 @@ class TypeOfActivity(models.Model):
     _description = 'Type of Activity'
     
     # activity_type =
-    # description = 
-    # default_parts_needed = 
+    # description =
+    # default_parts_needed =
 
 
 class Branch(models.Model):
@@ -167,9 +168,7 @@ class Routes(models.Model):
     _description = 'Routes made using a series of Service Requests'
 
     orders = fields.One2many('service.request', 'route_id',
-                    string='Service Requests')
+        string='Service Requests')
     field_service_person = fields.Many2one('field.service.person',
-                    string='Field Service Person')
+        string='Field Service Person')
     date = fields.Date(string='Date')
-
-    
