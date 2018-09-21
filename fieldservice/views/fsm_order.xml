@@ -8,25 +8,34 @@
         <field name="arch" type="xml">
             <form string="Service Request">
                 <header>
+                    <field name="stage_id" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="partner_id"/>
+                            <field name="customer_id"/>
                             <field name="fsm_location_id"/>
                         </group>
                         <group>
                             <field name="fsm_person_id"/>
+                            <field name="scheduled_date"/>
                             <field name="date"/>
-                            <field name="fsm_stage_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Request">
-                            <field name="description"/>
+                            <group>
+                                <group>
+                                    <field name="requested_date"/>
+                                </group>
+                                <group></group>
+                            </group>
+                            <group string="Description">
+                                <field name="description" nolabel="1"/>
+                            </group>
                         </page>
-                        <page string="Attributes">
+                        <page string="Work Orders" groups="">
                         </page>
                         <page string="Map">
                         </page>
@@ -41,8 +50,8 @@
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
             <tree string="Service Requests" default_order="date">
-                <field name="partner_id" string="Customer"/>
-                <field name="fsm_stage_id" string="Stage"/>
+                <field name="customer_id" string="Customer"/>
+                <field name="stage_id" string="Stage"/>
                 <field name="date" string="Date"/>
             </tree>
         </field>
@@ -52,16 +61,18 @@
         <field name="name">fsm.order.kanban</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="fsm_stage_id" class="o_kanban_small_column">
-                <field name="fsm_stage_id"/>
-                <field name="partner_id"/>
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <field name="stage_id"/>
                 <field name="name"/>
+                <field name="customer_id"/>
+                <field name="fsm_location_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div>
                             <ul>
-                                <li>Record Name: <field name="name"/></li>
-                                <li>Description: <field name="description"/></li>
+                                <li><field name="name"/></li>
+                                <li><field name="customer_id"/></li>
+                                <li><field name="fsm_location_id"/></li>
                             </ul>
                         </div>
                     </t>

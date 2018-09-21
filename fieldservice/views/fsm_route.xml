@@ -9,7 +9,6 @@
             <tree string="Day Routes">
                 <field name="fsm_person_id"/>
                 <field name="date"/>
-                <field name="fsm_order_ids"/>
             </tree>
         </field>
     </record>
@@ -21,9 +20,15 @@
             <form string="Day Route">
                 <sheet>
                     <group>
-                        <field name="fsm_person_id"/>
-                        <field name="date"/>
-                        <field name="fsm_order_ids"/>
+                        <group>
+                            <field name="fsm_person_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="fsm_order_ids" nolabel="1"/>
                     </group>
                 </sheet>
             </form>
