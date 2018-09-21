@@ -7,7 +7,7 @@
         <field name="model">fsm.stage</field>
         <field name="arch" type="xml">
             <tree string="Stages">
-                <field name="name" string="Name"/>
+                <field name="name"/>
             </tree>
         </field>
     </record>
@@ -17,7 +17,14 @@
         <field name="model">fsm.stage</field>
         <field name="arch" type="xml">
             <form string="Stage">
-                <field name="name" string="Name"/>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
