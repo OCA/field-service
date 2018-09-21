@@ -3,6 +3,7 @@
 
 from . import (
     res_config_settings,
+    res_partner,
     fsm_stage,
     fsm_location,
     fsm_person,
