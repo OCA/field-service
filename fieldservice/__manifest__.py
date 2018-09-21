@@ -15,6 +15,7 @@
         'data/module_category.xml',
         'security/res_groups.xml',
         'views/res_config_settings.xml',
+        'views/fsm_stage.xml',
         'views/res_partner.xml',
         'views/fsm_location.xml',
         'views/fsm_person.xml',
