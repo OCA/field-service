@@ -6,27 +6,38 @@
         <field name="name">fsm.order.form</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <form string="Service Request">
+            <form string="Orders">
                 <header>
+                    <field name="stage_id" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="partner_id"/>
+                            <field name="customer_id"/>
                             <field name="fsm_location_id"/>
                         </group>
                         <group>
                             <field name="fsm_person_id"/>
+                            <field name="scheduled_date"/>
                             <field name="date"/>
-                            <field name="fsm_stage_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Request">
-                            <field name="description"/>
+                            <group>
+                                <group>
+                                    <field name="requested_date"/>
+                                </group>
+                                <group></group>
+                            </group>
+                            <group string="Description">
+                                <field name="description"
+                                       nolabel="1"
+                                       widget="html"/>
+                            </group>
                         </page>
-                        <page string="Attributes">
+                        <page string="Work Orders" groups="">
                         </page>
                         <page string="Map">
                         </page>
@@ -40,10 +51,13 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Service Requests" default_order="date">
-                <field name="partner_id" string="Customer"/>
-                <field name="fsm_stage_id" string="Stage"/>
-                <field name="date" string="Date"/>
+            <tree string="Order" default_order="date">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="fsm_location_id"/>
+                <field name="fsm_person_id"/>
+                <field name="stage_id" string="Stage"/>
             </tree>
         </field>
     </record>
@@ -52,16 +66,18 @@
         <field name="name">fsm.order.kanban</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="fsm_stage_id" class="o_kanban_small_column">
-                <field name="fsm_stage_id"/>
-                <field name="partner_id"/>
+            <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                <field name="stage_id"/>
                 <field name="name"/>
+                <field name="customer_id"/>
+                <field name="fsm_location_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div>
                             <ul>
-                                <li>Record Name: <field name="name"/></li>
-                                <li>Description: <field name="description"/></li>
+                                <li><field name="name"/></li>
+                                <li><field name="customer_id"/></li>
+                                <li><field name="fsm_location_id"/></li>
                             </ul>
                         </div>
                     </t>
@@ -70,14 +86,59 @@
         </field>
     </record>
 
-    <record id="action_fsm_order" model="ir.actions.act_window">
-        <field name="name">Service Requests</field>
+    <record id="action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Create a Service Request.
+                Create an Order.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_fsm_operation_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create an Order.
+            </p>
+        </field>
+    </record>
+
+    <!-- Reporting -->
+    <record id="fsm_order_graph_view" model="ir.ui.view">
+        <field name="name">fsm.order.graph</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <graph string="Service Requests" type="bar">
+                <field name="stage_id" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_order_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.order.pivot</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Service Requests" display_quantity="true">
+                <field name="stage_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_report_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Orders Reports.
             </p>
         </field>
     </record>

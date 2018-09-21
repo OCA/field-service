@@ -12,5 +12,12 @@ class FSMRoute(models.Model):
     fsm_order_ids = fields.One2many('fsm.order', 'fsm_route_id',
                                     string='Orders')
     fsm_person_id = fields.Many2one('fsm.person',
-                                    string='Field Service Person')
-    date = fields.Date(string='Date')
+                                    string='Field Service Person',
+                                    required=True)
+    date = fields.Date(string='Date', required=True)
+
+    _sql_constraints = [
+        ('fsm_route_person_date_uniq',
+         'unique (fsm_person_id, date)',
+         "You cannot create 2 routes for the same person on the same day!"),
+    ]

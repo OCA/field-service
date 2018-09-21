@@ -22,6 +22,11 @@
               groups="group_fsm_manager"/>
 
     <!-- Dashboard Menu -->
+    <menuitem id="menu_fsm_dash_order"
+              name="Orders"
+              action="action_fsm_dash_order"
+              parent="dashboard"
+              sequence="10"/>
 
     <!-- Operations Menu -->
 <!--    <menuitem id="menu_fsm_activity"
@@ -30,9 +35,9 @@
               parent="operations"
               sequence="10"/> -->
 
-    <menuitem id="menu_fsm_order"
+    <menuitem id="menu_fsm_operation_order"
               name="Orders"
-              action="action_fsm_order"
+              action="action_fsm_operation_order"
               parent="operations"
               sequence="30"/>
 
@@ -62,6 +67,11 @@
               sequence="30"/>
 
     <!-- Reporting Menu -->
+    <menuitem id="menu_fsm_report_order"
+              name="Orders"
+              action="action_fsm_report_order"
+              parent="reporting"
+              sequence="10"/>
 
     <!-- Configuration Menu -->
     <menuitem id="settings"
