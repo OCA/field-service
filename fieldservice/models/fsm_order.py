@@ -21,7 +21,7 @@ class FSMOrder(models.Model):
     requested_date = fields.Datetime(string='Requested Date')
     scheduled_date = fields.Datetime(string='Scheduled Date')
     date = fields.Datetime(string='Date')
-    description = fields.Char(string='Description')
+    description = fields.Text(string='Description')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True,
