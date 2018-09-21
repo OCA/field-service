@@ -6,7 +6,7 @@
         <field name="name">fsm.order.form</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <form string="Service Request">
+            <form string="Orders">
                 <header>
                     <field name="stage_id" widget="statusbar"/>
                 </header>
@@ -51,7 +51,7 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Service Requests" default_order="date">
+            <tree string="Order" default_order="date">
                 <field name="date"/>
                 <field name="name"/>
                 <field name="customer_id"/>
@@ -87,25 +87,25 @@
     </record>
 
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
-        <field name="name">Service Requests</field>
+        <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Create a Service Request.
+                Create an Order.
             </p>
         </field>
     </record>
 
     <record id="action_fsm_operation_order" model="ir.actions.act_window">
-        <field name="name">Service Requests</field>
+        <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Create a Service Request.
+                Create an Order.
             </p>
         </field>
     </record>
@@ -135,10 +135,10 @@
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
-        <field name="view_mode">graph, pivot</field>
+        <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
             <p>
-                Service Orders Reports.
+                Orders Reports.
             </p>
         </field>
     </record>
