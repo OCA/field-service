@@ -13,6 +13,7 @@
     ],
     'data': [
         'data/module_category.xml',
+        'security/ir.model.access.csv',
         'security/res_groups.xml',
         'views/res_config_settings.xml',
         'views/fsm_stage.xml',
