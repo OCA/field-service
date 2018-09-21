@@ -11,5 +11,6 @@ class FSMRoute(models.Model):
     name = fields.Char(string='Name')
     fsm_order_ids = fields.One2many('fsm.order', 'fsm_route_id',
                                     string='Orders')
-    fsm_person_id = fields.Many2one('fsm.person', string='Field Service Person')
+    fsm_person_id = fields.Many2one('fsm.person',
+                                    string='Field Service Person')
     date = fields.Date(string='Date')

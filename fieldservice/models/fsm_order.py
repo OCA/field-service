@@ -13,7 +13,8 @@ class FSMOrder(models.Model):
     partner_id = fields.Many2one('res.partner', string='Customer',
                                  domain=('customer', '=', True))
     fsm_location_id = fields.Many2one('fsm.location', string='Location')
-    fsm_person_id = fields.Many2one('fsm.person', string='Field Service Person')
+    fsm_person_id = fields.Many2one('fsm.person',
+                                    string='Field Service Person')
     requested_date = fields.Datetime(string='Requested Date')
     scheduled_date = fields.Datetime(string='Scheduled Date')
     date = fields.Datetime(string='Date')
