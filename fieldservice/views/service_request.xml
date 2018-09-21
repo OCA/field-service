@@ -5,33 +5,28 @@
             name="Field Service"
             web_icon="field_service,static/description/icon.png"
             sequence="7"/>
-
-    <menuitem id="field_service_dash"
+     <menuitem id="field_service_dash"
             name="Dashboard"
             parent="field_service_root"
             sequence="2"
             action="action_field_service_requests"/>
-
-    <menuitem id="field_service_operations"
+     <menuitem id="field_service_operations"
             name="Operations"
             parent="field_service_root"
             sequence="3"/>
-
-    <menuitem id="field_service_master"
+     <menuitem id="field_service_master"
             name="Master Data"
             parent="field_service_root"
             sequence="4"/>
-
-    <menuitem id="field_service_reporting"
+     <menuitem id="field_service_reporting"
             name="Reporting"
             parent="field_service_root"
             sequence="5"/>
-
-    <menuitem id="field_service_config"
+     <menuitem id="field_service_config"
             name="Configuration"
             parent="field_service_root"
             sequence="6"/>
-    
+
     <!-- Service Requests -->
     <record id="field_service_order_form" model="ir.ui.view">
         <field name="name">service.request.form</field>
@@ -66,8 +61,7 @@
             </form>
         </field>
     </record>
-
-    <record id = "service_request_tree_view" model="ir.ui.view">
+     <record id = "service_request_tree_view" model="ir.ui.view">
         <field name="name">service.request.tree</field>
         <field name="model">service.request</field>
         <field name="arch" type="xml">
@@ -80,8 +74,7 @@
             </tree>
         </field>
     </record>
-
-    <record id = "service_request_kanban_view" model="ir.ui.view">
+     <record id = "service_request_kanban_view" model="ir.ui.view">
         <field name="name">service.request.kanban</field>
         <field name="model">service.request</field>
         <field name="arch" type="xml">
@@ -102,9 +95,7 @@
             </kanban>
         </field>
     </record>
-
-
-    <record id="action_field_service_requests" model="ir.actions.act_window">
+     <record id="action_field_service_requests" model="ir.actions.act_window">
             <field name="name">Service Requests</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">service.request</field>
@@ -118,14 +109,12 @@
               </p>
             </field>
         </record>
-
-    <menuitem id="menu_service_request_all"
+     <menuitem id="menu_service_request_all"
         name="Service Request"
         action="action_field_service_requests"
         parent="field_service_operations"
         sequence="1"/>
-
-    <!-- Service Location -->
+     <!-- Service Location -->
     <record id = "service_location_tree_view" model="ir.ui.view">
         <field name="name">service.location.tree</field>
         <field name="model">service.location</field>
@@ -135,8 +124,7 @@
             </tree>
         </field>
     </record>
-
-    <record id="action_master_data_locations" model="ir.actions.act_window">
+     <record id="action_master_data_locations" model="ir.actions.act_window">
         <field name="name">Service Locations</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
@@ -152,14 +140,12 @@
               </p>
         </field>
     </record>
-
-    <menuitem id="master_data_locations"
+     <menuitem id="master_data_locations"
         name="Service Locations"
         action="action_master_data_locations"
         parent="field_service_master"
         sequence="1"/>
-
-    <!-- Customers -->
+     <!-- Customers -->
     <record id = "customers_tree_view" model="ir.ui.view">
         <field name="name">customers.tree</field>
         <field name="model">res.partner</field>
@@ -172,8 +158,7 @@
             </tree>
         </field>
     </record>
-
-    <record id="action_master_customers" model="ir.actions.act_window">
+     <record id="action_master_customers" model="ir.actions.act_window">
         <field name="name">Customers</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
@@ -190,14 +175,12 @@
               </p>
         </field>
     </record>
-
-    <menuitem id="master_data_customers"
+     <menuitem id="master_data_customers"
         name="Customers"
         action="action_master_customers"
         parent="field_service_master"
         sequence="1"/>
-
-    <!-- Activities -->
+     <!-- Activities -->
     <record id="activities_form" model="ir.ui.view">
         <field name="name">activities.form</field>
         <field name="model">service.activities</field>
@@ -228,8 +211,7 @@
             </form>
         </field>
     </record>
-
-    <record id = "action_tree_view" model="ir.ui.view">
+     <record id = "action_tree_view" model="ir.ui.view">
         <field name="name">service.activities.tree</field>
         <field name="model">service.activities</field>
         <field name="arch" type="xml">
@@ -241,8 +223,7 @@
             </tree>
         </field>
     </record>
-
-    <record id = "service_location_kanban_view" model="ir.ui.view">
+     <record id = "service_location_kanban_view" model="ir.ui.view">
         <field name="name">service.activities.kanban</field>
         <field name="model">service.activities</field>
         <field name="arch" type="xml">
@@ -263,8 +244,7 @@
             </kanban>
         </field>
     </record>
-
-    <record id="action_activities_all" model="ir.actions.act_window">
+     <record id="action_activities_all" model="ir.actions.act_window">
         <field name="name">Activities</field>
             <field name="type">ir.actions.act_window</field>
             <!-- Will change model to service.location when it is made -->
@@ -279,14 +259,12 @@
               </p>
         </field>
     </record>
-
-    <menuitem id="menu_activities"
+     <menuitem id="menu_activities"
         name="Activities"
         action="action_activities_all"
         parent="field_service_operations"
         sequence="2"/>
-
-    <!-- Skills -->
+     <!-- Skills -->
     <record id="skills_form" model="ir.ui.view">
         <field name="name">skill.form</field>
         <field name="model">skill</field>
@@ -302,8 +280,7 @@
             </form>
         </field>
     </record>
-
-    <record id="manage_skills_all" model="ir.actions.act_window">
+     <record id="manage_skills_all" model="ir.actions.act_window">
         <field name="name">Skills</field>
             <field name="type">ir.actions.act_window</field>
             <!-- Will change model to service.location when it is made -->
@@ -317,15 +294,13 @@
                 Manage skills here.
               </p>
         </field>
-    </record>    
-
-    <menuitem id="manage_skills"
+    </record>
+     <menuitem id="manage_skills"
         name="Manage Skills"
         action="manage_skills_all"
         parent="field_service_config"
         sequence="1"/>
-
-    <!-- Field Service Person -->
+     <!-- Field Service Person -->
     <record id="field_service_person_form" model="ir.ui.view">
         <field name="name">field.service.person.form</field>
         <field name="model">field.service.person</field>
@@ -339,8 +314,7 @@
             </form>
         </field>
     </record>
-
-    <record id="field_service_person_all" model="ir.actions.act_window">
+     <record id="field_service_person_all" model="ir.actions.act_window">
         <field name="name">Field Service Person</field>
             <field name="type">ir.actions.act_window</field>
             <!-- Will change model to service.location when it is made -->
@@ -357,15 +331,13 @@
                 Model has yet to be fully defined
               </p>
         </field>
-    </record>    
-
-    <menuitem id="field_service_person"
+    </record>
+     <menuitem id="field_service_person"
         name="Field Service Person"
         action="field_service_person_all"
         parent="field_service_master"
         sequence="2"/>
-
-    <!-- Routes -->
+     <!-- Routes -->
     <record id="field_service_routes_form" model="ir.ui.view">
         <field name="name">field.service.routes.form</field>
         <field name="model">field.service.routes</field>
@@ -381,8 +353,7 @@
             </form>
         </field>
     </record>
-
-    <record id="field_service_routes_all" model="ir.actions.act_window">
+     <record id="field_service_routes_all" model="ir.actions.act_window">
         <field name="name">Field Service Routes</field>
             <field name="type">ir.actions.act_window</field>
             <!-- Will change model to service.location when it is made -->
@@ -396,9 +367,8 @@
                 Add Field Service Routes here
               </p>
         </field>
-    </record>    
-
-    <menuitem id="field_service_routes"
+    </record>
+     <menuitem id="field_service_routes"
         name="Field Service Routes"
         action="field_service_routes_all"
         parent="field_service_operations"

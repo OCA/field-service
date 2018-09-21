@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Customers -->
+    <record id="customers_tree_view" model="ir.ui.view">
+        <field name="name">customers.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Service Locations">
+                <field name="name" string="Name"/>
+                <field name="company_id" string="Company ID"/>
+                <field name="phone" string="Phone"/>
+                <field name="email" string="Email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_fsm_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_id" ref="customers_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('customer', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Customer.
+            </p>
+            <p>
+                Module not yet enabled.
+            </p>
+        </field>
+    </record>
+
+</odoo>
