@@ -15,7 +15,7 @@ AVAILABLE_PRIORITIES = [
 class FSMStage(models.Model):
     _name = 'fsm.stage'
     _description = 'Field Service Stage'
-    _order = "sequence, name, id"
+    _order = 'sequence, name, id'
 
     name = fields.Char(string='Name', required=True)
     sequence = fields.Integer('Sequence', default=1,
@@ -26,6 +26,6 @@ class FSMStage(models.Model):
                                        ' the star and priority mechanism on'
                                        ' stages or orders that are in this'
                                        ' stage.')
-    fold = fields.Boolean('Folded in Pipeline',
+    fold = fields.Boolean('Folded in Kanban',
                           help='This stage is folded in the kanban view when '
                                'there are no record in that stage to display.')

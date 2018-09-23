@@ -7,6 +7,7 @@ from odoo import api, fields, models, _
 class FSMRoute(models.Model):
     _name = 'fsm.route'
     _description = 'Field Service Route'
+    _order = 'date, name'
 
     name = fields.Char(string='Name', required=True,
                        default=lambda self: _('New'))
