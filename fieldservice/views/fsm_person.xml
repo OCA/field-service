@@ -19,7 +19,10 @@
             <form string="Field Service Person">
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group></group>
                     </group>
                 </sheet>
             </form>
@@ -34,9 +37,6 @@
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Add Field Service Person here.
-            </p>
-            <p>
-                Model has yet to be fully defined
             </p>
         </field>
     </record>
