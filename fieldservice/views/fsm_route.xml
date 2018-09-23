@@ -19,6 +19,11 @@
         <field name="arch" type="xml">
             <form string="Day Route">
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="fsm_person_id"/>
