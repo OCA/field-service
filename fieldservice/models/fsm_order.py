@@ -1,6 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import timedelta
 from odoo import api, fields, models, _
 from . import fsm_stage
 
@@ -49,12 +50,17 @@ class FSMOrder(models.Model):
                                     string='Field Service Person',
                                     index=True)
     fsm_route_id = fields.Many2one('fsm.route', string='Route', index=True)
-    scheduled_date = fields.Datetime(string='Scheduled Date')
+    scheduled_date_start = fields.Datetime(string='Scheduled Starting Date')
+    scheduled_duration = fields.Float(string='Duration',
+                                      help='Scheduled duration of the work in'
+                                           ' hours')
+    scheduled_date_end = fields.Datetime(string="Scheduled End Date")
     todo = fields.Text(string='Instructions')
 
     # Execution
     log = fields.Text(string='Log')
-    date = fields.Datetime(string='Date')
+    date_start = fields.Datetime(string='Starting Date')
+    date_end = fields.Datetime(string='End Date')
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -67,6 +73,25 @@ class FSMOrder(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
                 or _('New')
         return super(FSMOrder, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if 'scheduled_date_end' in vals:
+            date_to_with_delta = fields.Datetime.from_string(
+                vals.get('scheduled_date_end')) -\
+                timedelta(hours=self.scheduled_duration)
+            vals['scheduled_date_start'] = str(date_to_with_delta)
+        if 'scheduled_duration' in vals:
+            date_to_with_delta = fields.Datetime.from_string(
+                vals.get('scheduled_date_start', self.scheduled_date_start)) +\
+                timedelta(hours=vals.get('scheduled_duration'))
+            vals['scheduled_date_end'] = str(date_to_with_delta)
+        if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
+            date_to_with_delta = fields.Datetime.from_string(
+                vals.get('scheduled_date_start')) +\
+                timedelta(hours=self.scheduled_duration)
+            vals['scheduled_date_end'] = str(date_to_with_delta)
+        return super(FSMOrder, self).write(vals)
 
     def action_confirm(self):
         return self.write({'stage_id': self.env.ref(
@@ -95,3 +120,19 @@ class FSMOrder(models.Model):
     def action_cancel(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
+
+    @api.onchange('scheduled_date_end')
+    def onchange_scheduled_date_end(self):
+        if self.scheduled_date_end:
+            date_to_with_delta = fields.Datetime.from_string(
+                self.scheduled_date_end) -\
+                timedelta(hours=self.scheduled_duration)
+            self.date_start = str(date_to_with_delta)
+
+    @api.onchange('scheduled_duration')
+    def onchange_scheduled_duration(self):
+        if self.scheduled_duration:
+            date_to_with_delta = fields.Datetime.from_string(
+                self.scheduled_date_start) +\
+                timedelta(hours=self.scheduled_duration)
+            self.scheduled_date_end = str(date_to_with_delta)
