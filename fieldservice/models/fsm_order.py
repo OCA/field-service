@@ -64,8 +64,8 @@ class FSMOrder(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order')\
-                           or _('New')
+            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
+                    or _('New')
         return super(FSMOrder, self).create(vals)
 
     def action_confirm(self):
