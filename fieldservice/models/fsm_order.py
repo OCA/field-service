@@ -4,10 +4,12 @@
 from odoo import api, fields, models, _
 from . import fsm_stage
 
+
 class FSMOrder(models.Model):
     _name = 'fsm.order'
     _description = 'Field Service Order'
-    _inherit = ['mail.thread', 'utm.mixin', 'rating.mixin', 'mail.activity.mixin', 'portal.mixin']
+    _inherit = ['mail.thread', 'utm.mixin', 'rating.mixin',
+                'mail.activity.mixin', 'portal.mixin']
 
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
@@ -62,7 +64,7 @@ class FSMOrder(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
+            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order')\
                            or _('New')
         return super(FSMOrder, self).create(vals)
 

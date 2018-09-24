@@ -27,6 +27,6 @@ class FSMRoute(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.route') \
+            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.route')\
                            or _('New')
         return super(FSMRoute, self).create(vals)
