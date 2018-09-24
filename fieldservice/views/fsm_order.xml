@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Field Service Orders -->
+    <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
         <field name="name">fsm.order.form</field>
         <field name="model">fsm.order</field>
@@ -85,7 +85,10 @@
                                     <field name="fsm_person_id"/>
                                 </group>
                                 <group>
-                                    <field name="scheduled_date"/>
+                                    <field name="scheduled_date_start"/>
+                                    <field name="scheduled_duration"/>
+                                    <field name="scheduled_date_end"
+                                           readonly="1"/>
                                 </group>
                             </group>
                             <group string="Instructions">
@@ -97,7 +100,8 @@
                         <page string="Execution">
                             <group>
                                 <group>
-                                    <field name="date"/>
+                                    <field name="date_start" readonly="1"/>
+                                    <field name="date_end" readonly="1"/>
                                 </group>
                                 <group></group>
                             </group>
@@ -124,8 +128,8 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Order" default_order="date">
-                <field name="date"/>
+            <tree string="Order" default_order="scheduled_date_start">
+                <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
                 <field name="fsm_location_id"/>
@@ -135,6 +139,19 @@
         </field>
     </record>
 
+    <record id="action_fsm_operation_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create an Order.
+            </p>
+        </field>
+    </record>
+
+    <!-- Dashboard -->
     <record id="fsm_order_kanban_view" model="ir.ui.view">
         <field name="name">fsm.order.kanban</field>
         <field name="model">fsm.order</field>
@@ -197,23 +214,25 @@
         </field>
     </record>
 
+    <record id="fsm_order_timeline_view" model="ir.ui.view">
+        <field name="name">fsm.order.timeline</field>
+        <field name="model">fsm.order</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline date_start="scheduled_date_start"
+                      date_stop="scheduled_date_end"
+                      string="Orders"
+                      default_group_by="fsm_person_id"
+                      event_open_popup="true">
+            </timeline>
+        </field>
+    </record>
+
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Create an Order.
-            </p>
-        </field>
-    </record>
-
-    <record id="action_fsm_operation_order" model="ir.actions.act_window">
-        <field name="name">Orders</field>
-        <field name="res_model">fsm.order</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,timeline,tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create an Order.

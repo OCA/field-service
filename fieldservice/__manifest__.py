@@ -13,6 +13,7 @@
         'utm',
         'rating',
         'portal',
+        'web_timeline',
     ],
     'data': [
         'data/ir_sequence.xml',
