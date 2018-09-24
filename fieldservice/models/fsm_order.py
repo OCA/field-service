@@ -79,18 +79,17 @@ class FSMOrder(models.Model):
         if 'scheduled_date_end' in vals:
             date_to_with_delta = fields.Datetime.from_string(
                 vals.get('scheduled_date_end')) -\
-                                 timedelta(hours=self.scheduled_duration)
+                timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_start'] = str(date_to_with_delta)
         if 'scheduled_duration' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start))\
-                                 + timedelta(
-                hours=vals.get('scheduled_duration'))
+                vals.get('scheduled_date_start', self.scheduled_date_start)) +\
+                timedelta(hours=vals.get('scheduled_duration'))
             vals['scheduled_date_end'] = str(date_to_with_delta)
         if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start'))\
-                                 + timedelta(hours=self.scheduled_duration)
+                vals.get('scheduled_date_start')) +\
+                timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_end'] = str(date_to_with_delta)
         return super(FSMOrder, self).write(vals)
 
@@ -126,12 +125,14 @@ class FSMOrder(models.Model):
     def onchange_scheduled_date_end(self):
         if self.scheduled_date_end:
             date_to_with_delta = fields.Datetime.from_string(
-                self.scheduled_date_end) - timedelta(hours=self.scheduled_duration)
+                self.scheduled_date_end) -\
+                timedelta(hours=self.scheduled_duration)
             self.date_start = str(date_to_with_delta)
 
     @api.onchange('scheduled_duration')
     def onchange_scheduled_duration(self):
         if self.scheduled_duration:
             date_to_with_delta = fields.Datetime.from_string(
-                self.scheduled_date_start) + timedelta(hours=self.scheduled_duration)
+                self.scheduled_date_start) +\
+                timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
