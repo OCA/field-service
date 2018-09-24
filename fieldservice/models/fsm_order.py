@@ -55,6 +55,7 @@ class FSMOrder(models.Model):
                                       help='Scheduled duration of the work in'
                                            ' hours')
     scheduled_date_end = fields.Datetime(string="Scheduled End Date")
+    sequence = fields.Integer(string='Sequence', default=10)
     todo = fields.Text(string='Instructions')
 
     # Execution
