@@ -33,9 +33,24 @@
                             <field name="date"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="fsm_order_ids" nolabel="1"/>
-                    </group>
+                    <notebook>
+                        <page string="Orders">
+                            <field name="fsm_order_ids" nolabel="1"
+                                   widget="many2many"
+                                   domain="[('fsm_route_id', '=', False)]">
+                                <tree>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="customer_id"/>
+                                    <field name="fsm_location_id"/>
+                                    <field name="scheduled_date_start"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Map">
+
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
