@@ -15,7 +15,5 @@ class FSMPerson(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.update({
-            'fsm_person': True,
-        })
+        vals.update({'fsm_person': True})
         return super(FSMPerson, self).create(vals)

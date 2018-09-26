@@ -16,7 +16,5 @@ class FSMLocation(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.update({
-            'fsm_location': True,
-        })
+        vals.update({'fsm_location': True})
         return super(FSMLocation, self).create(vals)
