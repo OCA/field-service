@@ -6,18 +6,17 @@ from odoo import api, fields, models
 
 class FSMLocation(models.Model):
     _name = 'fsm.location'
-    _inherits = {
-        'res.partner': 'partner_id'
-    }
+    _inherits = {'res.partner': 'partner_id'}
     _description = 'Field Service Location'
 
     description = fields.Char(string='Description')
+    partner_id = fields.Many2one('res.partner', string='Related Partner',
+                                 required=True, ondelete='restrict',
+                                 auto_join=True)
 
     @api.model
     def create(self, vals):
         vals.update({
-            'customer': False,
-            'type': 'delivery',
             'fsm_location': True,
         })
         return super(FSMLocation, self).create(vals)
