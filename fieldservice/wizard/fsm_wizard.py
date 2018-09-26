@@ -23,21 +23,27 @@ class FSMWizard(models.TransientModel):
         partner_id = self._context.get('active_id')
         partner = self.env['res.partner'].search([('id', '=', partner_id)])
         if self.fsm_record_type == 'person':
-            res = self.env['fsm.person'].search_count(
-                [('partner_id', '=', partner_id)])
-            if res == 0:
-                self.env['fsm.person'].create({'partner_id': partner_id})
-                partner.write({'fsm_person': True})
-            else:
-                raise UserError(_('A Field Service Person related to that'
-                                  ' partner already exists.'))
+            self.action_convert_person(partner)
         if self.fsm_record_type == 'location':
-            res = self.env['fsm.location'].search_count(
-                [('partner_id', '=', partner_id)])
-            if res == 0:
-                self.env['fsm.location'].create({'partner_id': partner_id})
-                partner.write({'fsm_location': True})
-            else:
-                raise UserError(_('A Field Service Location related to that'
-                                  ' partner already exists.'))
+            self.action_convert_location(partner)
         return {'type': 'ir.actions.act_window_close'}
+
+    def action_convert_location(self, partner):
+        res = self.env['fsm.location'].search_count(
+            [('partner_id', '=', partner.id)])
+        if res == 0:
+            self.env['fsm.location'].create({'partner_id': partner.id})
+            partner.write({'fsm_location': True})
+        else:
+            raise UserError(_('A Field Service Location related to that'
+                              ' partner already exists.'))
+
+    def action_convert_person(self, partner):
+        res = self.env['fsm.person'].search_count(
+            [('partner_id', '=', partner.id)])
+        if res == 0:
+            self.env['fsm.person'].create({'partner_id': partner.id})
+            partner.write({'fsm_person': True})
+        else:
+            raise UserError(_('A Field Service Person related to that'
+                              ' partner already exists.'))
