@@ -21,19 +21,23 @@
         <field name="sequence">40</field>
     </record>
 
+    <record id="fsm_stage_planned" model="fsm.stage">
+        <field name="name">Planned</field>
+        <field name="sequence">50</field>
+
     <record id="fsm_stage_enroute" model="fsm.stage">
         <field name="name">En Route</field>
-        <field name="sequence">50</field>
+        <field name="sequence">60</field>
     </record>
 
     <record id="fsm_stage_started" model="fsm.stage">
         <field name="name">Started</field>
-        <field name="sequence">60</field>
+        <field name="sequence">70</field>
     </record>
 
     <record id="fsm_stage_completed" model="fsm.stage">
         <field name="name">Completed</field>
-        <field name="sequence">70</field>
+        <field name="sequence">80</field>
     </record>
 
     <record id="fsm_stage_cancelled" model="fsm.stage">

@@ -40,10 +40,12 @@
                                    domain="[('fsm_route_id', '=', False)]">
                                 <tree>
                                     <field name="sequence" widget="handle"/>
+                                    <field name="sequence"/>
                                     <field name="name"/>
                                     <field name="customer_id"/>
                                     <field name="fsm_location_id"/>
                                     <field name="scheduled_date_start"/>
+                                    <field name="stage_id"/>
                                 </tree>
                             </field>
                         </page>

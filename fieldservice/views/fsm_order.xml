@@ -23,11 +23,16 @@
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_scheduled)d)]}"/>
+                    <button id="action_plan"
+                            name="action_plan" string="Plan"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_assigned)d)]}"/>
                     <button id="action_enroute"
                             name="action_enroute" string="En Route"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_assigned)d)]}"/>
+                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_planned)d)]}"/>
                     <button id="action_start"
                             name="action_start" string="Start"
                             class="oe_highlight"
