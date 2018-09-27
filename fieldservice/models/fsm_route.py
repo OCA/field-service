@@ -14,7 +14,7 @@ class FSMRoute(models.Model):
     fsm_order_ids = fields.One2many('fsm.order', 'fsm_route_id',
                                     string='Orders')
     fsm_person_id = fields.Many2one('fsm.person',
-                                    string='Field Service Person',
+                                    string='Assigned To',
                                     required=True)
     date = fields.Date(string='Date', required=True)
 

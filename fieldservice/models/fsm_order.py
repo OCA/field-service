@@ -47,21 +47,21 @@ class FSMOrder(models.Model):
 
     # Planning
     fsm_person_id = fields.Many2one('fsm.person',
-                                    string='Field Service Person',
+                                    string='Assigned To',
                                     index=True)
     fsm_route_id = fields.Many2one('fsm.route', string='Route', index=True)
-    scheduled_date_start = fields.Datetime(string='Scheduled Starting Date')
-    scheduled_duration = fields.Float(string='Duration',
+    scheduled_date_start = fields.Datetime(string='Scheduled Start')
+    scheduled_duration = fields.Float(string='Duration in hours',
                                       help='Scheduled duration of the work in'
                                            ' hours')
-    scheduled_date_end = fields.Datetime(string="Scheduled End Date")
+    scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(string='Sequence', default=10)
     todo = fields.Text(string='Instructions')
 
     # Execution
     log = fields.Text(string='Log')
-    date_start = fields.Datetime(string='Starting Date')
-    date_end = fields.Datetime(string='End Date')
+    date_start = fields.Datetime(string='Actual Start')
+    date_end = fields.Datetime(string='Actual End')
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -105,6 +105,10 @@ class FSMOrder(models.Model):
     def action_assign(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_assigned').id})
+
+    def action_plan(self):
+        return self.write({'stage_id': self.env.ref(
+            'fieldservice.fsm_stage_planned').id})
 
     def action_enroute(self):
         return self.write({'stage_id': self.env.ref(

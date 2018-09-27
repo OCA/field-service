@@ -7,5 +7,5 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    fsm_location = fields.Boolean('Is a Field Service Location')
-    fsm_person = fields.Boolean('Is a Field Service Person')
+    fsm_location = fields.Boolean('Is a FS Location')
+    fsm_person = fields.Boolean('Is a FS Person')

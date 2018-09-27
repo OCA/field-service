@@ -31,6 +31,7 @@
         'views/fsm_order.xml',
         'views/fsm_route.xml',
         'views/menu.xml',
+        'wizard/fsm_wizard.xml',
     ],
     'application': True,
     'license': 'AGPL-3',

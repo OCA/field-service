@@ -48,21 +48,21 @@
               sequence="40"/>
 
     <!-- Master Data Menu -->
-    <menuitem id="menu_fsm_person"
-              name="Persons"
-              action="action_fsm_person"
-              parent="data"
-              sequence="10"/>
-
     <menuitem id="menu_fsm_customer"
               name="Customers"
               action="action_fsm_customer"
               parent="data"
-              sequence="20"/>
+              sequence="10"/>
 
     <menuitem id="menu_fsm_location"
               name="Locations"
               action="action_fsm_location"
+              parent="data"
+              sequence="20"/>
+
+    <menuitem id="menu_fsm_person"
+              name="Persons"
+              action="action_fsm_person"
               parent="data"
               sequence="30"/>
 
