@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Customers -->
+    <record id="action_fsm_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('customer', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Customer.
+            </p>
+        </field>
+    </record>
+
+    <!-- Field Service Fields -->
+    <record id="fsm_partner_fields" model="ir.ui.view">
+        <field name="name">res.partner.fsm.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Field Service">
+                    <group>
+                        <group>
+                            <field name="fsm_location" readonly="1"/>
+                            <field name="fsm_person" readonly="1"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

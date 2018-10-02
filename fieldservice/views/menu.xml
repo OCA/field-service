@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem id="root"
+              name="Field Service"
+              sequence="10"
+              groups="group_fsm_user"
+              web_icon="fieldservice,static/description/icon.png"/>
+    <menuitem id="dashboard" name="Dashboard" sequence="10" parent="root"/>
+    <menuitem id="operations" name="Operations" sequence="20" parent="root"/>
+    <menuitem id="data" name="Master Data" sequence="30" parent="root"/>
+    <menuitem id="reporting"
+              name="Reporting"
+              sequence="40"
+              parent="root"
+              groups="group_fsm_dispatcher"/>
+    <menuitem id="config"
+              name="Configuration"
+              sequence="100"
+              parent="root"
+              groups="group_fsm_manager"/>
+
+    <!-- Dashboard Menu -->
+    <menuitem id="menu_fsm_dash_order"
+              name="Orders"
+              action="action_fsm_dash_order"
+              parent="dashboard"
+              sequence="10"/>
+
+    <!-- Operations Menu -->
+<!--    <menuitem id="menu_fsm_activity"
+              name="Activities"
+              action="action_fsm_activity"
+              parent="operations"
+              sequence="10"/> -->
+
+    <menuitem id="menu_fsm_operation_order"
+              name="Orders"
+              action="action_fsm_operation_order"
+              parent="operations"
+              sequence="30"/>
+
+    <menuitem id="menu_fsm_route"
+              name="Day Routes"
+              action="action_fsm_route"
+              parent="operations"
+              sequence="40"/>
+
+    <!-- Master Data Menu -->
+    <menuitem id="menu_fsm_customer"
+              name="Customers"
+              action="action_fsm_customer"
+              parent="data"
+              sequence="10"/>
+
+    <menuitem id="menu_fsm_location"
+              name="Locations"
+              action="action_fsm_location"
+              parent="data"
+              sequence="20"/>
+
+    <menuitem id="menu_fsm_person"
+              name="Persons"
+              action="action_fsm_person"
+              parent="data"
+              sequence="30"/>
+
+    <!-- Reporting Menu -->
+    <menuitem id="menu_fsm_report_order"
+              name="Orders"
+              action="action_fsm_report_order"
+              parent="reporting"
+              sequence="10"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="settings"
+              name="Settings"
+              sequence="10"
+              parent="config"
+              action="action_fsm_config"/>
+
+    <menuitem id="menu_fsm_stage"
+              name="Stages"
+              action="action_fsm_stage"
+              parent="config"
+              sequence="20"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_tag"
+              name="Tags"
+              action="action_fsm_tag"
+              parent="config"
+              sequence="20"
+              groups="base.group_no_one"/>
+
+</odoo>

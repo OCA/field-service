@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location -->
+    <record id="fsm_location_tree_view" model="ir.ui.view">
+        <field name="name">fsm.location.tree</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <tree string="Locations">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <form string="Location">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <notebook>
+                        <page string="Directions">
+                            <field name="direction" nolabel="1" widget="html"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_location" model="ir.actions.act_window">
+        <field name="name">Service Locations</field>
+        <field name="res_model">fsm.location</field>
+        <field name="view_id" ref="fsm_location_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Service Locations.
+            </p>
+            <p>
+                Module not yet enabled.
+            </p>
+        </field>
+    </record>
+
+</odoo>
