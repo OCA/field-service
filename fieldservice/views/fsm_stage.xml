@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
 
     <!-- Field Service Stage -->
     <record id="fsm_stage_tree_view" model="ir.ui.view">
@@ -7,7 +7,11 @@
         <field name="model">fsm.stage</field>
         <field name="arch" type="xml">
             <tree string="Stages">
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
+                <field name="state"/>
+                <field name="is_default"/>
+                <field name="fold"/>
             </tree>
         </field>
     </record>
@@ -22,11 +26,22 @@
                         <group>
                             <field name="name"/>
                             <field name="sequence"/>
+                            <field name="legend_priority"/>
                         </group>
                         <group>
+                            <field name="state"/>
                             <field name="fold"/>
+                            <field name="is_default"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page name="teams" string="Used in Teams">
+                            <field name="team_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -43,7 +58,7 @@
                 Create a Stage.
             </p>
             <p>
-                Module not yet enabled.
+                Stages are the steps used in Team workflows.
             </p>
         </field>
     </record>

@@ -12,13 +12,15 @@ class FSMOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stage_id(self):
-        return self.env.ref('fieldservice.fsm_stage_new')
+        return self.team_id.stage_ids[0]
 
+    team_id = fields.Many2one('fsm.team', string='Service Team')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True,
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
+    state = fields.Selection(related='stage_id.state', store=True)
     priority = fields.Selection(fsm_stage.AVAILABLE_PRIORITIES,
                                 string='Priority',
                                 index=True,

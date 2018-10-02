@@ -4,6 +4,7 @@
 from . import (
     res_config_settings,
     res_partner,
+    fsm_team,
     fsm_stage,
     fsm_tag,
     fsm_location,

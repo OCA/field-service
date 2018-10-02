@@ -20,6 +20,7 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/res_config_settings.xml',
+        'views/fsm_team.xml',
         'views/fsm_stage.xml',
         'views/fsm_tag.xml',
         'views/res_partner.xml',
