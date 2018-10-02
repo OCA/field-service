@@ -10,9 +10,6 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'mail',
-        'utm',
-        'rating',
-        'portal',
         'web_timeline',
     ],
     'data': [
