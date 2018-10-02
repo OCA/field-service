@@ -9,8 +9,7 @@ from . import fsm_stage
 class FSMOrder(models.Model):
     _name = 'fsm.order'
     _description = 'Field Service Order'
-    _inherit = ['mail.thread', 'utm.mixin', 'rating.mixin',
-                'mail.activity.mixin', 'portal.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
@@ -35,7 +34,6 @@ class FSMOrder(models.Model):
                        default=lambda self: _('New'))
     customer_id = fields.Many2one('res.partner', string='Customer',
                                   domain=[('customer', '=', True)],
-                                  required=True,
                                   change_default=True,
                                   index=True,
                                   track_visibility='always')
