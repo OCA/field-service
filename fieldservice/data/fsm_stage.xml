@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fsm_stage_new" model="fsm.stage">
+        <field name="name">New</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="fsm_stage_confirmed" model="fsm.stage">
+        <field name="name">Confirmed</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="fsm_stage_scheduled" model="fsm.stage">
+        <field name="name">Scheduled</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="fsm_stage_assigned" model="fsm.stage">
+        <field name="name">Assigned</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="fsm_stage_planned" model="fsm.stage">
+        <field name="name">Planned</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="fsm_stage_enroute" model="fsm.stage">
+        <field name="name">En Route</field>
+        <field name="sequence">60</field>
+    </record>
+
+    <record id="fsm_stage_started" model="fsm.stage">
+        <field name="name">Started</field>
+        <field name="sequence">70</field>
+    </record>
+
+    <record id="fsm_stage_completed" model="fsm.stage">
+        <field name="name">Completed</field>
+        <field name="sequence">80</field>
+    </record>
+
+    <record id="fsm_stage_cancelled" model="fsm.stage">
+        <field name="name">Cancelled</field>
+        <field name="sequence">100</field>
+        <field name="fold">True</field>
+    </record>
+</odoo>

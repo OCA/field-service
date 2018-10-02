@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Person -->
+    <record id="fsm_person_tree" model="ir.ui.view">
+        <field name="name">fsm.person.tree</field>
+        <field name="model">fsm.person</field>
+        <field name="arch" type="xml">
+            <tree string="Field Service Persons">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_person_form" model="ir.ui.view">
+        <field name="name">fsm.person.form</field>
+        <field name="model">fsm.person</field>
+        <field name="arch" type="xml">
+            <form string="Field Service Person">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_person" model="ir.actions.act_window">
+        <field name="name">Field Service Persons</field>
+        <field name="res_model">fsm.person</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add Field Service Person here.
+            </p>
+        </field>
+    </record>
+
+</odoo>
