@@ -6,6 +6,13 @@
 Odoo modules for field service management.
 
 [//]: # (addons)
+
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[fieldservice](fieldservice/) | 11.0.0.0.1 | Locations, Orders, Calls
+
 [//]: # (end addons)
 
 ----
