@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--adding ticket field to order-->
+        <record model="ir.ui.view" id="fsm_order_form_ticket">
+            <field name="name">Work Order Ticket</field>
+            <field name="model">fsm.order</field>
+            <field name="inherit_id"
+                   ref="fieldservice.fsm_order_form" />
+            <field name="arch" type="xml">
+                <!--support ticket field -->
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="ticket_id" />
+                </xpath>
+                <!--smart button to open related tickets-->
+                <xpath expr="//sheet/div[1]" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <!--smart button for related tickets-->
+                        <button type="object"
+                                class="oe_stat_button"
+                                id="related_tickets_button"
+                                icon="fa-pencil-square-o"
+                                name="action_open_ticket"
+                                attrs="{'invisible': [('ticket_id', '=', None)]}">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Ticket</span>
+                            </div>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!--Button for creating workorder in ticket-->
+        <record model="ir.ui.view" id="link_ticket_to_workorder">
+            <field name="name">Workorder From Ticket</field>
+            <field name="model">website.support.ticket</field>
+            <field name="inherit_id"
+                   ref="website_support.website_support_ticket_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_open_workorder"
+                            string="Create Workorder"
+                            type="object"
+                            class="oe_highlight"
+                            groups="fieldservice.group_fsm_dispatcher"
+                    />
+                </xpath>
+                <!--smart button to open related orders-->
+                <xpath expr="//sheet/div[1]" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <!--smart button for related orders-->
+                        <button type="object"
+                                class="oe_stat_button"
+                                id="related_orders_button"
+                                icon="fa-pencil-square-o"
+                                name="action_open_related_orders">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="workorder_count"
+                                           readonly="1"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Work-orders</span>
+                            </div>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

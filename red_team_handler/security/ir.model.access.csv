@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fsm_teams_emp,fsm_teams_emp,red_team_handler.model_fsm_teams,fieldservice.group_fsm_user,1,0,0,0
+access_fsm_teams_lead,fsm_teams_lead,red_team_handler.model_fsm_teams,fieldservice.group_fsm_dispatcher,1,1,1,1
+access_fsm_teams_mgr,fsm_teams_mgr,red_team_handler.model_fsm_teams,fieldservice.group_fsm_manager,1,1,1,1
+
+access_fsm_team_member_emp,fsm_team_member_emp,red_team_handler.model_fsm_team_members,fieldservice.group_fsm_user,1,0,0,0
+access_fsm_team_member_lead,fsm_team_member_lead,red_team_handler.model_fsm_team_members,fieldservice.group_fsm_dispatcher,1,1,1,1
+access_fsm_team_member_mgr,fsm_team_member_mgr,red_team_handler.model_fsm_team_members,fieldservice.group_fsm_manager,1,1,1,1
+
+access_team_type,fsm_team_type,red_team_handler.model_team_type,,1,1,1,1

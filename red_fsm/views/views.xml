@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <!--field service main menu-->
+        <record id="fieldservice.root" model="ir.ui.menu">
+            <field name="load_xmlid" eval="True"/>
+        </record>
+
+        <!--field service configuration menu-->
+        <record id="fieldservice.config" model="ir.ui.menu">
+            <field name="load_xmlid" eval="True"/>
+        </record>
+
+        <!--Adding support ticket menu and submenu-->
+        <menuitem id="website_support_customer_fsm" name="Customer Support"
+                  parent="fieldservice.root"
+                  sequence="2" />
+
+        <menuitem id="website_support_parent_fsm" name="Support Tickets"
+                  parent="website_support_customer_fsm"
+                  sequence="10"
+                  action="website_support.website_support_ticket_action"
+        />
+        <record id="website_support_parent_fsm" model="ir.ui.menu">
+            <field name="load_xmlid" eval="True"/>
+        </record>
+
+        <menuitem id="website_support_config_parent_fsm"
+                  name="Support Tickets"
+                  parent="fieldservice.config" sequence="30"
+        />
+
+        <menuitem id="website_support_ticket_subcategory_fsm"
+                  name="Sub Categoriee" parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_ticket_subcategory_action"
+                  sequence="30"
+        />
+        <menuitem id="website_support_ticket_priority_fsm" name="Priorities"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_ticket_priority_action"
+                  sequence="40"
+        />
+        <menuitem id="website_support_help_groups_fsm" name="Help Groups"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_help_groups_action"
+                  sequence="50"
+        />
+        <menuitem id="website_support_ticket_states_fsm" name="States"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_ticket_states_action"
+                  sequence="40"
+        />
+        <menuitem id="website_support_settings_fsm" name="Settings"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_settings_action"
+                  sequence="50"
+        />
+        <menuitem id="website_support_help_page_fsm" name="Help Pages"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_help_page_action"
+                  sequence="60"
+        />
+        <menuitem id="website_support_ticket_categories_fsm" name="Categories"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_ticket_categories_action"
+                  sequence="20"
+        />
+        <menuitem id="website_support_ticket_priority_fsm" name="Priorities"
+                  parent="website_support_config_parent_fsm"
+                  action="website_support.website_support_ticket_priority_action"
+                  sequence="40"
+        />
+    </data>
+</odoo>

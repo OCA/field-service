@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="fsm_teams_user">
+            <field name="name">FSM Teams User</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="fsm_team_ids" widget="many2many_tags" readonly="1" />
+                </xpath>
+          </field>
+        </record>
+
+        <!--Adding teams to support ticket view-->
+        <record id="support_ticket_extended" model="ir.ui.view">
+            <field name="name">Support Ticket Extended</field>
+            <field name="model">website.support.ticket</field>
+            <field name="inherit_id"
+                   ref="website_support.website_support_ticket_view_form" />
+            <field name="arch" type="xml">
+            <xpath expr="//field[@name='sub_category_id']" position="after">
+                <field name="team_id" />
+            </xpath>
+            <field name="user_id" position="replace">
+                <field name="user_id" invisible="1" />
+            </field>
+            </field>
+        </record>
+
+        <!--redFSM team form-->
+        <record model="ir.ui.view" id="red_fsm_team_form">
+            <field name="name">red_fsm_team_form</field>
+            <field name="model">fsm.teams</field>
+            <field name="arch" type="xml">
+                <form string="Teams">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Team Name" />
+                            <h1>
+                                <field name="name" placeholder="Team name..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="team_lead" />
+                                <field name="team_type" />
+                            </group>
+                            <group>
+                                <field name="categ_list" widget="many2many_tags" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Skills">
+                                <group>
+                                    <group string="Basic Skills">
+                                        <field name="basic_skills"
+                                               widget="many2many_tags" />
+                                    </group>
+                                    <group string="Availability">
+                                        <field name="team_avail" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Team Members">
+                                <group>
+                                    <field name="minimum_size"
+                                           style="width: 10%;" />
+                                    <field name="maximum_size"
+                                           style="width: 10%;" />
+                                    <field name="team_members"
+                                           widget="one2many_list">
+                                        <tree editable="bottom">
+                                            <field name="name" required="1" />
+                                            <field name="available" readonly="1" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--redFSM team list-->
+        <record model="ir.ui.view" id="red_fsm_team_tree">
+            <field name="name">red_fsm_team_list</field>
+            <field name="model">fsm.teams</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="team_avail" />
+                </tree>
+            </field>
+        </record>
+
+        <!--redFSM team action-->
+        <record id="action_fsm_teams" model="ir.actions.server">
+            <field name="name">FSM Teams</field>
+            <field name="model_id" ref="red_team_handler.model_fsm_teams"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_open_teams()</field>
+            <field eval="True" name="condition"/>
+        </record>
+
+        <!--redFSM team menu-->
+        <menuitem name="FSM Teams" id="fsm_teams" sequence="50"
+                  parent="red_fsm.website_support_customer_fsm"
+                  action="action_fsm_teams"
+        />
+        <record model="ir.ui.menu" id="fsm_teams">
+            <field name="load_xmlid" eval="True"/>
+        </record>
+
+        <!-- Field Service Fields Extended-->
+        <record id="fsm_partner_fields_modified" model="ir.ui.view">
+            <field name="name">res.partner.fsm.form2</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="fsm_location" position="replace">
+                    <field name="fsm_location" />
+                </field>
+                <field name="fsm_person" position="replace">
+                    <field name="fsm_person" />
+                </field>
+            </field>
+        </record>
+  </data>
+</odoo>
