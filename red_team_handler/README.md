@@ -8,7 +8,7 @@ Installation & Configuration
 
 Install the module and no extra configuration needed.
 
-==============
+
 Specifications
 ==============
 - A team can have a team leader, and a number of team members.

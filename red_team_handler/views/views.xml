@@ -108,6 +108,7 @@
         <menuitem name="FSM Teams" id="fsm_teams" sequence="50"
                   parent="red_fsm.website_support_customer_fsm"
                   action="action_fsm_teams"
+                  groups="red_team_handler.group_red_fsm_team"
         />
         <record model="ir.ui.menu" id="fsm_teams">
             <field name="load_xmlid" eval="True"/>

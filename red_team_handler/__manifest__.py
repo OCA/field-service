@@ -14,8 +14,10 @@
         'web_tour'
     ],
     'data': [
+        'security/res_groups.xml',
         'security/ir.model.access.csv',
-        'views/views.xml'
+        'views/views.xml',
+        'views/res_config_teams.xml'
     ],
     'demo': [],
 }
