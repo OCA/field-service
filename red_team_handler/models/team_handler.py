@@ -69,7 +69,6 @@ class TeamsFSM(models.Model):
             # and maximum no. of members allowed
             raise exceptions.Warning(_("Maximum number"
                                        " of members exceeded !"))
-        self.check_member_status()
 
         return res
 
@@ -215,18 +214,6 @@ class TeamsFSM(models.Model):
                         new_user and new_user.write({
                             'fsm_team_ids': [(4, self.id)]
                         })
-
-    def check_member_status(self):
-        """Here, we are performing some validations, ie, for example,
-        The team leader cannot be selected again as the team member, etc
-        """
-        team_members = []
-        for i in self.team_members:
-            i.name.user_id and team_members.append(i.name.user_id.id)
-        if self.team_lead.user_id and self.team_lead.user_id.id in team_members:
-            raise exceptions.Warning(_('You cannot select'
-                                       ' the team leader in the team members list.'))
-        return False
 
 
 class ProjectsModified(models.Model):
