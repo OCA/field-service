@@ -69,56 +69,6 @@ class StageSets(models.Model):
             string="Stages"
     )
 
-    # @api.model
-    # def create(self, vals):
-    #     start_stage_flag = False
-    #     multiple_start = False
-    #     finish_stage_flag = False
-    #     multiple_ending = False
-    #     if vals.get('stage_ids'):
-    #         for i in vals.get('stage_ids'):
-    #             try:
-    #                 if i[2].get('start_stage') and not start_stage_flag:
-    #                     start_stage_flag = True
-    #                 elif i[2].get('start_stage') and start_stage_flag:
-    #                     multiple_start = True
-    #                 if i[2].get('finish_stage') and not finish_stage_flag:
-    #                     finish_stage_flag = True
-    #                 elif i[2].get('finish_stage') and finish_stage_flag:
-    #                     multiple_ending = True
-    #             except Exception as e:
-    #                 pass
-    #         # if not start_stage_flag or not finish_stage_flag:
-    #         #     raise exceptions.Warning(_("Please define a starting stage and ending stage for the stage set !"))
-    #         # if multiple_start or multiple_ending:
-    #         #     raise exceptions.Warning(_('You cannot define multiple start stages or multiple end stages !'))
-    #     return super(StageSets, self).create(vals)
-    #
-    # @api.multi
-    # def write(self, vals):
-    #     res = super(StageSets, self).write(vals)
-    #     start_stage_flag = False
-    #     multiple_start = False
-    #     finish_stage_flag = False
-    #     multiple_ending = False
-    #     for i in self.stage_ids:
-    #         try:
-    #             if i.start_stage and not start_stage_flag:
-    #                 start_stage_flag = True
-    #             elif i.start_stage and start_stage_flag:
-    #                 multiple_start = True
-    #             if i.finish_stage and not finish_stage_flag:
-    #                 finish_stage_flag = True
-    #             elif i.finish_stage and finish_stage_flag:
-    #                 multiple_ending = True
-    #         except Exception as e:
-    #             pass
-    #     # if not start_stage_flag or not finish_stage_flag:
-    #     #     raise exceptions.Warning(_("Please define a starting stage and ending stage for the stage set !"))
-    #     # if multiple_start or multiple_ending:
-    #     #     raise exceptions.Warning(_('You cannot define multiple start stages or multiple end stages !'))
-    #     return res
-
 
 class SelectedStages(models.Model):
     _name = 'selected.stages'
@@ -157,7 +107,7 @@ class SelectedStages(models.Model):
             help="Assigne team lead can change stage"
     )
     role_emp = fields.Boolean(
-            string="Employee",
+            string="Person",
             help="Members of assigned "
                  "teams can change stage"
     )

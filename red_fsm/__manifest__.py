@@ -13,15 +13,11 @@
     'version': '11.0.1.0.0',
     'depends': [
         'base',
-        'fieldservice',
-        'website_support'
+        'fieldservice'
     ],
     'external_dependencies': {'python': ['requests_oauthlib']},
     'data': [
-        'security/ir.model.access.csv',
-        'security/support_ticket_security.xml',
-        'views/views.xml',
-        'views/workorder_from_ticket.xml'
+        'views/views.xml'
     ],
     'demo': [],
     'qweb': [

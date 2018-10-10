@@ -16,7 +16,7 @@ class TeamMembers(models.Model):
             string="Team"
     )
     available = fields.Boolean(
-            string="Available",
+            string="Engaged",
             default=True,
             related='name.available'
     )
