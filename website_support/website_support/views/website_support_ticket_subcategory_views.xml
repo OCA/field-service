@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="website_support_ticket_subcategory_view_form" model="ir.ui.view">
+          <field name="name">website.support.ticket.subcategory form view</field>
+          <field name="model">website.support.ticket.subcategory</field>
+          <field name="arch" type="xml">
+      	      <form>
+      	          <group>
+                      <field name="parent_category_id"/>
+      	              <field name="name"/>
+      	              <field name="additional_field_ids">
+      	                  <tree editable="bottom">
+      	                      <field name="name"/>
+      	                      <field name="type"/>
+      	                  </tree>
+      	              </field>
+      	          </group>
+      	      </form>
+      	  </field>
+      </record>
+
+      <record id="website_support_ticket_subcategory_view_tree" model="ir.ui.view">
+          <field name="name">website.support.ticket.subcategory tree view</field>
+          <field name="model">website.support.ticket.subcategory</field>
+          <field name="arch" type="xml">
+      	      <tree>
+                  <field name="sequence" widget="handle"/>      	      
+                  <field name="parent_category_id"/>
+      	          <field name="name"/>
+      	      </tree>
+      	  </field>
+      </record>
+
+      <record id="website_support_ticket_subcategory_action" model="ir.actions.act_window">
+          <field name="name">Support Ticket Sub Categories</field>
+      	  <field name="res_model">website.support.ticket.subcategory</field>
+      	  <field name="view_type">form</field>
+      	  <field name="view_mode">tree,form</field>
+      	  <field name="help" type="html">
+	      <p class="oe_view_nocontent_create">Create new sub category</p>
+	  </field>
+      </record>
+
+      <record id="sequence_supp_subcategory_seq" model="ir.sequence">
+          <field name="name">website.support.ticket.subcategory sequence</field>
+          <field name="code">website.support.ticket.subcategory</field>
+          <field eval="1" name="number_next"/>
+          <field eval="1" name="number_increment"/>
+      </record>
+
+    </data>
+</openerp>

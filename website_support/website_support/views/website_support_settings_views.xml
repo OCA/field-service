@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    <record id="website_support_settings_view_form" model="ir.ui.view">
+        <field name="name">website.support.settings form view</field>
+        <field name="model">website.support.settings</field>
+        <field name="arch" type="xml">
+            <form class="oe_form_configuration">
+                <header>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                    <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                </header>
+                <group>
+                    <field name="change_user_email_template_id" context="{'default_model':'website.support.ticket'}"/>
+                    <field name="staff_reply_email_template_id" context="{'default_model':'website.support.ticket.compose'}"/>
+                    <field name="email_default_category_id"/>
+                    <field name="max_ticket_attachments"/>
+                    <field name="max_ticket_attachment_filesize"/>
+                    <field name="allow_user_signup"/>
+                    <field name="allow_website_priority_set"/>
+                    <field name="auto_send_survey"/>
+                    <field name="business_hours_id"/>
+                    <field name="google_recaptcha_active"/>
+                    <field name="google_captcha_client_key"/>
+                    <field name="google_captcha_secret_key"/>
+                </group>
+      	    </form>
+        </field>
+    </record>
+
+    <record id="website_support_settings_action" model="ir.actions.act_window">
+        <field name="name">Support Ticket Settings</field>
+	<field name="res_model">website.support.settings</field>
+	<field name="view_mode">form</field>
+	<field name="target">inline</field>
+    </record>
+
+    </data>
+</odoo>
