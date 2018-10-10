@@ -12,22 +12,6 @@
           </field>
         </record>
 
-        <!--Adding teams to support ticket view-->
-        <record id="support_ticket_extended" model="ir.ui.view">
-            <field name="name">Support Ticket Extended</field>
-            <field name="model">website.support.ticket</field>
-            <field name="inherit_id"
-                   ref="website_support.website_support_ticket_view_form" />
-            <field name="arch" type="xml">
-            <xpath expr="//field[@name='sub_category_id']" position="after">
-                <field name="team_id" />
-            </xpath>
-            <field name="user_id" position="replace">
-                <field name="user_id" invisible="1" />
-            </field>
-            </field>
-        </record>
-
         <!--redFSM team form-->
         <record model="ir.ui.view" id="red_fsm_team_form">
             <field name="name">red_fsm_team_form</field>
@@ -45,9 +29,6 @@
                             <group>
                                 <field name="team_lead" />
                                 <field name="team_type" />
-                            </group>
-                            <group>
-                                <field name="categ_list" widget="many2many_tags" />
                             </group>
                         </group>
                         <notebook>
@@ -106,7 +87,7 @@
 
         <!--redFSM team menu-->
         <menuitem name="FSM Teams" id="fsm_teams" sequence="50"
-                  parent="red_fsm.website_support_customer_fsm"
+                  parent="fieldservice.config"
                   action="action_fsm_teams"
                   groups="red_team_handler.group_red_fsm_team"
         />

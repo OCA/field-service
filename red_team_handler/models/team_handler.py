@@ -44,12 +44,6 @@ class TeamsFSM(models.Model):
             string="Type"
     )
 
-    # in order to handle the support tickets
-    categ_list = fields.Many2many(
-            'website.support.ticket.categories',
-            string="Categories"
-    )
-
     @api.multi
     def write(self, vals):
         if vals.get('team_lead') or\
@@ -231,34 +225,6 @@ class TeamTypeFSM(models.Model):
     name = fields.Char(
             string="Type"
     )
-
-
-class SupportTicketTeam(models.Model):
-    _inherit = 'website.support.ticket'
-
-    team_id = fields.Many2one(
-            'fsm.teams',
-            string="Assigned Team"
-    )
-
-    @api.onchange('category')
-    def onchange_category(self):
-        """We need to set a domain on teams,
-        we need to show only those teams in the selected category"""
-        domain = None
-        if self.category:
-            self.team_id = None
-            teams_to_show = []
-            teams = self.env['fsm.teams'].search([])
-            for i in teams:
-                if self.category.id in i.categ_list.ids:
-                    teams_to_show.append(i.id)
-            domain = "[('id', 'in', " + str(teams_to_show) + ")]"
-        return {
-            'domain': {
-                'team_id': domain
-            }
-        }
 
 
 class EmployeeFsmTeams(models.Model):

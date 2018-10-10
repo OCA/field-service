@@ -11,7 +11,8 @@
     'depends': [
         'base',
         'red_fsm',
-        'web_tour'
+        'web_tour',
+        'project'
     ],
     'data': [
         'security/res_groups.xml',
