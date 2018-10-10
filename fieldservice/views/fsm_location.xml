@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Field Service Location -->
+    <!-- Field Service Location Tree View-->
     <record id="fsm_location_tree_view" model="ir.ui.view">
         <field name="name">fsm.location.tree</field>
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <tree string="Locations">
                 <field name="name"/>
+                <field name="partner_id"/>
+                <field name="owner_id"/>
+                <field name="customer_id"/>
+                <field name="building"/>
+                <field name="floor"/>
+                <field name="unit"/>
+                <field name="room"/>
+                <field name="fsm_longitude"/>
+                <field name="fsm_latitude"/>
             </tree>
         </field>
     </record>
 
+    <!-- Field Service Location Form View-->
     <record id="fsm_location_form_view" model="ir.ui.view">
         <field name="name">fsm.location.form</field>
         <field name="model">fsm.location</field>
@@ -21,16 +31,86 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="owner_id"/>
+                            <field name="customer_id"/>
                         </group>
-                        <group></group>
+                        <group>
+                            <field name="building"/>
+                            <field name="floor"/>
+                            <field name="unit"/>
+                            <field name="room"/>
+                            <field name="fsm_longitude"/>
+                            <field name="fsm_latitude"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Directions">
                             <field name="direction" nolabel="1" widget="html"/>
                         </page>
+                        <page string="Address Information">
+                            <group>
+                                <group>
+                                    <field name="territory"/>
+                                    <field name="branch"/>
+                                    <field name="district"/>
+                                    <field name="region"/>
+                                </group>
+                                <group>
+                                    <field name="fsm_address1"/>
+                                    <field name="fsm_address2"/>
+                                    <field name="fsm_city"/>
+                                    <field name="fsm_state"/>
+                                    <field name="fsm_postal"/>
+                                    <field name="fsm_country"/>
+                                </group>
+                            </group>
+                            <newline/>
+                            <group>
+                                <field name="description"/>
+                                <field name="timezone"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+    
+    <!-- Field Service Location Search View-->
+    <record id="fsm_location_search_view" model="ir.ui.view">
+        <field name="name">fsm.location.search</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <search string="Search FSM Location">
+                <field name="name" filter_domain="['|', ('name','ilike',self)]" string="FSM Location"/>
+                <field name="partner_id"/>
+                <field name="owner_id"/>
+                <field name="customer_id"/>
+                <field name="building"/>
+                <field name="floor"/>
+                <field name="unit"/>
+                <field name="room"/>
+                <field name="fsm_longitude"/>
+                <field name="fsm_latitude"/>
+                <field name="territory"/>
+                <field name="branch"/>
+                <field name="district"/>
+                <field name="region"/>
+                <field name="fsm_address1"/>
+                <field name="fsm_address2"/>
+                <field name="fsm_city"/>
+                <field name="fsm_state"/>
+                <field name="fsm_postal"/>
+                <field name="fsm_country"/>
+                <field name="description"/>
+                <field name="timezone"/>
+                <group expand="0" string="Group By">
+                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Owner" domain="[]" context="{'group_by':'owner_id'}"/>
+                    <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+               </group>
+            </search>
         </field>
     </record>
 
@@ -40,6 +120,7 @@
         <field name="view_id" ref="fsm_location_tree_view"/>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="fsm_location_search_view"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a Service Locations.
