@@ -17,6 +17,7 @@
     ],
     'external_dependencies': {'python': ['requests_oauthlib']},
     'data': [
+        'views/res_config_tickets.xml',
         'views/views.xml'
     ],
     'demo': [],
