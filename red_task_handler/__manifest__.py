@@ -18,7 +18,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/stage_data.xml',
-        'views/fsm_stages.xml'
+        'views/fs_stages.xml',
+        'views/fs_stage_set.xml'
     ],
     # only loaded in demonstration mode
     'demo': [],

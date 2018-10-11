@@ -63,5 +63,22 @@
             <field name="stage_set" ref="red_task_handler.stage_set1"/>
             <field name="stage_id" ref="red_task_handler.stage7"/>
         </record>
+
+        <!--stage transition authority data-->
+        <record model="stage.transition.authority" id="transition_authority_everyone">
+            <field name="name">Everyone</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_admin">
+            <field name="name">Admin</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_mgr">
+            <field name="name">Manager</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_team_lead">
+            <field name="name">Team Leader</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_person">
+            <field name="name">Person</field>
+        </record>
     </data>
 </odoo>
