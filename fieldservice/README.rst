@@ -85,7 +85,6 @@ Contributors
 * Wolfgang Hall <whall@opensourceintegrators.com>
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 * Steve Campbell <scampbell@opensourceintegrators.com>
-* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
