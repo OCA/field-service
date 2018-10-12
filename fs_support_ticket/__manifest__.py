@@ -11,14 +11,19 @@
     'category': 'Field Service',
     'version': '11.0.1.0.0',
     'depends': [
-        'red_fsm',
+        'web',
+        'website',
+        'red_fsm'
     ],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/website.menu.csv',
         'data/notify_mail_template.xml',
         'wizard/mail_compose_wizard.xml',
+        'views/fs_website_templates.xml',
+        'views/fs_ticket_categ.xml',
         'views/fs_ticket_view.xml',
         'views/ticket_notification.xml'
     ],

@@ -53,7 +53,7 @@
                                            widget="one2many_list">
                                         <tree editable="bottom">
                                             <field name="name" required="1" />
-                                            <field name="available" readonly="1" />
+                                            <field name="available" invisible="1" />
                                         </tree>
                                     </field>
                                 </group>
@@ -72,6 +72,8 @@
                 <tree>
                     <field name="name" />
                     <field name="team_avail" />
+                    <field name="team_lead" />
+                    <field name="team_type" />
                 </tree>
             </field>
         </record>

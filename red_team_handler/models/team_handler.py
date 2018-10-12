@@ -12,12 +12,15 @@ class TeamsFSM(models.Model):
             required=True
     )
     team_members = fields.One2many(
-            'fsm.team.members',
+            'fsm.team.member',
             'team_id',
             string="Team Members"
     )
     basic_skills = fields.Many2many(
-            'project.project',
+            'fsm.skills',
+            'teams_skills_rel',
+            'team_id',
+            'skill_id',
             string="Basic Skills"
     )
     team_avail = fields.Selection([
@@ -63,7 +66,11 @@ class TeamsFSM(models.Model):
             # and maximum no. of members allowed
             raise exceptions.Warning(_("Maximum number"
                                        " of members exceeded !"))
-
+        # checking team members skills
+        if vals.get('team_members') or\
+                vals.get('team_lead') or\
+                vals.get('basic_skills'):
+            self.check_skills()
         return res
 
     @api.model
@@ -79,6 +86,12 @@ class TeamsFSM(models.Model):
             # and maximum no. of members allowed
             raise exceptions.Warning(_("Maximum number"
                                        " of members exceeded !"))
+
+        # checking team members skills
+        if vals.get('team_members') or\
+                vals.get('team_lead') or\
+                vals.get('basic_skills'):
+            self.check_skills()
         res.update_teams_list(vals)
         return res
 
@@ -208,6 +221,43 @@ class TeamsFSM(models.Model):
                         new_user and new_user.write({
                             'fsm_team_ids': [(4, self.id)]
                         })
+
+    def check_skills(self):
+        """We are verifying team members skills.
+        If any of the team member does not have the basic skills
+        required by the team, we will raise a warning"""
+        team_skill_ids = self.basic_skills.ids
+        if self.team_lead:
+            has_skill = self.validate_skills(
+                    team_skill_ids,
+                    self.team_lead.skill_ids.ids
+            )
+            if not has_skill:
+                raise exceptions.Warning(_(
+                        "Team leader doesn't satisfy the basic skills criteria."
+                    ))
+        for member in self.team_members:
+            has_skill = self.validate_skills(
+                    team_skill_ids,
+                    member.name.skill_ids.ids
+            )
+
+            if not has_skill:
+                # member doesn't have any of the skills required
+                raise exceptions.Warning(_(
+                    "Team member %s doesn't satisfy the basic skills criteria."
+                ) % (member.name.name, ))
+        return
+
+    def validate_skills(self, team_skills, person_skills):
+        """comparing the skills of team and person"""
+        if not team_skills:
+            # there is no skill criteria required by the team
+            return True
+        for s_p in person_skills:
+            if s_p in team_skills:
+                return True
+        return False
 
 
 class ProjectsModified(models.Model):

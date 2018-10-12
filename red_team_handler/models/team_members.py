@@ -5,7 +5,7 @@ from odoo import fields, models
 
 # team members
 class TeamMembers(models.Model):
-    _name = 'fsm.team.members'
+    _name = 'fsm.team.member'
 
     name = fields.Many2one(
             'fsm.person',

@@ -14,6 +14,14 @@ class EmployeeAvailability(models.Model):
                  "when person is started/finished "
                  "a job."
     )
+    # skill sets of this person
+    skill_ids = fields.Many2many(
+            'fsm.skills',
+            'person_skills_rel',
+            'person_id',
+            'skill_id',
+            string="Basic Skills"
+    )
 
 
 class ResPartnerPerson(models.Model):
