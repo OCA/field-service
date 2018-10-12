@@ -14,15 +14,12 @@ class FSMLocation(models.Model):
                                  required=True, ondelete='restrict',
                                  auto_join=True)
     owner_id = fields.Many2one('res.partner', string='Related Owner',
-                                 required=True, ondelete='restrict',
-                                 auto_join=True)
+                               required=True, ondelete='restrict',
+                               auto_join=True)
     customer_id = fields.Many2one('res.partner', string='Related Customer',
-                                 required=True, ondelete='restrict',
-                                 auto_join=True)
+                                  required=True, ondelete='restrict',
+                                  auto_join=True)
     tag_ids = fields.Many2many('fsm.tag',
-                               'location_tag',
-                               'fsm_location_id',
-                               'fsm_location_id',
                                string='Tags')
     building = fields.Char(string='Building', size=35)
     floor = fields.Char(string='Floor', size=35)
@@ -34,7 +31,7 @@ class FSMLocation(models.Model):
     district = fields.Char(string='District', size=35)
     region = fields.Char(string='Region', size=35)
     timezone = fields.Char(string='Timezone', size=35)
-    
+
     @api.model
     def create(self, vals):
         vals.update({'fsm_location': True})
