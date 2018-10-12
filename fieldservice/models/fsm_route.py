@@ -17,7 +17,7 @@ class FSMRoute(models.Model):
                                     string='Assigned To',
                                     required=True)
     fsm_vehicle_id = fields.Many2one('fsm.vehicle',
-                                    string='Assigned Vehicle')
+                                     string='Assigned Vehicle')
     date = fields.Date(string='Date', required=True)
 
     _sql_constraints = [
