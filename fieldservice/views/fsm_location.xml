@@ -8,15 +8,14 @@
         <field name="arch" type="xml">
             <tree string="Locations">
                 <field name="name"/>
-                <field name="partner_id"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
                 <field name="building"/>
                 <field name="floor"/>
                 <field name="unit"/>
                 <field name="room"/>
-                <field name="fsm_longitude"/>
-                <field name="fsm_latitude"/>
+                <field name="partner_latitude"/>
+                <field name="partner_longitude"/>
             </tree>
         </field>
     </record>
@@ -40,8 +39,8 @@
                             <field name="floor"/>
                             <field name="unit"/>
                             <field name="room"/>
-                            <field name="fsm_longitude"/>
-                            <field name="fsm_latitude"/>
+                            <field name="partner_latitude"/>
+                            <field name="partner_longitude"/>
                         </group>
                     </group>
                     <notebook>
@@ -57,12 +56,12 @@
                                     <field name="region"/>
                                 </group>
                                 <group>
-                                    <field name="fsm_address1"/>
-                                    <field name="fsm_address2"/>
-                                    <field name="fsm_city"/>
-                                    <field name="fsm_state"/>
-                                    <field name="fsm_postal"/>
-                                    <field name="fsm_country"/>
+                                    <field name="street"/>
+                                    <field name="street2"/>
+                                    <field name="city"/>
+                                    <field name="state_id"/>
+                                    <field name="zip"/>
+                                    <field name="country_id"/>
                                 </group>
                             </group>
                             <newline/>
@@ -76,7 +75,7 @@
             </form>
         </field>
     </record>
-    
+
     <!-- Field Service Location Search View-->
     <record id="fsm_location_search_view" model="ir.ui.view">
         <field name="name">fsm.location.search</field>
@@ -91,25 +90,24 @@
                 <field name="floor"/>
                 <field name="unit"/>
                 <field name="room"/>
-                <field name="fsm_longitude"/>
-                <field name="fsm_latitude"/>
+                <field name="partner_latitude"/>
+                <field name="partner_longitude"/>
                 <field name="territory"/>
                 <field name="branch"/>
                 <field name="district"/>
                 <field name="region"/>
-                <field name="fsm_address1"/>
-                <field name="fsm_address2"/>
-                <field name="fsm_city"/>
-                <field name="fsm_state"/>
-                <field name="fsm_postal"/>
-                <field name="fsm_country"/>
+                <field name="stree"/>
+                <field name="street2"/>
+                <field name="city"/>
+                <field name="state_id"/>
+                <field name="zip"/>
+                <field name="country_id"/>
                 <field name="description"/>
                 <field name="timezone"/>
                 <group expand="0" string="Group By">
-                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
                     <filter string="Owner" domain="[]" context="{'group_by':'owner_id'}"/>
                     <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
-               </group>
+                </group>
             </search>
         </field>
     </record>
@@ -124,9 +122,6 @@
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a Service Locations.
-            </p>
-            <p>
-                Module not yet enabled.
             </p>
         </field>
     </record>
