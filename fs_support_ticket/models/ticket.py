@@ -17,15 +17,15 @@ class SupportTicket(models.Model):
         string="Ticket Category"
     )
     customer_id = fields.Many2one(
-            'res.partner',
-            string="Customer"
+        'res.partner',
+        string="Customer"
     )
     person_id = fields.Many2one(
-            'fsm.person',
-            string="Assigned Person"
+        'fsm.person',
+        string="Assigned Person"
     )
     customer_name = fields.Char(
-            string='Person Name'
+        string='Person Name'
     )
     email = fields.Char(string="Email")
     ticket_date = fields.Date(
@@ -33,7 +33,7 @@ class SupportTicket(models.Model):
         default=fields.Date.today()
     )
     description = fields.Text(
-            string="Description"
+        string="Description"
     )
     state = fields.Selection([
         ('draft', 'Draft'),
