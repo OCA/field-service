@@ -9,6 +9,7 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
+        'base_geolocalize',
         'mail',
         'web_timeline',
     ],
@@ -25,6 +26,7 @@
         'views/res_partner.xml',
         'views/fsm_location.xml',
         'views/fsm_person.xml',
+        'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
         'views/fsm_route.xml',
         'views/menu.xml',
