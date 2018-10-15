@@ -144,8 +144,8 @@ class TeamsFSM(models.Model):
             'view_mode': 'tree,form',
             'domain': domain,
             'context': {
-                'tree_view_ref': 'red_team_handler.red_fsm_team_tree',
-                'form_view_ref': 'red_team_handler.red_fsm_team_form',
+                'tree_view_ref': 'fsm_team_handler.red_fsm_team_tree',
+                'form_view_ref': 'fsm_team_handler.red_fsm_team_form',
             }
         }
 

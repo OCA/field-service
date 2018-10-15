@@ -8,4 +8,4 @@ class ResConfigSettingsFsmTeam(models.TransientModel):
 
     group_red_fsm_team = fields.Boolean(
         string='Manage RedFSM Teams',
-        implied_group='red_team_handler.group_red_fsm_team')
+        implied_group='fsm_team_handler.group_red_fsm_team')

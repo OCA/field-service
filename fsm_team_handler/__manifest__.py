@@ -10,7 +10,6 @@
     'version': '11.0.1.0.0',
     'depends': [
         'base',
-        'red_fsm',
         'web_tour',
         'project'
     ],
