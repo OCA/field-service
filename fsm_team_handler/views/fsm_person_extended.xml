@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="fsm_person_form_skills" model="ir.ui.view">
+            <field name="name">fsm.person.form.extended</field>
+            <field name="model">fsm.person</field>
+            <field name="inherit_id" ref="fieldservice.fsm_person_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="skill_ids"
+                           widget="many2many_tags" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
