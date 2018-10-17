@@ -12,9 +12,9 @@
           </field>
         </record>
 
-        <!--redFSM team form-->
-        <record model="ir.ui.view" id="red_fsm_team_form">
-            <field name="name">red_fsm_team_form</field>
+        <!--FSM team form-->
+        <record model="ir.ui.view" id="fsm_teams_form">
+            <field name="name">fsm_teams_form</field>
             <field name="model">fsm.teams</field>
             <field name="arch" type="xml">
                 <form string="Teams">
@@ -64,9 +64,9 @@
             </field>
         </record>
 
-        <!--redFSM team list-->
-        <record model="ir.ui.view" id="red_fsm_team_tree">
-            <field name="name">red_fsm_team_list</field>
+        <!--FSM team list-->
+        <record model="ir.ui.view" id="fsm_teams_tree">
+            <field name="name">fsm_teams_list</field>
             <field name="model">fsm.teams</field>
             <field name="arch" type="xml">
                 <tree>
@@ -78,20 +78,19 @@
             </field>
         </record>
 
-        <!--redFSM team action-->
+        <!--FSM team action-->
         <record id="action_fsm_teams" model="ir.actions.server">
             <field name="name">FSM Teams</field>
             <field name="model_id" ref="fsm_team_handler.model_fsm_teams"/>
             <field name="state">code</field>
             <field name="code">action = model.action_open_teams()</field>
-            <field eval="True" name="condition"/>
         </record>
 
-        <!--redFSM team menu-->
+        <!--FSM team menu-->
         <menuitem name="FSM Teams" id="fsm_teams" sequence="50"
                   parent="fieldservice.config"
                   action="action_fsm_teams"
-                  groups="fsm_team_handler.group_red_fsm_team"
+                  groups="fsm_team_handler.group_fsm_teams"
         />
         <record model="ir.ui.menu" id="fsm_teams">
             <field name="load_xmlid" eval="True"/>
