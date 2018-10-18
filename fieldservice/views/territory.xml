@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Territory Tree View -->
+    <record id="territory_tree_view" model="ir.ui.view">
+        <field name="name">territory.tree</field>
+        <field name="model">territory</field>
+        <field name="arch" type="xml">
+            <tree string="Territories">
+                <field name="name"/>
+                <field name="branch_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Territory Form View -->
+    <record id="territory_form_view" model="ir.ui.view">
+        <field name="name">territory.form</field>
+        <field name="model">territory</field>
+        <field name="arch" type="xml">
+            <form string="Territory">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <label for="parent_id" class="oe_edit_only"/>
+                    <h2><field name="branch_id"/></h2>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_territory" model="ir.actions.act_window">
+        <field name="name">Territories</field>
+        <field name="res_model">territory</field>
+        <field name="view_id" ref="territory_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
