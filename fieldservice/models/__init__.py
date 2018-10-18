@@ -3,6 +3,11 @@
 
 from . import (
     res_config_settings,
+    location,
+    region,
+    district,
+    branch,
+    territory,
     res_partner,
     fsm_stage,
     fsm_tag,
