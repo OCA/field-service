@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Branch Tree View -->
+    <record id="branch_tree_view" model="ir.ui.view">
+        <field name="name">branch.tree</field>
+        <field name="model">branch</field>
+        <field name="arch" type="xml">
+            <tree string="Branches">
+                <field name="name"/>
+                <field name="district_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Branch Form View -->
+    <record id="branch_form_view" model="ir.ui.view">
+        <field name="name">branch.form</field>
+        <field name="model">branch</field>
+        <field name="arch" type="xml">
+            <form string="Branch">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <label for="district_id" class="oe_edit_only"/>
+                    <h2><field name="district_id"/></h2>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_branch" model="ir.actions.act_window">
+        <field name="name">Branches</field>
+        <field name="res_model">branch</field>
+        <field name="view_id" ref="branch_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
