@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Location Tree View -->
+    <record id="location_tree_view" model="ir.ui.view">
+        <field name="name">location.tree</field>
+        <field name="model">location</field>
+        <field name="arch" type="xml">
+            <tree string="Locations">
+                <field name="name"/>
+                <field name="parent_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Location Form View -->
+    <record id="location_form_view" model="ir.ui.view">
+        <field name="name">location.form</field>
+        <field name="model">location</field>
+        <field name="arch" type="xml">
+            <form string="Location">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <label for="parent_id" class="oe_edit_only"/>
+                    <h2><field name="parent_id"/></h2>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_location" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">location</field>
+        <field name="view_id" ref="location_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
