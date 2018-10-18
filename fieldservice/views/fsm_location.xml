@@ -10,12 +10,7 @@
                 <field name="name"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
-                <field name="building"/>
-                <field name="floor"/>
-                <field name="unit"/>
-                <field name="room"/>
-                <field name="partner_latitude"/>
-                <field name="partner_longitude"/>
+                <field name="location_id"/>
             </tree>
         </field>
     </record>
@@ -40,12 +35,7 @@
                             <field name="customer_id"/>
                         </group>
                         <group>
-                            <field name="building"/>
-                            <field name="floor"/>
-                            <field name="unit"/>
-                            <field name="room"/>
-                            <field name="partner_latitude"/>
-                            <field name="partner_longitude"/>
+                            <field name="location_id"/>
                         </group>
                     </group>
                     <notebook>
@@ -55,10 +45,15 @@
                         <page string="Address Information">
                             <group>
                                 <group>
-                                    <field name="territory"/>
-                                    <field name="branch"/>
-                                    <field name="district"/>
-                                    <field name="region"/>
+                                    <field name="territory_id"/>
+                                    <field name="branch_id"/>
+                                    <field name="district_id"/>
+                                    <field name="region_id"/>
+                                    <newline/>
+                                    <field name="description"/>
+                                    <field name="partner_latitude"/>
+                                    <field name="partner_longitude"/>
+                                    <field name="timezone"/>
                                 </group>
                                 <group>
                                     <field name="street"/>
@@ -68,11 +63,6 @@
                                     <field name="zip"/>
                                     <field name="country_id"/>
                                 </group>
-                            </group>
-                            <newline/>
-                            <group>
-                                <field name="description"/>
-                                <field name="timezone"/>
                             </group>
                         </page>
                     </notebook>
@@ -91,16 +81,13 @@
                 <field name="partner_id"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
-                <field name="building"/>
-                <field name="floor"/>
-                <field name="unit"/>
-                <field name="room"/>
+                <field name="location_id"/>
                 <field name="partner_latitude"/>
                 <field name="partner_longitude"/>
-                <field name="territory"/>
-                <field name="branch"/>
-                <field name="district"/>
-                <field name="region"/>
+                <field name="territory_id"/>
+                <field name="branch_id"/>
+                <field name="district_id"/>
+                <field name="region_id"/>
                 <field name="street"/>
                 <field name="street2"/>
                 <field name="city"/>
