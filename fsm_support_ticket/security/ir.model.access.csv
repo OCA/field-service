@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticket_person,ticket_person,fsm_support_ticket.model_fsm_support_ticket,fieldservice.group_fsm_user,1,1,0,0
+access_ticket_team_lead,ticket_team_lead,fsm_support_ticket.model_fsm_support_ticket,fieldservice.group_fsm_dispatcher,1,1,1,1
+access_ticket_mgr,ticket_mgr,fsm_support_ticket.model_fsm_support_ticket,fieldservice.group_fsm_manager,1,1,1,1
+
+access_ticket_categ_person,ticket_categ_person,fsm_support_ticket.model_fsm_ticket_category,fieldservice.group_fsm_user,1,1,0,0
+access_ticket_categ_team_lead,ticket_categ_team_lead,fsm_support_ticket.model_fsm_ticket_category,fieldservice.group_fsm_dispatcher,1,1,1,1
+access_ticket_categ_mgr,ticket_categ_mgr,fsm_support_ticket.model_fsm_ticket_category,fieldservice.group_fsm_manager,1,1,1,1
+
+access_mail_compose_person,_mail_compose_person,fsm_support_ticket.model_fsm_compose_mail,fieldservice.group_fsm_user,1,1,0,0
+access__mail_compose_team_lead,_mail_compose_team_lead,fsm_support_ticket.model_fsm_compose_mail,fieldservice.group_fsm_dispatcher,1,1,1,1
+access__mail_compose_mgr,_mail_compose_mgr,fsm_support_ticket.model_fsm_compose_mail,fieldservice.group_fsm_manager,1,1,1,1

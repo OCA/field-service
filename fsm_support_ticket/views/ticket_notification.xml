@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--action to notify ticket status to customer-->
+        <act_window
+            id="action_compose_mail_customer"
+            name="Notify Customer"
+            context="{'default_notify_type': 'customer'}"
+            src_model="fsm.support.ticket"
+            res_model="fsm.compose.mail"
+            view_mode="form"
+            view_type="form"
+            target="new"
+        />
+        <!--action to notify ticket status to assigned person-->
+        <act_window
+            id="action_compose_mail_employee"
+            name="Notify Employee"
+            context="{'default_notify_type': 'employee'}"
+            src_model="fsm.support.ticket"
+            res_model="fsm.compose.mail"
+            view_mode="form"
+            view_type="form"
+            target="new"
+        />
+    </data>
+</odoo>

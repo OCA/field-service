@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Field Service Teams",
     'summary': """Teams for handling the jobs.""",

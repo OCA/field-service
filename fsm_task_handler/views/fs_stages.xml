@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--fsm stages form view-->
+        <record id="fsm_stages_form" model="ir.ui.view">
+            <field name="name">StagesForm</field>
+            <field name="model">fsm.stages</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="sequence" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="fold" />
+                                <field name="ref_editable" invisible="1" />
+                                <field name="ref_name"
+                                       attrs="{'readonly': [('ref_editable','=',False)]}"
+                                />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--fsm stages tree view-->
+        <record id="fsm_stages_tree" model="ir.ui.view">
+            <field name="name">StagesTree</field>
+            <field name="model">fsm.stages</field>
+            <field name="arch" type="xml">
+                <tree default_order="sequence asc">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                    <field name="ref_name" />
+                </tree>
+            </field>
+        </record>
+
+        <!--stages action-->
+        <record id="action_fsm_stages" model="ir.actions.act_window">
+            <field name="name">FSM Stages</field>
+            <field name="res_model">fsm.stages</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('fsm_stages_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('fsm_stages_form')})
+                          ]"
+            />
+        </record>
+
+        <!-- stages menu-->
+        <menuitem parent="fieldservice.config" id="fsm_stages"
+                  action="action_fsm_stages" sequence="5" />
+    </data>
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="notify_operation_stat_wiz" model="ir.ui.view">
+            <field name="name">Notify Operation Status</field>
+            <field name="model">fsm.compose.mail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="email_from" />
+                                <field name="notify_type" invisible="1" />
+                                <field name="subject" />
+                            </group>
+                            <group>
+                                <field name="recipient" widget="many2many_tags"
+                                       attrs="{'invisible': [('notify_type', '=', 'employee')]}"
+                                />
+                                <field name="recipient_person" widget="many2many_tags"
+                                       attrs="{'invisible': [('notify_type', '=', 'customer')]}"
+                                />
+                            </group>
+                        </group>
+
+                        <label for="body" string="Mail Content" />
+                        <field name="body" />
+                    </sheet>
+                    <footer>
+                        <button string="Send"
+                                name="send_status"
+                                type="object"
+                                class="btn-primary"
+                        />
+                        <button string="Cancel"
+                                class="btn-default"
+                                special="cancel"
+                        />
+                  </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

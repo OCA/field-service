@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!--stages-->
+        <record id="stage1" model="fsm.stages">
+            <field name="sequence">1</field>
+            <field name="name">Draft</field>
+        </record>
+        <record id="stage2" model="fsm.stages">
+            <field name="sequence">2</field>
+            <field name="name">Sent to Employee</field>
+        </record>
+        <record id="stage3" model="fsm.stages">
+            <field name="sequence">3</field>
+            <field name="name">Rejected</field>
+        </record>
+        <record id="stage4" model="fsm.stages">
+            <field name="sequence">4</field>
+            <field name="name">Approved</field>
+        </record>
+        <record id="stage5" model="fsm.stages">
+            <field name="sequence">5</field>
+            <field name="name">Started</field>
+        </record>
+        <record id="stage6" model="fsm.stages">
+            <field name="sequence">6</field>
+            <field name="name">Finished</field>
+        </record>
+        <record id="stage7" model="fsm.stages">
+            <field name="sequence">7</field>
+            <field name="name">Cancelled</field>
+        </record>
+        <!--stage set-->
+        <record model="fsm.stage.sets" id="stage_set1">
+            <field name="name">Work-orders</field>
+        </record>
+        <!--selected stages-->
+        <record model="selected.stages" id="selected_stage1">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage1"/>
+        </record>
+        <record model="selected.stages" id="selected_stage2">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage2"/>
+        </record>
+        <record model="selected.stages" id="selected_stage3">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage3"/>
+        </record>
+        <record model="selected.stages" id="selected_stage4">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage4"/>
+        </record>
+        <record model="selected.stages" id="selected_stage5">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage5"/>
+        </record>
+        <record model="selected.stages" id="selected_stage6">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage6"/>
+        </record>
+        <record model="selected.stages" id="selected_stage7">
+            <field name="stage_set" ref="fsm_task_handler.stage_set1"/>
+            <field name="stage_id" ref="fsm_task_handler.stage7"/>
+        </record>
+
+        <!--stage transition authority data-->
+        <record model="stage.transition.authority" id="transition_authority_everyone">
+            <field name="name">Everyone</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_admin">
+            <field name="name">Admin</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_mgr">
+            <field name="name">Manager</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_team_lead">
+            <field name="name">Team Leader</field>
+        </record>
+        <record model="stage.transition.authority" id="transition_authority_person">
+            <field name="name">Person</field>
+        </record>
+    </data>
+</odoo>
+

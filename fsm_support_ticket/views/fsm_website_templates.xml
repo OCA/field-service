@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--styles-->
+    <template id="fs_ticket_styles"
+              inherit_id="website.assets_frontend"
+              name="Ticket Styles">
+        <xpath expr="/t" position="inside">
+            <link rel="stylesheet"
+                  href="/fsm_support_ticket/static/src/css/ticket_styles.css"/>
+        </xpath>
+    </template>
+
+    <!--Actual pages-->
+    <template id="fsm_support_ticket.fs_tickets" name="Tickets">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1 style="text-align:center;">
+                        Submit a Ticket
+                    </h1>
+                    <div class="row">
+                        <form action="/fsm/ticket/submit"
+                              method="POST"
+                              class="ticket-submit-form">
+                            <input type="hidden" name="csrf_token"
+                                   t-att-value="request.csrf_token()" />
+                            <div class="customer-name">
+                                <span class="col-md-3 col-sm-4">Name</span>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="ticket_website_form"
+                                           t-att-value="customer_name"
+                                           required="1"
+                                           name="customer_name" />
+                                </div>
+                            </div>
+                            <div class="customer-email">
+                                <span class="col-md-3 col-sm-4">Email</span>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text" class="ticket_website_form customer-email"
+                                           t-att-value="email"
+                                           required="1"
+                                           name="customer_email" />
+                                </div>
+                            </div>
+                            <script type="text/javascript"
+                                    src="/fsm_support_ticket/static/src/js/email_validation.js" />
+                            <div class="ticket-subject">
+                                <span class="col-md-3 col-sm-4">Subject</span>
+                                <div class="col-md-7 col-sm-7">
+                                    <input type="text"
+                                           required="1"
+                                           class="ticket_website_form"
+                                           name="ticket_subject" />
+                                </div>
+                            </div>
+
+                            <div class="ticket-categ">
+                                <span class="col-md-3 col-sm-4">Category</span>
+                                <div class="col-md-7 col-sm-8">
+                                    <select class="ticket_website_form"
+                                            name="ticket_category">
+                                        <option value="-1">None</option>
+                                        <t t-foreach="ticket_categ" t-as="categ">
+                                            <option t-attf-value="#{categ.id}">
+                                                <t t-esc="categ.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ticket-description">
+                                <span class="col-md-3 col-sm-4">Description</span>
+                                <div class="col-md-7 col-sm-7">
+                                    <textarea class="ticket_website_form description"
+                                              required="1"
+                                              name="ticket_description" />
+                                </div>
+                            </div>
+                            <div class="form-footer col-md-7 col-sm-7">
+                                <button class="btn btn-primary submit_ticket">
+                                    Submit Ticket
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+               <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <template id="fsm_support_ticket.ticket_create_success" name="Ticket Submit Success">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1 style="text-align:center;">
+                        Success
+                    </h1>
+                    <div class="row">
+                        <p>
+                            Your ticket has been successfully submitted.
+                        </p>
+                    </div>
+                </div>
+               <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <template id="fsm_support_ticket.ticket_create_error" name="Ticket Submit Success">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1 style="text-align:center;">
+                        Error
+                    </h1>
+                    <div class="row">
+                        <p>
+                            Unable to register your ticket. Please try again.
+                        </p>
+                    </div>
+                </div>
+               <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <template id="fsm_support_ticket.tickets_list" name="My Tickets">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <div class="state_filter">
+                        <select id="state_selection_el"
+                                data-placeholder="Select an option"
+                                multiple="multiple">
+                            <t t-foreach="states" t-as="state">
+                                <option t-att-value="state[0]" selected="selected">
+                                    <span t-esc="state[1]" />
+                                </option><br />
+                            </t>
+                        </select>
+                        <script type="text/javascript"
+                                src="/fsm_support_ticket/static/src/js/ticket_filter.js">
+                        </script>
+                    </div>
+                    <t t-call="website.pager" >
+                        <t t-set="classname">pull-right</t>
+                    </t>
+                    <div t-if="not tickets" class="row">
+                        <p style="text-align:center;">
+                            You don't have any tickets.
+                        </p>
+                    </div>
+                    <div t-if="tickets" class="row" style="float: right;width: 85%;">
+                        <h1 style="text-align:center;">
+                            Your Tickets
+                        </h1>
+
+                        <div t-if="tickets" class="mt32">
+                            <div class="tickets_table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="ticket_subject">
+                                                Subject
+                                            </th>
+                                            <th class="ticket_customer">
+                                                Customer
+                                            </th>
+                                            <th class="ticket_person">
+                                                Assigned to
+                                            </th>
+                                            <th class="ticket_email">
+                                                Email
+                                            </th>
+                                            <th class="ticket_date">
+                                                Date
+                                            </th>
+                                            <th class="ticket_state">
+                                                State
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="tickets" t-as="ticket">
+                                            <tr t-att-id="ticket.state">
+                                                <td>
+                                                    <span t-esc="ticket.ticket_subject" />
+                                                </td>
+                                                <td>
+                                                    <span t-esc="ticket.customer_name" />
+                                                </td>
+                                                <td>
+                                                    <t t-if="ticket.person_id">
+                                                        <span t-esc="ticket.person_id.name" />
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="ticket.email" />
+                                                </td>
+                                                <td>
+                                                    <span t-esc="ticket.ticket_date" />
+                                                </td>
+                                                <td>
+                                                    <span t-esc="ticket.state" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+</odoo>

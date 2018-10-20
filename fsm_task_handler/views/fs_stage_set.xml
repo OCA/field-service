@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--stage set form view-->
+        <record id="fsm_stage_set_form" model="ir.ui.view">
+            <field name="name">Stage Set Form</field>
+            <field name="model">fsm.stage.sets</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Selected Stages">
+                                <field name="stage_ids">
+                                    <form>
+                                        <sheet>
+                                            <script>
+                                                $(document).ready(function(){
+                                                    $('.use_transitions').change(function(evt){
+                                                        $('.transitions a').trigger('click');
+                                                    });
+                                                });
+                                            </script>
+                                            <group>
+                                                <group>
+                                                    <field name="stage_id" />
+                                                    <field name="start_stage" />
+                                                    <field name="finish_stage" />
+                                                </group>
+                                                <group string="Permissions">
+                                                    <field name="role_everyone" />
+                                                    <field name="role_admin"
+                                                        attrs="{'readonly': [('role_everyone', '=', True)]}"
+                                                    />
+                                                    <field name="role_manager"
+                                                           attrs="{'readonly': [('role_everyone', '=', True)]}" />
+                                                    <field name="role_team_lead"
+                                                           attrs="{'readonly': [('role_everyone', '=', True)]}"/>
+                                                    <field name="role_emp"
+                                                           attrs="{'readonly': [('role_everyone', '=', True)]}"/>
+                                                </group>
+                                            </group>
+                                            <div>
+                                                <label for="conditions" string="Conditions" />
+                                                <br />
+                                                <field name="conditions"
+                                                       style="width:80%;"
+                                                       placeholder="[('field1', '=', value1), ('field2', '=', value2)]"
+                                                />
+                                                <br />
+                                                <button name="check_domain"
+                                                        string="Check"
+                                                        type="object"
+                                                        />
+                                            </div>
+                                            <div>
+                                                <p>
+                                                    Use the following variables for constructing the domain.<br />
+                                                    parent_id : parent of the current object,<br />
+                                                    self : current object,<br />
+                                                    self.state or parent_id.state : to access the stage of the corresponding records.<br />
+                                                </p>
+                                            </div>
+                                            <!--Section that handles advanced transitions-->
+                                            <group>
+                                                <group string="Advanced Transitions">
+                                                    <field name="use_trasitions"
+                                                           class="use_transitions" />
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Transitions"
+                                                      autofocus="1"
+                                                      class="transitions"
+                                                      attrs="{'invisible': [('use_trasitions', '=', False)]}">
+                                                    <field name="transition_ids"
+                                                           attrs="{'invisible': [('use_trasitions', '=', False)]}">
+                                                        <form string="Transition Details">
+                                                            <sheet>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="selected_stage_id"
+                                                                               invisible="1" />
+                                                                        <field name="dest_stage" />
+                                                                        <field name="transition_allowed"
+                                                                               widget="many2many_tags"
+                                                                        />
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="validate_transition" />
+                                                                    </group>
+                                                                </group>
+                                                            </sheet>
+                                                        </form>
+                                                        <tree editable="bottom">
+                                                            <field name="selected_stage_id"
+                                                                   invisible="1" />
+                                                            <field name="dest_stage"
+                                                                   required="1"
+                                                            />
+                                                            <field name="validate_transition" />
+                                                            <field name="transition_allowed"
+                                                                   widget="many2many_tags"
+                                                                   options="{'no_create': True}"
+                                                            />
+                                                        </tree>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                    <tree default_order="sequence asc">
+                                        <field name="sequence" widget="handle" />
+                                        <field name="stage_id" />
+                                        <field name="start_stage" />
+                                        <field name="finish_stage" />
+                                        <field name="conditions" />
+                                        <field name="role_everyone" />
+                                        <field name="role_admin" />
+                                        <field name="role_manager" />
+                                        <field name="role_team_lead" />
+                                        <field name="role_emp" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--stage set tree view-->
+        <record id="fsm_stage_set_tree" model="ir.ui.view">
+            <field name="name">Stage Set Tree</field>
+            <field name="model">fsm.stage.sets</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!--stage set action-->
+        <record id="action_fsm_stage_sets" model="ir.actions.act_window">
+            <field name="name">Stage Set</field>
+            <field name="res_model">fsm.stage.sets</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree, form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('fsm_stage_set_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('fsm_stage_set_form')})
+                          ]"
+            />
+        </record>
+        <!--stage set menu-->
+        <menuitem parent="fieldservice.config" id="fsm_stage_sets"
+                  action="action_fsm_stage_sets" sequence="4" />
+    </data>
+</odoo>
