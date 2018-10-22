@@ -8,7 +8,6 @@ from odoo import api, fields, models
 
 class FSMLocation(models.Model):
     _name = 'fsm.location'
-    _inherits = {'res.partner': 'partner_id'}
     _description = 'Field Service Location'
 
     @api.model
@@ -21,7 +20,7 @@ class FSMLocation(models.Model):
     direction = fields.Char(string='Directions')
     partner_id = fields.Many2one('res.partner', string='Related Partner',
                                  required=True, ondelete='restrict',
-                                 auto_join=True)
+                                 delegate=True, auto_join=True)
     owner_id = fields.Many2one('res.partner', string='Related Owner',
                                required=True, ondelete='restrict',
                                auto_join=True)
