@@ -15,7 +15,8 @@ class Location(models.Model):
 
     name = fields.Char(string='Name')
     complete_name = fields.Char("Full Location Name",
-                                compute='_compute_complete_name', store=True)
+                                compute='_compute_complete_name',
+                                store=True, index=True)
     parent_id = fields.Many2one('location', string='Parent Location',
                                 ondelete='restrict')
     notes = fields.Html(string='Notes')
