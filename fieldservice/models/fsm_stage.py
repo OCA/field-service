@@ -29,3 +29,6 @@ class FSMStage(models.Model):
     fold = fields.Boolean('Folded in Kanban',
                           help='This stage is folded in the kanban view when '
                                'there are no record in that stage to display.')
+    is_closed = fields.Boolean('Is a close stage',
+                               help='Services in this stage are considered '
+                                    'as closed.')
