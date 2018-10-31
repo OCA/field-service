@@ -7,7 +7,8 @@
               sequence="10"
               groups="group_fsm_user"
               web_icon="fieldservice,static/description/icon.png"/>
-    <menuitem id="dashboard" name="Dashboard" sequence="10" parent="root"/>
+    <menuitem id="dashboard" name="Dashboard" sequence="10" parent="root"
+              action="maintenance.maintenance_dashboard_action" />
     <menuitem id="operations" name="Operations" sequence="20" parent="root"/>
     <menuitem id="data" name="Master Data" sequence="30" parent="root"/>
     <menuitem id="reporting"
@@ -20,20 +21,6 @@
               sequence="100"
               parent="root"
               groups="group_fsm_manager"/>
-
-    <!-- Dashboard Menu -->
-    <menuitem id="menu_fsm_dash_order"
-              name="Orders"
-              action="action_fsm_dash_order"
-              parent="dashboard"
-              sequence="10"/>
-
-    <!-- Operations Menu -->
-<!--    <menuitem id="menu_fsm_activity"
-              name="Activities"
-              action="action_fsm_activity"
-              parent="operations"
-              sequence="10"/> -->
 
     <menuitem id="menu_fsm_operation_order"
               name="Orders"

@@ -5,9 +5,10 @@
     <record id="fsm_order_form" model="ir.ui.view">
         <field name="name">fsm.order.form</field>
         <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
         <field name="arch" type="xml">
-            <form string="Orders">
-                <header>
+                <!-- header -->
+                <button name="archive_equipment_request" position="before">
                     <button id="action_confirm"
                             name="action_confirm" string="Confirm"
                             class="oe_highlight"
@@ -47,26 +48,20 @@
                             name="action_cancel" string="Cancel"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '=', %(fieldservice.fsm_stage_completed)d)]}"/>
-                    <field name="stage_id" widget="statusbar"/>
-                </header>
-                <sheet>
-                    <div class="oe_title">
-                        <h1>
-                            <field name="name" readonly="1"/>
-                        </h1>
-                    </div>
-                    <group>
-                        <group>
+                </button>
+
+                <!-- sheet -->
+                <field name="equipment_id" position="after">
                             <field name="customer_id"/>
                             <field name="fsm_location_id"/>
-                        </group>
-                        <group>
-                            <field name="priority"/>
+                </field>
+                <field name="priority" position="after">
                             <field name="tag_ids"
                                    widget="many2many_tags"
                                    options="{'color_field': 'color', 'no_create_edit': True}"/>
-                        </group>
-                    </group>
+                </field>
+
+                <field name="description" position="replace">
                     <notebook>
                         <page string="Request">
                             <group>
@@ -119,28 +114,25 @@
                         <page string="Map">
                         </page>
                     </notebook>
-                </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="activity_ids" widget="mail_activity"/>
-                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
-                </div>
-            </form>
+                </field>
         </field>
     </record>
 
     <record id="fsm_order_tree_view" model="ir.ui.view">
         <field name="name">fsm.order.tree</field>
         <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree" />
         <field name="arch" type="xml">
-            <tree string="Order" default_order="scheduled_date_start">
+            <tree position="attributes">
+                <attribute name="default_order">scheduled_date_start</attribute>
+            </tree>
+            <field name="owner_user_id" position="after" >
                 <field name="scheduled_date_start"/>
-                <field name="name"/>
+                <field name="scheduled_date_end"/>
                 <field name="customer_id"/>
                 <field name="fsm_location_id"/>
                 <field name="fsm_person_id"/>
-                <field name="stage_id" string="Stage"/>
-            </tree>
+            </field>
         </field>
     </record>
 
@@ -148,7 +140,7 @@
         <field name="name">Orders</field>
         <field name="res_model">maintenance.request</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form,timeline</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create an Order.
@@ -230,18 +222,6 @@
                       default_group_by="fsm_person_id"
                       event_open_popup="true">
             </timeline>
-        </field>
-    </record>
-
-    <record id="action_fsm_dash_order" model="ir.actions.act_window">
-        <field name="name">Orders</field>
-        <field name="res_model">maintenance.request</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">kanban,timeline,tree,form</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Create an Order.
-            </p>
         </field>
     </record>
 
