@@ -3,35 +3,17 @@
 
 from datetime import timedelta
 from odoo import api, fields, models, _
-from . import fsm_stage
 
 
 class FSMOrder(models.Model):
-    _name = 'fsm.order'
+    _inherit = 'maintenance.request'
     _description = 'Field Service Order'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    def _default_stage_id(self):
-        return self.env.ref('fieldservice.fsm_stage_new')
-
-    stage_id = fields.Many2one('fsm.stage', string='Stage',
-                               track_visibility='onchange',
-                               index=True,
-                               group_expand='_read_group_stage_ids',
-                               default=lambda self: self._default_stage_id())
-    priority = fields.Selection(fsm_stage.AVAILABLE_PRIORITIES,
-                                string='Priority',
-                                index=True,
-                                default=fsm_stage.AVAILABLE_PRIORITIES[0][0])
+    # Request
     tag_ids = fields.Many2many('fsm.tag', 'fsm_order_tag_rel',
                                'fsm_order_id',
                                'tag_id', string='Tags',
                                help="Classify and analyze your orders")
-    color = fields.Integer('Color Index', default=0)
-
-    # Request
-    name = fields.Char(string='Name', required=True,
-                       default=lambda self: _('New'))
     customer_id = fields.Many2one('res.partner', string='Customer',
                                   domain=[('customer', '=', True)],
                                   change_default=True,
@@ -39,8 +21,6 @@ class FSMOrder(models.Model):
                                   track_visibility='always')
     fsm_location_id = fields.Many2one('fsm.location', string='Location',
                                       index=True)
-    requested_date = fields.Datetime(string='Requested Date')
-    description = fields.Text(string='Description')
     origin = fields.Char(string='Origin')
 
     # Planning
@@ -62,15 +42,10 @@ class FSMOrder(models.Model):
     date_end = fields.Datetime(string='Actual End')
 
     @api.model
-    def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([])
-        return stage_ids
-
-    @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
-                or _('New')
+            seq_next = self.env['ir.sequence'].next_by_code
+            vals['name'] = seq_next('maintenance.request') or _('New')
         return super(FSMOrder, self).create(vals)
 
     @api.multi

@@ -11,7 +11,7 @@ class FSMRoute(models.Model):
 
     name = fields.Char(string='Name', required=True,
                        default=lambda self: _('New'))
-    fsm_order_ids = fields.One2many('fsm.order', 'fsm_route_id',
+    fsm_order_ids = fields.One2many('maintenance.request', 'fsm_route_id',
                                     string='Orders')
     fsm_person_id = fields.Many2one('fsm.person',
                                     string='Assigned To',
