@@ -4,7 +4,7 @@
     <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
         <field name="name">fsm.order.form</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="arch" type="xml">
             <form string="Orders">
                 <header>
@@ -71,7 +71,7 @@
                         <page string="Request">
                             <group>
                                 <group>
-                                    <field name="requested_date"/>
+                                    <field name="request_date"/>
                                 </group>
                                 <group>
                                     <field name="origin"/>
@@ -131,7 +131,7 @@
 
     <record id="fsm_order_tree_view" model="ir.ui.view">
         <field name="name">fsm.order.tree</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="arch" type="xml">
             <tree string="Order" default_order="scheduled_date_start">
                 <field name="scheduled_date_start"/>
@@ -146,7 +146,7 @@
 
     <record id="action_fsm_operation_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
-        <field name="res_model">fsm.order</field>
+        <field name="res_model">maintenance.request</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
@@ -159,7 +159,7 @@
     <!-- Dashboard -->
     <record id="fsm_order_kanban_view" model="ir.ui.view">
         <field name="name">fsm.order.kanban</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="arch" type="xml">
             <kanban default_group_by="stage_id" class="o_kanban_small_column">
                 <field name="stage_id"
@@ -221,7 +221,7 @@
 
     <record id="fsm_order_timeline_view" model="ir.ui.view">
         <field name="name">fsm.order.timeline</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="type">timeline</field>
         <field name="arch" type="xml">
             <timeline date_start="scheduled_date_start"
@@ -235,7 +235,7 @@
 
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
-        <field name="res_model">fsm.order</field>
+        <field name="res_model">maintenance.request</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,timeline,tree,form</field>
         <field name="help" type="html">
@@ -248,7 +248,7 @@
     <!-- Reporting -->
     <record id="fsm_order_graph_view" model="ir.ui.view">
         <field name="name">fsm.order.graph</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="arch" type="xml">
             <graph string="Service Requests" type="bar">
                 <field name="stage_id" type="row"/>
@@ -258,7 +258,7 @@
 
     <record id="fsm_order_pivot_view" model="ir.ui.view">
         <field name="name">fsm.order.pivot</field>
-        <field name="model">fsm.order</field>
+        <field name="model">maintenance.request</field>
         <field name="arch" type="xml">
             <pivot string="Service Requests" display_quantity="true">
                 <field name="stage_id" type="row"/>
@@ -268,7 +268,7 @@
 
     <record id="action_fsm_report_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
-        <field name="res_model">fsm.order</field>
+        <field name="res_model">maintenance.request</field>
         <field name="view_type">form</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
