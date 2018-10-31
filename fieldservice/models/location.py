@@ -23,11 +23,11 @@ class Location(models.Model):
     parent_left = fields.Integer('Left Parent', index=True)
     parent_right = fields.Integer('Right Parent', index=True)
 
-    @api.one
     @api.depends('name', 'parent_id.complete_name')
     def _compute_complete_name(self):
-        if self.parent_id.complete_name:
-            self.complete_name = '%s/%s' % \
-                                 (self.parent_id.complete_name, self.name)
-        else:
-            self.complete_name = self.name
+        for loc in self:
+            if loc.parent_id.complete_name:
+                loc.complete_name = \
+                    '%s / %s' % (loc.parent_id.complete_name, loc.name)
+            else:
+                loc.complete_name = loc.name
