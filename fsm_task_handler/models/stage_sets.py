@@ -1,4 +1,4 @@
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, exceptions, _
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -6,9 +6,7 @@ from odoo.tools.safe_eval import safe_eval
 class StageSets(models.Model):
     _name = 'fsm.stage.sets'
 
-    name = fields.Char(
-            string="Stage Set Name"
-    )
+    name = fields.Char(string="Stage Set Name")
     # we will select the stages we need to use and set the attributes
     # like, condition, role, etc
     stage_ids = fields.One2many('selected.stages',

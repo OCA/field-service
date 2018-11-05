@@ -1,5 +1,5 @@
 {
-    'name': "FS Task Handler",
+    'name': "FSM Task Handler",
     'summary': """
         Handle tasks to be executed during the lifetime of some project.""",
     'author': "redO2oo.ch2",
@@ -7,7 +7,9 @@
     'category': 'Field Service',
     'version': '11.0.1.0.0',
     'depends': [
-        'fieldservice'
+        'fieldservice',
+        'fsm_base',
+        'fsm_team_handler'
     ],
 
     # always loaded
@@ -15,8 +17,13 @@
         'security/ir.model.access.csv',
         'data/stage_data.xml',
         'views/fs_stages.xml',
-        'views/fs_stage_set.xml'
+        'views/fs_stage_set.xml',
+        'wizard/reject_proposal.xml',
+        'views/work_sets.xml',
+        'views/work_item.xml',
+        'views/skills_modified.xml',
+        'views/work_set_forms.xml',
+        'views/mail_notification.xml'
     ],
-    # only loaded in demonstration mode
     'demo': [],
 }

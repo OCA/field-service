@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--Reject proposal wizard-->
+        <record id="proposal_rejection_wiz" model="ir.ui.view">
+            <field name="name">Reject Reason</field>
+            <field name="model">reject.proposal.wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <label for="reject_reason" string="Reason" />
+                        <field name="reject_reason" />
+                    </sheet>
+                    <footer>
+                        <button name="reject_operation" type="object"
+                                class="btn-primary" string="Proceed" />
+                        <button string="Discard" class="btn-default"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--action to open proposal reject reason-->
+        <record id="action_reject_operation" model="ir.actions.act_window">
+            <field name="name">Reject Reason</field>
+            <field name="res_model">reject.proposal.wiz</field>
+            <field name="target">new</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('proposal_rejection_wiz')}),
+                          ]"
+            />
+            <field name="context">{
+                'default_id': active_id
+                }
+            </field>
+        </record>
+    </data>
+</odoo>

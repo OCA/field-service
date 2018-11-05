@@ -1,4 +1,4 @@
-from odoo import models, fields, api, exceptions, _
+from odoo import models, fields, api
 
 
 # model for stages

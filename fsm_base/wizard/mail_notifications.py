@@ -35,6 +35,7 @@ class MailNotification(models.Model):
                                        'mail_compose_wiz',
                                        string="Recipients"
                                        )
+    recipient_mail = fields.Char(string="Recipient email")
     subject = fields.Char(string="Subject")
     body = fields.Html(string="Body")
     notify_type = fields.Char()
@@ -49,10 +50,18 @@ class MailNotification(models.Model):
         notify_type value.
         """
         notify_type = self._context.get('default_notify_type')
+        no_recipient = False
         # getting current ticket
         if self._context.get('active_model') == 'fsm.support.ticket':
-            ticket_id = self._context.get('active_id')
-            rec = self.env['fsm.support.ticket'].browse(ticket_id)
+            rec_id = self._context.get('active_id')
+            rec = self.env['fsm.support.ticket'].browse(rec_id)
+            if not rec.customer_id and not rec.email:
+                no_recipient = True
+        elif self._context.get('active_model') == 'fsm.work_set':
+            rec_id = self._context.get('active_id')
+            rec = self.env['fsm.work_set'].browse(rec_id)
+            if not rec.customer_id:
+                no_recipient = True
 
         if not rec:
             raise exceptions.UserError(_('Exception occured !'))
@@ -60,23 +69,33 @@ class MailNotification(models.Model):
         rec.ensure_one()
         if notify_type == 'customer':
             # mail notification to customer
-            if not rec.customer_id:
+            if no_recipient:
                 # making sure there is a customer selected
                 raise exceptions.ValidationError(
-                    'Please Select a Customer First!')
+                    'Please Select a Customer or provide an email!')
             # selecting template
             template = self.env.ref(
-                'fsm_support_ticket.notify_customer_mail',
+                'fsm_base.notify_customer_mail',
                 False)
             # setting default recipient
-            self.recipient = rec.customer_id.ids if rec.customer_id else None
+            if self._context.get('active_model') == 'fsm.support.ticket':
+                if rec.customer_id:
+                    self.recipient_person = rec.person_id.ids
+                else:
+                    self.recipient_mail = rec.email
+            elif self._context.get('active_model') == 'fsm.work_set':
+                self.recipient = rec.customer_id.ids if rec.customer_id else None
         if notify_type == 'employee':
             # notification to assigned person or serviceman
             template = self.env.ref(
-                'fsm_support_ticket.notify_employee_mail',
+                'fsm_base.notify_employee_mail',
                 False)
             # setting recipient
-            self.recipient_person = rec.person_id.ids
+            if self._context.get('active_model') == 'fsm.support.ticket':
+                self.recipient_person = rec.person_id.ids
+            elif self._context.get('active_model') == 'fsm.work_set':
+                self.recipient_person = \
+                    [team.team_id.team_lead.id for team in rec.team_id]
 
         # setting mail subject, body, etc.
         self.email_from = self.env.user.partner_id.email
@@ -93,16 +112,20 @@ class MailNotification(models.Model):
         email_str = ''
         if self.notify_type == 'customer':
             template_id = \
-                model_obj.get_object_reference('fsm_support_ticket',
+                model_obj.get_object_reference('fsm_base',
                                                'notify_customer_mail'
                                                )[1]
-            for rec in self.recipient:
-                email_str += rec.email + "," if rec.email else ''
+            if self.recipient:
+                for rec in self.recipient:
+                    email_str += rec.email + "," if rec.email else ''
+            elif self.recipient_mail:
+                email_str = \
+                    self.recipient_mail + "," if self.recipient_mail else ''
             email_str = email_str[:-1]
         else:
 
             template_id = \
-                model_obj.get_object_reference('fsm_support_ticket',
+                model_obj.get_object_reference('fsm_base',
                                                'notify_employee_mail'
                                                )[1]
             for rec in self.recipient_person:
@@ -136,13 +159,12 @@ class MailNotification(models.Model):
                             'fsm.support.ticket':
                         ticket_id = self._context.get('active_id')
                         rec = self.env['fsm.support.ticket'].browse(ticket_id)
-
-                    if rec:
                         rec.state = 'sent_to_employee'
 
         # now we need to send notifications to
         # all the recipients(private channel)
         # so if there is no channel exists, we will create one
+
         # gathering all the partner details
         partner_ids = {}
         user = self.env.user
@@ -203,7 +225,7 @@ class MailNotification(models.Model):
         # sending the message directly
         # to the recipient channel
         # here the channel is a direct channel
-        # which inludes the sender and recipient
+        # which includes the sender and recipient
         self.env['mail.message'].create({
             'message_type': 'notification',
             'body': self.body,

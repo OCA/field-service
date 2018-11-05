@@ -17,7 +17,9 @@
                                 <field name="recipient" widget="many2many_tags"
                                        attrs="{'invisible': [('notify_type', '=', 'employee')]}"
                                 />
-                                <field name="recipient_person" widget="many2many_tags"
+                                <field name="recipient_mail" />
+                                <field name="recipient_person"
+                                       widget="many2many_tags"
                                        attrs="{'invisible': [('notify_type', '=', 'customer')]}"
                                 />
                             </group>

@@ -10,14 +10,14 @@
     'depends': [
         'base',
         'web_tour',
-        'fieldservice'
+        'fieldservice',
+        'fsm_base'
     ],
     'data': [
-        'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/fsm_person_extended.xml',
-        'views/res_config_teams.xml'
+        'views/skill_view.xml',
+        'views/fsm_person_extended.xml'
     ],
     'demo': [],
 }

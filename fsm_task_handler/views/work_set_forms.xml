@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--Questionnaires form-->
+        <record id="product_survey_form" model="ir.ui.view">
+            <field name="name">Product Survey Form</field>
+            <field name="model">product.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string=" Name" />
+                            <h1>
+                                <field name="name" placeholder="Questionnaire name..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <!-- Questionnaire category -->
+                                <field name="question_categ" />
+                            </group>
+                        </group>
+                        <field name="questionnaire" widget="one2many_list">
+                            <tree editable="bottom">
+                                <field name="name" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Questionnaires tree-->
+        <record model="ir.ui.view" id="product_survey_tree">
+            <field name="name">Product Survey Tree</field>
+            <field name="model">product.survey</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Questionnaires action -->
+        <record id="action_questionnaires" model="ir.actions.act_window">
+            <field name="name">Questionnaires</field>
+            <field name="res_model">product.survey</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Questionnaire menu-->
+        <menuitem name="Questionnaires"
+                  parent="fieldservice.config"
+                  id="product_questionnaires"
+                  action="action_questionnaires"
+        />
+
+        <!--survey answers tree(where we can answer the questions)-->
+        <record id="product_survey_answer_editable_tree" model="ir.ui.view">
+            <field name="name">Survey Answers</field>
+            <field name="model">work_set.answers</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="0">
+                    <field name="name" />
+                    <field name="answer" />
+                    <field name="survey_id" invisible="1" />
+                    <field name="work_set_id" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <!--survey answers tree(just for view)-->
+        <record id="product_survey_answer_tree" model="ir.ui.view">
+            <field name="name">Survey Answers List</field>
+            <field name="model">work_set.answers</field>
+            <field name="arch" type="xml">
+                <tree create="0">
+                    <field name="name" />
+                    <field name="answer" />
+                    <field name="survey_id" invisible="1" />
+                    <field name="work_set_id" invisible="1" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

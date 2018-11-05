@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- changing 'configuration menu access level,
+            add permission for dispatcher -->
+        <record id="fieldservice.config" model="ir.ui.menu">
+            <field name="groups">fieldservice.group_fsm_dispatcher</field>
+        </record>
+
+        <!--work set form-->
+        <record id="fsm_work_sets_form" model="ir.ui.view">
+            <field name="name">Work-set Form</field>
+            <field name="model">fsm.work_set</field>
+            <field name="arch" type="xml">
+                <form string="Work-Set">
+                    <header>
+                        <!--resets to first stage of the related stage set-->
+                        <button type="object" name="reset_to_initial_stage"
+                                string="Reset Stage" class="btn btn-sm btn-primary"
+                        />
+                        <!--go to next stage after checking the conditions-->
+                        <button type="object" name="proceed_to_next_stage"
+                                string="Next Stage" class="btn btn-sm btn-primary"
+                        />
+
+                        <field name="state" invisible="1" />
+                        <field name="stage_id" invisible="1" />
+                        <field name="fsm_stage_list"
+                               widget="fsm_stage_list"
+                        />
+
+                        <!--Button to approve the assigned operation for employee
+                        We need to hide and show this approve button based on the stages.
+                        -->
+                        <button type="object" name="approve_operation"
+                                string="Approve" class="btn btn-sm btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'Sent to Employee')]}"
+                        />
+
+                       <!--button to reject the proposal-->
+                        <button type="action" name="%(action_reject_operation)d"
+                                string="Reject" class="btn btn-sm btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'Sent to Employee')]}"
+                        />
+                    </header>
+                    <div>
+                        <!--we are showing only current state, because,
+                        if we set the domain for the stages on stage set change,
+                        it will show all the stages after a refresh
+                        so we decided to show current state only-->
+
+<!--
+                        <div class="custom_stage_id"
+                             style="float: right;font-size: 16px;margin-right: 5px;">
+                            <field name="previous_stage"
+                                   style="padding-right: 5px;" />
+                            <i style="font-size:24px;vertical-align: -3px;" class="fa">&#xf101;</i>
+                            <field name="stage_id"
+                                   style="padding-left: 5px;padding-right: 5px;font-weight: bolder;"
+                            />
+                            <i style="font-size:24px;vertical-align: -3px;" class="fa">&#xf101;</i>
+                            <field name="upcoming_stage"
+                                   style="padding-left: 5px;"
+                            />
+                        </div>
+-->
+                    </div>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string=" Name" />
+                            <h1>
+                                <field name="name" placeholder="Work-Set name..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="work_order_id" />
+                                <field name="state" />
+                                <!--
+                                if this workset is linked with a workorder,
+                                we will show the customer associated with that order.
+                                Otherwise, we can select a new customer.
+                                -->
+                               <field name="customer_id"
+                                      attrs="{'readonly':[
+                                      ('work_order_id', '!=', False)
+                                      ]}"
+                               />
+                                <field name="reject_reason" invisible="1"/>
+                                <!-- Questionnaire category -->
+                               <field name="question_categ"
+                                      widget="many2many_tags" readonly="0" />
+                               <field name="price_categ" />
+                            </group>
+                            <group>
+                               <field name="stage_set" />
+                               <field name="team_id" widget="one2many_list">
+                                   <form string="Teams">
+                                       <field name="workset_id" invisible="1" />
+                                       <field name="team_id" />
+                                   </form>
+                                   <tree editable="bottom">
+                                       <field name="team_id" />
+                                   </tree>
+                               </field>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description" autofocus="1">
+                                <br />
+                                <field name="description"
+                                       placeholder="Additional description." />
+                            </page>
+                            <page string="Forms">
+                                <field name="work_set_forms" >
+                                    <tree editable="bottom">
+                                        <field name="work_set_id"
+                                               invisible="1" />
+                                        <field name="name" />
+                                        <!--button for answering survey-->
+                                        <button type="object"
+                                                name="action_test_survey"
+                                                string="Answer Now"
+                                                help="This button will
+                                                work only after you save the record!"
+                                        />
+                                        <!--button redirect to results(website) of this survey-->
+                                        <button type="object" name="action_result_survey"
+                                                string="View Results" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"
+                               widget="mail_followers"/>
+                        <field name="message_ids"
+                               widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--workset tree-->
+        <record id="fsm_work_sets_tree" model="ir.ui.view">
+            <field name="name">Work-sets Tree</field>
+            <field name="model">fsm.work_set</field>
+            <field name="arch" type="xml">
+                <tree string="Work-Sets">
+                    <field name="name" />
+                    <field name="work_order_id" />
+                    <field name="customer_id" />
+                    <field name="description" />
+                    <field name="price_categ" />
+                    <field name="stage_id" />
+                </tree>
+            </field>
+        </record>
+
+        <!--workset action-->
+        <record id="action_fsm_work_sets" model="ir.actions.server">
+            <field name="name">Work-Sets</field>
+            <field name="model_id" ref="fsm_task_handler.model_fsm_work_set"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_open_worksets()</field>
+        </record>
+
+        <!--workset menu-->
+        <menuitem name="Work-Sets"
+                  parent="fieldservice.operations"
+                  id="fsm_work_sets"
+                  sequence="31"
+                  action="action_fsm_work_sets"
+        />
+    </data>
+</odoo>

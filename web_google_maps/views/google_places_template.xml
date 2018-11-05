@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_google_maps.assets_gmaps">
+        <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('google.api_key_geocode')"/>
+        <t t-set="google_maps_lang_localization" t-value="request.env['ir.config_parameter'].sudo().get_param('google.lang_localization')"/>
+        <t t-set="google_maps_region_localization" t-value="request.env['ir.config_parameter'].sudo().get_param('google.region_localization')"/>
+        <t t-set="google_maps_libraries" t-value="request.env['ir.config_parameter'].sudo().get_param('google.maps_libraries')"/>
+        <t t-if="google_maps_api_key">
+            <script t-att-async="'async'" t-att-defer="'defer'" t-attf-src="https://maps.googleapis.com/maps/api/js?v=3.33&amp;key=#{google_maps_api_key}&amp;libraries=#{google_maps_libraries}#{google_maps_lang_localization}#{google_maps_region_localization}"></script>
+        </t>
+        <t t-if="not google_maps_api_key">
+            <script t-att-async="'async'" t-att-defer="'defer'" t-attf-src="https://maps.googleapis.com/maps/api/js?v=3.33&amp;libraries=#{google_maps_libraries}#{google_maps_lang_localization}#{google_maps_region_localization}"></script>
+        </t>
+        <script src="https://cdn.rawgit.com/gityopie/v3-utility-library/master.2018-09-29.cdde3b2/markerclusterer/src/markerclusterer.js"></script>
+    </template>
+    <template id="webclient_bootstrap" name="webclient_bootstrap gmaps" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//t[@t-call-assets='web.assets_common']" position="before">
+            <t t-call="web_google_maps.assets_gmaps"/>
+        </xpath>
+    </template>
+    <template id="assets_backend" name="web_google_maps assets backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/less" href="/web_google_maps/static/src/less/web_maps.less"/>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/view/map/map_model.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/view/map/map_controller.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/view/map/map_renderer.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/view/map/map_view.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/view/view_registry.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/fields/relational_fields.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/widgets/utils.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/widgets/gplaces_autocomplete.js"></script>
+            <script type="text/javascript" src="/web_google_maps/static/src/js/widgets/fields_registry.js"></script>
+        </xpath>
+    </template>
+</odoo>

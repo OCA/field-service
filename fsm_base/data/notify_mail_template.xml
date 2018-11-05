@@ -4,7 +4,7 @@
          <record id="notify_customer_mail" model="mail.template">
               <field name="name">Notify Customer</field>
               <field name="subject">Status</field>
-              <field name="model_id" ref="fsm_support_ticket.model_fsm_compose_mail"/>
+              <field name="model_id" ref="fsm_base.model_fsm_compose_mail"/>
               <field name="auto_delete" eval="True"/>
               <field name="body_html"><![CDATA[<p>
                 Hello,
@@ -17,7 +17,7 @@
          <record id="notify_employee_mail" model="mail.template">
               <field name="name">Example e-mail template</field>
               <field name="subject">Status</field>
-              <field name="model_id" ref="fsm_support_ticket.model_fsm_compose_mail"/>
+              <field name="model_id" ref="fsm_base.model_fsm_compose_mail"/>
               <field name="auto_delete" eval="True"/>
               <field name="body_html"><![CDATA[<p>
                 Hello,

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--work_item form-->
+        <record id="fsm_work_item_form" model="ir.ui.view">
+            <field name="name">Work-Item Form</field>
+            <field name="model">fsm.work_item</field>
+            <field name="arch" type="xml">
+                <form string="Work-Item">
+                    <header>
+                        <!-- statusbar -->
+                        <field name="status"
+                               widget="statusbar"
+                               clickable="True" />
+
+                        <!-- button to compute final cost of the workitem.
+                         This button will be visible only if the item is
+                         in 'done' state
+                         -->
+                        <button name="compute_final_cost"
+                                type="object"
+                                string="Compute Cost"
+                                class="btn btn-sm btn-primary"
+                                attrs="{'invisible': [('status', '!=', 'done')]}"
+                        />
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"
+                                   class="oe_edit_only"
+                                   string=" Name" />
+                            <h1>
+                                <field name="name"
+                                       placeholder="Work-item name..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <!--relation to workset-->
+                               <field name="work_set_id" />
+                                <!--basic skills needed-->
+                                <field name="skill_sets" />
+                                <field name="employees_needed" />
+                            </group>
+                            <group>
+                                <!--quality level required-->
+                               <field name="quality_level" />
+                                <!-- team to which the workitem is assigned -->
+                               <field name="team_id" />
+                               <field name="available_emp"
+                                      string="Employee Availability"
+                                      attrs="{'invisible': [('team_id', '=', None)]}"
+                               />
+                               <field name="person_ids" widget="many2many_tags" />
+                            </group>
+                        </group>
+                        <group string="Costing">
+                            <!--section for final cost -->
+                            <group>
+                                <field name="price_categ"
+                                       attrs="{'readonly': [('work_set_id', '!=', False)]}"
+                                />
+                                <field name="hourly_cost" />
+                            </group>
+                            <group>
+                                <!--hours spent on this workitem-->
+                                <field name="hours_spent"
+                                       attrs="{'readonly': [('status', '=', 'draft')]}" />
+                                <field name="final_cost" readonly="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description" autofocus="1">
+                                <br/>
+                                <field name="description"
+                                       placeholder="Additional description." />
+                            </page>
+                            <!--page for configurable items.-->
+                            <page string="Item Target">
+                                <sheet>
+                                    <field name="item_target">
+                                        <tree editable="bottom">
+                                            <field name="product_id" readonly="0" />
+                                            <field name="quantity" />
+                                            <field name="unit_price" />
+                                        </tree>
+                                    </field>
+                                </sheet>
+                            </page>
+                            <page string="Options">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <!--this flag is used to control the flow of this work item.
+                                            If this is enabled, then we can continue -->
+                                            <field name="undermanned" />
+                                        </group>
+                                    </group>
+                                </sheet>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--this view will be used to access the items from the workorder-->
+        <record id="fsm_work_item_tree2" model="ir.ui.view">
+            <field name="name">Work-Item Tree</field>
+            <field name="model">fsm.work_item</field>
+            <field name="arch" type="xml">
+                <tree string="Work-Item">
+                    <field name="name" />
+                    <field name="team_id" />
+                    <field name="work_set_id" />
+                    <field name="skill_sets" />
+                    <field name="quality_level" />
+                    <field name="hourly_cost" />
+                    <field name="status" />
+                    <button name="start_job" string="Start" type="object"
+                            attrs="{'invisible': [('status', '!=', 'draft')]}"
+                    />
+                    <button name="finish_job" string="Finish" type="object"
+                            attrs="{'invisible': [('status', '!=', 'ongoing')]}"
+                    />
+                    <button name="reset_to_draft" string="Reset to draft" type="object"
+                            attrs="{'invisible': [('status', '=', 'draft')]}"
+                    />
+                </tree>
+            </field>
+        </record>
+        <!--work_item tree-->
+        <record id="fsm_work_item_tree" model="ir.ui.view">
+            <field name="name">Work-Item Tree</field>
+            <field name="model">fsm.work_item</field>
+            <field name="arch" type="xml">
+                <tree string="Work-Item">
+                    <field name="name" />
+                    <field name="team_id" />
+                    <field name="work_set_id" />
+                    <field name="skill_sets" />
+                    <field name="quality_level" />
+                    <field name="hourly_cost" />
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+        <!--work_item action-->
+        <record id="action_fsm_work_item" model="ir.actions.server">
+            <field name="name">Jobs</field>
+            <field name="model_id" ref="fsm_task_handler.model_fsm_work_item"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_open_workitems()</field>
+        </record>
+        <!--work item menu-->
+        <menuitem name="Jobs"
+                  parent="fieldservice.operations"
+                  id="fsm_work_item"
+                  sequence="32"
+                  action="action_fsm_work_item"
+        />
+    </data>
+</odoo>

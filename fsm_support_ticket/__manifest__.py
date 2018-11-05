@@ -8,15 +8,14 @@
     'version': '11.0.1.0.0',
     'depends': [
         'web',
-        'website'
+        'website',
+        'fsm_base'
     ],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'data/website.menu.csv',
-        'data/notify_mail_template.xml',
-        'wizard/mail_compose_wizard.xml',
         'views/fsm_website_templates.xml',
         'views/fsm_ticket_categ.xml',
         'views/fsm_ticket_view.xml',
