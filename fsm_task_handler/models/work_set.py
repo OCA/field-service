@@ -30,17 +30,6 @@ class WorkSetsFSM(models.Model):
         rec = self.env['fsm.stage.sets'].search([], limit=1)
         return rec.id if rec else None
 
-    def _default_stage_id(self):
-        """default stage id."""
-        if self.stage_set.stage_ids:
-            temp_stage_set = \
-                self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)[0]
-            stage = temp_stage_set.stage_id if temp_stage_set else None
-
-            if stage:
-                return stage.id
-        return None
-
     name = fields.Char(string='Name',
                        required=True)
     work_order_id = fields.Many2one('fsm.order',
@@ -65,7 +54,6 @@ class WorkSetsFSM(models.Model):
     # just a dummy field to show the stages list
     fsm_stage_list = fields.Char(string="Stages", readonly=1)
     stage_id = fields.Many2one('fsm.stages',
-                               default=lambda self: self._default_stage_id(),
                                string='Stage',
                                store=True)
     previous_stage = fields.Char(string='Previous stage')
@@ -97,34 +85,6 @@ class WorkSetsFSM(models.Model):
                                     'work_set_id',
                                     string="FSM Work-Item")
 
-    # @api.one
-    # def _default_stage_id(self):
-    #     """This function will be executed each time we load the form,
-    #     so we are setting the current stage after checking
-    #     the field, next_stage, which will be set
-    #      after clicking the next_stage button or reset button."""
-    #     if self.stage_set.stage_ids:
-    #         temp_stage_set = \
-    #             self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)[0]
-    #         stage = temp_stage_set.stage_id \
-    #             if not self.stage_id else self.stage_id
-    #
-    #         if not self.next_stage:
-    #             self.stage_id = stage.id if stage else None
-    #         else:
-    #             self.stage_id = self.next_stage.id
-    #         self.previous_stage = None
-    #         self.upcoming_stage = None
-    #         for i in range(0, len(self.stage_set.stage_ids)):
-    #             stage = \
-    #                 self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)
-    #             if stage[i].stage_id.id == self.stage_id.id:
-    #                 self.previous_stage = \
-    #                     stage[i-1].stage_id.name if i > 0 else None
-    #                 self.upcoming_stage = \
-    #                     stage[i+1].stage_id.name if i+1 < len(stage) else None
-    #                 break
-
     @api.multi
     def write(self, vals):
         """
@@ -147,6 +107,13 @@ class WorkSetsFSM(models.Model):
                                 'survey_id': survey_id
                             })]
                         })
+        if vals.get('stage_set'):
+            temp_stage_set = \
+                self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)[0]
+            stage = temp_stage_set.stage_id if temp_stage_set else None
+
+            if stage:
+                self.stage_id = stage.id
         return res
 
     @api.model
@@ -170,6 +137,13 @@ class WorkSetsFSM(models.Model):
                                 'survey_id': survey_id
                             })]
                         })
+        if vals.get('stage_set'):
+            temp_stage_set = \
+                res.stage_set.stage_ids.sorted(key=lambda r: r.sequence)[0]
+            stage = temp_stage_set.stage_id if temp_stage_set else None
+
+            if stage:
+                res.stage_id = stage.id
         return res
 
     @api.model
@@ -265,60 +239,60 @@ class WorkSetsFSM(models.Model):
         self.state = stage_id.name
         return False
 
-    @api.multi
-    def reset_to_initial_stage(self):
-        """This method will set the current record to the
-        initial stage of the stage set associated with it."""
-        for workset in self:
-            if workset.stage_set and workset.stage_set.stage_ids:
-                workset.work_started_flag = "False"
-                # sorting stages by sequence
-                stage_ids = workset.stage_set.stage_ids
-                stages = stage_ids.sorted(key=lambda r: r.sequence)
-                workset.next_stage = stages[0].stage_id.id
-                workset.state = stages[0].stage_id.name
-                # resetting the stages of child workitems, if there are any
-            else:
-                raise exceptions.UserError(_('Please check stage set !'))
+    # @api.multi
+    # def reset_to_initial_stage(self):
+    #     """This method will set the current record to the
+    #     initial stage of the stage set associated with it."""
+    #     for workset in self:
+    #         if workset.stage_set and workset.stage_set.stage_ids:
+    #             workset.work_started_flag = "False"
+    #             # sorting stages by sequence
+    #             stage_ids = workset.stage_set.stage_ids
+    #             stages = stage_ids.sorted(key=lambda r: r.sequence)
+    #             workset.next_stage = stages[0].stage_id.id
+    #             workset.state = stages[0].stage_id.name
+    #             # resetting the stages of child workitems, if there are any
+    #         else:
+    #             raise exceptions.UserError(_('Please check stage set !'))
 
-    def proceed_to_next_stage(self):
-        """Proceed to the next stage after checking the
-        conditions if any."""
-        # sorting the stages
-        stages = \
-            self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)
+    # def proceed_to_next_stage(self):
+    #     """Proceed to the next stage after checking the
+    #     conditions if any."""
+    #     # sorting the stages
+    #     stages = \
+    #         self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)
+    #
+    #     # finding  next stage
+    #     results = \
+    #         self.find_next_stage(self.stage_id, stages)
+    #     next_stage = results[1]
+    #
+    #     if next_stage:
+    #         self.next_stage = next_stage.stage_id.id
+    #         self.state = next_stage.stage_id.name
 
-        # finding  next stage
-        results = \
-            self.find_next_stage(self.stage_id, stages)
-        next_stage = results[1]
-
-        if next_stage:
-            self.next_stage = next_stage.stage_id.id
-            self.state = next_stage.stage_id.name
-
-    def find_next_stage(self, current_stage, stages):
-        """
-        Finds next stage which the record should go to.
-        :param current_stage: current stage of the record
-        :param stages: recordset of stages associated with
-        the selected stage set, sorted by sequence
-        :return: current stage and next stage from
-         the stage set provided
-        """
-        res = []
-
-        for i in range(0, len(stages)):
-            if stages[i].stage_id.name == current_stage.name:
-                res.append(stages[i])
-                if i+1 <= len(stages) - 1:
-                    res.append(stages[i + 1])
-
-                    return res
-                else:
-                    raise exceptions.UserError(_('This is the '
-                                                 'final stage !'))
-        return res
+    # def find_next_stage(self, current_stage, stages):
+    #     """
+    #     Finds next stage which the record should go to.
+    #     :param current_stage: current stage of the record
+    #     :param stages: recordset of stages associated with
+    #     the selected stage set, sorted by sequence
+    #     :return: current stage and next stage from
+    #      the stage set provided
+    #     """
+    #     res = []
+    #
+    #     for i in range(0, len(stages)):
+    #         if stages[i].stage_id.name == current_stage.name:
+    #             res.append(stages[i])
+    #             if i+1 <= len(stages) - 1:
+    #                 res.append(stages[i + 1])
+    #
+    #                 return res
+    #             else:
+    #                 raise exceptions.UserError(_('This is the '
+    #                                              'final stage !'))
+    #     return res
 
     @api.model
     def fetch_stages_list(self, stage_set):
@@ -369,77 +343,79 @@ class WorkSetsFSM(models.Model):
                 if line.dest_stage.id == stage:
                     selected_trans = line
                     break
-            if not selected_trans:
-                # no transition line defined for the specified stage
-                # so aborting this transition
-                return
-            # ---------VERIFY STAGE TRANSITION AUTHORITY ----START
-            has_permission = False
-            for trans in selected_trans.transition_allowed:
-                if trans.name == 'Everyone':
-                    # anyone can change state
-                    has_permission = True
-                elif trans.name == 'Admin':
-                    # only admin is allowed to change
-                    if user.id == 1:
+            # if there are no transition rules defined for the
+            # new stage from the current stage, we won't
+            # perform the validations and allow the transitions
+            if selected_trans:
+                # there is a transition rule defined
+                #  for the new stage from the current stage
+                # ---------VERIFY STAGE TRANSITION AUTHORITY ----START
+                has_permission = False
+                for trans in selected_trans.transition_allowed:
+                    if trans.name == 'Everyone':
+                        # anyone can change state
                         has_permission = True
-                elif trans.name == 'Manager':
-                    # fsm manager has permission
-                    if user.has_group('fieldservice.group_fsm_manager'):
-                        has_permission = True
-                elif trans.name == 'Team Leader':
-                    # fsm dispatcher(team lead) has permission
-                    # in this case, the leaders of the assigned team can change state
-                    if user.has_group('fieldservice.group_fsm_dispatcher'):
-                        # collecting the teams assigned to
-                        # this record(work order / work set)
-                        rec_team_ids = [i.team_id.id for i in rec.team_id]
-                        # fetching current user's teams
-                        user_team_ids = self.find_user_teams()
-                        if rec_team_ids and user_team_ids:
-                            # one or more teams assigned to this record
-                            # and this user has some teams
-                            for u_team in user_team_ids:
-                                if u_team in rec_team_ids:
-                                    # current user is a dispatcher
-                                    # and is member of one of the teams assigned
-                                    #  to the current record
-                                    has_permission = True
-                                    break
+                    elif trans.name == 'Admin':
+                        # only admin is allowed to change
+                        if user.id == 1:
+                            has_permission = True
+                    elif trans.name == 'Manager':
+                        # fsm manager has permission
+                        if user.has_group('fieldservice.group_fsm_manager'):
+                            has_permission = True
+                    elif trans.name == 'Team Leader':
+                        # fsm dispatcher(team lead) has permission
+                        # in this case, the leaders of the assigned team can change state
+                        if user.has_group('fieldservice.group_fsm_dispatcher'):
+                            # collecting the teams assigned to
+                            # this record(work order / work set)
+                            rec_team_ids = [i.team_id.id for i in rec.team_id]
+                            # fetching current user's teams
+                            user_team_ids = self.find_user_teams()
+                            if rec_team_ids and user_team_ids:
+                                # one or more teams assigned to this record
+                                # and this user has some teams
+                                for u_team in user_team_ids:
+                                    if u_team in rec_team_ids:
+                                        # current user is a dispatcher
+                                        # and is member of one of the teams assigned
+                                        #  to the current record
+                                        has_permission = True
+                                        break
 
-                elif trans.name == 'Person':
-                    # fsm employee has permission
-                    if user.has_group('fieldservice.group_fsm_user'):
-                        has_permission = True
+                    elif trans.name == 'Person':
+                        # fsm employee has permission
+                        if user.has_group('fieldservice.group_fsm_user'):
+                            has_permission = True
 
-            if not has_permission:
-                raise exceptions.UserError(_("You don't have permission "
-                                             "to perform this operation."))
-            _logger.info("This user does have permission"
-                         " to change to this stage")
+                if not has_permission:
+                    raise exceptions.UserError(_("You don't have permission "
+                                                 "to perform this operation."))
+                _logger.info("This user does have permission"
+                             " to change to this stag    e")
 
-            # --------VERIFY STAGE TRANSITION AUTHORITY ----END
+                # --------VERIFY STAGE TRANSITION AUTHORITY ----END
 
-            # --------VERIFY CONDITIONS ---------START
-            validation_success = True
-            if trans.validate_transition:
-                # condition is set
-                try:
-                    result = safe_eval(trans.validate_transition)
-                    validation_success = \
-                        self.validate_conditions(result) if result else False
-                except:
-                    raise exceptions.Warning(_('Could not verify '
-                                               'the conditions specified '
-                                               'for this stage, please '
-                                               'configure it properly !'))
-                if not validation_success:
-                    raise exceptions.Warning(_('Some conditions are '
-                                               'not met, you cannot '
-                                               'change the state !\n'
-                                               'Please check the conditions '
-                                               'associated with this stage.'))
-            # --------VERIFY CONDITIONS ---------END
+                # --------VERIFY CONDITIONS ---------START
+                validation_success = True
+                if selected_trans.validate_transition:
+                    # condition is set
+                    try:
+                        result = safe_eval(selected_trans.validate_transition)
+                        validation_success = \
+                            self.validate_conditions(result) if result else False
+                    except:
+                        raise exceptions.Warning(_('Could not verify '
+                                                   'the conditions specified '
+                                                   'for this stage, please '
+                                                   'configure it properly !'))
+                    if not validation_success:
+                        raise exceptions.Warning(_('Some conditions are '
+                                                   'not met, you cannot '
+                                                   'change the state !\n'
+                                                   'Please check the conditions '
+                                                   'associated with this stage.'))
+                # --------VERIFY CONDITIONS ---------END
 
         # ---------ADVANCED TRANSITIONS -------- END
 
@@ -518,11 +494,11 @@ class WorkSetsFSM(models.Model):
 
         # ---------NORMAL TRANSITIONS -------- end
 
-        if has_permission and validation_success:
-            rec.write({
-                'stage_id': stage,
-                'state': stage_name
-            })
+        # if has_permission and validation_success:
+        rec.write({
+            'stage_id': stage,
+            'state': stage_name
+        })
 
     def validate_conditions(self, result):
         """We will loop through all the conditions provided"""
