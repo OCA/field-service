@@ -10,7 +10,6 @@
                 <field name="name"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
-                <field name="location_id"/>
             </tree>
         </field>
     </record>
@@ -35,7 +34,6 @@
                             <field name="customer_id"/>
                         </group>
                         <group>
-                            <field name="location_id"/>
                         </group>
                     </group>
                     <notebook>
@@ -65,6 +63,18 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Service Points">
+                            <field name="service_point_ids" nolabel="1"
+                                   widget="one2many_list"
+                                   context="{'default_fsm_location_id': active_id}">
+                                <tree>
+                                    <field name="fsm_service_point_type"/>
+                                    <field name="sequence"/>
+                                    <field name="parent_id"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -81,7 +91,7 @@
                 <field name="partner_id"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
-                <field name="location_id"/>
+                <field name="service_point_ids"/>
                 <field name="partner_latitude"/>
                 <field name="partner_longitude"/>
                 <field name="territory_id"/>

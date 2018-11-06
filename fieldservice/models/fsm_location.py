@@ -30,7 +30,8 @@ class FSMLocation(models.Model):
     tag_ids = fields.Many2many('fsm.tag',
                                string='Tags')
     description = fields.Char(string='Description')
-    location_id = fields.Many2one('location', string='Location')
+    service_point_ids = fields.One2many('fsm.service.point', 'fsm_location_id',
+                                        string='Service Points')
     territory_id = fields.Many2one('territory', string='Territory')
     branch_id = fields.Many2one('branch', string='Branch')
     district_id = fields.Many2one('district', string='District')
@@ -53,3 +54,4 @@ class FSMLocation(models.Model):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
+        

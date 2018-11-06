@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Point -->
+    <record id="fsm_service_point_tree" model="ir.ui.view">
+        <field name="name">fsm.service.point.tree</field>
+        <field name="model">fsm.service.point</field>
+        <field name="arch" type="xml">
+            <tree string="Field Service Points">
+                <field name="fsm_location_id"/>                
+                <field name="fsm_service_point_type"/>
+                <field name="sequence"/>
+                <field name="complete_name"/> 
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_service_point_form" model="ir.ui.view">
+        <field name="name">fsm.service.point.form</field>
+        <field name="model">fsm.service.point</field>
+        <field name="arch" type="xml">
+            <form string="Field Service Point">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <label for="fsm_service_point_type" class="oe_edit_only"/>
+                    <h2><field name="fsm_service_point_type"/></h2>
+                    <group>
+                        <field name="fsm_location_id"/>
+                        <field name="sequence"/>
+                    </group>
+                    <notebook>
+                        <page string="General">
+                            <group string="Notes">
+                                <field name="notes" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Child Service Points">   
+                            <field name="parent_id"/>
+                            <field name="child_ids" 
+                                   context="{'default_fsm_location_id': fsm_location_id, 
+                                             'default_parent_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Types of Field Service Points -->
+    <record id="fsm_service_point_type_tree" model="ir.ui.view">
+        <field name="name">fsm.service.point.type.tree</field>
+        <field name="model">fsm.service.point.type</field>
+        <field name="arch" type="xml">
+            <tree string="Field Service Point Types">
+                <field name="complete_name"/> 
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_service_point_type_form" model="ir.ui.view">
+        <field name="name">fsm.service.point.type.form</field>
+        <field name="model">fsm.service.point.type</field>
+        <field name="arch" type="xml">
+            <form string="Field Service Point Type">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <label for="parent_id" class="oe_edit_only"/>
+                    <h2><field name="parent_id"/></h2>
+                    <group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_fsm_service_point_type" model="ir.actions.act_window">
+        <field name="name">Field Service Point Types</field>
+        <field name="res_model">fsm.service.point.type</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add a Field Service Point Type here.
+            </p>
+        </field>
+    </record>
+
+</odoo>

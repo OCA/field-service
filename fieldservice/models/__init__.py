@@ -3,7 +3,6 @@
 
 from . import (
     res_config_settings,
-    location,
     region,
     district,
     branch,
@@ -11,6 +10,7 @@ from . import (
     res_partner,
     fsm_stage,
     fsm_tag,
+    fsm_service_point,
     fsm_location,
     fsm_person,
     fsm_vehicle,
