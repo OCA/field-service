@@ -19,11 +19,11 @@ class FSMServicePoint(models.Model):
                                       index=True)
     fsm_service_point_type = fields.Many2one('fsm.service.point.type',
                                              string='Type', required=True)
-    parent_id = fields.Many2one('fsm.service.point', 
-                                string='Parent Service Point', 
+    parent_id = fields.Many2one('fsm.service.point',
+                                string='Parent Service Point',
                                 ondelete='restrict')
     child_ids = fields.One2many('fsm.service.point', 'parent_id',
-                                    'Child Service Points')
+                                'Child Service Points')
     notes = fields.Html(string='Notes')
 
     @api.depends('name', 'parent_id.complete_name')
