@@ -54,7 +54,7 @@
               parent="data"
               sequence="10"/>
 
-    <menuitem id="menu_fsm_location"
+    <menuitem id="menu_fsm_fsm_location"
               name="Locations"
               action="action_fsm_location"
               parent="data"
@@ -98,7 +98,42 @@
               name="Tags"
               action="action_fsm_tag"
               parent="config"
-              sequence="20"
+              sequence="30"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_location"
+              name="Locations"
+              action="action_location"
+              parent="config"
+              sequence="40"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_territory"
+              name="Territories"
+              action="action_territory"
+              parent="config"
+              sequence="50"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_branch"
+              name="Branches"
+              action="action_branch"
+              parent="config"
+              sequence="60"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_district"
+              name="Districts"
+              action="action_district"
+              parent="config"
+              sequence="70"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_region"
+              name="Regions"
+              action="action_region"
+              parent="config"
+              sequence="80"
               groups="base.group_no_one"/>
 
 </odoo>
