@@ -27,7 +27,7 @@
         'views/region.xml',
         'views/fsm_stage.xml',
         'views/fsm_tag.xml',
-        'views/res_partner.xml',        
+        'views/res_partner.xml',
         'views/fsm_service_point.xml',
         'views/fsm_location.xml',
         'views/fsm_person.xml',

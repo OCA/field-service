@@ -17,22 +17,23 @@ class FSMServicePoint(models.Model):
     sequence = fields.Integer('Sequence', index=True, default=1)
     fsm_location_id = fields.Many2one('fsm.location', string="Location",
                                       index=True)
-    fsm_service_point_type = fields.Many2one('fsm.service.point.type', string='Type',
-                                             required=True)
-    parent_id = fields.Many2one('fsm.service.point', string='Parent Service Point',
+    fsm_service_point_type = fields.Many2one('fsm.service.point.type',
+                                             string='Type', required=True)
+    parent_id = fields.Many2one('fsm.service.point', 
+                                string='Parent Service Point', 
                                 ondelete='restrict')
-    child_ids = fields.One2many('fsm.service.point', 'parent_id', 
-                                'Child Service Points')
+    child_ids = fields.One2many('fsm.service.point', 'parent_id',
+                                    'Child Service Points')
     notes = fields.Html(string='Notes')
 
     @api.depends('name', 'parent_id.complete_name')
     def _compute_complete_name(self):
-        for point in self:
-            if point.parent_id:
-                point.complete_name = '%s / %s' % \
-                                      (point.parent_id.complete_name, point.name)
+        for p in self:
+            if p.parent_id:
+                p.complete_name = '%s / %s' % \
+                                  (p.parent_id.complete_name, p.name)
             else:
-                point.complete_name = point.name
+                p.complete_name = p.name
 
 
 class FSMServicePointType(models.Model):
@@ -41,24 +42,24 @@ class FSMServicePointType(models.Model):
     _order = 'name asc'
 
     name = fields.Char('Name', index=True, required=True)
-    complete_name = fields.Char("Complete Name", 
+    complete_name = fields.Char("Complete Name",
                                 compute='_compute_complete_name',
                                 store=True, index=True)
-    parent_id = fields.Many2one('fsm.service.point.type', 'Parent Type', 
-                                     index=True, ondelete='cascade')
-    child_ids = fields.One2many('fsm.service.point.type', 'parent_id', 
-                                     'Child Types')
-       
+    parent_id = fields.Many2one('fsm.service.point.type', 'Parent Type',
+                                index=True, ondelete='cascade')
+    child_ids = fields.One2many('fsm.service.point.type', 'parent_id',
+                                'Child Types')
+
     @api.depends('name', 'parent_id.complete_name')
     def _compute_complete_name(self):
-        for point_type in self:
-            if point_type.parent_id:
-                point_type.complete_name = '%s / %s' % \
-                                            (point_type.parent_id.complete_name, point_type.name)
+        for type in self:
+            if type.parent_id:
+                type.complete_name = '%s / %s' % \
+                                     (type.parent_id.complete_name, type.name)
             else:
-                point_type.complete_name = point_type.name
+                type.complete_name = type.name
 
     @api.constrains('parent_id')
     def _check_type_recursion(self):
         if not self._check_recursion():
-            raise ValidationError(_('You cannot create a recursive service point type.'))                
+            raise ValidationError(_('You cannot create a recursive type.'))
