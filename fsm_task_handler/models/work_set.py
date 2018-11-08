@@ -56,13 +56,8 @@ class WorkSetsFSM(models.Model):
     stage_id = fields.Many2one('fsm.stages',
                                string='Stage',
                                store=True)
-    previous_stage = fields.Char(string='Previous stage')
-    upcoming_stage = fields.Char(string='Upcoming stage')
     color = fields.Integer('Color Index',
                            default=0)
-    next_stage = fields.Many2one('fsm.stages',
-                                 string="Status",
-                                 track_visibility='onchange')
     state = fields.Char(string="State")
     team_id = fields.One2many('workset.fsm.teams',
                               'workset_id',
@@ -225,7 +220,7 @@ class WorkSetsFSM(models.Model):
                                                  limit=1)
         if not stage_id:
             stage_id = self.env['fsm.stages'].create({'name': 'Approved'})
-        self.next_stage = stage_id.id
+        self.stage_id = stage_id.id
         self.state = stage_id.name
         return False
 
@@ -235,64 +230,9 @@ class WorkSetsFSM(models.Model):
                                                  limit=1)
         if not stage_id:
             stage_id = self.env['fsm.stages'].create({'name': 'Rejected'})
-        self.next_stage = stage_id.id
+        self.stage_id = stage_id.id
         self.state = stage_id.name
         return False
-
-    # @api.multi
-    # def reset_to_initial_stage(self):
-    #     """This method will set the current record to the
-    #     initial stage of the stage set associated with it."""
-    #     for workset in self:
-    #         if workset.stage_set and workset.stage_set.stage_ids:
-    #             workset.work_started_flag = "False"
-    #             # sorting stages by sequence
-    #             stage_ids = workset.stage_set.stage_ids
-    #             stages = stage_ids.sorted(key=lambda r: r.sequence)
-    #             workset.next_stage = stages[0].stage_id.id
-    #             workset.state = stages[0].stage_id.name
-    #             # resetting the stages of child workitems, if there are any
-    #         else:
-    #             raise exceptions.UserError(_('Please check stage set !'))
-
-    # def proceed_to_next_stage(self):
-    #     """Proceed to the next stage after checking the
-    #     conditions if any."""
-    #     # sorting the stages
-    #     stages = \
-    #         self.stage_set.stage_ids.sorted(key=lambda r: r.sequence)
-    #
-    #     # finding  next stage
-    #     results = \
-    #         self.find_next_stage(self.stage_id, stages)
-    #     next_stage = results[1]
-    #
-    #     if next_stage:
-    #         self.next_stage = next_stage.stage_id.id
-    #         self.state = next_stage.stage_id.name
-
-    # def find_next_stage(self, current_stage, stages):
-    #     """
-    #     Finds next stage which the record should go to.
-    #     :param current_stage: current stage of the record
-    #     :param stages: recordset of stages associated with
-    #     the selected stage set, sorted by sequence
-    #     :return: current stage and next stage from
-    #      the stage set provided
-    #     """
-    #     res = []
-    #
-    #     for i in range(0, len(stages)):
-    #         if stages[i].stage_id.name == current_stage.name:
-    #             res.append(stages[i])
-    #             if i+1 <= len(stages) - 1:
-    #                 res.append(stages[i + 1])
-    #
-    #                 return res
-    #             else:
-    #                 raise exceptions.UserError(_('This is the '
-    #                                              'final stage !'))
-    #     return res
 
     @api.model
     def fetch_stages_list(self, stage_set):
@@ -365,7 +305,8 @@ class WorkSetsFSM(models.Model):
                             has_permission = True
                     elif trans.name == 'Team Leader':
                         # fsm dispatcher(team lead) has permission
-                        # in this case, the leaders of the assigned team can change state
+                        # in this case, the leaders of the assigned team
+                        #  can change state
                         if user.has_group('fieldservice.group_fsm_dispatcher'):
                             # collecting the teams assigned to
                             # this record(work order / work set)
@@ -378,7 +319,8 @@ class WorkSetsFSM(models.Model):
                                 for u_team in user_team_ids:
                                     if u_team in rec_team_ids:
                                         # current user is a dispatcher
-                                        # and is member of one of the teams assigned
+                                        # and is member of one of the
+                                        # teams assigned
                                         #  to the current record
                                         has_permission = True
                                         break
@@ -402,8 +344,11 @@ class WorkSetsFSM(models.Model):
                     # condition is set
                     try:
                         result = safe_eval(selected_trans.validate_transition)
-                        validation_success = \
-                            self.validate_conditions(result) if result else False
+                        if result:
+                            validation_success = \
+                                self.validate_conditions(result)
+                        else:
+                            validation_success = False
                     except:
                         raise exceptions.Warning(_('Could not verify '
                                                    'the conditions specified '
@@ -413,14 +358,17 @@ class WorkSetsFSM(models.Model):
                         raise exceptions.Warning(_('Some conditions are '
                                                    'not met, you cannot '
                                                    'change the state !\n'
-                                                   'Please check the conditions '
-                                                   'associated with this stage.'))
+                                                   'Please check the '
+                                                   'conditions '
+                                                   'associated with '
+                                                   'this stage.'))
                 # --------VERIFY CONDITIONS ---------END
 
         # ---------ADVANCED TRANSITIONS -------- END
 
         # ---------NORMAL TRANSITIONS -------- start
-        # in this section, we will check that the current user is allowed to move
+        # in this section, we will check that
+        # the current user is allowed to move
         # records into the new stage or not.
         validation_success = True
         has_permission = False
@@ -433,7 +381,7 @@ class WorkSetsFSM(models.Model):
         elif stage_selected.role_admin:
             # only admin is allowed to change
             if user.id == 1:
-               has_permission = True
+                has_permission = True
         elif stage_selected.role_manager:
             # fsm manager has permission
             if user.has_group('fieldservice.group_fsm_manager'):

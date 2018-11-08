@@ -14,15 +14,6 @@
             <field name="arch" type="xml">
                 <form string="Work-Set">
                     <header>
-                        <!--resets to first stage of the related stage set-->
-                        <button type="object" name="reset_to_initial_stage"
-                                string="Reset Stage" class="btn btn-sm btn-primary"
-                        />
-                        <!--go to next stage after checking the conditions-->
-                        <button type="object" name="proceed_to_next_stage"
-                                string="Next Stage" class="btn btn-sm btn-primary"
-                        />
-
                         <field name="state" invisible="1" />
                         <field name="stage_id" invisible="1" />
                         <field name="fsm_stage_list"
@@ -43,28 +34,6 @@
                                 attrs="{'invisible': [('state', '!=', 'Sent to Employee')]}"
                         />
                     </header>
-                    <div>
-                        <!--we are showing only current state, because,
-                        if we set the domain for the stages on stage set change,
-                        it will show all the stages after a refresh
-                        so we decided to show current state only-->
-
-<!--
-                        <div class="custom_stage_id"
-                             style="float: right;font-size: 16px;margin-right: 5px;">
-                            <field name="previous_stage"
-                                   style="padding-right: 5px;" />
-                            <i style="font-size:24px;vertical-align: -3px;" class="fa">&#xf101;</i>
-                            <field name="stage_id"
-                                   style="padding-left: 5px;padding-right: 5px;font-weight: bolder;"
-                            />
-                            <i style="font-size:24px;vertical-align: -3px;" class="fa">&#xf101;</i>
-                            <field name="upcoming_stage"
-                                   style="padding-left: 5px;"
-                            />
-                        </div>
--->
-                    </div>
 
                     <sheet>
                         <div class="oe_title">

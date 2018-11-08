@@ -21,7 +21,6 @@
         'wizard/reject_proposal.xml',
         'views/work_sets.xml',
         'views/work_item.xml',
-        'views/skills_modified.xml',
         'views/work_set_forms.xml',
         'views/mail_notification.xml'
     ],

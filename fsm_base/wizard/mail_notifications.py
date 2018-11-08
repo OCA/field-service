@@ -71,8 +71,8 @@ class MailNotification(models.Model):
             # mail notification to customer
             if no_recipient:
                 # making sure there is a customer selected
-                raise exceptions.ValidationError(
-                    'Please Select a Customer or provide an email!')
+                raise exceptions.ValidationError(_(
+                    'Please Select a Customer or provide an email!'))
             # selecting template
             template = self.env.ref(
                 'fsm_base.notify_customer_mail',
@@ -84,7 +84,8 @@ class MailNotification(models.Model):
                 else:
                     self.recipient_mail = rec.email
             elif self._context.get('active_model') == 'fsm.work_set':
-                self.recipient = rec.customer_id.ids if rec.customer_id else None
+                self.recipient = \
+                    rec.customer_id.ids if rec.customer_id else None
         if notify_type == 'employee':
             # notification to assigned person or serviceman
             template = self.env.ref(

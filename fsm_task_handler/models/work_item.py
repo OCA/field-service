@@ -47,7 +47,7 @@ class WorkItemFSM(models.Model):
     hourly_cost = fields.Float(string="Hourly Cost")
     employees_needed = fields.Integer(string="No. of employees needed",
                                       default=1)
-    available_emp = fields.Char(compute='available_emp_count')
+    available_emp = fields.Char(compute='compute_available_emp_count')
     undermanned = fields.Boolean(string="Can be undermanned ",
                                  default=True)
 
@@ -57,9 +57,8 @@ class WorkItemFSM(models.Model):
     next_job_id = fields.Many2one('fsm.work_item',
                                   string="Next Work Item")
 
-    @api.one
     @api.depends('team_id')
-    def available_emp_count(self):
+    def compute_available_emp_count(self):
         """We are setting the number of
         available employees of the selected team from this function."""
         if not self.team_id:
@@ -84,10 +83,11 @@ class WorkItemFSM(models.Model):
                 self.work_set_id.price_categ if self.work_set_id else None
         hourly_cost = 0
         if self.price_categ and self.skill_sets:
-            categ = self.env['service.categ.price'].search(
-                    [('skill_id', '=', self.skill_sets.id),
-                     ('name', '=', self.price_categ.title())], limit=1
-            )
+            categ_price = self.env['service.categ.price']
+            categ = \
+                categ_price.search([('skill_id', '=', self.skill_sets.id),
+                                    ('name', '=', self.price_categ.title())
+                                    ], limit=1)
             hourly_cost += categ and categ.cost or 0
         self.hourly_cost = hourly_cost
         domain = None
@@ -132,11 +132,6 @@ class WorkItemFSM(models.Model):
             }
         }
 
-    # @api.onchange('person_ids')
-    # def onchange_employees(self):
-    #     for emp in self.person_ids:
-    #         emp.available = False
-
     @api.onchange('skill_sets')
     def onchange_skill_sets(self):
         """skill_id
@@ -154,7 +149,8 @@ class WorkItemFSM(models.Model):
             for team in all_teams:
                 for i in skill_ids:
                     if i in team.basic_skills.ids:
-                        team_list.append(team.id) if team.id not in team_list else None
+                        team_list.append(team.id)\
+                            if team.id not in team_list else None
             domain = "[('id', 'in'," + str(team_list) + ")]"
         return {
             'domain': {
@@ -167,10 +163,12 @@ class WorkItemFSM(models.Model):
         result = super(WorkItemFSM, self).write(vals)
 
         if self.status == 'ongoing':
-            # checking whether this work has the needed number of employees or not
-            if not self.undermanned and \
-                            self.employees_needed > len(self.person_ids):
-                raise exceptions.Warning(_("Employees requirement is not satisfied."))
+            # checking whether this work has the needed
+            # number of employees or not
+            if not self.undermanned:
+                if self.employees_needed > len(self.person_ids):
+                    raise exceptions.Warning(_("Employees requirement "
+                                               "is not satisfied."))
 
             # a team is selected
             team = self.team_id
@@ -196,7 +194,6 @@ class WorkItemFSM(models.Model):
                     raise exceptions.Warning(_("%s  have another job "
                                                "ongoing now !") %
                                              (emp_names[:-2]))
-                    return False
             # it is an ongoing job, so the employees are not available
             for person in self.person_ids:
                 person.available = False
@@ -240,7 +237,6 @@ class WorkItemFSM(models.Model):
                             raise exceptions.Warning(_("Employees cannot have"
                                                        " more than one "
                                                        "job at a time!"))
-                            return False
             # it is an ongoing job, so the employees are not available
             for employee in res.person_ids:
                 employee.available = False
@@ -323,17 +319,21 @@ class WorkItemFSM(models.Model):
         # total hours spent
         hours_spent = self.hours_spent or 1
         # need to find the number of employees involved
-        # if any employees are selected, we will take the number of employees selected
-        # otherwise, we will select the number of employees in the team selected
+        # if any employees are selected, we will take the number
+        #  of employees selected
+        # otherwise, we will select the number of employees
+        #  in the team selected
         emp_count = 0
         if self.person_ids:
             emp_count += len(self.person_ids)
         elif self.team_id:
             emp_count += len(self.team_id.team_members)
         else:
-            raise exceptions.UserError(_('Please select a team or employee first !'))
+            raise exceptions.UserError(_('Please select a team '
+                                         'or employee first !'))
         if emp_count == 0:
-            raise exceptions.UserError(_('No employees are assigned to this workitem !'))
+            raise exceptions.UserError(_('No employees are'
+                                         ' assigned to this workitem !'))
 
         # finding cost needed for the service,
         #  i.e, hours_spent * hourly cost of service
@@ -341,27 +341,32 @@ class WorkItemFSM(models.Model):
         if self.hourly_cost:
             service_hourly_cost += self.hourly_cost
 
-        final_cost = (hours_spent * service_hourly_cost * emp_count) + target_cost
+        final_cost = \
+            (hours_spent * service_hourly_cost * emp_count) + target_cost
         self.final_cost = final_cost
         return False
 
-    @api.one
+    @api.multi
     def start_job(self):
         """To start the job"""
-        if self.work_set_id.work_started_flag != 'started':
-            raise exceptions.UserError(_('Parent work-set is not started !'))
-        self.status = 'ongoing'
+        for rec in self:
+            if rec.work_set_id.work_started_flag != 'started':
+                raise exceptions.UserError(_('Parent'
+                                             ' work-set is not started !'))
+            rec.status = 'ongoing'
 
-    @api.one
+    @api.multi
     def finish_job(self):
         """To finish the job"""
-        self.status = 'done'
-        # -after finishing the job, we have to start the next job immediatly
-        # for that, we are checking the parent workset is started or not
-        # we will start the job only if the workset is started
-        if self.next_job_id and self.next_job_id.work_set_id and \
-                        self.next_job_id.work_set_id.work_started_flag == 'started':
-            self.status = 'ongoing'
+        for rec in self:
+            rec.status = 'done'
+            # -after finishing the job, we have to
+            # start the next job immediatly
+            # for that, we are checking the parent workset is started or not
+            # we will start the job only if the workset is started
+            if rec.next_job_id and rec.next_job_id.work_set_id:
+                if rec.next_job_id.work_set_id.work_started_flag == 'started':
+                    rec.status = 'ongoing'
 
     @api.multi
     def reset_to_draft(self):
@@ -384,47 +389,11 @@ class ItemTargets(models.Model):
                               default=0)
 
 
-class SkillsPrice(models.Model):
-    _inherit = 'fsm.skills'
-
-    @api.onchange('service_price')
-    def _find_service_cost(self):
-        """We are setting the service categories"""
-        if not self.service_price:
-            price_obj = self.env['service.categ.price']
-            rec = \
-                price_obj.search([('name',
-                                   'in',
-                                   ['Low', 'Medium', 'High'])],
-                                 limit=3)
-            self.service_price = rec and rec.ids or None
-            for i in self.service_price:
-                i.cost = 0
-
-    # fsm_work_item_id = fields.Many2one('fsm.work_item', string="FSM Job")
-    service_price = fields.One2many('service.categ.price',
-                                    'skill_id',
-                                    string="Category Price")
-
-    @api.model
-    def create(self, vals):
-        res = super(SkillsPrice, self).create(vals)
-        if vals.get('service_price'):
-            for i in vals.get('service_price'):
-                if i[2] and 'name' \
-                        in i[2] and 'cost' in i[2]:
-                    i[2]['skill_id'] = res.id
-                    res.write({'service_price': [(0, 0, i[2])]})
-        return res
-
-
 class ServiceCategPrice(models.Model):
     """Model for category-wise service price."""
     _name = 'service.categ.price'
 
     skill_id = fields.Many2one('fsm.skills')
-    name = fields.Char(string="Category")
-    cost = fields.Float(string="Cost")
 
 
 class PersonWorkItem(models.Model):

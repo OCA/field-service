@@ -1,4 +1,4 @@
-odoo.define('fsm_base.stage_list_widget', function(require) {
+odoo.define('fsm_base.stage_list_widget', function (require) {
     "use strict";
 
     var field_registry = require('web.field_registry');
@@ -17,7 +17,8 @@ odoo.define('fsm_base.stage_list_widget', function(require) {
             this._super.apply(this, arguments);
             this.stage_set = this.recordData.stage_set.data.id;
             this.stage_list = [];
-            this.stage_id = this.recordData.stage_id ? this.recordData.stage_id.data.id:null;
+            this.stage_id = this.recordData.stage_id ?
+                this.recordData.stage_id.data.id:null;
         },
         update_stages_list: function () {
             var self = this;
@@ -34,7 +35,8 @@ odoo.define('fsm_base.stage_list_widget', function(require) {
                         div_class += " active";
                     }
                     stage_str += '<div class="'+div_class+'" >' +
-                        '<span data-name="'+res[i].name+'" data-id="'+res[i].id+'">' + res[i].name +
+                        '<span data-name="'+res[i].name+'" data-id="'
+                        +res[i].id+'">' + res[i].name +
                         '</span></div>';
                 }
                 stage_str = $(stage_str);
