@@ -37,6 +37,9 @@
         'views/menu.xml',
         'wizard/fsm_wizard.xml',
     ],
+    'qweb': [
+        'static/src/xml/*.xml',
+    ],
     'application': True,
     'license': 'AGPL-3',
     'development_status': 'Beta',
