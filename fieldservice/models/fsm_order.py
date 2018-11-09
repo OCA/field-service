@@ -2,9 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
-from odoo import api, fields, models, _
+from odoo import api, fields, _
 from . import fsm_stage
 
+from odoo.addons.base_geoengine import geo_model
+from odoo.addons.base_geoengine import fields as geo_fields
 
 class FSMOrder(models.Model):
     _name = 'fsm.order'
@@ -60,6 +62,11 @@ class FSMOrder(models.Model):
     log = fields.Text(string='Log')
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
+
+    # Location
+    branch_id = fields.Many2one('branch', string='Branch')
+    district_id = fields.Many2one('district', string='District')
+    region_id = fields.Many2one('region', string='Region')
 
     # Location
     branch_id = fields.Many2one('branch', string='Branch')
@@ -151,3 +158,14 @@ class FSMOrder(models.Model):
             self.branch_id = self.fsm_location_id.branch_id or False
             self.district_id = self.fsm_location_id.district_id or False
             self.region_id = self.fsm_location_id.region_id or False
+
+    def geo_localize(self):
+        for order in self:
+            if order.fsm_location_id.partner_id:
+                order.fsm_location_id.partner_id.geo_localize()
+            lat = order.fsm_location_id.partner_latitude
+            lng = order.fsm_location_id.partner_longitude
+            point = geo_fields.GeoPoint.from_latlon(cr=order.env.cr,
+                                                    latitude=lat,
+                                                    longitude=lng)
+            order.shape = point
