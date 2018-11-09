@@ -1,7 +1,7 @@
 # Copyright (C) 2012 - TODAY, Ursa Information Systems
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class FSMPerson(models.Model):
