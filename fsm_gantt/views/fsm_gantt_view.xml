@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Copyright 2018 Open Source Integrators
+         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+    <template id="assets_backend" name="web_timeline_custom assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/fsm_gantt/static/src/js/fsm_gantt.js"/>
+            <link rel="stylesheet"
+                  href="/fsm_gantt/static/src/less/fsm_gantt_person_filter.less"/>
+            <script type="text/javascript"
+                    src="/fsm_gantt/static/src/js/fsm_gantt_person_filter.js"/>
+        </xpath>
+    </template>
+</odoo>
