@@ -219,6 +219,40 @@
         </field>
     </record>
 
+    <template id="assets_backend" name="web_timeline_custom assets"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/fsm_gantt/static/src/js/fsm_gantt.js"/>
+            <link rel="stylesheet"
+                  href="/fsm_gantt/static/src/less/fsm_gantt_person_filter.less"/>
+            <script type="text/javascript"
+                    src="/fsm_gantt/static/src/js/fsm_gantt_person_filter.js"/>
+        </xpath>
+    </template>
+
+    <!-- Search for fsm.order-->
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.search</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <search string="FSM Orders">
+                <field name="name"
+                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
+                       string="FSM Order Name"/>
+                <field name="fsm_location_id"/>
+                <field name="branch_id"/>
+                <field name="district_id"/>
+                <field name="region_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Region" domain="" context="{'group_by':'region_id'}"/>
+                    <filter string="District" domain="" context="{'group_by':'district_id'}"/>
+                    <filter string="Branch" domain="" context="{'group_by':'branch_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="fsm_order_timeline_view" model="ir.ui.view">
         <field name="name">fsm.order.timeline</field>
         <field name="model">fsm.order</field>
@@ -228,7 +262,8 @@
                       date_stop="scheduled_date_end"
                       string="Orders"
                       default_group_by="fsm_person_id"
-                      event_open_popup="true">
+                      event_open_popup="true"
+                      colors="#ffffff:stage_id=='New'#ffffff:stage_id=='Confirmed';#00ff00:stage_id=='Scheduled';#add8e6:stage_id=='Assigned';#ff00ff:stage_id=='Planned';#9370DB:stage_id=='En Route';#4B0082:stage_id=='Started';#808080:stage_id=='Completed';#D3D3D3:stage_id=='Cancelled';">
             </timeline>
         </field>
     </record>
@@ -238,6 +273,7 @@
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,timeline,tree,form</field>
+        <field name="search_view_id" ref="fsm_order_search_view"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create an Order.

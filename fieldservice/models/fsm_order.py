@@ -61,6 +61,11 @@ class FSMOrder(models.Model):
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
 
+    # Location
+    branch_id = fields.Many2one('branch', string='Branch')
+    district_id = fields.Many2one('district', string='District')
+    region_id = fields.Many2one('region', string='Region')
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env['fsm.stage'].search([])
@@ -139,3 +144,10 @@ class FSMOrder(models.Model):
                 self.scheduled_date_start) +\
                 timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
+
+    @api.onchange('fsm_location_id')
+    def onchange_fsm_location_id(self):
+        if self.fsm_location_id:
+            self.branch_id = self.fsm_location_id.branch_id or False
+            self.district_id = self.fsm_location_id.district_id or False
+            self.region_id = self.fsm_location_id.region_id or False
