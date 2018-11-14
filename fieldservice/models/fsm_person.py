@@ -27,7 +27,7 @@ class FSMPerson(models.Model):
     travel_rate = fields.Float(string='Travel Rate')
 
     prefered_location = fields.Many2one('fsm.location',
-         string='Prefered Location')
+                                string='Prefered Location')
 
     sales_territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')

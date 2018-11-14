@@ -34,4 +34,3 @@ class FSMEquipment(models.Model):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
-        

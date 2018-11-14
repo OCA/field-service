@@ -9,4 +9,3 @@ class FSMAgreement(models.Model):
     _description = 'Field Service Agreement'
 
     name = fields.Char(string='Name', required=True)
-    

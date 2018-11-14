@@ -13,4 +13,3 @@ class FSMSkill(models.Model):
     ]
 
     skill_level = fields.Many2one('hr.skill.level', string='Skill Level')
-    

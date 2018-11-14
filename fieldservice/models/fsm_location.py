@@ -38,21 +38,21 @@ class FSMLocation(models.Model):
     district_id = fields.Many2one('fsm.district', string='District')
     region_id = fields.Many2one('fsm.region', string='Region')
 
-    fsm_person_id = fields.Many2one(string='Primary Assignment', 
-        related='sales_territory_id.fsm_person_id')
-    district_manager = fields.Many2one(string='District Manager', 
-        related='district_id.partner_id')
-    region_manager = fields.Many2one(string='Region Manager', 
-        related='region_id.partner_id')
-    branch_manager = fields.Many2one(string='Branch Manager', 
-        related='branch_id.partner_id')
+    fsm_person_id = fields.Many2one(string='Primary Assignment',
+                                related='sales_territory_id.fsm_person_id')
+    district_manager = fields.Many2one(string='District Manager',
+                                related='district_id.partner_id')
+    region_manager = fields.Many2one(string='Region Manager',
+                                related='region_id.partner_id')
+    branch_manager = fields.Many2one(string='Branch Manager',
+                                related='branch_id.partner_id')
 
     timezone = fields.Selection(_tz_get, string='Timezone')
 
     parent = fields.Many2one('fsm.location', string='Parent')
     dist_parent = fields.Many2one('fsm.location', string='Distribution Parent')
-    inventory_location = fields.Many2one('stock.location', 
-        string='Location Designation')
+    inventory_location = fields.Many2one('stock.location',
+                                string='Location Designation')
 
     notes = fields.Text(string="Notes")
 
@@ -61,7 +61,7 @@ class FSMLocation(models.Model):
     tenant_tag = fields.Many2many('fsm.tag', string='Tenant Category')
     designation_tag = fields.Many2many('fsm.tag', string='Designation')
 
-    preferred_workers = fields.Many2many('fsm.person', 
+    preferred_workers = fields.Many2many('fsm.person',
         'partner_id', string='Preferred People')
 
     is_a_distribution = fields.Boolean(string='Is a Distribution')
