@@ -4,10 +4,10 @@
 from . import (
     res_config_settings,
     location,
-    region,
-    district,
-    branch,
-    territory,
+    fsm_region,
+    fsm_district,
+    fsm_branch,
+    fsm_territory,
     res_partner,
     fsm_stage,
     fsm_tag,
@@ -16,4 +16,11 @@ from . import (
     fsm_vehicle,
     fsm_order,
     fsm_route,
+    fsm_skill,
+    fsm_equipment,
+    fsm_category,
+    hr_skill_level,
+    fsm_agreement,
+    res_state,
+    res_country
 )

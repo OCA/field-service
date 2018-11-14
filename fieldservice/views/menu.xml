@@ -73,6 +73,47 @@
               sequence="40"
               groups="group_fsm_vehicle"/>
 
+    <menuitem id="menu_fsm_tag"
+              name="Tag"
+              action="action_fsm_tag"
+              parent="data"
+              sequence="50"
+              groups="group_fsm_tag"/>
+
+    <menuitem id="menu_fsm_skill"
+              name="Skills"
+              action="action_fsm_skill"
+              parent="data"
+              sequence="60"/>
+
+    <menuitem id="menu_fsm_category"
+              name="Category"
+              action="action_fsm_category"
+              parent="data"
+              sequence="70"
+              groups="group_fsm_category"/>
+
+    <menuitem id="menu_fsm_equipment"
+              name="Equipment"
+              action="action_fsm_equipment"
+              parent="data"
+              sequence="70"
+              groups="group_fsm_equipment"/>
+    
+    <menuitem id="menu_hr_skill_level"
+              name="Skill Level"
+              action="action_hr_skill_level"
+              parent="data"
+              sequence="80"
+              groups="group_hr_skill_level"/>
+    
+    <menuitem id="menu_fsm_agreement"
+              name="Agreement"
+              action="action_fsm_agreement"
+              parent="data"
+              sequence="90"              
+              groups="group_fsm_agreement"/>
+
     <!-- Reporting Menu -->
     <menuitem id="menu_fsm_report_order"
               name="Orders"
@@ -110,28 +151,28 @@
 
     <menuitem id="menu_fsm_territory"
               name="Territories"
-              action="action_territory"
+              action="action_fsm_territory"
               parent="config"
               sequence="50"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_branch"
               name="Branches"
-              action="action_branch"
+              action="action_fsm_branch"
               parent="config"
               sequence="60"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_district"
               name="Districts"
-              action="action_district"
+              action="action_fsm_district"
               parent="config"
               sequence="70"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_region"
               name="Regions"
-              action="action_region"
+              action="action_fsm_region"
               parent="config"
               sequence="80"
               groups="base.group_no_one"/>

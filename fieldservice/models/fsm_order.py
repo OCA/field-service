@@ -61,6 +61,8 @@ class FSMOrder(models.Model):
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
 
+    # Agreements
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env['fsm.stage'].search([])
@@ -123,6 +125,22 @@ class FSMOrder(models.Model):
     def action_cancel(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
+
+    @api.onchange('scheduled_date_start')
+    def onchange_scheduled_date_start(self):
+        if self.scheduled_date_start:
+            if self.stage_id == 'Assigned':
+                self.stage_id = 'Planned'
+            else:
+                self.stage_id = 'Scheduled'
+
+    @api.onchange('fsm_person_id')
+    def onchange_fsm_person_id(self):
+        if self.fsm_person_id:
+            if self.stage_id == 'Scheduled':
+                self.stage_id = 'Planned'
+            else:
+                self.stage_id = 'Assigned'
 
     @api.onchange('scheduled_date_end')
     def onchange_scheduled_date_end(self):

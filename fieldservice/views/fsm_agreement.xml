@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Agreement -->
+    <record id="fsm_agreement_tree_view" model="ir.ui.view">
+        <field name="name">Agreement</field>
+        <field name="model">fsm.agreement</field>
+        <field name="arch" type="xml">
+            <tree string="Agreement">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_agreement_form_view" model="ir.ui.view">
+        <field name="name">Agreement</field>
+        <field name="model">fsm.agreement</field>
+        <field name="arch" type="xml">
+            <form string="agreement">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_agreement" model="ir.actions.act_window">
+        <field name="name">Agreement</field>
+        <field name="res_model">fsm.agreement</field>
+        <field name="view_id" ref="fsm_agreement_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create an agreement.
+            </p>
+            <p>
+                Module not yet enabled.
+            </p>
+        </field>
+    </record>
+    
+</odoo>

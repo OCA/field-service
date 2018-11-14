@@ -16,21 +16,61 @@
         <field name="name">fsm.person.form</field>
         <field name="model">fsm.person</field>
         <field name="arch" type="xml">
-            <form string="Field Service Person">
+            <form string="Field Service Worker">
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
                         </group>
-                        <group></group>
+                        <group>
+                            <field name="prefered_location"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page string="Skills">
+                            <group>
+                                <field name='category'/>
+                                <field name='skills'>
+                                    <tree editable="bottom"  string="Skills">
+                                        <field name="name"/>
+                                        <field name="skill_level"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Contact Info">
+                            <group>
+                                <field name='phone'/>
+                            </group>
+                            <group>
+                                <field name='email'/>
+                            </group>
+                        </page>
+                        <page string="Rates">
+                            <group>
+                                <field name='normal_rate'/>
+                                <field name='after_hours_rate'/>
+                                <field name='emergency_rate'/>
+                                <field name='project_rate'/>
+                                <field name='travel_rate'/>
+                            </group>
+                        </page>
+                        <page>
+                            <group>
+                                <field name="sales_territory_id"/>
+                                <field name="branch_id"/>
+                                <field name="district_id"/>
+                                <field name="region_id"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
     <record id="action_fsm_person" model="ir.actions.act_window">
-        <field name="name">Field Service Persons</field>
+        <field name="name">Field Service Workers</field>
         <field name="res_model">fsm.person</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

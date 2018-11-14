@@ -9,6 +9,8 @@ class FSMTag(models.Model):
     _description = 'Field Service Tag'
 
     name = fields.Char(string='Name', required=True)
+    tag_type = fields.Many2one('fsm.tag', string='Tag Type')
+
     color = fields.Integer('Color Index', default=10)
 
     _sql_constraints = [
