@@ -58,24 +58,37 @@
                     <group>
                         <group>
                             <field name="customer_id"/>
-                            <field name="fsm_location_id"/>
+                            <field name="location_id"/>
+                            <field name="person_id"/>
                         </group>
                         <group>
                             <field name="priority"/>
                             <field name="tag_ids"
                                    widget="many2many_tags"
                                    options="{'color_field': 'color', 'no_create_edit': True}"/>
+                            <field name="template_id"/>
+                            <field name="category_ids" widget="many2many_tags" options="{'color_field': '0'}" domain="[('parent', '=', 'Order')]"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Request">
                             <group>
                                 <group>
-                                    <field name="requested_date"/>
+                                    <field name="request_early"/>
+                                    <field name="request_late"/>
                                 </group>
                                 <group>
-                                    <field name="origin"/>
                                 </group>
+                            </group>
+                            <group string="Request Workers">
+                            <field name="person_ids" widget="many2many" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="category"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
                             </group>
                             <group string="Description">
                                 <field name="description"
@@ -84,11 +97,7 @@
                             </group>
                         </page>
                         <page string="Planning">
-
                             <group>
-                                <group>
-                                    <field name="fsm_person_id"/>
-                                </group>
                                 <group>
                                     <field name="scheduled_date_start"/>
                                     <field name="scheduled_duration"/>
@@ -144,8 +153,8 @@
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
-                <field name="fsm_location_id"/>
-                <field name="fsm_person_id"/>
+                <field name="location_id"/>
+                <field name="person_id"/>
                 <field name="stage_id" string="Stage"/>
             </tree>
         </field>
@@ -174,8 +183,8 @@
                 <field name="name"/>
                 <field name="priority"/>
                 <field name="customer_id"/>
-                <field name="fsm_location_id"/>
-                <field name="fsm_person_id"/>
+                <field name="location_id"/>
+                <field name="person_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="#{kanban_color(record.color)} oe_kanban_global_click">
@@ -202,7 +211,7 @@
                                     </span>
                                 </div>
                                 <div>
-                                    <field name="fsm_location_id"/>
+                                    <field name="location_id"/>
                                 </div>
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left">
@@ -210,8 +219,8 @@
                                                groups="fieldservice.group_fsm_dispatcher"/>
                                     </div>
                                     <div class="oe_kanban_bottom_right">
-                                        <img t-att-src="kanban_image('fsm_person', 'image_small', record.fsm_person_id.name)"
-                                             t-att-title="record.fsm_person_id.name"
+                                        <img t-att-src="kanban_image('person', 'image_small', record.person_id.name)"
+                                             t-att-title="record.person_id.name"
                                              width="24"
                                              height="24"
                                              class="oe_kanban_avatar"/>
@@ -230,11 +239,11 @@
               inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript"
-                    src="/fsm_gantt/static/src/js/fsm_gantt.js"/>
+                    src="/fieldservice/static/src/js/fsm_gantt.js"/>
             <link rel="stylesheet"
-                  href="/fsm_gantt/static/src/less/fsm_gantt_person_filter.less"/>
+                  href="/fieldservice/static/src/less/fsm_gantt_person_filter.less"/>
             <script type="text/javascript"
-                    src="/fsm_gantt/static/src/js/fsm_gantt_person_filter.js"/>
+                    src="/fieldservice/static/src/js/fsm_gantt_person_filter.js"/>
         </xpath>
     </template>
 
@@ -247,7 +256,7 @@
                 <field name="name"
                        filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
                        string="FSM Order Name"/>
-                <field name="fsm_location_id"/>
+                <field name="location_id"/>
                 <field name="branch_id"/>
                 <field name="district_id"/>
                 <field name="region_id"/>
@@ -268,7 +277,7 @@
             <timeline date_start="scheduled_date_start"
                       date_stop="scheduled_date_end"
                       string="Orders"
-                      default_group_by="fsm_person_id"
+                      default_group_by="person_id"
                       event_open_popup="true"
                       colors="#ffffff:stage_id=='New'#ffffff:stage_id=='Confirmed';#00ff00:stage_id=='Scheduled';#add8e6:stage_id=='Assigned';#ff00ff:stage_id=='Planned';#9370DB:stage_id=='En Route';#4B0082:stage_id=='Started';#808080:stage_id=='Completed';#D3D3D3:stage_id=='Cancelled';">
             </timeline>
