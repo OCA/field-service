@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Day Routes">
                 <field name="name"/>
-                <field name="fsm_person_id"/>
+                <field name="person_id"/>
                 <field name="date"/>
             </tree>
         </field>
@@ -27,8 +27,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="fsm_person_id"/>
-                            <field name="fsm_vehicle_id" groups="fieldservice.group_fsm_vehicle"/>
+                            <field name="person_id"/>
+                            <field name="vehicle_id" groups="fieldservice.group_fsm_vehicle"/>
                         </group>
                         <group>
                             <field name="date"/>
@@ -36,15 +36,15 @@
                     </group>
                     <notebook>
                         <page string="Orders">
-                            <field name="fsm_order_ids" nolabel="1"
+                            <field name="order_ids" nolabel="1"
                                    widget="many2many"
-                                   domain="[('fsm_route_id', '=', False)]">
+                                   domain="[('route_id', '=', False)]">
                                 <tree>
                                     <field name="sequence" widget="handle"/>
                                     <field name="sequence"/>
                                     <field name="name"/>
                                     <field name="customer_id"/>
-                                    <field name="fsm_location_id"/>
+                                    <field name="location_id"/>
                                     <field name="scheduled_date_start"/>
                                     <field name="stage_id"/>
                                 </tree>
