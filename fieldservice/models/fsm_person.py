@@ -27,7 +27,7 @@ class FSMPerson(models.Model):
     travel_rate = fields.Float(string='Travel Rate')
 
     prefered_location = fields.Many2one('fsm.location',
-                                string='Prefered Location')
+                                    string='Prefered Location')
 
     sales_territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
@@ -52,7 +52,7 @@ class FSMPerson(models.Model):
             for skill_id in self.skills:
                 ids.append(skill_id.id)
             domain = {
-            'skill_id': [('skill_id', 'in', ids)]
+                        'skill_id': [('skill_id', 'in', ids)]
             }
         else:
             domain = {}
