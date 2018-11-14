@@ -8,12 +8,12 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
     var _t = core._t;
     var _lt = core._lt;
     var QWeb = core.qweb;
-    
+
     TimelineRenderer.include({
 
         init: function () {
             this._super.apply(this, arguments);
-            /*Initilaize propositions */
+            /* Initilaize propositions */
             this.propositions = [];
         },
         
@@ -22,7 +22,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
             self.last_domains = domains;
             self.last_contexts = contexts;
 
-            // select the group by
+            // Select the group by
             var n_group_bys = [];
             if (this.arch.attrs.default_group_by) {
                 n_group_bys = this.arch.attrs.default_group_by.split(',');
@@ -31,7 +31,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
                 n_group_bys = group_bys;
             }
             self.last_group_bys = n_group_bys;
-            // gather the fields to get
+            // Gather the fields to get
             var fields = _.compact(_.map(["date_start", "date_delay", "date_stop", "progress"], function(key) {
                 return self.arch.attrs[key] || '';
             }));
@@ -47,10 +47,10 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
             });
         },
         
-        /*Search Data Related To User Filter. */
+        /* Search Data Related To User Filter. */
         do_search_related_user_filter : function (domains, contexts, group_bys,user_ids) {
             var self = this;
-            // select the group by
+            // Select the group by
             var n_group_bys = [];
             if (this.arch.attrs.default_group_by) {
                 n_group_bys = this.arch.attrs.default_group_by.split(',');
@@ -58,7 +58,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
             if (group_bys.length) {
                 n_group_bys = group_bys;
             }
-            // gather the fields to get
+            // Gather the fields to get
             var fields = _.compact(_.map(["date_start", "date_delay", "date_stop", "progress"], function(key) {
                 return self.arch.attrs[key] || '';
             }));
@@ -106,7 +106,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
                     data.push(self.event_data_transform(event));
                 }
             });
-            // get the groups
+            // Get the groups
             var split_groups = function(events, group_bys) {
                 if (group_bys.length === 0)
                     return events;
@@ -142,7 +142,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
             }
         },
 
-        /*Apply/Clear User Filter. */
+        /* Apply/Clear User Filter. */
         apply_clear_user_filter : function (clear) {
             var self = this;
             if(clear){
@@ -155,7 +155,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
             }else{
                 var filters = _.invoke(this.propositions, 'get_filter');
                 var domain = (filters[0] && filters[0].attrs && filters[0].attrs.domain )? filters[0].attrs.domain : false;
-                /* new method call improved by Sandip on 2018-09-21*/
+                /* New method call improved by Sandip on 2018-09-21 */
                 if(domain){
                     this._rpc({
                         model: 'fsm.person',
@@ -176,7 +176,7 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
                         });
                         var ids  = user_ids;
                         ids.push(false);
-                        self.user_domains = ["fsm_person_id","in",ids];
+                        self.user_domains = ["person_id","in",ids];
                         var temp_domain = [];
                         if(self.last_domains){
                             temp_domain = _.clone(self.last_domains);
@@ -190,11 +190,11 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
 
         start: function () {
             var self = this;
-            /*Bind User Filter Apply/Clear Click Event*/
+            /* Bind User Filter Apply/Clear Click Event */
             this.$el.find(".oe_timeline_button_apply").click($.proxy(this.on_apply_clicked, this));
             this.$el.find(".oe_timeline_button_clear").click($.proxy(this.on_clear_clicked, this));
             
-            /*Fetch User Fields And Append To Timeline View.*/
+            /* Fetch User Fields And Append To Timeline View. */
             self._rpc({
                 model: 'fsm.person',
                 method: 'fields_get',
@@ -210,16 +210,13 @@ odoo.define('fsm_gantt_person_filter.fsm_gantt_person_filter', function (require
         },
         
         on_apply_clicked: function(){
-            /*Call Apply user Filter*/
+            /* Call Apply user Filter */
             this.apply_clear_user_filter(false);
         },
 
         on_clear_clicked: function(){
-            /*Call Clear User Filter*/
+            /* Call Clear User Filter */
             this.apply_clear_user_filter(true);
         }
-
     });
-
-
 });
