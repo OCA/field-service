@@ -16,7 +16,6 @@ class FSMPerson(models.Model):
     skill_level = fields.Many2many('hr.skill.level', string='Skill Level')
 
     category = fields.Many2many('fsm.category', string='Category')
-    
     phone = fields.Char(string='Phone Number', size=11)
     email = fields.Char(string='Email Address')
 
@@ -27,7 +26,8 @@ class FSMPerson(models.Model):
     project_rate = fields.Float(string='Project Rate')
     travel_rate = fields.Float(string='Travel Rate')
 
-    prefered_location = fields.Many2one('fsm.location', string='Prefered Location')
+    prefered_location = fields.Many2one('fsm.location',
+         string='Prefered Location')
 
     sales_territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
@@ -45,19 +45,16 @@ class FSMPerson(models.Model):
         for skill in self.skills:
             ids.append(skill.id)
 
-
-
     @api.onchange('customer')
     def _getCustomerContacts(self):
         if self.skills:
             ids = []
             for skill_id in self.skills:
                 ids.append(skill_id.id)
-
             domain = {
             'skill_id': [('skill_id', 'in', ids)]
             }
-        else:   
+        else:
             domain = {}
         return domain
 

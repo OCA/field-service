@@ -13,3 +13,4 @@ class HRSkillLevel(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Skill Level already exists!"),
     ]
+    

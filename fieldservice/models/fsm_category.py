@@ -14,4 +14,4 @@ class FSMCategory(models.Model):
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Category name already exists!"),
-]
+    ]
