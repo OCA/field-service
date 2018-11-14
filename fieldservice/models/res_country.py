@@ -8,4 +8,4 @@ class ResCountry(models.Model):
     _inherit = 'res.country'
 
     sales_territory_id = fields.Many2one('fsm.territory',
-                                        string="Territory ID")
+                                          string="Territory ID")
