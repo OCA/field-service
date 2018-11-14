@@ -40,18 +40,20 @@ class FSMOrder(geo_model.GeoModel):
                                   change_default=True,
                                   index=True,
                                   track_visibility='always')
-    fsm_location_id = fields.Many2one('fsm.location', string='Location',
-                                      index=True)
-    requested_date = fields.Datetime(string='Requested Date')
+    location_id = fields.Many2one('fsm.location', string='Location',
+                                  index=True)
+    request_early = fields.Datetime(string='Earliest Request Date')
+    request_late = fields.Datetime(string='Latest Request Date')
+
     description = fields.Text(string='Description')
-    origin = fields.Char(string='Origin')
+
+    person_ids = fields.Many2many('fsm.person', string='Field Service Workers')
 
     # Planning
-    fsm_person_id = fields.Many2one('fsm.person',
-                                    string='Assigned To',
-                                    index=True)
-    fsm_route_id = fields.Many2one('fsm.route', string='Route', index=True)
-    scheduled_date_start = fields.Datetime(string='Scheduled Start')
+    person_id = fields.Many2one('fsm.person', string='Assigned To',
+                                index=True)
+    route_id = fields.Many2one('fsm.route', string='Route', index=True)
+    scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
     scheduled_duration = fields.Float(string='Duration in hours',
                                       help='Scheduled duration of the work in'
                                            ' hours')
@@ -65,28 +67,32 @@ class FSMOrder(geo_model.GeoModel):
     date_end = fields.Datetime(string='Actual End')
 
     # Location
-    branch_id = fields.Many2one('branch', string='Branch')
-    district_id = fields.Many2one('district', string='District')
-    region_id = fields.Many2one('region', string='Region')
+    branch_id = fields.Many2one('fsm.branch', string='Branch')
+    district_id = fields.Many2one('fsm.district', string='District')
+    region_id = fields.Many2one('fsm.region', string='Region')
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
 
     # Fields for Geoengine Identify
-    display_name = fields.Char(related="fsm_location_id.display_name",
+    display_name = fields.Char(related="location_id.display_name",
                                string="Location")
-    street = fields.Char(related="fsm_location_id.street")
-    street2 = fields.Char(related="fsm_location_id.street2")
-    zip = fields.Char(related="fsm_location_id.zip")
-    city = fields.Char(related="fsm_location_id.city")
-    state_name = fields.Char(related="fsm_location_id.state_id.name",
+    street = fields.Char(related="location_id.street")
+    street2 = fields.Char(related="location_id.street2")
+    zip = fields.Char(related="location_id.zip")
+    city = fields.Char(related="location_id.city")
+    state_name = fields.Char(related="location_id.state_id.name",
                              string='State', ondelete='restrict')
-    country_name = fields.Char(related="fsm_location_id.country_id.name",
+    country_name = fields.Char(related="location_id.country_id.name",
                                string='Country', ondelete='restrict')
-    phone = fields.Char(related="fsm_location_id.phone")
-    mobile = fields.Char(related="fsm_location_id.mobile")
+    phone = fields.Char(related="location_id.phone")
+    mobile = fields.Char(related="location_id.mobile")
 
     stage_name = fields.Char(related="stage_id.name", string="Stage")
+
+    # Template
+    template_id = fields.Many2one('fsm.template', string="Template")
+    category_ids = fields.Many2many('fsm.category', string="Categories")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -151,6 +157,31 @@ class FSMOrder(geo_model.GeoModel):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
 
+    @api.onchange('scheduled_date_start')
+    def onchange_scheduled_date_start(self):
+        if self.person_id and self.scheduled_date_start:
+            print(self.person_id)
+            print(self.person_id)
+            print("person")
+            # self.stage_id = 'Planned'
+            self.stage_id = 5
+        elif not self.person_id and self.scheduled_date_start:
+            print("hello")
+            # self.stage_id = 'Scheduled'
+            self.stage_id = 3
+
+    @api.onchange('person_id')
+    def onchange_person_id(self):
+        if self.person_id and self.scheduled_date_start:
+            print(self.scheduled_date_start)
+            print("date")
+            # self.stage_id = 'Planned'
+            self.stage_id = 5
+        elif self.person_id and not self.scheduled_date_start:
+            print("hello")
+            # self.stage_id = 'Assigned'
+            self.stage_id = 4
+
     @api.onchange('scheduled_date_end')
     def onchange_scheduled_date_end(self):
         if self.scheduled_date_end:
@@ -167,19 +198,19 @@ class FSMOrder(geo_model.GeoModel):
                 timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
 
-    @api.onchange('fsm_location_id')
-    def onchange_fsm_location_id(self):
-        if self.fsm_location_id:
-            self.branch_id = self.fsm_location_id.branch_id or False
-            self.district_id = self.fsm_location_id.district_id or False
-            self.region_id = self.fsm_location_id.region_id or False
+    @api.onchange('location_id')
+    def onchange_location_id(self):
+        if self.location_id:
+            self.branch_id = self.location_id.branch_id or False
+            self.district_id = self.location_id.district_id or False
+            self.region_id = self.location_id.region_id or False
 
     def geo_localize(self):
         for order in self:
-            if order.fsm_location_id.partner_id:
-                order.fsm_location_id.partner_id.geo_localize()
-            lat = order.fsm_location_id.partner_latitude
-            lng = order.fsm_location_id.partner_longitude
+            if order.location_id.partner_id:
+                order.location_id.partner_id.geo_localize()
+            lat = order.location_id.partner_latitude
+            lng = order.location_id.partner_longitude
             point = geo_fields.GeoPoint.from_latlon(cr=order.env.cr,
                                                     latitude=lat,
                                                     longitude=lng)
