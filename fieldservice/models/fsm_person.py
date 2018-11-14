@@ -6,11 +6,16 @@ from odoo import api, fields, models
 
 class FSMPerson(models.Model):
     _name = 'fsm.person'
+    _inherits = {'res.partner': 'partner_id'}
     _description = 'Field Service Person'
 
     partner_id = fields.Many2one('res.partner', string='Related Partner',
                                  required=True, ondelete='restrict',
                                  delegate=True, auto_join=True)
+    category_ids = fields.Many2many('fsm.category', string='Categories')
+    location_id = fields.Many2one('fsm.location',
+                                  string='Preferred Location')
+    territory_ids = fields.Many2many('fsm.territory', string='Territories')
 
     @api.model
     def create(self, vals):
