@@ -13,13 +13,13 @@ class FSMTerritory(models.Model):
 
     description = fields.Char(string='Description')
     fsm_person_id = fields.Many2one('fsm.person', string='Primary Assignment')
-    terr_type = fields.Selection([('zip', 'Zip'), 
-                                ('state', 'State'),
-                                ('country', 'Country')], 'Type')
+    terr_type = fields.Selection([('zip', 'Zip'),
+                                  ('state', 'State'),
+                                  ('country', 'Country')], 'Type')
 
     zip_codes = fields.Char(string='ZIP Codes')
     state_ids = fields.One2many('res.country.state',
                                 'sales_territory_id', string='State Names')
     country_ids = fields.One2many('res.country',
                                   'sales_territory_id',
-                                   string='Country Names')
+                                  string='Country Names')

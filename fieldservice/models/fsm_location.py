@@ -62,7 +62,8 @@ class FSMLocation(models.Model):
     designation_tag = fields.Many2many('fsm.tag', string='Designation')
 
     preferred_workers = fields.Many2many('fsm.person',
-                                         'partner_id', string='Preferred People')
+                                         'partner_id',
+                                         string='Preferred People')
 
     is_a_distribution = fields.Boolean(string='Is a Distribution')
 
