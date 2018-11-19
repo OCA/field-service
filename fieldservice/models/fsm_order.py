@@ -130,11 +130,11 @@ class FSMOrder(models.Model):
     def onchange_scheduled_date_start(self):
         if self.scheduled_date_start:
             if self.stage_id == 'Assigned':
-                #self.stage_id = 'Planned'
+                # self.stage_id = 'Planned'
                 print(self.stage_id)
                 self.stage_id = 5
             else:
-                #self.stage_id = 'Scheduled'
+                # self.stage_id = 'Scheduled'
                 print(self.stage_id)
                 self.stage_id = 3
 
@@ -142,11 +142,11 @@ class FSMOrder(models.Model):
     def onchange_fsm_person_id(self):
         if self.fsm_person_id:
             if self.stage_id == 'Scheduled':
-                #self.stage_id = 'Planned'
+                # self.stage_id = 'Planned'
                 print(self.stage_id)
                 self.stage_id = 5
             else:
-                #self.stage_id = 'Assigned'
+                # self.stage_id = 'Assigned'
                 print(self.stage_id)
                 self.stage_id = 4
 
