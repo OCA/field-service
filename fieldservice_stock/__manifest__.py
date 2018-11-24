@@ -6,7 +6,11 @@
     'summary': 'Inventory and Stock operations for Field Service',
     'version': '11.0.0.0.1',
     'category': 'Field Service',
-    'author': 'Open Source Integrators, Brian McMaster,  Odoo Community Association (OCA)',
+    'author': [
+        'Open Source Integrators',
+        'Brian McMaster',
+        'Odoo Community Association (OCA)',
+    ],
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'base_geolocalize',
