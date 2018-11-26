@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Category -->
+    <record id="fsm_person_category_tree_view" model="ir.ui.view">
+        <field name="name">fsm.person.category.tree</field>
+        <field name="model">fsm.person.category</field>
+        <field name="arch" type="xml">
+            <tree string="Categories">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_person_category_form_view" model="ir.ui.view">
+        <field name="name">fsm.person.category.form</field>
+        <field name="model">fsm.person.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="color" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Field Service Categories -->
+    <record id="action_fsm_person_category" model="ir.actions.act_window">
+        <field name="name">Field Service Categories</field>
+        <field name="res_model">fsm.person.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add Field Service Categories here.
+            </p>
+        </field>
+    </record>
+
+</odoo>

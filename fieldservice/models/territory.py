@@ -10,3 +10,6 @@ class Territory(models.Model):
 
     name = fields.Char(string='Name')
     branch_id = fields.Many2one('branch', string='Branch')
+    fsm_person_ids = fields.Many2many(
+        'fsm.person', string='FSM Persons',
+        help='The Field Service Persons that service this territory')

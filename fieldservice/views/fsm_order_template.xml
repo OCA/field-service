@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Field Service Person -->
-    <record id="fsm_person_tree" model="ir.ui.view">
-        <field name="name">fsm.person.tree</field>
-        <field name="model">fsm.person</field>
+    <!-- Field Service Order Template -->
+    <record id="fsm_order_template_tree_view" model="ir.ui.view">
+        <field name="name">fsm.order.template.tree</field>
+        <field name="model">fsm.order.template</field>
         <field name="arch" type="xml">
-            <tree string="Field Service Persons">
+            <tree string="Order Templates">
                 <field name="name"/>
+                <field name="category_ids"/>
             </tree>
         </field>
     </record>
 
-    <record id="fsm_person_form" model="ir.ui.view">
-        <field name="name">fsm.person.form</field>
-        <field name="model">fsm.person</field>
+    <record id="fsm_order_template_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.template.form</field>
+        <field name="model">fsm.order.template</field>
         <field name="arch" type="xml">
-            <form string="Field Service Person">
+            <form string="Order Template">
                 <sheet>
                     <group>
                         <group>
@@ -27,7 +28,6 @@
                                    widget="many2many_tags"
                                    options="{'color_field': 'color',
                                             'no_create_edit': True}"/>
-                            <field name="calendar_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -35,14 +35,15 @@
         </field>
     </record>
 
-    <record id="action_fsm_person" model="ir.actions.act_window">
-        <field name="name">Field Service Persons</field>
-        <field name="res_model">fsm.person</field>
+    <!-- Field Service Order Templates -->
+    <record id="action_fsm_order_template" model="ir.actions.act_window">
+        <field name="name">Field Service Order Templates</field>
+        <field name="res_model">fsm.order.template</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Add Field Service Person here.
+                Add a Field Service Order Template here.
             </p>
         </field>
     </record>

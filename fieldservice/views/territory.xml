@@ -22,8 +22,15 @@
                 <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
-                    <label for="parent_id" class="oe_edit_only"/>
+                    <label for="branch_id" class="oe_edit_only"/>
                     <h2><field name="branch_id"/></h2>
+                    <group string="FSM Persons">
+                        <field name="fsm_person_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
                 </sheet>
             </form>
         </field>

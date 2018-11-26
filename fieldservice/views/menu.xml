@@ -87,53 +87,85 @@
               parent="config"
               action="action_fsm_config"/>
 
+    <menuitem id="orders"
+              name="Orders"
+              sequence="20"
+              parent="config"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_order_templates"
+              name="Templates"
+              action="action_fsm_order_template"
+              parent="orders"
+              sequence="21"
+              groups="base.group_no_one"/>
+
     <menuitem id="menu_fsm_stage"
               name="Stages"
               action="action_fsm_stage"
-              parent="config"
-              sequence="20"
+              parent="orders"
+              sequence="22"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_tag"
               name="Tags"
               action="action_fsm_tag"
-              parent="config"
+              parent="orders"
+              sequence="23"
+              groups="base.group_no_one"/>
+
+    <menuitem id="locations"
+              name="Locations"
               sequence="30"
+              parent="config"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_location"
               name="Locations"
               action="action_location"
-              parent="config"
-              sequence="40"
+              parent="locations"
+              sequence="31"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_territory"
               name="Territories"
               action="action_territory"
-              parent="config"
-              sequence="50"
+              parent="locations"
+              sequence="32"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_branch"
               name="Branches"
               action="action_branch"
-              parent="config"
-              sequence="60"
+              parent="locations"
+              sequence="33"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_district"
               name="Districts"
               action="action_district"
-              parent="config"
-              sequence="70"
+              parent="locations"
+              sequence="34"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_region"
               name="Regions"
               action="action_region"
+              parent="locations"
+              sequence="35"
+              groups="base.group_no_one"/>
+
+    <menuitem id="persons"
+              name="Persons"
+              sequence="40"
               parent="config"
-              sequence="80"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_person_category"
+              name="Categories"
+              action="action_fsm_person_category"
+              parent="persons"
+              sequence="41"
               groups="base.group_no_one"/>
 
 </odoo>

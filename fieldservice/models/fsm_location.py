@@ -36,11 +36,21 @@ class FSMLocation(models.Model):
     district_id = fields.Many2one('district', string='District')
     region_id = fields.Many2one('region', string='Region')
     timezone = fields.Selection(_tz_get, string='Timezone')
+    preferred_person_id = fields.Many2one(
+        'fsm.person', string="Preferred Service Person")
 
     @api.model
     def create(self, vals):
         vals.update({'fsm_location': True})
         return super(FSMLocation, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if 'preferred_person_id' in vals:
+            if self.territory_id:
+                self.territory_id.write(
+                    {'fsm_person_ids': [(4, vals['preferred_person_id'])]})
+        return super(FSMLocation, self).write(vals)
 
     @api.onchange('territory_id')
     def _onchange_territory_id(self):

@@ -39,11 +39,19 @@ class FSMOrder(models.Model):
                                   track_visibility='always')
     fsm_location_id = fields.Many2one('fsm.location', string='Location',
                                       index=True)
+    template_id = fields.Many2one('fsm.order.template', string='Template',
+                                  index=True)
     requested_date = fields.Datetime(string='Requested Date')
     description = fields.Text(string='Description')
     origin = fields.Char(string='Origin')
 
     # Planning
+    category_ids = fields.Many2many('fsm.person.category',
+                                    string='Categories', index=True)
+    available_person_ids = fields.Many2many(
+        'fsm.person', compute='_compute_available_person_ids',
+        help='Technical field used to filter the FSM Persons that can'
+             ' service this order')
     fsm_person_id = fields.Many2one('fsm.person',
                                     string='Assigned To',
                                     index=True)
@@ -65,6 +73,11 @@ class FSMOrder(models.Model):
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env['fsm.stage'].search([])
         return stage_ids
+
+    @api.depends('fsm_location_id')
+    def _compute_available_person_ids(self):
+        self.available_person_ids = self.fsm_location_id.territory_id.mapped(
+            'fsm_person_ids')
 
     @api.model
     def create(self, vals):
@@ -123,6 +136,16 @@ class FSMOrder(models.Model):
     def action_cancel(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
+
+    @api.onchange('template_id')
+    def onchange_template_id(self):
+        if self.template_id:
+            self.category_ids = self.template_id.category_ids
+
+    @api.onchange('fsm_location_id')
+    def onchange_fsm_location_id(self):
+        if self.fsm_location_id and self.fsm_location_id.preferred_person_id:
+            self.fsm_person_id = self.fsm_location_id.preferred_person_id
 
     @api.onchange('scheduled_date_end')
     def onchange_scheduled_date_end(self):

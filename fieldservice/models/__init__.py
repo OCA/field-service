@@ -3,17 +3,19 @@
 
 from . import (
     res_config_settings,
+    res_partner,
+    fsm_person_category,
+    fsm_person,
     location,
     region,
     district,
     branch,
     territory,
-    res_partner,
     fsm_stage,
     fsm_tag,
     fsm_location,
-    fsm_person,
     fsm_vehicle,
+    fsm_order_template,
     fsm_order,
     fsm_route,
 )
