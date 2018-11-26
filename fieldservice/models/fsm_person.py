@@ -13,7 +13,8 @@ class FSMPerson(models.Model):
                                  delegate=True, auto_join=True)
     category_ids = fields.Many2many('fsm.person.category',
                                     string='Categories')
-    calendar_id = fields.Many2one('resource.calendar', string='Working Schedule')
+    calendar_id = fields.Many2one('resource.calendar',
+                                  string='Working Schedule')
 
     @api.model
     def create(self, vals):
