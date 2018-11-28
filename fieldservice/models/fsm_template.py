@@ -3,6 +3,7 @@
 
 from odoo import fields, models
 
+
 class FSMTemplate(models.Model):
     _name = 'fsm.template'
     _description = 'Field Service Template'
