@@ -12,9 +12,6 @@ class FSMPerson(models.Model):
                                  required=True, ondelete='restrict',
                                  delegate=True, auto_join=True)
 
-    skills = fields.Many2many('fsm.skill', string='Skills')
-    skill_level = fields.Many2many('hr.skill.level', string='Skill Level')
-
     category = fields.Many2many('fsm.category', string='Category')
     phone = fields.Char(string='Phone Number', size=11)
     email = fields.Char(string='Email Address')

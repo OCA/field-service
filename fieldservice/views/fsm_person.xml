@@ -21,24 +21,14 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name='category' widget="many2many_tags" options="{'color_field': '0'}"/>                                
                         </group>
                         <group>
                             <field name="prefered_location"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Skills">
-                            <group>
-                                <field name='category'/>
-                                <field name='skills'>
-                                    <tree editable="bottom"  string="Skills">
-                                        <field name="name"/>
-                                        <field name="skill_level"/>
-                                    </tree>
-                                </field>
-                            </group>
-                        </page>
-                        <page string="Contact Info">
+                        <page name="contact" string="Contact Info">
                             <group>
                                 <field name='phone'/>
                             </group>
@@ -55,7 +45,7 @@
                                 <field name='travel_rate'/>
                             </group>
                         </page>
-                        <page>
+                        <page string="Location">
                             <group>
                                 <field name="sales_territory_id"/>
                                 <field name="branch_id"/>

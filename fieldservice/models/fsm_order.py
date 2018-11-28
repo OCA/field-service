@@ -61,6 +61,10 @@ class FSMOrder(models.Model):
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
 
+    # Template
+    template = fields.Many2one('fsm.template', string="Template")
+    category = fields.Many2many('fsm.category', string="Categories")
+
     # Agreements
 
     @api.model

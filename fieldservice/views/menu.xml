@@ -80,12 +80,6 @@
               sequence="50"
               groups="group_fsm_tag"/>
 
-    <menuitem id="menu_fsm_skill"
-              name="Skills"
-              action="action_fsm_skill"
-              parent="data"
-              sequence="60"/>
-
     <menuitem id="menu_fsm_category"
               name="Category"
               action="action_fsm_category"
@@ -97,15 +91,8 @@
               name="Equipment"
               action="action_fsm_equipment"
               parent="data"
-              sequence="70"
-              groups="group_fsm_equipment"/>
-    
-    <menuitem id="menu_hr_skill_level"
-              name="Skill Level"
-              action="action_hr_skill_level"
-              parent="data"
               sequence="80"
-              groups="group_hr_skill_level"/>
+              groups="group_fsm_equipment"/>
     
     <menuitem id="menu_fsm_agreement"
               name="Agreement"
@@ -175,6 +162,13 @@
               action="action_fsm_region"
               parent="config"
               sequence="80"
+              groups="base.group_no_one"/>
+
+    <menuitem id="menu_fsm_template"
+              name="Template"
+              action="action_fsm_template"
+              parent="config"
+              sequence="90"
               groups="base.group_no_one"/>
 
 </odoo>

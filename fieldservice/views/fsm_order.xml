@@ -65,6 +65,8 @@
                             <field name="tag_ids"
                                    widget="many2many_tags"
                                    options="{'color_field': 'color', 'no_create_edit': True}"/>
+                            <field name="template"/>
+                            <field name="category" widget="many2many_tags" options="{'color_field': '0'}"/>
                         </group>
                     </group>
                     <notebook>

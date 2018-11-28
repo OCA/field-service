@@ -26,21 +26,10 @@
                         <h1><field name="name"/></h1>
                     </group>
                     <group>
-                        <group>
-                            <field name="id" invisible="1"/>
-                            <field name="partner_id"
-                                   readonly="1"
-                                   required="0"
-                                   groups="base.group_no_one"
-                                   attrs="{'invisible': [('id', '=', False)]}"/>
-                            <field name="owner_id"/>
-                            <field name="customer_id"/>
-                        </group>
-                        <group>
-                            <field name="parent"/>
-                            <field name="dist_parent"/>
-                            <field name="inventory_location"/>
-                        </group>
+                        <field name="id" invisible="1"/>
+                        <field name="partner_id"/>
+                        <field name="owner_id"/>
+                        <field name="customer_id"/>
                     </group>
                     <notebook>
                         <page string="Directions">
@@ -77,11 +66,10 @@
                                     <field name="branch_manager"/>
                                     <field name="district_manager"/>
                                     <field name="region_manager"/>
-
                                 </group>
                             </group>
                         </page>
-                        <page string="Characteristics">
+                        <!--page string="Characteristics">
                             <group>
                                 <field name="type_tag" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('tag_type', '=', 'Type')]"/>
                                 <field name="material_tag" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('tag_type', '=', 'Material')]"/>
@@ -90,18 +78,20 @@
                                 <field name="tenant_tag" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('tag_type', '=', 'Tenant')]"/>
                                 <field name="designation_tag" widget="many2many_tags" options="{'color_field': 'color'}" domain="[('tag_type', '=', 'Designation')]"/>
                             </group>
-                        </page>
-                        <page string="Workers">
+                        </page-->
+                        <page string="Preferred Workers">
                             <field name="preferred_workers"/>
-                        </page>
-                        <page string="Others">
-                            <group>
-                                <field name="is_a_distribution"/>
-                            </group>
                         </page>
                         <page string="Sales">
                             <group>
                                 <field name="sales_territory_id"/>
+                            </group>
+                        </page>
+                        <page string="Accounting">
+                        </page>
+                        <page string="Others">
+                            <group>
+                                <field name="is_a_distribution"/>
                             </group>
                         </page>
                     </notebook>

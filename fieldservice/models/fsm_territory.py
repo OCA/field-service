@@ -11,6 +11,7 @@ class FSMTerritory(models.Model):
     name = fields.Char(string='Name')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
 
+    fsm_people = fields.One2many('fsm.person', 'sales_territory_id')
     description = fields.Char(string='Description')
     fsm_person_id = fields.Many2one('fsm.person', string='Primary Assignment')
     terr_type = fields.Selection([('zip', 'Zip'),

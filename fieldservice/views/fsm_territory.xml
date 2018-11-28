@@ -37,6 +37,21 @@
                         <field name="state_ids" attrs="{'invisible':['|',('terr_type','!=','state')]}"/>
                         <field name="country_ids" attrs="{'invisible':['|',('terr_type','!=','country')]}"/>
                     </group>
+                    <notebook>
+                        <page string="Definition">
+                            <field name="description"/>
+                        </page>
+                        <page string="Field Service Persons">
+                            <field name="fsm_people">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
