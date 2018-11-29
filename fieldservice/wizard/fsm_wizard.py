@@ -32,7 +32,12 @@ class FSMWizard(models.TransientModel):
         res = self.env['fsm.location'].search_count(
             [('partner_id', '=', partner.id)])
         if res == 0:
-            self.env['fsm.location'].create({'partner_id': partner.id})
+            vals = {
+                    'partner_id': partner.id,
+                    'owner_id': partner.id,
+                    'customer_id': partner.id,
+                }
+            self.env['fsm.location'].create(vals)
             partner.write({'fsm_location': True})
         else:
             raise UserError(_('A Field Service Location related to that'
