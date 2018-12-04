@@ -35,16 +35,10 @@ This module is the base of the Field Service application in Odoo.
 Installation
 ============
 
-You need to install:
-
-* PostGIS
 
 Configuration
 =============
 
-To configure this module, you need to:
-
-* Go to Field Service > Configuration > Settings
 
 Usage
 =====
@@ -86,6 +80,7 @@ Contributors
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 * Steve Campbell <scampbell@opensourceintegrators.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Michael Allen <mallen@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
