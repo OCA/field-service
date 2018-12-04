@@ -36,8 +36,8 @@ class FSMLocation(models.Model):
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one('fsm.district', string='District')
     region_id = fields.Many2one('fsm.region', string='Region')
-    person_id = fields.Many2one(string='Primary Assignment',
-                                related='territory_id.person_id')
+    territory_manager_id = fields.Many2one(string='Primary Assignment',
+                                           related='territory_id.person_id')
     district_manager_id = fields.Many2one(string='District Manager',
                                           related='district_id.partner_id')
     region_manager_id = fields.Many2one(string='Region Manager',
