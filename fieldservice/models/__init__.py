@@ -19,5 +19,5 @@ from . import (
     fsm_category,
     res_state,
     res_country,
-    fsm_template
+    fsm_template,
 )
