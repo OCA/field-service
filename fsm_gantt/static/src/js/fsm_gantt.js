@@ -3,13 +3,13 @@ odoo.define('fsm_gantt.fsm_gantt', function (require) {
 
     var core = require('web.core');
     var data = require('web.data');
+    var time = require('web.time');
     var session = require('web.session');
     var TimelineRenderer = require('web_timeline.TimelineRenderer');
 
     var _t = core._t;
     var _lt = core._lt;
     var QWeb = core.qweb;
-
 
 TimelineRenderer.include({
     init: function (parent, state, params) {
@@ -88,6 +88,65 @@ TimelineRenderer.include({
         if (mode && adjust) {
             this.timeline.fit();
         }
+    },
+    /* Transform Odoo event object to timeline event object */
+    event_data_transform: function (evt) {
+        var self = this;
+        var date_start = new moment();
+        var date_stop = null;
+
+        var date_delay = evt[this.date_delay] || false,
+            all_day = this.all_day ? evt[this.all_day] : false;
+
+        if (all_day) {
+            date_start = time.auto_str_to_date(evt[this.date_start].split(' ')[0], 'start');
+            if (this.no_period) {
+                date_stop = date_start;
+            } else {
+                date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop].split(' ')[0], 'stop') : null;
+            }
+        } else {
+            date_start = time.auto_str_to_date(evt[this.date_start]);
+            date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop]) : null;
+        }
+
+        if (!date_stop && date_delay) {
+            date_stop = moment(date_start).add(date_delay, 'hours').toDate();
+        }
+
+        var group = evt[self.last_group_bys[0]];
+        if (group && group instanceof Array) {
+            group = _.first(group);
+        } else {
+            group = -1;
+        }
+        _.each(self.colors, function (color) {
+            if (eval("'" + evt[color.field] + "' " + color.opt + " '" + color.value + "'")) {
+                self.color = color.color;
+            }else if (eval("'" + evt[color.field][1] + "' " + color.opt + " '" + color.value + "'")) {
+                self.color = color.color;
+            }
+        });
+
+        var content = _.isUndefined(evt.__name) ? evt.display_name : evt.__name;
+        if (this.arch.children.length) {
+            content = this.render_timeline_item(evt);
+        }
+
+        var r = {
+            'start': date_start,
+            'content': content,
+            'id': evt.id,
+            'group': group,
+            'evt': evt,
+            'style': 'background-color: ' + self.color + ';'
+        };
+        // Check if the event is instantaneous, if so, display it with a point on the timeline (no 'end')
+        if (date_stop && !moment(date_start).isSame(date_stop)) {
+            r.end = date_stop;
+        }
+        self.color = null;
+        return r;
     },
 });
 
