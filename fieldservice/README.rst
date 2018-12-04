@@ -35,9 +35,10 @@ This module is the base of the Field Service application in Odoo.
 Installation
 ============
 
-You need to install:
+To install Field Service and have the mapping features, you need to install GeoEngine.
 
-* PostGIS
+Please refer to the installation instructions available at:
+https://github.com/OCA/geospatial/tree/11.0/base_geoengine
 
 Configuration
 =============
@@ -86,6 +87,7 @@ Contributors
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 * Steve Campbell <scampbell@opensourceintegrators.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Michael Allen <mallen@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
