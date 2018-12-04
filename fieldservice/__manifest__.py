@@ -12,6 +12,7 @@
         'base_geolocalize',
         'mail',
         'web_timeline',
+        'base_geoengine',
     ],
     'data': [
         'data/ir_sequence.xml',
