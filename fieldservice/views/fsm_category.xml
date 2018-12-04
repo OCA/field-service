@@ -21,9 +21,14 @@
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
                     <group>
-                        <field name="parent_id"/>
-                        <field name="description"/>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="parent_id"/>
+                        </group>
                     </group>
+                    <notebook></notebook>
                 </sheet>
             </form>
         </field>
