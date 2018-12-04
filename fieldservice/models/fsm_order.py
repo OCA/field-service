@@ -205,6 +205,11 @@ class FSMOrder(geo_model.GeoModel):
             self.district_id = self.location_id.district_id or False
             self.region_id = self.location_id.region_id or False
 
+    @api.onchange('template_id')
+    def _onchange_template_id(self):
+        if self.template_id:
+            self.category_ids = self.template_id.category_ids
+
     def geo_localize(self):
         for order in self:
             if order.location_id.partner_id:
