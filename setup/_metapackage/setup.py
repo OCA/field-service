@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo11-addon-fieldservice',
+        'odoo11-addon-fieldservice_stock',
     ],
     classifiers=[
         'Programming Language :: Python',
