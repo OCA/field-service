@@ -2,11 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
-from odoo import api, fields, models, _
+from odoo import api, fields, _
 from . import fsm_stage
 
+from odoo.addons.base_geoengine import geo_model
+from odoo.addons.base_geoengine import fields as geo_fields
 
-class FSMOrder(models.Model):
+
+class FSMOrder(geo_model.GeoModel):
     _name = 'fsm.order'
     _description = 'Field Service Order'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -65,6 +68,25 @@ class FSMOrder(models.Model):
     branch_id = fields.Many2one('branch', string='Branch')
     district_id = fields.Many2one('district', string='District')
     region_id = fields.Many2one('region', string='Region')
+
+    # Geometry Field
+    shape = geo_fields.GeoPoint(string='Coordinate')
+
+    # Fields for Geoengine Identify
+    display_name = fields.Char(related="fsm_location_id.display_name",
+                               string="Location")
+    street = fields.Char(related="fsm_location_id.street")
+    street2 = fields.Char(related="fsm_location_id.street2")
+    zip = fields.Char(related="fsm_location_id.zip")
+    city = fields.Char(related="fsm_location_id.city")
+    state_name = fields.Char(related="fsm_location_id.state_id.name",
+                             string='State', ondelete='restrict')
+    country_name = fields.Char(related="fsm_location_id.country_id.name",
+                               string='Country', ondelete='restrict')
+    phone = fields.Char(related="fsm_location_id.phone")
+    mobile = fields.Char(related="fsm_location_id.mobile")
+
+    stage_name = fields.Char(related="stage_id.name", string="Stage")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -151,3 +173,14 @@ class FSMOrder(models.Model):
             self.branch_id = self.fsm_location_id.branch_id or False
             self.district_id = self.fsm_location_id.district_id or False
             self.region_id = self.fsm_location_id.region_id or False
+
+    def geo_localize(self):
+        for order in self:
+            if order.fsm_location_id.partner_id:
+                order.fsm_location_id.partner_id.geo_localize()
+            lat = order.fsm_location_id.partner_latitude
+            lng = order.fsm_location_id.partner_longitude
+            point = geo_fields.GeoPoint.from_latlon(cr=order.env.cr,
+                                                    latitude=lat,
+                                                    longitude=lng)
+            order.shape = point
