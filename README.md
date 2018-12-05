@@ -22,6 +22,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [fieldservice](fieldservice/) | 11.0.0.0.1 | Locations, Orders, Calls
+[fieldservice_stock](fieldservice_stock/) | 11.0.0.0.1 | Inventory and Stock operations for Field Service
 
 [//]: # (end addons)
 
