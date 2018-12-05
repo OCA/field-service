@@ -35,10 +35,17 @@ This module is the base of the Field Service application in Odoo.
 Installation
 ============
 
+To install Field Service and have the mapping features, you need to install GeoEngine.
+
+Please refer to the installation instructions available at:
+https://github.com/OCA/geospatial/tree/11.0/base_geoengine
 
 Configuration
 =============
 
+To configure this module, you need to:
+
+* Go to Field Service > Configuration > Settings
 
 Usage
 =====
