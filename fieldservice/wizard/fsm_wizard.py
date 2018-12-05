@@ -32,11 +32,9 @@ class FSMWizard(models.TransientModel):
         res = self.env['fsm.location'].search_count(
             [('partner_id', '=', partner.id)])
         if res == 0:
-            vals = {
-                    'partner_id': partner.id,
+            vals = {'partner_id': partner.id,
                     'owner_id': partner.id,
-                    'customer_id': partner.id,
-                }
+                    'customer_id': partner.id}
             self.env['fsm.location'].create(vals)
             partner.write({'fsm_location': True})
         else:
