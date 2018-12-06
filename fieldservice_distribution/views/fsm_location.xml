@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/group/group[@id='others-left']"
+                   position="inside">
+                <field name="is_a_distribution"/>
+            </xpath>
+            <field name="parent_id" position="after">
+                <field name="dist_parent_id"
+                       domain="[('is_a_distribution', '=', 'True')]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
