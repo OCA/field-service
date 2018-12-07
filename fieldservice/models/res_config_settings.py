@@ -24,6 +24,8 @@ class ResConfigSettings(models.TransientModel):
         implied_group='fieldservice.group_fsm_equipment')
     module_fieldservice_agreement = fields.Boolean(
         string='Manage Agreements')
+    module_fieldservice_distribution = fields.Boolean(
+        string='Manage Distribution')
     module_fieldservice_skill = fields.Boolean(
         string='Manage Skills')
     module_fieldservice_stock = fields.Boolean(
