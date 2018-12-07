@@ -73,22 +73,15 @@
               sequence="40"
               groups="group_fsm_vehicle"/>
 
-    <menuitem id="menu_fsm_tag"
-              name="Tag"
-              action="action_fsm_tag"
-              parent="data"
-              sequence="50"
-              groups="group_fsm_tag"/>
-
     <menuitem id="menu_fsm_category"
-              name="Category"
+              name="Categories"
               action="action_fsm_category"
               parent="data"
               sequence="70"
               groups="group_fsm_category"/>
 
     <menuitem id="menu_fsm_equipment"
-              name="Equipment"
+              name="Equipments"
               action="action_fsm_equipment"
               parent="data"
               sequence="80"
@@ -108,53 +101,65 @@
               parent="config"
               action="action_fsm_config"/>
 
+    <!-- Config / Orders -->
+    <menuitem id="menu_fsm_config_order"
+              name="Orders"
+              parent="config"
+              sequence="20"/>
+
     <menuitem id="menu_fsm_stage"
               name="Stages"
               action="action_fsm_stage"
-              parent="config"
+              parent="menu_fsm_config_order"
               sequence="20"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_tag"
               name="Tags"
               action="action_fsm_tag"
-              parent="config"
+              parent="menu_fsm_config_order"
               sequence="30"
+              groups="fieldservice.group_fsm_tag"/>
+
+    <menuitem id="menu_fsm_template"
+              name="Order Template"
+              action="action_fsm_template"
+              parent="menu_fsm_config_order"
+              sequence="40"
               groups="base.group_no_one"/>
+
+    <!-- Config / Locations -->
+    <menuitem id="menu_fsm_config_location"
+              name="Locations"
+              parent="config"
+              sequence="40"/>
 
     <menuitem id="menu_fsm_territory"
               name="Territories"
               action="action_fsm_territory"
-              parent="config"
+              parent="menu_fsm_config_location"
               sequence="50"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_branch"
               name="Branches"
               action="action_fsm_branch"
-              parent="config"
+              parent="menu_fsm_config_location"
               sequence="60"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_district"
               name="Districts"
               action="action_fsm_district"
-              parent="config"
+              parent="menu_fsm_config_location"
               sequence="70"
               groups="base.group_no_one"/>
 
     <menuitem id="menu_fsm_region"
               name="Regions"
               action="action_fsm_region"
-              parent="config"
+              parent="menu_fsm_config_location"
               sequence="80"
-              groups="base.group_no_one"/>
-
-    <menuitem id="menu_fsm_template"
-              name="Order Template"
-              action="action_fsm_template"
-              parent="config"
-              sequence="90"
               groups="base.group_no_one"/>
 
 </odoo>
