@@ -5,13 +5,12 @@ from datetime import datetime, timedelta
 
 from odoo import api, fields, models
 
-from odoo.tools import (DEFAULT_SERVER_DATETIME_FORMAT, 
+from odoo.tools import (DEFAULT_SERVER_DATETIME_FORMAT,
                         float_is_zero, float_compare)
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 
 from odoo.addons.base_geoengine import geo_model
-from odoo.addons.base_geoengine import fields as geo_fields
 
 
 class FSMOrder(geo_model.GeoModel):
@@ -67,7 +66,6 @@ class FSMOrderLine(models.Model):
         'stock.move', 'fsm_order_line_id', string='Stock Moves',
         readonly=True, states={'draft': [('readonly', False)]})
 
-
     @api.depends('move_ids', 'qty_ordered', 'qty_delivered')
     def _compute_state(self):
         precision = self.env['decimal.precision'].precision_get(
@@ -96,10 +94,10 @@ class FSMOrderLine(models.Model):
         domain = {'product_uom': [('category_id', '=',
                                    self.product_id.uom_id.category_id.id)]}
 
-        if not self.product_uom_id or\
-            (self.product_id.uom_id.id != self.product_uom_id.id):
-                vals['product_uom_id'] = self.product_id.uom_id
-                vals['qty_ordered'] = 1.0
+        if not self.product_uom_id
+           or (self.product_id.uom_id.id != self.product_uom_id.id):
+            vals['product_uom_id'] = self.product_id.uom_id
+            vals['qty_ordered'] = 1.0
 
         product = self.product_id.with_context(
             quantity=vals.get('qty_ordered') or self.qty_ordered,
@@ -120,10 +118,10 @@ class FSMOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         self.ensure_one()
         values = {}
-        date_planned = self.order_id.scheduled_date_start or\
-                       self.order_id.requested_date or\
-                       (datetime.now() + timedelta(days=1)).strftime(
-                           DEFAULT_SERVER_DATETIME_FORMAT)
+        date_planned = (self.order_id.scheduled_date_start
+                        or self.order_id.requested_date
+                        or (datetime.now() + timedelta(days=1)).strftime(
+                            DEFAULT_SERVER_DATETIME_FORMAT))
         values.update({
             'group_id': group_id,
             'fsm_order_line_id': self.id,
@@ -172,14 +170,14 @@ class FSMOrderLine(models.Model):
             procurement_uom = line.product_uom_id
             quant_uom = line.product_id.uom_id
             get_param = self.env['ir.config_parameter'].sudo().get_param
-            if procurement_uom.id != quant_uom.id and\
-                get_param('stock.propagate_uom') != '1':
-                    qty_needed = line.product_uom_id._compute_quantity(
-                        qty_needed, quant_uom, rounding_method='HALF-UP')
-                    procurement_uom = quant_uom
+            if procurement_uom.id != quant_uom.id
+               and get_param('stock.propagate_uom') != '1':
+                qty_needed = line.product_uom_id._compute_quantity(
+                    qty_needed, quant_uom, rounding_method='HALF-UP')
+                procurement_uom = quant_uom
             try:
                 self.env['procurement.group'].run(
-                    line.product_id, qty_needed, procurement_uom, 
+                    line.product_id, qty_needed, procurement_uom,
                     line.order_id.fsm_location_id.inventory_location,
                     line.name, line.order_id.name, values)
             except UserError as error:
@@ -192,15 +190,15 @@ class FSMOrderLine(models.Model):
     def _get_delivered_qty(self):
         self.ensure_one()
         qty = 0.0
-        for move in self.move_ids.filtered(
-            lambda r: r.state == 'done' and not r.scrapped):
-                if move.location_dest_id.usage == "customer":
-                    if not move.origin_returned_move_id or\
-                        (move.origin_returned_move_id and move.to_refund):
-                            qty += move.product_uom._compute_quantity(
-                                move.product_uom_qty, self.product_uom_id)
-                elif move.location_dest_id.usage != "customer" and\
-                    move.to_refund:
-                        qty -= move.product_uom._compute_quantity(
-                            move.product_uom_qty, self.product_uom_id)
+        for move in self.move_ids.filtered(lambda r: r.state == 'done'
+                                           and not r.scrapped):
+            if move.location_dest_id.usage == "customer":
+                if not move.origin_returned_move_id
+                   or (move.origin_returned_move_id and move.to_refund):
+                    qty += move.product_uom._compute_quantity(
+                        move.product_uom_qty, self.product_uom_id)
+            elif move.location_dest_id.usage != "customer"
+                 and move.to_refund:
+                qty -= move.product_uom._compute_quantity(
+                    move.product_uom_qty, self.product_uom_id)
         return qty

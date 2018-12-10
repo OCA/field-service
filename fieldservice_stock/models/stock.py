@@ -25,6 +25,7 @@ class StockMove(models.Model):
                         line.qty_delivered = line._get_delivered_qty()
         return res
 
+
 class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 

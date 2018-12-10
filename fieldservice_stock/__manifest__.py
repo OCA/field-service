@@ -18,6 +18,7 @@
         'data/fsm_stock_data.xml',
         'views/fsm_location.xml',
         'views/fsm_vehicle.xml',
+        'views/fsm_order.xml',
         'views/inventory.xml',
     ],
     'installable': True,
