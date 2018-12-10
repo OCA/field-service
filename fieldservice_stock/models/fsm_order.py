@@ -94,8 +94,8 @@ class FSMOrderLine(models.Model):
         domain = {'product_uom': [('category_id', '=',
                                    self.product_id.uom_id.category_id.id)]}
 
-        if not self.product_uom_id
-           or (self.product_id.uom_id.id != self.product_uom_id.id):
+        if (not self.product_uom_id
+                or (self.product_id.uom_id.id != self.product_uom_id.id)):
             vals['product_uom_id'] = self.product_id.uom_id
             vals['qty_ordered'] = 1.0
 
@@ -170,8 +170,8 @@ class FSMOrderLine(models.Model):
             procurement_uom = line.product_uom_id
             quant_uom = line.product_id.uom_id
             get_param = self.env['ir.config_parameter'].sudo().get_param
-            if procurement_uom.id != quant_uom.id
-               and get_param('stock.propagate_uom') != '1':
+            if (procurement_uom.id != quant_uom.id
+                    and get_param('stock.propagate_uom') != '1'):
                 qty_needed = line.product_uom_id._compute_quantity(
                     qty_needed, quant_uom, rounding_method='HALF-UP')
                 procurement_uom = quant_uom
@@ -193,12 +193,12 @@ class FSMOrderLine(models.Model):
         for move in self.move_ids.filtered(lambda r: r.state == 'done'
                                            and not r.scrapped):
             if move.location_dest_id.usage == "customer":
-                if not move.origin_returned_move_id
-                   or (move.origin_returned_move_id and move.to_refund):
+                if (not move.origin_returned_move_id
+                        or (move.origin_returned_move_id and move.to_refund)):
                     qty += move.product_uom._compute_quantity(
                         move.product_uom_qty, self.product_uom_id)
-            elif move.location_dest_id.usage != "customer"
-                 and move.to_refund:
+            elif (move.location_dest_id.usage != "customer"
+                    and move.to_refund):
                 qty -= move.product_uom._compute_quantity(
                     move.product_uom_qty, self.product_uom_id)
         return qty
