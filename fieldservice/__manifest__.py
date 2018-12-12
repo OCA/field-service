@@ -13,6 +13,7 @@
         'mail',
         'web_timeline',
         'base_geoengine',
+        'resource',
     ],
     'data': [
         'data/ir_sequence.xml',
