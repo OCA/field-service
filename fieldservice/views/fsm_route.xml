@@ -71,4 +71,37 @@
         </field>
     </record>
 
+    <!-- Reporting -->
+    <record id="fsm_route_graph_view" model="ir.ui.view">
+        <field name="name">fsm.route.graph</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <graph string="Day Routes" type="bar">
+                <field name="date" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_route_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.route.pivot</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <pivot string="Day Routes" display_quantity="true">
+                <field name="date" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_report_route" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Day Routes Report
+            </p>
+        </field>
+    </record>
+
 </odoo>
