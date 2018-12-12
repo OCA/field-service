@@ -1,3 +1,4 @@
 To configure this module, you need to:
 
-* Go to Field Service > Configuration > Settings
+* Set Inventory Locations for FSM Locations and FSM Vehicles
+* Verify procurement routes
