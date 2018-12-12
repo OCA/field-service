@@ -48,14 +48,19 @@ Configuration
 
 To configure this module, you need to:
 
-* Go to Field Service > Configuration > Settings
+* Set Inventory Locations for FSM Locations and FSM Vehicles
+* Verify procurement routes
 
 Usage
 =====
 
 To use this module, you need to:
 
-* Set Inventory Locations for FSM Locations and FSM Vehicles
+* Create a new field service order
+* Under the Materials tab, add products with quantity
+* Confirm an order to create stock moves
+* Validate stock moves in the Inventory app
+* Quantities Delivered on FSM Order Line will be updated based on move
 
 Known issues / Roadmap
 ======================
