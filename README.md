@@ -22,6 +22,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [fieldservice](fieldservice/) | 11.0.0.0.2 | Locations, Orders, Calls
+[fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_distribution](fieldservice_distribution/) | 11.0.0.0.1 | Manage your distribution structure
 [fieldservice_stock](fieldservice_stock/) | 11.0.0.0.1 | Inventory and Stock operations for Field Service
 
