@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_fsm_order_form_inherit_stock" model="ir.ui.view">
+        <field name="name">fsm.order.form.stock</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="Materials">
+                    <field name="line_ids" mode="tree">
+                        <tree string="Material Order Lines" editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"
+                                context="{
+                                    'quantity':qty_ordered,
+                                    'uom':product_uom_id,
+                                }"
+                            />
+                            <field name="name"/>
+                            <field name="qty_ordered"
+                                string="Ordered Qty"
+                                context="{
+                                    'quantity':qty_ordered,
+                                    'uom':product_uom_id,
+                                }"
+                            />
+                            <field name="qty_delivered"
+                                 />
+                            <field name="product_uom_id"
+                                attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
+                                options='{"no_open": True, "no_create": True}'
+                                groups="product.group_uom"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
