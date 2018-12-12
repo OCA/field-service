@@ -16,6 +16,8 @@ class FSMPerson(models.Model):
     location_id = fields.Many2one('fsm.location',
                                   string='Preferred Location')
     territory_ids = fields.Many2many('fsm.territory', string='Territories')
+    calendar_id = fields.Many2one('resource.calendar',
+                                  string='Working Schedule')
 
     @api.model
     def create(self, vals):
