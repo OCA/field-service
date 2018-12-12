@@ -4,15 +4,13 @@
 {
     'name': 'Field Service Stock add-on',
     'summary': 'Inventory and Stock operations for Field Service',
-    'version': '11.0.0.0.1',
+    'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'base_geolocalize',
-        'mail',
         'fieldservice',
         'stock',
     ],
@@ -20,6 +18,8 @@
         'data/fsm_stock_data.xml',
         'views/fsm_location.xml',
         'views/fsm_vehicle.xml',
+        'views/fsm_order.xml',
+        'views/inventory.xml',
     ],
     'installable': True,
     'license': 'AGPL-3',

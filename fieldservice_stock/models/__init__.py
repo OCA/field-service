@@ -3,5 +3,7 @@
 
 from . import (
     fsm_location,
-    fsm_vehicle
+    fsm_vehicle,
+    fsm_order,
+    stock,
 )
