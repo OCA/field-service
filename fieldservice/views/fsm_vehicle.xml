@@ -45,4 +45,38 @@
         </field>
     </record>
 
+    <!-- Reporting -->
+    <record id="fsm_vehicle_graph_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.graph</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <graph string="Vehicles" type="bar">
+                <field name="person_id" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_vehicle_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.pivot</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <pivot string="Vehicles" display_quantity="true">
+                <field name="person_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_report_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">fsm.vehicle</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Vehicles Report
+            </p>
+        </field>
+    </record>
+
+
 </odoo>
