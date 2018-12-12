@@ -28,6 +28,13 @@
               parent="dashboard"
               sequence="10"/>
 
+    <menuitem id="menu_fsm_dash_equipment"
+              name="Equipments"
+              action="action_fsm_dash_equipment"
+              parent="dashboard"
+              sequence="50"
+              groups="group_fsm_equipment"/>
+
     <!-- Operations Menu -->
 <!--    <menuitem id="menu_fsm_activity"
               name="Activities"
@@ -99,6 +106,13 @@
               action="action_fsm_report_route"
               parent="reporting"
               sequence="30"/>
+
+    <menuitem id="menu_fsm_report_equipment"
+              name="Equipments"
+              action="action_fsm_report_equipment"
+              parent="reporting"
+              sequence="40"
+              groups="group_fsm_equipment"/>
 
     <menuitem id="menu_fsm_report_vehicle"
               name="Vehicles"
