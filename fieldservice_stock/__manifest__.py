@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service Stock add-on',
-    'summary': 'Inventory and Stock operations for Field Service',
+    'name': 'Field Service - Stock',
+    'summary': 'Inventory and Stock Operations for Field Service',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
@@ -19,7 +19,7 @@
         'views/fsm_location.xml',
         'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
-        'views/inventory.xml',
+        'views/stock.xml',
     ],
     'installable': True,
     'license': 'AGPL-3',
