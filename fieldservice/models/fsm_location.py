@@ -3,10 +3,12 @@
 
 import pytz
 
-from odoo import api, fields, models
+from odoo import api, fields
 
+from odoo.addons.base_geoengine import geo_model
+from odoo.addons.base_geoengine import fields as geo_fields
 
-class FSMLocation(models.Model):
+class FSMLocation(geo_model.GeoModel):
     _name = 'fsm.location'
     _inherits = {'res.partner': 'partner_id'}
     _description = 'Field Service Location'
@@ -51,6 +53,9 @@ class FSMLocation(models.Model):
     notes = fields.Text(string="Notes")
     person_ids = fields.Many2many('fsm.person', 'partner_id',
                                   string='Preferred Workers')
+
+    # Geometry Field
+    shape = geo_fields.GeoPoint(string='Coordinate')
 
     @api.model
     def create(self, vals):
