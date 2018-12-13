@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "FSM Agreements",
+    "name": "Field Service - Agreements",
     "summary": "Manage FSM Agreements",
     "author": "Open Source Integrators, "
               "Odoo Community Association (OCA)",
@@ -18,7 +18,9 @@
         "views/agreement_view.xml",
         "views/fsm_order_view.xml",
     ],
-    "application": True,
     "development_status": "Beta",
-    "maintainers": ["max3903", "bodedra"],
+    "maintainers": [
+        "max3903",
+        "bodedra",
+    ],
 }

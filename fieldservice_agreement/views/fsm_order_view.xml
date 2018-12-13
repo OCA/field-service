@@ -9,7 +9,7 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <field name="fsm_location_id" position="after">
+            <field name="location_id" position="after">
                 <field name="agreement_id"/>
             </field>
         </field>
