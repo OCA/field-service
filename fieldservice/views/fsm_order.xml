@@ -281,7 +281,8 @@
                       string="Orders"
                       default_group_by="person_id"
                       event_open_popup="true"
-                      colors="#ffffff:stage_id=='New'#ffffff:stage_id=='Confirmed';#00ff00:stage_id=='Scheduled';#add8e6:stage_id=='Assigned';#ff00ff:stage_id=='Planned';#9370DB:stage_id=='En Route';#4B0082:stage_id=='Started';#808080:stage_id=='Completed';#D3D3D3:stage_id=='Cancelled';">
+                      colors="#ffffff:stage_id=='New';"
+                      custom_color="true">
             </timeline>
         </field>
     </record>
@@ -348,7 +349,8 @@
                 <field name='zip'/>
                 <field name="country_name"/>
                 <field name='stage_name'/>
-                <field name="shape"/>  
+                <field name="shape"/>
+                <field name="custom_color"/>
             </geoengine>
         </field>
         <field eval="16" name="priority"/>
@@ -368,7 +370,19 @@
         <field name="attribute_field_id" ref="fieldservice.field_fsm_order_stage_name"/>
         <field name="begin_color">#0AFF68</field>
     </record>
-    
+
+    <record id="geoengine_vector_layer_fsmordertatecoloredcustom0" model="geoengine.vector.layer">
+      <field name="geo_field_id" ref="fieldservice.field_fsm_order_shape"/>
+      <field name="name">FSM Order State colored custom</field>
+      <field name="classification">custom</field>
+      <field eval="6" name="sequence"/>
+      <field name="view_id" ref="ir_ui_view_fsm_order_map"/>
+      <field name="geo_repr">colored</field>
+      <field eval="1" name="nb_class"/>
+      <field name="attribute_field_id" ref="fieldservice.field_fsm_order_custom_color"/>
+      <field name="begin_color">#FFFFFF</field>
+    </record>
+
     <record id="geoengine_raster_layer_retailmachineosm" model="geoengine.raster.layer">
         <field name="raster_type">osm</field>
         <field name="name">Open Street Map</field>
