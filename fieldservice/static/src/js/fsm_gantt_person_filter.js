@@ -20,7 +20,12 @@ odoo.define('fsm_gantt.person_filter', function (require) {
         },
 
         /**
-         * Do search
+         * Do Search
+         * Parameters:
+         * @param {Array} domains
+         * @param {Array} contexts
+         * @param {Array} group_bys
+         * @returns Array
          */
         do_search : function (domains, contexts, group_bys) {
             var self = this;
@@ -58,6 +63,12 @@ odoo.define('fsm_gantt.person_filter', function (require) {
 
         /**
          * Search data related to user filter
+         * Parameters:
+         * @param {Array} domains
+         * @param {Array} contexts
+         * @param {Array} group_bys
+         * @param {Array} user_ids
+         * @returns Array
          */
         do_search_related_user_filter : function (domains,
             contexts, group_bys, user_ids) {
@@ -94,6 +105,11 @@ odoo.define('fsm_gantt.person_filter', function (require) {
 
         /**
          * On user data loaded
+         * Parameters:
+         * @param {Array} events
+         * @param {Array} group_bys
+         * @param {Object} adjust_window
+         * @param {Array} user_ids
          */
         on_user_data_loaded : function (events,
             group_bys, adjust_window, user_ids) {
@@ -120,7 +136,12 @@ odoo.define('fsm_gantt.person_filter', function (require) {
         },
 
         /**
-         * On user data loaded
+         * On user data loaded 2
+         * Parameters:
+         * @param {Array} events
+         * @param {Array} group_bys
+         * @param {Object} adjust_window
+         * @param {Array} user_ids
          */
         on_user_data_loaded_2 : function (events,
             group_bys, adjust_window, user_ids) {
@@ -134,7 +155,13 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 }
             });
 
-            // Get the groups
+            /**
+             * Get the groups
+             * Parameters:
+             * @param {Array} events
+             * @param {Array} group_bys
+             * @returns events
+             */
             var split_groups = function (events, group_bys) {
                 if (group_bys.length === 0) {
                     return events;
@@ -146,7 +173,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                     if (group_name) {
                         var group = _.find(groups, function (group) {
                             return _.isEqual(group.id, group_name[0]);
-                            });
+                        });
                         if (group === undefined) {
                             group = {id: group_name[0], content: group_name[1]};
                             groups.push(group);
@@ -159,7 +186,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
             _.each(user_ids, function (user) {
                 var group = _.find(groups, function (group) {
                     return _.isEqual(group.id, user.id);
-                    });
+                });
                 if (group === undefined) {
                     group = {id: user.id,
                         content: user.name};
@@ -177,7 +204,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
         },
 
         /**
-         * apply/clear User Filter
+         * Apply/clear User Filter
+         * @param {Object} clear
          */
         apply_clear_user_filter : function (clear) {
             var self = this;
@@ -188,7 +216,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 self.$el.find(
                     '#user_filer .o_searchview_extended_prop_field').change();
                 self.$el.find(
-                '#user_filer .o_searchview_extended_prop_field').val(
+                    '#user_filer .o_searchview_extended_prop_field').val(
                     'category_id');
                 self.$el.find(
                     '#user_filer .o_searchview_extended_prop_field').change();
@@ -237,6 +265,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
 
         /**
          * On start
+         * @returns this._super()
          */
         start : function () {
             var self = this;

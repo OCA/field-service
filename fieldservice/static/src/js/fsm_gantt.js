@@ -11,6 +11,10 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
 
         /**
          * Init Overrite
+         * Parameters:
+         * @param {Object} parent
+         * @param {Object} state
+         * @param {Array} params
          */
         init : function (parent, state, params) {
             var self = this;
@@ -38,14 +42,18 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 args: [[session.uid], {}],
             }).then(function (result) {
                 self.res_users.push(result);
-                for(var r in result){
+                for(var r in result) {
                     self.res_users_ids.push(result[r]['id']);
                 }
             });
         },
 
         /**
-         * On data loaded
+         * On data loaded 2
+         * Parameters:
+         * @param {Array} events
+         * @param {Array} group_bys
+         * @param {Object} adjust_window
          */
         on_data_loaded_2 : function (events, group_bys, adjust_window) {
             var self = this;
@@ -65,7 +73,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
                 for (var u in self.res_users_ids) {
                     if (!(self.res_users_ids[u] in groups_user_ids) ||
-                            self.res_users_ids[u] !== -1){
+                            self.res_users_ids[u] !== -1) {
 
                         // Get User Name
                         var user_name = '-';
@@ -82,8 +90,10 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                             }
                         }
                         if (!is_available) {
-                            groups.push(
-                            {id:self.res_users_ids[u], content: _t(user_name)});
+                            groups.push({
+                                id:self.res_users_ids[u],
+                                content: _t(user_name),
+                            });
                         }
                     }
                 }
@@ -99,6 +109,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
 
         /**
          * Transform Odoo event object to timeline event object
+         * Parameters:
+         * @param {Array} evt
+         * @returns r
          */
         event_data_transform : function (evt) {
             var self = this;
@@ -115,7 +128,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 } else {
                     date_stop = this.date_stop
                         ? time.auto_str_to_date(
-                        evt[this.date_stop].split(' ')[0], 'stop') : null;
+                            evt[this.date_stop].split(' ')[0], 'stop') : null;
                 }
             } else {
                 date_start = time.auto_str_to_date(evt[this.date_start]);
