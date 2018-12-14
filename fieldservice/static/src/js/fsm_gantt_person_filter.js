@@ -107,7 +107,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
             });
         },
         on_user_data_loaded_2 : function (events,
-        		group_bys, adjust_window, user_ids) {
+        group_bys, adjust_window, user_ids) {
             var self = this;
             var data = [];
             var groups = [];
@@ -130,7 +130,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                     var group_name = event[_.first(group_bys)];
                     if (group_name) {
                         var group = _.find(groups, function(group) {
-                        	return _.isEqual(group.id, group_name[0]); 
+                        return _.isEqual(group.id, group_name[0]); 
                         });
                         if (group === undefined) {
                             group = {id: group_name[0], content: group_name[1]};
@@ -145,10 +145,10 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 group = _.find(groups, function (group) {
                 return _.isEqual(group.id, user.id); });
                 if (group === undefined) {
-						                    group = {id: user.id, 
-						                    		content: user.name};
-						                    groups.push(group);
-						                }
+                    group = {id: user.id, 
+                    content: user.name};
+                    groups.push(group);
+                }
             });
 
             this.timeline.setGroups(groups);
@@ -202,9 +202,9 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                         }
                         temp_domain.push(self.user_domains);
                         self.do_search_related_user_filter(temp_domain,
-                        		self.last_contexts,
-                        		self.last_group_bys,
-                        		list_user_ids);
+                        self.last_contexts,
+                        self.last_group_bys,
+                        list_user_ids);
                     });
                 }
             }

@@ -51,28 +51,28 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
             });
             groups = self.split_groups(events, group_bys);
-            if (group_bys[0]=='person_id') {
+            if (group_bys[0] === 'person_id') {
                 var groups_user_ids = [];
-                for(var g in groups){
+                for (var g in groups) {
                     groups_user_ids.push(groups[g]['id']);
                 }
-                for(var u in self.res_users_ids){
-                    if(!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1){
+                for (var u in self.res_users_ids) {
+                    if (!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1) {
+
                         /* Get User Name
-                         * 
                          */
                         var user_name = '-';
-                        for (var n in self.res_users[0]){
-                            if (self.res_users[0][n]['id'] == self.res_users_ids[u]){
-                                user_name = self.res_users[0][n]['name'];
+                        _.each(self.res_users[0], function (n) {
+                            if (self.res_users[0][n].id === self.res_users_ids[u]) {
+                                user_name = self.res_users[0][n].name;
                             }
-                        }
-                        var is_available=false;
-                        for (var i in groups){
+                        });
+                        var is_available = false;
+                        _.each(groups, function (i) {
                             if (groups[i]['id']===self.res_users_ids[u]) {
                                 is_available = true;
                             }
-                        }
+                        });
                         if (!is_available) {
                             groups.push({id:self.res_users_ids[u], content: _t(user_name)});
                         }
@@ -88,7 +88,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             }
         },
 
-        /* Transform Odoo event object to timeline event object 
+        /* Transform Odoo event object to timeline event object
          * */
         event_data_transform : function (evt) {
             var self = this;
@@ -122,7 +122,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             _.each(self.colors, function (color) {
                 if (eval('\'' + evt[color.field] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
-                }else if (eval('\'' + evt[color.field][1] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
+                } else if (eval('\'' + evt[color.field][1] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
                 }
             });
@@ -138,11 +138,11 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 'id': evt.id,
                 'group': group,
                 'evt': evt,
-                'style': 'background-color: ' + self.color + ';'
+                'style': 'background-color: ' + self.color + ';',
             };
 
-            /* Check if the event is instantaneous, 
-             * if so, display it with a point on the timeline (no 'end') 
+            /* Check if the event is instantaneous,
+             * if so, display it with a point on the timeline (no 'end')
              * */
             if (date_stop && !moment(date_start).isSame(date_stop)) {
                 r.end = date_stop;
