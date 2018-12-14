@@ -51,3 +51,9 @@ class StockPicking(models.Model):
     fsm_order_id = fields.Many2one(
         related="group_id.fsm_order_id", string="Field Service Order",
         store=True)
+
+
+class StockLocationRoute(models.Model):
+    _inherit = 'stock.location.route'
+
+    fsm_selectable = fields.Boolean(string="Field Service Order Lines")
