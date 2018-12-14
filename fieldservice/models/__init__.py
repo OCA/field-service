@@ -12,7 +12,6 @@ from . import (
     fsm_tag,
     fsm_location,
     fsm_person,
-    fsm_vehicle,
     fsm_order,
     fsm_route,
     fsm_equipment,

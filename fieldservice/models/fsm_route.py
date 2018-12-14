@@ -16,17 +16,12 @@ class FSMRoute(models.Model):
     person_id = fields.Many2one('fsm.person',
                                 string='Assigned To',
                                 required=True)
-    vehicle_id = fields.Many2one('fsm.vehicle',
-                                 string='Assigned Vehicle')
     date = fields.Date(string='Date', required=True)
 
     _sql_constraints = [
         ('fsm_route_person_date_uniq',
          'unique (person_id, date)',
          "You cannot create 2 routes for the same person on the same day!"),
-        ('fsm_route_vehicle_date_uniq',
-         'unique (vehicle_id, date)',
-         "You cannot create 2 routes for the same vehicle on the same day!"),
     ]
 
     @api.model
