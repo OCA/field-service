@@ -27,7 +27,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             self.res_users = [];
             self.res_users_ids = [];
 
-            // Find their matching names
+            /* Find their matching names
+             * 
+             */
             this._rpc({
                 model: 'fsm.person',
                 method: 'get_person_information',
@@ -58,7 +60,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
                 for(var u in self.res_users_ids){
                     if(!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1){
-                        // Get User Name
+                        /* Get User Name
+                         * 
+                         */
                         var user_name = '-';
                         for (var n in self.res_users[0]){
                             if (self.res_users[0][n]['id'] == self.res_users_ids[u]){
@@ -85,7 +89,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 this.timeline.fit();
             }
         },
-        /* Transform Odoo event object to timeline event object */
+        /* Transform Odoo event object to timeline event object 
+         * */
         event_data_transform: function (evt) {
             var self = this;
             var date_start = new moment();
@@ -137,7 +142,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 'evt': evt,
                 'style': 'background-color: ' + self.color + ';'
             };
-            // Check if the event is instantaneous, if so, display it with a point on the timeline (no 'end')
+            /* Check if the event is instantaneous, 
+             * if so, display it with a point on the timeline (no 'end') 
+             * */
             if (date_stop && !moment(date_start).isSame(date_stop)) {
                 r.end = date_stop;
             }
