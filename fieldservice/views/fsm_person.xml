@@ -59,16 +59,14 @@
                             </group>
                         </page>
                         <page string="Territories">
-                            <group>
-                                <field name="territory_ids" nolabel="1" nocreate="1" widget="many2many">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="branch_id"/>
-                                        <field name="district_id"/>
-                                        <field name="region_id"/>
-                                    </tree>
-                                </field>
-                            </group>
+                            <field name="territory_ids" nolabel="1" nocreate="1" widget="many2many">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="branch_id"/>
+                                    <field name="district_id"/>
+                                    <field name="region_id"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
