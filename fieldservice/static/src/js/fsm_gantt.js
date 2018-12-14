@@ -8,7 +8,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
     var _t = core._t;
 
     TimelineRenderer.include({
-        /* Init inherits
+
+        /**
+         * Init Overrite
          */
         init : function (parent, state, params) {
             var self = this;
@@ -29,8 +31,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             self.res_users = [];
             self.res_users_ids = [];
 
-            /* Find their matching names
-             */
+            // Find their matches
             this._rpc({
                 model: 'fsm.person',
                 method: 'get_person_information',
@@ -42,8 +43,10 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
             });
         },
-        /* On data loaded
-         * */
+
+        /**
+         * On data loaded
+         */
         on_data_loaded_2 : function (events, group_bys, adjust_window) {
             var self = this;
             var data = [];
@@ -61,15 +64,14 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     groups_user_ids.push(groups[g]['id']);
                 }
                 for (var u in self.res_users_ids) {
-                    if(!(self.res_users_ids[u] in groups_user_ids) ||
+                    if (!(self.res_users_ids[u] in groups_user_ids) ||
                             self.res_users_ids[u] !== -1){
 
-                        /* Get User Name
-                         */
+                        // Get User Name
                         var user_name = '-';
-                        for (var n in self.res_users[0]){
+                        for (var n in self.res_users[0]) {
                             if (self.res_users[0][n]['id'] ===
-                                self.res_users_ids[u]){
+                                self.res_users_ids[u]) {
                                 user_name = self.res_users[0][n]['name'];
                             }
                         }
@@ -95,8 +97,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             }
         },
 
-        /* Transform Odoo event object to timeline event object
-         * */
+        /**
+         * Transform Odoo event object to timeline event object
+         */
         event_data_transform : function (evt) {
             var self = this;
             var date_start = new moment();
@@ -106,18 +109,18 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
 
             if (all_day) {
                 date_start = time.auto_str_to_date(
-                        evt[this.date_start].split(' ')[0], 'start');
+                    evt[this.date_start].split(' ')[0], 'start');
                 if (this.no_period) {
                     date_stop = date_start;
                 } else {
-                    date_stop = this.date_stop ?
-                            time.auto_str_to_date(
-                            evt[this.date_stop].split(' ')[0], 'stop') : null;
+                    date_stop = this.date_stop
+                        ? time.auto_str_to_date(
+                        evt[this.date_stop].split(' ')[0], 'stop') : null;
                 }
             } else {
                 date_start = time.auto_str_to_date(evt[this.date_start]);
-                date_stop = this.date_stop ?
-                        time.auto_str_to_date(evt[this.date_stop]) : null;
+                date_stop = this.date_stop
+                    ? time.auto_str_to_date(evt[this.date_stop]) : null;
             }
 
             if (!date_stop && date_delay) {
@@ -141,8 +144,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
             });
 
-            var content = _.isUndefined(evt.__name) ? 
-                    evt.display_name : evt.__name;
+            var content = _.isUndefined(evt.__name)
+                ? evt.display_name : evt.__name;
             if (this.arch.children.length) {
                 content = this.render_timeline_item(evt);
             }
@@ -156,9 +159,10 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 'style': 'background-color: ' + self.color + ';',
             };
 
-            /* Check if the event is instantaneous,
+            /**
+             * Check if the event is instantaneous,
              * if so, display it with a point on the timeline (no 'end')
-             * */
+             */
             if (date_stop && !moment(date_start).isSame(date_stop)) {
                 r.end = date_stop;
             }
