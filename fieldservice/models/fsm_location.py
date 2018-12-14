@@ -8,6 +8,7 @@ from odoo import api, fields
 from odoo.addons.base_geoengine import geo_model
 from odoo.addons.base_geoengine import fields as geo_fields
 
+
 class FSMLocation(geo_model.GeoModel):
     _name = 'fsm.location'
     _inherits = {'res.partner': 'partner_id'}
