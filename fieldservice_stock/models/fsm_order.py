@@ -53,9 +53,11 @@ class FSMOrder(geo_model.GeoModel):
         if len(pickings) > 1:
             action['domain'] = [('id', 'in', pickings.ids)]
         elif pickings:
-            action['views'] = [(self.env.ref('stock.view_picking_form').id, 'form')]
+            action['views'] = [(self.env.ref('stock.view_picking_form').id,
+                                'form')]
             action['res_id'] = pickings.id
         return action
+
 
 class FSMOrderLine(models.Model):
     _name = 'fsm.order.line'
@@ -199,7 +201,6 @@ class FSMOrderLine(models.Model):
             procurement_uom = line.product_uom_id
             quant_uom = line.product_id.uom_id
             get_param = self.env['ir.config_parameter'].sudo().get_param
-            import pdb;pdb.set_trace()
             if (procurement_uom.id != quant_uom.id
                     and get_param('stock.propagate_uom') != '1'):
                 qty_needed = line.product_uom_id._compute_quantity(

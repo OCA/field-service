@@ -36,31 +36,29 @@ It provides inventory and stock operations.
 Installation
 ============
 
-You will first need to install:
+To install Field Service and have the mapping features, you need to install GeoEngine.
 
-* fieldservice
-
-Then go to Field Service > Configuration > Settings
-Enable the 'Use Odoo Stock Logistics' option under Integrations
+Please refer to the installation instructions available at:
+https://github.com/OCA/geospatial/tree/11.0/base_geoengine
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-* Set Inventory Locations for FSM Locations and FSM Vehicles
-* Verify procurement routes
+* Go to Field Service > Master Data > Locations
+* Create or select a location and set the inventory location
 
 Usage
 =====
 
 To use this module, you need to:
 
-* Create a new field service order
-* Under the Materials tab, add products with quantity
-* Confirm an order to create stock moves
-* Validate stock moves in the Inventory app
-* Quantities Delivered on FSM Order Line will be updated based on move
+* Create a new service order
+* Under the Inventory tab, select the warehouse and add products with quantity
+* Confirm the order to create the delivery orders
+* Validate the transfers in the Inventory app. Quantities delivered on FSM
+  Order Line will be updated.
 
 Known issues / Roadmap
 ======================
