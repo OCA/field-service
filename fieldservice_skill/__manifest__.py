@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Field Service - Skill",
+    "name": "Field Service - Skills",
     "summary": "Manage your FS persons skills",
     "version": "11.0.0.0.1",
     "category": "Field Service",
@@ -14,6 +14,7 @@
         "fieldservice",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/fsm_person.xml",
         "views/fsm_category.xml",
         "views/fsm_person_skill.xml",
