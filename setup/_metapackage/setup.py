@@ -13,6 +13,8 @@ setuptools.setup(
         'odoo11-addon-fieldservice_distribution',
         'odoo11-addon-fieldservice_skill',
         'odoo11-addon-fieldservice_stock',
+        'odoo11-addon-fieldservice_vehicle',
+        'odoo11-addon-fieldservice_vehicle_stock',
     ],
     classifiers=[
         'Programming Language :: Python',
