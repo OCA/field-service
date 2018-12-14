@@ -16,6 +16,13 @@ from odoo.addons.base_geoengine import geo_model
 class FSMOrder(geo_model.GeoModel):
     _inherit = 'fsm.order'
 
+    @api.model
+    def _default_warehouse_id(self):
+        company = self.env.user.company_id.id
+        warehouse_ids = self.env['stock.warehouse'].search(
+            [('company_id', '=', company)], limit=1)
+        return warehouse_ids
+
     line_ids = fields.One2many(
         'fsm.order.line', 'order_id', string="Order Lines",)
     picking_ids = fields.One2many('stock.picking', 'fsm_order_id',
@@ -25,6 +32,8 @@ class FSMOrder(geo_model.GeoModel):
     procurement_group_id = fields.Many2one(
         'procurement.group', 'Procurement Group', copy=False)
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
+                                   required=True, readonly=True,
+                                   default=_default_warehouse_id,
                                    help="Warehouse used to ship the materials")
 
     @api.depends('picking_ids')
@@ -96,6 +105,9 @@ class FSMOrderLine(models.Model):
     move_ids = fields.One2many(
         'stock.move', 'fsm_order_line_id', string='Stock Moves',
         readonly=True, states={'draft': [('readonly', False)]})
+    route_id = fields.Many2one('stock.location.route', string='Route',
+                               domain=[('fsm_selectable', '=', True)],
+                               ondelete='restrict')
 
     @api.depends('move_ids', 'qty_ordered', 'qty_delivered')
     def _compute_state(self):
@@ -158,7 +170,8 @@ class FSMOrderLine(models.Model):
             'group_id': group_id,
             'fsm_order_line_id': self.id,
             'date_planned': date_planned,
-            'route_ids': self.order_id.warehouse_id.delivery_route_id,
+            'route_ids':
+                self.route_id or self.order_id.warehouse_id.delivery_route_id,
             'partner_dest_id': self.order_id.customer_id
         })
         return values
