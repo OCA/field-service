@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service',
-    'summary': 'Locations, Orders, Calls',
+    'name': 'Field Service Vehicle',
+    'summary': 'manage your field service vehicles',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
