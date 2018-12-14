@@ -32,7 +32,6 @@
         'views/res_partner.xml',
         'views/fsm_location.xml',
         'views/fsm_person.xml',
-        'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
         'views/fsm_route.xml',
         'views/fsm_category.xml',
