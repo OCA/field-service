@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service Vehicle - Stock',
-    'summary': 'Inventory and Stock Operations for Field Service with Vehicles',
+    'name': 'Field Service Vehicles - Stock',
+    'summary': 'Inventory Operations for Field Service with Vehicles',
     'version': '11.0.0.0.1',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
@@ -19,6 +19,7 @@
         'views/fsm_vehicle.xml',
     ],
     'installable': True,
+    'auto_install': True,
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
