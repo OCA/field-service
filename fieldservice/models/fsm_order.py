@@ -17,6 +17,11 @@ class FSMOrder(geo_model.GeoModel):
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
 
+    @api.depends('stage_id')
+    def _get_stage_color(self):
+        """ Get stage color"""
+        self.custom_color = self.stage_id.custom_color or '#FFFFFF'
+
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True,
@@ -89,6 +94,9 @@ class FSMOrder(geo_model.GeoModel):
     mobile = fields.Char(related="location_id.mobile")
 
     stage_name = fields.Char(related="stage_id.name", string="Stage")
+    # Field for Stage Color
+    custom_color = fields.Char(related="stage_id.custom_color",
+                               string='Stage Color')
 
     # Template
     template_id = fields.Many2one('fsm.template', string="Template")
@@ -110,17 +118,17 @@ class FSMOrder(geo_model.GeoModel):
     def write(self, vals):
         if 'scheduled_date_end' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_end')) -\
+                vals.get('scheduled_date_end')) - \
                 timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_start'] = str(date_to_with_delta)
         if 'scheduled_duration' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start)) +\
+                vals.get('scheduled_date_start', self.scheduled_date_start)) + \
                 timedelta(hours=vals.get('scheduled_duration'))
             vals['scheduled_date_end'] = str(date_to_with_delta)
         if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start')) +\
+                vals.get('scheduled_date_start')) + \
                 timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_end'] = str(date_to_with_delta)
         return super(FSMOrder, self).write(vals)
@@ -186,7 +194,7 @@ class FSMOrder(geo_model.GeoModel):
     def onchange_scheduled_date_end(self):
         if self.scheduled_date_end:
             date_to_with_delta = fields.Datetime.from_string(
-                self.scheduled_date_end) -\
+                self.scheduled_date_end) - \
                 timedelta(hours=self.scheduled_duration)
             self.date_start = str(date_to_with_delta)
 
@@ -194,7 +202,7 @@ class FSMOrder(geo_model.GeoModel):
     def onchange_scheduled_duration(self):
         if self.scheduled_duration:
             date_to_with_delta = fields.Datetime.from_string(
-                self.scheduled_date_start) +\
+                self.scheduled_date_start) + \
                 timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
 

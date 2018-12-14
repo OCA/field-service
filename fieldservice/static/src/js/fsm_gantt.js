@@ -46,6 +46,16 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     self.res_users_ids.push(result[r].id);
                 }
             });
+            // Find custom color if mentioned
+            if (params.arch.attrs.custom_color === "true") {
+                this._rpc({
+                    model: 'fsm.stage',
+                    method: 'get_color_information',
+                    args: [[], {}],
+                }).then(function (result) {
+                    self.colors = result
+                });
+            }
         },
 
         /**
