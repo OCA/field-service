@@ -8,6 +8,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
     var _t = core._t;
 
     TimelineRenderer.include({
+        /* Init inherits
+         */
         init : function (parent, state, params) {
             var self = this;
             this._super.apply(this, arguments);
@@ -40,6 +42,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
             });
         },
+        /* On data loaded
+         * */
         on_data_loaded_2 : function (events, group_bys, adjust_window) {
             var self = this;
             var data = [];
@@ -57,24 +61,27 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     groups_user_ids.push(groups[g]['id']);
                 }
                 for (var u in self.res_users_ids) {
-                    if(!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1){
+                    if(!(self.res_users_ids[u] in groups_user_ids) ||
+                            self.res_users_ids[u] !== -1){
 
                         /* Get User Name
                          */
                         var user_name = '-';
                         for (var n in self.res_users[0]){
-                            if (self.res_users[0][n]['id'] == self.res_users_ids[u]){
+                            if (self.res_users[0][n]['id'] ===
+                                self.res_users_ids[u]){
                                 user_name = self.res_users[0][n]['name'];
                             }
                         }
                         var is_available = false;
                         for (var i in groups) {
-                            if (groups[i]['id']===self.res_users_ids[u]) {
+                            if (groups[i]['id'] === self.res_users_ids[u]) {
                                 is_available = true;
                             }
                         }
                         if (!is_available) {
-                            groups.push({id:self.res_users_ids[u], content: _t(user_name)});
+                            groups.push(
+                            {id:self.res_users_ids[u], content: _t(user_name)});
                         }
                     }
                 }
@@ -98,19 +105,24 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 all_day = this.all_day ? evt[this.all_day] : false;
 
             if (all_day) {
-                date_start = time.auto_str_to_date(evt[this.date_start].split(' ')[0], 'start');
+                date_start = time.auto_str_to_date(
+                        evt[this.date_start].split(' ')[0], 'start');
                 if (this.no_period) {
                     date_stop = date_start;
                 } else {
-                    date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop].split(' ')[0], 'stop') : null;
+                    date_stop = this.date_stop ?
+                            time.auto_str_to_date(
+                            evt[this.date_stop].split(' ')[0], 'stop') : null;
                 }
             } else {
                 date_start = time.auto_str_to_date(evt[this.date_start]);
-                date_stop = this.date_stop ? time.auto_str_to_date(evt[this.date_stop]) : null;
+                date_stop = this.date_stop ?
+                        time.auto_str_to_date(evt[this.date_stop]) : null;
             }
 
             if (!date_stop && date_delay) {
-                date_stop = moment(date_start).add(date_delay, 'hours').toDate();
+                date_stop =
+                    moment(date_start).add(date_delay, 'hours').toDate();
             }
 
             var group = evt[self.last_group_bys[0]];
@@ -120,14 +132,17 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 group = -1;
             }
             _.each(self.colors, function (color) {
-                if (eval('\'' + evt[color.field] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
+                if (eval('\'' + evt[color.field] +
+                        '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
-                } else if (eval('\'' + evt[color.field][1] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
+                } else if (eval('\'' + evt[color.field][1] +
+                        '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
                 }
             });
 
-            var content = _.isUndefined(evt.__name) ? evt.display_name : evt.__name;
+            var content = _.isUndefined(evt.__name) ? 
+                    evt.display_name : evt.__name;
             if (this.arch.children.length) {
                 content = this.render_timeline_item(evt);
             }

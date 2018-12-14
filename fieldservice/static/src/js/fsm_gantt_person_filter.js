@@ -8,6 +8,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
     var _t = core._t;
 
     TimelineRenderer.include({
+
+        /* init */
         init : function () {
             this._super.apply(this, arguments);
             
@@ -15,6 +17,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
              */
             this.propositions = [];
         },
+
+        /* do search */
         do_search : function (domains, contexts, group_bys) {
             var self = this;
             self.last_domains = domains;
@@ -83,6 +87,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 return self.on_user_data_loaded(r, n_group_bys, true, user_ids);
             });
         },
+
+        /* On user data loaded */
         on_user_data_loaded : function (events,
                 group_bys, adjust_window, user_ids) {
             var self = this;
@@ -106,6 +112,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                         group_bys, adjust_window, user_ids);
             });
         },
+
+        /* On user data loaded */
         on_user_data_loaded_2 : function (events,
         group_bys, adjust_window, user_ids) {
             var self = this;
@@ -142,7 +150,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
             };
             groups = split_groups(events, group_bys);
             _.each(user_ids, function (user) {
-                group = _.find(groups, function (group) {
+                var group = _.find(groups, function (group) {
                 return _.isEqual(group.id, user.id); });
                 if (group === undefined) {
                     group = {id: user.id, 
@@ -165,14 +173,21 @@ odoo.define('fsm_gantt.person_filter', function (require) {
             var self = this;
             if (clear) {
                 self.user_domains = false;
-                self.$el.find('#user_filer .o_searchview_extended_prop_field').val('');
-                self.$el.find('#user_filer .o_searchview_extended_prop_field').change();
-                self.$el.find('#user_filer .o_searchview_extended_prop_field').val('category_id');
-                self.$el.find('#user_filer .o_searchview_extended_prop_field').change();
-                self.do_search(self.last_domains, self.last_contexts, self.last_group_bys);
+                self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').val('');
+                self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').change();
+                self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').val(
+                        'category_id');
+                self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').change();
+                self.do_search(
+                self.last_domains, self.last_contexts, self.last_group_bys);
             } else {
                 var filters = _.invoke(this.propositions, 'get_filter');
-                var domain = filters[0] && filters[0].attrs && filters[0].attrs.domain ? filters[0].attrs.domain : false;
+                var domain = filters[0] && filters[0].attrs && 
+                    filters[0].attrs.domain ? filters[0].attrs.domain : false;
 
                 /* New method call improved by Sandip on 2018-09-21 */
                 if (domain) {
@@ -209,12 +224,16 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 }
             }
         },
+
+        /* On start */
         start : function () {
             var self = this;
 
             /* Bind User Filter Apply/Clear Click Event */
-            this.$el.find('.oe_timeline_button_apply').click($.proxy(this.on_apply_clicked, this));
-            this.$el.find('.oe_timeline_button_clear').click($.proxy(this.on_clear_clicked, this));
+            this.$el.find('.oe_timeline_button_apply').click(
+                    $.proxy(this.on_apply_clicked, this));
+            this.$el.find('.oe_timeline_button_clear').click(
+                    $.proxy(this.on_clear_clicked, this));
 
             /* Fetch User Fields And Append To Timeline View. */
             self._rpc({
@@ -222,22 +241,25 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 method: 'fields_get',
             }).then(function (fields) {
                 self.user_filter = true;
-                var prop = new search_filters.ExtendedSearchProposition(self, fields);
+                var prop = 
+                    new search_filters.ExtendedSearchProposition(self, fields);
                 self.propositions.push(prop);
                 prop.appendTo(self.$el.find('#user_filer'));
-                self.$el.find('#user_filer .o_searchview_extended_delete_prop').hide();
+                self.$el.find(
+                    '#user_filer .o_searchview_extended_delete_prop').hide();
                 self.$el.find('#user_filer .o_or_filter').hide();
             });
             return this._super();
         },
-        on_apply_clicked : function() {
 
-        /* Call Apply user Filter */
+        /* Call apply user Filter */
+        on_apply_clicked : function() {
             this.apply_clear_user_filter(false);
         },
-        on_clear_clicked : function() {
 
-        /* Call Clear User Filter */
+        /* Call Clear User Filter
+         */
+        on_clear_clicked : function() {
             this.apply_clear_user_filter(true);
         },
     });
