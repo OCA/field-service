@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Stock',
-    'summary': 'Inventory and Stock Operations for Field Service',
+    'summary': 'Inventory and Stock Operations for Field Services',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
@@ -17,7 +17,6 @@
     'data': [
         'data/fsm_stock_data.xml',
         'views/fsm_location.xml',
-        'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
         'views/stock.xml',
     ],
