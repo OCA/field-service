@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service',
-    'summary': 'Locations, Orders, Calls',
+    'summary': 'Manage Field Service Locations, Persons and Orders',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
