@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service Vehicle',
+    'name': 'Field Service Vehicles',
     'summary': 'manage your field service vehicles',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
