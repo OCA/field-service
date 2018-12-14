@@ -42,8 +42,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 args: [[session.uid], {}],
             }).then(function (result) {
                 self.res_users.push(result);
-                for(var r in result) {
-                    self.res_users_ids.push(result[r]['id']);
+                for (var r in result) {
+                    self.res_users_ids.push(result[r].id);
                 }
             });
         },
@@ -69,7 +69,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             if (group_bys[0] === 'person_id') {
                 var groups_user_ids = [];
                 for (var g in groups) {
-                    groups_user_ids.push(groups[g]['id']);
+                    groups_user_ids.push(groups[g].id);
                 }
                 for (var u in self.res_users_ids) {
                     if (!(self.res_users_ids[u] in groups_user_ids) ||
@@ -78,14 +78,14 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                         // Get User Name
                         var user_name = '-';
                         for (var n in self.res_users[0]) {
-                            if (self.res_users[0][n]['id'] ===
+                            if (self.res_users[0][n].id ===
                                 self.res_users_ids[u]) {
-                                user_name = self.res_users[0][n]['name'];
+                                user_name = self.res_users[0][n].name;
                             }
                         }
                         var is_available = false;
                         for (var i in groups) {
-                            if (groups[i]['id'] === self.res_users_ids[u]) {
+                            if (groups[i].id === self.res_users_ids[u]) {
                                 is_available = true;
                             }
                         }

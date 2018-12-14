@@ -110,6 +110,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
          * @param {Array} group_bys
          * @param {Object} adjust_window
          * @param {Array} user_ids
+         * @returns Object
          */
         on_user_data_loaded : function (events,
             group_bys, adjust_window, user_ids) {
@@ -240,8 +241,8 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                             var id = value;
                             var name = '';
                             for (var i in self.res_users[0]) {
-                                if (self.res_users[0][i]['id'] === id) {
-                                    name = self.res_users[0][i]['name'];
+                                if (self.res_users[0][i].id === id) {
+                                    name = self.res_users[0][i].name;
                                 }
                             }
                             list_user_ids.push({'id':id, 'name':name});
