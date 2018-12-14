@@ -10,9 +10,6 @@ class ResConfigSettings(models.TransientModel):
     group_fsm_team = fields.Boolean(
         string='Manage Teams',
         implied_group='fieldservice.group_fsm_team')
-    group_fsm_vehicle = fields.Boolean(
-        string='Manage Vehicles',
-        implied_group='fieldservice.group_fsm_vehicle')
     group_fsm_category = fields.Boolean(
         string='Manage Categories',
         implied_group='fieldservice.group_fsm_category')
@@ -32,5 +29,6 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_skill = fields.Boolean(
         string='Manage Skills')
     module_fieldservice_stock = fields.Boolean(
-        string='Use Odoo Stock Logistics',
-        implied_group='fieldservice.group_fsm_vehicle')
+        string='Use Odoo Logistics')
+    module_fieldservice_vehicle = fields.Boolean(
+        string='Manage Vehicles')
