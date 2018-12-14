@@ -8,15 +8,13 @@
         <field name="arch" type="xml">
             <page name="contact" position="before">
                 <page string="Skills">
-                    <group name="skills">
-                        <field name="skill_ids" nolabel="1">
-                            <tree editable="bottom">
-                                <field name="skill_id"/>
-                                <field name="level" widget="priority"/>
-                            </tree>
-                        </field>
-                    </group>
-                </page>                        
+                    <field name="skill_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="skill_id"/>
+                            <field name="level" widget="priority"/>
+                        </tree>
+                    </field>
+                </page>
             </page>
         </field>
     </record>
