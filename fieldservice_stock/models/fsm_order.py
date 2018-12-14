@@ -3,7 +3,7 @@
 
 from datetime import datetime, timedelta
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 from odoo.tools import (DEFAULT_SERVER_DATETIME_FORMAT,
                         float_is_zero, float_compare)
@@ -20,13 +20,42 @@ class FSMOrder(geo_model.GeoModel):
         'fsm.order.line', 'order_id', string="Order Lines",)
     picking_ids = fields.One2many('stock.picking', 'fsm_order_id',
                                   string='Transfers')
+    delivery_count = fields.Integer(string='Delivery Orders',
+                                    compute='_compute_picking_ids')
     procurement_group_id = fields.Many2one(
         'procurement.group', 'Procurement Group', copy=False)
+    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
+                                   help="Warehouse used to ship the materials")
+
+    @api.depends('picking_ids')
+    def _compute_picking_ids(self):
+        for order in self:
+            order.delivery_count = len(order.picking_ids)
 
     def action_confirm(self):
-        self.line_ids._confirm_picking()
-        return super(FSMOrder, self).action_confirm()
+        if self.location_id and self.line_ids and self.warehouse_id:
+            self.line_ids._confirm_picking()
+            return super(FSMOrder, self).action_confirm()
+        else:
+            raise UserError(_('Please select the location, a warehouse and a'
+                              ' product.'))
 
+    @api.multi
+    def action_view_delivery(self):
+        '''
+        This function returns an action that display existing delivery orders
+        of given fsm order ids. It can either be a in a list or in a form
+        view, if there is only one delivery order to show.
+        '''
+        action = self.env.ref('stock.action_picking_tree_all').read()[0]
+
+        pickings = self.mapped('picking_ids')
+        if len(pickings) > 1:
+            action['domain'] = [('id', 'in', pickings.ids)]
+        elif pickings:
+            action['views'] = [(self.env.ref('stock.view_picking_form').id, 'form')]
+            action['res_id'] = pickings.id
+        return action
 
 class FSMOrderLine(models.Model):
     _name = 'fsm.order.line'
@@ -42,7 +71,7 @@ class FSMOrderLine(models.Model):
     sequence = fields.Integer(string='Sequence', default=10, readonly=True,
                               states={'draft': [('readonly', False)]})
     product_id = fields.Many2one(
-        'product.product', string="Product", required=True,
+        'product.product', string="Product",
         domain=[('type', '=', 'product')], ondelete='restrict',
         readonly=True, states={'draft': [('readonly', False)]})
     product_uom_id = fields.Many2one(
@@ -119,15 +148,15 @@ class FSMOrderLine(models.Model):
         self.ensure_one()
         values = {}
         date_planned = (self.order_id.scheduled_date_start
-                        or self.order_id.requested_date
+                        or self.order_id.request_early
+                        or self.order_id.request_late
                         or (datetime.now() + timedelta(days=1)).strftime(
                             DEFAULT_SERVER_DATETIME_FORMAT))
         values.update({
             'group_id': group_id,
             'fsm_order_line_id': self.id,
             'date_planned': date_planned,
-            'route_ids': self.env.ref(
-                'fieldservice_stock.route_stock_to_vehicle_to_location'),
+            'route_ids': self.order_id.warehouse_id.delivery_route_id,
             'partner_dest_id': self.order_id.customer_id
         })
         return values
@@ -170,6 +199,7 @@ class FSMOrderLine(models.Model):
             procurement_uom = line.product_uom_id
             quant_uom = line.product_id.uom_id
             get_param = self.env['ir.config_parameter'].sudo().get_param
+            import pdb;pdb.set_trace()
             if (procurement_uom.id != quant_uom.id
                     and get_param('stock.propagate_uom') != '1'):
                 qty_needed = line.product_uom_id._compute_quantity(
@@ -178,7 +208,7 @@ class FSMOrderLine(models.Model):
             try:
                 self.env['procurement.group'].run(
                     line.product_id, qty_needed, procurement_uom,
-                    line.order_id.fsm_location_id.inventory_location,
+                    line.order_id.location_id.inventory_location,
                     line.name, line.order_id.name, values)
             except UserError as error:
                 errors.append(error.name)
