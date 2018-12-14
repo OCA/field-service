@@ -9,9 +9,9 @@ class FSMOrderLine(models.Model):
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
-        values = super(self, FSMOrderLine)._prepare_procurement_values(group_id)
-        values.update({
-            'route_ids': self.env.ref(
-                'fieldservice_vehicle_stock.route_stock_to_vehicle_to_location')
+        values = super(self, FSMOrderLine).\
+            _prepare_procurement_values(group_id)
+        values.update({'route_ids': self.env.ref(
+            'fieldservice_vehicle_stock.route_stock_to_vehicle_to_location')
         })
         return values
