@@ -1,15 +1,11 @@
 odoo.define('fieldservice.fsm_gantt', function (require) {
-    "use strict";
+    'use strict';
 
     var core = require('web.core');
-    var data = require('web.data');
     var time = require('web.time');
     var session = require('web.session');
     var TimelineRenderer = require('web_timeline.TimelineRenderer');
-
     var _t = core._t;
-    var _lt = core._lt;
-    var QWeb = core.qweb;
 
     TimelineRenderer.include({
         init: function (parent, state, params) {
@@ -54,8 +50,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     data.push(self.event_data_transform(event));
                 }
             });
-            var groups = self.split_groups(events, group_bys);
-            if (group_bys[0]=="person_id"){
+            groups = self.split_groups(events, group_bys);
+            if (group_bys[0]=='person_id'){
                 var groups_user_ids = [];
                 for(var g in groups){
                     groups_user_ids.push(groups[g]['id']);
@@ -121,9 +117,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 group = -1;
             }
             _.each(self.colors, function (color) {
-                if (eval("'" + evt[color.field] + "' " + color.opt + " '" + color.value + "'")) {
+                if (eval('\'' + evt[color.field] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
-                }else if (eval("'" + evt[color.field][1] + "' " + color.opt + " '" + color.value + "'")) {
+                }else if (eval('\'' + evt[color.field][1] + '\' ' + color.opt + ' \'' + color.value + '\'')) {
                     self.color = color.color;
                 }
             });
