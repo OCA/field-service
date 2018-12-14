@@ -1,6 +1,4 @@
-You will first need to install:
+To install Field Service and have the mapping features, you need to install GeoEngine.
 
-* fieldservice
-
-Then go to Field Service > Configuration > Settings
-Enable the 'Use Odoo Stock Logistics' option under Integrations
+Please refer to the installation instructions available at:
+https://github.com/OCA/geospatial/tree/11.0/base_geoengine
