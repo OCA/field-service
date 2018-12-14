@@ -6,31 +6,46 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <field name="picking_ids" invisible="1"/>
+                <button type="object"
+                        name="action_view_delivery"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user">
+                    <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                </button>
+            </div>
             <xpath expr="//notebook/page[1]" position="after">
-                <page string="Materials">
-                    <field name="line_ids" mode="tree">
-                        <tree string="Material Order Lines" editable="bottom">
+                <page string="Inventory">
+                    <group>
+                        <group>
+                            <field name="Warehouse"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <field name="line_ids" nolabel="1">
+                        <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"
-                                context="{
-                                    'quantity':qty_ordered,
-                                    'uom':product_uom_id,
+                                   context="{
+                                    'quantity': qty_ordered,
+                                    'uom': product_uom_id,
                                 }"
                             />
                             <field name="name"/>
                             <field name="qty_ordered"
-                                string="Ordered Qty"
-                                context="{
-                                    'quantity':qty_ordered,
-                                    'uom':product_uom_id,
+                                   string="Ordered Qty"
+                                   context="{
+                                    'quantity': qty_ordered,
+                                    'uom': product_uom_id,
                                 }"
                             />
-                            <field name="qty_delivered"
-                                 />
+                            <field name="qty_delivered"/>
                             <field name="product_uom_id"
-                                attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
-                                options='{"no_open": True, "no_create": True}'
-                                groups="product.group_uom"/>
+                                   attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
+                                   options='{"no_open": True, "no_create": True}'
+                                   groups="product.group_uom"/>
                             <field name="state" invisible="1"/>
                         </tree>
                     </field>

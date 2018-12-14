@@ -1,7 +1,7 @@
 To use this module, you need to:
 
-* Create a new field service order
-* Under the Materials tab, add products with quantity
-* Confirm an order to create stock moves
-* Validate stock moves in the Inventory app
-* Quantities Delivered on FSM Order Line will be updated based on move
+* Create a new service order
+* Under the Inventory tab, select the warehouse and add products with quantity
+* Confirm the order to create the delivery orders
+* Validate the transfers in the Inventory app. Quantities delivered on FSM
+  Order Line will be updated.
