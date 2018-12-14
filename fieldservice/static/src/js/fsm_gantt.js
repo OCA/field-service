@@ -27,7 +27,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             self.res_users = [];
             self.res_users_ids = [];
 
-            /* Find their matching namess
+            /* Find their matching names
              */
             this._rpc({
                 model: 'fsm.person',
@@ -57,22 +57,22 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     groups_user_ids.push(groups[g]['id']);
                 }
                 for (var u in self.res_users_ids) {
-                    if (!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1) {
+                    if(!(self.res_users_ids[u] in groups_user_ids) || self.res_users_ids[u] != -1){
 
                         /* Get User Name
                          */
                         var user_name = '-';
-                        _.each(self.res_users[0], function (n) {
-                            if (self.res_users[0][n].id === self.res_users_ids[u]) {
-                                user_name = self.res_users[0][n].name;
+                        for (var n in self.res_users[0]){
+                            if (self.res_users[0][n]['id'] == self.res_users_ids[u]){
+                                user_name = self.res_users[0][n]['name'];
                             }
-                        });
+                        }
                         var is_available = false;
-                        _.each(groups, function (i) {
+                        for (var i in groups) {
                             if (groups[i]['id']===self.res_users_ids[u]) {
                                 is_available = true;
                             }
-                        });
+                        }
                         if (!is_available) {
                             groups.push({id:self.res_users_ids[u], content: _t(user_name)});
                         }
