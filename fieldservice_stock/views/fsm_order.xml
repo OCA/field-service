@@ -18,11 +18,12 @@
             </div>
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Inventory">
-                    <group>
-                        <group>
-                            <field name="warehouse_id"/>
+                    <group groups="stock.group_stock_user">
+                        <group id="stock-left">
+                            <field name="warehouse_id"
+                                   groups="stock.group_stock_multi_warehouses"/>
                         </group>
-                        <group></group>
+                        <group id="stock-right"></group>
                     </group>
                     <field name="line_ids" nolabel="1">
                         <tree editable="bottom">
@@ -34,6 +35,7 @@
                                 }"
                             />
                             <field name="name"/>
+                            <field name="route_id" groups="stock.group_stock_adv_location"/>
                             <field name="qty_ordered"
                                    string="Ordered Qty"
                                    context="{
@@ -51,6 +53,103 @@
                     </field>
                 </page>
             </xpath>
+        </field>
+    </record>
+
+    <!-- Inventory / Operations / FSM Orders -->
+    <record id="stock_fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <form string="FSM Order" create="false">
+                <header>
+                    <button id="action_confirm"
+                            name="action_confirm" string="Confirm"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
+                    <field name="stage_id" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority"/>
+                            <field name="warehouse_id"
+                                   groups="stock.group_stock_multi_warehouses"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"
+                                   context="{
+                                    'quantity': qty_ordered,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="name"/>
+                            <field name="route_id" groups="stock.group_adv_location"/>
+                            <field name="qty_ordered"
+                                   string="Ordered Qty"
+                                   context="{
+                                    'quantity': qty_ordered,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="qty_delivered"/>
+                            <field name="product_uom_id"
+                                   attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
+                                   options='{"no_open": True, "no_create": True}'
+                                   groups="product.group_uom"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_fsm_order_tree" model="ir.ui.view">
+        <field name="name">fsm.order.tree</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <tree string="FSM Orders"
+                  default_order="scheduled_date_start"
+                  create="false">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="location_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_stock_fsm_order" model="ir.actions.act_window">
+        <field name="name">FSM Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain"
+               eval="[('stage_id', '=', ref('fieldservice.fsm_stage_new'))]"/>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+                      (0, 0, {'view_mode': 'tree', 'view_id': ref('fieldservice_stock.stock_fsm_order_tree')}),
+                      (0, 0, {'view_mode': 'form', 'view_id': ref('fieldservice_stock.stock_fsm_order_form')})]"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No Field Service Orders to confirm.
+            </p>
         </field>
     </record>
 
