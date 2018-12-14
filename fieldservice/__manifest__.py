@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service',
-    'summary': 'Locations, Orders, Calls',
+    'summary': 'Manage Field Service Locations, Persons and Orders',
     'version': '11.0.0.0.2',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -32,7 +32,6 @@
         'views/res_partner.xml',
         'views/fsm_location.xml',
         'views/fsm_person.xml',
-        'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
         'views/fsm_route.xml',
         'views/fsm_category.xml',
