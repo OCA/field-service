@@ -46,4 +46,3 @@ class FSMStage(models.Model):
                 'value': stage.name,
             })
         return color_information_dict
-
