@@ -10,3 +10,4 @@ You need to add attribute mention below with the tag <timeline> as base element.
   example custom_color = "true". And there is minor condition to follow to
   implement this as. Define any one stage color condition like 
   colors="#ffffff:stage_id=='New';"
+

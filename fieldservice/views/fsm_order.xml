@@ -13,8 +13,8 @@
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
-                    <button id="action_schedule"
-                            name="action_schedule" string="Schedule"
+                    <button id="action_request"
+                            name="action_request" string="Request"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_confirmed)d)]}"/>
@@ -22,9 +22,9 @@
                             name="action_assign" string="Assign"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_scheduled)d)]}"/>
-                    <button id="action_plan"
-                            name="action_plan" string="Plan"
+                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_requested)d)]}"/>
+                    <button id="action_schedule"
+                            name="action_schedule" string="Schedule"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_assigned)d)]}"/>
@@ -32,7 +32,7 @@
                             name="action_enroute" string="En Route"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_planned)d)]}"/>
+                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_scheduled)d)]}"/>
                     <button id="action_start"
                             name="action_start" string="Start"
                             class="oe_highlight"
