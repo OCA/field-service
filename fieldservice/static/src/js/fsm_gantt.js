@@ -53,7 +53,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                     method: 'get_color_information',
                     args: [[], {}],
                 }).then(function (result) {
-                    self.colors = result
+                    self.colors = result;
                 });
             }
         },

@@ -123,8 +123,8 @@ class FSMOrder(geo_model.GeoModel):
             vals['scheduled_date_start'] = str(date_to_with_delta)
         if 'scheduled_duration' in vals:
             date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start)) + \
-                timedelta(hours=vals.get('scheduled_duration'))
+                vals.get('scheduled_date_start', self.scheduled_date_start))\
+                + timedelta(hours=vals.get('scheduled_duration'))
             vals['scheduled_date_end'] = str(date_to_with_delta)
         if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
             date_to_with_delta = fields.Datetime.from_string(
@@ -137,17 +137,17 @@ class FSMOrder(geo_model.GeoModel):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_confirmed').id})
 
-    def action_schedule(self):
+    def action_request(self):
         return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_scheduled').id})
+            'fieldservice.fsm_stage_requested').id})
 
     def action_assign(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_assigned').id})
 
-    def action_plan(self):
+    def action_schedule(self):
         return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_planned').id})
+            'fieldservice.fsm_stage_scheduled').id})
 
     def action_enroute(self):
         return self.write({'stage_id': self.env.ref(
@@ -168,25 +168,18 @@ class FSMOrder(geo_model.GeoModel):
     @api.onchange('scheduled_date_start')
     def onchange_scheduled_date_start(self):
         if self.person_id and self.scheduled_date_start:
-            print(self.person_id)
-            print(self.person_id)
-            print("person")
             # self.stage_id = 'Planned'
             self.stage_id = 5
         elif not self.person_id and self.scheduled_date_start:
-            print("hello")
             # self.stage_id = 'Scheduled'
             self.stage_id = 3
 
     @api.onchange('person_id')
     def onchange_person_id(self):
         if self.person_id and self.scheduled_date_start:
-            print(self.scheduled_date_start)
-            print("date")
             # self.stage_id = 'Planned'
             self.stage_id = 5
         elif self.person_id and not self.scheduled_date_start:
-            print("hello")
             # self.stage_id = 'Assigned'
             self.stage_id = 4
 
