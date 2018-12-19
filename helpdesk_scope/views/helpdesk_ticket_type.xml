@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Helpdesk Ticket Type Tree Extension-->
+    <record id="helpdesk_ticket_type_tree_extension_scope" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.type.tree.scope</field>
+        <field name="model">helpdesk.ticket.type</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_type_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="scope" widget="many2many_tags"/>                      
+            </field>
+        </field>
+    </record>
+</odoo>

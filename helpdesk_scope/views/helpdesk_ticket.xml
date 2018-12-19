@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Helpdesk Ticket Scope Form Extension-->
+    <record id="helpdesk_ticket_form_extension_scope" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.scope</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="before">
+                <field name="scope"/>                      
+            </field>
+        </field>
+    </record>
+</odoo>
