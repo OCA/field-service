@@ -15,7 +15,6 @@
     'data': [
         'views/fsm_location.xml'
     ],
-    'application': True,
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
