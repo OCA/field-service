@@ -7,12 +7,14 @@
         <field name="model">fsm.location</field>
         <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
         <field name="arch" type="xml">
-            <page name="others-page" position="before">
+            <page id="others-page" position="before">
                 <page string="Sales">
                     <group>
-                        <field name="sales_territory_id"/>
+                        <group>
+                            <field name="sales_territory_id"/>
+                        </group>
                     </group>
-                </page>                        
+                </page>
             </page>
         </field>
     </record>
