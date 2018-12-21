@@ -6,7 +6,7 @@
         <field name="name">fsm.order.form</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <form string="Orders">
+            <form string="Order">
                 <header>
                     <button id="action_confirm"
                             name="action_confirm" string="Confirm"
@@ -151,7 +151,7 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Order" default_order="scheduled_date_start">
+            <tree string="Orders" default_order="scheduled_date_start">
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
@@ -254,7 +254,7 @@
         <field name="name">fsm.order.search</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <search string="FSM Orders">
+            <search string="Orders">
                 <field name="name"
                        filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
                        string="FSM Order Name"/>
@@ -333,7 +333,7 @@
         </field>
     </record>
 
-        <!-- GeoEngine views -->
+    <!-- GeoEngine views -->
     <record id="ir_ui_view_fsm_order_map" model="ir.ui.view">
         <field name="name">ir.ui.view.fsm.order.map</field>
         <field name="arch" type="xml">
@@ -358,7 +358,6 @@
     </record>
     
     <!--Unique value symbology not working so commented out -->
-    
     <record id="geoengine_vector_layer_fsm0" model="geoengine.vector.layer">
         <field name="geo_field_id" ref="fieldservice.field_fsm_order_shape"/>
         <field name="name">FSM Order Point</field>
