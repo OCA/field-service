@@ -38,7 +38,7 @@ class FSMOrder(geo_model.GeoModel):
     color = fields.Integer('Color Index', default=0)
 
     # Request
-    name = fields.Char(string='Name', required=True,
+    name = fields.Char(string='Name', required=True, index=True,
                        default=lambda self: _('New'))
     customer_id = fields.Many2one('res.partner', string='Customer',
                                   domain=[('customer', '=', True)],
@@ -80,8 +80,7 @@ class FSMOrder(geo_model.GeoModel):
     shape = geo_fields.GeoPoint(string='Coordinate')
 
     # Fields for Geoengine Identify
-    display_name = fields.Char(related="location_id.display_name",
-                               string="Location")
+    display_name = fields.Char(related="name", string="Order")
     street = fields.Char(related="location_id.street")
     street2 = fields.Char(related="location_id.street2")
     zip = fields.Char(related="location_id.zip")
