@@ -31,9 +31,7 @@
                     </group>
                     <notebook>
                         <page string="Notes">
-                            <group>
-                                <field name="notes"/>
-                            </group>
+                            <field name="notes" nolabel="1"/>
                         </page>
                         <page string="Location">
                             <group>
@@ -66,7 +64,7 @@
 
 
     <!-- Field Service Equipment Dashboard -->
-        <record id="fsm_equipment_kanban_view" model="ir.ui.view">
+    <record id="fsm_equipment_kanban_view" model="ir.ui.view">
         <field name="name">fsm.equipment.kanban</field>
         <field name="model">fsm.equipment</field>
         <field name="arch" type="xml">
@@ -150,7 +148,7 @@
             </p>
         </field>
     </record>
-    
+
     <!-- Search for fsm.equipment-->
     <record id="fsm_equipment_search_view" model="ir.ui.view">
         <field name="name">fsm.equipment.search</field>
