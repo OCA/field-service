@@ -28,15 +28,13 @@
                             <field name="id" invisible="1"/>
                             <field name="owner_id"/>
                             <field name="customer_id"/>
+                            <field name="contact_id" domain="[('company_type', '=', 'person')]"/>
                         </group>
                         <group id="main-right">
                             <field name="parent_id"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Directions">
-                            <field name="direction" nolabel="1" widget="html"/>
-                        </page>
                         <page string="Address">
                             <group id="address">
                                 <group id="address-left">
@@ -60,6 +58,9 @@
                                     <field name="timezone"/>
                                 </group>
                             </group>
+                        </page>
+                        <page string="Directions">
+                            <field name="direction" nolabel="1" widget="html"/>
                         </page>
                         <page string="Territory">
                             <group id="territory">
