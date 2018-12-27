@@ -11,7 +11,7 @@ class Agreement(models.Model):
                                      compute='_compute_equipment_count')
 
     @api.multi
-    def _compute_picking_count(self):
+    def _compute_equipment_count(self):
         data = self.env['fsm.equipment'].read_group(
             [('agreement_id', 'in', self.ids)],
             ['agreement_id'], ['agreement_id'])
