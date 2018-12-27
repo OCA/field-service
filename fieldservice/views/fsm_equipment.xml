@@ -150,5 +150,29 @@
             </p>
         </field>
     </record>
+    
+    <!-- Search for fsm.equipment-->
+    <record id="fsm_equipment_search_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.search</field>
+        <field name="model">fsm.equipment</field>
+        <field name="arch" type="xml">
+            <search string="Equipments">
+                <field name="name"
+                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
+                       string="FSM Equipment Name"/>
+                <field name="location_id"/>
+                <field name="branch_id"/>
+                <field name="district_id"/>
+                <field name="region_id"/>
+                <field name="person_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Person" domain="" context="{'group_by':'person_id'}"/>
+                    <filter string="Region" domain="" context="{'group_by':'region_id'}"/>
+                    <filter string="District" domain="" context="{'group_by':'district_id'}"/>
+                    <filter string="Branch" domain="" context="{'group_by':'branch_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
 </odoo>
