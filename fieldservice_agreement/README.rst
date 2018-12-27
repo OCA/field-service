@@ -47,8 +47,7 @@ To use this module:
 * Select or create a field service order and set the agreement
 * Go to Agreement > Agreements
 * Open the previous agreement
-* Click on the smart button "Service Orders" to see the list of related field
-  service orders
+* Click on the smart button "Service Orders" to see the list of related field service orders
 
 Bug Tracker
 ===========
@@ -72,6 +71,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -99,10 +99,13 @@ promote its widespread use.
 .. |maintainer-bodedra| image:: https://github.com/bodedra.png?size=40px
     :target: https://github.com/bodedra
     :alt: bodedra
+.. |maintainer-smangukiya| image:: https://github.com/smangukiya.png?size=40px
+    :target: https://github.com/smangukiya
+    :alt: smangukiya
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-max3903| |maintainer-bodedra| 
+|maintainer-max3903| |maintainer-bodedra| |maintainer-smangukiya| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/11.0/fieldservice_agreement>`_ project on GitHub.
 
