@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.actions.act_window"
+            id="action_fsm_equipment_agreement_specific">
+        <field name="name">Equipments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fsm.equipment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('agreement_id', '=', active_id)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Equipments
+            </p>
+        </field>
+    </record>
+
+    <!-- Agreement Form View -->
+    <record id="agreement_fsm_equipment_form_view" model="ir.ui.view">
+        <field name="name">agreement.form.fsm.equipment.view</field>
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement.partner_agreement_form_view"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="%(action_fsm_equipment_agreement_specific)d"
+                        type="action"
+                        attrs="{'invisible': [('equipment_count', '=', 0)]}"
+                        class="oe_stat_button" icon="fa-truck">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="equipment_count" widget="statinfo"
+                                   nolabel="1"/>
+                        </span>
+                        <span class="o_stat_text">Equipments</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
