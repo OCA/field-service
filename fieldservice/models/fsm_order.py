@@ -38,7 +38,7 @@ class FSMOrder(geo_model.GeoModel):
     color = fields.Integer('Color Index', default=0)
 
     # Request
-    name = fields.Char(string='Name', required=True, index=True,
+    name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
     customer_id = fields.Many2one('res.partner', string='Customer',
                                   domain=[('customer', '=', True)],
