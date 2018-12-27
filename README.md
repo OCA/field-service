@@ -25,6 +25,7 @@ addon | version | summary
 [fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_delivery](fieldservice_delivery/) | 11.0.0.0.1 | Delivery and Carriers for Field Services
 [fieldservice_distribution](fieldservice_distribution/) | 11.0.0.0.1 | Manage your distribution structure
+[fieldservice_equipment_agreement](fieldservice_equipment_agreement/) | 11.0.1.0.0 | Manage FSM Equipment Agreements
 [fieldservice_sale](fieldservice_sale/) | 11.0.0.0.1 | Sales
 [fieldservice_skill](fieldservice_skill/) | 11.0.0.1.0 | Manage your FS persons skills
 [fieldservice_stock](fieldservice_stock/) | 11.0.0.1.0 | Inventory and Stock Operations for Field Services
