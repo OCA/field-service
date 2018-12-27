@@ -10,3 +10,5 @@ class FSMOrder(geo_model.GeoModel):
     _inherit = 'fsm.order'
 
     agreement_id = fields.Many2one('agreement', string='Agreement')
+    serviceprofile_id = fields.Many2one('agreement.serviceprofile',
+                                        'Service Profile')
