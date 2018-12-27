@@ -32,7 +32,9 @@ class FSMLocation(geo_model.GeoModel):
                                   required=True, ondelete='restrict',
                                   auto_join=True)
     contact_id = fields.Many2one('res.partner', string='Primary Contact',
-                                 ondelete='restrict', auto_join=True)
+                                 domain="[('is_company', '=', False),"
+                                        " ('fsm_location', '=', False)]",
+                                 index=True)
     tag_ids = fields.Many2many('fsm.tag', string='Tags')
     description = fields.Char(string='Description')
     territory_id = fields.Many2one('fsm.territory', string='Territory')
