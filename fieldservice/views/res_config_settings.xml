@@ -102,7 +102,8 @@
                             <div class="o_setting_right_pane">
                                 <label string="Use Odoo Stock Logistics"/>
                                 <div class="text-muted">
-                                    Manage inventory and stock operations
+                                    Manage inventory and stock operations.
+                                    Automatically activate Lots &amp; Serial Numbers.
                                 </div>
                             </div>
                         </div>
@@ -136,6 +137,28 @@
                                 <label string="Manage Equipments Agreement"/>
                                 <div class="text-muted">
                                     Manage your Field Service Equipments Agreements
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_fieldservice_maintenance"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="Maintenance"/>
+                                <div class="text-muted">
+                                    Link your FSM orders to maintenance requests
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_fieldservice_repair"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label string="MRP Repair"/>
+                                <div class="text-muted">
+                                    Link your FSM orders to MRP repair orders
                                 </div>
                             </div>
                         </div>
