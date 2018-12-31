@@ -10,6 +10,7 @@
                 <field name="name"/>
                 <field name="person_id"/>
                 <field name="location_id"/>
+                <field name="current_location_id"/>
             </tree>
         </field>
     </record>
@@ -26,6 +27,7 @@
                         <group>
                             <field name="person_id"/>
                             <field name="location_id"/>
+                            <field name="current_location_id"/>
                         </group>
                         <group></group>
                     </group>
@@ -159,6 +161,7 @@
                        filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
                        string="FSM Equipment Name"/>
                 <field name="location_id"/>
+                <field name="current_location_id"/>
                 <field name="branch_id"/>
                 <field name="district_id"/>
                 <field name="region_id"/>
