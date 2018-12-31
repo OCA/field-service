@@ -15,6 +15,13 @@
                         attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user">
                     <field name="delivery_count" widget="statinfo" string="Delivery"/>
                 </button>
+                <button type="object"
+                        name="action_view_returns"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('return_count', '=', 0)]}" groups="base.group_user">
+                    <field name="return_count" widget="statinfo" string="Receipts"/>
+                </button>
             </div>
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Inventory">
@@ -25,6 +32,7 @@
                         </group>
                         <group id="stock-right"></group>
                     </group>
+                    <separator string="Outbound"/>
                     <field name="line_ids" nolabel="1">
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -44,6 +52,33 @@
                                 }"
                             />
                             <field name="qty_delivered"/>
+                            <field name="product_uom_id"
+                                   attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
+                                   options='{"no_open": True, "no_create": True}'
+                                   groups="product.group_uom"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                    <separator string="Inbound"/>
+                    <field name="return_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"
+                                   context="{
+                                    'quantity': qty_returned,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="name"/>
+                            <field name="route_id" groups="stock.group_stock_adv_location"/>
+                            <field name="qty_returned"
+                                   string="Returned Qty"
+                                   context="{
+                                    'quantity': qty_returned,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="qty_received"/>
                             <field name="product_uom_id"
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
@@ -104,6 +139,32 @@
                                 }"
                             />
                             <field name="qty_delivered"/>
+                            <field name="product_uom_id"
+                                   attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
+                                   options='{"no_open": True, "no_create": True}'
+                                   groups="product.group_uom"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
+                    <field name="return_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"
+                                   context="{
+                                    'quantity': qty_returned,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="name"/>
+                            <field name="route_id" groups="stock.group_stock_adv_location"/>
+                            <field name="qty_returned"
+                                   string="Returned Qty"
+                                   context="{
+                                    'quantity': qty_returned,
+                                    'uom': product_uom_id,
+                                }"
+                            />
+                            <field name="qty_received"/>
                             <field name="product_uom_id"
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
