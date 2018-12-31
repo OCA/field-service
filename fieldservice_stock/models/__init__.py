@@ -5,4 +5,5 @@ from . import (
     fsm_location,
     fsm_order,
     stock,
+    fsm_equipment,
 )
