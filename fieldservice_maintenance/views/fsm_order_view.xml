@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Copyright 2018 Open Source Integrators
+         License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+    <!-- Fields Service Orders Form View -->
+    <record id="fsm_order_maintenance_form" model="ir.ui.view">
+        <field name="name">fsm.order.maintenance.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field name="request_id"
+                    readonly="1"
+                    attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
+                <field name="maintenance_team_id"
+                    attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
+            </field>
+            <field name="equipment_id" position="attributes">
+                <attribute name="attrs">{'required': [('type', '=', 'maintenance')]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
