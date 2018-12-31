@@ -8,11 +8,15 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     fsm_order_line_id = fields.Many2one('fsm.order.line', 'FSM Order Line')
+    fsm_order_return_line_id = fields.Many2one(
+        'fsm.order.return', 'FSM Order Return Line')
 
     def _action_done(self):
         result = super(StockMove, self)._action_done()
         for line in result.mapped('fsm_order_line_id').sudo():
             line.qty_delivered = line._get_delivered_qty()
+        for line in result.mapped('fsm_order_return_line_id').sudo():
+            line.qty_received = line._get_received_qty()
         return result
 
     @api.multi
@@ -42,6 +46,9 @@ class ProcurementRule(models.Model):
             location_id, name, origin, values, group_id)
         if values.get('fsm_order_line_id', False):
             result['fsm_order_line_id'] = values['fsm_order_line_id']
+        if values.get('fsm_order_return_line_id', False):
+            result['fsm_order_return_line_id'] = \
+                values['fsm_order_return_line_id']
         return result
 
 
@@ -57,3 +64,5 @@ class StockLocationRoute(models.Model):
     _inherit = 'stock.location.route'
 
     fsm_selectable = fields.Boolean(string="Field Service Order Lines")
+    fsm_return_selectable = fields.Boolean(
+        string="Field Service Return Order Lines")
