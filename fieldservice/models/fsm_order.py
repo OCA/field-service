@@ -101,6 +101,10 @@ class FSMOrder(geo_model.GeoModel):
     template_id = fields.Many2one('fsm.template', string="Template")
     category_ids = fields.Many2many('fsm.category', string="Categories")
 
+    # Equipment
+    equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
+    type = fields.Selection([], string='Type')
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env['fsm.stage'].search([])
