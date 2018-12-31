@@ -8,6 +8,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='warehouse_ids']" position="after">
                 <field name="fsm_selectable" string="FSM Order Lines"/>
+                <field name="fsm_return_selectable"
+                string="FSM Order Return Lines"/>
             </xpath>
         </field>
     </record>
