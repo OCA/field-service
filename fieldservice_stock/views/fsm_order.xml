@@ -13,7 +13,7 @@
                         class="oe_stat_button"
                         icon="fa-truck"
                         attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user">
-                    <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                    <field name="delivery_count" widget="statinfo" string="Deliveries"/>
                 </button>
                 <button type="object"
                         name="action_view_returns"
@@ -37,26 +37,27 @@
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"
-                                   context="{
-                                    'quantity': qty_ordered,
-                                    'uom': product_uom_id,
-                                }"
-                            />
+                                   context="{'quantity': qty_ordered,
+                                             'uom': product_uom_id}"/>
                             <field name="name"/>
                             <field name="route_id" groups="stock.group_stock_adv_location"/>
+                            <field name="qty_requested"
+                                   string="Requested Qty"
+                                   context="{'quantity': qty_requested,
+                                             'uom': product_uom_id}"/>
                             <field name="qty_ordered"
                                    string="Ordered Qty"
                                    context="{
                                     'quantity': qty_ordered,
-                                    'uom': product_uom_id,
-                                }"
-                            />
-                            <field name="qty_delivered"/>
+                                    'uom': product_uom_id}"
+                                   attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                            <field name="qty_delivered"
+                                   attrs="{'invisible': [('state', '=', 'draft')]}"/>
                             <field name="product_uom_id"
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
                                    groups="product.group_uom"/>
-                            <field name="state" invisible="1"/>
+                            <field name="state"/>
                         </tree>
                     </field>
                     <separator string="Inbound"/>
@@ -64,28 +65,46 @@
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"
-                                   context="{
-                                    'quantity': qty_returned,
-                                    'uom': product_uom_id,
-                                }"
-                            />
+                                   context="{'quantity': qty_returned,
+                                             'uom': product_uom_id}"/>
                             <field name="name"/>
                             <field name="route_id" groups="stock.group_stock_adv_location"/>
+                            <field name="qty_requested"
+                                   string="Requested Qty"
+                                   context="{
+                                    'quantity': qty_requested,
+                                    'uom': product_uom_id}"/>
                             <field name="qty_returned"
                                    string="Returned Qty"
                                    context="{
                                     'quantity': qty_returned,
-                                    'uom': product_uom_id,
-                                }"
+                                    'uom': product_uom_id}"
+                                   attrs="{'invisible': [('state', '=', 'draft')]}"
                             />
                             <field name="qty_received"/>
                             <field name="product_uom_id"
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
                                    groups="product.group_uom"/>
-                            <field name="state" invisible="1"/>
+                            <field name="state"/>
                         </tree>
                     </field>
+                    <group>
+                        <field name='inventory_stage' invisible='0'/>
+                    </group>
+                    <button id="action_request_inventory"
+                            name="action_request_inventory" string="Request"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('inventory_stage', '!=', 'draft')]}"
+                            type="object"/>
+                    <button id="action_cancel"
+                            name="action_cancel_inventory" string="Cancel"
+                            type="object"
+                            attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
+                    <button id="action_reset_draft"
+                            name="action_reset_inventory" string="Reset to Draft"
+                            type="object"
+                            attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
                 </page>
             </xpath>
         </field>
@@ -99,11 +118,19 @@
             <form string="FSM Order" create="false">
                 <header>
                     <button id="action_confirm"
-                            name="action_confirm" string="Confirm"
+                            name="action_confirm_inventory" string="Confirm"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
-                    <field name="stage_id" widget="statusbar"/>
+                            attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
+                    <button id="action_cancel"
+                            name="action_cancel_inventory" string="Cancel"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
+                    <button id="action_reset_draft"
+                            name="action_reset_inventory" string="Reset to Draft"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
+                    <field name="inventory_stage" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -111,15 +138,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="customer_id"/>
-                            <field name="location_id"/>
+                            <field name="customer_id" readonly="1"/>
+                            <field name="inventory_location_id"/>
                         </group>
                         <group>
-                            <field name="priority" widget="priority"/>
+                            <field name="priority" widget="priority" readonly="1"/>
                             <field name="warehouse_id"
                                    groups="stock.group_stock_multi_warehouses"/>
                         </group>
                     </group>
+                    <separator string="Outbound"/>
                     <field name="line_ids" nolabel="1">
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -131,21 +159,21 @@
                             />
                             <field name="name"/>
                             <field name="route_id" groups="stock.group_adv_location"/>
+                            <field name="qty_requested"
+                                   string="Requested Qty"/>
                             <field name="qty_ordered"
                                    string="Ordered Qty"
-                                   context="{
-                                    'quantity': qty_ordered,
-                                    'uom': product_uom_id,
-                                }"
-                            />
+                                   context="{'quantity': qty_ordered,
+                                             'uom': product_uom_id}"/>
                             <field name="qty_delivered"/>
                             <field name="product_uom_id"
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
                                    groups="product.group_uom"/>
-                            <field name="state" invisible="1"/>
+                            <field name="state"/>
                         </tree>
                     </field>
+                    <separator string="Inbound"/>
                     <field name="return_ids" nolabel="1">
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
@@ -156,7 +184,9 @@
                                 }"
                             />
                             <field name="name"/>
-                            <field name="route_id" groups="stock.group_stock_adv_location"/>
+                            <field name="route_id" groups="stock.group_adv_location"/>
+                            <field name="qty_requested"
+                                   string="Requested Qty"/>
                             <field name="qty_returned"
                                    string="Returned Qty"
                                    context="{
@@ -169,7 +199,7 @@
                                    attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"
                                    options='{"no_open": True, "no_create": True}'
                                    groups="product.group_uom"/>
-                            <field name="state" invisible="1"/>
+                            <field name="state"/>
                         </tree>
                     </field>
                 </sheet>
@@ -202,7 +232,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="domain"
-               eval="[('stage_id', '=', ref('fieldservice.fsm_stage_new'))]"/>
+               eval="[('inventory_stage', '=', 'requested')]"/>
         <field name="view_ids"
                eval="[(5, 0, 0),
                       (0, 0, {'view_mode': 'tree', 'view_id': ref('fieldservice_stock.stock_fsm_order_tree')}),

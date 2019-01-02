@@ -64,5 +64,38 @@ class StockLocationRoute(models.Model):
     _inherit = 'stock.location.route'
 
     fsm_selectable = fields.Boolean(string="Field Service Order Lines")
-    fsm_return_selectable = fields.Boolean(
-        string="Field Service Return Order Lines")
+    fsm_return_selectable = fields.Boolean(string="Field Service Return Lines")
+
+
+class StockPickingType(models.Model):
+    _inherit = 'stock.picking.type'
+
+    count_fsm_requests = fields.Integer(compute='_compute_fsm_request')
+
+    def _compute_fsm_request(self):
+        for ptype in self:
+            if ptype.code == 'outgoing':
+                res = self.env['fsm.order'].search([('warehouse_id',
+                                                     '=',
+                                                     ptype.warehouse_id.id),
+                                                    ('inventory_stage', '=',
+                                                     'requested')])
+                for order in res:
+                    for line in order.line_ids:
+                        if line.state == 'requested':
+                            ptype.count_fsm_requests += 1
+                            break
+            if ptype.code == 'incoming':
+                res = self.env['fsm.order'].search([('warehouse_id',
+                                                     '=',
+                                                     ptype.warehouse_id.id),
+                                                    ('inventory_stage', '=',
+                                                     'requested')])
+                for order in res:
+                    for line in order.return_ids:
+                        if line.state == 'requested':
+                            ptype.count_fsm_requests += 1
+                            break
+
+    def get_action_fsm_requests(self):
+        return self._get_action('fieldservice_stock.action_stock_fsm_order')

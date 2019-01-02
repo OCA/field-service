@@ -8,5 +8,6 @@ from odoo.addons.base_geoengine import geo_model
 class FSMLocation(geo_model.GeoModel):
     _inherit = 'fsm.location'
 
-    inventory_location = fields.Many2one('stock.location',
-                                         'Inventory Location')
+    inventory_location_id = fields.Many2one('stock.location',
+                                            string='Inventory Location',
+                                            required=True)
