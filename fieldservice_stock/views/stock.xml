@@ -14,6 +14,29 @@
         </field>
     </record>
 
+    <record id="stock_picking_type_kanban_helpdesk" model="ir.ui.view">
+        <field name="name">stock.picking.type.kanban.helpdesk</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+        <field name="arch" type="xml">
+            <field name='count_picking_backorders' position='after'>
+                <field name='count_fsm_requests'/>
+            </field>
+            <xpath expr="//div[@class='col-xs-6 o_kanban_primary_right']/div[4]" position='after'>
+                <div t-if="record.count_fsm_requests.raw_value > 0" class="row">
+                    <div class="col-xs-9">
+                        <a name="get_action_fsm_requests" type="object">
+                            Field Service
+                        </a>
+                    </div>
+                    <div class="col-xs-3">
+                        <field name="count_fsm_requests"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
     <menuitem id="menu_fsm_product"
               name="Products"
               action="stock.product_template_action_product"
