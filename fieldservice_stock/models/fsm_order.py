@@ -12,6 +12,13 @@ from odoo.exceptions import UserError
 
 from odoo.addons.base_geoengine import geo_model
 
+STOCK_STAGES = [('draft', 'Draft'),
+                ('requested', 'Requested'),
+                ('confirmed', 'Confirmed'),
+                ('partial', 'Partially Shipped'),
+                ('done', 'Done'),
+                ('cancelled', 'Cancelled')]
+
 
 class FSMOrder(geo_model.GeoModel):
     _inherit = 'fsm.order'
@@ -23,14 +30,16 @@ class FSMOrder(geo_model.GeoModel):
             [('company_id', '=', company)], limit=1)
         return warehouse_ids
 
-    line_ids = fields.One2many(
-        'fsm.order.line', 'order_id', string="Order Lines", )
+    line_ids = fields.One2many('fsm.order.line', 'order_id',
+                               string="Order Lines")
     picking_ids = fields.One2many('stock.picking', 'fsm_order_id',
                                   string='Transfers')
     delivery_count = fields.Integer(string='Delivery Orders',
                                     compute='_compute_picking_ids')
     procurement_group_id = fields.Many2one(
         'procurement.group', 'Procurement Group', copy=False)
+    inventory_location_id = fields.Many2one(
+        related='location_id.inventory_location_id', readonly=True)
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
                                    required=True, readonly=True,
                                    default=_default_warehouse_id,
@@ -40,6 +49,9 @@ class FSMOrder(geo_model.GeoModel):
                                  string="Return Lines")
     return_count = fields.Integer(string='Return Orders',
                                   compute='_compute_picking_ids')
+    inventory_stage = fields.Selection(STOCK_STAGES, string='State',
+                                       default='draft', required=True,
+                                       readonly=True, store=True)
 
     @api.depends('picking_ids')
     def _compute_picking_ids(self):
@@ -51,21 +63,63 @@ class FSMOrder(geo_model.GeoModel):
                 [picking for picking in order.picking_ids if
                  picking.picking_type_id.code == 'incoming'])
 
-    def action_confirm(self):
+    def action_request_inventory(self):
+        if self.location_id and (self.line_ids or self.return_ids) and\
+                self.warehouse_id:
+            for line in self.line_ids:
+                if line.state == 'draft':
+                    line.state = 'requested'
+                    line.qty_ordered = line.qty_requested
+            for line in self.return_ids:
+                if line.state == 'draft':
+                    line.state = 'requested'
+                    line.qty_ordered = line.qty_requested
+            self.inventory_stage = 'requested'
+        else:
+            raise UserError(
+                _('Please select the location, a warehouse and a product.'))
+
+    def action_confirm_inventory(self):
         if self.location_id and (self.line_ids or self.return_ids) and\
                 self.warehouse_id:
             if self.line_ids:
                 line_ids = self.mapped('line_ids').filtered(
-                    lambda l: l.state == 'draft')
+                    lambda l: l.state == 'requested')
                 line_ids._confirm_picking()
             if self.return_ids:
                 return_ids = self.mapped('return_ids').filtered(
-                    lambda l: l.state == 'draft')
+                    lambda l: l.state == 'requested')
                 return_ids._confirm_picking()
-            return super(FSMOrder, self).action_confirm()
+            self.inventory_stage = 'confirmed'
         else:
-            raise UserError(_('Please select the location, a warehouse and a'
-                              ' product.'))
+            raise UserError(
+                _('Please select the location, a warehouse and a product.'))
+
+    def action_cancel_inventory(self):
+        if self.line_ids:
+            line_ids = self.mapped('line_ids').filtered(
+                lambda l: l.state == 'requested')
+            for line in line_ids:
+                line.state = 'cancelled'
+        if self.return_ids:
+            return_ids = self.mapped('return_ids').filtered(
+                lambda l: l.state == 'requested')
+            for line in return_ids:
+                line.state = 'cancelled'
+        self.inventory_stage = 'cancelled'
+
+    def action_reset_inventory(self):
+        if self.line_ids:
+            line_ids = self.mapped('line_ids').filtered(
+                lambda l: l.state == 'cancelled')
+            for line in line_ids:
+                line.state = 'draft'
+        if self.return_ids:
+            return_ids = self.mapped('return_ids').filtered(
+                lambda l: l.state == 'cancelled')
+            for line in return_ids:
+                line.state = 'draft'
+        self.inventory_stage = 'draft'
 
     @api.multi
     def action_view_delivery(self):
@@ -126,20 +180,20 @@ class FSMOrderLine(models.Model):
     product_uom_id = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
-    qty_ordered = fields.Float(
+    qty_requested = fields.Float(
         string='Quantity Requested', readonly=True,
         states={'draft': [('readonly', False)]},
+        digits=dp.get_precision('Product Unit of Measure'))
+    qty_ordered = fields.Float(
+        string='Quantity Ordered', readonly=True,
+        states={'requested': [('readonly', False)]},
         digits=dp.get_precision('Product Unit of Measure'))
     qty_delivered = fields.Float(
         string='Quantity Delivered', readonly=True, copy=False,
         digits=dp.get_precision('Product Unit of Measure'))
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('confirmed', 'Confirmed'),
-        ('partial', 'Partially Shipped'),
-        ('done', 'Done')],
-        string='State', compute='_compute_state', copy=False, index=True,
-        readonly=True, store=True)
+    state = fields.Selection(STOCK_STAGES, string='State', required=True,
+                             compute='_compute_state', default='draft',
+                             copy=False, index=True, readonly=True, store=True)
     move_ids = fields.One2many(
         'stock.move', 'fsm_order_line_id', string='Stock Moves',
         readonly=True, states={'draft': [('readonly', False)]})
@@ -163,7 +217,10 @@ class FSMOrderLine(models.Model):
             elif line.move_ids:
                 line.state = 'confirmed'
             else:
-                line.state = 'draft'
+                if line.state == 'requested':
+                    break
+                else:
+                    line.state = 'draft'
 
     @api.multi
     @api.onchange('product_id')
@@ -260,7 +317,7 @@ class FSMOrderLine(models.Model):
             try:
                 self.env['procurement.group'].run(
                     line.product_id, qty_needed, procurement_uom,
-                    line.order_id.location_id.inventory_location,
+                    line.order_id.inventory_location_id,
                     line.name, line.order_id.name, values)
             except UserError as error:
                 errors.append(error.name)
@@ -306,20 +363,20 @@ class FSMOrderReturn(models.Model):
     product_uom_id = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
+    qty_requested = fields.Float(
+        string='Quantity Requested', readonly=True,
+        states={'draft': [('readonly', False)]},
+        digits=dp.get_precision('Product Unit of Measure'))
     qty_returned = fields.Float(
         string='Quantity Returned', readonly=True,
-        states={'draft': [('readonly', False)]},
+        states={'requested': [('readonly', False)]},
         digits=dp.get_precision('Product Unit of Measure'))
     qty_received = fields.Float(
         string='Quantity Received', readonly=True, copy=False,
         digits=dp.get_precision('Product Unit of Measure'))
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('confirmed', 'Confirmed'),
-        ('partial', 'Partially Shipped'),
-        ('done', 'Done')],
-        string='State', compute='_compute_state', copy=False, index=True,
-        readonly=True, store=True)
+    state = fields.Selection(STOCK_STAGES, string='State', required=True,
+                             compute='_compute_state', default='draft',
+                             copy=False, index=True, readonly=True, store=True)
     move_ids = fields.One2many(
         'stock.move', 'fsm_order_return_line_id', string='Stock Moves',
         readonly=True, states={'draft': [('readonly', False)]})
@@ -364,14 +421,11 @@ class FSMOrderReturn(models.Model):
             quantity=vals.get('qty_returned') or self.qty_returned,
             uom=self.product_uom_id.id,
         )
-
         result = {'domain': domain}
-
         name = product.name_get()[0][1]
         if product.description_sale:
             name += '\n' + product.description_sale
         vals['name'] = name
-
         self.update(vals)
         return result
 
@@ -402,7 +456,7 @@ class FSMOrderReturn(models.Model):
                 qty += move.product_uom._compute_quantity(
                     move.product_uom_qty, self.product_uom_id,
                     rounding_method='HALF-UP')
-            elif move.picking_code == 'outoging':
+            elif move.picking_code == 'outgoing':
                 qty -= move.product_uom._compute_quantity(
                     move.product_uom_qty, self.product_uom_id,
                     rounding_method='HALF-UP')
@@ -440,7 +494,7 @@ class FSMOrderReturn(models.Model):
             try:
                 self.env['procurement.group'].run(
                     line.product_id, qty_needed, procurement_uom,
-                    line.order_id.location_id.inventory_location,
+                    line.order_id.warehouse_id.lot_stock_id,
                     line.name, line.order_id.name, values)
             except UserError as error:
                 errors.append(error.name)
