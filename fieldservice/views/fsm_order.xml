@@ -46,7 +46,7 @@
                     <button id="action_cancel"
                             name="action_cancel" string="Cancel"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '=', %(fieldservice.fsm_stage_completed)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
                     <field name="stage_id" widget="statusbar"/>
                 </header>
                 <sheet>
