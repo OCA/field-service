@@ -12,7 +12,6 @@ class FSMOrder(geo_model.GeoModel):
     type = fields.Selection(selection_add=[('maintenance', 'Maintenance')])
     request_id = fields.Many2one(
         'maintenance.request', 'Maintenance Request')
-    maintenance_team_id = fields.Many2one('maintenance.team', string='Team')
 
     @api.model
     def create(self, vals):
@@ -38,7 +37,11 @@ class FSMOrder(geo_model.GeoModel):
                     'request_date': fields.Date.context_today(self),
                     'maintenance_type': 'corrective',
                     'maintenance_team_id':
-                        order.maintenance_team_id.id or False,
+                        equipment.maintenance_equipment_id and
+                        equipment.maintenance_equipment_id.maintenance_team_id
+                        and
+                        equipment.maintenance_equipment_id.maintenance_team_id.id
+                        or False,
                     'schedule_date': order.request_early,
                     'description': order.description
                 })
