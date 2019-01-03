@@ -21,6 +21,8 @@
         'views/fsm_order.xml',
         'views/stock.xml',
         'views/fsm_equipment.xml',
+        'views/product_template.xml',
+        'views/stock_production_lot.xml',
     ],
     'installable': True,
     'license': 'AGPL-3',
