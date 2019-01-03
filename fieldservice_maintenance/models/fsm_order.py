@@ -25,6 +25,11 @@ class FSMOrder(geo_model.GeoModel):
                 employee_id = employee_ids[0]
             if order.equipment_id:
                 equipment = order.equipment_id
+                t = equipment.maintenance_equipment_id and\
+                    equipment.maintenance_equipment_id.maintenance_team_id \
+                    and\
+                    equipment.maintenance_equipment_id.maintenance_team_id.id\
+                    or False,
                 request_id = self.env['maintenance.request'].create({
                     'name': order.name or '',
                     'employee_id': employee_id.id,
@@ -36,12 +41,7 @@ class FSMOrder(geo_model.GeoModel):
                         equipment.category_id.id or False,
                     'request_date': fields.Date.context_today(self),
                     'maintenance_type': 'corrective',
-                    'maintenance_team_id':
-                        equipment.maintenance_equipment_id and
-                        equipment.maintenance_equipment_id.maintenance_team_id
-                        and
-                        equipment.maintenance_equipment_id.maintenance_team_id.id
-                        or False,
+                    'maintenance_team_id': t,
                     'schedule_date': order.request_early,
                     'description': order.description
                 })
