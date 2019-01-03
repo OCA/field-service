@@ -7,9 +7,17 @@
         <field name="model">fsm.equipment</field>
         <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='current_location_id']" position="after">
-                <field name="maintenance_equipment_id"/>
-            </xpath>
+            <notebook position="inside">
+                <page string="Maintenance">
+                    <group>
+                        <group id="maintenance-left">
+                            <field name="maintenance_equipment_id"/>
+                        </group>
+                        <group id="maintenance-right"/>
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
+
 </odoo>
