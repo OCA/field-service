@@ -17,6 +17,11 @@ class StockMove(models.Model):
             line.qty_delivered = line._get_delivered_qty()
         for line in result.mapped('fsm_order_return_line_id').sudo():
             line.qty_received = line._get_received_qty()
+        if self.picking_code == 'outgoing':
+            if self.state == 'done':
+                if self.product_tmpl_id.create_fsm_equipment:
+                    self.env['fsm.equipment'].obj.create(
+                        {'name': self.product_tmpl_id.name})
         return result
 
     @api.multi
