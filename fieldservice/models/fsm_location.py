@@ -21,6 +21,7 @@ class FSMLocation(geo_model.GeoModel):
                                           if not tz.startswith('Etc/')
                                           else '_')]
 
+    ref = fields.Char(string='Internal Reference')
     direction = fields.Char(string='Directions')
     partner_id = fields.Many2one('res.partner', string='Related Partner',
                                  required=True, ondelete='restrict',
@@ -76,3 +77,9 @@ class FSMLocation(geo_model.GeoModel):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
+
+    @api.multi
+    def name_get(self):
+        return [(location.id, '%s%s' % (location.ref and '[%s] ' % location.ref
+                                        or '', location.name))
+                for location in self]

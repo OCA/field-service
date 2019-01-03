@@ -21,6 +21,7 @@
         <field name="arch" type="xml">
             <form string="Location">
                 <sheet>
+                    <div class="oe_button_box" name="button_box"/>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
                     <group>
@@ -31,6 +32,7 @@
                             <field name="contact_id"/>
                         </group>
                         <group id="main-right">
+                            <field name="ref"/>
                             <field name="parent_id"/>
                         </group>
                     </group>
