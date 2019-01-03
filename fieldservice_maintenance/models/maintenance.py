@@ -26,7 +26,10 @@ class MaintenanceRequest(models.Model):
                 'maintenance_equipment_id', '=', request.equipment_id)
             fsm_order_id = self.env['fsm.order'].create({
                 'type': 'maintenance',
-                'equipment_id': fsm_equipment and fsm_equipment[0].id or False
+                'equipment_id': fsm_equipment and fsm_equipment[0].id or False,
+                'location_id':
+                    fsm_equipment and fsm_equipment[0].current_location_id.id
+                    or False
                 })
             request.fsm_order_id = fsm_order_id
         return request
