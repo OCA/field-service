@@ -10,7 +10,7 @@
                 <page string="Skills">
                     <field name="skill_ids" nolabel="1">
                         <tree editable="bottom">
-                            <field name="skill_id"/>
+                            <field name="skill_id" options="{'limit':1}"/>
                             <field name="level" widget="priority"/>
                         </tree>
                     </field>
