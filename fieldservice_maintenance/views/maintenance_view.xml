@@ -7,6 +7,9 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="arch" type="xml">
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
             <xpath expr="//notebook/page[3]" position="after">
                 <page string="Others">
                     <group>
