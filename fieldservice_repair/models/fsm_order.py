@@ -22,7 +22,7 @@ class FSMOrder(geo_model.GeoModel):
                 equipment = order.equipment_id
                 repair_id = self.env['mrp.repair'].create({
                     'name': order.name or '',
-                    'product_id': equipment.lot_id.product_id or False,
+                    'product_id': equipment.product_id.id or False,
                     'product_uom': equipment.product_id.uom_id.id or False,
                     'location_id': equipment.current_stock_location_id and
                     equipment.current_stock_location_id.id or False,
