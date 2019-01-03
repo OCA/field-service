@@ -32,6 +32,8 @@ class FSMOrder(geo_model.GeoModel):
                     'product_qty': 1,
                     'invoice_method': 'none',
                     'internal_notes': order.description,
+                    'partner_id': order.partner_id and order.partner_id.id
+                                  or False
                 })
                 order.repair_id = repair_id
         return order
