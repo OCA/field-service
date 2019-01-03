@@ -7,11 +7,18 @@
         <field name="model">fsm.equipment</field>
         <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view"/>
         <field name="arch" type="xml">
-            <field name="location_id" position="after">
-                <field name="agreement_id"/>
-                <field name="serviceprofile_id"
-                       domain="[('agreement_id', '=', agreement_id)]"/>
-            </field>
+            <notebook position="inside">
+                <page string="Agreement">
+                    <group>
+                        <group id="agreement-left">
+                            <field name="agreement_id"/>
+                            <field name="serviceprofile_id"
+                                   domain="[('agreement_id', '=', agreement_id)]"/>
+                        </group>
+                        <group id="agreement-right"/>
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 
