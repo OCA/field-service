@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <odoo>
-    <!-- Copyright 2018 Open Source Integrators
-         License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 
     <!-- Fields Service Orders Form View -->
     <record id="fsm_order_agreement_form" model="ir.ui.view">
@@ -10,7 +8,8 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@id='others-left']" position="inside">
-                <field name="agreement_id"/>
+                <field name="agreement_id"
+                       domain="[('partner_id', '=', customer_id)]"/>
                 <field name="serviceprofile_id"
                        domain="[('agreement_id', '=', agreement_id)]"/>
             </xpath>
@@ -25,7 +24,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <filter string="Service Profile" domain="[]"
-                        context="{'group_by':'serviceprofile_id'}"/>
+                        context="{'group_by': 'serviceprofile_id'}"/>
             </xpath>
         </field>
     </record>
