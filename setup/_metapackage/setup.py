@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-fieldservice_delivery',
         'odoo11-addon-fieldservice_distribution',
         'odoo11-addon-fieldservice_equipment_agreement',
+        'odoo11-addon-fieldservice_repair',
         'odoo11-addon-fieldservice_sale',
         'odoo11-addon-fieldservice_skill',
         'odoo11-addon-fieldservice_stock',
