@@ -7,14 +7,11 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <field name="location_id" position="after">
+            <xpath expr="//group[@id='others-right']" position="inside">
                 <field name="repair_id"
                     readonly="1"
                     attrs="{'invisible': [('type', '!=', 'repair')]}"/>
-            </field>
-            <field name="equipment_id" position="attributes">
-                <attribute name="attrs">{'required': [('type', '=', 'repair')]}</attribute>
-            </field>
+            </xpath>
         </field>
     </record>
 
