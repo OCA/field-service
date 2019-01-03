@@ -9,11 +9,11 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <field name="location_id" position="after">
+            <xpath expr="//group[@id='others-left']" position="inside">
                 <field name="agreement_id"/>
                 <field name="serviceprofile_id"
                        domain="[('agreement_id', '=', agreement_id)]"/>
-            </field>
+            </xpath>
         </field>
     </record>
 
