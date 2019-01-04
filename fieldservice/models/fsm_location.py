@@ -61,6 +61,9 @@ class FSMLocation(geo_model.GeoModel):
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
 
+    _sql_constraints = [('fsm_location_ref_uniq', 'unique (ref)',
+                         'This internal reference already exists!')]
+
     @api.model
     def create(self, vals):
         vals.update({'fsm_location': True})
