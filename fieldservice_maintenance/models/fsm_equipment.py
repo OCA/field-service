@@ -10,4 +10,5 @@ class FSMEquipment(models.Model):
     _description = 'FSM Maintenance equipment'
 
     maintenance_equipment_id = fields.Many2one(
-        'maintenance.equipment', string='Maintenance Equipment')
+        'maintenance.equipment', string='Maintenance Equipment', required=True,
+        ondelete='restrict', delegate=True, auto_join=True)
