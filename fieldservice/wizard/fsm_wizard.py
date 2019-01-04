@@ -19,7 +19,9 @@ class FSMWizard(models.TransientModel):
 
     @api.multi
     def action_convert(self):
-        for partner in self:
+        partners = self.env['res.partner'].browse(
+            self._context.get('active_ids', []))
+        for partner in partners:
             if self.fsm_record_type == 'person':
                 self.action_convert_person(partner)
             if self.fsm_record_type == 'location':
