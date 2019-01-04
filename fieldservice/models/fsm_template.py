@@ -8,6 +8,6 @@ class FSMTemplate(models.Model):
     _name = 'fsm.template'
     _description = 'Field Service Order Template'
 
-    name = fields.Char(string="Name")
+    name = fields.Char(string="Name", required=True)
     instructions = fields.Char(string="Instructions")
     category_ids = fields.Many2many('fsm.category', string="Categories")
