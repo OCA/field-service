@@ -7,6 +7,7 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <tree string="Locations">
+                <field name="ref"/>
                 <field name="name"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
@@ -23,7 +24,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
                     <label for="name" class="oe_edit_only"/>
-                    <h1><field name="name"/></h1>
+                    <h1><field name="name" required="True"/></h1>
                     <group>
                         <group id="main-left">
                             <field name="id" invisible="1"/>
@@ -107,7 +108,8 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <search string="Search FSM Location">
-                <field name="name" filter_domain="['|', ('name','ilike',self)]" string="FSM Location"/>
+                <field name="name" filter_domain="[('name', 'ilike', self)]"
+                       string="Location"/>
                 <field name="partner_id"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
