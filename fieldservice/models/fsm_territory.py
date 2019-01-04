@@ -8,7 +8,7 @@ class FSMTerritory(models.Model):
     _name = 'fsm.territory'
     _description = 'Territory'
 
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name', required=True)
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one(related='branch_id.district_id',
                                   string='District')
