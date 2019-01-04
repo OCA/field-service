@@ -8,6 +8,6 @@ class FSMRegion(models.Model):
     _name = 'fsm.region'
     _description = 'Region'
 
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name', required=True)
     description = fields.Char(string='Description')
     partner_id = fields.Many2one('res.partner', string='Region Manager')
