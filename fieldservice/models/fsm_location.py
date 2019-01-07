@@ -71,15 +71,23 @@ class FSMLocation(geo_model.GeoModel):
 
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
-        self.branch_id = self.territory_id.branch_id
+        if self.territory_id:
+            self.territory_manager_id = self.territory_id.person_id
+            if self.territory_id.branch_id:
+                self.branch_id = self.territory_id.branch_id
+                self.branch_manager_id = self.territory_id.branch_id.partner_id
 
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
-        self.district_id = self.branch_id.district_id
+        if self.branch_id and self.branch_id.district_id:
+            self.district_id = self.branch_id.district_id
+            self.district_manager_id = self.branch_id.district_id.partner_id
 
     @api.onchange('district_id')
     def _onchange_district_id(self):
-        self.region_id = self.district_id.region_id
+        if self.district_id and self.district_id.region_id:
+            self.region_id = self.district_id.region_id
+            self.region_manager_id = self.district_id.region_id.partner_id
 
     @api.multi
     def name_get(self):
