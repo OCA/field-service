@@ -72,7 +72,10 @@ class FSMLocation(geo_model.GeoModel):
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
         if self.territory_id:
+            # assign manager
             self.territory_manager_id = self.territory_id.person_id
+            # get territory preffered person list if available
+            self.person_ids = self.territory_id.person_ids
             if self.territory_id.branch_id:
                 self.branch_id = self.territory_id.branch_id
                 self.branch_manager_id = self.territory_id.branch_id.partner_id
