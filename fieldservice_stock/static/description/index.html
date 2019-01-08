@@ -399,6 +399,22 @@ It provides inventory and stock operations.</p>
 <ul class="simple">
 <li>Go to Field Service &gt; Master Data &gt; Locations</li>
 <li>Create or select a location and set the inventory location</li>
+<li>Go to Inventory &gt; Configuration &gt; Routes</li>
+<li>Select the routes that you want to use from a FSM order</li>
+<li>Check the box ‘FSM Order Line’ for outbound transfer</li>
+<li>Check the box ‘FSM Return Line’ for inbound transfer</li>
+</ul>
+<p>The route ‘Receipt in 1 step’ has no procurement rule so if you want items to be
+returned from the service location to your warehouse, you need to create a new
+procurement rule for that route:</p>
+<ul class="simple">
+<li>Name: YourCompany: Return</li>
+<li>Action: Move From Another Location</li>
+<li>Procurement Location: WH/Stock</li>
+<li>Served Warehouse:     YourCompany</li>
+<li>Source Location: Partner Locations/Customers</li>
+<li>Move Supply Method: Take From Stock</li>
+<li>Operation Type: YourCompany: Receipts</li>
 </ul>
 </div>
 <div class="section" id="usage">
