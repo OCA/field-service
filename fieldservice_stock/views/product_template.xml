@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
             <field name="tracking" position="after">
-                <field name="create_fsm_equipment"/>
+                <field name="create_fsm_equipment" attrs="{'invisible': [('tracking', '!=', 'serial')]}"/>
             </field>
         </field>
     </record>
