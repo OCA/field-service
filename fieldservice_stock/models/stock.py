@@ -11,18 +11,26 @@ class StockMove(models.Model):
     fsm_order_return_line_id = fields.Many2one(
         'fsm.order.return', 'FSM Order Return Line')
 
+    def prepare_equipment_values(self, move_line):
+        return {'name': '%s (%s)' % (move_line.product_id.name,
+                                     move_line.lot_id.name),
+                'product_id': move_line.product_id.id,
+                'lot_id': move_line.lot_id.id}
+
     def _action_done(self):
-        result = super(StockMove, self)._action_done()
-        for line in result.mapped('fsm_order_line_id').sudo():
-            line.qty_delivered = line._get_delivered_qty()
-        for line in result.mapped('fsm_order_return_line_id').sudo():
-            line.qty_received = line._get_received_qty()
-        if self.picking_code == 'outgoing':
-            if self.state == 'done':
-                if self.product_tmpl_id.create_fsm_equipment:
-                    self.env['fsm.equipment'].obj.create(
-                        {'name': self.product_tmpl_id.name})
-        return result
+        for rec in self:
+            res = super(StockMove, rec)._action_done()
+            for line in res.mapped('fsm_order_line_id').sudo():
+                line.qty_delivered = line._get_delivered_qty()
+            for line in res.mapped('fsm_order_return_line_id').sudo():
+                line.qty_received = line._get_received_qty()
+            if rec.picking_code == 'outgoing' and rec.state == 'done':
+                if rec.product_tmpl_id.create_fsm_equipment:
+                    for line in rec.move_line_ids:
+                        vals = self.prepare_equipment_values(line)
+                        line.lot_id.equipment_id = rec.env['fsm.equipment'].\
+                            create(vals)
+        return res
 
     @api.multi
     def write(self, vals):
