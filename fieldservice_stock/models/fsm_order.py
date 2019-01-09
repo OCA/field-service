@@ -63,7 +63,7 @@ class FSMOrder(geo_model.GeoModel):
                 [picking for picking in order.picking_ids if
                  picking.picking_type_id.code == 'incoming'])
 
-    def action_request_inventory(self):
+    def action_inventory_request(self):
         if self.location_id and (self.line_ids or self.return_ids) and\
                 self.warehouse_id:
             for line in self.line_ids:
@@ -79,7 +79,7 @@ class FSMOrder(geo_model.GeoModel):
             raise UserError(
                 _('Please select the location, a warehouse and a product.'))
 
-    def action_confirm_inventory(self):
+    def action_inventory_confirm(self):
         if self.location_id and (self.line_ids or self.return_ids) and\
                 self.warehouse_id:
             if self.line_ids:
@@ -95,7 +95,7 @@ class FSMOrder(geo_model.GeoModel):
             raise UserError(
                 _('Please select the location, a warehouse and a product.'))
 
-    def action_cancel_inventory(self):
+    def action_inventory_cancel(self):
         if self.line_ids:
             line_ids = self.mapped('line_ids').filtered(
                 lambda l: l.state == 'requested')
@@ -108,7 +108,7 @@ class FSMOrder(geo_model.GeoModel):
                 line.state = 'cancelled'
         self.inventory_stage = 'cancelled'
 
-    def action_reset_inventory(self):
+    def action_inventory_reset(self):
         if self.line_ids:
             line_ids = self.mapped('line_ids').filtered(
                 lambda l: l.state == 'cancelled')
