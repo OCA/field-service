@@ -92,17 +92,17 @@
                     <group>
                         <field name='inventory_stage' invisible='0'/>
                     </group>
-                    <button id="action_request_inventory"
-                            name="action_request_inventory" string="Request"
+                    <button id="action_inventory_request"
+                            name="action_inventory_request" string="Request"
                             class="oe_highlight"
                             attrs="{'invisible': [('inventory_stage', '!=', 'draft')]}"
                             type="object"/>
-                    <button id="action_cancel"
-                            name="action_cancel_inventory" string="Cancel"
+                    <button id="action_inventory_cancel"
+                            name="action_inventory_cancel" string="Cancel"
                             type="object"
                             attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
-                    <button id="action_reset_draft"
-                            name="action_reset_inventory" string="Reset to Draft"
+                    <button id="action_inventory_reset"
+                            name="action_inventory_reset" string="Reset to Draft"
                             type="object"
                             attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
                 </page>
@@ -117,17 +117,17 @@
         <field name="arch" type="xml">
             <form string="FSM Order" create="false">
                 <header>
-                    <button id="action_confirm"
-                            name="action_confirm_inventory" string="Confirm"
+                    <button id="action_inventory_confirm"
+                            name="action_inventory_confirm" string="Confirm"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
-                    <button id="action_cancel"
-                            name="action_cancel_inventory" string="Cancel"
+                    <button id="action_inventory_cancel"
+                            name="action_inventory_cancel" string="Cancel"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
-                    <button id="action_reset_draft"
-                            name="action_reset_inventory" string="Reset to Draft"
+                    <button id="action_inventory_reset"
+                            name="action_inventory_reset" string="Reset to Draft"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
                     <field name="inventory_stage" widget="statusbar"/>
