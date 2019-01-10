@@ -105,14 +105,14 @@
                             <group>
                                 <group>
                                     <field name="scheduled_date_start"
-                                           style="color:Red"
+                                           style="color:Green"
                                            attrs="{'invisible': [('stage_id', 'in',
                                            (%(fieldservice.fsm_stage_new)d,
                                             %(fieldservice.fsm_stage_confirmed)d,
                                             %(fieldservice.fsm_stage_requested)d,
                                             %(fieldservice.fsm_stage_assigned)d))]}"/>
                                     <field name="scheduled_date_start"
-                                           style="color:Green"
+                                           style="color:Red"
                                            attrs="{'invisible': [('stage_id', 'in',
                                            (%(fieldservice.fsm_stage_scheduled)d,
                                             %(fieldservice.fsm_stage_enroute)d,
