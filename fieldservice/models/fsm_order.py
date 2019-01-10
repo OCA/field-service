@@ -126,6 +126,13 @@ class FSMOrder(geo_model.GeoModel):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
                 or _('New')
+        if vals['request_early'] is not False and\
+                vals['scheduled_date_start'] is False:
+            req_date = fields.Datetime.from_string(vals['request_early'])
+            # Round scheduled date start
+            req_date = req_date.replace(minute=0, second=0)
+            vals.update({'scheduled_date_start': str(req_date),
+                         'request_early': str(req_date)})
         return super(FSMOrder, self).create(vals)
 
     @api.multi
@@ -178,24 +185,6 @@ class FSMOrder(geo_model.GeoModel):
     def action_cancel(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
-
-    @api.onchange('scheduled_date_start')
-    def onchange_scheduled_date_start(self):
-        if self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Planned'
-            self.stage_id = 5
-        elif not self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Scheduled'
-            self.stage_id = 3
-
-    @api.onchange('person_id')
-    def onchange_person_id(self):
-        if self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Planned'
-            self.stage_id = 5
-        elif self.person_id and not self.scheduled_date_start:
-            # self.stage_id = 'Assigned'
-            self.stage_id = 4
 
     @api.onchange('scheduled_date_end')
     def onchange_scheduled_date_end(self):
