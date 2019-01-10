@@ -25,6 +25,22 @@
             </div>
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Inventory">
+                    <header>
+                        <button id="action_inventory_request"
+                                name="action_inventory_request" string="Request"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('inventory_stage', '!=', 'draft')]}"
+                                type="object"/>
+                        <button id="action_inventory_cancel"
+                                name="action_inventory_cancel" string="Cancel"
+                                type="object"
+                                attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
+                        <button id="action_inventory_reset"
+                                name="action_inventory_reset" string="Reset to Draft"
+                                type="object"
+                                attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
+                        <field name='inventory_stage' widget='statusbar'/>
+                    </header>
                     <group groups="stock.group_stock_user">
                         <group id="stock-left">
                             <field name="warehouse_id"
@@ -89,22 +105,6 @@
                             <field name="state"/>
                         </tree>
                     </field>
-                    <group>
-                        <field name='inventory_stage' invisible='0'/>
-                    </group>
-                    <button id="action_inventory_request"
-                            name="action_inventory_request" string="Request"
-                            class="oe_highlight"
-                            attrs="{'invisible': [('inventory_stage', '!=', 'draft')]}"
-                            type="object"/>
-                    <button id="action_inventory_cancel"
-                            name="action_inventory_cancel" string="Cancel"
-                            type="object"
-                            attrs="{'invisible': [('inventory_stage', '!=', 'requested')]}"/>
-                    <button id="action_inventory_reset"
-                            name="action_inventory_reset" string="Reset to Draft"
-                            type="object"
-                            attrs="{'invisible': [('inventory_stage', '!=', 'cancelled')]}"/>
                 </page>
             </xpath>
         </field>
