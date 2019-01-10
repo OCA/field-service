@@ -217,8 +217,8 @@ class FSMOrderLine(models.Model):
             elif line.move_ids:
                 line.state = 'confirmed'
             else:
-                if line.state == 'requested':
-                    break
+                if line.qty_ordered != 0:
+                    line.state = 'requested'
                 else:
                     line.state = 'draft'
 
