@@ -17,6 +17,14 @@ class FSMOrder(geo_model.GeoModel):
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
 
+    @api.depends('date_start', 'date_end')
+    def _compute_duration(self):
+        if self.date_start and self.date_end:
+            start = fields.Datetime.from_string(self.date_start)
+            end = fields.Datetime.from_string(self.date_end)
+            delta = end - start
+            self.duration = delta.total_seconds() / 3600
+
     @api.depends('stage_id')
     def _get_stage_color(self):
         """ Get stage color"""
@@ -59,7 +67,7 @@ class FSMOrder(geo_model.GeoModel):
                                 index=True)
     route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
-    scheduled_duration = fields.Float(string='Duration in hours',
+    scheduled_duration = fields.Float(string='Scheduled duration',
                                       help='Scheduled duration of the work in'
                                            ' hours')
     scheduled_date_end = fields.Datetime(string="Scheduled End")
@@ -70,6 +78,9 @@ class FSMOrder(geo_model.GeoModel):
     log = fields.Text(string='Log')
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
+    duration = fields.Float(string='Actual duration',
+                            compute=_compute_duration,
+                            help='Actual duration in hours')
 
     # Location
     branch_id = fields.Many2one('fsm.branch', string='Branch')
