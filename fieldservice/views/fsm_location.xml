@@ -21,6 +21,22 @@
         <field name="arch" type="xml">
             <form string="Location">
                 <sheet>
+                    <div class="oe_button_box" position="inside">
+                        <button type="object"
+                                name="action_view_equipment"
+                                class="oe_stat_button"
+                                icon="fa-briefcase"
+                                attrs="{'invisible': [('equipment_count', '=', 0)]}" groups="base.group_user">
+                            <field name="equipment_count" widget="statinfo" string="Equipment"/>
+                        </button>                        
+                        <button type="object"
+                                name="action_view_contacts"
+                                class="oe_stat_button"
+                                icon="fa-user-circle-o"
+                                attrs="{'invisible': [('contact_count', '=', 0)]}" groups="base.group_user">
+                            <field name="contact_count" widget="statinfo" string="Contacts"/>
+                        </button>
+                    </div>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
                     <group>

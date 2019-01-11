@@ -55,6 +55,11 @@ class FSMLocation(geo_model.GeoModel):
     person_ids = fields.Many2many('fsm.person', 'partner_id',
                                   string='Preferred Workers')
 
+    contact_count = fields.Integer(string='Contacts',
+                                    compute='_compute_contact_ids')
+    equipment_count = fields.Integer(string='Equipment',
+                                    compute='_compute_equipment_ids')
+
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
 
@@ -74,3 +79,63 @@ class FSMLocation(geo_model.GeoModel):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
+
+    @api.multi
+    def action_view_contacts(self):
+        '''
+        This function returns an action that display existing contacts
+        of given fsm locaiton id and its child locations. It can either be a in a list or in a form
+        view, if there is only one contact to show.
+        '''
+        for location in self:
+            action = self.env.ref('base.action_partner_tree_view1').read()[0]
+            child_locs = self.env['fsm.location'].search([('parent_id', '=', location.id)])
+
+            contacts = self.env['res.partner'].search([('service_location_id', 'in', child_locs.ids)])
+            contacts += self.env['res.partner'].search([('service_location_id', '=', location.id)])
+            
+            if len(contacts) > 1:
+                action['domain'] = [('id', 'in', contacts.ids)]
+            elif contacts:
+                action['views'] = [(self.env.ref('base.view_partner_form').id,
+                                    'form')]
+                action['res_id'] = contacts.id
+            return action
+    
+    @api.multi
+    def _compute_contact_ids(self):
+        for location in self:
+            child_locs = self.env['fsm.location'].search([('parent_id', '=', location.id)])
+            contacts = (self.env['res.partner'].search_count([('service_location_id', 'in', child_locs.ids)]) + 
+            self.env['res.partner'].search_count([('service_location_id', '=', location.id)]))
+            location.contact_count = contacts or 0
+
+    @api.multi
+    def action_view_equipment(self):
+        '''
+        This function returns an action that display existing equipment
+        of given fsm location id. It can either be a in a list or in a form
+        view, if there is only one equipment to show.
+        '''
+        for location in self:
+            action = self.env.ref('fieldservice.action_fsm_equipment').read()[0]
+            child_locs = self.env['fsm.location'].search([('parent_id', '=', location.id)])
+
+            equipment = self.env['fsm.equipment'].search([('location_id', 'in', child_locs.ids)])
+            equipment += self.env['fsm.equipment'].search([('location_id', '=', location.id)])
+
+            if len(equipment) > 1:
+                action['domain'] = [('id', 'in', equipment.ids)]
+            elif equipment:
+                action['views'] = [(self.env.ref('fieldservice.fsm_equipment_form_view').id,
+                                    'form')]
+                action['res_id'] = equipment.id
+            return action
+    
+    @api.multi
+    def _compute_equipment_ids(self):
+        for location in self:
+            child_locs = self.env['fsm.location'].search([('parent_id', '=', location.id)])
+            equipment = (self.env['fsm.equipment'].search_count([('location_id', 'in', child_locs.ids)]) +
+            self.env['fsm.equipment'].search_count([('location_id', '=', location.id)]))
+            location.equipment_count = equipment or 0
