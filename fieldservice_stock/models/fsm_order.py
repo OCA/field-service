@@ -342,6 +342,12 @@ class FSMOrderLine(models.Model):
                     move.product_uom_qty, self.product_uom_id)
         return qty
 
+    def create(self, vals):
+        res = super(FSMOrderLine, self).create(vals)
+        if 'order_id' in vals:
+            res.order_id.inventory_stage = 'draft'
+        return res
+
 
 class FSMOrderReturn(models.Model):
     _name = 'fsm.order.return'
