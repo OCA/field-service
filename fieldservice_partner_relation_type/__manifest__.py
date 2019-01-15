@@ -4,7 +4,7 @@
     "name": "Field Service Partner Relations",
     "version": "11.0.1.0.0",
     'category': 'Field Service',
-    'author': "Open Source Integrators, ",
+    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     "website": "https://github.com/OCA/partner-contact",
     "complexity": "normal",
     "license": "AGPL-3",
