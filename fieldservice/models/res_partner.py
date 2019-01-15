@@ -9,4 +9,5 @@ class ResPartner(models.Model):
 
     fsm_location = fields.Boolean('Is a FS Location')
     fsm_person = fields.Boolean('Is a FS Person')
-    service_location_id = fields.Many2one('fsm.location', string='Primary Service Location')
+    service_location_id = fields.Many2one('fsm.location',
+                                          string='Primary Service Location')
