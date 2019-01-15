@@ -16,6 +16,14 @@ class FSMEquipment(models.Model):
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one('fsm.district', string='District')
     region_id = fields.Many2one('fsm.region', string='Region')
+    current_location_id = fields.Many2one('fsm.location',
+                                          string='Current Location')
+
+    managed_by_id = fields.Many2one('res.partner', string='Managed By')
+    owned_by_id = fields.Many2one('res.partner', string='Owned By')
+    parent_id = fields.Many2one('fsm.equipment', string='Parent')
+    child_ids = fields.One2many('fsm.equipment', 'parent_id',
+                                string='Children')
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Equipment name already exists!"),

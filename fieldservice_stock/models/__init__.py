@@ -5,4 +5,7 @@ from . import (
     fsm_location,
     fsm_order,
     stock,
+    fsm_equipment,
+    product_template,
+    stock_production_lot
 )

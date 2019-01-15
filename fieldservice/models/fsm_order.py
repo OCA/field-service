@@ -17,6 +17,14 @@ class FSMOrder(geo_model.GeoModel):
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
 
+    @api.depends('date_start', 'date_end')
+    def _compute_duration(self):
+        if self.date_start and self.date_end:
+            start = fields.Datetime.from_string(self.date_start)
+            end = fields.Datetime.from_string(self.date_end)
+            delta = end - start
+            self.duration = delta.total_seconds() / 3600
+
     @api.depends('stage_id')
     def _get_stage_color(self):
         """ Get stage color"""
@@ -38,7 +46,7 @@ class FSMOrder(geo_model.GeoModel):
     color = fields.Integer('Color Index', default=0)
 
     # Request
-    name = fields.Char(string='Name', required=True, index=True,
+    name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
     customer_id = fields.Many2one('res.partner', string='Customer',
                                   domain=[('customer', '=', True)],
@@ -59,7 +67,7 @@ class FSMOrder(geo_model.GeoModel):
                                 index=True)
     route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
-    scheduled_duration = fields.Float(string='Duration in hours',
+    scheduled_duration = fields.Float(string='Scheduled duration',
                                       help='Scheduled duration of the work in'
                                            ' hours')
     scheduled_date_end = fields.Datetime(string="Scheduled End")
@@ -70,6 +78,9 @@ class FSMOrder(geo_model.GeoModel):
     log = fields.Text(string='Log')
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
+    duration = fields.Float(string='Actual duration',
+                            compute=_compute_duration,
+                            help='Actual duration in hours')
 
     # Location
     branch_id = fields.Many2one('fsm.branch', string='Branch')
@@ -101,6 +112,10 @@ class FSMOrder(geo_model.GeoModel):
     template_id = fields.Many2one('fsm.template', string="Template")
     category_ids = fields.Many2many('fsm.category', string="Categories")
 
+    # Equipment
+    equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
+    type = fields.Selection([], string='Type')
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env['fsm.stage'].search([])
@@ -111,6 +126,13 @@ class FSMOrder(geo_model.GeoModel):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
                 or _('New')
+        if vals['request_early'] is not False and\
+                vals['scheduled_date_start'] is False:
+            req_date = fields.Datetime.from_string(vals['request_early'])
+            # Round scheduled date start
+            req_date = req_date.replace(minute=0, second=0)
+            vals.update({'scheduled_date_start': str(req_date),
+                         'request_early': str(req_date)})
         return super(FSMOrder, self).create(vals)
 
     @api.multi
@@ -163,24 +185,6 @@ class FSMOrder(geo_model.GeoModel):
     def action_cancel(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_cancelled').id})
-
-    @api.onchange('scheduled_date_start')
-    def onchange_scheduled_date_start(self):
-        if self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Planned'
-            self.stage_id = 5
-        elif not self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Scheduled'
-            self.stage_id = 3
-
-    @api.onchange('person_id')
-    def onchange_person_id(self):
-        if self.person_id and self.scheduled_date_start:
-            # self.stage_id = 'Planned'
-            self.stage_id = 5
-        elif self.person_id and not self.scheduled_date_start:
-            # self.stage_id = 'Assigned'
-            self.stage_id = 4
 
     @api.onchange('scheduled_date_end')
     def onchange_scheduled_date_end(self):

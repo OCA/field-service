@@ -48,6 +48,22 @@ To configure this module, you need to:
 
 * Go to Field Service > Master Data > Locations
 * Create or select a location and set the inventory location
+* Go to Inventory > Configuration > Routes
+* Select the routes that you want to use from a FSM order
+* Check the box 'FSM Order Line' for outbound transfer
+* Check the box 'FSM Return Line' for inbound transfer
+
+The route 'Receipt in 1 step' has no procurement rule so if you want items to be
+returned from the service location to your warehouse, you need to create a new
+procurement rule for that route:
+
+* Name: YourCompany: Return
+* Action: Move From Another Location
+* Procurement Location:	WH/Stock
+* Served Warehouse:	YourCompany
+* Source Location: Partner Locations/Customers
+* Move Supply Method: Take From Stock
+* Operation Type: YourCompany: Receipts
 
 Usage
 =====
@@ -89,6 +105,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Brian McMaster <brian@mcmpest.com>
+* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -119,10 +136,13 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-smangukiya| image:: https://github.com/smangukiya.png?size=40px
+    :target: https://github.com/smangukiya
+    :alt: smangukiya
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| 
+|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| |maintainer-smangukiya| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/11.0/fieldservice_stock>`_ project on GitHub.
 

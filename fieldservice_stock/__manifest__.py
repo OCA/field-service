@@ -20,6 +20,9 @@
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'views/stock.xml',
+        'views/fsm_equipment.xml',
+        'views/product_template.xml',
+        'views/stock_production_lot.xml',
     ],
     'installable': True,
     'license': 'AGPL-3',
@@ -28,5 +31,6 @@
         'brian10048',
         'wolfhall',
         'max3903',
+        'smangukiya',
     ],
 }

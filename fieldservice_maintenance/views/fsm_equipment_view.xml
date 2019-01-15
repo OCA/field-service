@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service maintenance Form View-->
+    <record id="fsm_equipment_form_view_maintenance" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.maintenance</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Maintenance">
+                    <group>
+                        <group id="maintenance-left">
+                            <field name="maintenance_equipment_id"/>
+                        </group>
+                        <group id="maintenance-right"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

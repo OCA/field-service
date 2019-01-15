@@ -19,13 +19,13 @@ class FSMWizard(models.TransientModel):
 
     @api.multi
     def action_convert(self):
-        self.ensure_one()
-        partner_id = self._context.get('active_id')
-        partner = self.env['res.partner'].search([('id', '=', partner_id)])
-        if self.fsm_record_type == 'person':
-            self.action_convert_person(partner)
-        if self.fsm_record_type == 'location':
-            self.action_convert_location(partner)
+        partners = self.env['res.partner'].browse(
+            self._context.get('active_ids', []))
+        for partner in partners:
+            if self.fsm_record_type == 'person':
+                self.action_convert_person(partner)
+            if self.fsm_record_type == 'location':
+                self.action_convert_location(partner)
         return {'type': 'ir.actions.act_window_close'}
 
     def action_convert_location(self, partner):

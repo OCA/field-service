@@ -46,12 +46,11 @@
                     <button id="action_cancel"
                             name="action_cancel" string="Cancel"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '=', %(fieldservice.fsm_stage_completed)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
                     <field name="stage_id" widget="statusbar"/>
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                    </div>
+                    <div class="oe_button_box" name="button_box"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1"/>
@@ -59,8 +58,12 @@
                     </div>
                     <group>
                         <group>
+                            <field name="type" groups="fieldservice.group_fsm_equipment"/>
                             <field name="customer_id"/>
                             <field name="location_id"/>
+                            <field name="equipment_id"
+                                   attrs="{'required': [('type', '!=', False)]}"
+                                   groups="fieldservice.group_fsm_equipment"/>
                             <field name="person_id"/>
                         </group>
                         <group>
@@ -101,7 +104,20 @@
                         <page string="Planning">
                             <group>
                                 <group>
-                                    <field name="scheduled_date_start"/>
+                                    <field name="scheduled_date_start"
+                                           style="color:Green"
+                                           attrs="{'invisible': [('stage_id', 'in',
+                                           (%(fieldservice.fsm_stage_new)d,
+                                            %(fieldservice.fsm_stage_confirmed)d,
+                                            %(fieldservice.fsm_stage_requested)d,
+                                            %(fieldservice.fsm_stage_assigned)d))]}"/>
+                                    <field name="scheduled_date_start"
+                                           style="color:Red"
+                                           attrs="{'invisible': [('stage_id', 'in',
+                                           (%(fieldservice.fsm_stage_scheduled)d,
+                                            %(fieldservice.fsm_stage_enroute)d,
+                                            %(fieldservice.fsm_stage_started)d,
+                                            %(fieldservice.fsm_stage_completed)d))]}"/>
                                     <field name="scheduled_duration"/>
                                     <field name="scheduled_date_end"
                                            readonly="1"/>
@@ -116,8 +132,9 @@
                         <page string="Execution">
                             <group>
                                 <group>
-                                    <field name="date_start" readonly="1"/>
-                                    <field name="date_end" readonly="1"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="duration" readonly="1"/>
                                 </group>
                                 <group></group>
                             </group>
@@ -136,6 +153,12 @@
                                 icon="fa-check"
                                 type="object"/>
                         </page>
+                        <page string="Others">
+                            <group>
+                                <group id="others-left"/>
+                                <group id="others-right"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -151,7 +174,15 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Orders" default_order="scheduled_date_start">
+            <tree string="Orders" default_order="scheduled_date_start"
+                  decoration-danger="stage_id in (%(fieldservice.fsm_stage_new)d,
+                                                  %(fieldservice.fsm_stage_confirmed)d,
+                                                  %(fieldservice.fsm_stage_requested)d,
+                                                  %(fieldservice.fsm_stage_assigned)d)"
+                  decoration-success="stage_id in (%(fieldservice.fsm_stage_scheduled)d,
+                                                   %(fieldservice.fsm_stage_enroute)d,
+                                                   %(fieldservice.fsm_stage_started)d,
+                                                   %(fieldservice.fsm_stage_completed)d)">
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
