@@ -7,6 +7,7 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <tree string="Locations">
+                <field name="ref"/>
                 <field name="name"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
@@ -38,21 +39,20 @@
                         </button>
                     </div>
                     <label for="name" class="oe_edit_only"/>
-                    <h1><field name="name"/></h1>
+                    <h1><field name="name" required="True"/></h1>
                     <group>
                         <group id="main-left">
                             <field name="id" invisible="1"/>
                             <field name="owner_id"/>
                             <field name="customer_id"/>
+                            <field name="contact_id"/>
                         </group>
                         <group id="main-right">
+                            <field name="ref"/>
                             <field name="parent_id"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Directions">
-                            <field name="direction" nolabel="1" widget="html"/>
-                        </page>
                         <page string="Address">
                             <group id="address">
                                 <group id="address-left">
@@ -76,6 +76,9 @@
                                     <field name="timezone"/>
                                 </group>
                             </group>
+                        </page>
+                        <page string="Directions">
+                            <field name="direction" nolabel="1" widget="html"/>
                         </page>
                         <page string="Territory">
                             <group id="territory">
@@ -120,7 +123,8 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <search string="Search FSM Location">
-                <field name="name" filter_domain="['|', ('name','ilike',self)]" string="FSM Location"/>
+                <field name="name" filter_domain="[('name', 'ilike', self)]"
+                       string="Location"/>
                 <field name="partner_id"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>

@@ -21,6 +21,7 @@ class FSMLocation(geo_model.GeoModel):
                                           if not tz.startswith('Etc/')
                                           else '_')]
 
+    ref = fields.Char(string='Internal Reference')
     direction = fields.Char(string='Directions')
     partner_id = fields.Many2one('res.partner', string='Related Partner',
                                  required=True, ondelete='restrict',
@@ -32,7 +33,9 @@ class FSMLocation(geo_model.GeoModel):
                                   required=True, ondelete='restrict',
                                   auto_join=True)
     contact_id = fields.Many2one('res.partner', string='Primary Contact',
-                                 ondelete='restrict', auto_join=True)
+                                 domain="[('is_company', '=', False),"
+                                        " ('fsm_location', '=', False)]",
+                                 index=True)
     tag_ids = fields.Many2many('fsm.tag', string='Tags')
     description = fields.Char(string='Description')
     territory_id = fields.Many2one('fsm.territory', string='Territory')
@@ -63,6 +66,9 @@ class FSMLocation(geo_model.GeoModel):
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
 
+    _sql_constraints = [('fsm_location_ref_uniq', 'unique (ref)',
+                         'This internal reference already exists!')]
+
     @api.model
     def create(self, vals):
         vals.update({'fsm_location': True})
@@ -70,11 +76,20 @@ class FSMLocation(geo_model.GeoModel):
 
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
-        self.branch_id = self.territory_id.branch_id
+        if self.territory_id:
+            # assign manager
+            self.territory_manager_id = self.territory_id.person_id
+            # get territory preffered person list if available
+            self.person_ids = self.territory_id.person_ids
+            if self.territory_id.branch_id:
+                self.branch_id = self.territory_id.branch_id
+                self.branch_manager_id = self.territory_id.branch_id.partner_id
 
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
-        self.district_id = self.branch_id.district_id
+        if self.branch_id and self.branch_id.district_id:
+            self.district_id = self.branch_id.district_id
+            self.district_manager_id = self.branch_id.district_id.partner_id
 
     @api.onchange('district_id')
     def _onchange_district_id(self):
@@ -88,7 +103,7 @@ class FSMLocation(geo_model.GeoModel):
         view, if there is only one contact to show.
         '''
         for location in self:
-            action = self.env.ref('base.action_partner_tree_view1').read()[0]
+            action = self.env.ref('contacts.action_contacts').read()[0]
             child_locs = self.env['fsm.location'].search([('parent_id', '=', location.id)])
 
             contacts = self.env['res.partner'].search([('service_location_id', 'in', child_locs.ids)])
