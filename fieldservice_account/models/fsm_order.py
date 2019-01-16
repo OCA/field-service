@@ -52,11 +52,11 @@ class FSMOrder(geo_model.GeoModel):
                                                   limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
-                'partner_id': self.person_id.partner_id.id,
-                'type': 'in_invoice',
-                'journal_id': jrnl.id or False,
-                'fiscal_position_id': fpos.id or False
-                }
+            'partner_id': self.person_id.partner_id.id,
+            'type': 'in_invoice',
+            'journal_id': jrnl.id or False,
+            'fiscal_position_id': fpos.id or False
+        }
 
         bill = self.env['account.invoice'].sudo().create(vals)
         for line in self.contractor_cost_ids:
@@ -69,11 +69,11 @@ class FSMOrder(geo_model.GeoModel):
                                                   limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
-                'partner_id': self.customer_id.id,
-                'type': 'out_invoice',
-                'journal_id': jrnl.id or False,
-                'fiscal_position_id': fpos.id or False
-                }
+            'partner_id': self.customer_id.id,
+            'type': 'out_invoice',
+            'journal_id': jrnl.id or False,
+            'fiscal_position_id': fpos.id or False
+        }
 
         invoice = self.env['account.invoice'].sudo().create(vals)
 
@@ -89,13 +89,13 @@ class FSMOrder(geo_model.GeoModel):
             account = accounts['income']
 
             vals = {
-                    'product_id': line.product_id.id,
-                    'account_analytic_id': line.account_id.id,
-                    'quantity': line.unit_amount,
-                    'name': line.name,
-                    'price_unit': price,
-                    'account_id': account.id,
-                    'invoice_id': invoice.id,
+                'product_id': line.product_id.id,
+                'account_analytic_id': line.account_id.id,
+                'quantity': line.unit_amount,
+                'name': line.name,
+                'price_unit': price,
+                'account_id': account.id,
+                'invoice_id': invoice.id,
             }
             time_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
