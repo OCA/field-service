@@ -27,14 +27,14 @@
                                 name="action_view_equipment"
                                 class="oe_stat_button"
                                 icon="fa-briefcase"
-                                attrs="{'invisible': [('equipment_count', '=', 0)]}" groups="base.group_user">
+                                groups="fieldservice.group_fsm_equipment">
                             <field name="equipment_count" widget="statinfo" string="Equipment"/>
                         </button>                        
                         <button type="object"
                                 name="action_view_contacts"
                                 class="oe_stat_button"
                                 icon="fa-user-circle-o"
-                                attrs="{'invisible': [('contact_count', '=', 0)]}" groups="base.group_user">
+                                groups="base.group_user">
                             <field name="contact_count" widget="statinfo" string="Contacts"/>
                         </button>
                     </div>
