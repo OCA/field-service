@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, models
+from odoo.exceptions import ValidationError
 
 HANDLE_INVALID_ONCHANGE = [
     ('restrict',
@@ -26,7 +27,7 @@ class ResPartnerRelationType(models.Model):
             ('p', _('Person')),
             ('fsm-location', _('FSM Location'))
         ]
-    
+
     @api.multi
     def _check_partner(self, side):
         super(ResPartnerRelationType, self)
@@ -35,9 +36,9 @@ class ResPartnerRelationType(models.Model):
             ptype = getattr(record.type_id, "contact_type_%s" % side)
             partner = getattr(record, '%s_partner_id' % side)
             if ((ptype == 'c' and not partner.is_company) or
-                    (ptype == 'p' and partner.is_company) or 
-                        (ptype == 'fsm-location' and 
-                         not partner.fsm_location)):
+                    (ptype == 'p' and partner.is_company) or
+                    (ptype == 'fsm-location' and
+                     not partner.fsm_location)):
                 raise ValidationError(
                     _('The %s partner is not applicable for this '
                       'relation type.') % side
