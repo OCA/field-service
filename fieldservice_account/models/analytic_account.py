@@ -21,4 +21,4 @@ class AccountAnalyticLine(models.Model):
                 raise ValidationError("No analytic account set " +
                                       "on the order's Location")
 
-        return super().create(vals)
+        return super(AccountAnalyticLine, self).create(vals)
