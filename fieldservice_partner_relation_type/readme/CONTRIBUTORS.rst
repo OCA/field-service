@@ -1,1 +1,0 @@
-* Steven Campbell <smangukiya@opensourceintegrators.com>
