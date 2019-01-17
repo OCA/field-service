@@ -19,4 +19,5 @@ from . import (
     res_state,
     res_country,
     fsm_template,
+    fsm_team,
 )
