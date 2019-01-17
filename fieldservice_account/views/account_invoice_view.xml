@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="invoice_form" model="ir.ui.view">
-        <field name="name">account.invoice.form</field>
+    <record id="invoice_form_fsm_contractor" model="ir.ui.view">
+        <field name="name">account.invoice.form.fsm.contractor</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>
         <field name="arch" type="xml">
@@ -11,8 +11,8 @@
         </field>
     </record>
 
-    <record id="invoice_form" model="ir.ui.view">
-        <field name="name">account.invoice.form</field>
+    <record id="invoice_form_fsm_customer" model="ir.ui.view">
+        <field name="name">account.invoice.form.fsm.customer</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
