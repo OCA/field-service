@@ -9,7 +9,7 @@
             <page name='map' position='after'>
                 <page name='accounting' string='Accounting'>
                     <group>
-                        <field name='contractor_cost_ids' attrs="{'invisible':[('employee','=',True)]}">
+                        <field name='contractor_cost_ids'>
                             <tree editable="bottom">
                                 <field name='product_id' required='1'/>
                                 <field name='name' />
@@ -20,6 +20,7 @@
                                 <field name='price_unit'/>
                             </tree>
                         </field>
+                        <field name='contractor_total' readonly='1'/>
                         <field name='employee_timesheet_ids' attrs="{'invisible':[('employee','=',False)]}">
                             <tree editable="bottom" string="Timesheet Activities" default_order="date">
                                 <field name="date"/>
@@ -32,11 +33,14 @@
                             </tree>
                         </field>
                         <field name='employee' invisible='1'/>
-                        <field name='total_cost' readonly='1'/>
+                        <field name='employee_time_total' readonly='1' attrs="{'invisible':[('employee','=',False)]}"/>
+                        <field name='total_cost' readonly='1' attrs="{'invisible':[('employee','=',False)]}"/>
                     </group>
                 </page>
             </page>
+            <field name='category_ids' position='after'>
+                <field name='is_billable'/>
+            </field>
         </field>
     </record>
 </odoo>
-        

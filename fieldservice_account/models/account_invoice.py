@@ -5,6 +5,12 @@ from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    fsm_order_id = fields.Many2one('fsm.order', string='FSM Order')
+
+
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
@@ -21,7 +27,7 @@ class AccountInvoiceLine(models.Model):
                 raise ValidationError("No analytic account" +
                                       " set on the order's Location")
 
-        return super().create(vals)
+        return super(AccountInvoiceLine, self).create(vals)
 
     @api.onchange('product_id', 'quantity')
     def onchange_product_id(self):
