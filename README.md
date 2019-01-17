@@ -28,6 +28,7 @@ addon | version | summary
 [fieldservice_distribution](fieldservice_distribution/) | 11.0.0.0.1 | Manage your distribution structure
 [fieldservice_equipment_agreement](fieldservice_equipment_agreement/) | 11.0.1.0.0 | Manage FSM Equipment Agreements
 [fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.0.1 | Maintenance
+[fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 11.0.1.0.0 | Field Service Partner Relations
 [fieldservice_repair](fieldservice_repair/) | 11.0.0.0.1 | Integrate FSM orders with MRP repair orders
 [fieldservice_sale](fieldservice_sale/) | 11.0.0.0.1 | Sales
 [fieldservice_skill](fieldservice_skill/) | 11.0.0.1.0 | Manage your FS persons skills
