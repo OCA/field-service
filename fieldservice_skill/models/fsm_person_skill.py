@@ -16,6 +16,7 @@ class FSMPersonSkill(models.Model):
     person_id = fields.Many2one('fsm.person', string="Field Service Person")
     skill_id = fields.Many2one('hr.skill', string="Skill", required=True)
     level = fields.Selection(LEVEL, string='Level', default=LEVEL[0][0])
+    color = fields.Integer('Color Index', default=0)
 
     _sql_constraints = [
         ('person_skill_uniq', 'unique(person_id, skill_id)',

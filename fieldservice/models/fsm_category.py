@@ -10,6 +10,7 @@ class FSMCategory(models.Model):
 
     name = fields.Char(string='Name', required='True')
     parent_id = fields.Many2one('fsm.category', string='Parent')
+    color = fields.Integer('Color Index', default=0)
 
     description = fields.Char(string='Description')
 

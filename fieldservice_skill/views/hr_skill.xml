@@ -6,4 +6,15 @@
               action="hr_skill.open_view_skill_form"
               parent="fieldservice.menu_fsm_config_person"
               sequence="80"/>
+
+    <record id="hr_skill_name_form" model="ir.ui.view">
+        <field name="name">hr.skill.name.form</field>
+        <field name="model">hr.skill</field>
+        <field name="inherit_id" ref="hr_skill.view_skill_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='child_ids']/tree/field" position="attributes">
+                <attribute name="string">Child Skills</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
