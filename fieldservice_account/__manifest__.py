@@ -19,6 +19,7 @@
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'data/time_products.xml',
+        'views/account_invoice_view.xml',
     ],
     'application': False,
     'license': 'AGPL-3',
