@@ -8,3 +8,4 @@ class HrSkill(models.Model):
     _inherit = 'hr.skill'
 
     color = fields.Integer('Color Index', default=0)
+    description = fields.Char('Description')
