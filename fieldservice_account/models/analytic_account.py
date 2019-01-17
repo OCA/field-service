@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 
@@ -18,7 +18,7 @@ class AccountAnalyticLine(models.Model):
             if order.location_id.analytic_account_id:
                 vals['account_id'] = order.location_id.analytic_account_id.id
             else:
-                raise ValidationError("No analytic account set " +
-                                      "on the order's Location")
+                raise ValidationError(_("No analytic account set " +
+                                      "on the order's Location"))
 
         return super(AccountAnalyticLine, self).create(vals)
