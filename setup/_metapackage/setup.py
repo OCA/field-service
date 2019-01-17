@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo11-addon-fieldservice',
+        'odoo11-addon-fieldservice_account',
         'odoo11-addon-fieldservice_agreement',
         'odoo11-addon-fieldservice_delivery',
         'odoo11-addon-fieldservice_distribution',
