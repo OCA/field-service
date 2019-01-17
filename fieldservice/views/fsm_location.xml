@@ -22,7 +22,22 @@
         <field name="arch" type="xml">
             <form string="Location">
                 <sheet>
-                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_button_box" position="inside">
+                        <button type="object"
+                                name="action_view_equipment"
+                                class="oe_stat_button"
+                                icon="fa-briefcase"
+                                groups="fieldservice.group_fsm_equipment">
+                            <field name="equipment_count" widget="statinfo" string="Equipment"/>
+                        </button>                        
+                        <button type="object"
+                                name="action_view_contacts"
+                                class="oe_stat_button"
+                                icon="fa-user-circle-o"
+                                groups="base.group_user">
+                            <field name="contact_count" widget="statinfo" string="Contacts"/>
+                        </button>
+                    </div>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name" required="True"/></h1>
                     <group>
