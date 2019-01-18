@@ -21,7 +21,7 @@
                             </tree>
                         </field>
                         <field name='contractor_total' readonly='1'/>
-                        <field name='employee_timesheet_ids' attrs="{'invisible':[('employee','=',False)]}">
+                        <field name='employee_timesheet_ids'>
                             <tree editable="bottom" string="Timesheet Activities" default_order="date">
                                 <field name="date"/>
                                 <field name="user_id" invisible="1"/>
@@ -33,8 +33,7 @@
                             </tree>
                         </field>
                         <field name='employee' invisible='1'/>
-                        <field name='employee_time_total' readonly='1' attrs="{'invisible':[('employee','=',False)]}"/>
-                        <field name='total_cost' readonly='1' attrs="{'invisible':[('employee','=',False)]}"/>
+                        <field name='employee_time_total' readonly='1'/>
                     </group>
                 </page>
             </page>
