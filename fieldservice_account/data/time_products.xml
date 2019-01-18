@@ -3,7 +3,7 @@
 
     <record id="field_service_travel_time" model="product.template">
         <field name="name">FSM Travel Time</field>
-        <field name="categ_id" ref="product.product_category_3"/>
+        <field name="categ_id" ref="product.product_category_all"/>
         <field name="type">service</field>
         <field name="uom_id" ref="product.product_uom_hour"/>
         <field name="uom_po_id" ref="product.product_uom_hour"/>
@@ -11,7 +11,7 @@
     </record>
     <record id="field_service_regular_time" model="product.template">
         <field name="name">FSM Regular Time</field>
-        <field name="categ_id" ref="product.product_category_3"/>
+        <field name="categ_id" ref="product.product_category_all"/>
         <field name="type">service</field>
         <field name="uom_id" ref="product.product_uom_hour"/>
         <field name="uom_po_id" ref="product.product_uom_hour"/>
@@ -19,7 +19,7 @@
     </record>
     <record id="field_service_overtime" model="product.template">
         <field name="name">FSM Overtime</field>
-        <field name="categ_id" ref="product.product_category_3"/>
+        <field name="categ_id" ref="product.product_category_all"/>
         <field name="type">service</field>
         <field name="uom_id" ref="product.product_uom_hour"/>
         <field name="uom_po_id" ref="product.product_uom_hour"/>
