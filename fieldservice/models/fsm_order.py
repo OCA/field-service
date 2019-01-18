@@ -50,7 +50,7 @@ class FSMOrder(geo_model.GeoModel):
     team_id = fields.Many2one('fsm.team', string='Team',
                               default=_default_team_id,
                               index=True, required=True,
-                              track_visibility='onchange')    
+                              track_visibility='onchange')
 
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,

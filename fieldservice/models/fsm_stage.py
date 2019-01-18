@@ -39,7 +39,8 @@ class FSMStage(models.Model):
                                 help='Used a default stage')
     custom_color = fields.Char("Color Code", default="#FFFFFF")
     description = fields.Text(translate=True)
-    team_ids = fields.Many2many('fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
+    team_ids = fields.Many2many(
+        'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
         string='Teams', default=_default_team_ids)
 
     @api.multi

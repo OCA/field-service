@@ -11,7 +11,7 @@ class FSMTeam(models.Model):
     def _default_stages(self):
         Stage = self.env['fsm.stage']
         return Stage.search([('is_default', '=', True)])
-    
+
     def _compute_order_count(self):
         order_data = self.env['fsm.order'].read_group(
             [('team_id', 'in', self.ids), ('stage_id.is_closed', '=', False)],
@@ -33,7 +33,7 @@ class FSMTeam(models.Model):
     def _compute_order_need_schedule_count(self):
         order_data = self.env['fsm.order'].read_group(
             [('team_id', 'in', self.ids),
-            ('scheduled_date_start', '=', False)],
+             ('scheduled_date_start', '=', False)],
             ['team_id'], ['team_id'])
         result = {data['team_id'][0]: int(data['team_id_count'])
                   for data in order_data}
