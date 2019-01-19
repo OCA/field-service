@@ -33,7 +33,10 @@ class AccountInvoiceLine(models.Model):
     def onchange_product_id(self):
         for line in self:
             if line.fsm_order_id:
-                partner = line.fsm_order_id.person_id.partner_id
+                partner = line.fsm_order_id.person_id and\
+                    line.fsm_order_id.person_id.partner_id or False
+                if not partner:
+                    raise ValidationError(_("Please set field service person"))
                 fpos = partner.property_account_position_id
                 prices = partner.property_product_pricelist
                 tmpl = line.product_id.product_tmpl_id
