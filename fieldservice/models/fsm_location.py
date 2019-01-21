@@ -3,7 +3,7 @@
 
 import pytz
 
-from odoo import api, fields, models
+from odoo import api, fields
 
 from odoo.addons.base_geoengine import geo_model
 from odoo.addons.base_geoengine import fields as geo_fields
@@ -101,8 +101,8 @@ class FSMLocation(geo_model.GeoModel):
                 child_locs = self.env['fsm.location'].\
                     search([('parent_id', '=', child.id)])
                 equip = self.env['fsm.equipment'].\
-                                    search_count([('location_id',
-                                        '=', child.id)])
+                    search_count([('location_id',
+                                 '=', child.id)])
             if child_locs:
                 for loc in child_locs:
                     equip += loc.comp_count(0, 1, loc)
@@ -112,17 +112,15 @@ class FSMLocation(geo_model.GeoModel):
                 child_locs = self.env['fsm.location'].\
                     search([('parent_id', '=', child.id)])
                 con = self.env['res.partner'].\
-                                    search_count([('service_location_id',
-                                        '=', child.id)])
+                    search_count([('service_location_id',
+                                 '=', child.id)])
             if child_locs:
                 for loc in child_locs:
                     con += loc.comp_count(1, 0, loc)
             return con
-            
+
     def get_action_views(self, contact, equipment, loc):
         if equipment:
-            action = self.env.ref('fieldservice.action_fsm_equipment').\
-                read()[0]
             for child in loc:
                 child_locs = self.env['fsm.location'].\
                     search([('parent_id', '=', child.id)])
@@ -133,8 +131,6 @@ class FSMLocation(geo_model.GeoModel):
                     equip += loc.get_action_views(0, 1, loc)
             return equip
         elif contact:
-            action = self.env.ref('contacts.action_contacts').\
-                read()[0]
             for child in loc:
                 child_locs = self.env['fsm.location'].\
                     search([('parent_id', '=', child.id)])
