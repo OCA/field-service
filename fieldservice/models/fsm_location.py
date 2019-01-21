@@ -105,25 +105,64 @@ class FSMLocation(geo_model.GeoModel):
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
 
+    def comp_count(self, contact, equipment, loc):
+        if equipment:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                equip = self.env['fsm.equipment'].\
+                    search_count([('location_id',
+                                 '=', child.id)])
+            if child_locs:
+                for loc in child_locs:
+                    equip += loc.comp_count(0, 1, loc)
+            return equip
+        elif contact:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                con = self.env['res.partner'].\
+                    search_count([('service_location_id',
+                                 '=', child.id)])
+            if child_locs:
+                for loc in child_locs:
+                    con += loc.comp_count(1, 0, loc)
+            return con
+
+    def get_action_views(self, contact, equipment, loc):
+        if equipment:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                equip = self.env['fsm.equipment'].\
+                    search([('location_id', '=', child.id)])
+            if child_locs:
+                for loc in child_locs:
+                    equip += loc.get_action_views(0, 1, loc)
+            return equip
+        elif contact:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                con = self.env['res.partner'].\
+                    search([('service_location_id', '=', child.id)])
+            if child_locs:
+                for loc in child_locs:
+                    con += loc.get_action_views(1, 0, loc)
+            return con
+
     @api.multi
     def action_view_contacts(self):
         '''
         This function returns an action that display existing contacts
-        of given fsm locaiton id and its child locations. It can
+        of given fsm location id and its child locations. It can
         either be a in a list or in a form view, if there is only one
         contact to show.
         '''
         for location in self:
             action = self.env.ref('contacts.action_contacts').\
                 read()[0]
-            child_locs = self.env['fsm.location'].\
-                search([('parent_id', '=', location.id)])
-
-            contacts = self.env['res.partner'].\
-                search([('service_location_id', 'in', child_locs.ids)])
-            contacts += self.env['res.partner'].\
-                search([('service_location_id', '=', location.id)])
-
+            contacts = self.get_action_views(1, 0, location)
             if len(contacts) > 1:
                 action['domain'] = [('id', 'in', contacts.ids)]
             elif contacts:
@@ -134,16 +173,9 @@ class FSMLocation(geo_model.GeoModel):
 
     @api.multi
     def _compute_contact_ids(self):
-        for location in self:
-            child_locs = self.env['fsm.location'].\
-                search([('parent_id', '=', location.id)])
-            contacts = (self.env['res.partner'].
-                        search_count([('service_location_id',
-                                       'in', child_locs.ids)]) +
-                        self.env['res.partner'].
-                        search_count([('service_location_id',
-                                       '=', location.id)]))
-            location.contact_count = contacts or 0
+        for loc in self:
+            contacts = self.comp_count(1, 0, loc)
+            loc.contact_count = contacts
 
     @api.multi
     def action_view_equipment(self):
@@ -155,14 +187,7 @@ class FSMLocation(geo_model.GeoModel):
         for location in self:
             action = self.env.ref('fieldservice.action_fsm_equipment').\
                 read()[0]
-            child_locs = self.env['fsm.location'].\
-                search([('parent_id', '=', location.id)])
-
-            equipment = self.env['fsm.equipment'].\
-                search([('location_id', 'in', child_locs.ids)])
-            equipment += self.env['fsm.equipment'].\
-                search([('location_id', '=', location.id)])
-
+            equipment = self.get_action_views(0, 1, location)
             if len(equipment) > 1:
                 action['domain'] = [('id', 'in', equipment.ids)]
             elif equipment:
@@ -175,6 +200,9 @@ class FSMLocation(geo_model.GeoModel):
 
     @api.multi
     def _compute_equipment_ids(self):
+        for loc in self:
+            equipment = self.comp_count(0, 1, loc)
+            loc.equipment_count = equipment
         for location in self:
             child_locs = self.env['fsm.location'].\
                 search([('parent_id', '=', location.id)])
