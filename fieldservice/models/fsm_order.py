@@ -133,7 +133,9 @@ class FSMOrder(geo_model.GeoModel):
             req_date = req_date.replace(minute=0, second=0)
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
-        return super(FSMOrder, self).create(vals)
+        res = super(FSMOrder, self).create(vals)
+        res.create_geometry()
+        return res
 
     @api.multi
     def write(self, vals):
@@ -208,16 +210,15 @@ class FSMOrder(geo_model.GeoModel):
             self.branch_id = self.location_id.branch_id or False
             self.district_id = self.location_id.district_id or False
             self.region_id = self.location_id.region_id or False
+            self.create_geometry()
 
     @api.onchange('template_id')
     def _onchange_template_id(self):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
 
-    def geo_localize(self):
+    def create_geometry(self):
         for order in self:
-            if order.location_id.partner_id:
-                order.location_id.partner_id.geo_localize()
             lat = order.location_id.partner_latitude
             lng = order.location_id.partner_longitude
             point = geo_fields.GeoPoint.from_latlon(cr=order.env.cr,
