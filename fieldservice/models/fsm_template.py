@@ -11,3 +11,4 @@ class FSMTemplate(models.Model):
     name = fields.Char(string="Name", required=True)
     instructions = fields.Char(string="Instructions")
     category_ids = fields.Many2many('fsm.category', string="Categories")
+    hours = fields.Float(string="Hours")
