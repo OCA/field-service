@@ -22,11 +22,18 @@
               groups="group_fsm_manager"/>
 
     <!-- Dashboard Menu -->
+    <menuitem id="menu_fsm_dash_team"
+              name="Teams"
+              action="action_team_dashboard"
+              parent="dashboard"
+              sequence="10"
+              groups="group_fsm_team"/>
+              
     <menuitem id="menu_fsm_dash_order"
               name="Orders"
               action="action_fsm_dash_order"
               parent="dashboard"
-              sequence="10"/>
+              sequence="20"/>
 
     <menuitem id="menu_fsm_dash_equipment"
               name="Equipments"
@@ -119,6 +126,13 @@
               name="Orders"
               parent="config"
               sequence="20"/>
+
+    <menuitem id="menu_fsm_team"
+              name="Teams"
+              action="action_team_settings"
+              parent="menu_fsm_config_order"
+              sequence="10"
+              groups="base.group_no_one,fieldservice.group_fsm_team"/>
 
     <menuitem id="menu_fsm_stage"
               name="Stages"

@@ -17,6 +17,9 @@ class FSMOrder(geo_model.GeoModel):
     def _default_stage_id(self):
         return self.env.ref('fieldservice.fsm_stage_new')
 
+    def _default_team_id(self):
+        return self.env.ref('fieldservice.fsm_team_default')
+
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
         if self.date_start and self.date_end:
@@ -44,6 +47,10 @@ class FSMOrder(geo_model.GeoModel):
                                'tag_id', string='Tags',
                                help="Classify and analyze your orders")
     color = fields.Integer('Color Index', default=0)
+    team_id = fields.Many2one('fsm.team', string='Team',
+                              default=_default_team_id,
+                              index=True, required=True,
+                              track_visibility='onchange')
 
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,
