@@ -75,7 +75,7 @@ class FSMLocation(geo_model.GeoModel):
         res = super(FSMLocation, self).create(vals)
         lat = self.partner_id.partner_latitude
         lng = self.partner_id.partner_longitude
-        if lat == 0.0 and lng == 0.0: 
+        if lat == 0.0 and lng == 0.0:
             res.geo_localize()
         else:
             point = geo_fields.GeoPoint.from_latlon(cr=self.env.cr,
