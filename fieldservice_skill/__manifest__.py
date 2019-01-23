@@ -20,6 +20,7 @@
         "views/fsm_person_skill.xml",
         "views/fsm_order.xml",
         "views/hr_skill.xml",
+        "views/fsm_template.xml"
     ],
     "installable": True,
     "development_status": "Beta",
