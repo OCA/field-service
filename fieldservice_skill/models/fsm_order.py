@@ -13,7 +13,15 @@ class FSMOrder(geo_model.GeoModel):
 
     @api.onchange('category_ids')
     def _onchange_category_ids(self):
-        skill_ids = []
-        for category in self.category_ids:
-            skill_ids.extend([skill.id for skill in category.skill_ids])
-        self.skill_ids = [(6, 0, skill_ids)]
+        if not self.template_id:
+            skill_ids = []
+            for category in self.category_ids:
+                skill_ids.extend([skill.id for skill in category.skill_ids])
+            self.skill_ids = [(6, 0, skill_ids)]
+
+    @api.onchange('template_id')
+    def _onchange_template_id(self):
+        if self.template_id:
+            self.category_ids = self.template_id.category_ids
+            self.skill_ids = self.template_id.skill_ids
+            self.description = self.template_id.instructions

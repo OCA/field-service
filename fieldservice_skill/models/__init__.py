@@ -6,4 +6,5 @@ from . import (
     fsm_person,
     fsm_category,
     fsm_order,
+    fsm_template
 )
