@@ -18,7 +18,7 @@ class FSMOrder(geo_model.GeoModel):
         return self.env.ref('fieldservice.fsm_stage_new')
 
     def _default_team_id(self):
-        return self.env.ref('fieldservice.fsm_team_dispatch')
+        return self.env.ref('fieldservice.fsm_team_default')
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
