@@ -16,6 +16,10 @@ class FSMStage(models.Model):
     _description = 'Field Service Stage'
     _order = 'sequence, name, id'
 
+    def _default_team_ids(self):
+        default_team_id = self.env.context.get('default_team_id')
+        return [default_team_id] if default_team_id else None
+
     name = fields.Char(string='Name', required=True)
     sequence = fields.Integer('Sequence', default=1,
                               help="Used to order stages. Lower is better.")
@@ -31,7 +35,13 @@ class FSMStage(models.Model):
     is_closed = fields.Boolean('Is a close stage',
                                help='Services in this stage are considered '
                                     'as closed.')
+    is_default = fields.Boolean('Is a default stage',
+                                help='Used a default stage')
     custom_color = fields.Char("Color Code", default="#FFFFFF")
+    description = fields.Text(translate=True)
+    team_ids = fields.Many2many(
+        'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
+        string='Teams', default=_default_team_ids)
 
     @api.multi
     def get_color_information(self):
