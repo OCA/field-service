@@ -9,12 +9,13 @@ class ResPartner(models.Model):
 
     @api.multi
     def get_partner_type(self):
-        super(ResPartner, self)
-        """Get partner type for relation.
+        """
+        Get partner type for relation.
         :return: 'c' for company or 'p' for person or
-        'fsm-location' for FSM Location
+                 'fsm-location' for FSM Location
         :rtype: str
         """
+        super(ResPartner, self)
         self.ensure_one()
         if self.fsm_location:
             return 'fsm-location'
