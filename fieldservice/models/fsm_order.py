@@ -223,6 +223,8 @@ class FSMOrder(geo_model.GeoModel):
     def _onchange_template_id(self):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
+            self.scheduled_duration = self.template_id.hours
+            self.description = self.template_id.instructions
 
     def create_geometry(self):
         for order in self:
