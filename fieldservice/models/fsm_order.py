@@ -216,13 +216,15 @@ class FSMOrder(geo_model.GeoModel):
         if self.equipment_id:
             if self.equipment_id.notes != False:
                 if self.description != False:
-                    self.description = (self.description + self.equipment_id.notes + '\n ')
+                    self.description = (self.description +
+                                        self.equipment_id.notes + '\n ')
                 else:
                     self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             if self.location_id.direction != False:
                 if self.description != False:
-                    self.description = (self.description + self.location_id.direction + '\n ')
+                    self.description = (self.description +
+                                        self.location_id.direction + '\n ')
                 else:
                     self.description = (self.location_id.direction + '\n ')
 
@@ -238,8 +240,6 @@ class FSMOrder(geo_model.GeoModel):
     @api.onchange('equipment_id')
     def onchange_equipment_id(self):
         self.copy_notes()
-    
-
 
     @api.onchange('template_id')
     def _onchange_template_id(self):
