@@ -211,6 +211,21 @@ class FSMOrder(geo_model.GeoModel):
                 timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
 
+    def copy_notes(self):
+        self.description = ""
+        if self.equipment_id:
+            if self.equipment_id.notes != False:
+                if self.description != False:
+                    self.description = (self.description + self.equipment_id.notes + '\n ')
+                else:
+                    self.description = (self.equipment_id.notes + '\n ')
+        if self.location_id:
+            if self.location_id.direction != False:
+                if self.description != False:
+                    self.description = (self.description + self.location_id.direction + '\n ')
+                else:
+                    self.description = (self.location_id.direction + '\n ')
+
     @api.onchange('location_id')
     def onchange_location_id(self):
         if self.location_id:
@@ -218,13 +233,20 @@ class FSMOrder(geo_model.GeoModel):
             self.district_id = self.location_id.district_id or False
             self.region_id = self.location_id.region_id or False
             self.create_geometry()
+            self.copy_notes()
+
+    @api.onchange('equipment_id')
+    def onchange_equipment_id(self):
+        self.copy_notes()
+    
+
 
     @api.onchange('template_id')
     def _onchange_template_id(self):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
-            self.description = self.template_id.instructions
+            self.description += (self.template_id.instructions + '\n')
 
     def create_geometry(self):
         for order in self:
