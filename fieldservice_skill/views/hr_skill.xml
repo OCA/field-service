@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Hr Skill Form Extended-->
-    <record id="hr_skill_form_button" model="ir.ui.view">
-        <field name="name">hr.skill.form.button</field>
-        <field name="model">hr.skill</field>
-        <field name="inherit_id" ref="hr_skill.view_skill_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//label" position="before">
-                <div class="oe_button_box" name="button_box">
-                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                        <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
-                    </button>
-                </div>
-            </xpath>
-
-            <field name="active" position="attributes">
-                <attribute name="invisible">True</attribute>
-            </field>
-        </field>
-    </record>
 
     <menuitem id="menu_hr_skill"
               name="Skills"
