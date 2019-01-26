@@ -76,6 +76,14 @@
                             <field name="team_id" groups="fieldservice.group_fsm_team"/>
                         </group>
                     </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                        <group string="Instructions">
+                            <field name="todo"
+                                    nolabel="1"
+                                    widget="html"/>
+                        </group>
                     <notebook>
                         <page string="Request">
                             <group>
@@ -95,11 +103,6 @@
                                         <field name="email"/>
                                     </tree>
                                 </field>
-                            </group>
-                            <group string="Description">
-                                <field name="description"
-                                       nolabel="1"
-                                       widget="html"/>
                             </group>
                         </page>
                         <page string="Planning">
@@ -123,11 +126,6 @@
                                     <field name="scheduled_date_end"
                                            readonly="1"/>
                                 </group>
-                            </group>
-                            <group string="Instructions">
-                                <field name="todo"
-                                       nolabel="1"
-                                       widget="html"/>
                             </group>
                         </page>
                         <page string="Execution">
