@@ -343,7 +343,7 @@
         <field name="name">fsm.order.graph</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <graph string="Service Requests" type="bar">
+            <graph string="Service Orders" type="bar">
                 <field name="stage_id" type="row"/>
             </graph>
         </field>
@@ -353,7 +353,7 @@
         <field name="name">fsm.order.pivot</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <pivot string="Service Requests" display_quantity="true">
+            <pivot string="Service Orders" display_quantity="true">
                 <field name="stage_id" type="row"/>
             </pivot>
         </field>

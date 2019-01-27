@@ -214,15 +214,15 @@ class FSMOrder(geo_model.GeoModel):
     def copy_notes(self):
         self.description = ""
         if self.equipment_id:
-            if self.equipment_id.notes != False:
-                if self.description != False:
+            if self.equipment_id.notes is not False:
+                if self.description is not False:
                     self.description = (self.description +
                                         self.equipment_id.notes + '\n ')
                 else:
                     self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
-            if self.location_id.direction != False:
-                if self.description != False:
+            if self.location_id.direction is not False:
+                if self.description is not False:
                     self.description = (self.description +
                                         self.location_id.direction + '\n ')
                 else:

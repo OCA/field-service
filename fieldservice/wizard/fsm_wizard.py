@@ -13,7 +13,7 @@ class FSMWizard(models.TransientModel):
     _name = 'fsm.wizard'
     _description = 'FSM Record Conversion'
 
-    fsm_record_type = fields.Selection([('person', 'Person'),
+    fsm_record_type = fields.Selection([('person', 'Worker'),
                                         ('location', 'Location')],
                                        'Record Type')
 
