@@ -205,7 +205,7 @@ class FSMOrder(geo_model.GeoModel):
 
     @api.onchange('scheduled_duration')
     def onchange_scheduled_duration(self):
-        if self.scheduled_duration:
+        if (self.scheduled_duration and self.scheduled_date_start):
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_start) + \
                 timedelta(hours=self.scheduled_duration)
