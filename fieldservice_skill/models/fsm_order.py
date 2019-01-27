@@ -24,4 +24,4 @@ class FSMOrder(geo_model.GeoModel):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
             self.skill_ids = self.template_id.skill_ids
-            self.description = self.template_id.instructions
+            self.todo = self.template_id.instructions
