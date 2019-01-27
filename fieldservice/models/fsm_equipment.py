@@ -11,7 +11,7 @@ class FSMEquipment(models.Model):
     name = fields.Char(string='Name', required='True')
     person_id = fields.Many2one('fsm.person', string='Assigned Operator')
     location_id = fields.Many2one('fsm.location', string='Assigned Location')
-    notes = fields.Text(string='Notes')
+    notes = fields.Char(string='Notes')
     territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one('fsm.district', string='District')

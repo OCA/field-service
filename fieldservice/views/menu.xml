@@ -191,8 +191,15 @@
 
     <!-- Config / Persons -->
     <menuitem id="menu_fsm_config_person"
-              name="Persons"
+              name="Workers"
               parent="config"
               sequence="60"/>
+
+    <menuitem id="menu_hr_skill"
+              name="Categories"
+              action="action_fsm_category"
+              parent="fieldservice.menu_fsm_config_person"
+              sequence="70"
+              groups="group_fsm_category"/>
 
 </odoo>
