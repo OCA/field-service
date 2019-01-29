@@ -66,7 +66,6 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
          * @param {Object} adjust_window
          */
         on_data_loaded_2 : function (events, group_bys, adjust_window) {
-        	console.log('on_data_loaded_2');
             var self = this;
             // Make the user filter clear
             self.$el.find(
