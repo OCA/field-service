@@ -66,7 +66,19 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
          * @param {Object} adjust_window
          */
         on_data_loaded_2 : function (events, group_bys, adjust_window) {
+        	console.log('on_data_loaded_2');
             var self = this;
+            // Make the user filter clear
+            self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').val('');
+            self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').change();
+            self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').val(
+                'category_id');
+            self.$el.find(
+                '#user_filer .o_searchview_extended_prop_field').change();
+            // Make the user filter clear
             var data = [];
             var groups = [];
             this.grouped_by = group_bys;
@@ -112,6 +124,9 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             this.timeline.setItems(data);
             var mode = !this.mode || this.mode === 'fit';
             var adjust = _.isUndefined(adjust_window) || adjust_window;
+            this.timeline.setOptions({
+                orientation: 'top',
+            });
             if (mode && adjust) {
                 this.timeline.fit();
             }
