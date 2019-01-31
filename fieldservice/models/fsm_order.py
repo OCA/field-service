@@ -82,7 +82,8 @@ class FSMOrder(geo_model.GeoModel):
     todo = fields.Text(string='Instructions')
 
     # Execution
-    log = fields.Text(string='Log')
+    resolution = fields.Text(string='Resolution',
+                             placeholder="Resolution of the order")
     date_start = fields.Datetime(string='Actual Start')
     date_end = fields.Datetime(string='Actual End')
     duration = fields.Float(string='Actual duration',

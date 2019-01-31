@@ -59,59 +59,41 @@
                     <group>
                         <group>
                             <field name="type" groups="fieldservice.group_fsm_equipment"/>
-                            <field name="customer_id"/>
-                            <field name="location_id"/>
-                            <field name="equipment_id"
-                                   attrs="{'required': [('type', '!=', False)]}"
-                                   groups="fieldservice.group_fsm_equipment"/>
-                            <field name="person_id"/>
-                        </group>
-                        <group>
+                            <field name="template_id"/>
                             <field name="priority" widget="priority"/>
                             <field name="tag_ids"
                                    widget="many2many_tags"
                                    options="{'color_field': 'color', 'no_create_edit': True}"/>
-                            <field name="template_id"/>
-                            <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="customer_id"/>
+                            <field name="equipment_id"
+                                   attrs="{'required': [('type', '!=', False)]}"
+                                   groups="fieldservice.group_fsm_equipment"
+                                   widget="selection"/>
                             <field name="team_id" groups="fieldservice.group_fsm_team"/>
+                            <field name="person_id"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="description"/>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
                     </group>
-                        <group string="Instructions">
-                            <field name="todo"
-                                    nolabel="1"
-                                    widget="html"/>
-                        </group>
+                    <group string="Instructions">
+                        <field name="todo" nolabel="1" widget="html"/>
+                    </group>
+                    <group string="Resolution">
+                        <field name="resolution" nolabel="1"/>
+                    </group>
                     <notebook>
-                        <page string="Request">
+                        <page string="Planning">
                             <group>
-                                <group>
+                                <group string="Requirements">
+                                    <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                                     <field name="request_early"/>
                                     <field name="request_late"/>
                                 </group>
-                                <group>
-                                </group>
-                            </group>
-                            <group string="Request Workers">
-                            <field name="person_ids" widget="many2many" nolabel="1">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                        <field name="phone"/>
-                                        <field name="email"/>
-                                    </tree>
-                                </field>
-                            </group>
-                            <group string="Description">
-                                <field name="description"
-                                       nolabel="1"/>
-                            </group>
-                        </page>
-                        <page string="Planning">
-                            <group>
-                                <group>
+                                <group id="schedule" string="Schedule Details">
                                     <field name="scheduled_date_start"
                                            style="color:Blue"
                                            attrs="{'invisible': [('stage_id', 'in',
@@ -131,36 +113,35 @@
                                            readonly="1"/>
                                 </group>
                             </group>
+                            <group string="Request Workers">
+                                <field name="person_ids" widget="many2many" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </page>
                         <page string="Execution">
                             <group>
-                                <group>
+                                <group id="execution-left">
                                     <field name="date_start"/>
                                     <field name="date_end"/>
                                     <field name="duration" readonly="1"/>
                                 </group>
-                                <group></group>
-                            </group>
-                            <group string="Activity Log">
-                                <field name="log"
-                                       nolabel="1"
-                                       widget="html"/>
+                                <group id="execution-right"/>
                             </group>
                         </page>
                         <page name="map" string="Map">
                             <field name='shape' widget="geo_edit_map"/>
                             <button
-                                string="GeoCode Location"
-                                name="geo_localize"
-                                colspan="2"
-                                icon="fa-check"
-                                type="object"/>
-                        </page>
-                        <page string="Others">
-                            <group>
-                                <group id="others-left"/>
-                                <group id="others-right"/>
-                            </group>
+                                    string="GeoCode Location"
+                                    name="geo_localize"
+                                    colspan="2"
+                                    icon="fa-check"
+                                    type="object"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -397,7 +378,7 @@
         <field eval="16" name="priority"/>
         <field name="model">fsm.order</field>
     </record>
-    
+
     <!--Unique value symbology not working so commented out -->
     <record id="geoengine_vector_layer_fsm0" model="geoengine.vector.layer">
         <field name="geo_field_id" ref="fieldservice.field_fsm_order_shape"/>
@@ -412,15 +393,15 @@
     </record>
 
     <record id="geoengine_vector_layer_fsmordertatecoloredcustom0" model="geoengine.vector.layer">
-      <field name="geo_field_id" ref="fieldservice.field_fsm_order_shape"/>
-      <field name="name">FSM Order State colored custom</field>
-      <field name="classification">custom</field>
-      <field eval="6" name="sequence"/>
-      <field name="view_id" ref="ir_ui_view_fsm_order_map"/>
-      <field name="geo_repr">colored</field>
-      <field eval="1" name="nb_class"/>
-      <field name="attribute_field_id" ref="fieldservice.field_fsm_order_custom_color"/>
-      <field name="begin_color">#FFFFFF</field>
+        <field name="geo_field_id" ref="fieldservice.field_fsm_order_shape"/>
+        <field name="name">FSM Order State colored custom</field>
+        <field name="classification">custom</field>
+        <field eval="6" name="sequence"/>
+        <field name="view_id" ref="ir_ui_view_fsm_order_map"/>
+        <field name="geo_repr">colored</field>
+        <field eval="1" name="nb_class"/>
+        <field name="attribute_field_id" ref="fieldservice.field_fsm_order_custom_color"/>
+        <field name="begin_color">#FFFFFF</field>
     </record>
 
     <record id="geoengine_raster_layer_retailmachineosm" model="geoengine.raster.layer">

@@ -62,6 +62,8 @@ class FSMLocation(geo_model.GeoModel):
                                    compute='_compute_contact_ids')
     equipment_count = fields.Integer(string='Equipment',
                                      compute='_compute_equipment_ids')
+    sublocation_count = fields.Integer(string='Sub Locations',
+                                       compute='_compute_sublocation_ids')
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
@@ -128,6 +130,16 @@ class FSMLocation(geo_model.GeoModel):
                 for loc in child_locs:
                     con += loc.comp_count(1, 0, loc)
             return con
+        else:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                subloc = self.env['fsm.location'].\
+                    search_count([('parent_id', '=', child.id)])
+            if child_locs:
+                for loc in child_locs:
+                    subloc += loc.comp_count(0, 0, loc)
+            return subloc
 
     def get_action_views(self, contact, equipment, loc):
         if equipment:
@@ -150,6 +162,15 @@ class FSMLocation(geo_model.GeoModel):
                 for loc in child_locs:
                     con += loc.get_action_views(1, 0, loc)
             return con
+        else:
+            for child in loc:
+                child_locs = self.env['fsm.location'].\
+                    search([('parent_id', '=', child.id)])
+                subloc = child_locs
+            if child_locs:
+                for loc in child_locs:
+                    subloc += loc.get_action_views(0, 0, loc)
+            return subloc
 
     @api.multi
     def action_view_contacts(self):
@@ -199,12 +220,38 @@ class FSMLocation(geo_model.GeoModel):
             return action
 
     @api.multi
+    def _compute_sublocation_ids(self):
+        for loc in self:
+            sublocation = self.comp_count(0, 0, loc)
+            loc.sublocation_count = sublocation
+
+    @api.multi
+    def action_view_sublocation(self):
+        '''
+        This function returns an action that display existing
+        sub-locations of a given fsm location id. It can either be a in
+        a list or in a form view, if there is only one sub-location to show.
+        '''
+        for location in self:
+            action = self.env.ref('fieldservice.action_fsm_location').read()[0]
+            sublocation = self.get_action_views(0, 0, location)
+            if len(sublocation) > 1 or len(sublocation) == 0:
+                action['domain'] = [('id', 'in', sublocation.ids)]
+            elif sublocation:
+                action['views'] = [(self.env.
+                                    ref('fieldservice.' +
+                                        'fsm_location_form_view').id,
+                                    'form')]
+                action['res_id'] = sublocation.id
+            return action
+
+    @api.multi
     def _compute_equipment_ids(self):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)
             loc.equipment_count = equipment
         for location in self:
-            child_locs = self.env['fsm.location'].\
+            child_locs = self.env['fsm.location']. \
                 search([('parent_id', '=', location.id)])
             equipment = (self.env['fsm.equipment'].
                          search_count([('location_id',
