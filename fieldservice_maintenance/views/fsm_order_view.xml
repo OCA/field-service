@@ -9,11 +9,11 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@id='others-right']" position="inside">
+            <field name="template_id" position="after">
                 <field name="request_id"
                     readonly="1"
                     attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
-            </xpath>
+            </field>
         </field>
     </record>
 
