@@ -22,12 +22,12 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [fieldservice](fieldservice/) | 11.0.0.1.0 | Manage Field Service Locations, Persons and Orders
-[fieldservice_account](fieldservice_account/) | 11.0.0.0.1 | Track employee time and invoice for Field Service Orders
+[fieldservice_account](fieldservice_account/) | 11.0.0.1.0 | Track employee time and invoice for Field Service Orders
 [fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_delivery](fieldservice_delivery/) | 11.0.0.0.1 | Delivery and Carriers for Field Services
-[fieldservice_distribution](fieldservice_distribution/) | 11.0.0.0.1 | Manage your distribution structure
+[fieldservice_distribution](fieldservice_distribution/) | 11.0.0.1.0 | Manage your distribution structure
 [fieldservice_equipment_agreement](fieldservice_equipment_agreement/) | 11.0.1.0.0 | Manage FSM Equipment Agreements
-[fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.0.1 | Maintenance
+[fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.1.0 | Maintenance
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 11.0.1.0.0 | Field Service Partner Relations
 [fieldservice_repair](fieldservice_repair/) | 11.0.0.0.1 | Integrate FSM orders with MRP repair orders
 [fieldservice_sale](fieldservice_sale/) | 11.0.0.0.1 | Sales
