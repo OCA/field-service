@@ -5,6 +5,12 @@ from odoo import api, fields
 
 from odoo.addons.base_geoengine import geo_model
 
+ACCOUNT_STAGES = [('draft', 'Draft'),
+                  ('review', 'Needs Review'),
+                  ('confirmed', 'Confirmed'),
+                  ('invoiced', 'Fully Invoiced'),
+                  ('no', 'Nothing Invoiced')]
+
 
 class FSMOrder(geo_model.GeoModel):
     _inherit = 'fsm.order'
@@ -18,11 +24,13 @@ class FSMOrder(geo_model.GeoModel):
     total_cost = fields.Float(compute='_compute_total_cost',
                               string='Total Cost')
     employee = fields.Boolean(compute='_compute_employee')
-    is_billable = fields.Boolean(string='Bill Customer?')
     contractor_total = fields.Float(compute='_compute_contractor_cost',
                                     string='Contractor Cost Estimate')
     employee_time_total = fields.Float(compute='_compute_employee_hours',
                                        string='Total Employee Hours')
+    account_stage = fields.Selection(ACCOUNT_STAGES, string='State',
+                                     default='draft', required=True,
+                                     readonly=True, store=True)
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -60,14 +68,13 @@ class FSMOrder(geo_model.GeoModel):
         for order in self:
             contractor = order.person_id.partner_id.supplier
             if order.contractor_cost_ids and contractor:
-                order._create_vendor_bill()
-            if order.is_billable:
-                order._create_customer_invoice()
+                order.create_bills()
+            order.account_stage = 'review'
         return super(FSMOrder, self).action_complete()
 
-    def _create_vendor_bill(self):
+    def create_bills(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'purchase'),
-                                                  ('active', '=', True), ],
+                                                   ('active', '=', True), ],
                                                   limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
@@ -83,7 +90,10 @@ class FSMOrder(geo_model.GeoModel):
             line.invoice_id = bill
         bill.compute_taxes()
 
-    def _create_customer_invoice(self):
+    def account_confirm(self):
+        self.account_stage = 'confirmed'
+
+    def account_create_invoice(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'sale'),
                                                   ('active', '=', True), ],
                                                   limit=1)
@@ -144,3 +154,7 @@ class FSMOrder(geo_model.GeoModel):
             taxes = template.taxes_id
             con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
+        self.account_stage = 'invoiced'
+
+    def account_no_invoice(self):
+        self.account_stage = 'no'
