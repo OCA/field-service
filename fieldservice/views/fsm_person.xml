@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Field Service Person -->
+    <!-- Field Service Worker -->
     <record id="fsm_person_tree" model="ir.ui.view">
         <field name="name">fsm.person.tree</field>
         <field name="model">fsm.person</field>
         <field name="arch" type="xml">
-            <tree string="Field Service Persons">
+            <tree string="Field Service Workers">
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="calendar_id"/>
@@ -78,7 +78,7 @@
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Add Field Service Person here.
+                Add Field Service Workers here.
             </p>
         </field>
     </record>

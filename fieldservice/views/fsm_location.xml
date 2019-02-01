@@ -26,21 +26,24 @@
                         <button type="object"
                                 name="action_view_sublocation"
                                 class="oe_stat_button"
-                                icon="fa-location-arrow">
+                                icon="fa-location-arrow"
+                                context="{'parent_id': active_id}">
                             <field name="sublocation_count" widget="statinfo" string="Sub-Locations"/>
                         </button>
                         <button type="object"
                                 name="action_view_equipment"
                                 class="oe_stat_button"
                                 icon="fa-briefcase"
-                                groups="fieldservice.group_fsm_equipment">
+                                groups="fieldservice.group_fsm_equipment"
+                                context="{'location_id': active_id}">
                             <field name="equipment_count" widget="statinfo" string="Equipment"/>
                         </button>
                         <button type="object"
                                 name="action_view_contacts"
                                 class="oe_stat_button"
                                 icon="fa-user-circle-o"
-                                groups="base.group_user">
+                                groups="base.group_user"
+                                context="{'parent_id': active_id}">
                             <field name="contact_count" widget="statinfo" string="Contacts"/>
                         </button>
                     </div>
@@ -49,6 +52,7 @@
                     <group>
                         <group id="main-left">
                             <field name="id" invisible="1"/>
+                            <field name="parent_id"/>
                             <field name="owner_id"/>
                             <field name="customer_id"/>
                             <field name="contact_id"/>
@@ -64,7 +68,6 @@
                         </group>
                         <group id="main-right">
                             <field name="ref"/>
-                            <field name="parent_id"/>
                             <field name="description"/>
                             <field name="timezone"/>
                         </group>
@@ -150,6 +153,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_location_search_view"/>
+        <field name="context">{'default_parent_id': context.get('parent_id', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a Service Locations.

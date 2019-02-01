@@ -86,26 +86,42 @@ class FSMLocation(geo_model.GeoModel):
             self.shape = point
         return res
 
+    @api.onchange('parent_id')
+    def _onchange_parent_id(self):
+        self.owner_id = self.parent_id.owner_id or False
+        self.customer_id = self.parent_id.customer_id or False
+        self.contact_id = self.parent_id.contact_id or False
+        self.direction = self.parent_id.direction or False
+        self.street = self.parent_id.street or False
+        self.street2 = self.parent_id.street2 or False
+        self.city = self.parent_id.city or False
+        self.zip = self.parent_id.zip or False
+        self.state_id = self.parent_id.state_id or False
+        self.country_id = self.parent_id.country_id or False
+        self.timezone = self.parent_id.timezone or False
+        self.territory_id = self.parent_id.territory_id or False
+
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
-        if self.territory_id:
-            # assign manager
-            self.territory_manager_id = self.territory_id.person_id
-            # get territory preffered person list if available
-            self.person_ids = self.territory_id.person_ids
-            if self.territory_id.branch_id:
-                self.branch_id = self.territory_id.branch_id
-                self.branch_manager_id = self.territory_id.branch_id.partner_id
+        self.territory_manager_id = self.territory_id.person_id or False
+        self.person_ids = self.territory_id.person_ids or False
+        self.branch_id = self.territory_id.branch_id or False
 
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
-        if self.branch_id and self.branch_id.district_id:
-            self.district_id = self.branch_id.district_id
-            self.district_manager_id = self.branch_id.district_id.partner_id
+        self.branch_manager_id = \
+            self.territory_id.branch_id.partner_id or False
+        self.district_id = self.branch_id.district_id or False
 
     @api.onchange('district_id')
     def _onchange_district_id(self):
-        self.region_id = self.district_id.region_id
+        self.district_manager_id = \
+            self.branch_id.district_id.partner_id or False
+        self.region_id = self.district_id.region_id or False
+
+    @api.onchange('region_id')
+    def _onchange_region_id(self):
+        self.region_manager_id = self.region_id.partner_id or False
 
     def comp_count(self, contact, equipment, loc):
         if equipment:

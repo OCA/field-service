@@ -7,6 +7,7 @@ from odoo import fields, models
 class FSMTeam(models.Model):
     _name = 'fsm.team'
     _description = 'Field Service Team'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stages(self):
         Stage = self.env['fsm.stage']

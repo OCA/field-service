@@ -35,7 +35,7 @@ class FSMOrder(geo_model.GeoModel):
 
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
-                               index=True,
+                               index=True, copy=False,
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
     priority = fields.Selection(fsm_stage.AVAILABLE_PRIORITIES,

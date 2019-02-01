@@ -37,7 +37,7 @@
                     </group>
                     <notebook>
                         <page string="Notes">
-                            <field name="notes" nolabel="1" widget="html"/>
+                            <field name="notes" nolabel="1"/>
                         </page>
                         <page string="Location">
                             <group>
@@ -180,7 +180,7 @@
                 <field name="region_id"/>
                 <field name="person_id"/>
                 <group expand="0" string="Group By">
-                    <filter string="Person" domain="" context="{'group_by':'person_id'}"/>
+                    <filter string="Worker" domain="" context="{'group_by':'person_id'}"/>
                     <filter string="Region" domain="" context="{'group_by':'region_id'}"/>
                     <filter string="District" domain="" context="{'group_by':'district_id'}"/>
                     <filter string="Branch" domain="" context="{'group_by':'branch_id'}"/>
