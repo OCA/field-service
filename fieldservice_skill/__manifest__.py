@@ -3,8 +3,8 @@
 
 {
     "name": "Field Service - Skills",
-    "summary": "Manage your FS persons skills",
-    "version": "11.0.0.1.0",
+    "summary": "Manage your FS workers skills",
+    "version": "11.0.0.2.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
@@ -22,7 +22,6 @@
         "views/hr_skill.xml",
         "views/fsm_template.xml"
     ],
-    "installable": True,
     "development_status": "Beta",
     "maintainers": [
         "osi-scampbell",
