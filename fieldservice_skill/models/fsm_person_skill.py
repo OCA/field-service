@@ -6,14 +6,15 @@ from odoo import fields, models
 
 class FSMPersonSkill(models.Model):
     _name = 'fsm.person.skill'
-    _description = 'Field Service Person Skill'
+    _description = 'Field Service Worker Skill'
 
     LEVEL = [('0', 'Junior'),
              ('1', 'Intermediate'),
              ('2', 'Senior'),
              ('3', 'Expert')]
 
-    person_id = fields.Many2one('fsm.person', string="Field Service Person")
+    person_id = fields.Many2one('fsm.person', string="Field Service Worker",
+                                required=True)
     skill_id = fields.Many2one('hr.skill', string="Skill", required=True)
     level = fields.Selection(LEVEL, string='Level', default=LEVEL[0][0])
 
