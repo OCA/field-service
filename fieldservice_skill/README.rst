@@ -25,18 +25,18 @@ Field Service - Skills
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Odoo Field Service App allows to assign any FS person to any FS order.
-For some organizations, they cannot assign any FS person to any order.
-They needs to manage the skills of the FS persons and reduce the list of
-potential FS persons on an order to avoid wrong assignment and mis-configuration.
-The skills of the selectable FS persons on a service order needs to match the
+Odoo Field Service App allows to assign any FS worker to any FS order.
+For some organizations, they cannot assign any FS worker to any order.
+They needs to manage the skills of the FS workers and reduce the list of
+potential FS workers on an order to avoid wrong assignment and mis-configuration.
+The skills of the selectable FS workers on a service order needs to match the
 required skills to perform the order.
 
 This modules allows you to set skills on categories to automatically set those
 skills on the order. It also allows you to set the skills to the field service
-person with their level. On the order, the list of field service persons is
+worker with their level. On the order, the list of field service workers is
 filtered with the skills and the location so you can only assign the right
-person to the order.
+worker to the order.
 
 **Table of contents**
 
@@ -57,8 +57,8 @@ Configuration
 To configure this module, you need to:
 
 * Create or edit your categories to set skills
-* Create or edit your persons to set their skills and skill levels
-* Create or edit your territories to set their field service persons
+* Create or edit your workers to set their skills and skill levels
+* Create or edit your territories to set their field service workers
 * Create or edit your locations to set their territories
 
 Usage
@@ -69,8 +69,8 @@ To use this module, you need to:
 * Create an order, set the template and the location
 
   * The categories and skills are set based on the template.
-  * The field service person is set to the preferred person if skills matches.
-  * The list of field service persons is filtered with the one serving the
+  * The field service worker is set to the preferred worker if skills matches.
+  * The list of field service workers is filtered with the one serving the
     location (using the territory) and having the skills
 
 Known issues / Roadmap
