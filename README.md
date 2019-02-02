@@ -21,19 +21,19 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 11.0.0.1.0 | Manage Field Service Locations, Persons and Orders
-[fieldservice_account](fieldservice_account/) | 11.0.0.1.0 | Track employee time and invoice for Field Service Orders
+[fieldservice](fieldservice/) | 11.0.0.2.0 | Manage Field Service Locations, Workers and Orders
+[fieldservice_account](fieldservice_account/) | 11.0.0.2.0 | Track employee time and invoice for Field Service Orders
 [fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_delivery](fieldservice_delivery/) | 11.0.0.0.1 | Delivery and Carriers for Field Services
-[fieldservice_distribution](fieldservice_distribution/) | 11.0.0.1.0 | Manage your distribution structure
+[fieldservice_distribution](fieldservice_distribution/) | 11.0.0.2.0 | Manage your distribution structure
 [fieldservice_equipment_agreement](fieldservice_equipment_agreement/) | 11.0.1.0.0 | Manage FSM Equipment Agreements
-[fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.1.0 | Maintenance
+[fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.2.0 | Maintenance
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 11.0.1.0.0 | Field Service Partner Relations
-[fieldservice_repair](fieldservice_repair/) | 11.0.0.0.1 | Integrate FSM orders with MRP repair orders
+[fieldservice_repair](fieldservice_repair/) | 11.0.0.1.0 | Integrate FSM orders with MRP repair orders
 [fieldservice_sale](fieldservice_sale/) | 11.0.0.0.1 | Sales
-[fieldservice_skill](fieldservice_skill/) | 11.0.0.1.0 | Manage your FS persons skills
-[fieldservice_stock](fieldservice_stock/) | 11.0.0.1.0 | Inventory and Stock Operations for Field Services
-[fieldservice_vehicle](fieldservice_vehicle/) | 11.0.0.1.0 | manage your field service vehicles
+[fieldservice_skill](fieldservice_skill/) | 11.0.0.2.0 | Manage your FS workers skills
+[fieldservice_stock](fieldservice_stock/) | 11.0.0.2.0 | Inventory and Stock Operations for Field Services
+[fieldservice_vehicle](fieldservice_vehicle/) | 11.0.0.1.1 | manage your field service vehicles
 [fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 11.0.0.1.0 | Inventory Operations for Field Service with Vehicles
 
 [//]: # (end addons)
