@@ -25,7 +25,7 @@ Field Service Vehicles
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to manage your vehicles and assign them to a person.
+This module allows you to manage your vehicles and assign them to a worker.
 
 **Table of contents**
 
@@ -46,7 +46,7 @@ Configuration
 To configure this module, you need to:
 
 * Go to Field Service > Master Data > Vehicles
-* Create your vehicles and assign them to a person
+* Create your vehicles and assign them to a worker
 
 Usage
 =====
