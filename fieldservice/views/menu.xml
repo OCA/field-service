@@ -127,13 +127,6 @@
               parent="config"
               sequence="20"/>
 
-    <menuitem id="menu_fsm_team"
-              name="Teams"
-              action="action_team_settings"
-              parent="menu_fsm_config_order"
-              sequence="10"
-              groups="base.group_no_one,fieldservice.group_fsm_team"/>
-
     <menuitem id="menu_fsm_stage"
               name="Stages"
               action="action_fsm_stage"
@@ -189,16 +182,23 @@
               sequence="80"
               groups="base.group_no_one"/>
 
-    <!-- Config / Persons -->
+    <!-- Config / Workers -->
     <menuitem id="menu_fsm_config_person"
               name="Workers"
               parent="config"
               sequence="60"/>
 
+    <menuitem id="menu_fsm_team"
+              name="Teams"
+              action="action_team_settings"
+              parent="menu_fsm_config_person"
+              sequence="10"
+              groups="fieldservice.group_fsm_team"/>
+
     <menuitem id="menu_hr_skill"
               name="Categories"
               action="action_fsm_category"
-              parent="fieldservice.menu_fsm_config_person"
+              parent="menu_fsm_config_person"
               sequence="70"
               groups="group_fsm_category"/>
 
