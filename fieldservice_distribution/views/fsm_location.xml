@@ -12,7 +12,8 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-sitemap"
-                        attrs="{'invisible': [('is_a_distribution', '!=', True)]}">
+                        attrs="{'invisible': [('is_a_distribution', '!=', True)]}"
+                        context="{'parent_id': active_id, 'dist_parent_id': active_id, 'is_a_distribution': True}">
                     <field name="distrib_count"
                            widget="statinfo"
                            string="Distributed To"/>
@@ -22,11 +23,17 @@
                    position="inside">
                 <field name="is_a_distribution"/>
             </xpath>
-            <field name="parent_id" position="after">
+            <field name="ref" position="after">
                 <field name="dist_parent_id"
                        domain="[('is_a_distribution', '=', True)]"/>
             </field>
         </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
+        <field name="context">{'default_parent_id': context.get('parent_id', False),
+                               'default_dist_parent_id': context.get('dist_parent_id', False),
+                               'default_is_a_distribution': context.get('is_a_distribution', False)}</field>
     </record>
 
 </odoo>
