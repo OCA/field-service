@@ -66,9 +66,6 @@ class FSMOrder(geo_model.GeoModel):
 
     def action_complete(self):
         for order in self:
-            contractor = order.person_id.partner_id.supplier
-            if order.contractor_cost_ids and contractor:
-                order.create_bills()
             order.account_stage = 'review'
         return super(FSMOrder, self).action_complete()
 
@@ -91,7 +88,11 @@ class FSMOrder(geo_model.GeoModel):
         bill.compute_taxes()
 
     def account_confirm(self):
-        self.account_stage = 'confirmed'
+        for order in self:
+            contractor = order.person_id.partner_id.supplier
+            if order.contractor_cost_ids and contractor:
+                order.create_bills()
+            order.account_stage = 'confirmed'
 
     def account_create_invoice(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'sale'),

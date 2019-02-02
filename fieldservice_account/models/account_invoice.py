@@ -36,7 +36,8 @@ class AccountInvoiceLine(models.Model):
                 partner = line.fsm_order_id.person_id and\
                     line.fsm_order_id.person_id.partner_id or False
                 if not partner:
-                    raise ValidationError(_("Please set field service person"))
+                    raise ValidationError(
+                        _("Please set the field service worker"))
                 fpos = partner.property_account_position_id
                 prices = partner.property_product_pricelist
                 tmpl = line.product_id.product_tmpl_id
