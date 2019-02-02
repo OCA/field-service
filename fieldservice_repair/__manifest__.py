@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Repair',
     'summary': 'Integrate FSM orders with MRP repair orders',
-    'version': '11.0.0.0.1',
+    'version': '11.0.0.1.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
