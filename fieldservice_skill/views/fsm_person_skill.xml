@@ -6,7 +6,7 @@
         <field name="name">Skills</field>
         <field name="model">fsm.person.skill</field>
         <field name="arch" type="xml">
-            <tree string="Person Skills">
+            <tree string="Worker Skills">
                 <field name="person_id"/>
                 <field name="skill_id"/>
                 <field name="level" widget="priority"/>
@@ -18,34 +18,34 @@
         <field name="name">fsm.person.skill.form</field>
         <field name="model">fsm.person.skill</field>
         <field name="arch" type="xml">
-            <form string="Person Skill">
+            <form string="Worker Skill">
                 <group>
                     <group>
+                        <field name="person_id"/>
                         <field name="skill_id"/>
-                    </group>
-                    <group>
                         <field name="level" widget="priority"/>
                     </group>
+                    <group/>
                 </group>
             </form>
         </field>
     </record>
 
     <record id="action_fsm_person_skill" model="ir.actions.act_window">
-        <field name="name">Person Skills</field>
+        <field name="name">Worker Skills</field>
         <field name="res_model">fsm.person.skill</field>
         <field name="view_id" ref="fsm_person_skill_tree"/>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
-                Create a person skill.
+                Create a worker skill.
             </p>
         </field>
     </record>
 
     <menuitem id="menu_fsm_person_skill"
-              name="Person Skills"
+              name="Worker Skills"
               action="action_fsm_person_skill"
               parent="fieldservice.data"
               sequence="80"/>
@@ -55,7 +55,7 @@
         <field name="name">fsm.person.skill.graph</field>
         <field name="model">fsm.person.skill</field>
         <field name="arch" type="xml">
-            <graph string="Person Skills" type="bar">
+            <graph string="Worker Skills" type="bar">
                 <field name="person_id" type="row"/>
                 <field name="skill_id" type="row"/>
                 <field name="level" type="row"/>
@@ -67,7 +67,7 @@
         <field name="name">fsm.person.skill.pivot</field>
         <field name="model">fsm.person.skill</field>
         <field name="arch" type="xml">
-            <pivot string="Person Skills" display_quantity="true">
+            <pivot string="Worker Skills" display_quantity="true">
                 <field name="person_id" type="row"/>
                 <field name="skill_id" type="row"/>
                 <field name="level" type="row"/>
@@ -76,19 +76,19 @@
     </record>
 
     <record id="action_fsm_person_skill_report" model="ir.actions.act_window">
-        <field name="name">Person Skills</field>
+        <field name="name">Worker Skills</field>
         <field name="res_model">fsm.person.skill</field>
         <field name="view_type">form</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
             <p>
-                Person Skills Report
+                Worker Skills Report
             </p>
         </field>
     </record>
 
     <menuitem id="menu_fsm_person_skill_reporting"
-              name="Person Skills"
+              name="Worker Skills"
               action="action_fsm_person_skill_report"
               parent="fieldservice.reporting"
               sequence="80"/>
