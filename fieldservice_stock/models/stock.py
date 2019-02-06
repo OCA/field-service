@@ -38,7 +38,7 @@ class StockMove(models.Model):
         if 'product_uom_qty' in vals:
             for move in self:
                 if move.state == 'done':
-                    for line in res.mapped('fsm_order_line_id').sudo():
+                    for line in self.mapped('fsm_order_line_id').sudo():
                         line.qty_delivered = line._get_delivered_qty()
         return res
 
