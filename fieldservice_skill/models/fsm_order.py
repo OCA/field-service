@@ -22,6 +22,5 @@ class FSMOrder(geo_model.GeoModel):
     @api.onchange('template_id')
     def _onchange_template_id(self):
         if self.template_id:
-            self.category_ids = self.template_id.category_ids
+            super(FSMOrder, self)._onchange_template_id()
             self.skill_ids = self.template_id.skill_ids
-            self.todo = self.template_id.instructions
