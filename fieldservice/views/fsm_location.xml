@@ -119,7 +119,8 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <search string="Search FSM Location">
-                <field name="name" filter_domain="[('name', 'ilike', self)]"
+                <field name="name"
+                       filter_domain="['|', ('ref', 'ilike', self), ('name', 'ilike', self)]"
                        string="Location"/>
                 <field name="partner_id"/>
                 <field name="owner_id"/>
