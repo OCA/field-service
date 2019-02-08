@@ -22,7 +22,7 @@
             <field name='count_picking_backorders' position='after'>
                 <field name='count_fsm_requests'/>
             </field>
-            <xpath expr="//div[@class='col-xs-6 o_kanban_primary_right']/div[4]" position='after'>
+            <xpath expr="//div[hasclass('col-xs-6','o_kanban_primary_right')]/div[4]" position='after'>
                 <div t-if="record.count_fsm_requests.raw_value > 0" class="row">
                     <div class="col-xs-9">
                         <a name="get_action_fsm_requests" type="object">
