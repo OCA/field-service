@@ -18,6 +18,7 @@ class StockMove(models.Model):
                 'lot_id': move_line.lot_id.id}
 
     def _action_done(self):
+        res = False
         for rec in self:
             res = super(StockMove, rec)._action_done()
             for line in res.mapped('fsm_order_line_id').sudo():
