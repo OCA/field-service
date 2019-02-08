@@ -38,13 +38,6 @@ class ResConfigSettings(models.TransientModel):
         string='Use Odoo Logistics')
     module_fieldservice_vehicle = fields.Boolean(
         string='Manage Vehicles')
-    module_fieldservice_equipment_agreement = fields.Boolean(
-        string='Manage Equipments Agreements')
-
-    @api.onchange('module_fieldservice_equipment_agreement')
-    def _onchange_module_fieldservice_equipment_agreement(self):
-        if self.module_fieldservice_equipment_agreement:
-            self.group_fsm_equipment = True
 
     @api.onchange('module_fieldservice_repair')
     def _onchange_module_fieldservice_repair(self):

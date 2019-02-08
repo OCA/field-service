@@ -2,6 +2,30 @@
 <odoo>
 
     <!-- Field Service Equipment -->
+    <record id="fsm_equipment_search_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.search</field>
+        <field name="model">fsm.equipment</field>
+        <field name="arch" type="xml">
+            <search string="Equipments">
+                <field name="name"
+                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
+                       string="FSM Equipment Name"/>
+                <field name="location_id"/>
+                <field name="current_location_id"/>
+                <field name="branch_id"/>
+                <field name="district_id"/>
+                <field name="region_id"/>
+                <field name="person_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Worker" domain="" context="{'group_by':'person_id'}"/>
+                    <filter string="Region" domain="" context="{'group_by':'region_id'}"/>
+                    <filter string="District" domain="" context="{'group_by':'district_id'}"/>
+                    <filter string="Branch" domain="" context="{'group_by':'branch_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="fsm_equipment_tree_view" model="ir.ui.view">
         <field name="name">fsm.equipment.tree</field>
         <field name="model">fsm.equipment</field>
@@ -23,18 +47,19 @@
                 <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
-                    <group>
-                        <group>
+                    <group id="main">
+                        <group id="main-left">
                             <field name="parent_id"/>
                             <field name="person_id"/>
                             <field name="location_id"/>
                             <field name="current_location_id"/>
                         </group>
-                        <group>
+                        <group id="main-right">
                             <field name="managed_by_id"/>
                             <field name="owned_by_id"/>
                         </group>
                     </group>
+                    <group id="secondary"/>
                     <notebook>
                         <page string="Notes">
                             <field name="notes" nolabel="1"/>
@@ -70,6 +95,8 @@
         <field name="res_model">fsm.equipment</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="fsm_equipment_search_view"/>
+        <field name="context">{'default_location_id': context.get('location_id', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Add a Field Service Equipment here.
@@ -161,31 +188,6 @@
             <p>
                 Equipments Report
             </p>
-        </field>
-    </record>
-
-    <!-- Search for fsm.equipment-->
-    <record id="fsm_equipment_search_view" model="ir.ui.view">
-        <field name="name">fsm.equipment.search</field>
-        <field name="model">fsm.equipment</field>
-        <field name="arch" type="xml">
-            <search string="Equipments">
-                <field name="name"
-                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
-                       string="FSM Equipment Name"/>
-                <field name="location_id"/>
-                <field name="current_location_id"/>
-                <field name="branch_id"/>
-                <field name="district_id"/>
-                <field name="region_id"/>
-                <field name="person_id"/>
-                <group expand="0" string="Group By">
-                    <filter string="Worker" domain="" context="{'group_by':'person_id'}"/>
-                    <filter string="Region" domain="" context="{'group_by':'region_id'}"/>
-                    <filter string="District" domain="" context="{'group_by':'district_id'}"/>
-                    <filter string="Branch" domain="" context="{'group_by':'branch_id'}"/>
-                </group>
-            </search>
         </field>
     </record>
 

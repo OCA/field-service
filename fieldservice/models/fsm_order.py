@@ -247,7 +247,8 @@ class FSMOrder(geo_model.GeoModel):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
-            self.todo += (self.template_id.instructions + '\n')
+            self.todo = (self.todo or '') + \
+                        ('<p>' + self.template_id.instructions or '' + '</p>')
 
     def create_geometry(self):
         for order in self:

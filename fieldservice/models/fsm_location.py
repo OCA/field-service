@@ -225,7 +225,7 @@ class FSMLocation(geo_model.GeoModel):
             action = self.env.ref('fieldservice.action_fsm_equipment').\
                 read()[0]
             equipment = self.get_action_views(0, 1, location)
-            if len(equipment) > 1:
+            if len(equipment) == 0 or len(equipment) > 1:
                 action['domain'] = [('id', 'in', equipment.ids)]
             elif equipment:
                 action['views'] = [(self.env.
