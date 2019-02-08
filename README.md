@@ -26,7 +26,6 @@ addon | version | summary
 [fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_delivery](fieldservice_delivery/) | 11.0.0.0.1 | Delivery and Carriers for Field Services
 [fieldservice_distribution](fieldservice_distribution/) | 11.0.0.2.0 | Manage your distribution structure
-[fieldservice_equipment_agreement](fieldservice_equipment_agreement/) | 11.0.1.0.0 | Manage FSM Equipment Agreements
 [fieldservice_maintenance](fieldservice_maintenance/) | 11.0.0.2.0 | Maintenance
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 11.0.1.0.0 | Field Service Partner Relations
 [fieldservice_repair](fieldservice_repair/) | 11.0.0.1.0 | Integrate FSM orders with MRP repair orders
