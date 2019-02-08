@@ -235,10 +235,10 @@ class FSMOrderLine(models.Model):
         if (not self.product_uom_id
                 or (self.product_id.uom_id.id != self.product_uom_id.id)):
             vals['product_uom_id'] = self.product_id.uom_id
-            vals['qty_ordered'] = 1.0
+            vals['qty_requested'] = 1.0
 
         product = self.product_id.with_context(
-            quantity=vals.get('qty_ordered') or self.qty_ordered,
+            quantity=vals.get('qty_requested') or self.qty_requested,
             uom=self.product_uom_id.id,
         )
 
@@ -421,10 +421,10 @@ class FSMOrderReturn(models.Model):
         if (not self.product_uom_id
                 or (self.product_id.uom_id.id != self.product_uom_id.id)):
             vals['product_uom_id'] = self.product_id.uom_id
-            vals['qty_returned'] = 1.0
+            vals['qty_requested'] = 1.0
 
         product = self.product_id.with_context(
-            quantity=vals.get('qty_returned') or self.qty_returned,
+            quantity=vals.get('qty_requested') or self.qty_requested,
             uom=self.product_uom_id.id,
         )
         result = {'domain': domain}
