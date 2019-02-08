@@ -4,7 +4,6 @@
         <field name="name">fsm.order.form.accounting</field>
         <field name="model">fsm.order</field>
         <field name='inherit_id' ref='fieldservice.fsm_order_form'/>
-        <field name='context'>{'default_fsm_order_id':active_id}</field>
         <field name="arch" type="xml">
             <button name="action_confirm" position="before">
                 <button id="account_confirm"
