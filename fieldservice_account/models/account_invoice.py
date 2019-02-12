@@ -39,16 +39,16 @@ class AccountInvoiceLine(models.Model):
                     raise ValidationError(
                         _("Please set the field service worker"))
                 fpos = partner.property_account_position_id
-                prices = partner.property_product_pricelist
                 tmpl = line.product_id.product_tmpl_id
                 if line.product_id:
                     accounts = tmpl.get_product_accounts()
-                    cost = prices.get_product_price(product=line.product_id,
-                                                    quantity=line.quantity,
-                                                    partner=partner,
-                                                    date=False,
-                                                    uom_id=False)
-                    line.price_unit = cost
+                    supinfo = self.env['product.supplierinfo'].search(
+                        [('name', '=', partner.id),
+                         ('product_tmpl_id', '=', tmpl.id),
+                         ('min_qty', '<=', line.quantity)],
+                        order='min_qty DESC')
+                    line.price_unit = \
+                        supinfo and supinfo[0].price or tmpl.standard_price
                     line.account_id = accounts['expense']
                     line.invoice_line_tax_ids = fpos.\
                         map_tax(tmpl.supplier_taxes_id)
