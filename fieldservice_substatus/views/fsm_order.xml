@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Fieldservice Order Form View-->
+    <record id="fsm_sub_stage_order_form_view" model="ir.ui.view">
+        <field name="name">fsm.sub.stage.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="sub_stage_id"
+                       context="{'fsm_order_stage_id': stage_id}"
+                       options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
