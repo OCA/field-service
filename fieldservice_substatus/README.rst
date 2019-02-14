@@ -26,15 +26,15 @@ Field Service - Sub-Status
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Odoo and the Field Service App do not provide a way to track what is required
- and/or missing at the different stages of the FSM order process. Some 
- organizations needs a way to track documentation, materials, signature 
- and various activities.
+and/or missing at the different stages of the FSM order process. Some
+organizations needs a way to track documentation, materials, signature
+and various activities.
 
 This module allows you to have a list of sub-statuses and set them as default 
- or potential sub-statuses on each FSM stage. The stage configuration will drive:
+or potential sub-statuses on each FSM stage. The stage configuration will drive:
 
-    * the sub-status set when entering a stage
-    * the list of potential sub-statuses available depending on the stage
+* the sub-status set when entering a stage
+* the list of potential sub-statuses available depending on the stage
 
 **Table of contents**
 
@@ -131,10 +131,13 @@ promote its widespread use.
 .. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
     :target: https://github.com/brian10048
     :alt: brian10048
+.. |maintainer-bodedra| image:: https://github.com/bodedra.png?size=40px
+    :target: https://github.com/bodedra
+    :alt: bodedra
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-max3903| |maintainer-brian10048| 
+|maintainer-max3903| |maintainer-brian10048| |maintainer-bodedra| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/11.0/fieldservice_substatus>`_ project on GitHub.
 
