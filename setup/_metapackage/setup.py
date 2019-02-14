@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo11-addon-fieldservice_sale',
         'odoo11-addon-fieldservice_skill',
         'odoo11-addon-fieldservice_stock',
+        'odoo11-addon-fieldservice_substatus',
         'odoo11-addon-fieldservice_vehicle',
         'odoo11-addon-fieldservice_vehicle_stock',
     ],
