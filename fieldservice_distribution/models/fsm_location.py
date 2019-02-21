@@ -21,9 +21,9 @@ class FSMLocation(geo_model.GeoModel):
         for location in self:
             for child in location:
                 child_locs = self.env['fsm.location'].search(
-                    [('parent_id', '=', child.id)])
+                    [('fsm_parent_id', '=', child.id)])
                 count = self.env['fsm.location'].search_count(
-                    [('parent_id', '=', child.id),
+                    [('fsm_parent_id', '=', child.id),
                      ('is_a_distribution', '=', True)])
             if child_locs:
                 for loc in child_locs:
