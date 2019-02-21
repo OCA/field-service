@@ -12,8 +12,8 @@ class FSMLocation(geo_model.GeoModel):
                                             string='Inventory Location',
                                             required=True)
 
-    @api.onchange('parent_id')
-    def _onchange_parent_id(self):
-        super(FSMLocation, self)._onchange_parent_id()
+    @api.onchange('fsm_parent_id')
+    def _onchange_fsm_parent_id(self):
+        super(FSMLocation, self)._onchange_fsm_parent_id()
         self.inventory_location_id = \
-            self.parent_id.inventory_location_id or False
+            self.fsm_parent_id.inventory_location_id or False
