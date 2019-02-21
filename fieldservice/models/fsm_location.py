@@ -53,7 +53,7 @@ class FSMLocation(geo_model.GeoModel):
 
     timezone = fields.Selection(_tz_get, string='Timezone')
 
-    parent_id = fields.Many2one('fsm.location', string='Parent')
+    fsm_parent_id = fields.Many2one('fsm.location', string='Parent')
     notes = fields.Text(string="Notes")
     person_ids = fields.Many2many('fsm.person', 'partner_id',
                                   string='Preferred Workers')
@@ -86,20 +86,20 @@ class FSMLocation(geo_model.GeoModel):
             self.shape = point
         return res
 
-    @api.onchange('parent_id')
-    def _onchange_parent_id(self):
-        self.owner_id = self.parent_id.owner_id or False
-        self.customer_id = self.parent_id.customer_id or False
-        self.contact_id = self.parent_id.contact_id or False
-        self.direction = self.parent_id.direction or False
-        self.street = self.parent_id.street or False
-        self.street2 = self.parent_id.street2 or False
-        self.city = self.parent_id.city or False
-        self.zip = self.parent_id.zip or False
-        self.state_id = self.parent_id.state_id or False
-        self.country_id = self.parent_id.country_id or False
-        self.timezone = self.parent_id.timezone or False
-        self.territory_id = self.parent_id.territory_id or False
+    @api.onchange('fsm_parent_id')
+    def _onchange_fsm_parent_id(self):
+        self.owner_id = self.fsm_parent_id.owner_id or False
+        self.customer_id = self.fsm_parent_id.customer_id or False
+        self.contact_id = self.fsm_parent_id.contact_id or False
+        self.direction = self.fsm_parent_id.direction or False
+        self.street = self.fsm_parent_id.street or False
+        self.street2 = self.fsm_parent_id.street2 or False
+        self.city = self.fsm_parent_id.city or False
+        self.zip = self.fsm_parent_id.zip or False
+        self.state_id = self.fsm_parent_id.state_id or False
+        self.country_id = self.fsm_parent_id.country_id or False
+        self.timezone = self.fsm_parent_id.timezone or False
+        self.territory_id = self.fsm_parent_id.territory_id or False
 
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
@@ -127,7 +127,7 @@ class FSMLocation(geo_model.GeoModel):
         if equipment:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 equip = self.env['fsm.equipment'].\
                     search_count([('location_id',
                                  '=', child.id)])
@@ -138,7 +138,7 @@ class FSMLocation(geo_model.GeoModel):
         elif contact:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 con = self.env['res.partner'].\
                     search_count([('service_location_id',
                                  '=', child.id)])
@@ -149,9 +149,9 @@ class FSMLocation(geo_model.GeoModel):
         else:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 subloc = self.env['fsm.location'].\
-                    search_count([('parent_id', '=', child.id)])
+                    search_count([('fsm_parent_id', '=', child.id)])
             if child_locs:
                 for loc in child_locs:
                     subloc += loc.comp_count(0, 0, loc)
@@ -161,7 +161,7 @@ class FSMLocation(geo_model.GeoModel):
         if equipment:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 equip = self.env['fsm.equipment'].\
                     search([('location_id', '=', child.id)])
             if child_locs:
@@ -171,7 +171,7 @@ class FSMLocation(geo_model.GeoModel):
         elif contact:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 con = self.env['res.partner'].\
                     search([('service_location_id', '=', child.id)])
             if child_locs:
@@ -181,7 +181,7 @@ class FSMLocation(geo_model.GeoModel):
         else:
             for child in loc:
                 child_locs = self.env['fsm.location'].\
-                    search([('parent_id', '=', child.id)])
+                    search([('fsm_parent_id', '=', child.id)])
                 subloc = child_locs
             if child_locs:
                 for loc in child_locs:
@@ -268,7 +268,7 @@ class FSMLocation(geo_model.GeoModel):
             loc.equipment_count = equipment
         for location in self:
             child_locs = self.env['fsm.location']. \
-                search([('parent_id', '=', location.id)])
+                search([('fsm_parent_id', '=', location.id)])
             equipment = (self.env['fsm.equipment'].
                          search_count([('location_id',
                                         'in', child_locs.ids)]) +
