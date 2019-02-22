@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Locations">
                 <field name="ref"/>
-                <field name="name"/>
+                <field name="location_heirarchy"/>
                 <field name="owner_id"/>
                 <field name="customer_id"/>
             </tree>
@@ -110,6 +110,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
             </form>
         </field>
     </record>
