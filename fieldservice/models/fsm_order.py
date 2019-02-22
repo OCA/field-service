@@ -55,7 +55,7 @@ class FSMOrder(geo_model.GeoModel):
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
-    customer_id = fields.Many2one('res.partner', string='Customer',
+    customer_id = fields.Many2one('res.partner', string='Contact',
                                   domain=[('customer', '=', True)],
                                   change_default=True,
                                   index=True,
