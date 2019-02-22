@@ -14,7 +14,7 @@
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
                     <button id="action_request"
-                            name="action_request" string="Request"
+                            name="action_request" string="Submit"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_confirmed)d)]}"/>
@@ -71,7 +71,7 @@
                             <field name="equipment_id"
                                    attrs="{'required': [('type', '!=', False)]}"
                                    groups="fieldservice.group_fsm_equipment"
-                                   widget="selection"/>
+                                   options="{'no_create': True}"/>
                             <field name="team_id" groups="fieldservice.group_fsm_team"/>
                             <field name="person_id"/>
                         </group>
