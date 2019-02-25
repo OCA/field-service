@@ -51,25 +51,7 @@
         <field name="inherit_id" ref="agreement.partner_agreement_search_view"/>
         <field name="arch" type="xml">
             <xpath expr="/search/filter[1]" position="before">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="agreement_type_id"/>
-                <field name="agreement_subtype_id"/>
                 <field name="fsm_location_id"/>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="agreement_end_date_kanban" model="ir.ui.view">
-        <field name="name">agreement.end.date.kanban</field>
-        <field name="model">agreement</field>
-        <field name="inherit_id" ref="agreement.view_project_agreement_kanban"/>
-        <field name="arch" type="xml">
-            <field name="start_date" position="replace">
-                <field name="end_date"/>
-            </field>
-            <xpath expr="//div[@class='o_kanban_record_subtitle text-muted']/t" position="replace">
-                <t t-if="record.end_date.raw_value and record.end_date.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
             </xpath>
         </field>
     </record>
