@@ -7,6 +7,7 @@ from odoo import fields, models, api
 class FSMEquipment(models.Model):
     _name = 'fsm.equipment'
     _description = 'Field Service Equipment'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Name', required='True')
     person_id = fields.Many2one('fsm.person', string='Assigned Operator')

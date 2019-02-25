@@ -67,19 +67,14 @@ class FSMLocation(geo_model.GeoModel):
     location_heirarchy = fields.Char(string='Location Heirarchy',
                                 compute='_compute_location_heirarchy')
 
-    def compute_loc(self, parents):
-        if self.fsm_parent_id:
-            parents = str(self.fsm_parent_id.name) + '/' + parents
-            parents = self.fsm_parent_id.compute_loc(parents)
-        return parents
-
+    @api.depends('name', 'fsm_parent_id.location_heirarchy')
     def _compute_location_heirarchy(self):
-        parents = ""
         for loc in self:
-            parents = loc.compute_loc(parents)
-            parents = parents + str(loc.name)
-            loc.location_heirarchy = parents
-            parents = ""
+            if loc.fsm_parent_id:
+                loc.location_heirarchy = '%s / %s' % (
+                    loc.fsm_parent_id.location_heirarchy, loc.name)
+            else:
+                loc.location_heirarchy = loc.name
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
