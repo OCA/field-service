@@ -64,17 +64,17 @@ class FSMLocation(geo_model.GeoModel):
                                      compute='_compute_equipment_ids')
     sublocation_count = fields.Integer(string='Sub Locations',
                                        compute='_compute_sublocation_ids')
-    location_heirarchy = fields.Char(string='Location Heirarchy',
-                                compute='_compute_location_heirarchy')
+    complete_name = fields.Char(string='Complete Name',
+                                compute='_compute_complete_name')
 
-    @api.depends('name', 'fsm_parent_id.location_heirarchy')
-    def _compute_location_heirarchy(self):
+    @api.depends('name', 'fsm_parent_id.complete_name')
+    def _compute_complete_name(self):
         for loc in self:
             if loc.fsm_parent_id:
-                loc.location_heirarchy = '%s / %s' % (
-                    loc.fsm_parent_id.location_heirarchy, loc.name)
+                loc.complete_name = '%s / %s' % (
+                    loc.fsm_parent_id.complete_name, loc.name)
             else:
-                loc.location_heirarchy = loc.name
+                loc.complete_name = loc.name
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
