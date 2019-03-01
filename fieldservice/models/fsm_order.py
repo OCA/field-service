@@ -4,6 +4,7 @@
 from datetime import timedelta
 from odoo import api, fields, _
 from . import fsm_stage
+from odoo.exceptions import ValidationError
 
 from odoo.addons.base_geoengine import geo_model
 from odoo.addons.base_geoengine import fields as geo_fields
@@ -67,7 +68,21 @@ class FSMOrder(geo_model.GeoModel):
 
     description = fields.Text(string='Description')
 
-    person_ids = fields.Many2many('fsm.person', string='Field Service Workers')
+    person_ids = fields.Many2many('fsm.person', string='Field Service Workers', domain="[('location_id', '=', location_id)]")
+
+    @api.onchange('location_id')
+    def _onchange_location_id_customer(self):
+        if self.location_id:
+            return {'domain':{'customer_id':[('service_location_id','=',
+                                              self.location_id.name)]}}
+        else:
+            return {'domain':{'customer_id':[('id', '!=', None)]}}
+
+    @api.onchange('customer_id')
+    def _onchange_customer_id_location(self):
+        if self.customer_id:
+            self.location_id = self.customer_id.service_location_id
+            
 
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
@@ -173,8 +188,12 @@ class FSMOrder(geo_model.GeoModel):
             'fieldservice.fsm_stage_requested').id})
 
     def action_assign(self):
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_assigned').id})
+        if self.person_id:
+            return self.write({'stage_id': self.env.ref(
+                'fieldservice.fsm_stage_assigned').id})
+        else:
+            raise ValidationError(_("Cannot move to Assigned " +
+                                    "until 'Assigned To' is filled in"))
 
     def action_schedule(self):
         return self.write({'stage_id': self.env.ref(

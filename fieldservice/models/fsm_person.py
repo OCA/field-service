@@ -18,6 +18,9 @@ class FSMPerson(models.Model):
     territory_ids = fields.Many2many('fsm.territory', string='Territories')
     calendar_id = fields.Many2one('resource.calendar',
                                   string='Working Schedule')
+    location_ids = fields.Many2many('fsm.location',
+                                    string='Linked Locations',
+                                    compute='_compute_location_ids')
 
     @api.model
     def create(self, vals):
@@ -34,3 +37,14 @@ class FSMPerson(models.Model):
                 'id': person.id,
                 'name': person.name})
         return person_information_dict
+
+    @api.multi
+    def _compute_location_ids(self):
+        for line in self:
+            ids = []
+            locations = self.env['fsm.location'].search([])
+            for loc in locations:
+                if line in loc.person_ids:
+                    ids.append(loc.name)
+            locations = self.env['fsm.location'].search([('name', 'in', ids)])
+            line.location_ids = locations

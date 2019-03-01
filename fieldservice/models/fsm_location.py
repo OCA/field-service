@@ -53,7 +53,7 @@ class FSMLocation(geo_model.GeoModel):
 
     timezone = fields.Selection(_tz_get, string='Timezone')
 
-    parent_id = fields.Many2one('fsm.location', string='Parent')
+    parent_id = fields.Many2one('fsm.location', string='Parent', domain="[('id', '!=', id)]")
     notes = fields.Text(string="Notes")
     person_ids = fields.Many2many('fsm.person', 'partner_id',
                                   string='Preferred Workers')
