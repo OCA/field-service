@@ -33,7 +33,9 @@ class FSMWizard(models.TransientModel):
             [('partner_id', '=', partner.id)])
         if res == 0:
             if partner.customer:
-                loc = self.env['stock.location'].search([('complete_name', '=', 'Partner Locations/Customers')])
+                loc = self.env['stock.location'].\
+                    search([('complete_name', '=',
+                             'Partner Locations/Customers')])
                 vals = {'partner_id': partner.id,
                         'owner_id': partner.id,
                         'customer_id': partner.id,
@@ -41,7 +43,9 @@ class FSMWizard(models.TransientModel):
                 self.env['fsm.location'].create(vals)
                 partner.write({'fsm_location': True})
             else:
-                loc = self.env['stock.location'].search([('complete_name', '=', 'Partner Locations/Vendors')])
+                loc = self.env['stock.location'].\
+                    search([('complete_name', '=',
+                             'Partner Locations/Vendors')])
                 vals = {'partner_id': partner.id,
                         'owner_id': partner.id,
                         'customer_id': partner.id,
