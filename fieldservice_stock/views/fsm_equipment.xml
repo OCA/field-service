@@ -19,4 +19,15 @@
         </field>
     </record>
 
+    <record id="fsm_equipment_tree_view_model" model="ir.ui.view">
+        <field name="name">fsm.equipment.model</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id"
+               ref="fieldservice.fsm_equipment_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="person_id" position="before">
+                <field name="product_id"/>
+            </field>
+        </field>
+    </record>
 </odoo>
