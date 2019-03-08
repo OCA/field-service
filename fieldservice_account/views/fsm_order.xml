@@ -57,4 +57,15 @@
             </page>
         </field>
     </record>
+
+     <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.search</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="/search/filter[4]" position="after">
+                <filter string="Needs Review" domain="[('account_stage', '=', 'review')]" name="needs_review"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
