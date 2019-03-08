@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from odoo import api, fields, _
 from . import fsm_stage
 from odoo.exceptions import ValidationError
@@ -63,8 +63,28 @@ class FSMOrder(geo_model.GeoModel):
                                   track_visibility='always')
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True)
-    request_early = fields.Datetime(string='Earliest Request Date')
-    request_late = fields.Datetime(string='Latest Request Date')
+    request_early = fields.Datetime(string='Earliest Request Date',
+                                    default=datetime.now())
+    request_late = fields.Datetime(string='Latest Request Date',
+                                   compute='_compute_request_late')
+
+    def _compute_request_late(self):
+        if not self.request_late:
+            if self.priority == '0':
+                if self.request_early:
+                    self.request_late = fields.Datetime.from_string(
+                        self.request_early) + timedelta(days=3)
+                else:
+                    self.request_late = datetime.now() + str(timedelta(days=3))
+            elif self.priority == '1':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(days=2)
+            elif self.priority == '2':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(days=1)
+            elif self.priority == '3':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(hours=8)
 
     description = fields.Text(string='Description')
 
@@ -142,7 +162,8 @@ class FSMOrder(geo_model.GeoModel):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([])
+        stage_ids = self.env['fsm.stage'].search([('stage_type',
+                                                   '=', 'order')])
         return stage_ids
 
     @api.model

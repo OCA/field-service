@@ -21,7 +21,7 @@ class FSMLocation(geo_model.GeoModel):
                                           if not tz.startswith('Etc/')
                                           else '_')]
 
-    ref = fields.Char(string='Internal Reference')
+    ref = fields.Char(string='Internal Reference', copy=False)
     direction = fields.Char(string='Directions')
     partner_id = fields.Many2one('res.partner', string='Related Partner',
                                  required=True, ondelete='restrict',
@@ -65,7 +65,14 @@ class FSMLocation(geo_model.GeoModel):
     sublocation_count = fields.Integer(string='Sub Locations',
                                        compute='_compute_sublocation_ids')
     complete_name = fields.Char(string='Complete Name',
-                                compute='_compute_complete_name')
+                                compute='_compute_complete_name',
+                                store=True)
+    stage_id = fields.Many2one('fsm.stage', string='Stage',
+                               track_visibility='onchange',
+                               index=True, copy=False,
+                               group_expand='_read_group_stage_ids',
+                               default=lambda self: self._default_stage_id())
+    hide = fields.Boolean(default=False)
 
     @api.depends('name', 'fsm_parent_id.complete_name')
     def _compute_complete_name(self):
@@ -76,11 +83,51 @@ class FSMLocation(geo_model.GeoModel):
             else:
                 loc.complete_name = loc.name
 
+    @api.multi
+    def name_get(self):
+        results = []
+        for rec in self:
+            results.append((rec.id, rec.complete_name))
+        return results
+
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
 
     _sql_constraints = [('fsm_location_ref_uniq', 'unique (ref)',
                          'This internal reference already exists!')]
+
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        stage_ids = self.env['fsm.stage'].search([('stage_type',
+                                                   '=', 'location')])
+        return stage_ids
+
+    def _default_stage_id(self):
+        return self.env['fsm.stage'].search([('stage_type', '=', 'location'),
+                                             ('sequence', '=', '1')])
+
+    def advance_stage(self):
+        seq = self.stage_id.sequence
+        next_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'location'), ('sequence', '=', seq+1)])
+        self.stage_id = next_stage
+        self._onchange_stage_id()
+
+    @api.onchange('stage_id')
+    def _onchange_stage_id(self):
+        stage_ids = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'location')])
+        # get last stage
+        highest = 1
+        for stage in stage_ids:
+            if int(stage.sequence) > highest:
+                highest = int(stage.sequence)
+        if self.stage_id.name == self.env['fsm.stage'].\
+                search([('stage_type', '=', 'location'),
+                        ('sequence', '=', highest)]).name:
+            self.hide = True
+        else:
+            self.hide = False
 
     @api.model
     def create(self, vals):

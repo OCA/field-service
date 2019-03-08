@@ -9,8 +9,15 @@
             <tree string="Locations">
                 <field name="ref"/>
                 <field name="complete_name"/>
+                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="street"/>
+                <field name="street2"/>
+                <field name="city"/>
+                <field name="state_id"/>
+                <field name="zip"/>
+                <field name="territory_id"/>
                 <field name="owner_id"/>
-                <field name="customer_id"/>
+                <field name="customer_id"/>            
             </tree>
         </field>
     </record>
@@ -21,6 +28,15 @@
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
             <form string="Location">
+                <header>
+                    <field name="hide" invisible="1"/>
+                    <button id="advance_stage"
+                            name="advance_stage" string="Advance Stage"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('hide', '=', True)]}"/>
+                    <field name="stage_id" widget="statusbar" domain="[('stage_type', '=', 'location')]"/>
+                </header>
                 <sheet>
                     <div class="oe_button_box" position="inside">
                         <button type="object"
@@ -70,7 +86,7 @@
                             <field name="ref"/>
                             <field name="description"/>
                             <field name="timezone"/>
-                            <field name="category_id" widget="many2many_tags"/>
+                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </group>
                     </group>
                     <notebook>
@@ -145,6 +161,7 @@
                 <field name="country_id"/>
                 <field name="description"/>
                 <field name="timezone"/>
+                <field name="tag_ids"/>
                 <group expand="0" string="Group By">
                     <filter string="Owner" domain="[]" context="{'group_by':'owner_id'}"/>
                     <filter string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>

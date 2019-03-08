@@ -43,6 +43,11 @@ class FSMStage(models.Model):
         'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
         string='Teams', default=_default_team_ids)
 
+    stage_type = fields.Selection([('order', 'Order'),
+                                   ('equipment', 'Equipment'),
+                                   ('location', 'Location'),
+                                   ('worker', 'Worker')], 'Type')
+
     @api.multi
     def get_color_information(self):
         # get stage ids
