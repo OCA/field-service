@@ -74,13 +74,11 @@ class FSMEquipment(models.Model):
         stage_ids = self.env['fsm.stage'].search(
             [('stage_type', '=', 'equipment')])
         # get last stage
-        highest = 1
-        for stage in stage_ids:
-            if int(stage.sequence) > highest:
-                highest = int(stage.sequence)
-        if self.stage_id.name == self.env['fsm.stage'].\
-                search([('stage_type', '=', 'equipment'),
-                        ('sequence', '=', highest)]).name:
+        heighest_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'equipment')],
+            order='sequence desc',
+            limit=1)
+        if self.stage_id.name == heighest_stage.name:
             self.hide = True
         else:
             self.hide = False
