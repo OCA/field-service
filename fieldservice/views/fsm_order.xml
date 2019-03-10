@@ -355,6 +355,14 @@
         </field>
     </record>
 
+    <report id="action_report_fsm_order"
+            model="fsm.order"
+            print_report_name="'Service Order - %s' % (object.name)" 
+            name="fieldservice.report_fsm_order"
+            file="fieldservice.report_fsm_order"
+            report_type="qweb-pdf"
+            string="Service Order"/>
+
     <!-- GeoEngine views -->
     <record id="ir_ui_view_fsm_order_map" model="ir.ui.view">
         <field name="name">ir.ui.view.fsm.order.map</field>
