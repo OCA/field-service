@@ -32,11 +32,26 @@ class FSMWizard(models.TransientModel):
         res = self.env['fsm.location'].search_count(
             [('partner_id', '=', partner.id)])
         if res == 0:
-            vals = {'partner_id': partner.id,
-                    'owner_id': partner.id,
-                    'customer_id': partner.id}
-            self.env['fsm.location'].create(vals)
-            partner.write({'fsm_location': True})
+            if partner.customer:
+                loc = self.env['stock.location'].\
+                    search([('complete_name', '=',
+                             'Partner Locations/Customers')])
+                vals = {'partner_id': partner.id,
+                        'owner_id': partner.id,
+                        'customer_id': partner.id,
+                        'inventory_location_id': loc.id}
+                self.env['fsm.location'].create(vals)
+                partner.write({'fsm_location': True})
+            else:
+                loc = self.env['stock.location'].\
+                    search([('complete_name', '=',
+                             'Partner Locations/Vendors')])
+                vals = {'partner_id': partner.id,
+                        'owner_id': partner.id,
+                        'customer_id': partner.id,
+                        'inventory_location_id': loc.id}
+                self.env['fsm.location'].create(vals)
+                partner.write({'fsm_location': True})
         else:
             raise UserError(_('A Field Service Location related to that'
                               ' partner already exists.'))

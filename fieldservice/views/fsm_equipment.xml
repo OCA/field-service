@@ -7,9 +7,7 @@
         <field name="model">fsm.equipment</field>
         <field name="arch" type="xml">
             <search string="Equipments">
-                <field name="name"
-                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
-                       string="FSM Equipment Name"/>
+                <field name="name" string="FSM Equipment Name"/>
                 <field name="location_id"/>
                 <field name="current_location_id"/>
                 <field name="branch_id"/>
@@ -44,6 +42,15 @@
         <field name="model">fsm.equipment</field>
         <field name="arch" type="xml">
             <form string="Equipment">
+                <header>
+                    <field name="hide" invisible="1"/>
+                    <button id="advance_stage"
+                            name="advance_stage" string="Advance Stage"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('hide', '=', True)]}"/>
+                    <field name="stage_id" widget="statusbar" domain="[('stage_type', '=', 'equipment')]"/>
+                </header>
                 <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>

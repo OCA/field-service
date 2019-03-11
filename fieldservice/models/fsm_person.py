@@ -18,6 +18,15 @@ class FSMPerson(models.Model):
     territory_ids = fields.Many2many('fsm.territory', string='Territories')
     calendar_id = fields.Many2one('resource.calendar',
                                   string='Working Schedule')
+    location_ids = fields.Many2many('fsm.location',
+                                    string='Linked Locations',
+                                    compute='_compute_location_ids')
+    stage_id = fields.Many2one('fsm.stage', string='Stage',
+                               track_visibility='onchange',
+                               index=True, copy=False,
+                               group_expand='_read_group_stage_ids',
+                               default=lambda self: self._default_stage_id())
+    hide = fields.Boolean(default=False)
 
     @api.model
     def create(self, vals):
@@ -34,3 +43,45 @@ class FSMPerson(models.Model):
                 'id': person.id,
                 'name': person.name})
         return person_information_dict
+
+    @api.multi
+    def _compute_location_ids(self):
+        for line in self:
+            ids = []
+            locations = self.env['fsm.location'].search([])
+            for loc in locations:
+                if line in loc.person_ids:
+                    ids.append(loc.name)
+            locations = self.env['fsm.location'].search([('name', 'in', ids)])
+            line.location_ids = locations
+
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        stage_ids = self.env['fsm.stage'].search([('stage_type',
+                                                   '=', 'worker')])
+        return stage_ids
+
+    def _default_stage_id(self):
+        return self.env['fsm.stage'].search([('stage_type', '=', 'worker'),
+                                             ('sequence', '=', '1')])
+
+    def advance_stage(self):
+        seq = self.stage_id.sequence
+        next_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'worker'), ('sequence', '=', seq+1)])
+        self.stage_id = next_stage
+        self._onchange_stage_id()
+
+    @api.onchange('stage_id')
+    def _onchange_stage_id(self):
+        stage_ids = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'worker')])
+        # get last stage
+        heighest_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'worker')],
+            order='sequence desc',
+            limit=1)
+        if self.stage_id.name == heighest_stage.name:
+            self.hide = True
+        else:
+            self.hide = False

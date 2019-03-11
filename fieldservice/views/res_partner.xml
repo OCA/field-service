@@ -36,4 +36,18 @@
         </field>
     </record>
 
+    <record id="fsm_partner_kanban_state" model="ir.ui.view">
+        <field name="name">res.partner.kaban.state</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="templates/t/div/div[2]/ul/li[5]/field" position="replace">
+                <field name="state_id"/>
+            </xpath>
+            <xpath expr="templates/t/div/div[2]/ul/li[6]/field[2]" position="replace">
+                <field name="state_id"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

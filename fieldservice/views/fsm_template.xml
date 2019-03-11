@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="templates">
                 <field name="name"/>
+                <field name="hours"/>
             </tree>
         </field>
     </record>
@@ -31,7 +32,7 @@
                         </group>
                     </group>
                     <group string="Instructions">
-                        <field name="instructions" nolabel="1"/>
+                        <field name="instructions" nolabel="1" widget="html"/>
                     </group>
                 </sheet>
             </form>

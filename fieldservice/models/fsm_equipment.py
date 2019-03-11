@@ -25,6 +25,12 @@ class FSMEquipment(models.Model):
     parent_id = fields.Many2one('fsm.equipment', string='Parent')
     child_ids = fields.One2many('fsm.equipment', 'parent_id',
                                 string='Children')
+    stage_id = fields.Many2one('fsm.stage', string='Stage',
+                               track_visibility='onchange',
+                               index=True, copy=False,
+                               group_expand='_read_group_stage_ids',
+                               default=lambda self: self._default_stage_id())
+    hide = fields.Boolean(default=False)
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Equipment name already exists!"),
@@ -45,3 +51,34 @@ class FSMEquipment(models.Model):
     @api.onchange('district_id')
     def _onchange_district_id(self):
         self.region_id = self.district_id.region_id
+
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        stage_ids = self.env['fsm.stage'].search([('stage_type',
+                                                   '=', 'equipment')])
+        return stage_ids
+
+    def _default_stage_id(self):
+        return self.env['fsm.stage'].search([('stage_type', '=', 'equipment'),
+                                             ('sequence', '=', '1')])
+
+    def advance_stage(self):
+        seq = self.stage_id.sequence
+        next_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'equipment'), ('sequence', '=', seq+1)])
+        self.stage_id = next_stage
+        self._onchange_stage_id()
+
+    @api.onchange('stage_id')
+    def _onchange_stage_id(self):
+        stage_ids = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'equipment')])
+        # get last stage
+        heighest_stage = self.env['fsm.stage'].search(
+            [('stage_type', '=', 'equipment')],
+            order='sequence desc',
+            limit=1)
+        if self.stage_id.name == heighest_stage.name:
+            self.hide = True
+        else:
+            self.hide = False

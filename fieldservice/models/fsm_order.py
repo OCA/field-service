@@ -1,9 +1,10 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from odoo import api, fields, _
 from . import fsm_stage
+from odoo.exceptions import ValidationError
 
 from odoo.addons.base_geoengine import geo_model
 from odoo.addons.base_geoengine import fields as geo_fields
@@ -62,12 +63,47 @@ class FSMOrder(geo_model.GeoModel):
                                   track_visibility='always')
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True)
-    request_early = fields.Datetime(string='Earliest Request Date')
-    request_late = fields.Datetime(string='Latest Request Date')
+    request_early = fields.Datetime(string='Earliest Request Date',
+                                    default=datetime.now())
+    request_late = fields.Datetime(string='Latest Request Date',
+                                   compute='_compute_request_late')
+
+    def _compute_request_late(self):
+        if not self.request_late:
+            if self.priority == '0':
+                if self.request_early:
+                    self.request_late = fields.Datetime.from_string(
+                        self.request_early) + timedelta(days=3)
+                else:
+                    self.request_late = datetime.now() + str(timedelta(days=3))
+            elif self.priority == '1':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(days=2)
+            elif self.priority == '2':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(days=1)
+            elif self.priority == '3':
+                self.request_late = fields.Datetime.from_string(
+                    self.request_early) + timedelta(hours=8)
 
     description = fields.Text(string='Description')
 
-    person_ids = fields.Many2many('fsm.person', string='Field Service Workers')
+    person_ids = fields.Many2many('fsm.person',
+                                  string='Field Service Workers',
+                                  domain="[('location_id', '=', location_id)]")
+
+    @api.onchange('location_id')
+    def _onchange_location_id_customer(self):
+        if self.location_id:
+            return {'domain': {'customer_id': [('service_location_id', '=',
+                                                self.location_id.name)]}}
+        else:
+            return {'domain': {'customer_id': [('id', '!=', None)]}}
+
+    @api.onchange('customer_id')
+    def _onchange_customer_id_location(self):
+        if self.customer_id:
+            self.location_id = self.customer_id.service_location_id
 
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
@@ -126,7 +162,8 @@ class FSMOrder(geo_model.GeoModel):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([])
+        stage_ids = self.env['fsm.stage'].search([('stage_type',
+                                                   '=', 'order')])
         return stage_ids
 
     @api.model
@@ -173,8 +210,12 @@ class FSMOrder(geo_model.GeoModel):
             'fieldservice.fsm_stage_requested').id})
 
     def action_assign(self):
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_assigned').id})
+        if self.person_id:
+            return self.write({'stage_id': self.env.ref(
+                'fieldservice.fsm_stage_assigned').id})
+        else:
+            raise ValidationError(_("Cannot move to Assigned " +
+                                    "until 'Assigned To' is filled in"))
 
     def action_schedule(self):
         return self.write({'stage_id': self.env.ref(
