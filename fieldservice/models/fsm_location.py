@@ -65,8 +65,7 @@ class FSMLocation(geo_model.GeoModel):
     sublocation_count = fields.Integer(string='Sub Locations',
                                        compute='_compute_sublocation_ids')
     complete_name = fields.Char(string='Complete Name',
-                                compute='_compute_complete_name',
-                                store=True)
+                                compute='_compute_complete_name')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True, copy=False,
@@ -83,12 +82,12 @@ class FSMLocation(geo_model.GeoModel):
             else:
                 loc.complete_name = loc.name
 
-    #@api.multi
-    #def name_get(self):
-    #    results = []
-    #    for rec in self:
-    #        results.append((rec.id, rec.complete_name))
-    #    return results
+    @api.multi
+    def name_get(self):
+        results = []
+        for rec in self:
+            results.append((rec.id, rec.complete_name))
+        return results
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
