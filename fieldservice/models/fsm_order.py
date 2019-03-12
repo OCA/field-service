@@ -75,7 +75,7 @@ class FSMOrder(geo_model.GeoModel):
                     self.request_late = fields.Datetime.from_string(
                         self.request_early) + timedelta(days=3)
                 else:
-                    self.request_late = datetime.now() + str(timedelta(days=3))
+                    self.request_late = datetime.now() + timedelta(days=3)
             elif self.priority == '1':
                 self.request_late = fields.Datetime.from_string(
                     self.request_early) + timedelta(days=2)
