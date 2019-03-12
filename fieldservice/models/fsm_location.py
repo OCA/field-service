@@ -83,12 +83,12 @@ class FSMLocation(geo_model.GeoModel):
             else:
                 loc.complete_name = loc.name
 
-    @api.multi
-    def name_get(self):
-        results = []
-        for rec in self:
-            results.append((rec.id, rec.complete_name))
-        return results
+    #@api.multi
+    #def name_get(self):
+    #    results = []
+    #    for rec in self:
+    #        results.append((rec.id, rec.complete_name))
+    #    return results
 
     # Geometry Field
     shape = geo_fields.GeoPoint(string='Coordinate')
