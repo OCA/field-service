@@ -92,42 +92,53 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 for (var g in groups) {
                     groups_user_ids.push(groups[g].id);
                 }
-                for (var u in self.res_users_ids) {
-                    if (!(self.res_users_ids[u] in groups_user_ids) ||
-                            self.res_users_ids[u] !== -1) {
+                // Find their matches
+                self._rpc({
+                    model: 'fsm.person',
+                    method: 'get_person_information',
+                    args: [[session.uid], {}],
+                }).then(function (result) {
+                    self.res_users.push(result);
+                    for (var r in result) {
+                        self.res_users_ids.push(result[r].id);
+                    }
+                    for (var u in self.res_users_ids) {
+                        if (!(self.res_users_ids[u] in groups_user_ids) ||
+                                self.res_users_ids[u] !== -1) {
 
-                        // Get User Name
-                        var user_name = '-';
-                        for (var n in self.res_users[0]) {
-                            if (self.res_users[0][n].id ===
-                                self.res_users_ids[u]) {
-                                user_name = self.res_users[0][n].name;
+                            // Get User Name
+                            var user_name = '-';
+                            for (var n in self.res_users[0]) {
+                                if (self.res_users[0][n].id ===
+                                    self.res_users_ids[u]) {
+                                    user_name = self.res_users[0][n].name;
+                                }
                             }
-                        }
-                        var is_available = false;
-                        for (var i in groups) {
-                            if (groups[i].id === self.res_users_ids[u]) {
-                                is_available = true;
+                            var is_available = false;
+                            for (var i in groups) {
+                                if (groups[i].id === self.res_users_ids[u]) {
+                                    is_available = true;
+                                }
                             }
-                        }
-                        if (!is_available) {
-                            groups.push({
-                                id:self.res_users_ids[u],
-                                content: _t(user_name),
-                            });
+                            if (!is_available) {
+                                groups.push({
+                                    id:self.res_users_ids[u],
+                                    content: _t(user_name),
+                                });
+                            }
                         }
                     }
-                }
-            }
-            this.timeline.setGroups(groups);
-            this.timeline.setItems(data);
-            var mode = !this.mode || this.mode === 'fit';
-            var adjust = _.isUndefined(adjust_window) || adjust_window;
-            this.timeline.setOptions({
-                orientation: 'top',
-            });
-            if (mode && adjust) {
-                this.timeline.fit();
+                    self.timeline.setGroups(groups);
+                    self.timeline.setItems(data);
+                    var mode = !self.mode || self.mode === 'fit';
+                    var adjust = _.isUndefined(adjust_window) || adjust_window;
+                    self.timeline.setOptions({
+                        orientation: 'top',
+                    });
+                    if (mode && adjust) {
+                        self.timeline.fit();
+                    }
+                });
             }
         },
 
