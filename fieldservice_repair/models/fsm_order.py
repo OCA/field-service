@@ -3,6 +3,8 @@
 
 from odoo import api, fields
 from odoo.addons.base_geoengine import geo_model
+from odoo import _
+from odoo.exceptions import ValidationError
 
 
 class FSMOrder(geo_model.GeoModel):
@@ -18,7 +20,8 @@ class FSMOrder(geo_model.GeoModel):
         # create a repair order
         order = super(FSMOrder, self).create(vals)
         if order.type == 'repair':
-            if order.equipment_id:
+            if (order.equipment_id and
+                    order.equipment_id.current_stock_location_id):
                 equipment = order.equipment_id
                 repair_id = self.env['mrp.repair'].create({
                     'name': order.name or '',
@@ -28,7 +31,7 @@ class FSMOrder(geo_model.GeoModel):
                     equipment.current_stock_location_id.id or False,
                     'location_dest_id': equipment.current_stock_location_id and
                     equipment.current_stock_location_id.id or False,
-                    'lot_id': equipment.lot_id and equipment.lot_id.name or '',
+                    'lot_id': equipment.lot_id.id or '',
                     'product_qty': 1,
                     'invoice_method': 'none',
                     'internal_notes': order.description,
@@ -36,4 +39,9 @@ class FSMOrder(geo_model.GeoModel):
                     False,
                 })
                 order.repair_id = repair_id
+            elif not order.equipment_id.current_stock_location_id:
+                raise ValidationError(_("Cannot create Repair " +
+                                        "Order because Equipment does " +
+                                        "not have a Current Inventory " +
+                                        "Location"))
         return order
