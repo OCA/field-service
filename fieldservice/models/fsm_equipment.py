@@ -72,8 +72,6 @@ class FSMEquipment(models.Model):
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
-        stage_ids = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'equipment')])
         # get last stage
         heighest_stage = self.env['fsm.stage'].search(
             [('stage_type', '=', 'equipment')],
