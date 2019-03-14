@@ -292,9 +292,6 @@ class FSMOrderLine(models.Model):
         errors = []
         for line in self:
             qty_procured = line._get_procurement_qty()
-            if float_compare(qty_procured, line.qty_ordered,
-                             precision_digits=precision) >= 0:
-                continue
             group_id = line.order_id.procurement_group_id
             if not group_id:
                 group_id = self.env['procurement.group'].create({
@@ -304,6 +301,9 @@ class FSMOrderLine(models.Model):
                     'partner_id': line.order_id.customer_id.id,
                 })
                 line.order_id.procurement_group_id = group_id
+            if float_compare(qty_procured, line.qty_ordered,
+                             precision_digits=precision) >= 0:
+                continue
             values = line._prepare_procurement_values(group_id=group_id)
             qty_needed = line.qty_ordered - qty_procured
             procurement_uom = line.product_uom_id
@@ -475,9 +475,6 @@ class FSMOrderReturn(models.Model):
         errors = []
         for line in self:
             qty_procured = line._get_procurement_qty()
-            if float_compare(qty_procured, line.qty_returned,
-                             precision_digits=precision) >= 0:
-                continue
             group_id = line.order_id.procurement_group_id
             if not group_id:
                 group_id = self.env['procurement.group'].create({
@@ -487,6 +484,9 @@ class FSMOrderReturn(models.Model):
                     'partner_id': line.order_id.customer_id.id,
                 })
                 line.order_id.procurement_group_id = group_id
+            if float_compare(qty_procured, line.qty_returned,
+                             precision_digits=precision) >= 0:
+                continue
             values = line._prepare_procurement_values(group_id=group_id)
             qty_needed = line.qty_returned - qty_procured
             procurement_uom = line.product_uom_id
