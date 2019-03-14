@@ -66,7 +66,7 @@ class FSMLocation(geo_model.GeoModel):
                                        compute='_compute_sublocation_ids')
     complete_name = fields.Char(string='Complete Name',
                                 compute='_compute_complete_name',
-                                store=True)
+                                stored='_compute_complete_name')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True, copy=False,
@@ -115,8 +115,6 @@ class FSMLocation(geo_model.GeoModel):
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
-        stage_ids = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'location')])
         # get last stage
         heighest_stage = self.env['fsm.stage'].search(
             [('stage_type', '=', 'location')],
