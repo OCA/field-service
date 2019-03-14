@@ -42,6 +42,6 @@ class FSMOrder(geo_model.GeoModel):
             elif not order.equipment_id.current_stock_location_id:
                 raise ValidationError(_("Cannot create Repair " +
                                         "Order because Equipment does " +
-                                        "not have a Current Invetory " +
+                                        "not have a Current Inventory " +
                                         "Location"))
         return order
