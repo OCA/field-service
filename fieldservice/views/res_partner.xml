@@ -50,4 +50,15 @@
         </field>
     </record>
 
+    <record id="res_partner_search_reference" model="ir.ui.view">
+        <field name="name">res.partner.search.reference</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="ref"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>

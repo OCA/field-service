@@ -62,7 +62,7 @@ class FSMOrder(geo_model.GeoModel):
                                   index=True,
                                   track_visibility='always')
     location_id = fields.Many2one('fsm.location', string='Location',
-                                  index=True)
+                                  index=True, required=True)
     request_early = fields.Datetime(string='Earliest Request Date',
                                     default=datetime.now())
     request_late = fields.Datetime(string='Latest Request Date',
@@ -199,6 +199,8 @@ class FSMOrder(geo_model.GeoModel):
                 vals.get('scheduled_date_start')) + \
                 timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_end'] = str(date_to_with_delta)
+        if 'customer_id' not in vals:
+            vals['customer_id'] = self.location_id.customer_id.id
         return super(FSMOrder, self).write(vals)
 
     def action_confirm(self):

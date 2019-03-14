@@ -65,7 +65,8 @@ class FSMLocation(geo_model.GeoModel):
     sublocation_count = fields.Integer(string='Sub Locations',
                                        compute='_compute_sublocation_ids')
     complete_name = fields.Char(string='Complete Name',
-                                compute='_compute_complete_name')
+                                compute='_compute_complete_name',
+                                stored='_compute_complete_name')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True, copy=False,

@@ -29,6 +29,7 @@
                     </div>
                     <group>
                         <field name="description" colspan="2"/>
+                        <field name="sequence"/>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
@@ -45,6 +46,7 @@
         <field name="model">fsm.team</field>
         <field name="arch" type="xml">
             <tree string="Order Team">
+                <field name="sequence" widget="handle" groups="base.group_no_one"/>
                 <field name="name"/>
                 <field name="description"/>
             </tree>
