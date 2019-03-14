@@ -5,25 +5,23 @@
         <field name="model">fsm.order</field>
         <field name='inherit_id' ref='fieldservice.fsm_order_form'/>
         <field name="arch" type="xml">
-            <button name="action_confirm" position="before">
-                <button id="account_confirm"
-                        name="account_confirm" string="Confirm"
-                        class="oe_highlight"
-                        type="object" groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('account_stage', '!=', 'review')]}"/>
-                <button id="account_create_invoice"
-                        name="account_create_invoice" string="Create Invoice"
-                        class="oe_highlight"
-                        type="object" groups="account.group_account_invoice"
-                        attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
-                <button id="account_no_invoice"
-                        name="account_no_invoice" string="No Invoice"
-                        type="object" groups="account.group_account_invoice"
-                        attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
-            </button>
             <page name='map' position='after'>
                 <page name='accounting' string='Accounting'>
                     <header>
+                    <button id="account_confirm"
+                            name="account_confirm" string="Confirm"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('account_stage', '!=', 'review')]}"/>
+                    <button id="account_create_invoice"
+                            name="account_create_invoice" string="Create Invoice"
+                            class="oe_highlight"
+                            type="object" groups="account.group_account_invoice"
+                            attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
+                    <button id="account_no_invoice"
+                            name="account_no_invoice" string="No Invoice"
+                            type="object" groups="account.group_account_invoice"
+                            attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
                         <field name="account_stage" widget="statusbar"/>
                     </header>
                     <group>
