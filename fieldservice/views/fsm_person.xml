@@ -108,6 +108,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_person_search_view"/>
+        <field name="context">{'default_location_ids': context.get('location_ids', False), 'search_default_location_ids': context.get('location_ids', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Add Field Service Workers here.

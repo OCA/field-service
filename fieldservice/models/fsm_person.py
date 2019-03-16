@@ -13,8 +13,6 @@ class FSMPerson(models.Model):
                                  required=True, ondelete='restrict',
                                  delegate=True, auto_join=True)
     category_ids = fields.Many2many('fsm.category', string='Categories')
-    location_id = fields.Many2one('fsm.location',
-                                  string='Preferred Location')
     territory_ids = fields.Many2many('fsm.territory', string='Territories')
     calendar_id = fields.Many2one('resource.calendar',
                                   string='Working Schedule')
@@ -43,17 +41,6 @@ class FSMPerson(models.Model):
                 'id': person.id,
                 'name': person.name})
         return person_information_dict
-
-    @api.multi
-    def _compute_location_ids(self):
-        for line in self:
-            ids = []
-            locations = self.env['fsm.location'].search([])
-            for loc in locations:
-                if line in loc.person_ids:
-                    ids.append(loc.name)
-            locations = self.env['fsm.location'].search([('name', 'in', ids)])
-            line.location_ids = locations
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
