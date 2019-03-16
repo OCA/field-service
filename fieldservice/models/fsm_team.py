@@ -60,7 +60,7 @@ class FSMTeam(models.Model):
         'fsm.order', 'team_id', string='Orders',
         domain=[('stage_id.is_closed', '=', False)])
     sequence = fields.Integer('Sequence', default=1,
-                              help="Used to order stages. Lower is better.")
+                              help="Used to sort teams. Lower is better.")
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Team name already exists!"),
