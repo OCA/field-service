@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
             <tree string="Field Service Workers">
                 <field name="name"/>
-                <field name="location_id"/>
                 <field name="phone"/>
                 <field name="email"/>
                 <field name="category_ids" widget="many2many_tags"/>
@@ -24,7 +23,7 @@
             <search string="Search FSM Workers">
                 <field name="category_ids"/>
                 <field name="territory_ids"/>
-                <field name="location_id"/>
+                <field name="location_ids"/>
             </search>
         </field>
     </record>
@@ -44,6 +43,7 @@
                     <field name="stage_id" widget="statusbar" domain="[('stage_type', '=', 'worker')]"/>
                 </header>
                 <sheet>
+                    <div name="button_box" class="oe_button_box"/>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name" required="True"/></h1>
                     <group>
@@ -64,7 +64,6 @@
                         <group>
                             <field name='phone'/>
                             <field name='email'/>
-                            <field name="location_id"/>
                             <field name="calendar_id"/>
                         </group>
                     </group>
@@ -82,7 +81,8 @@
                             </field>
                         </page>
                         <page string="Linked Locations">
-                            <field name="location_ids" nolabel="1" nocreate="1" widget="many2many">
+                            <field name="location_ids" nolabel="1" nocreate="1"
+                                   widget="many2many">
                                 <tree>
                                     <field name="name"/>
                                     <field name="owner_id"/>
@@ -108,7 +108,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_person_search_view"/>
-        <field name="context">{'default_location_ids': context.get('location_ids', False), 'search_default_location_ids': context.get('location_ids', False)}</field>
+        <field name="context">{'search_default_location_ids': context.get('location_ids', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Add Field Service Workers here.

@@ -4,7 +4,7 @@
 {
     'name': 'Field Service',
     'summary': 'Manage Field Service Locations, Workers and Orders',
-    'version': '11.0.0.2.0',
+    'version': '11.0.0.3.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
