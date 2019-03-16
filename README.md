@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 11.0.0.2.0 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 11.0.0.3.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 11.0.0.2.0 | Track employee time and invoice for Field Service Orders
 [fieldservice_agreement](fieldservice_agreement/) | 11.0.1.0.0 | Manage FSM Agreements
 [fieldservice_delivery](fieldservice_delivery/) | 11.0.0.0.1 | Delivery and Carriers for Field Services
