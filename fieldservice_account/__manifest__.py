@@ -20,6 +20,7 @@
         'views/account.xml',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
+        'views/fsm_person.xml',
         'views/account_invoice_view.xml',
     ],
     'license': 'AGPL-3',

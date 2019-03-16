@@ -5,5 +5,6 @@ from . import (
     account_invoice,
     analytic_account,
     fsm_location,
-    fsm_order
+    fsm_order,
+    fsm_person,
 )
