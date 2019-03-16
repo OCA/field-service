@@ -17,8 +17,10 @@ class FSMPerson(models.Model):
     calendar_id = fields.Many2one('resource.calendar',
                                   string='Working Schedule')
     location_ids = fields.Many2many('fsm.location',
-                                    string='Linked Locations',
-                                    compute='_compute_location_ids')
+                                    'fsm_person_location_rel',
+                                    'fsm_person_id',
+                                    'fsm_location_id',
+                                    string='Linked Locations',)
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True, copy=False,

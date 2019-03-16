@@ -89,8 +89,7 @@ class FSMOrder(geo_model.GeoModel):
     description = fields.Text(string='Description')
 
     person_ids = fields.Many2many('fsm.person',
-                                  string='Field Service Workers',
-                                  domain="[('location_id', '=', location_id)]")
+                                  string='Field Service Workers')
 
     @api.onchange('location_id')
     def _onchange_location_id_customer(self):

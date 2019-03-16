@@ -55,9 +55,11 @@ class FSMLocation(geo_model.GeoModel):
 
     fsm_parent_id = fields.Many2one('fsm.location', string='Parent')
     notes = fields.Text(string="Notes")
-    person_ids = fields.Many2many('fsm.person', 'partner_id',
+    person_ids = fields.Many2many('fsm.person',
+                                  'fsm_person_location_rel',
+                                  'fsm_location_id',
+                                  'fsm_person_id',
                                   string='Preferred Workers')
-
     contact_count = fields.Integer(string='Contacts',
                                    compute='_compute_contact_ids')
     equipment_count = fields.Integer(string='Equipment',
