@@ -23,6 +23,7 @@
         'data/fsm_team.xml',
         'security/res_groups.xml',
         'security/ir.model.access.csv',
+        'report/fsm_order_report_template.xml',
         'views/res_config_settings.xml',
         'views/fsm_territory.xml',
         'views/fsm_branch.xml',
