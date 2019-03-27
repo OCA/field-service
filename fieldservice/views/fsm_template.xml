@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="templates">
                 <field name="name"/>
+                <field name="hours"/>
             </tree>
         </field>
     </record>
@@ -24,11 +25,14 @@
                         <group>
                             <field name="category_ids"
                                    widget="many2many_tags"
-                                   options="{'color_field': '0'}"/>
+                                   options="{'color_field': 'color'}"/>
                         </group>
-                        <group></group>
-                        <label for="instructions"/>
-                        <field name="instructions"/>
+                        <group>
+                            <field name="hours"/>
+                        </group>
+                    </group>
+                    <group string="Instructions">
+                        <field name="instructions" nolabel="1" widget="html"/>
                     </group>
                 </sheet>
             </form>

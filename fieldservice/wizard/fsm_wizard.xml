@@ -14,13 +14,13 @@
 
     <!-- wizard view -->
     <record id="partner_wizard_view" model="ir.ui.view">
-        <field name="name">Convert to a FSM Person or Location</field>
+        <field name="name">Convert to a FSM Worker or Location</field>
         <field name="model">fsm.wizard</field>
         <field name="arch" type="xml">
-            <form string="Convert to a Field Service Person or Location">
+            <form string="Convert to a Field Service Worker or Location">
                 <div>
                     Select whether you want to convert this record to a Field
-                    Service Person or Location.
+                    Service Worker or Location.
                 </div>
                 <group>
                     <group>
