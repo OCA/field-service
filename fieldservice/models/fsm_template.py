@@ -9,5 +9,6 @@ class FSMTemplate(models.Model):
     _description = 'Field Service Order Template'
 
     name = fields.Char(string="Name", required=True)
-    instructions = fields.Char(string="Instructions")
+    instructions = fields.Text(string="Instructions")
     category_ids = fields.Many2many('fsm.category', string="Categories")
+    hours = fields.Float(string="Hours")
