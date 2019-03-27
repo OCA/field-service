@@ -21,7 +21,7 @@ class FSMRoute(models.Model):
     _sql_constraints = [
         ('fsm_route_person_date_uniq',
          'unique (person_id, date)',
-         "You cannot create 2 routes for the same person on the same day!"),
+         "You cannot create 2 routes for the same worker on the same day!"),
     ]
 
     @api.model
