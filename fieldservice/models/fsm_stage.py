@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+# from odoo.addons.base_geoengine import geo_model
 
 AVAILABLE_PRIORITIES = [
     ('0', 'Normal'),
@@ -31,7 +32,14 @@ class FSMStage(models.Model):
     is_closed = fields.Boolean('Is a close stage',
                                help='Services in this stage are considered '
                                     'as closed.')
+    is_default = fields.Boolean('Is a default stage',
+                                help='Used a default stage')
     custom_color = fields.Char("Color Code", default="#FFFFFF")
+    description = fields.Text(translate=True)
+    stage_type = fields.Selection([('order', 'Order'),
+                                   ('equipment', 'Equipment'),
+                                   ('location', 'Location'),
+                                   ('worker', 'Worker')], 'Type')
 
     @api.multi
     def get_color_information(self):
