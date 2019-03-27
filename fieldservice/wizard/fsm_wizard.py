@@ -13,7 +13,7 @@ class FSMWizard(models.TransientModel):
     _name = 'fsm.wizard'
     _description = 'FSM Record Conversion'
 
-    fsm_record_type = fields.Selection([('person', 'Person'),
+    fsm_record_type = fields.Selection([('person', 'Worker'),
                                         ('location', 'Location')],
                                        'Record Type')
 
@@ -48,5 +48,5 @@ class FSMWizard(models.TransientModel):
             self.env['fsm.person'].create({'partner_id': partner.id})
             partner.write({'fsm_person': True})
         else:
-            raise UserError(_('A Field Service Person related to that'
+            raise UserError(_('A Field Service Worker related to that'
                               ' partner already exists.'))
