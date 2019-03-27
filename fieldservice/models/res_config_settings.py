@@ -22,6 +22,8 @@ class ResConfigSettings(models.TransientModel):
     group_fsm_template = fields.Boolean(
         string='Manage Template',
         implied_group='fieldservice.group_fsm_template')
+    module_fieldservice_account = fields.Boolean(
+        string='Invoice your FSM orders')
     module_fieldservice_agreement = fields.Boolean(
         string='Manage Agreements')
     module_fieldservice_distribution = fields.Boolean(
@@ -36,13 +38,8 @@ class ResConfigSettings(models.TransientModel):
         string='Use Odoo Logistics')
     module_fieldservice_vehicle = fields.Boolean(
         string='Manage Vehicles')
-    module_fieldservice_equipment_agreement = fields.Boolean(
-        string='Manage Equipments Agreements')
-
-    @api.onchange('module_fieldservice_equipment_agreement')
-    def _onchange_module_fieldservice_equipment_agreement(self):
-        if self.module_fieldservice_equipment_agreement:
-            self.group_fsm_equipment = True
+    module_fieldservice_substatus = fields.Boolean(
+        string='Manage Sub-Statuses')
 
     @api.onchange('module_fieldservice_repair')
     def _onchange_module_fieldservice_repair(self):
