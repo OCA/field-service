@@ -22,11 +22,18 @@
               groups="group_fsm_manager"/>
 
     <!-- Dashboard Menu -->
+     <menuitem id="menu_fsm_dash_team"
+              name="Teams"
+              action="action_team_dashboard"
+              parent="dashboard"
+              sequence="10"
+              groups="group_fsm_team"/>
+              
     <menuitem id="menu_fsm_dash_order"
               name="Orders"
               action="action_fsm_dash_order"
               parent="dashboard"
-              sequence="10"/>
+              sequence="20"/>
 
     <menuitem id="menu_fsm_dash_equipment"
               name="Equipments"
@@ -36,11 +43,6 @@
               groups="group_fsm_equipment"/>
 
     <!-- Operations Menu -->
-<!--    <menuitem id="menu_fsm_activity"
-              name="Activities"
-              action="action_fsm_activity"
-              parent="operations"
-              sequence="10"/> -->
 
     <menuitem id="menu_fsm_operation_order"
               name="Orders"
@@ -72,13 +74,6 @@
               action="action_fsm_person"
               parent="data"
               sequence="30"/>
-
-    <menuitem id="menu_fsm_category"
-              name="Categories"
-              action="action_fsm_category"
-              parent="data"
-              sequence="70"
-              groups="group_fsm_category"/>
 
     <menuitem id="menu_fsm_equipment"
               name="Equipments"
@@ -113,7 +108,6 @@
               sequence="10"
               parent="config"
               action="action_fsm_config"/>
-
     <!-- Config / Orders -->
     <menuitem id="menu_fsm_config_order"
               name="Orders"
@@ -175,10 +169,24 @@
               sequence="80"
               groups="base.group_no_one"/>
 
-    <!-- Config / Persons -->
+    <!-- Config / Workers -->
     <menuitem id="menu_fsm_config_person"
-              name="Persons"
+              name="Workers"
               parent="config"
               sequence="60"/>
+
+    <menuitem id="menu_fsm_team"
+              name="Teams"
+              action="action_team_settings"
+              parent="menu_fsm_config_person"
+              sequence="10"
+              groups="fieldservice.group_fsm_team"/>
+
+    <menuitem id="menu_hr_skill"
+              name="Categories"
+              action="action_fsm_category"
+              parent="menu_fsm_config_person"
+              sequence="70"
+              groups="group_fsm_category"/>
 
 </odoo>
