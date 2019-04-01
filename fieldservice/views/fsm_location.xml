@@ -87,6 +87,7 @@
                             <field name="description"/>
                             <field name="timezone"/>
                             <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <notebook>

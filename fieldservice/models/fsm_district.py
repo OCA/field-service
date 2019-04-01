@@ -12,3 +12,5 @@ class FSMDistrict(models.Model):
     region_id = fields.Many2one('fsm.region', string='Region')
     partner_id = fields.Many2one('res.partner', string='District Manager')
     description = fields.Char(string='Description')
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)

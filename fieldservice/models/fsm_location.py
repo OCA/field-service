@@ -75,6 +75,8 @@ class FSMLocation(geo_model.GeoModel):
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
     hide = fields.Boolean(default=False)
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)
 
     @api.depends('name', 'fsm_parent_id.complete_name')
     def _compute_complete_name(self):

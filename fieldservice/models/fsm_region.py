@@ -11,3 +11,5 @@ class FSMRegion(models.Model):
     name = fields.Char(string='Name', required=True)
     description = fields.Char(string='Description')
     partner_id = fields.Many2one('res.partner', string='Region Manager')
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)

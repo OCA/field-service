@@ -42,6 +42,8 @@ class FSMStage(models.Model):
     team_ids = fields.Many2many(
         'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
         string='Teams', default=_default_team_ids)
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)
 
     stage_type = fields.Selection([('order', 'Order'),
                                    ('equipment', 'Equipment'),

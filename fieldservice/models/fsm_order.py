@@ -52,7 +52,8 @@ class FSMOrder(geo_model.GeoModel):
                               default=_default_team_id,
                               index=True, required=True,
                               track_visibility='onchange')
-
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))

@@ -26,6 +26,7 @@
                         <group>
                             <field name="description"/>
                             <field name="region_id"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                         <group>
                             <field name="partner_id" domain="[('is_company', '=', False)]"/>

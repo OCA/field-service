@@ -12,3 +12,5 @@ class FSMBranch(models.Model):
     partner_id = fields.Many2one('res.partner', string='Branch Manager')
     district_id = fields.Many2one('fsm.district', string='District')
     description = fields.Char(string='Description')
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)
