@@ -28,3 +28,5 @@ class FSMTerritory(models.Model):
     country_ids = fields.One2many('res.country',
                                   'territory_id',
                                   string='Country Names')
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)

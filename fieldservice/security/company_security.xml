@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="rule_fsm_order_multi_company" model="ir.rule">
+        <field name="name">FSM Order multi-company</field>
+        <field name="model_id" ref="model_fsm_order"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_equipment_multi_company" model="ir.rule">
+        <field name="name">FSM Equipment multi-company</field>
+        <field name="model_id" ref="model_fsm_equipment"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_location_multi_company" model="ir.rule">
+        <field name="name">FSM Location multi-company</field>
+        <field name="model_id" ref="model_fsm_location"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_person_multi_company" model="ir.rule">
+        <field name="name">FSM Person multi-company</field>
+        <field name="model_id" ref="model_fsm_person"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_stage_multi_company" model="ir.rule">
+        <field name="name">FSM Stage multi-company</field>
+        <field name="model_id" ref="model_fsm_stage"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_team_multi_company" model="ir.rule">
+        <field name="name">FSM Team multi-company</field>
+        <field name="model_id" ref="model_fsm_team"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_territory_multi_company" model="ir.rule">
+        <field name="name">FSM Territory multi-company</field>
+        <field name="model_id" ref="model_fsm_territory"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_branch_multi_company" model="ir.rule">
+        <field name="name">FSM Branch multi-company</field>
+        <field name="model_id" ref="model_fsm_branch"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_district_multi_company" model="ir.rule">
+        <field name="name">FSM District multi-company</field>
+        <field name="model_id" ref="model_fsm_district"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_region_multi_company" model="ir.rule">
+        <field name="name">FSM Region multi-company</field>
+        <field name="model_id" ref="model_fsm_region"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+</odoo>

@@ -61,6 +61,8 @@ class FSMTeam(models.Model):
         domain=[('stage_id.is_closed', '=', False)])
     sequence = fields.Integer('Sequence', default=1,
                               help="Used to sort teams. Lower is better.")
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env.user.company_id)
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Team name already exists!"),
