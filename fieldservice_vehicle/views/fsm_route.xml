@@ -8,7 +8,8 @@
         <field name="inherit_id" ref="fieldservice.fsm_route_form"/>
         <field name="arch" type="xml">
             <field name="person_id" position="after">
-                <field name="vehicle_id" groups="fieldservice.group_fsm_vehicle"/>
+                <field name="vehicle_id"
+                       groups="fieldservice_vehicle.group_fsm_vehicle"/>
             </field>
         </field>
     </record>
