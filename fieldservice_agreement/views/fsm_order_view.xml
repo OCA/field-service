@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <!-- Fields Service Orders Form View -->
@@ -7,7 +7,7 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <field name="location_id" position="after">
+            <field name="customer_id" position="after">
                 <field name="agreement_id"
                        domain="[('partner_id', '=', customer_id)]"/>
                 <field name="serviceprofile_id"
@@ -23,7 +23,7 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_search_view"/>
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
-                <filter string="Service Profile" domain="[]"
+                <filter name="serviceprofile_id" string="Service Profile" domain="[]"
                         context="{'group_by': 'serviceprofile_id'}"/>
             </xpath>
         </field>

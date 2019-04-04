@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <!-- Fields Service equipment Form View -->
@@ -30,7 +30,7 @@
         <field name="inherit_id" ref="fieldservice.fsm_equipment_search_view"/>
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
-                <filter string="Service Profile" domain="[]"
+                <filter name="serviceprofile_id" string="Service Profile" domain="[]"
                         context="{'group_by':'serviceprofile_id'}"/>
             </xpath>
         </field>

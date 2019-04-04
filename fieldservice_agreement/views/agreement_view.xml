@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Agreement Form View -->
     <record id="agreement_fsm_order_form_view" model="ir.ui.view">
         <field name="name">agreement.form.fsm.order.view</field>
         <field name="model">agreement</field>
-        <field name="inherit_id" ref="agreement.partner_agreement_form_view"/>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_form_view"/>
         <field name="arch" type="xml">
             <div class="oe_button_box" position="inside">
                 <button name="action_view_service_order"
@@ -48,7 +48,7 @@
         <field name="name">agreement.search.fields</field>
         <field name="model">agreement</field>
         <field name="type">search</field>
-        <field name="inherit_id" ref="agreement.partner_agreement_search_view"/>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_search_view"/>
         <field name="arch" type="xml">
             <xpath expr="/search/filter[1]" position="before">
                 <field name="fsm_location_id"/>
@@ -60,7 +60,7 @@
         <field name="name">agreement.form.context.fix</field>
         <field name="model">agreement</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="agreement.partner_agreement_form_view"/>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_form_view"/>
         <field name="arch" type="xml">
             <field name="recital_ids" position="replace">
                 <field name="recital_ids" default_order="sequence" nolabel="1" context="{'default_agreement_id': active_id}"/>
