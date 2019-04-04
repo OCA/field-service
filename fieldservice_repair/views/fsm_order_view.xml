@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <!-- Fields Service Orders Form View -->
@@ -9,8 +9,8 @@
         <field name="arch" type="xml">
             <field name="priority" position="before">
                 <field name="repair_id"
-                    readonly="1"
-                    attrs="{'invisible': [('type', '!=', 'repair')]}"/>
+                       readonly="1"
+                       attrs="{'invisible': [('type', '!=', 'repair')]}"/>
             </field>
         </field>
     </record>
