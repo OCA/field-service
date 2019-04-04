@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Delivery',
     'summary': 'Delivery and Carriers for Field Services',
-    'version': '11.0.0.0.1',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Odoo Community Association (OCA)",
