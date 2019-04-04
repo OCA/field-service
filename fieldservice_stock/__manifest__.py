@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Stock',
     'summary': 'Inventory and Stock Operations for Field Services',
-    'version': '11.0.0.2.0',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
@@ -12,7 +12,7 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
-        'stock',
+        'stock_request',
     ],
     'data': [
         'security/ir.model.access.csv',
