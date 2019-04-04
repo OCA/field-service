@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='warehouse_ids']" position="after">
                 <field name="fsm_selectable" string="FSM Order Lines"/>
                 <field name="fsm_return_selectable"
-                string="FSM Order Return Lines"/>
+                       string="FSM Order Return Lines"/>
             </xpath>
         </field>
     </record>
@@ -22,14 +22,16 @@
             <field name='count_picking_backorders' position='after'>
                 <field name='count_fsm_requests'/>
             </field>
-            <xpath expr="//div[hasclass('col-xs-6','o_kanban_primary_right')]/div[4]" position='after'>
-                <div t-if="record.count_fsm_requests.raw_value > 0" class="row">
-                    <div class="col-xs-9">
+            <xpath expr="//div[hasclass('col-6','o_kanban_primary_right')]/div[4]"
+                   position='after'>
+                <div t-if="record.count_fsm_requests.raw_value > 0"
+                     class="row">
+                    <div class="col-9">
                         <a name="get_action_fsm_requests" type="object">
                             Field Service
                         </a>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-3">
                         <field name="count_fsm_requests"/>
                     </div>
                 </div>
