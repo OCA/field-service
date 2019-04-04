@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Skills",
     "summary": "Manage your FS workers skills",
-    "version": "11.0.0.2.0",
+    "version": "12.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
@@ -27,4 +27,5 @@
         "osi-scampbell",
         "max3903",
     ],
+    'installable': True,
 }
