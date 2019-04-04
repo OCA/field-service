@@ -20,10 +20,11 @@ class FSMEquipment(models.Model):
     def _compute_current_stock_loc_id(self):
         for equipment in self:
             quants = self.env['stock.quant'].search(
-                [('lot_id', '=', equipment.lot_id.id)], order="id desc")
-            if quants:
+                [('lot_id', '=', equipment.lot_id.id)], order="id desc",
+                limit=1)
+            if quants and quants.location_id:
                 equipment.current_stock_location_id = \
-                    quants[0].location_id.id or False
+                    quants.location_id.id
             else:
                 equipment.current_stock_location_id = False
 
@@ -31,7 +32,7 @@ class FSMEquipment(models.Model):
     def create(self, vals):
         res = super(FSMEquipment, self).create(vals)
         if 'lot_id' in vals:
-            res.lot_id.equipment_id = res.id
+            res.lot_id.fsm_equipment_id = res.id
         return res
 
     @api.multi
@@ -40,6 +41,6 @@ class FSMEquipment(models.Model):
             prev_lot = equipment.lot_id
             res = super(FSMEquipment, equipment).write(vals)
             if 'lot_id' in vals:
-                prev_lot.equipment_id = False
-                equipment.lot_id.equipment_id = equipment.id
+                prev_lot.fsm_equipment_id = False
+                equipment.lot_id.fsm_equipment_id = equipment.id
         return res
