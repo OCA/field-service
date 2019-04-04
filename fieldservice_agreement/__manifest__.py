@@ -9,16 +9,17 @@
     'website': 'https://github.com/OCA/field-service',
     'category': 'Field Service',
     'license': 'AGPL-3',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'depends': [
         'fieldservice',
-        'agreement',
+        'agreement_serviceprofile',
     ],
     'data': [
         'views/fsm_order_view.xml',
         'views/fsm_equipment_view.xml',
         'views/agreement_view.xml',
     ],
+    'installable': True,
     'development_status': 'Beta',
     'maintainers': [
         'max3903',
