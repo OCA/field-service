@@ -14,13 +14,13 @@ Field Service - Delivery
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/11.0/fieldservice_delivery
+    :target: https://github.com/OCA/field-service/tree/12.0/fieldservice_delivery
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-11-0/field-service-11-0-fieldservice_delivery
+    :target: https://translation.odoo-community.org/projects/field-service-12-0/field-service-12-0-fieldservice_delivery
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/264/11.0
+    :target: https://runbot.odoo-community.org/runbot/264/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -39,7 +39,7 @@ Installation
 To install Field Service and have the mapping features, you need to install GeoEngine.
 
 Please refer to the installation instructions available at:
-https://github.com/OCA/geospatial/tree/11.0/base_geoengine
+https://github.com/OCA/geospatial/tree/12.0/base_geoengine
 
 Configuration
 =============
@@ -87,6 +87,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -116,6 +117,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/11.0/fieldservice_delivery>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_delivery>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
