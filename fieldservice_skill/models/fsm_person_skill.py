@@ -6,6 +6,7 @@ from odoo import fields, models
 
 class FSMPersonSkill(models.Model):
     _name = 'fsm.person.skill'
+    _rec_name = 'skill_id'
     _description = 'Field Service Worker Skill'
 
     LEVEL = [('0', 'Junior'),
