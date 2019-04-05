@@ -5,5 +5,4 @@ from . import (
     fsm_order,
     maintenance,
     fsm_equipment,
-    stock,
 )
