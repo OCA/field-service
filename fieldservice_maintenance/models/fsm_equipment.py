@@ -6,7 +6,6 @@ from odoo import api, fields, models
 
 class FSMEquipment(models.Model):
     _inherit = 'fsm.equipment'
-    _inherits = {'maintenance.equipment': 'maintenance_equipment_id'}
 
     maintenance_equipment_id = fields.Many2one(
         'maintenance.equipment', string='Related Maintenance Equipment',
@@ -16,11 +15,10 @@ class FSMEquipment(models.Model):
     @api.model
     def create(self, vals):
         maintenance_equipment_id = self.env['maintenance.equipment'].create({
-            'name': vals['name'],
+            'name': vals.get('name'),
             'equipment_assign_to': 'other',
-            'maintenance_team_id': vals['maintenance_team_id'],
             'is_fsm_equipment': True,
-            'note': vals['notes'] or False,
+            'note': vals.get('notes', False),
             'serial_no':
                 vals['lot_id'] and
                 self.env['stock.production.lot'].browse(vals['lot_id']).name
@@ -28,5 +26,4 @@ class FSMEquipment(models.Model):
         if maintenance_equipment_id:
             vals.update({
                 'maintenance_equipment_id': maintenance_equipment_id.id})
-        res = super(FSMEquipment, self).create(vals)
-        return res
+        return super(FSMEquipment, self).create(vals)

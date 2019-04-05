@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Copyright 2018 Open Source Integrators
          License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
@@ -11,8 +11,8 @@
         <field name="arch" type="xml">
             <field name="priority" position="before">
                 <field name="request_id"
-                    readonly="1"
-                    attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
+                       readonly="1"
+                       attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
             </field>
         </field>
     </record>

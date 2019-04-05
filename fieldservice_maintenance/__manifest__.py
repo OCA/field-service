@@ -4,13 +4,14 @@
 {
     'name': 'Field Service - Maintenance',
     'summary': 'Maintenance',
-    'version': '11.0.0.2.0',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice_stock',
         'maintenance',
+        'hr',
     ],
     'data': [
         'views/maintenance_view.xml',
@@ -23,4 +24,5 @@
         'smangukiya',
         'max3903',
     ],
+    'installable': True,
 }
