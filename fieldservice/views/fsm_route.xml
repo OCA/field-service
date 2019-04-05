@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Routes -->
+    <record id="fsm_route_tree" model="ir.ui.view">
+        <field name="name">fsm.route.tree</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <tree string="Day Routes">
+                <field name="name"/>
+                <field name="person_id"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_route_form" model="ir.ui.view">
+        <field name="name">fsm.route.form</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <form string="Day Route">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="person_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Orders">
+                            <field name="order_ids" nolabel="1"
+                                   widget="many2many"
+                                   domain="[('route_id', '=', False)]">
+                                <tree>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="customer_id"/>
+                                    <field name="location_id"/>
+                                    <field name="scheduled_date_start"/>
+                                    <field name="stage_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Map">
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add Day Routes here.
+            </p>
+        </field>
+    </record>
+
+    <!-- Reporting -->
+    <record id="fsm_route_graph_view" model="ir.ui.view">
+        <field name="name">fsm.route.graph</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <graph string="Day Routes" type="bar">
+                <field name="date" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_route_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.route.pivot</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <pivot string="Day Routes" display_quantity="true">
+                <field name="date" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_report_route" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Day Routes Report
+            </p>
+        </field>
+    </record>
+
+</odoo>

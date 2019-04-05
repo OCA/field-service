@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Res Partner Action -->
+    <act_window id="partner_fsm_action"
+                name="Convert to FSM Record"
+                res_model="fsm.wizard"
+                src_model="res.partner"
+                view_type="form"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                groups="group_fsm_dispatcher"/>
+
+    <!-- wizard view -->
+    <record id="partner_wizard_view" model="ir.ui.view">
+        <field name="name">Convert to a FSM Worker or Location</field>
+        <field name="model">fsm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Convert to a Field Service Worker or Location">
+                <div>
+                    Select whether you want to convert this record to a Field
+                    Service Worker or Location.
+                </div>
+                <group>
+                    <group>
+                        <field name="fsm_record_type" widget="selection"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Convert" name="action_convert" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
