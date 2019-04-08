@@ -4,12 +4,12 @@
 from odoo import api, models
 
 
-class FSMOrderLine(models.Model):
-    _inherit = 'fsm.order.line'
+class StockRequest(models.Model):
+    _inherit = 'stock.request'
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
-        values = super(FSMOrderLine, self).\
+        values = super(StockRequest, self).\
             _prepare_procurement_values(group_id)
         values.update({'route_ids': self.env.ref(
             'fieldservice_vehicle_stock.route_stock_to_vehicle_to_location')

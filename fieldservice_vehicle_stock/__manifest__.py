@@ -4,7 +4,7 @@
 {
     'name': 'Field Service Vehicles - Stock',
     'summary': 'Inventory Operations for Field Service with Vehicles',
-    'version': '11.0.0.1.0',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
