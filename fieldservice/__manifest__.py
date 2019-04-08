@@ -13,6 +13,7 @@
         'mail',
         'web_timeline',
         'resource',
+        'contacts',
     ],
     'data': [
         'data/ir_sequence.xml',
