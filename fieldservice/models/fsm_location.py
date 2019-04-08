@@ -234,12 +234,12 @@ class FSMLocation(models.Model):
             action = self.env.ref('contacts.action_contacts').\
                 read()[0]
             contacts = self.get_action_views(1, 0, location)
-            if len(contacts) > 1:
-                action['domain'] = [('id', 'in', contacts.ids)]
-            elif contacts:
+            if len(contacts) == 1:
                 action['views'] = [(self.env.ref('base.view_partner_form').id,
                                     'form')]
                 action['res_id'] = contacts.id
+            else:
+                action['domain'] = [('id', 'in', contacts.ids)]
             return action
 
     @api.multi
