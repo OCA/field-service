@@ -11,6 +11,7 @@
                 <field name="customer_id"/>
                 <field name="location_id"/>
                 <field name="fsm_order_template_id"/>
+                <field name="next_schedule_date"/>
                 <field name="end_date"/>
             </tree>
         </field>
@@ -31,11 +32,11 @@
                             name="action_renew" string="Renew"
                             class="oe_highlight"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('state', '!=', 'pending')]}"/> 
+                            attrs="{'invisible': [('state', '!=', 'pending')]}"/>
                     <button id="action_cancel"
                             name="action_cancel" string="Cancel"
                             type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('state', 'in', ('close', 'cancel'))]}"/>                   
+                            attrs="{'invisible': [('state', 'in', ('close', 'cancel'))]}"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -48,17 +49,13 @@
                         </h1>
                     </div>
                     <group>
-                        <group>                            
+                        <group>
                             <field name="fsm_order_template_id"/>
-                            <label for="frequency_interval" string="Repeat Every"/>
-                            <div>
-                                <field name="frequency_interval" class="oe_inline" required="1"/>
-                                <field name="frequency_type" class="oe_inline field_rule_type" required="1"/>
-                            </div>
+                            <field name="fsm_frequency_id"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
                             <!-- <field name="max_orders"/> -->
-                            <field name="next_request_date"/>
+                            <field name="next_schedule_date"/>
                         </group>
                         <group>
                             <field name="fsm_recurring_template_id"/>

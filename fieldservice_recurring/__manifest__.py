@@ -6,7 +6,10 @@
     'summary': 'Manage recurring field service works',
     'version': '11.0.0.1.1',
     'category': 'Field Service',
-    'author': 'Brian McMaster, Open Source Integrators, Odoo Community Association (OCA)',
+    'author':
+        'Brian McMaster, '
+        'Open Source Integrators, ' 
+        'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
@@ -16,6 +19,7 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
         'security/recurring_security.xml',
+        'views/fsm_frequency.xml',
         'views/fsm_recurring_template.xml',
         'views/fsm_recurring.xml',
         'data/recurring_cron.xml',
