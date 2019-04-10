@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice',
         'odoo12-addon-fieldservice_distribution',
         'odoo12-addon-fieldservice_sale',
+        'odoo12-addon-fieldservice_vehicle',
     ],
     classifiers=[
         'Programming Language :: Python',
