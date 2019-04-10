@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="action_view_distrib_sublocation"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-sitemap"
+                        attrs="{'invisible': [('is_a_distribution', '!=', True)]}"
+                        context="{'fsm_parent_id': active_id, 'dist_parent_id': active_id, 'is_a_distribution': True}">
+                    <field name="distrib_count"
+                           widget="statinfo"
+                           string="Distributed To"/>
+                </button>
+            </div>
+            <xpath expr="//page/group/group[@id='others-left']"
+                   position="inside">
+                <field name="is_a_distribution"/>
+            </xpath>
+            <field name="ref" position="after">
+                <field name="dist_parent_id"
+                       domain="[('is_a_distribution', '=', True)]"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
+        <field name="context">{'default_fsm_parent_id': context.get('fsm_parent_id', False),
+                               'default_dist_parent_id': context.get('dist_parent_id', False),
+                               'default_is_a_distribution': context.get('is_a_distribution', False)}</field>
+    </record>
+
+</odoo>

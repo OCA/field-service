@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Field Service Worker Form Extended-->
+    <record id="fsm_person_form" model="ir.ui.view">
+        <field name="name">fsm.person.form</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_form"/>
+        <field name="arch" type="xml">
+            <page name="contact" position="before">
+                <page string="Skills">
+                    <field name="skill_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="skill_id" options="{'limit':1}"/>
+                            <field name="level" widget="priority"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="fsm_person_search" model="ir.ui.view">
+        <field name="name">fsm.person.search</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_search_view"/>
+        <field name="arch" type="xml">
+            <field name="category_ids" position="after">
+                <field name="skill_ids"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Skill -->
+    <record id="fsm_person_skill_tree" model="ir.ui.view">
+        <field name="name">Skills</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <tree string="Worker Skills">
+                <field name="person_id"/>
+                <field name="skill_id"/>
+                <field name="level" widget="priority"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_person_skill_form" model="ir.ui.view">
+        <field name="name">fsm.person.skill.form</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <form string="Worker Skill">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="person_id"/>
+                            <field name="skill_id"/>
+                            <field name="level" widget="priority"/>
+                        </group>
+                        <group/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_person_skill" model="ir.actions.act_window">
+        <field name="name">Worker Skills</field>
+        <field name="res_model">fsm.person.skill</field>
+        <field name="view_id" ref="fsm_person_skill_tree"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a worker skill.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fsm_person_skill"
+              name="Worker Skills"
+              action="action_fsm_person_skill"
+              parent="fieldservice.data"
+              sequence="80"/>
+
+    <!-- Reporting -->
+    <record id="view_fsm_person_skill_graph" model="ir.ui.view">
+        <field name="name">fsm.person.skill.graph</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <graph string="Worker Skills" type="bar">
+                <field name="person_id" type="row"/>
+                <field name="skill_id" type="row"/>
+                <field name="level" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_fsm_person_skill_pivot" model="ir.ui.view">
+        <field name="name">fsm.person.skill.pivot</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <pivot string="Worker Skills" display_quantity="true">
+                <field name="person_id" type="row"/>
+                <field name="skill_id" type="row"/>
+                <field name="level" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_person_skill_report" model="ir.actions.act_window">
+        <field name="name">Worker Skills</field>
+        <field name="res_model">fsm.person.skill</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Worker Skills Report
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fsm_person_skill_reporting"
+              name="Worker Skills"
+              action="action_fsm_person_skill_report"
+              parent="fieldservice.reporting"
+              sequence="80"/>
+
+</odoo>
