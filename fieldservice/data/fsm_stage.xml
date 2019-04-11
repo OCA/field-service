@@ -5,12 +5,14 @@
         <field name="name">New</field>
         <field name="sequence">10</field>
         <field name="is_default">True</field>
+        <field name="stage_type">order</field>
         <field name="custom_color">#ECF0F1</field>
     </record>
 
     <record id="fsm_stage_confirmed" model="fsm.stage">
         <field name="name">Confirmed</field>
         <field name="sequence">20</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#F1C40F</field>
     </record>
@@ -18,6 +20,7 @@
     <record id="fsm_stage_requested" model="fsm.stage">
         <field name="name">Requested</field>
         <field name="sequence">30</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#F39C12</field>
     </record>
@@ -25,6 +28,7 @@
     <record id="fsm_stage_assigned" model="fsm.stage">
         <field name="name">Assigned</field>
         <field name="sequence">40</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#16A085</field>
     </record>
@@ -32,6 +36,7 @@
     <record id="fsm_stage_scheduled" model="fsm.stage">
         <field name="name">Scheduled</field>
         <field name="sequence">50</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#9B59B6</field>
     </record>
@@ -39,6 +44,7 @@
     <record id="fsm_stage_enroute" model="fsm.stage">
         <field name="name">En Route</field>
         <field name="sequence">60</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#C0392B</field>
     </record>
@@ -46,6 +52,7 @@
     <record id="fsm_stage_started" model="fsm.stage">
         <field name="name">Started</field>
         <field name="sequence">70</field>
+        <field name="stage_type">order</field>
         <field name="is_default">True</field>
         <field name="custom_color">#95A5A6</field>
     </record>
@@ -53,6 +60,7 @@
     <record id="fsm_stage_completed" model="fsm.stage">
         <field name="name">Completed</field>
         <field name="sequence">80</field>
+        <field name="stage_type">order</field>
         <field name="is_closed">True</field>
         <field name="is_default">True</field>
         <field name="custom_color">#7F8C8D</field>
@@ -62,6 +70,7 @@
         <field name="name">Cancelled</field>
         <field name="sequence">100</field>
         <field name="fold">True</field>
+        <field name="stage_type">order</field>
         <field name="is_closed">True</field>
         <field name="is_default">True</field>
         <field name="custom_color">#1C2833</field>
