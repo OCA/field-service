@@ -2,10 +2,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
+from dateutil.rrule import rruleset
 from dateutil.relativedelta import relativedelta
+
+import logging
 
 from odoo import fields, models, api, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+_logger = logging.getLogger(__name__)
 
 
 class FSMRecurringOrder(models.Model):
@@ -24,8 +29,7 @@ class FSMRecurringOrder(models.Model):
         default='draft', track_visibility='onchange')
     fsm_recurring_template_id = fields.Many2one(
         'fsm.recurring.template', 'Recurring Template',
-        required=True, readonly=True,
-        states={'draft': [('readonly', False)]})
+        readonly=True, states={'draft': [('readonly', False)]})
     customer_id = fields.Many2one(
         'res.partner', string='Contact',
         domain=[('customer', '=', True)],
@@ -34,15 +38,15 @@ class FSMRecurringOrder(models.Model):
     location_id = fields.Many2one(
         'fsm.location', string='Location', index=True, required=True)
     description = fields.Text(string='Description')
-    fsm_frequency_id = fields.Many2one(
-        'fsm.frequency', 'Frequency', required=True)
+    fsm_frequency_set_id = fields.Many2one(
+        'fsm.frequency.set', 'Frequency Set', required=True)
     start_date = fields.Datetime(String='Start Date')
     end_date = fields.Datetime(
         string='End Date',
         help="Recurring orders will not be made after this date")
-    # max_orders = fields.Integer(
-    #    string='Maximum Orders',
-    #    help="Maximium number of orders that will be created")
+    max_orders = fields.Integer(
+       string='Maximum Orders',
+       help="Maximium number of orders that will be created")
     fsm_order_template_id = fields.Many2one(
         'fsm.template', string='Order Template',
         help="This is the order template that will be recurring")
@@ -54,9 +58,6 @@ class FSMRecurringOrder(models.Model):
         copy=False, readonly=True)
     fsm_order_count = fields.Integer(
         'Orders Count', compute='_compute_order_count')
-    next_schedule_date = fields.Datetime(
-        string='Next Order Schedule Date', store=True,
-        compute='_compute_next_schedule')
 
     @api.multi
     @api.depends('fsm_order_ids')
@@ -71,26 +72,6 @@ class FSMRecurringOrder(models.Model):
         for recurring in self:
             recurring.fsm_order_count = count_data.get(recurring.id, 0)
 
-    @api.multi
-    @api.depends('state', 'fsm_order_ids', 'fsm_frequency_id')
-    def _compute_next_schedule(self):
-        for rec in self:
-            if rec.state != 'progress':
-                rec.next_schedule_date = False
-            else:
-                next_date = datetime.now()
-                interval = rec.fsm_frequency_id.interval
-                last_order = self.env['fsm.order'].search([
-                    ('fsm_recurring_id', '=', rec.id),
-                    ('stage_id', '!=', self.env.ref(
-                        'fieldservice.fsm_stage_cancelled').id)
-                ], offset=0, limit=1, order='scheduled_date_start desc')
-                if last_order:
-                    last_date = fields.Datetime.from_string(
-                        last_order.scheduled_date_start)
-                    next_date = last_date + relativedelta(days=+interval)
-                rec.next_schedule_date = next_date
-
     @api.onchange('fsm_recurring_template_id')
     def onchange_recurring_template_id(self):
         if not self.fsm_recurring_template_id:
@@ -102,7 +83,8 @@ class FSMRecurringOrder(models.Model):
         if not template:
             template = self.fsm_recurring_template_id
         vals = {
-            'fsm_frequency_id': template.fsm_frequency_id,
+            'fsm_frequency_set_id': template.fsm_frequency_set_id,
+            'max_orders': template.max_orders,
             'description': template.description,
             'fsm_order_template_id': template.fsm_order_template_id,
             'company_id': template.company_id,
@@ -121,7 +103,8 @@ class FSMRecurringOrder(models.Model):
         for rec in self:
             if not rec.start_date:
                 rec.start_date = datetime.now()
-            rec._create_next_order()
+            start_date = fields.Datetime.from_string(rec.start_date)
+            rec._create_order(date=start_date)
             rec.write({'state': 'progress'})
 
     @api.multi
@@ -136,63 +119,108 @@ class FSMRecurringOrder(models.Model):
             order.action_cancel()
         return self.write({'state': 'cancel'})
 
-    def _prepare_order_values(self):
-        schedule_date = self.next_schedule_date or self.start_date
-        days_early = self.fsm_frequency_id.buffer_early
-        days_late = self.fsm_frequency_id.buffer_late
-        earliest_date = fields.Datetime.from_string(schedule_date) + \
-            relativedelta(days=-days_early)
-        latest_date = fields.Datetime.from_string(schedule_date) + \
-            relativedelta(days=+days_late)
+    def _get_rruleset(self):
+        self.ensure_one()
+        ruleset = rruleset()
+        if self.state != 'progress':
+            return ruleset
+
+        # set next_date which is used as the rrule 'dtstart' parameter
+        next_date = datetime.now()
+        last_order = self.env['fsm.order'].search([
+            ('fsm_recurring_id', '=', self.id),
+            ('stage_id', '!=', self.env.ref(
+                'fieldservice.fsm_stage_cancelled').id)
+        ], offset=0, limit=1, order='scheduled_date_start desc')
+        if last_order:
+            next_date = fields.Datetime.from_string(
+                last_order.scheduled_date_start)
+
+        # set thru_date to use as rrule 'until' parameter
+        days_ahead = self.fsm_frequency_set_id.schedule_days
+        request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
+        request_thru_str = request_thru_date.strftime(
+            DEFAULT_SERVER_DATETIME_FORMAT)
+        if self.end_date and (self.end_date < request_thru_str):
+            thru_date = fields.Datetime.from_string(self.end_date)
+        else:
+            thru_date = request_thru_date
+
+        ruleset = self.fsm_frequency_set_id._get_rruleset(dtstart=next_date,
+                                                          until=thru_date)
+        return ruleset
+
+    def _prepare_order_values(self, date=None):
+        self.ensure_one()
+        schedule_date = date if date else datetime.now()
+        # Need to change the way request_late is computed on order first
+        # days_early = self.fsm_frequency_id_set.buffer_early
+        # days_late = self.fsm_frequency_id.buffer_late
+        # earliest_date = schedule_date + relativedelta(days=-days_early)
+        # latest_date = schedule_date + relativedelta(days=+days_late)
         return {
             'fsm_recurring_id': self.id,
             'customer_id': self.customer_id.id,
             'location_id': self.location_id.id,
             'scheduled_date_start': schedule_date,
-            'request_early': str(earliest_date),
-            'request_late': str(latest_date),
+            # 'request_early': str(earliest_date),
+            # 'request_late': str(latest_date),
             'description': self.description,
             'template_id': self.fsm_order_template_id.id,
             'company_id': self.company_id.id,
         }
 
-    def _create_next_order(self):
+    def _create_order(self, date):
         self.ensure_one()
-        vals = self._prepare_order_values()
+        vals = self._prepare_order_values(date)
         return self.env['fsm.order'].create(vals)
 
     @api.model
-    def _cron_generate_orders(self, days_ahead=30):
+    def _cron_generate_orders(self):
         """
-        Executed by Cron task to create all of the orders
-            able to be requested within the next number of days ahead.
-        @param {integer} days_ahead: an integer value used to set how many
-           days in advance to create field service orders
-        @return {recordset} orders: all the objects created within given
-            days ahead
+        Executed by Cron task to create field service orders from any
+            recurring orders which are in progress, or to renew,
+            and up to the max orders allowed by the recurring order
+        @return {recordset} orders: all the order objects created
         """
         orders = self.env['fsm.order']
-        request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
-        request_thru_str = request_thru_date.strftime(
-            DEFAULT_SERVER_DATETIME_FORMAT)
-        for recurring in self.env['fsm.recurring'].search([
-            ('state', 'in', ('progress', 'renew')),
-            ('next_schedule_date', '<=', request_thru_str)
+        for rec in self.env['fsm.recurring'].search([
+            ('state', 'in', ('progress', 'renew'))
         ]):
-            if recurring.end_date and (recurring.end_date < request_thru_str):
-                last_date = fields.Datetime.from_string(recurring.end_date)
-            else:
-                last_date = request_thru_date
-            next_request = fields.Datetime.from_string(
-                recurring.next_schedule_date)
-            while next_request <= last_date:
-                orders += recurring._create_next_order()
-                next_request = fields.Datetime.from_string(
-                    recurring.next_schedule_date)
+            schedule_dates = rec._get_rruleset()
+            order_dates = rec.fsm_order_ids.mapped(
+                lambda r: datetime.strptime(r.scheduled_date_start,
+                                            DEFAULT_SERVER_DATETIME_FORMAT
+                                            ).date())
+            max_orders = rec.max_orders if rec.max_orders > 0 else False
+            order_count = rec.fsm_order_count
+            for date in schedule_dates:
+                if date.date() in order_dates:
+                    continue
+                if max_orders >= order_count or not max_orders:
+                    orders += rec._create_order(date=date)
+                    order_count += 1
         return orders
 
-    # @api.model
-    # def _cron_manage_expiration(self):
-    #     """
-    #     Executed by Cron task
-    #     """
+    @api.model
+    def _cron_manage_expiration(self):
+        """
+        Executed by Cron task to put all recurring orders into 'pending' stage
+            if the max number of orders has been generated or if the end date
+            is within the next 30 days
+        """
+        to_renew = self.env['fsm.recurring']
+        expire_date = fields.Date.to_string(
+            datetime.today() + relativedelta(days=+30))
+        open_rec = self.env['fsm.recurring'].search([
+            ('state', '=', 'progress')])
+        to_renew += open_rec.filtered(
+            lambda r: r.max_orders > 0 and r.fsm_order_count >= r.max_orders)
+        to_renew += open_rec.filtered(
+            lambda r: r.end_date and r.end_date <= expire_date)
+        to_renew.write({'state': 'pending'})
+
+    @api.model
+    def _cron_scheduled_task(self):
+        self._cron_generate_orders()
+        self._cron_manage_expiration()

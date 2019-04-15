@@ -8,7 +8,7 @@
     'category': 'Field Service',
     'author':
         'Brian McMaster, '
-        'Open Source Integrators, ' 
+        'Open Source Integrators, '
         'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
@@ -20,6 +20,7 @@
         'security/ir.model.access.csv',
         'security/recurring_security.xml',
         'views/fsm_frequency.xml',
+        'views/fsm_frequency_set.xml',
         'views/fsm_recurring_template.xml',
         'views/fsm_recurring.xml',
         'data/recurring_cron.xml',

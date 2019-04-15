@@ -3,6 +3,7 @@
 
 from . import (
     fsm_order,
+    fsm_frequency_set,
     fsm_frequency,
     fsm_recurring_template,
     fsm_recurring,

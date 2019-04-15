@@ -9,8 +9,8 @@
             <tree string="Frequency">
                 <field name="name"/>
                 <field name="interval"/>
-                <field name="buffer_early"/>
-                <field name="buffer_late"/>
+                <field name="interval_type"/>
+                <field name="is_exclusive"/>
             </tree>
         </field>
     </record>
@@ -33,12 +33,71 @@
                     </div>
                     <group>
                         <group>
-                            <field name="interval" required="1"/>
-                            <field name="buffer_early"/>
-                            <field name="buffer_late"/>
+                            <label for="interval"/>
+                            <div class="o_row">
+                                <field name="interval"/>
+                                <field name="interval_type"/>
+                            </div>
                         </group>
                         <group>
+                            <field name="is_exclusive"/>
                         </group>
+                    </group>
+                    <group>
+                        <div>
+                            <group>
+                                <field name="use_byweekday"/>
+                            </group>
+                            <div attrs="{'invisible': [('use_byweekday', '=', False)]}" name="weekdays">
+                                <group>
+                                    <field name="mo"/>
+                                    <field name="tu"/>
+                                    <field name="we"/>
+                                    <field name="th"/>
+                                    <field name="fr"/>
+                                    <field name="sa"/>
+                                    <field name="su"/>
+                                </group>
+                            </div>
+                            <group>
+                                <field name="use_bymonthday"/>
+                            </group>
+                            <div attrs="{'invisible': [('use_bymonthday', '=', False)]}" name="monthday">
+                                <group>
+                                    <field name="month_day"/>
+                                </group>
+                            </div>
+                            <group>
+                                <field name="use_setpos"/>
+                            </group>
+                            <div attrs="{'invisible': [('use_setpos', '=', False)]}" name="setpos">
+                                <group>
+                                    <field name="set_pos"/>
+                                </group>
+                            </div>
+                        </div>
+                        <div>
+                            <group>
+                                <field name="use_bymonth"/>
+                            </group>
+                            <div attrs="{'invisible': [('use_bymonth', '=', False)]}" name="months">
+                                <group>
+                                    <field name="jan"/>
+                                    <field name="feb"/>
+                                    <field name="mar"/>
+                                    <field name="apr"/>
+                                    <field name="may"/>
+                                    <field name="jun"/>
+                                    <field name="jul"/>
+                                    <field name="aug"/>
+                                    <field name="sep"/>
+                                    <field name="oct"/>
+                                    <field name="nov"/>
+                                    <field name="dec"/>
+                                </group>
+                            </div>
+                        </div>
+                        
                     </group>
                 </sheet>
             </form>
