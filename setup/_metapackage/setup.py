@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-fieldservice',
         'odoo12-addon-fieldservice_agreement',
+        'odoo12-addon-fieldservice_delivery',
         'odoo12-addon-fieldservice_distribution',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_skill',
