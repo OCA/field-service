@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_location_route_view_fsm" model="ir.ui.view">
+        <field name="name">stock.location.route.form</field>
+        <field name="model">stock.location.route</field>
+        <field name="inherit_id" ref="stock.stock_location_route_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_ids']" position="after">
+                <field name="fsm_selectable" string="FSM Order Lines"/>
+                <field name="fsm_return_selectable"
+                       string="FSM Order Return Lines"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_type_kanban_helpdesk" model="ir.ui.view">
+        <field name="name">stock.picking.type.kanban.helpdesk</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+        <field name="arch" type="xml">
+            <field name='count_picking_backorders' position='after'>
+                <field name='count_fsm_requests'/>
+            </field>
+            <xpath expr="//div[hasclass('col-6','o_kanban_primary_right')]/div[4]"
+                   position='after'>
+                <div t-if="record.count_fsm_requests.raw_value > 0"
+                     class="row">
+                    <div class="col-9">
+                        <a name="get_action_fsm_requests" type="object">
+                            Field Service
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <field name="count_fsm_requests"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_fsm_product"
+              name="Products"
+              action="stock.product_template_action_product"
+              parent="fieldservice.data"
+              sequence="90"/>
+
+    <menuitem id="menu_fsm_stock_inventory"
+              name="Inventory"
+              action="stock.quantsact"
+              parent="fieldservice.reporting"
+              sequence="30"/>
+
+    <!--  Operations / FSM Orders -->
+    <menuitem id="menu_stock_fsm_order"
+              name="FSM Orders"
+              action="action_stock_fsm_order"
+              parent="stock.menu_stock_warehouse_mgmt"
+              sequence="50"/>
+
+</odoo>
