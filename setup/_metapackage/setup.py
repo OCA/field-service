@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_distribution',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_skill',
+        'odoo12-addon-fieldservice_stock',
         'odoo12-addon-fieldservice_vehicle',
     ],
     classifiers=[
