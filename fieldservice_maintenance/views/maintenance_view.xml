@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- equiment : views -->
+    <record id="hr_equipment_view_form" model="ir.ui.view">
+        <field name="name">equipment.form.fsm</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <xpath expr="//notebook/page[3]" position="after">
+                <page string="Others">
+                    <group>
+                        <group>
+                            <field name="is_fsm_equipment" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Field Service maintenance request Form View-->
+    <record id="hr_equipment_request_view_form_fsm" model="ir.ui.view">
+        <field name="name">equipment.request.form.fsm</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id"
+               ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='equipment_id']" position="after">
+                <field name="fsm_order_id"
+                       attrs="{'invisible': [('fsm_order_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
