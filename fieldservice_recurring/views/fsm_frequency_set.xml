@@ -17,12 +17,6 @@
         <field name="model">fsm.frequency.set</field>
         <field name="arch" type="xml">
             <form string="Frequency Rule Set">
-                <header>
-                    <!-- <button id="action_test" -->
-                            <!-- name="action_test" string="Submit" -->
-                            <!-- class="oe_highlight" -->
-                            <!-- type="object"/> -->
-                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
@@ -37,8 +31,8 @@
                     <group>
                         <group>
                             <field name="schedule_days"/>
-                            <!-- <field name="buffer_early"/> -->
-                            <!-- <field name="buffer_late"/> -->
+                            <field name="buffer_early"/>
+                            <field name="buffer_late"/>
                         </group>
                         <group></group>
                     </group>
@@ -58,7 +52,7 @@
     </record>
 
     <record id="action_fsm_frequency_set" model="ir.actions.act_window">
-        <field name="name">Field Service Frequency Rule Set</field>
+        <field name="name">Field Service Frequency Rule Sets</field>
         <field name="res_model">fsm.frequency.set</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

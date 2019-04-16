@@ -1,5 +1,6 @@
 # Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from dateutil.rrule import rruleset
 
 from odoo import fields, models
@@ -28,7 +29,7 @@ class FSMFrequencySet(models.Model):
         help="""The allowed number of days after the computed schedule date
            that an event can be done""")
 
-    def _get_rruleset(self, dtstart, until=None):
+    def _get_rruleset(self, dtstart=None, until=None):
         self.ensure_one()
         rset = rruleset()
         for rule in self.fsm_frequency_ids:

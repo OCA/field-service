@@ -10,8 +10,9 @@
                 <field name="name"/>
                 <field name="customer_id"/>
                 <field name="location_id"/>
-                <field name="fsm_order_template_id"/>
+                <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
                 <field name="end_date"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -46,7 +47,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="fsm_order_template_id"/>
+                            <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
                             <field name="fsm_frequency_set_id"/>
                             <field name="start_date"/>
                             <field name="end_date"/>

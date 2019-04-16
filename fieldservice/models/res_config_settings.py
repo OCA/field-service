@@ -52,8 +52,3 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_stock(self):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
-
-    @api.onchange('module_fieldservice_recurring')
-    def _onchange_module_fieldservice_recurring(self):
-        if self.module_fieldservice_recurring:
-            self.group_fsm_template = True

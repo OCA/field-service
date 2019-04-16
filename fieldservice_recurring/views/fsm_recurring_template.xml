@@ -35,7 +35,7 @@
                             <field name="max_orders"/>
                         </group>
                         <group>
-                            <field name="fsm_order_template_id"/>
+                            <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
