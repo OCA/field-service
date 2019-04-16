@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_agreement',
         'odoo12-addon-fieldservice_delivery',
         'odoo12-addon-fieldservice_distribution',
+        'odoo12-addon-fieldservice_maintenance',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_skill',
         'odoo12-addon-fieldservice_stock',
