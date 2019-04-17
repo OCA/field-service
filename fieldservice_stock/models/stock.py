@@ -24,7 +24,7 @@ class StockRequest(models.Model):
             route_ids = self.env['stock.location.route'].search(
                 [('fsm_return_selectable', '=', True)])
         return {'domain': {'route_id': [('id', 'in',
-                                         route_ids and route_ids.ids)]}}
+                                         route_ids and route_ids.ids or [])]}}
 
 
 class StockMoveLine(models.Model):
