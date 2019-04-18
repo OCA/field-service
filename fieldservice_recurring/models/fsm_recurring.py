@@ -178,10 +178,13 @@ class FSMRecurringOrder(models.Model):
             ('state', 'in', ('progress', 'pending'))
         ]):
             schedule_dates = rec._get_rruleset()
-            order_dates = rec.fsm_order_ids.mapped(
-                lambda r: datetime.strptime(r.scheduled_date_start,
-                                            DEFAULT_SERVER_DATETIME_FORMAT
-                                            ).date())
+            order_dates = []
+            for order in rec.fsm_order_ids:
+                if order.scheduled_date_start:
+                    order_dates.append(
+                        datetime.strptime(order.scheduled_date_start,
+                                          DEFAULT_SERVER_DATETIME_FORMAT
+                                          ).date())
             max_orders = rec.max_orders if rec.max_orders > 0 else False
             order_count = rec.fsm_order_count
             for date in schedule_dates:
