@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fieldservice.fsm_order_action_from_dashboard" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">kanban,timeline,tree,geoengine,form</field>
+        <field name="context">{'default_team_id': active_id}</field>
+        <field name="domain">[('team_id', '=', active_id)]</field>
+    </record>
+
+</odoo>
