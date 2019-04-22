@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Sub-Status',
     'summary': 'Sub-statuses for Field Service Orders',
-    'version': '11.0.0.0.1',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, '
               'Brian McMaster, '

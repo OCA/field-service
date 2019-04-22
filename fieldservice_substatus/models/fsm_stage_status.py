@@ -20,5 +20,6 @@ class FSMStageStatus(models.Model):
             sub_stage_ids = stage_id.sub_stage_id + stage_id.sub_stage_ids
             if sub_stage_ids:
                 args = [('id', 'in', sub_stage_ids.ids)]
-        return super()._search(args, offset, limit, order, count=count,
-                               access_rights_uid=access_rights_uid)
+        return super(FSMStageStatus, self)._search(
+            args, offset, limit, order, count=count,
+            access_rights_uid=access_rights_uid)
