@@ -24,9 +24,8 @@ class AccountInvoiceLine(models.Model):
                 vals['account_analytic_id'] = order.location_id.\
                     analytic_account_id.id
             else:
-                raise ValidationError(_("No analytic account" +
-                                      " set on the order's Location"))
-
+                raise ValidationError(_("No analytic account "
+                                        "set on the order's Location."))
         return super(AccountInvoiceLine, self).create(vals)
 
     @api.onchange('product_id', 'quantity')
@@ -37,7 +36,7 @@ class AccountInvoiceLine(models.Model):
                     line.fsm_order_id.person_id.partner_id or False
                 if not partner:
                     raise ValidationError(
-                        _("Please set the field service worker"))
+                        _("Please set the field service worker."))
                 fpos = partner.property_account_position_id
                 tmpl = line.product_id.product_tmpl_id
                 if line.product_id:
@@ -49,7 +48,7 @@ class AccountInvoiceLine(models.Model):
                         order='min_qty DESC')
                     line.price_unit = \
                         supinfo and supinfo[0].price or tmpl.standard_price
-                    line.account_id = accounts['expense']
+                    line.account_id = accounts.get('expense', False)
                     line.invoice_line_tax_ids = fpos.\
                         map_tax(tmpl.supplier_taxes_id)
                     line.name = line.product_id.name

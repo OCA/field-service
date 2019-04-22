@@ -1,9 +1,8 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields
+from odoo import api, fields, models
 
-from odoo.addons.base_geoengine import geo_model
 
 ACCOUNT_STAGES = [('draft', 'Draft'),
                   ('review', 'Needs Review'),
@@ -12,7 +11,7 @@ ACCOUNT_STAGES = [('draft', 'Draft'),
                   ('no', 'Nothing Invoiced')]
 
 
-class FSMOrder(geo_model.GeoModel):
+class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
     contractor_cost_ids = fields.One2many('account.invoice.line',
@@ -29,8 +28,7 @@ class FSMOrder(geo_model.GeoModel):
     employee_time_total = fields.Float(compute='_compute_employee_hours',
                                        string='Total Employee Hours')
     account_stage = fields.Selection(ACCOUNT_STAGES, string='State',
-                                     default='draft', required=True,
-                                     readonly=True, store=True)
+                                     default='draft')
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -71,7 +69,7 @@ class FSMOrder(geo_model.GeoModel):
 
     def create_bills(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'purchase'),
-                                                   ('active', '=', True), ],
+                                                   ('active', '=', True)],
                                                   limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
@@ -81,7 +79,6 @@ class FSMOrder(geo_model.GeoModel):
             'fiscal_position_id': fpos.id or False,
             'fsm_order_id': self.id
         }
-
         bill = self.env['account.invoice'].sudo().create(vals)
         for line in self.contractor_cost_ids:
             line.invoice_id = bill
@@ -96,7 +93,7 @@ class FSMOrder(geo_model.GeoModel):
 
     def account_create_invoice(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'sale'),
-                                                  ('active', '=', True), ],
+                                                   ('active', '=', True)],
                                                   limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
@@ -106,10 +103,8 @@ class FSMOrder(geo_model.GeoModel):
             'fiscal_position_id': fpos.id or False,
             'fsm_order_id': self.id
         }
-
         invoice = self.env['account.invoice'].sudo().create(vals)
         price_list = invoice.partner_id.property_product_pricelist
-
         for line in self.employee_timesheet_ids:
             price = price_list.get_product_price(product=line.product_id,
                                                  quantity=line.unit_amount,
@@ -119,7 +114,6 @@ class FSMOrder(geo_model.GeoModel):
             template = line.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts['income']
-
             vals = {
                 'product_id': line.product_id.id,
                 'account_analytic_id': line.account_id.id,
@@ -127,7 +121,7 @@ class FSMOrder(geo_model.GeoModel):
                 'name': line.name,
                 'price_unit': price,
                 'account_id': account.id,
-                'invoice_id': invoice.id,
+                'invoice_id': invoice.id
             }
             time_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
@@ -141,7 +135,6 @@ class FSMOrder(geo_model.GeoModel):
             template = cost.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts['income']
-
             vals = {
                 'product_id': cost.product_id.id,
                 'account_analytic_id': cost.account_analytic_id.id,
@@ -149,7 +142,7 @@ class FSMOrder(geo_model.GeoModel):
                 'name': cost.name,
                 'price_unit': price,
                 'account_id': account.id,
-                'invoice_id': invoice.id,
+                'invoice_id': invoice.id
             }
             con_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
