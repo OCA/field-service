@@ -18,7 +18,6 @@ class AccountAnalyticLine(models.Model):
             if order.location_id.analytic_account_id:
                 vals['account_id'] = order.location_id.analytic_account_id.id
             else:
-                raise ValidationError(_("No analytic account set " +
-                                      "on the order's Location"))
-
+                raise ValidationError(_("No analytic account set "
+                                        "on the order's Location."))
         return super(AccountAnalyticLine, self).create(vals)
