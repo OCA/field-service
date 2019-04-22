@@ -15,11 +15,7 @@ class ResPartner(models.Model):
                  'fsm-location' for FSM Location
         :rtype: str
         """
-        super(ResPartner, self)
         self.ensure_one()
         if self.fsm_location:
             return 'fsm-location'
-        elif self.is_company:
-            return 'c'
-        else:
-            return 'p'
+        return super(ResPartner, self).get_partner_type()
