@@ -13,6 +13,7 @@
         'fieldservice',
     ],
     'data': [
+        'security/res_groups.xml',
         'views/fsm_order.xml',
         'views/fsm_team.xml'
     ],
