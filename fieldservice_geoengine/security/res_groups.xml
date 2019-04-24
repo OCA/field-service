@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fieldservice.group_fsm_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="fieldservice.fsm"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')),(4, ref('base_geoengine.group_geoengine_user'))]"/>
+    </record>
+
+    <record id="fieldservice.group_fsm_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="fieldservice.fsm"/>
+        <field name="implied_ids" eval="[(4, ref('fieldservice.group_fsm_dispatcher')),(4, ref('base_geoengine.group_geoengine_admin'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
