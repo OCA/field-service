@@ -22,4 +22,4 @@ class FSMOrder(geo_model.GeoModel):
                 vals.get('stage_id')).sub_stage_id
             if sub_stage_id:
                 vals.update({'sub_stage_id': sub_stage_id.id})
-        return super().write(vals)
+        return super(FSMOrder, self).write(vals)

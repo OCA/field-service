@@ -171,8 +171,8 @@ class FSMOrder(geo_model.GeoModel):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
                 or _('New')
-        if vals['request_early'] is not False and\
-                vals['scheduled_date_start'] is False:
+        if vals.get('request_early', False) and not vals.get(
+                'scheduled_date_start', False):
             req_date = fields.Datetime.from_string(vals['request_early'])
             # Round scheduled date start
             req_date = req_date.replace(minute=0, second=0)
