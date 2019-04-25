@@ -68,7 +68,7 @@
                     <group>
                         <group id="main-left">
                             <field name="id" invisible="1"/>
-                            <field name="fsm_parent_id"/>
+                            <field name="fsm_parent_id" domain="[('id', '!=', id)]"/>
                             <field name="owner_id"/>
                             <field name="customer_id"/>
                             <field name="contact_id"/>
