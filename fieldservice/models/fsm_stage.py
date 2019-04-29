@@ -40,7 +40,8 @@ class FSMStage(models.Model):
     stage_type = fields.Selection([('order', 'Order'),
                                    ('equipment', 'Equipment'),
                                    ('location', 'Location'),
-                                   ('worker', 'Worker')], 'Type')
+                                   ('worker', 'Worker')], 'Type',
+                                  required=True)
 
     @api.multi
     def get_color_information(self):
