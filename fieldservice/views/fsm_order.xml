@@ -25,7 +25,7 @@
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_requested)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
                     <button id="action_schedule"
                             name="action_schedule" string="Schedule"
                             class="oe_highlight"
