@@ -76,8 +76,12 @@ class FSMLocation(models.Model):
     def _compute_complete_name(self):
         for loc in self:
             if loc.fsm_parent_id:
-                loc.complete_name = '%s / %s' % (
-                    loc.fsm_parent_id.complete_name, loc.name)
+                if loc.ref:
+                    loc.complete_name = '%s / [%s] %s' % (
+                        loc.fsm_parent_id.complete_name, loc.ref, loc.name)
+                else:
+                    loc.complete_name = '%s / %s' % (
+                        loc.fsm_parent_id.complete_name, loc.name)
             else:
                 loc.complete_name = loc.name
 
