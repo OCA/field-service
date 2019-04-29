@@ -1,7 +1,8 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 # from odoo.addons.base_geoengine import geo_model
 
 AVAILABLE_PRIORITIES = [
@@ -54,3 +55,14 @@ class FSMStage(models.Model):
                 'value': stage.name,
             })
         return color_information_dict
+
+    @api.model
+    def create(self, vals):
+        stages = self.env['fsm.stage'].search([])
+        for stage in stages:
+            if stage.stage_type == vals['stage_type'] and \
+               stage.sequence == vals['sequence']:
+                raise ValidationError(_("Cannot create FSM Stage because "
+                                        "it has the same Type and Sequence "
+                                        "of an existing FSM Stage."))
+        return super(FSMStage, self).create(vals)
