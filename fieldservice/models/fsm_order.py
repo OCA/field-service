@@ -283,7 +283,7 @@ class FSMOrder(models.Model):
             self.scheduled_duration = self.template_id.hours
             if self.todo:
                 self.todo = (self.todo or '') + \
-                            ('<p>' + self.template_id.instructions or '' + \
+                            ('<p>' + self.template_id.instructions or '' +
                              '</p>')
 
 
