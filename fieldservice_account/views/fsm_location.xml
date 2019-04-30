@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view_accounting" model="ir.ui.view">
+        <field name="name">fsm.location.form.accounting</field>
+        <field name="model">fsm.location</field>
+        <field name='inherit_id' ref='fieldservice.fsm_location_form_view'/>
+        <field name="arch" type="xml">
+            <page id="others-page" position='before'>
+                <page name='accounting' string='Accounting'>
+                    <group>
+                        <group>
+                            <field name='analytic_account_id'/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+    
+</odoo>
