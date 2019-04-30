@@ -17,7 +17,7 @@ Field Service - Sub-Status
     :target: https://github.com/OCA/field-service/tree/12.0/fieldservice_substatus
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-11-0/field-service-11-0-fieldservice_substatus
+    :target: https://translation.odoo-community.org/projects/field-service-12-0/field-service-12-0-fieldservice_substatus
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/264/12.0
@@ -47,17 +47,17 @@ Installation
 To install Field Service and have the mapping features, you need to install GeoEngine.
 
 Please refer to the installation instructions available at:
-https://github.com/OCA/geospatial/tree/12.0/base_geoengine
+https://github.com/OCA/geospatial/tree/11.0/base_geoengine
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-* Go to Field Service > Configuration > Orders > Sub-Status
-* Create your list of Sub-Status
+* Go to Field Service > Configuration > Orders > Sub-Statuses
+* Create your list of sub-statuses
 * Go to Field Service > Configuration > Orders > Stages
-* Select a stage and set the default Sub-Status as well as the potential Sub-Status
+* Select a stage and set the default sub-statuses as well as the potential sub-statuses
 
 Usage
 =====
@@ -86,7 +86,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_substatus%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_substatus%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
