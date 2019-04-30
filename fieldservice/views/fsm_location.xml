@@ -71,7 +71,7 @@
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]"/>
                             <field name="owner_id"/>
                             <field name="customer_id"/>
-                            <field name="contact_id"/>
+                            <field name="contact_id" context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"/>
                             <label for="street" string="Address"/>
                             <div class="o_address_format">
                                 <field name="street" placeholder="Street..." class="o_address_street"/>
