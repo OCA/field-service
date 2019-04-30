@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_distribution',
         'odoo12-addon-fieldservice_geoengine',
         'odoo12-addon-fieldservice_maintenance',
+        'odoo12-addon-fieldservice_partner_multi_relation',
         'odoo12-addon-fieldservice_repair',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_skill',
