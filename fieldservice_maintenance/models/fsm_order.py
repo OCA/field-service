@@ -18,31 +18,23 @@ class FSMOrder(models.Model):
         # create maintenance request
         order = super(FSMOrder, self).create(vals)
         if order.type == 'maintenance':
-            employee_ids = self.env['hr.employee'].search(
-                [('user_id', '=', self.env.uid)])
-            if employee_ids:
-                employee_id = employee_ids[0]
-            if order.equipment_id and not order.equipment_id.is_fsm_equipment:
+            employee_rec = self.env['hr.employee'].search(
+                [('user_id', '=', self.env.uid)], limit=1)
+            if order.equipment_id and not order.request_id:
                 equipment = order.equipment_id
-                t = equipment.maintenance_equipment_id and\
-                    equipment.maintenance_equipment_id.maintenance_team_id \
-                    and\
-                    equipment.maintenance_equipment_id.maintenance_team_id.id\
-                    or False,
-                request_id = self.env['maintenance.request'].create({
-                    'name': order.name or '',
-                    'employee_id': employee_id.id,
-                    'equipment_id':
-                        equipment.maintenance_equipment_id
-                        and equipment.maintenance_equipment_id.id or False,
-                    'category_id':
-                        equipment.category_id and
-                        equipment.category_id.id or False,
-                    'request_date': fields.Date.context_today(self),
-                    'maintenance_type': 'corrective',
-                    'maintenance_team_id': t,
-                    'schedule_date': order.request_early,
-                    'description': order.description
-                })
+                team_id = equipment.maintenance_equipment_id and\
+                    equipment.maintenance_equipment_id.maintenance_team_id.id
+                request_id = self.env['maintenance.request'].with_context(
+                    fsm_order=True).create({
+                        'name': order.name or '',
+                        'employee_id': employee_rec.id,
+                        'equipment_id': equipment.maintenance_equipment_id.id,
+                        'category_id': equipment.category_id.id,
+                        'request_date': fields.Date.context_today(self),
+                        'maintenance_type': 'corrective',
+                        'maintenance_team_id': team_id,
+                        'schedule_date': order.request_early,
+                        'description': order.description
+                    })
                 order.request_id = request_id
         return order
