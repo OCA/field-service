@@ -27,12 +27,42 @@
                         <group>
                             <field name="fsm_location" readonly="1"/>
                             <field name="fsm_person" readonly="1"/>
-                            <field name="service_location_id"/>
+                            <field name="service_location_id" context="{'default_service_location_id': active_id}"/>
                         </group>
                         <group></group>
                     </group>
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <record id="partner_id_short_context" model="ir.ui.view">
+        <field name="name">partner.id.short.context</field>
+        <field name="model">res.partner</field>
+        <field name="sequence">200</field>
+        <field name="inherit_id" ref="base.view_partner_short_form"/>
+        <field name="arch" type="xml">
+            <!--field name="service_location_id" position="attributes">
+                <attribute>{}</attribute>
+            </field-->
+            <field name="street" position="attributes">
+                <attribute name="context">{'default_street': street}</attribute>
+            </field>
+            <field name="street2" position="attributes">
+                <attribute name="context">{'default_street2': street2}</attribute>
+            </field>
+            <field name="city" position="attributes">
+                <attribute name="context">{'default_city': city}</attribute>
+            </field>
+            <field name="state_id" position="attributes">
+                <attribute name="state_id">{'default_state_id': state_id}</attribute>
+            </field>
+            <field name="zip" position="attributes">
+                <attribute name="context">{'default_zip': zip}</attribute>
+            </field>
+            <field name="country_id" position="attributes">
+                <attribute name="context">{'default_country_id': country_id}</attribute>
+            </field>
         </field>
     </record>
 
