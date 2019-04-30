@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- owns  -->
+    <record id="rel_type_owns_loc" model="res.partner.relation.type">
+        <field name="name">owns</field>
+        <field name="name_inverse">is owned by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_owns_per" model="res.partner.relation.type">
+        <field name="name">owns</field>
+        <field name="name_inverse">is owned by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_owns_org" model="res.partner.relation.type">
+        <field name="name">owns</field>
+        <field name="name_inverse">is owned by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- manages  -->
+    <record id="rel_type_manages_loc" model="res.partner.relation.type">
+        <field name="name">manges</field>
+        <field name="name_inverse">is managed by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_manages_org" model="res.partner.relation.type">
+        <field name="name">manges</field>
+        <field name="name_inverse">is managed by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_manages_per" model="res.partner.relation.type">
+        <field name="name">manges</field>
+        <field name="name_inverse">is managed by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- pays the invoices for  -->
+    <record id="rel_type_pays_invoices_loc" model="res.partner.relation.type">
+        <field name="name">pays the invoices for</field>
+        <field name="name_inverse">gets the invoices paid by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_pays_invoices_org" model="res.partner.relation.type">
+        <field name="name">pays the invoices for</field>
+        <field name="name_inverse">gets the invoices paid by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_pays_invoices_per" model="res.partner.relation.type">
+        <field name="name">pays the invoices for</field>
+        <field name="name_inverse">gets the invoices paid by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is the primary contact of  -->
+    <record id="rel_type_primary_contact_loc" model="res.partner.relation.type">
+        <field name="name">is the primary contact of</field>
+        <field name="name_inverse">whose primary contact</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_primary_contact_org" model="res.partner.relation.type">
+        <field name="name">is the primary contact of</field>
+        <field name="name_inverse">whose primary contact</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_primary_contact_per" model="res.partner.relation.type">
+        <field name="name">is the primary contact of</field>
+        <field name="name_inverse">whose primary contact</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is the secondary contact of  -->
+    <record id="rel_type_secondary_contact_loc" model="res.partner.relation.type">
+        <field name="name">is the secondary contact of</field>
+        <field name="name_inverse">whose secondary contact</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_secondary_contact_org" model="res.partner.relation.type">
+        <field name="name">is the secondary contact of</field>
+        <field name="name_inverse">whose secondary contact</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_secondary_contact_per" model="res.partner.relation.type">
+        <field name="name">is the secondary contact of</field>
+        <field name="name_inverse">whose secondary contact</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is a tenant of  -->
+    <record id="rel_type_tenant_loc" model="res.partner.relation.type">
+        <field name="name">is a tenant of</field>
+        <field name="name_inverse">is occupied by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_tenant_org" model="res.partner.relation.type">
+        <field name="name">is a tenant of</field>
+        <field name="name_inverse">is occupied by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_tenant_per" model="res.partner.relation.type">
+        <field name="name">is a tenant of</field>
+        <field name="name_inverse">is occupied by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is an employee at  -->
+    <record id="rel_type_employee_loc" model="res.partner.relation.type">
+        <field name="name">is an employee at</field>
+        <field name="name_inverse">employs</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_employee_org" model="res.partner.relation.type">
+        <field name="name">is an employee at</field>
+        <field name="name_inverse">employs</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_employee_per" model="res.partner.relation.type">
+        <field name="name">is an employee at</field>
+        <field name="name_inverse">employs</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+</odoo>
