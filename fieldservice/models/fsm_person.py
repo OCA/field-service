@@ -21,6 +21,7 @@ class FSMPerson(models.Model):
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
     hide = fields.Boolean(default=False)
+    mobile = fields.Char(string="Mobile")
 
     @api.model
     def create(self, vals):
