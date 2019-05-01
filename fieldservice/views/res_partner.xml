@@ -42,9 +42,6 @@
         <field name="sequence">200</field>
         <field name="inherit_id" ref="base.view_partner_short_form"/>
         <field name="arch" type="xml">
-            <!--field name="service_location_id" position="attributes">
-                <attribute>{}</attribute>
-            </field-->
             <field name="street" position="attributes">
                 <attribute name="context">{'default_street': street}</attribute>
             </field>
