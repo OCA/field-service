@@ -92,9 +92,6 @@
                     <group string="Description">
                         <field name="description" nolabel="1"/>
                     </group>
-                    <group string="Instructions">
-                        <field name="todo" nolabel="1" widget="html"/>
-                    </group>
                     <group string="Resolution">
                         <field name="resolution" nolabel="1"/>
                     </group>
@@ -141,6 +138,11 @@
                                         <field name="email"/>
                                     </tree>
                                 </field>
+                            </group>
+                        </page>
+                        <page string="Instructions">
+                            <group string="Instructions">
+                                <field name="todo" nolabel="1" widget="html"/>
                             </group>
                         </page>
                         <page string="Execution">
