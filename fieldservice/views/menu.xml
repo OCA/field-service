@@ -81,6 +81,13 @@
               parent="data"
               sequence="80"
               groups="group_fsm_equipment"/>
+    
+    <menuitem id="menu_fsm_template"
+              name="Templates"
+              action="action_fsm_template"
+              parent="data"
+              sequence="90"
+              groups="group_fsm_template"/>
 
     <!-- Reporting Menu -->
     <menuitem id="menu_fsm_report_order"
@@ -108,11 +115,6 @@
               sequence="10"
               parent="config"
               action="action_fsm_config"/>
-    <!-- Config / Orders -->
-    <menuitem id="menu_fsm_config_order"
-              name="Orders"
-              parent="config"
-              sequence="20"/>
 
     <menuitem id="menu_fsm_stage"
               name="Stages"
@@ -121,19 +123,18 @@
               sequence="20"
               groups="base.group_no_one"/>
 
+    <!-- Config / Orders -->
+    <menuitem id="menu_fsm_config_order"
+              name="Orders"
+              parent="config"
+              sequence="20"/>
+
     <menuitem id="menu_fsm_tag"
               name="Tags"
               action="action_fsm_tag"
               parent="menu_fsm_config_order"
               sequence="30"
               groups="fieldservice.group_fsm_tag"/>
-
-    <menuitem id="menu_fsm_template"
-              name="Templates"
-              action="action_fsm_template"
-              parent="menu_fsm_config_order"
-              sequence="40"
-              groups="group_fsm_template"/>
 
     <!-- Config / Locations -->
     <menuitem id="menu_fsm_config_location"
