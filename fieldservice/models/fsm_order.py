@@ -124,6 +124,7 @@ class FSMOrder(models.Model):
                             help='Actual duration in hours')
 
     # Location
+    territory_id = fields.Many2one('fsm.territory', string="Territory")
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one('fsm.district', string='District')
     region_id = fields.Many2one('fsm.region', string='Region')
@@ -267,6 +268,7 @@ class FSMOrder(models.Model):
     @api.onchange('location_id')
     def onchange_location_id(self):
         if self.location_id:
+            self.territory_id = self.location_id.territory_id or False
             self.branch_id = self.location_id.branch_id or False
             self.district_id = self.location_id.district_id or False
             self.region_id = self.location_id.region_id or False
