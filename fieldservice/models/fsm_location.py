@@ -47,6 +47,9 @@ class FSMLocation(models.Model):
     branch_manager_id = fields.Many2one(string='Branch Manager',
                                         related='branch_id.partner_id')
 
+    calendar_id = fields.Many2one('resource.calendar',
+                                  string='Office Hours')
+
     timezone = fields.Selection(_tz_get, string='Timezone')
 
     fsm_parent_id = fields.Many2one('fsm.location', string='Parent')
