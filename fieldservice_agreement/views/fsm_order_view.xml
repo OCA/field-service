@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <field name="customer_id" position="after">
                 <field name="agreement_id"
-                       domain="[('partner_id', '=', customer_id)]"/>
+                       domain="['|', ('partner_id', '=', customer_id), ('fsm_location_id', '=', location_id)]"/>
                 <field name="serviceprofile_id"
                        domain="[('agreement_id', '=', agreement_id)]"/>
             </field>
