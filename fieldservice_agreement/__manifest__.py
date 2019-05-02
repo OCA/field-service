@@ -18,6 +18,7 @@
         'views/fsm_order_view.xml',
         'views/fsm_equipment_view.xml',
         'views/agreement_view.xml',
+        'views/fsm_person.xml'
     ],
     'installable': True,
     'development_status': 'Beta',
@@ -25,5 +26,6 @@
         'max3903',
         'bodedra',
         'smangukiya',
+        'osi-scampbell'
     ],
 }
