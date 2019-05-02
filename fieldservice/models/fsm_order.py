@@ -122,6 +122,7 @@ class FSMOrder(models.Model):
     duration = fields.Float(string='Actual duration',
                             compute=_compute_duration,
                             help='Actual duration in hours')
+    current_date = fields.Datetime(default=fields.datetime.now(), store=True)
 
     # Location
     territory_id = fields.Many2one('fsm.territory', string="Territory")
