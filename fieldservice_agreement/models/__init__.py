@@ -4,4 +4,5 @@ from . import (
     agreement,
     fsm_equipment,
     fsm_order,
+    fsm_person
 )
