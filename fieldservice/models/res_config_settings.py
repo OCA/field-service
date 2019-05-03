@@ -16,6 +16,9 @@ class ResConfigSettings(models.TransientModel):
     group_fsm_tag = fields.Boolean(
         string='Manage Tags',
         implied_group='fieldservice.group_fsm_tag')
+    group_fsm_substatus = fields.Boolean(
+        string='Manage Substatus',
+        implied_group='fieldservice.group_fsm_substatus')
     group_fsm_equipment = fields.Boolean(
         string='Manage Equipment',
         implied_group='fieldservice.group_fsm_equipment')
