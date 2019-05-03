@@ -35,12 +35,14 @@
         <field name="arch" type="xml">
             <form string="Field Service Worker">
                 <header>
-                    <field name="hide" invisible="1"/>
+                    <button id="previous_stage"
+                            name="previous_stage" string="Previous Stage"
+                            class="oe_highlight"
+                            type="object" groups="fieldservice.group_fsm_dispatcher"/>
                     <button id="advance_stage"
                             name="advance_stage" string="Advance Stage"
                             class="oe_highlight"
-                            type="object" groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('hide', '=', True)]}"/>
+                            type="object" groups="fieldservice.group_fsm_dispatcher"/>
                     <field name="stage_id" widget="statusbar" domain="[('stage_type', '=', 'worker')]"/>
                 </header>
                 <sheet>
