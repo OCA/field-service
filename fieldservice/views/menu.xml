@@ -116,18 +116,24 @@
               parent="config"
               action="action_fsm_config"/>
 
+    <menuitem id="menu_fsm_schedules"
+              name="Schedules"
+              action="action_fsm_schedule"
+              parent="config"
+              sequence="20"/>
+
     <menuitem id="menu_fsm_stage"
               name="Stages"
               action="action_fsm_stage"
               parent="config"
-              sequence="20"
+              sequence="30"
               groups="base.group_no_one"/>
 
     <!-- Config / Orders -->
     <menuitem id="menu_fsm_config_order"
               name="Orders"
               parent="config"
-              sequence="20"/>
+              sequence="40"/>
 
     <menuitem id="menu_fsm_tag"
               name="Tags"
