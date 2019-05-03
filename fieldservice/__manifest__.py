@@ -36,6 +36,7 @@
         'views/fsm_person.xml',
         'views/fsm_order.xml',
         'views/fsm_route.xml',
+        'views/fsm_schedule.xml',
         'views/fsm_category.xml',
         'views/fsm_equipment.xml',
         'views/fsm_template.xml',
