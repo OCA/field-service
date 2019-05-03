@@ -7,9 +7,15 @@ from odoo import api, fields, models
 class FSMStage(models.Model):
     _inherit = 'fsm.stage'
 
+    @api.model
+    def _default_sub_stage(self):
+        ret = self.env['fsm.stage.status'].search([('name', '=', 'Default')])
+        return ret
+
     sub_stage_id = fields.Many2one('fsm.stage.status',
                                    string='Default Sub-Status',
-                                   required=True)
+                                   required=True,
+                                   default=_default_sub_stage)
     sub_stage_ids = fields.Many2many('fsm.stage.status', 'fsm_sub_stage_rel',
                                      'fsm_stage_id',
                                      'sub_stage_id',
