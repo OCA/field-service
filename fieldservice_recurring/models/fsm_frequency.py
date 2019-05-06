@@ -1,5 +1,6 @@
 # Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU
 from dateutil.rrule import YEARLY, MONTHLY, WEEKLY, DAILY
 from dateutil.rrule import rrule
@@ -36,11 +37,8 @@ class FSMFrequency(models.Model):
     interval = fields.Integer(
         string='Repeat Every', help="The number of intervals between events",
         default=1, required=True, track_visibility='onchange')
-    interval_type = fields.Selection([
-        ('yearly', 'Yearly'),
-        ('monthly', 'Monthly'),
-        ('weekly', 'Weekly'),
-        ('daily', 'Daily')], string='Interval Type',
+    interval_type = fields.Selection(
+        FREQUENCIES, string='Interval Type',
         required=True, track_visibility='onchange')
     is_exclusive = fields.Boolean(
         string='Exclusive Rule?', default=False,
