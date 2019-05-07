@@ -125,10 +125,14 @@ class FSMOrder(models.Model):
     current_date = fields.Datetime(default=fields.datetime.now(), store=True)
 
     # Location
-    territory_id = fields.Many2one('fsm.territory', string="Territory")
-    branch_id = fields.Many2one('fsm.branch', string='Branch')
-    district_id = fields.Many2one('fsm.district', string='District')
-    region_id = fields.Many2one('fsm.region', string='Region')
+    territory_id = fields.Many2one('fsm.territory', string="Territory",
+                                   related='location_id.territory_id')
+    branch_id = fields.Many2one('fsm.branch', string='Branch',
+                                related='location_id.branch_id')
+    district_id = fields.Many2one('fsm.district', string='District',
+                                  related='location_id.district_id')
+    region_id = fields.Many2one('fsm.region', string='Region',
+                                related='location_id.region_id')
 
     # Fields for Geoengine Identify
     display_name = fields.Char(related="name", string="Order")
