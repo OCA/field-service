@@ -10,9 +10,9 @@ class FSMOrder(models.Model):
     carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method",
                                  compute="_compute_carrier_id")
 
-    #Note: This function only works if the user has configured their
-    #      Delivery Methods to have 'Fedex Ground', 'Fedex Standard-
-    #      Overnight', and 'Fedex Priority-Overnight'
+    """ Note: This function only works if the user has configured their
+        Delivery Methods to have 'Fedex Ground', 'Fedex Standard-
+        Overnight', and 'Fedex Priority-Overnight'"""
     def _compute_carrier_id(self):
         if self.priority == '0' or self.priority == '1':
             fedex = self.env['delivery.carrier'].\
