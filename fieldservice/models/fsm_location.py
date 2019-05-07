@@ -111,7 +111,8 @@ class FSMLocation(models.Model):
     def next_stage(self):
         seq = self.stage_id.sequence
         next_stage = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'location'), ('sequence', '>', seq)], order="sequence asc")
+            [('stage_type', '=', 'location'), ('sequence', '>', seq)],
+            order="sequence asc")
         if next_stage:
             self.stage_id = next_stage[0]
             self._onchange_stage_id()
@@ -119,7 +120,8 @@ class FSMLocation(models.Model):
     def previous_stage(self):
         seq = self.stage_id.sequence
         prev_stage = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'location'), ('sequence', '<', seq)], order="sequence desc")
+            [('stage_type', '=', 'location'), ('sequence', '<', seq)],
+            order="sequence desc")
         if prev_stage:
             self.stage_id = prev_stage[0]
             self._onchange_stage_id()
