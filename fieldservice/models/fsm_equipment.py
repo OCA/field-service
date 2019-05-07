@@ -64,7 +64,7 @@ class FSMEquipment(models.Model):
         return self.env['fsm.stage'].search([('stage_type', '=', 'equipment'),
                                              ('sequence', '=', '1')])
 
-    def advance_stage(self):
+    def next_stage(self):
         seq = self.stage_id.sequence
         next_stage = self.env['fsm.stage'].search(
             [('stage_type', '=', 'equipment'), ('sequence', '>', seq)], order="sequence asc")
@@ -74,10 +74,10 @@ class FSMEquipment(models.Model):
 
     def previous_stage(self):
         seq = self.stage_id.sequence
-        next_stage = self.env['fsm.stage'].search(
+        prev_stage = self.env['fsm.stage'].search(
             [('stage_type', '=', 'equipment'), ('sequence', '<', seq)], order="sequence desc")
-        if next_stage:
-            self.stage_id = next_stage[0]
+        if prev_stage:
+            self.stage_id = prev_stage[0]
             self._onchange_stage_id()
 
     @api.onchange('stage_id')
