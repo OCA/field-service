@@ -111,16 +111,18 @@ class FSMLocation(models.Model):
     def advance_stage(self):
         seq = self.stage_id.sequence
         next_stage = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'location'), ('sequence', '=', seq + 1)])
-        self.stage_id = next_stage
-        self._onchange_stage_id()
-    
+            [('stage_type', '=', 'location'), ('sequence', '>', seq)], order="sequence asc")
+        if next_stage:
+            self.stage_id = next_stage[0]
+            self._onchange_stage_id()
+
     def previous_stage(self):
         seq = self.stage_id.sequence
         next_stage = self.env['fsm.stage'].search(
-            [('stage_type', '=', 'location'), ('sequence', '=', seq - 1)])
-        self.stage_id = next_stage
-        self._onchange_stage_id()
+            [('stage_type', '=', 'location'), ('sequence', '<', seq)], order="sequence desc")
+        if next_stage:
+            self.stage_id = next_stage[0]
+            self._onchange_stage_id()
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
