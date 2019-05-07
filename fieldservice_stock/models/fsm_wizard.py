@@ -8,7 +8,6 @@ from odoo.exceptions import UserError
 class FSMWizard(models.TransientModel):
     _inherit = 'fsm.wizard'
 
-
     def action_convert_location(self, partner):
         res = self.env['fsm.location'].search_count(
             [('partner_id', '=', partner.id)])
