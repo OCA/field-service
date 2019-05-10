@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="stock_location_route_view_fsm" model="ir.ui.view">
-        <field name="name">stock.location.route.form</field>
-        <field name="model">stock.location.route</field>
-        <field name="inherit_id" ref="stock.stock_location_route_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='warehouse_ids']" position="after">
-                <field name="fsm_selectable" string="FSM Order Lines"/>
-                <field name="fsm_return_selectable"
-                       string="FSM Order Return Lines"/>
-            </xpath>
-        </field>
-    </record>
-
     <record id="stock_picking_type_kanban_helpdesk" model="ir.ui.view">
         <field name="name">stock.picking.type.kanban.helpdesk</field>
         <field name="model">stock.picking.type</field>
