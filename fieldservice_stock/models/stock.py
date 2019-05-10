@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockRequest(models.Model):
@@ -12,6 +12,7 @@ class StockRequest(models.Model):
         index=True, copy=False)
     direction = fields.Selection([('outbound', 'Outbound'),
                                   ('inbound', 'Inbound')], string='Direction')
+
 
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
@@ -63,6 +64,7 @@ class StockPicking(models.Model):
     fsm_order_id = fields.Many2one(
         related="group_id.fsm_order_id", string="Field Service Order",
         store=True)
+
 
 class StockPickingType(models.Model):
     _inherit = 'stock.picking.type'
