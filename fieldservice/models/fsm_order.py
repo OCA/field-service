@@ -263,12 +263,17 @@ class FSMOrder(models.Model):
                 else:
                     self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
-            if self.location_id.direction is not False:
+            if self.location_id.direction is not '<p><br></p>':
+                s = self.location_id.direction
+                s = s.replace('<p>','')
+                s = s.replace('<br>','')
+                s = s.replace('</p>','')
                 if self.description is not False:
-                    self.description = (self.description +
-                                        self.location_id.direction + '\n ')
+                    self.description = (self.description + s + '\n')
                 else:
                     self.description = (self.location_id.direction + '\n ')
+        if self.template_id:
+            self.todo = self.template_id.instructions
 
     @api.onchange('location_id')
     def onchange_location_id(self):
@@ -288,10 +293,7 @@ class FSMOrder(models.Model):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
-            if self.todo:
-                self.todo = (self.todo or '') + \
-                            ('<p>' + self.template_id.instructions or '' +
-                             '</p>')
+            self.copy_notes()
 
 
 class FSMTeam(models.Model):
