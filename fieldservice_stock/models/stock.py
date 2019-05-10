@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockRequest(models.Model):
@@ -12,19 +12,6 @@ class StockRequest(models.Model):
         index=True, copy=False)
     direction = fields.Selection([('outbound', 'Outbound'),
                                   ('inbound', 'Inbound')], string='Direction')
-
-    @api.onchange('direction')
-    def onchange_direction(self):
-        """To set route based on direction."""
-        route_ids = False
-        if self.direction == 'outbound':
-            route_ids = self.env['stock.location.route'].search(
-                [('fsm_selectable', '=', True)])
-        if self.direction == 'inbound':
-            route_ids = self.env['stock.location.route'].search(
-                [('fsm_return_selectable', '=', True)])
-        return {'domain': {'route_id': [('id', 'in',
-                                         route_ids and route_ids.ids or [])]}}
 
 
 class StockMoveLine(models.Model):
@@ -77,13 +64,6 @@ class StockPicking(models.Model):
     fsm_order_id = fields.Many2one(
         related="group_id.fsm_order_id", string="Field Service Order",
         store=True)
-
-
-class StockLocationRoute(models.Model):
-    _inherit = 'stock.location.route'
-
-    fsm_selectable = fields.Boolean(string="Field Service Order Lines")
-    fsm_return_selectable = fields.Boolean(string="Field Service Return Lines")
 
 
 class StockPickingType(models.Model):
