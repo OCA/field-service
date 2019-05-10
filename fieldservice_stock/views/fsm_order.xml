@@ -26,15 +26,18 @@
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Inventory">
                     <header>
-                        <button name="action_request_cancel"
-                                attrs="{'invisible': [('request_stage', 'not in', ['draft','open'])]}"
-                                type="object" string="Cancel"/>
+                        <button name="action_request_confirm"
+                                attrs="{'invisible': [('request_stage', 'not in', ['draft'])]}"
+                                type="object" class="oe_highlight" string="Submit"/>
                         <button name="action_request_draft" type="object"
                                 attrs="{'invisible': [('request_stage', 'not in', ['cancel'])]}"
-                                string="Set to Draft"/>
+                                class="oe_highlight" string="Set to Draft"/>
                         <button name="action_request_done"
                             string="Done" type="object"
-                            attrs="{'invisible': [('request_stage', 'not in', ['open'])]}"/>
+                            class="oe_highlight" attrs="{'invisible': [('request_stage', 'not in', ['open'])]}"/>
+                        <button name="action_request_cancel"
+                                attrs="{'invisible': [('request_stage', 'not in', ['draft','open'])]}"
+                                type="object" class="oe_highlight" string="Cancel"/>
                         <field name='request_stage' widget="statusbar"/>
                     </header>
                     <group groups="stock.group_stock_user">
