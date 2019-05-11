@@ -64,25 +64,3 @@ class StockPicking(models.Model):
     fsm_order_id = fields.Many2one(
         related="group_id.fsm_order_id", string="Field Service Order",
         store=True)
-
-
-class StockPickingType(models.Model):
-    _inherit = 'stock.picking.type'
-
-    count_fsm_requests = fields.Integer(compute='_compute_fsm_request')
-
-    def _compute_fsm_request(self):
-        for ptype in self:
-            if ptype.code == 'outgoing':
-                res = self.env['fsm.order'].search(
-                    [('request_stage', '=', 'draft'),
-                     ('warehouse_id', '=', ptype.warehouse_id.id)])
-                ptype.count_fsm_requests = len(res)
-            if ptype.code == 'incoming':
-                res = self.env['fsm.order'].search(
-                    [('request_stage', '=', 'draft'),
-                     ('warehouse_id', '=', ptype.warehouse_id.id)])
-                ptype.count_fsm_requests = len(res)
-
-    def get_action_fsm_requests(self):
-        return self._get_action('fieldservice_stock.action_stock_fsm_order')
