@@ -12,7 +12,7 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
-        'stock_request',
+        'stock_request_picking_type',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -24,7 +24,6 @@
         'views/product_template.xml',
         'views/stock_production_lot.xml',
     ],
-    'installable': True,
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
