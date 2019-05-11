@@ -40,6 +40,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
+    module_fieldservice_sale = fields.Boolean(
+        string='Sell Field Service Orders')
 
     @api.onchange('module_fieldservice_repair')
     def _onchange_module_fieldservice_repair(self):
@@ -50,3 +52,8 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_stock(self):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
+
+    @api.onchange('module_fieldservice_sale')
+    def _onchange_module_fieldservice_sale(self):
+        if self.module_fieldservice_sale:
+            self.group_fsm_template = True
