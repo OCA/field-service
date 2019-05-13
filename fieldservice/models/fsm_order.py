@@ -265,7 +265,7 @@ class FSMOrder(models.Model):
                 else:
                     self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
-            if self.location_id.direction is not '<p><br></p>':
+            if self.location_id.direction is not '<p><br></p>' or False:
                 s = self.location_id.direction
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
