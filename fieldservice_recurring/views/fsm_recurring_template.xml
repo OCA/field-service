@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Recurring Template -->
+    <record id="fsm_recurring_template_tree_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.template.tree</field>
+        <field name="model">fsm.recurring.template</field>
+        <field name="arch" type="xml">
+            <tree string="Recurring Templates">
+                <field name="name"/>
+                <field name="fsm_frequency_set_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_recurring_template_form_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.template.form</field>
+        <field name="model">fsm.recurring.template</field>
+        <field name="arch" type="xml">
+            <form string="Recurring Template">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Template Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fsm_frequency_set_id"/>
+                            <field name="max_orders"/>
+                        </group>
+                        <group>
+                            <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <div name="description">
+                        <label for="description"/>
+                        <field name="description" placeholder="Template Description"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_recurring_template" model="ir.actions.act_window">
+        <field name="name">Field Service Recurring Templates</field>
+        <field name="res_model">fsm.recurring.template</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add a Field Service Recurring Template here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fsm_recurring_templates"
+              name="Recurring Templates"
+              action="action_fsm_recurring_template"
+              parent="fieldservice.menu_fsm_config_order"
+              sequence="47"
+              groups="fieldservice_recurring.group_fsm_recurring"/>
+
+</odoo>
