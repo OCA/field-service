@@ -45,7 +45,7 @@
                                 name="action_view_sublocation"
                                 class="oe_stat_button"
                                 icon="fa-location-arrow"
-                                context="{'fsm_parent_id': active_id}">
+                                context="{'default_fsm_parent_id': active_id}">
                             <field name="sublocation_count" widget="statinfo" string="Sub-Locations"/>
                         </button>
                         <button type="object"
@@ -53,7 +53,7 @@
                                 class="oe_stat_button"
                                 icon="fa-briefcase"
                                 groups="fieldservice.group_fsm_equipment"
-                                context="{'location_id': active_id}">
+                                context="{'default_location_id': active_id}">
                             <field name="equipment_count" widget="statinfo" string="Equipment"/>
                         </button>
                         <button type="object"
@@ -61,7 +61,7 @@
                                 class="oe_stat_button"
                                 icon="fa-user-circle-o"
                                 groups="base.group_user"
-                                context="{'fsm_parent_id': active_id}">
+                                context="{'default_service_location_id': active_id}">
                             <field name="contact_count" widget="statinfo" string="Contacts"/>
                         </button>
                     </div>
@@ -87,7 +87,7 @@
                         <group id="main-right">
                             <field name="ref"/>
                             <field name="description"/>
-                            <field name="timezone"/>
+                            <field name="tz"/>
                             <field name="calendar_id"/>
                             <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </group>
@@ -163,8 +163,8 @@
                 <field name="zip"/>
                 <field name="country_id"/>
                 <field name="description"/>
-                <field name="timezone"/>
-                <field name="tag_ids"/>
+                <field name="tz"/>
+                <field name="category_id"/>
                 <field name="ref"/>
                 <group expand="0" string="Group By">
                     <filter name="owner_id" string="Owner" domain="[]" context="{'group_by':'owner_id'}"/>
@@ -181,7 +181,6 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_location_search_view"/>
-        <field name="context">{'default_fsm_parent_id': context.get('fsm_parent_id', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a Service Locations.
