@@ -10,11 +10,13 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
+        'fieldservice_recurring',
         'sale_management',
     ],
     'data': [
         'views/fsm_location.xml',
         'views/fsm_order.xml',
+        'views/fsm_recurring.xml',
         'views/product.xml',
         'views/sale_order.xml',
     ],
