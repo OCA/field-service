@@ -40,6 +40,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
 
     @api.onchange('module_fieldservice_repair')
     def _onchange_module_fieldservice_repair(self):
