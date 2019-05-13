@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="rule_fsm_frequency_multi_company" model="ir.rule">
+        <field name="name">FSM Frequency multi-company</field>
+        <field name="model_id" ref="model_fsm_frequency"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_recurring_template_multi_company" model="ir.rule">
+        <field name="name">FSM Recurring Template multi-company</field>
+        <field name="model_id" ref="model_fsm_recurring_template"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+    <record id="rule_fsm_recurring_multi_company" model="ir.rule">
+        <field name="name">FSM Recurring Order multi-company</field>
+        <field name="model_id" ref="model_fsm_recurring"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+    </record>
+
+</odoo>
