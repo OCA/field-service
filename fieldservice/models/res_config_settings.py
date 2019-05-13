@@ -30,6 +30,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Distribution')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
     module_fieldservice_repair = fields.Boolean(
         string='Link FSM orders to MRP Repair orders')
     module_fieldservice_skill = fields.Boolean(
