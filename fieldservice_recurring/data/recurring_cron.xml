@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+
+    <record model="ir.cron" id="recurring_orders_cron">
+        <field name="name">Field Service: generate recurring orders</field>
+        <field name="model_id" ref="model_fsm_recurring"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_scheduled_task()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+</odoo>
