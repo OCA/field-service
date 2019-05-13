@@ -22,6 +22,7 @@ class FSMPerson(models.Model):
                                default=lambda self: self._default_stage_id())
     hide = fields.Boolean(default=False)
     mobile = fields.Char(string="Mobile")
+    territory_ids = fields.Many2many('fsm.territory', string='Territories')
 
     @api.model
     def create(self, vals):

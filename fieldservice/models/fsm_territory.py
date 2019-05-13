@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-# from odoo.addons.base_geoengine import geo_model
 
 
 class FSMTerritory(models.Model):
@@ -29,15 +28,3 @@ class FSMTerritory(models.Model):
     country_ids = fields.One2many('res.country',
                                   'territory_id',
                                   string='Country Names')
-
-
-class FSMPerson(models.Model):
-    _inherit = 'fsm.person'
-
-    territory_ids = fields.Many2many('fsm.territory', string='Territories')
-
-
-class FSMLocation(models.Model):
-    _inherit = 'fsm.location'
-
-    territory_id = fields.Many2one('fsm.territory', string='Territory')

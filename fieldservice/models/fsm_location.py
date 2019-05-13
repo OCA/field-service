@@ -1,22 +1,14 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import pytz
-
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class FSMLocation(models.Model):
     _name = 'fsm.location'
     _inherits = {'res.partner': 'partner_id'}
     _description = 'Field Service Location'
-
-    @api.model
-    def _tz_get(self):
-        return [(tz, tz) for tz in sorted(pytz.all_timezones,
-                                          key=lambda tz: tz
-                                          if not tz.startswith('Etc/')
-                                          else '_')]
 
     ref = fields.Char(string='Internal Reference', copy=False)
     direction = fields.Char(string='Directions')
@@ -33,8 +25,8 @@ class FSMLocation(models.Model):
                                  domain="[('is_company', '=', False),"
                                         " ('fsm_location', '=', False)]",
                                  index=True)
-    tag_ids = fields.Many2many('fsm.tag', string='Tags')
     description = fields.Char(string='Description')
+    territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
     district_id = fields.Many2one('fsm.district', string='District')
     region_id = fields.Many2one('fsm.region', string='Region')
@@ -49,10 +41,8 @@ class FSMLocation(models.Model):
 
     calendar_id = fields.Many2one('resource.calendar',
                                   string='Office Hours')
-
-    timezone = fields.Selection(_tz_get, string='Timezone')
-
-    fsm_parent_id = fields.Many2one('fsm.location', string='Parent')
+    fsm_parent_id = fields.Many2one('fsm.location', string='Parent',
+                                    index=True)
     notes = fields.Text(string="Notes")
     person_ids = fields.Many2many('fsm.person',
                                   'fsm_person_location_rel',
@@ -86,7 +76,10 @@ class FSMLocation(models.Model):
                     loc.complete_name = '%s / %s' % (
                         loc.fsm_parent_id.complete_name, loc.name)
             else:
-                loc.complete_name = loc.name
+                if loc.ref:
+                    loc.complete_name = '[%s] %s' % (loc.ref, loc.name)
+                else:
+                    loc.complete_name = loc.name
 
     @api.multi
     def name_get(self):
@@ -94,6 +87,16 @@ class FSMLocation(models.Model):
         for rec in self:
             results.append((rec.id, rec.complete_name))
         return results
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        recs = self.browse()
+        if name:
+            recs = self.search([('ref', 'ilike', name)] + args, limit=limit)
+        if not recs:
+            recs = self.search([('name', operator, name)] + args, limit=limit)
+        return recs.name_get()
 
     _sql_constraints = [('fsm_location_ref_uniq', 'unique (ref)',
                          'This internal reference already exists!')]
@@ -150,7 +153,7 @@ class FSMLocation(models.Model):
         self.zip = self.fsm_parent_id.zip or False
         self.state_id = self.fsm_parent_id.state_id or False
         self.country_id = self.fsm_parent_id.country_id or False
-        self.timezone = self.fsm_parent_id.timezone or False
+        self.tz = self.fsm_parent_id.tz or False
         self.territory_id = self.fsm_parent_id.territory_id or False
 
     @api.onchange('territory_id')
@@ -329,6 +332,12 @@ class FSMLocation(models.Model):
                          search_count([('location_id',
                                         '=', location.id)]))
             location.equipment_count = equipment or 0
+
+    @api.constrains('fsm_parent_id')
+    def _check_location_recursion(self):
+        if not self._check_recursion(parent='fsm_parent_id'):
+            raise ValidationError(_('You cannot create recursive location.'))
+        return True
 
 
 class FSMPerson(models.Model):
