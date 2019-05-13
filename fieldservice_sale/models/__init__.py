@@ -5,3 +5,4 @@ from . import fsm_location
 from . import product
 from . import sale_order
 from . import fsm_order
+from . import fsm_recurring
