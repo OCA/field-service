@@ -15,7 +15,7 @@
                             groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
                     <button id="action_request"
-                            name="action_request" string="Submit"
+                            name="action_request" string="Request"
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
@@ -68,8 +68,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="type"
-                                   groups="fieldservice.group_fsm_equipment"/>
+                            <field name="type"/>
                             <field name="template_id" groups="fieldservice.group_fsm_template"/>
                             <field name="priority" widget="priority"/>
                             <field name="tag_ids"
