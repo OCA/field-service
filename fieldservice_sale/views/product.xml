@@ -10,6 +10,8 @@
                        attrs="{'invisible': [('type','!=','service')]}"/>
                 <field name="fsm_order_template_id" 
                        attrs="{'invisible':[('field_service_tracking','not in',['order'])]}"/>
+                <field name="fsm_recurring_template_id" 
+                       attrs="{'invisible':[('field_service_tracking','not in',['recurring'])]}"/>
             </xpath>
         </field>
     </record>
