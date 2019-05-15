@@ -26,6 +26,13 @@ FREQUENCIES = {
     'daily': DAILY,
 }
 
+FREQUENCY_SELECT = [
+    ('yearly', 'Yearly'),
+    ('monthly', 'Monthly'),
+    ('weekly', 'Weekly'),
+    ('daily', 'Daily')
+]
+
 
 class FSMFrequency(models.Model):
     _name = 'fsm.frequency'
@@ -38,7 +45,7 @@ class FSMFrequency(models.Model):
         string='Repeat Every', help="The number of intervals between events",
         default=1, required=True, track_visibility='onchange')
     interval_type = fields.Selection(
-        FREQUENCIES, string='Interval Type',
+        FREQUENCY_SELECT, string='Interval Type',
         required=True, track_visibility='onchange')
     is_exclusive = fields.Boolean(
         string='Exclusive Rule?', default=False,
