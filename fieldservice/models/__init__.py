@@ -15,6 +15,7 @@ from . import (
     fsm_team,
     fsm_person,
     fsm_location,
+    fsm_location_person,
     res_partner,
     res_state,
     res_country,

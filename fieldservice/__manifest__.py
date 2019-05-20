@@ -33,6 +33,7 @@
         'views/fsm_tag.xml',
         'views/res_partner.xml',
         'views/fsm_location.xml',
+        'views/fsm_location_person.xml',
         'views/fsm_person.xml',
         'views/fsm_order.xml',
         'views/fsm_route.xml',
