@@ -20,11 +20,12 @@ class FSMOrder(models.Model):
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
-        if self.date_start and self.date_end:
-            start = fields.Datetime.from_string(self.date_start)
-            end = fields.Datetime.from_string(self.date_end)
-            delta = end - start
-            self.duration = delta.total_seconds() / 3600
+        for rec in self:
+            if rec.date_start and rec.date_end:
+                start = fields.Datetime.from_string(rec.date_start)
+                end = fields.Datetime.from_string(rec.date_end)
+                delta = end - start
+                rec.duration = delta.total_seconds() / 3600
 
     @api.depends('stage_id')
     def _get_stage_color(self):
@@ -67,22 +68,23 @@ class FSMOrder(models.Model):
     color = fields.Integer('Color Index')
 
     def _compute_request_late(self):
-        if not self.request_late:
-            if self.priority == '0':
-                if self.request_early:
-                    self.request_late = fields.Datetime.from_string(
-                        self.request_early) + timedelta(days=3)
-                else:
-                    self.request_late = datetime.now() + timedelta(days=3)
-            elif self.priority == '1':
-                self.request_late = fields.Datetime.from_string(
-                    self.request_early) + timedelta(days=2)
-            elif self.priority == '2':
-                self.request_late = fields.Datetime.from_string(
-                    self.request_early) + timedelta(days=1)
-            elif self.priority == '3':
-                self.request_late = fields.Datetime.from_string(
-                    self.request_early) + timedelta(hours=8)
+        for rec in self:
+            if not rec.request_late:
+                if rec.priority == '0':
+                    if rec.request_early:
+                        rec.request_late = fields.Datetime.from_string(
+                            rec.request_early) + timedelta(days=3)
+                    else:
+                        rec.request_late = datetime.now() + timedelta(days=3)
+                elif rec.priority == '1':
+                    rec.request_late = fields.Datetime.from_string(
+                        rec.request_early) + timedelta(days=2)
+                elif rec.priority == '2':
+                    rec.request_late = fields.Datetime.from_string(
+                        rec.request_early) + timedelta(days=1)
+                elif rec.priority == '3':
+                    rec.request_late = fields.Datetime.from_string(
+                        rec.request_early) + timedelta(hours=8)
 
     description = fields.Text(string='Description')
 
