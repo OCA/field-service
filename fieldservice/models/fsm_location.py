@@ -67,7 +67,7 @@ class FSMLocation(models.Model):
                                        compute='_compute_sublocation_ids')
     complete_name = fields.Char(string='Complete Name',
                                 compute='_compute_complete_name',
-                                stored='_compute_complete_name')
+                                store=True)
     hide = fields.Boolean(default=False)
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
