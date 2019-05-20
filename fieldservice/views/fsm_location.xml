@@ -114,8 +114,9 @@
                         </page>
                         <page string="Preferred Workers">
                             <field name="person_ids" nolabel="1">
-                                <tree>
-                                    <field name="name"/>
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="person_id"/>
                                     <field name="phone"/>
                                     <field name="email"/>
                                 </tree>
