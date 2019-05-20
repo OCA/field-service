@@ -85,10 +85,9 @@
                             </field>
                         </page>
                         <page string="Linked Locations">
-                            <field name="location_ids" nolabel="1" nocreate="1"
-                                   widget="many2many">
-                                <tree>
-                                    <field name="name"/>
+                            <field name="location_ids" nolabel="1" nocreate="1">
+                                <tree editable="bottom">
+                                    <field name="location_id"/>
                                     <field name="owner_id"/>
                                     <field name="customer_id"/>
                                     <field name="contact_id"/>
@@ -112,7 +111,6 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_person_search_view"/>
-        <field name="context">{'search_default_location_ids': context.get('location_ids', False)}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Add Field Service Workers here.
