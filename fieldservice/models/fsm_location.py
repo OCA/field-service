@@ -156,8 +156,9 @@ class FSMLocation(models.Model):
     @api.onchange('territory_id')
     def _onchange_territory_id(self):
         self.territory_manager_id = self.territory_id.person_id or False
-        self.person_ids = self.territory_id.person_ids or False
         self.branch_id = self.territory_id.branch_id or False
+        if self.env.user.company_id.auto_populate_persons_on_location:
+            self.person_ids = self.territory_id.person_ids or False
 
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
