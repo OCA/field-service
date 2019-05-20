@@ -13,6 +13,21 @@
                      string="Field Service"
                      data-key="fieldservice"
                      groups="fieldservice.group_fsm_manager">
+                    <h2>Automation</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="auto_populate_persons_on_location"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="auto_populate_persons_on_location"
+                                       string="Auto-fill the workers on the location"/>
+                                <div class="text-muted">
+                                    Auto-populate the preferred workers of a location based on the territory
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <h2>Advanced Features</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-xs-12 col-md-6 o_setting_box">
