@@ -14,18 +14,20 @@ class FSMOrder(models.Model):
         Delivery Methods to have 'Fedex Ground', 'Fedex Standard-
         Overnight', and 'Fedex Priority-Overnight'"""
     def _compute_carrier_id(self):
-        if self.priority == '0' or self.priority == '1':
-            fedex = self.env['delivery.carrier'].\
-                search([('name', '=', 'Fedex Ground')])
-            if fedex:
-                self.carrier_id = fedex
-        elif self.priority == '2':
-            fedex = self.env['delivery.carrier'].\
-                search([('name', '=', 'Fedex Standard-Overnight')])
-            if fedex:
-                self.carrier_id = fedex
-        elif self.priority == '3':
-            fedex = self.env['delivery.carrier'].\
-                search([('name', '=', 'Fedex Priority-Overnight')])
-            if fedex:
-                self.carrier_id = fedex
+        carrier_obj = self.env['delivery.carrier']
+        for rec in self:
+            if rec.priority == '0' or rec.priority == '1':
+                fedex = carrier_obj.search(
+                    [('name', '=', 'Fedex Ground')])
+                if fedex:
+                    rec.carrier_id = fedex
+            elif rec.priority == '2':
+                fedex = carrier_obj.search(
+                    [('name', '=', 'Fedex Standard-Overnight')])
+                if fedex:
+                    rec.carrier_id = fedex
+            elif rec.priority == '3':
+                fedex = carrier_obj.search(
+                    [('name', '=', 'Fedex Priority-Overnight')])
+                if fedex:
+                    rec.carrier_id = fedex
