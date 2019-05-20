@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import (
+    res_company,
     res_config_settings,
     fsm_category,
     fsm_template,
