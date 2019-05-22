@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
         'fsm.template', 'Field Service Order Template',
         help="Select the field service order template to be created")
     fsm_recurring_template_id = fields.Many2one(
-        'fsm.recurring', 'Field Service Recurring Template',
+        'fsm.recurring.template', 'Field Service Recurring Template',
         help="Select a field service recurring order template to be created")
 
     @api.onchange('field_service_tracking')
