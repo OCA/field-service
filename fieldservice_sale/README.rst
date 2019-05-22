@@ -38,16 +38,22 @@ Installation
 To install Field Service and have the mapping features, you need to install GeoEngine.
 
 Please refer to the installation instructions available at:
-<<<<<<< HEAD
 https://github.com/OCA/geospatial/tree/12.0/base_geoengine
-=======
-https://github.com/OCA/geospatial/tree/11.0/base_geoengine
->>>>>>> [UPD] README.rst
 
 Configuration
 =============
 
-To use this module, you need to:
+To setup a product for quoting and selling field service orders:
+
+* Go to Sales > Catalog > Products
+* Create or select a product
+* Set the Product Type to 'Service' under General Information tab
+* Under Invoicing tab, set the Field Service Tracking option
+* Select the FSM Order Template that will be used for creating FSM Orders when
+    a Sale Order is confirmed with this product
+
+
+To setup a sales territory, you need to:
 
 * Go to Field Service > Master Data > Locations
 * Create or select a location
@@ -56,7 +62,12 @@ To use this module, you need to:
 Usage
 =====
 
-Coming soon...
+* Go to Sales app
+* Create a new Quotation/Sale Order
+* Set the FSM Location to be used
+* On a Sale Order Line, select a product configured for field service orders
+* Confirm the Sale Order
+* Field Service Orders linked to SO lines are created
 
 Known issues / Roadmap
 ======================
@@ -89,6 +100,8 @@ Contributors
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 * Wolfgang Hall <whall@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Brian McMaster <brian@mcmpest.com>
+
 
 Other credits
 ~~~~~~~~~~~~~
@@ -116,10 +129,13 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
+    :target: https://github.com/brian10048
+    :alt: brian10048
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-wolfhall| |maintainer-max3903| 
+|maintainer-wolfhall| |maintainer-max3903| |maintainer-brian10048| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_sale>`_ project on GitHub.
 
