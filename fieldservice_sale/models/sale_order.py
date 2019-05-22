@@ -66,13 +66,15 @@ class SaleOrder(models.Model):
     @api.multi
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.mapped('fsm_recurring_ids')
-        action = self.env.ref('fieldservice.action_fsm_recurring').read()[0]
+        action = self.env.ref(
+            'fieldservice_recurring.action_fsm_recurring').read()[0]
         if len(fsm_recurrings) > 1:
             action['domain'] = [('id', 'in', fsm_recurrings.ids)]
         elif len(fsm_recurrings) == 1:
-            action['views'] = [(self.env.ref(
-                                    'fieldservice.fsm_recurring_form_view').id,
-                                'form')]
+            action['views'] = [
+                (self.env.ref(
+                    'fieldservice_recurring.fsm_recurring_form_view').id,
+                    'form')]
             action['res_id'] = fsm_recurrings.id
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -131,15 +133,18 @@ class SaleOrderLine(models.Model):
     def _field_create_fsm_recurring_prepare_values(self):
         self.ensure_one()
         template = self.product_id.fsm_recurring_template_id
+        note = self.name
+        if template.description:
+            note += '\n ' + template.description
         return {
             'customer_id': self.order_id.partner_id.id,
             'location_id': self.order_id.fsm_location_id.id,
             'start_date': self.order_id.date_fsm_request,
             'fsm_recurring_template_id': template.id,
-            'description': self.name + '\n ' + template.description,
+            'description': note,
             'max_orders': template.max_orders,
-            'fsm_frequency_set_id': template.fsm_frequency_set_id,
-            'fsm_order_template_id': template.fsm_order_template_id,
+            'fsm_frequency_set_id': template.fsm_frequency_set_id.id,
+            'fsm_order_template_id': template.fsm_order_template_id.id,
             'sale_line_id': self.id,
             'company_id': self.company_id.id,
         }
