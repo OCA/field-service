@@ -14,6 +14,7 @@
         'web_timeline',
         'resource',
         'contacts',
+        'partner_fax'
     ],
     'data': [
         'data/ir_sequence.xml',
