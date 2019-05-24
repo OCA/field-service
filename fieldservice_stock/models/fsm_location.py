@@ -12,7 +12,7 @@ class FSMLocation(models.Model):
                                             required=True)
 
     @api.onchange('fsm_parent_id')
-    def _onchange_parent_id(self):
-        super(FSMLocation, self)._onchange_parent_id()
+    def _onchange_fsm_parent_id(self):
+        super(FSMLocation, self)._onchange_fsm_parent_id()
         self.inventory_location_id = \
             self.fsm_parent_id.inventory_location_id.id
