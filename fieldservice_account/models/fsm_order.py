@@ -1,7 +1,8 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 ACCOUNT_STAGES = [('draft', 'Draft'),
@@ -87,9 +88,13 @@ class FSMOrder(models.Model):
     def account_confirm(self):
         for order in self:
             contractor = order.person_id.partner_id.supplier
-            if order.contractor_cost_ids and contractor:
-                order.create_bills()
-            order.account_stage = 'confirmed'
+            if order.contractor_cost_ids:
+                if contractor:
+                    order.create_bills()
+                    order.account_stage = 'confirmed'
+                else:
+                    raise ValidationError(_("The worker assigned to this order"
+                                            " is not a supplier"))
 
     def account_create_invoice(self):
         jrnl = self.env['account.journal'].search([('type', '=', 'sale'),
