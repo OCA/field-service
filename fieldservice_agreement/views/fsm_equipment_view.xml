@@ -31,15 +31,9 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <filter name="serviceprofile_id" string="Service Profile" domain="[]"
-                        context="{'group_by':'serviceprofile_id'}"/>
+                        context="{'group_by': 'serviceprofile_id'}"/>
             </xpath>
         </field>
-    </record>
-
-    <record model="ir.actions.act_window"
-            id="fieldservice.action_fsm_equipment">
-        <field name="context">{'default_location_id': context.get('location_id', False),
-                               'default_agreement_id': context.get('agreement_id', False)}</field>
     </record>
 
 </odoo>
