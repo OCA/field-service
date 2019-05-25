@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Sub-Status',
-    'summary': 'Sub-statuses for Field Service Orders',
+    'summary': 'Add sub-statuses to Field Service orders',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, '
@@ -15,6 +15,7 @@
     ],
     'data': [
         'data/fsm_stage_status.xml',
+        'data/fsm_stage.xml',
         'security/ir.model.access.csv',
         'views/fsm_stage_status.xml',
         'views/fsm_stage.xml',
@@ -28,5 +29,4 @@
         'brian10048',
         'bodedra'
     ],
-    'post_init_hook': 'post_init_fsm',
 }
