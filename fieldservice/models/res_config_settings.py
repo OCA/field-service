@@ -34,6 +34,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Agreements')
     module_fieldservice_distribution = fields.Boolean(
         string='Manage Distribution')
+    module_fieldservice_geoengine = fields.Boolean(
+        string='Use GeoEngine')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
     module_fieldservice_purchase = fields.Boolean(
