@@ -199,9 +199,11 @@ class FSMOrder(models.Model):
                 vals.get('scheduled_date_start')) + \
                 timedelta(hours=self.scheduled_duration)
             vals['scheduled_date_end'] = str(date_to_with_delta)
-        if 'customer_id' not in vals:
-            vals['customer_id'] = self.location_id.customer_id.id
-        return super(FSMOrder, self).write(vals)
+        res = super(FSMOrder, self).write(vals)
+        for order in self:
+            if 'customer_id' not in vals and order.customer_id is False:
+                order.customer_id = order.location_id.customer_id.id
+        return res
 
     def action_confirm(self):
         return self.write({'stage_id': self.env.ref(
