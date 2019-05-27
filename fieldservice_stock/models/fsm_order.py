@@ -8,6 +8,7 @@ from odoo.exceptions import UserError
 
 REQUEST_STATES = [
     ('draft', 'Draft'),
+    ('submit', 'Submitted'),
     ('open', 'In progress'),
     ('done', 'Done'),
     ('cancel', 'Cancelled')]
@@ -45,29 +46,18 @@ class FSMOrder(models.Model):
                                      store=True)
 
     @api.multi
-    def action_request_confirm(self):
+    def action_request_submit(self):
         for rec in self:
             if not rec.stock_request_ids:
-                raise UserError(_('Please select a Order Lines.'))
-            group_id = rec.procurement_group_id or False
-            if not group_id:
-                group_id = self.env['procurement.group'].create({
-                    'name': rec.name,
-                    'move_type': 'direct',
-                    'fsm_order_id': rec.id,
-                    'partner_id': rec.customer_id.id,
-                })
-                rec.procurement_group_id = group_id.id
+                raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
-                line.write({'procurement_group_id': group_id.id,
-                            'location_id': rec.inventory_location_id.id})
                 line.action_confirm()
-            rec.request_stage = 'open'
+            rec.request_stage = 'submitted'
 
     def action_request_cancel(self):
         for rec in self:
             if not rec.stock_request_ids:
-                raise UserError(_('Please select a Order Lines.'))
+                raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
                 line.action_cancel()
             rec.request_stage = 'cancel'
@@ -76,19 +66,10 @@ class FSMOrder(models.Model):
     def action_request_draft(self):
         for rec in self:
             if not rec.stock_request_ids:
-                raise UserError(_('Please select a Order Lines.'))
+                raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
                 line.action_draft()
             rec.request_stage = 'draft'
-
-    @api.multi
-    def action_request_done(self):
-        for rec in self:
-            if not rec.stock_request_ids:
-                raise UserError(_('Please select a Order Lines.'))
-            for line in rec.stock_request_ids:
-                line.action_done()
-            rec.request_stage = 'done'
 
     @api.depends('picking_ids')
     def _compute_picking_ids(self):
