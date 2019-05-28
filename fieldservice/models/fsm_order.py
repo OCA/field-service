@@ -267,15 +267,15 @@ class FSMOrder(models.Model):
                 else:
                     self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
-            if self.location_id.direction is not '<p><br></p>' or False:
-                s = self.location_id.direction
+            s = self.location_id.direction
+            if s is not False and s is not '<p><br></p>':
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
-                s = s.replace('</p>', '')
+                s = s.replace('</p>', '\n')
                 if self.description is not False:
-                    self.description = (self.description + s + '\n')
+                    self.description = (self.description + '\n' + s + '\n')
                 else:
-                    self.description = (self.location_id.direction + '\n ')
+                    self.description = (s + '\n ')
         if self.template_id:
             self.todo = self.template_id.instructions
 
