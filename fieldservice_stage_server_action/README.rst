@@ -86,13 +86,6 @@ Contributors
 * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
 * Steve Campbell <scampbell@opensourceintegrators.com>
 
-Other credits
-~~~~~~~~~~~~~
-
-The development of this module has been financially supported by:
-
-* Open Source Integrators <https://opensourceintegrators.com>
-
 Maintainers
 ~~~~~~~~~~~
 
