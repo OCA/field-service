@@ -25,6 +25,27 @@ class FSMPerson(models.Model):
     territory_ids = fields.Many2many('fsm.territory', string='Territories')
 
     @api.model
+    def _search(self, args, offset=0, limit=None, order=None, count=False,
+                access_rights_uid=None):
+        res = super(FSMPerson, self)._search(args=args, offset=offset,
+                                             limit=limit,
+                                             order=order, count=count,
+                                             access_rights_uid=access_rights_uid)
+        # Check for args first having location_ids as default filter
+        for arg in args:
+            if isinstance(arg, (list)):
+                if arg[0] == 'location_ids':
+                    self.env.cr.execute("SELECT fsm_person_id "
+                            "FROM fsm_person_location_rel "
+                            "WHERE fsm_location_id=%s",
+                            (arg[2],))
+                    workers_ids = self.env.cr.fetchall()
+                    if workers_ids:
+                        preffered_workers_list = [worker[0] for worker in workers_ids]
+                    return preffered_workers_list
+        return res
+
+    @api.model
     def create(self, vals):
         vals.update({'fsm_person': True})
         return super(FSMPerson, self).create(vals)
