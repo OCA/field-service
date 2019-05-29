@@ -41,8 +41,8 @@ class FSMPerson(models.Model):
                             (arg[2],))
                     workers_ids = self.env.cr.fetchall()
                     if workers_ids:
-                        preffered_workers_list = [worker[0] for worker in workers_ids]
-                    return preffered_workers_list
+                        preferred_workers_list = [worker[0] for worker in workers_ids]
+                    return preferred_workers_list
         return res
 
     @api.model
