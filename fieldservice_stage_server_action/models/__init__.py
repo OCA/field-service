@@ -3,5 +3,4 @@
 
 from . import (
     fsm_stage,
-    fsm_order
 )

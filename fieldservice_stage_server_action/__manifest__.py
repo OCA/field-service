@@ -13,7 +13,7 @@
         'base_automation'
     ],
     'data': [
-        'views/fsm_order.xml',
+        'data/ir_servers_action.xml',
         'views/fsm_stage.xml'
     ],
     'installable': True,

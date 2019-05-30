@@ -44,9 +44,8 @@ Configuration
 =============
 
 To configure this module, you need to:
-Field Service > Configuration > Stage
+Field Service > Configuration > Stages
 Assign an Action to an FSM Stage
-
 
 
 Usage
