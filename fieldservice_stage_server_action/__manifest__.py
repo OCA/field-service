@@ -5,7 +5,7 @@
     'summary': 'Add Server Actions based on FSM Stage',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
-    'author': 'Open Source Integrators',
+    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/ursais/osi-addons',
     'depends': [
         'fieldservice',
