@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class FSMLocation(models.Model):
     _name = 'fsm.location'
     _inherits = {'res.partner': 'partner_id'}
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Field Service Location'
 
     ref = fields.Char(string='Internal Reference', copy=False)
@@ -20,7 +21,8 @@ class FSMLocation(models.Model):
                                auto_join=True)
     customer_id = fields.Many2one('res.partner', string='Billed Customer',
                                   required=True, ondelete='restrict',
-                                  auto_join=True)
+                                  auto_join=True,
+                                  track_visibility='onchange')
     contact_id = fields.Many2one('res.partner', string='Primary Contact',
                                  domain="[('is_company', '=', False),"
                                         " ('fsm_location', '=', False)]",
