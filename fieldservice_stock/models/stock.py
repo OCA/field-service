@@ -27,6 +27,13 @@ class StockRequest(models.Model):
             self.location_id = \
                 self.fsm_order_id.warehouse_id.lot_stock_id.id
 
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if 'fsm_order_id' in vals:
+            fsm_order = self.env['fsm.order'].browse(vals['fsm_order_id'])
+            fsm_order.write({'request_stage': 'draft'})
+        return res
 
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
