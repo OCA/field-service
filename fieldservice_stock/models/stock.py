@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class StockRequest(models.Model):
@@ -11,7 +11,21 @@ class StockRequest(models.Model):
         'fsm.order', string="FSM Order", ondelete='cascade',
         index=True, copy=False)
     direction = fields.Selection([('outbound', 'Outbound'),
-                                  ('inbound', 'Inbound')], string='Direction')
+                                  ('inbound', 'Inbound')],
+                                 string='Direction',
+                                 states={'draft': [('readonly', False)]},
+                                 readonly=True)
+
+    @api.onchange('direction', 'fsm_order_id')
+    def _onchange_location_id(self):
+        if self.direction == 'outbound':
+            # Inventory location of the FSM location of the order
+            self.location_id = \
+                self.fsm_order_id.location_id.inventory_location_id.id
+        else:
+            # Otherwise the stock location of the warehouse
+            self.location_id = \
+                self.fsm_order_id.warehouse_id.lot_stock_id.id
 
 
 class StockMoveLine(models.Model):
