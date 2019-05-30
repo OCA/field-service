@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 REQUEST_STATES = [
     ('draft', 'Draft'),
-    ('submit', 'Submitted'),
+    ('submitted', 'Submitted'),
     ('open', 'In progress'),
     ('done', 'Done'),
     ('cancel', 'Cancelled')]
