@@ -34,7 +34,7 @@
                                 class="oe_highlight" string="Set to Draft"/>
                         <button name="action_request_cancel"
                                 attrs="{'invisible': [('request_stage', 'not in', ['draft','open'])]}"
-                                type="object" class="oe_highlight" string="Cancel"/>
+                                type="object" string="Cancel"/>
                         <field name='request_stage' widget="statusbar"/>
                     </header>
                     <group groups="stock.group_stock_user">

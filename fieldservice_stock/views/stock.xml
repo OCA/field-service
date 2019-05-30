@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Stock Request Views -->
+    <record id="stock_request_tree" model="ir.ui.view">
+        <field name="name">stock.request.tree.direction</field>
+        <field name="model">stock.request</field>
+        <field name="inherit_id" ref="stock_request.view_stock_request_tree"/>
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field name="direction"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_request_form" model="ir.ui.view">
+        <field name="name">stock.request.form.direction</field>
+        <field name="model">stock.request</field>
+        <field name="inherit_id" ref="stock_request.view_stock_request_form"/>
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field name="direction"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_fsm_stock_request"
+              name="Stock Requests"
+              action="stock_request.stock_request_order_action"
+              parent="fieldservice.operations"
+              sequence="90"/>
+
     <menuitem id="menu_fsm_product"
               name="Products"
               action="stock.product_template_action_product"
@@ -12,11 +42,5 @@
               action="stock.quantsact"
               parent="fieldservice.reporting"
               sequence="30"/>
-
-    <menuitem id="menu_fsm_stock_request"
-              name="Stock Requests"
-              action="stock_request.stock_request_order_action"
-              parent="fieldservice.operations"
-              sequence="20"/>
 
 </odoo>
