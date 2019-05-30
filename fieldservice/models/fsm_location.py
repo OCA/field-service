@@ -44,11 +44,9 @@ class FSMLocation(models.Model):
     fsm_parent_id = fields.Many2one('fsm.location', string='Parent',
                                     index=True)
     notes = fields.Text(string="Notes")
-    person_ids = fields.Many2many('fsm.person',
-                                  'fsm_person_location_rel',
-                                  'fsm_location_id',
-                                  'fsm_person_id',
-                                  string='Preferred Workers')
+    person_ids = fields.One2many('fsm.location.person',
+                                 'location_id',
+                                 string='Workers')
     contact_count = fields.Integer(string='Contacts Count',
                                    compute='_compute_contact_ids')
     equipment_count = fields.Integer(string='Equipment',
@@ -161,7 +159,12 @@ class FSMLocation(models.Model):
         self.territory_manager_id = self.territory_id.person_id or False
         self.branch_id = self.territory_id.branch_id or False
         if self.env.user.company_id.auto_populate_persons_on_location:
-            self.person_ids = self.territory_id.person_ids or False
+            for person in self.territory_id.person_ids:
+                self.env['fsm.location.person'].create({
+                    'location_id': self.id,
+                    'person_id': person.id,
+                    'sequence': 10,
+                })
 
     @api.onchange('branch_id')
     def _onchange_branch_id(self):
@@ -343,8 +346,6 @@ class FSMLocation(models.Model):
 class FSMPerson(models.Model):
     _inherit = 'fsm.person'
 
-    location_ids = fields.Many2many('fsm.location',
-                                    'fsm_location_person_rel',
-                                    'fsm_person_id',
-                                    'fsm_location_id',
-                                    string='Linked Locations')
+    location_ids = fields.One2many('fsm.location.person',
+                                   'person_id',
+                                   string='Linked Locations')
