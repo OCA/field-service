@@ -35,6 +35,7 @@ class StockRequest(models.Model):
             fsm_order.write({'request_stage': 'draft'})
         return res
 
+
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
