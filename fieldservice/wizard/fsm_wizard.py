@@ -55,4 +55,3 @@ class FSMWizard(models.TransientModel):
     def action_other_address(self, partner):
         for child in partner.child_ids:
             child.type = 'other'
-
