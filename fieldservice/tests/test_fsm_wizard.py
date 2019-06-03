@@ -5,7 +5,7 @@ from odoo.tests.common import TransactionCase
 
 
 class FieldServiceTransactionCase(TransactionCase):
-    """ 
+    """
         Test used to check that the base functionalities of Field Service.
         - test_convert_location: tests that a res.partner can be converted
         into a fsm.location.
