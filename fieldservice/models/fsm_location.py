@@ -355,6 +355,7 @@ class FSMLocation(models.Model):
         if self.state_id.country_id:
             self.country_id = self.state_id.country_id
 
+
 class FSMPerson(models.Model):
     _inherit = 'fsm.person'
 
