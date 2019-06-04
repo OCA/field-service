@@ -27,7 +27,6 @@ class FSMLocation(models.Model):
                                  domain="[('is_company', '=', False),"
                                         " ('fsm_location', '=', False)]",
                                  index=True)
-    fax = fields.Char(string="Fax")
     description = fields.Char(string='Description')
     territory_id = fields.Many2one('fsm.territory', string='Territory')
     branch_id = fields.Many2one('fsm.branch', string='Branch')
