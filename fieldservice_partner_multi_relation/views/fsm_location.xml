@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_relations_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.relations.form.view</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button name="action_view_relations"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-thumbs-up">
+                    <field name="rel_count"
+                           widget="statinfo"
+                           string="Relations"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
