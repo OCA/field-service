@@ -12,6 +12,10 @@
         'partner_multi_relation',
         'fieldservice'
     ],
+    "data": [
+        'views/fsm_location.xml',
+        'views/menu.xml'
+    ],
     "demo": [
         "data/demo.xml",
     ],
