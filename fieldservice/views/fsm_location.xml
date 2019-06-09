@@ -95,6 +95,9 @@
                             <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}" required="True"/>
                         </group>
                     </group>
+                    <group string="General Notes">
+                        <field name="notes" nolabel="1" widget="html"/>
+                    </group>
                     <notebook>
                         <page string="Directions">
                             <field name="direction" nolabel="1" widget="html"/>

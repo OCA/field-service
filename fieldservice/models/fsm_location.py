@@ -65,6 +65,8 @@ class FSMLocation(models.Model):
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
 
+    notes = fields.Text(string="Notes")
+
     @api.depends('name', 'fsm_parent_id.complete_name')
     def _compute_complete_name(self):
         for loc in self:
