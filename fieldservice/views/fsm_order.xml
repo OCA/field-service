@@ -308,7 +308,7 @@
         <field name="arch" type="xml">
             <search string="Orders">
                 <field name="name"
-                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
+                       filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
                        string="FSM Order Name"/>
                 <field name="location_id"/>
                 <field name="branch_id"/>
