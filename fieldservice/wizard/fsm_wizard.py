@@ -37,6 +37,7 @@ class FSMWizard(models.TransientModel):
                     'customer_id': partner.id}
             self.env['fsm.location'].create(vals)
             partner.write({'fsm_location': True})
+            self.action_other_address(partner)
         else:
             raise UserError(_('A Field Service Location related to that'
                               ' partner already exists.'))
@@ -50,3 +51,7 @@ class FSMWizard(models.TransientModel):
         else:
             raise UserError(_('A Field Service Worker related to that'
                               ' partner already exists.'))
+
+    def action_other_address(self, partner):
+        for child in partner.child_ids:
+            child.type = 'other'
