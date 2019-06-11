@@ -83,7 +83,6 @@
                             <field name="region_id" invisible='1'/>
                             <field name="customer_id"/>
                             <field name="equipment_id"
-                                   attrs="{'required': [('type', '!=', False)]}"
                                    groups="fieldservice.group_fsm_equipment"
                                    options="{'no_create': True}"
                                    domain="[('current_location_id','=',location_id)]"/>
