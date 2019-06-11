@@ -344,6 +344,16 @@ class FSMLocation(models.Model):
             raise ValidationError(_('You cannot create recursive location.'))
         return True
 
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        if self.country_id and self.country_id != self.state_id.country_id:
+            self.state_id = False
+
+    @api.onchange('state_id')
+    def _onchange_state(self):
+        if self.state_id.country_id:
+            self.country_id = self.state_id.country_id
+
 
 class FSMPerson(models.Model):
     _inherit = 'fsm.person'

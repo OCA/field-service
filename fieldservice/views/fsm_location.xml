@@ -74,6 +74,9 @@
                             <field name="owner_id"/>
                             <field name="customer_id"/>
                             <field name="contact_id" context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"/>
+                            <field name="phone" widget="phone"/>
+                            <field name="fax" widget="phone"/>
+                            <field name="email" widget="email"/>
                             <label for="street" string="Address"/>
                             <div class="o_address_format">
                                 <field name="street" placeholder="Street..." class="o_address_street"/>
@@ -89,8 +92,11 @@
                             <field name="description"/>
                             <field name="tz"/>
                             <field name="calendar_id"/>
-                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}" required="True"/>
                         </group>
+                    </group>
+                    <group string="General Notes">
+                        <field name="notes" nolabel="1" widget="html"/>
                     </group>
                     <notebook>
                         <page string="Directions">
