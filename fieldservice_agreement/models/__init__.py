@@ -3,6 +3,7 @@
 from . import (
     agreement,
     fsm_equipment,
+    fsm_location,
     fsm_order,
-    fsm_person
+    fsm_person,
 )
