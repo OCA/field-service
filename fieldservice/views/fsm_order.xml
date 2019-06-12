@@ -89,7 +89,7 @@
                                    domain="[('current_location_id','=',location_id)]"/>
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
-                            <field name="person_id"/>
+                            <field name="person_id" context="{'search_default_location_ids': location_id}"/>
                         </group>
                     </group>
                     <group string="Description">
