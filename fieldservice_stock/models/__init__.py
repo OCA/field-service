@@ -9,5 +9,6 @@ from . import (
     product_template,
     stock_production_lot,
     fsm_wizard,
-    stock_request
+    stock_request,
+    stock_request_order,
 )
