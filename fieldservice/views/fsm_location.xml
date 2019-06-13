@@ -44,24 +44,21 @@
                         <button type="object"
                                 name="action_view_sublocation"
                                 class="oe_stat_button"
-                                icon="fa-location-arrow"
-                                context="{'default_fsm_parent_id': active_id}">
+                                icon="fa-location-arrow">
                             <field name="sublocation_count" widget="statinfo" string="Sub-Locations"/>
                         </button>
                         <button type="object"
                                 name="action_view_equipment"
                                 class="oe_stat_button"
                                 icon="fa-briefcase"
-                                groups="fieldservice.group_fsm_equipment"
-                                context="{'default_location_id': active_id}">
+                                groups="fieldservice.group_fsm_equipment">
                             <field name="equipment_count" widget="statinfo" string="Equipment"/>
                         </button>
                         <button type="object"
                                 name="action_view_contacts"
                                 class="oe_stat_button"
                                 icon="fa-user-circle-o"
-                                groups="base.group_user"
-                                context="{'default_service_location_id': active_id}">
+                                groups="base.group_user">
                             <field name="contact_count" widget="statinfo" string="Contacts"/>
                         </button>
                     </div>
@@ -191,6 +188,38 @@
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a Service Locations.
+            </p>
+        </field>
+    </record>
+
+    <record id="fsm_location_graph_view" model="ir.ui.view">
+        <field name="name">fsm.location.graph</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <graph string="FSM Locations" type="bar">
+                <field name="stage_id" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_location_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.location.pivot</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <pivot string="FSM Locations" display_quantity="true">
+                <field name="stage_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_report_location" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">fsm.location</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="help" type="html">
+            <p>
+                Location Reports.
             </p>
         </field>
     </record>
