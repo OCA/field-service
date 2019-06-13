@@ -1,39 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
-
-
-class StockRequest(models.Model):
-    _inherit = "stock.request"
-
-    fsm_order_id = fields.Many2one(
-        'fsm.order', string="FSM Order", ondelete='cascade',
-        index=True, copy=False)
-    direction = fields.Selection([('outbound', 'Outbound'),
-                                  ('inbound', 'Inbound')],
-                                 string='Direction',
-                                 states={'draft': [('readonly', False)]},
-                                 readonly=True)
-
-    @api.onchange('direction', 'fsm_order_id')
-    def _onchange_location_id(self):
-        if self.direction == 'outbound':
-            # Inventory location of the FSM location of the order
-            self.location_id = \
-                self.fsm_order_id.location_id.inventory_location_id.id
-        else:
-            # Otherwise the stock location of the warehouse
-            self.location_id = \
-                self.fsm_order_id.warehouse_id.lot_stock_id.id
-
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        if 'fsm_order_id' in vals:
-            fsm_order = self.env['fsm.order'].browse(vals['fsm_order_id'])
-            fsm_order.write({'request_stage': 'draft'})
-        return res
+from odoo import fields, models
 
 
 class StockMoveLine(models.Model):
@@ -53,6 +21,8 @@ class StockMoveLine(models.Model):
 
 class StockMove(models.Model):
     _inherit = "stock.move"
+
+    fsm_order_id = fields.Many2one('fsm.order', string='Field Service Order')
 
     def prepare_equipment_values(self, move_line):
         return {'name': '%s (%s)' % (
@@ -81,6 +51,19 @@ class ProcurementGroup(models.Model):
 
     fsm_order_id = fields.Many2one('fsm.order', 'Field Service Order')
 
+
+class StockRule(models.Model):
+    _inherit = 'stock.rule'
+
+    def _get_stock_move_values(self, product_id, product_qty, product_uom,
+                               location_id, name, origin, values, group_id):
+        vals = super()._get_stock_move_values(
+            product_id, product_qty, product_uom, location_id, name, origin,
+            values, group_id)
+        vals.update({
+            'fsm_order_id': values.get('fsm_order_id'),
+        })
+        return vals
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
