@@ -64,6 +64,110 @@ class FSMLocation(models.Model):
                                index=True, copy=False,
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
+    child_ids = fields.Many2many('fsm.location', compute='_compute_children')
+
+    @api.multi
+    def _compute_children(self):
+        for location in self:
+            children = [self.id]
+
+            def comp_children(self, child_ids):
+                for child_id in child_ids:
+                    children.append(child_id.id)
+                    childs = self.env['fsm.location'].\
+                        search([('fsm_parent_id', '=', child_id.id)])
+                    if childs:
+                        for child in childs:
+                            comp_children(self, childs)
+
+            child_ids = self.env['fsm.location'].\
+                search([('fsm_parent_id', '=', location.id)])
+            comp_children(self, child_ids)
+            self.child_ids = children
+
+    @api.multi
+    def _compute_equipment_ids(self):
+        self.equipment_count = self.env['fsm.equipment'].\
+            search_count([('location_id', 'in', self.child_ids.ids)])
+
+    @api.multi
+    def action_view_equipment(self):
+        '''
+        This function returns an action that display existing
+        equipment of given fsm location id. It can either be a in
+        a list or in a form view, if there is only one equipment to show.
+        '''
+        for location in self:
+            action = self.env.ref('fieldservice.action_fsm_equipment').\
+                read()[0]
+            equipment = self.env['fsm.equipment'].\
+                search([('location_id', 'in', self.child_ids.ids)])
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_location_id': self.id})
+            if len(equipment) == 0 or len(equipment) > 1:
+                action['domain'] = [('id', 'in', equipment.ids)]
+            elif equipment:
+                action['views'] = [(self.env.
+                                    ref('fieldservice.' +
+                                        'fsm_equipment_form_view').id,
+                                    'form')]
+                action['res_id'] = equipment.id
+            return action
+
+    @api.multi
+    def _compute_sublocation_ids(self):
+        self.sublocation_count = (len(self.child_ids.ids) - 1)
+
+    @api.multi
+    def action_view_sublocation(self):
+        '''
+        This function returns an action that display existing
+        sub-locations of a given fsm location id. It can either be a in
+        a list or in a form view, if there is only one sub-location to show.
+        '''
+        for location in self:
+            action = self.env.ref('fieldservice.action_fsm_location').read()[0]
+            sublocation = self.env['fsm.location'].\
+                search([('fsm_parent_id', 'in', self.child_ids.ids)])
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_fsm_parent_id': self.id})
+            if len(sublocation) > 1 or len(sublocation) == 0:
+                action['domain'] = [('id', 'in', sublocation.ids)]
+            elif sublocation:
+                action['views'] = [(self.env.
+                                    ref('fieldservice.' +
+                                        'fsm_location_form_view').id,
+                                    'form')]
+                action['res_id'] = sublocation.id
+            return action
+
+    @api.multi
+    def _compute_contact_ids(self):
+        self.contact_count = self.env['res.partner'].\
+            search_count([('service_location_id', 'in', self.child_ids.ids)])
+
+    @api.multi
+    def action_view_contacts(self):
+        '''
+        This function returns an action that display existing contacts
+        of given fsm location id and its child locations. It can
+        either be a in a list or in a form view, if there is only one
+        contact to show.
+        '''
+        for location in self:
+            action = self.env.ref('contacts.action_contacts').\
+                read()[0]
+            contacts = self.env['res.partner'].\
+                search([('service_location_id', 'in', self.child_ids.ids)])
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_service_location_id': self.id})
+            if len(contacts) == 1:
+                action['views'] = [(self.env.ref('base.view_partner_form').id,
+                                    'form')]
+                action['res_id'] = contacts.id
+            else:
+                action['domain'] = [('id', 'in', contacts.ids)]
+            return action
 
     @api.depends('name', 'fsm_parent_id.complete_name')
     def _compute_complete_name(self):
@@ -183,166 +287,6 @@ class FSMLocation(models.Model):
     @api.onchange('region_id')
     def _onchange_region_id(self):
         self.region_manager_id = self.region_id.partner_id or False
-
-    def comp_count(self, contact, equipment, loc):
-        if equipment:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                equip = self.env['fsm.equipment'].\
-                    search_count([('location_id',
-                                   '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    equip += loc.comp_count(0, 1, loc)
-            return equip
-        elif contact:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                con = self.env['res.partner'].\
-                    search_count([('service_location_id',
-                                   '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    con += loc.comp_count(1, 0, loc)
-            return con
-        else:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                subloc = self.env['fsm.location'].\
-                    search_count([('fsm_parent_id', '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    subloc += loc.comp_count(0, 0, loc)
-            return subloc
-
-    def get_action_views(self, contact, equipment, loc):
-        if equipment:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                equip = self.env['fsm.equipment'].\
-                    search([('location_id', '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    equip += loc.get_action_views(0, 1, loc)
-            return equip
-        elif contact:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                con = self.env['res.partner'].\
-                    search([('service_location_id', '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    con += loc.get_action_views(1, 0, loc)
-            return con
-        else:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                subloc = child_locs
-            if child_locs:
-                for loc in child_locs:
-                    subloc += loc.get_action_views(0, 0, loc)
-            return subloc
-
-    @api.multi
-    def action_view_contacts(self):
-        '''
-        This function returns an action that display existing contacts
-        of given fsm location id and its child locations. It can
-        either be a in a list or in a form view, if there is only one
-        contact to show.
-        '''
-        for location in self:
-            action = self.env.ref('contacts.action_contacts').\
-                read()[0]
-            contacts = self.get_action_views(1, 0, location)
-            action['context'] = self.env.context.copy()
-            action['context'].update({'default_service_location_id': self.id})
-            if len(contacts) == 1:
-                action['views'] = [(self.env.ref('base.view_partner_form').id,
-                                    'form')]
-                action['res_id'] = contacts.id
-            else:
-                action['domain'] = [('id', 'in', contacts.ids)]
-            return action
-
-    @api.multi
-    def _compute_contact_ids(self):
-        for loc in self:
-            contacts = self.comp_count(1, 0, loc)
-            loc.contact_count = contacts
-
-    @api.multi
-    def action_view_equipment(self):
-        '''
-        This function returns an action that display existing
-        equipment of given fsm location id. It can either be a in
-        a list or in a form view, if there is only one equipment to show.
-        '''
-        for location in self:
-            action = self.env.ref('fieldservice.action_fsm_equipment').\
-                read()[0]
-            equipment = self.get_action_views(0, 1, location)
-            action['context'] = self.env.context.copy()
-            action['context'].update({'default_location_id': self.id})
-            if len(equipment) == 0 or len(equipment) > 1:
-                action['domain'] = [('id', 'in', equipment.ids)]
-            elif equipment:
-                action['views'] = [(self.env.
-                                    ref('fieldservice.' +
-                                        'fsm_equipment_form_view').id,
-                                    'form')]
-                action['res_id'] = equipment.id
-            return action
-
-    @api.multi
-    def _compute_sublocation_ids(self):
-        for loc in self:
-            sublocation = self.comp_count(0, 0, loc)
-            loc.sublocation_count = sublocation
-
-    @api.multi
-    def action_view_sublocation(self):
-        '''
-        This function returns an action that display existing
-        sub-locations of a given fsm location id. It can either be a in
-        a list or in a form view, if there is only one sub-location to show.
-        '''
-        for location in self:
-            action = self.env.ref('fieldservice.action_fsm_location').read()[0]
-            sublocation = self.get_action_views(0, 0, location)
-            action['context'] = self.env.context.copy()
-            action['context'].update({'default_fsm_parent_id': self.id})
-            if len(sublocation) > 1 or len(sublocation) == 0:
-                action['domain'] = [('id', 'in', sublocation.ids)]
-            elif sublocation:
-                action['views'] = [(self.env.
-                                    ref('fieldservice.' +
-                                        'fsm_location_form_view').id,
-                                    'form')]
-                action['res_id'] = sublocation.id
-            return action
-
-    @api.multi
-    def _compute_equipment_ids(self):
-        for loc in self:
-            equipment = self.comp_count(0, 1, loc)
-            loc.equipment_count = equipment
-        for location in self:
-            child_locs = self.env['fsm.location']. \
-                search([('fsm_parent_id', '=', location.id)])
-            equipment = (self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        'in', child_locs.ids)]) +
-                         self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        '=', location.id)]))
-            location.equipment_count = equipment or 0
 
     @api.constrains('fsm_parent_id')
     def _check_location_recursion(self):
