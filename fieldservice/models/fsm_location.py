@@ -261,6 +261,8 @@ class FSMLocation(models.Model):
             action = self.env.ref('contacts.action_contacts').\
                 read()[0]
             contacts = self.get_action_views(1, 0, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_service_location_id': self.id})
             if len(contacts) == 1:
                 action['views'] = [(self.env.ref('base.view_partner_form').id,
                                     'form')]
@@ -286,6 +288,8 @@ class FSMLocation(models.Model):
             action = self.env.ref('fieldservice.action_fsm_equipment').\
                 read()[0]
             equipment = self.get_action_views(0, 1, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_location_id': self.id})
             if len(equipment) == 0 or len(equipment) > 1:
                 action['domain'] = [('id', 'in', equipment.ids)]
             elif equipment:
@@ -312,6 +316,8 @@ class FSMLocation(models.Model):
         for location in self:
             action = self.env.ref('fieldservice.action_fsm_location').read()[0]
             sublocation = self.get_action_views(0, 0, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_fsm_parent_id': self.id})
             if len(sublocation) > 1 or len(sublocation) == 0:
                 action['domain'] = [('id', 'in', sublocation.ids)]
             elif sublocation:
