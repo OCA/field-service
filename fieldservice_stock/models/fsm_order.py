@@ -52,15 +52,23 @@ class FSMOrder(models.Model):
                 raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
                 if line.state == 'draft':
-                    line.action_confirm()
+                    if line.order_id:
+                        line.order_id.action_confirm()
+                    else:
+                        line.action_confirm()
             rec.request_stage = 'submitted'
 
+    @api.multi
     def action_request_cancel(self):
         for rec in self:
             if not rec.stock_request_ids:
                 raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
-                line.action_cancel()
+                if line.state in ('draft', 'submitted'):
+                    if line.order_id:
+                        line.order_id.action_cancel()
+                    else:
+                        line.action_cancel()
             rec.request_stage = 'cancel'
 
     @api.multi
@@ -69,7 +77,11 @@ class FSMOrder(models.Model):
             if not rec.stock_request_ids:
                 raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
-                line.action_draft()
+                if line.state == 'cancel':
+                    if line.order_id:
+                        line.order_id.action_draft()
+                    else:
+                        line.action_draft()
             rec.request_stage = 'draft'
 
     @api.depends('picking_ids')
