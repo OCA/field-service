@@ -23,4 +23,4 @@ class FSMLocation(models.Model):
                 for ser in servpros:
                     if ser.id not in ids:
                         ids.append(ser.id)
-            self.serviceprofile_ids = ids
+            loc.serviceprofile_ids = ids
