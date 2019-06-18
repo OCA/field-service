@@ -15,7 +15,7 @@ class FSMLocation(models.Model):
     def _compute_service_ids(self):
         for loc in self:
             agreements = self.env['agreement'].\
-                search([('fsm_location_id', '=', self.name)])
+                search([('fsm_location_id', '=', loc.id)])
             ids = []
             for agree in agreements:
                 servpros = self.env['agreement.serviceprofile'].\
@@ -23,4 +23,4 @@ class FSMLocation(models.Model):
                 for ser in servpros:
                     if ser.id not in ids:
                         ids.append(ser.id)
-            self.serviceprofile_ids = ids
+            loc.serviceprofile_ids = ids
