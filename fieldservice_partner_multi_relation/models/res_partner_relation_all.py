@@ -113,7 +113,7 @@ class ResPartnerRelationAll(models.AbstractModel):
         if right_cat == 'fsm-location':
             if not right_to_test.fsm_location:
                 raise ValidationError(
-                        _('Right Partner not type FSM Location'))
+                    _('Right Partner not type FSM Location'))
 
     def set_domain_left(self):
         type_id = self.env['res.partner.relation.type'].\
