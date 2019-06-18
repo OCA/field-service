@@ -11,16 +11,18 @@ class ResPartnerRelationAll(models.AbstractModel):
     @api.onchange('this_partner_id')
     def onchange_this_partner_id(self):
         if self.this_partner_id:
-            type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+            type_id = self.env['res.partner.relation.type'].\
+                search([('name', '=', self.type_selection_id.name)])
             if (type_id.contact_type_left == 'fsm-location'
-            or type_id.contact_type_right == 'fsm-location'
-            or self.this_partner_id.fsm_location or self.other_partner_id.fsm_location):
+                    or type_id.contact_type_right == 'fsm-location'
+                    or self.this_partner_id.fsm_location
+                    or self.other_partner_id.fsm_location):
                 if not self.type_selection_id:
                     return self.set_domain_type()
             elif not self.this_partner_id:
                 if not self.other_partner_id:
                     return {'domain': {'type_selection_id': ''}}
-                
+
             else:
                 super(ResPartnerRelationAll, self).onchange_partner_id()
         else:
@@ -30,10 +32,12 @@ class ResPartnerRelationAll(models.AbstractModel):
     @api.onchange('other_partner_id')
     def onchange_other_partner_id(self):
         if self.other_partner_id:
-            type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+            type_id = self.env['res.partner.relation.type'].\
+                search([('name', '=', self.type_selection_id.name)])
             if (type_id.contact_type_left == 'fsm-location'
-            or type_id.contact_type_right == 'fsm-location'
-            or self.this_partner_id.fsm_location or self.other_partner_id.fsm_location):
+                    or type_id.contact_type_right == 'fsm-location'
+                    or self.this_partner_id.fsm_location
+                    or self.other_partner_id.fsm_location):
                 if not type_id:
                     return self.set_domain_type()
                 elif not self.other_partner_id:
@@ -50,11 +54,15 @@ class ResPartnerRelationAll(models.AbstractModel):
     def onchange_type_selection_id(self):
         # Clear any prexisting domains
         if not self.type_selection_id:
-            return {'domain': {'this_partner_id': [('id', '!=', None)], 'other_partner_id': [('id', '!=', None)]}}
-        type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+            return {'domain':
+                    {'this_partner_id': [('id', '!=', None)],
+                     'other_partner_id': [('id', '!=', None)]}}
+        type_id = self.env['res.partner.relation.type'].\
+            search([('name', '=', self.type_selection_id.name)])
         if (type_id.contact_type_left == 'fsm-location'
-        or type_id.contact_type_right == 'fsm-location'
-        or self.this_partner_id.fsm_location or self.other_partner_id.fsm_location):
+                or type_id.contact_type_right == 'fsm-location'
+                or self.this_partner_id.fsm_location
+                or self.other_partner_id.fsm_location):
             if self.this_partner_id and self.other_partner_id:
                 # Check
                 self.try_type()
@@ -67,16 +75,16 @@ class ResPartnerRelationAll(models.AbstractModel):
                 res = self.set_domain_left()
                 return res
             else:
-                res =  self.set_domain_left()
-                res2 =  self.set_domain_right()
+                res = self.set_domain_left()
+                res2 = self.set_domain_right()
                 res.update(res2['domain'])
                 return res
         else:
             super(ResPartnerRelationAll, self).onchange_type_selection_id()
 
-
     def try_type(self):
-        type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+        type_id = self.env['res.partner.relation.type'].\
+            search([('name', '=', self.type_selection_id.name)])
         # From Type
         left_cat = type_id.contact_type_left
         right_cat = type_id.contact_type_right
@@ -86,13 +94,13 @@ class ResPartnerRelationAll(models.AbstractModel):
         right_to_test = self.other_partner_id
 
         # Compare
-        if right_cat == 'p':
+        if left_cat == 'p':
             if left_to_test.company_type != 'person':
                 raise ValidationError(_('Left Partner not type Person'))
-        if right_cat == 'c':
+        if left_cat == 'c':
             if left_to_test.company_type != 'compnay':
                 raise ValidationError(_('Left Partner not type Company'))
-        if right_cat == 'fsm-location':
+        if left_cat == 'fsm-location':
             if not left_to_test.fsm_location:
                 raise ValidationError(_('Left Partner not type FSM Location'))
 
@@ -104,10 +112,12 @@ class ResPartnerRelationAll(models.AbstractModel):
                 raise ValidationError(_('Right Partner not type Company'))
         if right_cat == 'fsm-location':
             if not right_to_test.fsm_location:
-                raise ValidationError(_('Right Partner not type FSM Location'))
+                raise ValidationError(
+                        _('Right Partner not type FSM Location'))
 
     def set_domain_left(self):
-        type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+        type_id = self.env['res.partner.relation.type'].\
+            search([('name', '=', self.type_selection_id.name)])
         # From Type
         res = {}
         # With a Relation Type
@@ -121,7 +131,8 @@ class ResPartnerRelationAll(models.AbstractModel):
             res = {'domain': {'this_partner_id': ''}}
 
     def set_domain_right(self):
-        type_id = self.env['res.partner.relation.type'].search([('name', '=', self.type_selection_id.name)])
+        type_id = self.env['res.partner.relation.type'].\
+            search([('name', '=', self.type_selection_id.name)])
         # From Type
         res = {}
         # With a Relation Type
@@ -133,7 +144,7 @@ class ResPartnerRelationAll(models.AbstractModel):
         # Wtihout a Relation Type
         else:
             res = {'domain': {'other_partner_id': ''}}
-                        
+
     def set_domain_type(self):
         res = {}
         # If Left & Right then Type must match both
@@ -141,47 +152,63 @@ class ResPartnerRelationAll(models.AbstractModel):
             left_cat = self.get_cat(self.this_partner_id)
             right_cat = self.get_cat(self.other_partner_id)
             type_ids = self.env['res.partner.relation.type'].\
-                search([('contact_type_left', '=', left_cat), ('contact_type_right', '=', right_cat)])
+                search([('contact_type_left', '=', left_cat),
+                        ('contact_type_right', '=', right_cat)])
             type_names = []
             for type_id in type_ids:
                 type_names.append(type_id.name)
             # From Type
-            res = {'domain': {'type_selection_id': [('name', 'in', type_names)]}}
+            res = {'domain':
+                   {'type_selection_id': [('name', 'in', type_names)]}}
         # If Left Type must match Left
         elif self.this_partner_id:
             left_cat = self.get_cat(self.this_partner_id)
-            type_ids = self.env['res.partner.relation.type'].search([('contact_type_left', '=', left_cat)])
+            type_ids = self.env['res.partner.relation.type'].\
+                search([('contact_type_left', '=', left_cat)])
             type_names = []
             for type_id in type_ids:
                 type_names.append(type_id.name)
-            res = {'domain': {'type_selection_id': [('name', 'in', type_names)]}}
+            res = {'domain':
+                   {'type_selection_id': [('name', 'in', type_names)]}}
         # If Right Type must match Right
         elif self.other_partner_id:
             right_cat = self.get_cat(self.other_partner_id)
-            type_ids = self.env['res.partner.relation.type'].search([('contact_type_right', '=', right_cat)])
+            type_ids = self.env['res.partner.relation.type'].\
+                search([('contact_type_right', '=', right_cat)])
             type_names = []
             for type_id in type_ids:
                 type_names.append(type_id.name)
-            res = {'domain': {'type_selection_id': [('name', 'in', type_names)]}}
-        return res            
+            res = {'domain':
+                   {'type_selection_id': [('name', 'in', type_names)]}}
+        return res
 
     def build_domain(self, side, cat):
         build = {}
         if cat == 'p':
-            if side :
-                build = {'domain': {'this_partner_id': [('company_type','=', 'person')]}}
+            if side:
+                build = {'domain':
+                         {'this_partner_id':
+                          [('company_type', '=', 'person')]}}
             else:
-                build = {'domain': {'other_partner_id': [('company_type','=', 'person')]}}
+                build = {'domain':
+                         {'other_partner_id':
+                          [('company_type', '=', 'person')]}}
         if cat == 'c':
-            if side :
-                build = {'domain': {'this_partner_id': [('company_type','=', 'company')]}}
+            if side:
+                build = {'domain':
+                         {'this_partner_id':
+                          [('company_type', '=', 'company')]}}
             else:
-                build = {'domain': {'other_partner_id': [('company_type','=', 'company')]}}
+                build = {'domain':
+                         {'other_partner_id':
+                          [('company_type', '=', 'company')]}}
         if cat == 'fsm-location':
-            if side :
-                build = {'domain': {'this_partner_id': [('fsm_location','=', True)]}}
+            if side:
+                build = {'domain':
+                         {'this_partner_id': [('fsm_location', '=', True)]}}
             else:
-                build = {'domain': {'other_partner_id': [('fsm_location','=', True)]}}
+                build = {'domain':
+                         {'other_partner_id': [('fsm_location', '=', True)]}}
         return build
 
     def get_cat(self, partner):
