@@ -159,11 +159,11 @@
                                 <group id="execution-right"/>
                             </group>
                         </page>
-                        <page string="Equipment"
+                        <page string="Equipments"
+                            groups="fieldservice.group_fsm_equipment"
                             attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
                             <field name="equipment_ids"
                                    attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
-                                   groups="fieldservice.group_fsm_equipment"
                                    options="{'no_create': True}"
                                    domain="[('current_location_id','=',location_id)]">
                                 <tree>
