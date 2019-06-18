@@ -22,19 +22,19 @@
 
     <!-- manages  -->
     <record id="rel_type_manages_loc" model="res.partner.relation.type">
-        <field name="name">[L+L] manges</field>
+        <field name="name">[L+L] manages</field>
         <field name="name_inverse">[L+L] is managed by</field>
         <field name="contact_type_left">fsm-location</field>
         <field name="contact_type_right">fsm-location</field>
     </record>
     <record id="rel_type_manages_org" model="res.partner.relation.type">
-        <field name="name">[C+L] manges</field>
+        <field name="name">[C+L] manages</field>
         <field name="name_inverse">[L+C] is managed by</field>
         <field name="contact_type_left">c</field>
         <field name="contact_type_right">fsm-location</field>
     </record>
     <record id="rel_type_manages_per" model="res.partner.relation.type">
-        <field name="name">[P+L] manges</field>
+        <field name="name">[P+L] manages</field>
         <field name="name_inverse">[L+P] is managed by</field>
         <field name="contact_type_left">p</field>
         <field name="contact_type_right">fsm-location</field>
