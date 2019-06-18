@@ -82,14 +82,15 @@
                             <field name="district_id" invisible='1'/>
                             <field name="region_id" invisible='1'/>
                             <field name="customer_id"/>
-                            <field name="equipment_id"
-                                   attrs="{'required': [('type', '!=', False)]}"
-                                   groups="fieldservice.group_fsm_equipment"
-                                   options="{'no_create': True}"
-                                   domain="[('current_location_id','=',location_id)]"/>
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
-                            <field name="person_id" context="{'search_default_location_ids': location_id}"/>
+                            <field name="person_id"/>
+                            <field name="equipment_id"
+                                attrs="{'required': [('type', 'in', ['repair', 'maintenance'])],
+                                        'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
+                                groups="fieldservice.group_fsm_equipment"
+                                options="{'no_create': True}"
+                                domain="[('current_location_id','=',location_id)]"/>
                         </group>
                     </group>
                     <group string="Description">
@@ -157,6 +158,20 @@
                                 </group>
                                 <group id="execution-right"/>
                             </group>
+                        </page>
+                        <page string="Equipment"
+                            attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
+                            <field name="equipment_ids"
+                                   attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
+                                   groups="fieldservice.group_fsm_equipment"
+                                   options="{'no_create': True}"
+                                   domain="[('current_location_id','=',location_id)]">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="person_id"/>
+                                    <field name="location_id"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
