@@ -88,7 +88,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_equipment_ids(self):
         for loc in self:
-            self.equipment_count = self.env['fsm.equipment'].\
+            loc.equipment_count = self.env['fsm.equipment'].\
                 search_count([('location_id', 'in', loc.child_ids.ids)])
 
     @api.multi
@@ -118,7 +118,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_sublocation_ids(self):
         for loc in self:
-            self.sublocation_count = (len(loc.child_ids.ids) - 1)
+            loc.sublocation_count = (len(loc.child_ids.ids) - 1)
 
     @api.multi
     def action_view_sublocation(self):
@@ -146,7 +146,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_contact_ids(self):
         for loc in self:
-            self.contact_count = self.env['res.partner'].\
+            loc.contact_count = self.env['res.partner'].\
                 search_count([('service_location_id', 'in',
                 loc.child_ids.ids)])
 
