@@ -69,7 +69,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_children(self):
         for location in self:
-            children = [self.id]
+            children = [location.id]
 
             def comp_children(self, child_ids):
                 for child_id in child_ids:
@@ -83,7 +83,7 @@ class FSMLocation(models.Model):
             child_ids = self.env['fsm.location'].\
                 search([('fsm_parent_id', '=', location.id)])
             comp_children(self, child_ids)
-            self.child_ids = children
+            location.child_ids = children
 
     @api.multi
     def _compute_equipment_ids(self):
