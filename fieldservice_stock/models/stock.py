@@ -44,8 +44,10 @@ class StockMoveLine(models.Model):
         for rec in self:
             if rec.move_id and rec.move_id.allocation_ids:
                 for request in rec.move_id.allocation_ids:
-                    if request.state == 'done' and request.fsm_order_id:
-                        request.fsm_order_id.request_stage = 'done'
+                    if (request.stock_request_id.state == 'done'
+                            and request.stock_request_id.fsm_order_id):
+                        request.stock_request_id.\
+                            fsm_order_id.request_stage = 'done'
         return res
 
 
@@ -58,8 +60,8 @@ class StockMove(models.Model):
             'product_id': move_line.product_id.id,
             'lot_id': move_line.lot_id.id,
             'current_location_id':
-            move_line.request_id.fsm_order_id.location_id.id,
-            'current_stock_location_id': move_line.dest_location_id.id}
+            move_line.move_id.stock_request_ids.fsm_order_id.location_id.id,
+            'current_stock_location_id': move_line.location_dest_id.id}
 
     def _action_done(self):
         res = False

@@ -23,6 +23,7 @@
         'views/fsm_equipment.xml',
         'views/product_template.xml',
         'views/stock_production_lot.xml',
+        'views/stock_request.xml'
     ],
     'license': 'AGPL-3',
     'development_status': 'Beta',
