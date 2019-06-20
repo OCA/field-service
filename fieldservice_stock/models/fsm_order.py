@@ -51,7 +51,8 @@ class FSMOrder(models.Model):
             if not rec.stock_request_ids:
                 raise UserError(_('Please create a stock request.'))
             for line in rec.stock_request_ids:
-                line.action_confirm()
+                if line.state == 'draft':
+                    line.action_confirm()
             rec.request_stage = 'submitted'
 
     def action_request_cancel(self):
