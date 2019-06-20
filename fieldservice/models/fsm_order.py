@@ -182,23 +182,23 @@ class FSMOrder(models.Model):
                          'request_early': str(req_date)})
         return super(FSMOrder, self).create(vals)
 
+    @api.onchange('scheduled_duration')
+    def _onchange_scheduled_duration(self):
+        if self.scheduled_date_start:
+            self.scheduled_date_end = fields.Datetime.\
+                from_string((self.scheduled_date_start) +
+                            timedelta(hours=self.scheduled_duration))
+
+    @api.onchange('scheduled_date_start')
+    def _onchange_scheduled_date_start(self):
+        if self.scheduled_date_start:
+            if self.scheduled_duration:
+                self.scheduled_date_end = fields.Datetime.\
+                    from_string((self.scheduled_date_start) +
+                                timedelta(hours=self.scheduled_duration))
+
     @api.multi
     def write(self, vals):
-        if 'scheduled_date_end' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_end')) - \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_start'] = str(date_to_with_delta)
-        if 'scheduled_duration' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start))\
-                + timedelta(hours=vals.get('scheduled_duration'))
-            vals['scheduled_date_end'] = str(date_to_with_delta)
-        if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start')) + \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_end'] = str(date_to_with_delta)
         res = super(FSMOrder, self).write(vals)
         for order in self:
             if 'customer_id' not in vals and order.customer_id is False:
