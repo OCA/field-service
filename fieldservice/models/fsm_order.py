@@ -61,6 +61,7 @@ class FSMOrder(models.Model):
                                   track_visibility='always')
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True, required=True)
+    location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
                                     default=datetime.now())
     request_late = fields.Datetime(string='Latest Request Date',
@@ -107,6 +108,8 @@ class FSMOrder(models.Model):
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
                                 index=True)
+    person_phone = fields.Char(related="person_id.phone",
+                               string="Worker Phone")
     route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
     scheduled_duration = fields.Float(string='Scheduled duration',
@@ -141,12 +144,12 @@ class FSMOrder(models.Model):
     street = fields.Char(related="location_id.street")
     street2 = fields.Char(related="location_id.street2")
     zip = fields.Char(related="location_id.zip")
-    city = fields.Char(related="location_id.city")
+    city = fields.Char(related="location_id.city", string="City")
     state_name = fields.Char(related="location_id.state_id.name",
                              string='State', ondelete='restrict')
     country_name = fields.Char(related="location_id.country_id.name",
                                string='Country', ondelete='restrict')
-    phone = fields.Char(related="location_id.phone")
+    phone = fields.Char(related="location_id.phone", string="Location Phone")
     mobile = fields.Char(related="location_id.mobile")
 
     stage_name = fields.Char(related="stage_id.name", string="Stage Name")
@@ -262,7 +265,7 @@ class FSMOrder(models.Model):
 
     def copy_notes(self):
         self.description = ""
-        if self.type not in ['repair', 'maintenance']:
+        if self.type and self.type.name not in ['repair', 'maintenance']:
             for equipment_id in self.equipment_ids:
                 if equipment_id:
                     if equipment_id.notes is not False:
@@ -281,14 +284,15 @@ class FSMOrder(models.Model):
                         self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             s = self.location_id.direction
-            if s is not False and s is not '<p><br></p>':
+            if s is not False and s != '<p><br></p>':
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
                 s = s.replace('</p>', '\n')
-                if self.description is not False:
-                    self.description = (self.description + '\n' + s + '\n')
+                if self.location_directions is not False:
+                    self.location_directions = (self.location_directions +
+                                                '\n' + s + '\n')
                 else:
-                    self.description = (s + '\n ')
+                    self.location_directions = (s + '\n ')
         if self.template_id:
             self.todo = self.template_id.instructions
 
