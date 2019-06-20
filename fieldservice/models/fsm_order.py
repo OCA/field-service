@@ -184,7 +184,7 @@ class FSMOrder(models.Model):
 
     @api.onchange('scheduled_date_start', 'scheduled_duration')
     def _onchange_scheduled_date_end(self):
-        if self.scheduled_date_start and self.duration:
+        if self.scheduled_date_start and self.scheduled_duration:
             self.scheduled_date_end = fields.Datetime.\
                 from_string((self.scheduled_date_start) +
                             timedelta(hours=self.scheduled_duration))
