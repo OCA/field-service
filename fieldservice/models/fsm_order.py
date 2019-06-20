@@ -182,20 +182,12 @@ class FSMOrder(models.Model):
                          'request_early': str(req_date)})
         return super(FSMOrder, self).create(vals)
 
-    @api.onchange('scheduled_duration')
-    def _onchange_scheduled_duration(self):
-        if self.scheduled_date_start:
+    @api.onchange('scheduled_date_start', 'scheduled_duration')
+    def _onchange_scheduled_date_end(self):
+        if self.scheduled_date_start and self.duration:
             self.scheduled_date_end = fields.Datetime.\
                 from_string((self.scheduled_date_start) +
                             timedelta(hours=self.scheduled_duration))
-
-    @api.onchange('scheduled_date_start')
-    def _onchange_scheduled_date_start(self):
-        if self.scheduled_date_start:
-            if self.scheduled_duration:
-                self.scheduled_date_end = fields.Datetime.\
-                    from_string((self.scheduled_date_start) +
-                                timedelta(hours=self.scheduled_duration))
 
     @api.multi
     def write(self, vals):
