@@ -1,5 +1,4 @@
 <odoo>
-    <data noupdate="1">
         <record id="fsm_order_email_sender" model="base.automation">
             <field name="name">FSM Order Email Sender</field>
             <field name="model_id" ref="fieldservice.model_fsm_order"/>
@@ -16,5 +15,4 @@
                     ref('fsm_order_parent_canceled')])
                 ]"/>
         </record>
-    </data>
 </odoo>

@@ -145,6 +145,9 @@
                             </group>
                         </page>
                         <page string="Instructions">
+                            <group string="Location Directions">
+                                <field name="location_directions" nolabel="1" widget="html"/>
+                            </group>
                             <group string="Instructions">
                                 <field name="todo" nolabel="1" widget="html"/>
                             </group>
@@ -377,11 +380,31 @@
         </field>
     </record>
 
+    <record id="fsm_order_calendar_view" model="ir.ui.view">
+            <field name="name">Orders</field>
+            <field name="model">fsm.order</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                <calendar string="FSM Orders" date_start="scheduled_date_start"
+                          date_delay="scheduled_duration" color="stage_id">
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="location_id"/>
+                    <field name="phone"/>
+                    <field name="customer_id"/>
+                    <field name="person_id"/>
+                    <field name="person_phone"/>
+                    <field name="city"/>
+                    <field name="state_name"/>
+                </calendar>
+            </field>
+        </record>
+
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,timeline,tree,form</field>
+        <field name="view_mode">kanban,timeline,tree,form,calendar</field>
         <field name="search_view_id" ref="fsm_order_search_view"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
