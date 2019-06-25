@@ -45,7 +45,7 @@ class FSMLocation(models.Model):
                                   string='Office Hours')
     fsm_parent_id = fields.Many2one('fsm.location', string='Parent',
                                     index=True)
-    notes = fields.Text(string="Notes")
+    notes = fields.Text(string="Location Notes")
     person_ids = fields.One2many('fsm.location.person',
                                  'location_id',
                                  string='Workers')
