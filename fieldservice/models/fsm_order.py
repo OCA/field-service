@@ -131,13 +131,17 @@ class FSMOrder(models.Model):
 
     # Location
     territory_id = fields.Many2one('fsm.territory', string="Territory",
-                                   related='location_id.territory_id')
+                                   related='location_id.territory_id',
+                                   store=True)
     branch_id = fields.Many2one('fsm.branch', string='Branch',
-                                related='location_id.branch_id')
+                                related='location_id.branch_id',
+                                store=True)
     district_id = fields.Many2one('fsm.district', string='District',
-                                  related='location_id.district_id')
+                                  related='location_id.district_id',
+                                  store=True)
     region_id = fields.Many2one('fsm.region', string='Region',
-                                related='location_id.region_id')
+                                related='location_id.region_id',
+                                store=True)
 
     # Fields for Geoengine Identify
     display_name = fields.Char(related="name", string="Order")
@@ -216,6 +220,9 @@ class FSMOrder(models.Model):
             'fieldservice.fsm_stage_confirmed').id})
 
     def action_request(self):
+        if not self.person_ids:
+            raise ValidationError(_("Cannot move to Requested " +
+                                    "until 'Request Workers' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_requested').id})
 
@@ -228,18 +235,32 @@ class FSMOrder(models.Model):
                                     "until 'Assigned To' is filled in"))
 
     def action_schedule(self):
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_scheduled').id})
+        if self.scheduled_date_start and self.person_id:
+            return self.write({'stage_id': self.env.ref(
+                'fieldservice.fsm_stage_scheduled').id})
+        else:
+            raise ValidationError(_("Cannot move to Scheduled " +
+                                    "until both 'Assigned To' and " +
+                                    "'Scheduled Start Date' are filled in"))
 
     def action_enroute(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_enroute').id})
 
     def action_start(self):
+        if not self.date_start:
+            raise ValidationError(_("Cannot move to Start " +
+                                    "until 'Actual Start' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_started').id})
 
     def action_complete(self):
+        if not self.date_end:
+            raise ValidationError(_("Cannot move to Complete " +
+                                    "until 'Actual End' is filled in"))
+        if not self.resolution:
+            raise ValidationError(_("Cannot move to Complete " +
+                                    "until 'Resolution' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_completed').id})
 
