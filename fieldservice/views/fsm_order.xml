@@ -31,7 +31,7 @@
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_assigned)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_assigned)d, %(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
                     <button id="action_enroute"
                             name="action_enroute" string="En Route"
                             class="oe_highlight"
@@ -324,6 +324,10 @@
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
             <search string="Orders">
+                <filter string="My Orders"
+                        domain="[('person_id.partner_id.user_ids', '=', uid)]"
+                        name="my_orders"/>
+                <separator/>
                 <field name="name"
                        filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
                        string="FSM Order Name"/>
