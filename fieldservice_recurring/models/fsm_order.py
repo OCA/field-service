@@ -3,12 +3,10 @@
 
 from datetime import timedelta
 
-from odoo import fields
-
-from odoo.addons.base_geoengine import geo_model
+from odoo import models, fields
 
 
-class FSMOrder(geo_model.GeoModel):
+class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
     fsm_recurring_id = fields.Many2one(
@@ -19,5 +17,5 @@ class FSMOrder(geo_model.GeoModel):
             return super(FSMOrder, self)._compute_request_late()
         else:
             days_late = self.fsm_recurring_id.fsm_frequency_set_id.buffer_late
-            self.request_late = fields.Datetime.from_string(
-                self.scheduled_date_start) + timedelta(days=days_late)
+            self.request_late = \
+                self.scheduled_date_start + timedelta(days=days_late)
