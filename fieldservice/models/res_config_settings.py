@@ -50,6 +50,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
     auto_populate_persons_on_location = fields.Boolean(
         string='Auto-populate Workers on Location based on Territory',
         related='company_id.auto_populate_persons_on_location',
