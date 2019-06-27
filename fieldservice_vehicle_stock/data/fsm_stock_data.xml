@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="stock_location_vehicle" model="stock.location">
@@ -13,7 +12,6 @@
         <field name="location_id" ref="stock_location_vehicle"/>
         <field name="company_id"></field>
     </record>
-
 
     <data noupdate="1">
 
@@ -150,7 +148,7 @@
                 model="stock.rule">
             <field name="name">Vehicle → Warehouse</field>
             <field name="action">push</field>
-            <field name="location_scs_id" ref="stock_location_vehicle"/>
+            <field name="location_src_id" ref="stock_location_vehicle"/>
             <field name="location_id" ref="stock.stock_location_stock"/>
             <field name="auto">manual</field>
             <field name="picking_type_id" ref="picking_type_vehicle_to_input"/>
