@@ -15,8 +15,10 @@
         'fieldservice_stock',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/fsm_stock_data.xml',
         'views/fsm_vehicle.xml',
+        'views/fsm_order.xml',
     ],
     'installable': True,
     'auto_install': True,
