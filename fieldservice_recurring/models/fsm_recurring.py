@@ -6,7 +6,6 @@ from dateutil.rrule import rruleset
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api, _
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class FSMRecurringOrder(models.Model):
@@ -99,8 +98,7 @@ class FSMRecurringOrder(models.Model):
         for rec in self:
             if not rec.start_date:
                 rec.start_date = datetime.now()
-            start_date = fields.Datetime.from_string(rec.start_date)
-            rec._create_order(date=start_date)
+            rec._create_order(date=rec.start_date)
             rec.write({'state': 'progress'})
 
     @api.multi
@@ -128,15 +126,12 @@ class FSMRecurringOrder(models.Model):
                 'fieldservice.fsm_stage_cancelled').id)
         ], offset=0, limit=1, order='scheduled_date_start desc')
         if last_order:
-            next_date = fields.Datetime.from_string(
-                last_order.scheduled_date_start)
+            next_date = last_order.scheduled_date_start
         # set thru_date to use as rrule 'until' parameter
         days_ahead = self.fsm_frequency_set_id.schedule_days
         request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
-        request_thru_str = request_thru_date.strftime(
-            DEFAULT_SERVER_DATETIME_FORMAT)
-        if self.end_date and (self.end_date < request_thru_str):
-            thru_date = fields.Datetime.from_string(self.end_date)
+        if self.end_date and (self.end_date < request_thru_date):
+            thru_date = self.end_date
         else:
             thru_date = request_thru_date
         # use variables to calulate and return the rruleset object
@@ -157,7 +152,7 @@ class FSMRecurringOrder(models.Model):
             'request_early': str(earliest_date),
             'description': self.description,
             'template_id': self.fsm_order_template_id.id,
-            'company_id': self.company_id.id,
+            # 'company_id': self.company_id.id,
         }
 
     def _create_order(self, date):
@@ -181,10 +176,7 @@ class FSMRecurringOrder(models.Model):
             order_dates = []
             for order in rec.fsm_order_ids:
                 if order.scheduled_date_start:
-                    order_dates.append(
-                        datetime.strptime(order.scheduled_date_start,
-                                          DEFAULT_SERVER_DATETIME_FORMAT
-                                          ).date())
+                    order_dates.append(order.scheduled_date_start.date())
             max_orders = rec.max_orders if rec.max_orders > 0 else False
             order_count = rec.fsm_order_count
             for date in schedule_dates:
@@ -210,15 +202,14 @@ class FSMRecurringOrder(models.Model):
             ('state', '=', 'pending')])
         for rec in pending_rec:
             if rec.end_date and \
-               rec.end_date <= fields.Date.to_string(datetime.today()):
+               rec.end_date <= datetime.today():
                 to_close += rec
                 continue
             if rec.max_orders > 0 and rec.fsm_order_count >= rec.max_orders:
                 to_close += rec
         to_close.write({'state': 'close'})
         to_renew = self.env['fsm.recurring']
-        expire_date = fields.Date.to_string(
-            datetime.today() + relativedelta(days=+30))
+        expire_date = datetime.today() + relativedelta(days=+30)
         open_rec = self.env['fsm.recurring'].search([
             ('state', '=', 'progress')])
         for rec in open_rec:
@@ -228,7 +219,7 @@ class FSMRecurringOrder(models.Model):
             if rec.max_orders > 0:
                 orders_in_30 = rec.fsm_order_count
                 orders_in_30 += rec.fsm_frequency_set_id._get_rruleset(
-                    until=fields.Date.from_string(expire_date)).count()
+                    until=expire_date).count()
                 if orders_in_30 >= rec.max_orders:
                     to_renew += rec
         to_renew.write({'state': 'pending'})
