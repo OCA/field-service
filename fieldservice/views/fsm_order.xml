@@ -345,9 +345,16 @@
                 <filter string="Done"
                         domain="[('stage_id.is_closed', '=', True)]"
                         name="done"/>
-                <filter string="Past Due"
+                <separator/>
+                <filter string="Past Due Orders"
                         domain="[('stage_id.name', 'not in', ['Started', 'Completed', 'Cancelled']), ('scheduled_date_start', '&lt;', current_date)]"
                         name="past_due"/>
+                <filter string="Today Orders"
+                        domain="[('scheduled_date_start','&gt;=',context_today().strftime('%%Y-%%m-%%d 00:00:00')), ('scheduled_date_start','&lt;=',context_today().strftime('%%Y-%%m-%%d 23:59:59'))]"
+                        name="order_today"/>
+                <filter string="Future Orders"
+                        domain="[('scheduled_date_start', '&gt;', context_today().strftime('%Y-%m-%d'))]"
+                        name="order_upcoming_all"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter name="territory_id" string="Territory" domain=""
