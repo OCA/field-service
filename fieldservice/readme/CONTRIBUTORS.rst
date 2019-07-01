@@ -5,3 +5,4 @@
 * Michael Allen <mallen@opensourceintegrators.com>
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Brian McMaster <brian@mcmpest.com>
