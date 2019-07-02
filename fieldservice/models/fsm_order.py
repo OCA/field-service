@@ -165,8 +165,11 @@ class FSMOrder(models.Model):
     template_id = fields.Many2one('fsm.template', string="Template")
     category_ids = fields.Many2many('fsm.category', string="Categories")
 
-    # Equipment
+    # Equipment used for Maintenance and Repair Orders
     equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
+
+    # Equipment used for all other Service Orders
+    equipment_ids = fields.Many2many('fsm.equipment', string='Equipment')
     type = fields.Selection([], string='Type')
 
     @api.model
@@ -282,13 +285,24 @@ class FSMOrder(models.Model):
             self.scheduled_date_end = str(date_to_with_delta)
 
     def copy_notes(self):
-        if self.equipment_id:
-            if self.equipment_id.notes is not False:
-                if self.description is not False:
-                    self.description = (self.description +
-                                        self.equipment_id.notes + '\n ')
-                else:
-                    self.description = (self.equipment_id.notes + '\n ')
+        self.description = ""
+        if self.type not in ['repair', 'maintenance']:
+            for equipment_id in self.equipment_ids:
+                if equipment_id:
+                    if equipment_id.notes is not False:
+                        if self.description is not False:
+                            self.description = (self.description +
+                                                equipment_id.notes + '\n ')
+                        else:
+                            self.description = (equipment_id.notes + '\n ')
+        else:
+            if self.equipment_id:
+                if self.equipment_id.notes is not False:
+                    if self.description is not False:
+                        self.description = (self.description +
+                                            self.equipment_id.notes + '\n ')
+                    else:
+                        self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             s = self.location_id.direction
             if s is not False and s is not '<p><br></p>':
@@ -312,8 +326,8 @@ class FSMOrder(models.Model):
             self.region_id = self.location_id.region_id or False
             self.copy_notes()
 
-    @api.onchange('equipment_id')
-    def onchange_equipment_id(self):
+    @api.onchange('equipment_ids')
+    def onchange_equipment_ids(self):
         self.copy_notes()
 
     @api.onchange('template_id')
