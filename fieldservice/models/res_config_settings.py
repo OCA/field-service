@@ -30,6 +30,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Distribution')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
     module_fieldservice_repair = fields.Boolean(
         string='Link FSM orders to MRP Repair orders')
     module_fieldservice_skill = fields.Boolean(
@@ -40,8 +42,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
-    module_fieldservice_recurring = fields.Boolean(
-        string='Manage Recurring Orders')
+    module_fieldservice_sale = fields.Boolean(
+        string='Sell Field Service Orders')
 
     @api.onchange('module_fieldservice_repair')
     def _onchange_module_fieldservice_repair(self):
@@ -52,3 +54,8 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_stock(self):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
+
+    @api.onchange('module_fieldservice_sale')
+    def _onchange_module_fieldservice_sale(self):
+        if self.module_fieldservice_sale:
+            self.group_fsm_template = True
