@@ -30,7 +30,7 @@ addon | version | summary
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 11.0.1.0.0 | Field Service Partner Relations
 [fieldservice_recurring](fieldservice_recurring/) | 11.0.0.1.1 | Manage recurring field service works
 [fieldservice_repair](fieldservice_repair/) | 11.0.0.1.0 | Integrate FSM orders with MRP repair orders
-[fieldservice_sale](fieldservice_sale/) | 11.0.0.0.1 | Sales
+[fieldservice_sale](fieldservice_sale/) | 11.0.0.1.0 | Sales integration for Field Service
 [fieldservice_skill](fieldservice_skill/) | 11.0.0.2.0 | Manage your FS workers skills
 [fieldservice_stock](fieldservice_stock/) | 11.0.0.2.0 | Inventory and Stock Operations for Field Services
 [fieldservice_substatus](fieldservice_substatus/) | 11.0.0.0.1 | Sub-statuses for Field Service Orders
