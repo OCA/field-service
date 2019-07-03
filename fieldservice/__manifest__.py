@@ -46,6 +46,12 @@
         'views/menu.xml',
         'wizard/fsm_wizard.xml',
     ],
+    'demo': [
+        'demo/fsm_demo.xml',
+        'demo/fsm_equipment.xml',
+        'demo/fsm_location.xml',
+        'demo/fsm_person.xml',
+    ],
     'qweb': [
         'static/src/xml/*.xml',
     ],
