@@ -1,7 +1,7 @@
 To use this module, you need to:
 
 Add Field Service Locations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Locations are the specific places where a field service order is performed.
 

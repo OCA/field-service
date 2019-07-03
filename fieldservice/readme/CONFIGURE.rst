@@ -2,9 +2,9 @@ The base Field Service module can be used with minimal initial configuration.
 It also allows for many advanced features, which require a more in-depth
 configuration.
 
-~~~~~~~~~~~~
 Order Stages
 ~~~~~~~~~~~~
+
 The stage of an order is used to monitor its progress. Stages can be configured
 based on your company's specific business needs. A basic set of order stages
 comes pre-configured for use.
@@ -25,9 +25,9 @@ You need to add attribute mention below with the tag <timeline> as base element.
   implement this as. Define any one stage color condition like 
   colors="#ffffff:stage_id=='New';"
 
-~~~~~~~~~~~~~~~~~~~
 Field Service Areas
 ~~~~~~~~~~~~~~~~~~~
+
 You can manage designated areas or locales for your field service workers,
 salesmen, and other resources. For example, salesmen may serve a particular
 Territory. There may be multiple Territories served by a single Branch office
@@ -35,7 +35,7 @@ location. Multiple Branches are managed within a District and these Districts
 are managed under an encompassing Region.
 
 Setup a Territory
-~~~~~~~~~~~~~~~~~
+-----------------
 
 #. Go to *Field Service > Configuration > Locations > Territories*
 #. Create or select a territory
@@ -43,16 +43,14 @@ Setup a Territory
 #. Select or create a branch which this territory serves
 #. Choose a type of zip, state, or country whichs defines the boundary used
 #. Input a list of zip codes, states, or countries based on your desired
-configuration
+   configuration
 
 Setup Branches, Districts, and Regions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 If your business requires, define your Branches, Districts, and Regions.
 These are found under *Field Service > Configuration > Locations*
 
-
-~~~~~~~~~~~~~~~~~~~~~~~
 Advanced Configurations
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64,7 +62,7 @@ the General Settings panel for Field Service.
 #. Configure new options
 
 Manage Teams
-~~~~~~~~~~~~
+------------
 
 Teams can be used to organize the processing of field service orders into
 groups. Different teams may have different workflows that a field service
@@ -81,7 +79,7 @@ You can now define custom stages for each team processing orders.
 #. Select the teams for which this stage should be used
 
 Manage Categories
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Categories are used to group workers and the type of orders a worker can do.
 
@@ -91,7 +89,7 @@ Categories are used to group workers and the type of orders a worker can do.
 #. Additionally, you can select a parent category if required
 
 Manage Tags
-~~~~~~~~~~~
+-----------
 
 Tags can be used to filter and report on field service orders
 
@@ -101,7 +99,7 @@ Tags can be used to filter and report on field service orders
 #. Set a color index for the tag
 
 Manage Order Templates
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Order templates allow you to create standard templates for your orders.
 
