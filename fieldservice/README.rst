@@ -35,7 +35,14 @@ This module is the base of the Field Service application in Odoo.
 Installation
 ============
 
+As of version 12, you can install Field Service alone without mapping features.
+
 To install Field Service and have the mapping features, you need to install GeoEngine.
+GeoEngine requires you to have `PostGIS <http://postgis.net/>`_ installed and also
+install two additional python libs:
+
+* `Shapely <http://pypi.python.org/pypi/Shapely>`_
+* `geojson <http://pypi.python.org/pypi/geojson>`_
 
 Please refer to the installation instructions available at:
 https://github.com/OCA/geospatial/tree/12.0/base_geoengine
@@ -43,9 +50,23 @@ https://github.com/OCA/geospatial/tree/12.0/base_geoengine
 Configuration
 =============
 
-To configure this module, you need to:
+The base Field Service module can be used with minimal initial configuration.
+It also allows for many advanced features, which require a more in-depth
+configuration.
 
-* Go to Field Service > Configuration > Settings
+Order Stages
+~~~~~~~~~~~~
+
+The stage of an order is used to monitor its progress. Stages can be configured
+based on your company's specific business needs. A basic set of order stages
+comes pre-configured for use.
+
+#. Go to *Field Service > Configuration > Stages*
+#. Create or edit a stage
+#. Set the name for the stage.
+#. Set the sequence order for the stage.
+#. Select *Order* type to apply this stage to your orders.
+#. Additonally, you can set a color for the stage.
 
 You need to add attribute mention below with the tag <timeline> as base element.
 
@@ -56,15 +77,121 @@ You need to add attribute mention below with the tag <timeline> as base element.
   implement this as. Define any one stage color condition like 
   colors="#ffffff:stage_id=='New';"
 
+Field Service Areas
+~~~~~~~~~~~~~~~~~~~
+
+You can manage designated areas or locales for your field service workers,
+salesmen, and other resources. For example, salesmen may serve a particular
+Territory. There may be multiple Territories served by a single Branch office
+location. Multiple Branches are managed within a District and these Districts
+are managed under an encompassing Region.
+
+Setup a Territory
+-----------------
+
+#. Go to *Field Service > Configuration > Locations > Territories*
+#. Create or select a territory
+#. Set the territory Name and description
+#. Select or create a branch which this territory serves
+#. Choose a type of zip, state, or country whichs defines the boundary used
+#. Input a list of zip codes, states, or countries based on your desired
+   configuration
+
+Setup Branches, Districts, and Regions
+--------------------------------------
+
+If your business requires, define your Branches, Districts, and Regions.
+These are found under *Field Service > Configuration > Locations*
+
+Advanced Configurations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Additional features, automations, and GeoEngine features can be enabled in
+the General Settings panel for Field Service.
+
+#. Go to *Field Service > Configuration > Settings*
+#. Enable additional options
+#. Configure new options
+
+Manage Teams
+------------
+
+Teams can be used to organize the processing of field service orders into
+groups. Different teams may have different workflows that a field service
+order needs to follow.
+
+#. Go to *Field Service > Configuration > Workers > Teams*
+#. Create or select a team
+#. Set the team name, description, and sequence
+
+You can now define custom stages for each team processing orders.
+
+#. Go to *Field Service > Configuration > Stages*
+#. Create or edit a stage
+#. Select the teams for which this stage should be used
+
+Manage Categories
+-----------------
+
+Categories are used to group workers and the type of orders a worker can do.
+
+#. Go to *Field Service > Configuration > Workers > Categories*
+#. Create or select a category
+#. Set the name and description of category
+#. Additionally, you can select a parent category if required
+
+Manage Tags
+-----------
+
+Tags can be used to filter and report on field service orders
+
+#. Go to *Field Service > Configuration > Orders > Tags*
+#. Create or select a tag
+#. Set the tag name
+#. Set a color index for the tag
+
+Manage Order Templates
+----------------------
+
+Order templates allow you to create standard templates for your orders.
+
+#. Go to *Field Service > Master Data > Templates*
+#. Create or select a template
+#. Set the name
+#. Set the standard order instructions
 
 Usage
 =====
 
 To use this module, you need to:
 
-* Go to Field Service
-* Create or select an order
-* Follow the process
+Add Field Service Locations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Locations are the specific places where a field service order is performed.
+
+#. Go to *Field Service > Master Data > Locations*
+#. Create a location
+
+Add Field Service Workers
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Workers are the people responsible for performing a field service order.
+These workers may be subcontractors or a company's own employees.
+
+#. Go to *Field Service > Master Data > Workers*
+#. Create a worker
+
+Process Orders
+~~~~~~~~~~~~~~
+
+Once you have established your data, you can begin processing field service
+orders.
+
+#. Go to *Field Service > Dashboard > Orders*
+#. Create or select an order
+#. Enter relevant details for the order
+#. Process order through each stage as defined by your business requirements
 
 Known issues / Roadmap
 ======================
@@ -100,6 +227,7 @@ Contributors
 * Michael Allen <mallen@opensourceintegrators.com>
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Brian McMaster <brian@mcmpest.com>
 
 Other credits
 ~~~~~~~~~~~~~
