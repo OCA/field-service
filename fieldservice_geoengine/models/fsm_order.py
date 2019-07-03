@@ -38,3 +38,4 @@ class FSMOrder(models.Model):
     def geo_localize(self):
         for order in self:
             order.location_id.partner_id.geo_localize()
+            order.create_geometry()
