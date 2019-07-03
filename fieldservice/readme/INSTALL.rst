@@ -5,9 +5,7 @@ GeoEngine requires you to have `PostGIS <http://postgis.net/>`_ installed and al
 install two additional python libs:
 
 * `Shapely <http://pypi.python.org/pypi/Shapely>`_
-
 * `geojson <http://pypi.python.org/pypi/geojson>`_
-
 
 Please refer to the installation instructions available at:
 https://github.com/OCA/geospatial/tree/12.0/base_geoengine
