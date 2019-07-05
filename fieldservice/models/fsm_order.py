@@ -61,6 +61,7 @@ class FSMOrder(models.Model):
                                   track_visibility='always')
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True, required=True)
+    location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
                                     default=datetime.now())
     request_late = fields.Datetime(string='Latest Request Date',
@@ -107,6 +108,8 @@ class FSMOrder(models.Model):
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
                                 index=True)
+    person_phone = fields.Char(related="person_id.phone",
+                               string="Worker Phone")
     route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
     scheduled_duration = fields.Float(string='Scheduled duration',
@@ -128,25 +131,29 @@ class FSMOrder(models.Model):
 
     # Location
     territory_id = fields.Many2one('fsm.territory', string="Territory",
-                                   related='location_id.territory_id')
+                                   related='location_id.territory_id',
+                                   store=True)
     branch_id = fields.Many2one('fsm.branch', string='Branch',
-                                related='location_id.branch_id')
+                                related='location_id.branch_id',
+                                store=True)
     district_id = fields.Many2one('fsm.district', string='District',
-                                  related='location_id.district_id')
+                                  related='location_id.district_id',
+                                  store=True)
     region_id = fields.Many2one('fsm.region', string='Region',
-                                related='location_id.region_id')
+                                related='location_id.region_id',
+                                store=True)
 
     # Fields for Geoengine Identify
     display_name = fields.Char(related="name", string="Order")
     street = fields.Char(related="location_id.street")
     street2 = fields.Char(related="location_id.street2")
     zip = fields.Char(related="location_id.zip")
-    city = fields.Char(related="location_id.city")
+    city = fields.Char(related="location_id.city", string="City")
     state_name = fields.Char(related="location_id.state_id.name",
                              string='State', ondelete='restrict')
     country_name = fields.Char(related="location_id.country_id.name",
                                string='Country', ondelete='restrict')
-    phone = fields.Char(related="location_id.phone")
+    phone = fields.Char(related="location_id.phone", string="Location Phone")
     mobile = fields.Char(related="location_id.mobile")
 
     stage_name = fields.Char(related="stage_id.name", string="Stage Name")
@@ -158,8 +165,11 @@ class FSMOrder(models.Model):
     template_id = fields.Many2one('fsm.template', string="Template")
     category_ids = fields.Many2many('fsm.category', string="Categories")
 
-    # Equipment
+    # Equipment used for Maintenance and Repair Orders
     equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
+
+    # Equipment used for all other Service Orders
+    equipment_ids = fields.Many2many('fsm.equipment', string='Equipment')
     type = fields.Selection([], string='Type')
 
     @api.model
@@ -210,6 +220,9 @@ class FSMOrder(models.Model):
             'fieldservice.fsm_stage_confirmed').id})
 
     def action_request(self):
+        if not self.person_ids:
+            raise ValidationError(_("Cannot move to Requested " +
+                                    "until 'Request Workers' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_requested').id})
 
@@ -222,18 +235,32 @@ class FSMOrder(models.Model):
                                     "until 'Assigned To' is filled in"))
 
     def action_schedule(self):
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_scheduled').id})
+        if self.scheduled_date_start and self.person_id:
+            return self.write({'stage_id': self.env.ref(
+                'fieldservice.fsm_stage_scheduled').id})
+        else:
+            raise ValidationError(_("Cannot move to Scheduled " +
+                                    "until both 'Assigned To' and " +
+                                    "'Scheduled Start Date' are filled in"))
 
     def action_enroute(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_enroute').id})
 
     def action_start(self):
+        if not self.date_start:
+            raise ValidationError(_("Cannot move to Start " +
+                                    "until 'Actual Start' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_started').id})
 
     def action_complete(self):
+        if not self.date_end:
+            raise ValidationError(_("Cannot move to Complete " +
+                                    "until 'Actual End' is filled in"))
+        if not self.resolution:
+            raise ValidationError(_("Cannot move to Complete " +
+                                    "until 'Resolution' is filled in"))
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_completed').id})
 
@@ -259,23 +286,34 @@ class FSMOrder(models.Model):
 
     def copy_notes(self):
         self.description = ""
-        if self.equipment_id:
-            if self.equipment_id.notes is not False:
-                if self.description is not False:
-                    self.description = (self.description +
-                                        self.equipment_id.notes + '\n ')
-                else:
-                    self.description = (self.equipment_id.notes + '\n ')
+        if self.type not in ['repair', 'maintenance']:
+            for equipment_id in self.equipment_ids:
+                if equipment_id:
+                    if equipment_id.notes is not False:
+                        if self.description is not False:
+                            self.description = (self.description +
+                                                equipment_id.notes + '\n ')
+                        else:
+                            self.description = (equipment_id.notes + '\n ')
+        else:
+            if self.equipment_id:
+                if self.equipment_id.notes is not False:
+                    if self.description is not False:
+                        self.description = (self.description +
+                                            self.equipment_id.notes + '\n ')
+                    else:
+                        self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             s = self.location_id.direction
             if s is not False and s is not '<p><br></p>':
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
                 s = s.replace('</p>', '\n')
-                if self.description is not False:
-                    self.description = (self.description + '\n' + s + '\n')
+                if self.location_directions is not False:
+                    self.location_directions = (self.location_directions +
+                                                '\n' + s + '\n')
                 else:
-                    self.description = (s + '\n ')
+                    self.location_directions = (s + '\n ')
         if self.template_id:
             self.todo = self.template_id.instructions
 
@@ -288,8 +326,8 @@ class FSMOrder(models.Model):
             self.region_id = self.location_id.region_id or False
             self.copy_notes()
 
-    @api.onchange('equipment_id')
-    def onchange_equipment_id(self):
+    @api.onchange('equipment_ids')
+    def onchange_equipment_ids(self):
         self.copy_notes()
 
     @api.onchange('template_id')

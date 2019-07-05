@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class FSMLocation(models.Model):
     _name = 'fsm.location'
     _inherits = {'res.partner': 'partner_id'}
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Field Service Location'
 
     ref = fields.Char(string='Internal Reference', copy=False)
@@ -20,7 +21,8 @@ class FSMLocation(models.Model):
                                auto_join=True)
     customer_id = fields.Many2one('res.partner', string='Billed Customer',
                                   required=True, ondelete='restrict',
-                                  auto_join=True)
+                                  auto_join=True,
+                                  track_visibility='onchange')
     contact_id = fields.Many2one('res.partner', string='Primary Contact',
                                  domain="[('is_company', '=', False),"
                                         " ('fsm_location', '=', False)]",
@@ -43,7 +45,7 @@ class FSMLocation(models.Model):
                                   string='Office Hours')
     fsm_parent_id = fields.Many2one('fsm.location', string='Parent',
                                     index=True)
-    notes = fields.Text(string="Notes")
+    notes = fields.Text(string="Location Notes")
     person_ids = fields.One2many('fsm.location.person',
                                  'location_id',
                                  string='Workers')
@@ -259,6 +261,8 @@ class FSMLocation(models.Model):
             action = self.env.ref('contacts.action_contacts').\
                 read()[0]
             contacts = self.get_action_views(1, 0, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_service_location_id': self.id})
             if len(contacts) == 1:
                 action['views'] = [(self.env.ref('base.view_partner_form').id,
                                     'form')]
@@ -284,6 +288,8 @@ class FSMLocation(models.Model):
             action = self.env.ref('fieldservice.action_fsm_equipment').\
                 read()[0]
             equipment = self.get_action_views(0, 1, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_location_id': self.id})
             if len(equipment) == 0 or len(equipment) > 1:
                 action['domain'] = [('id', 'in', equipment.ids)]
             elif equipment:
@@ -310,6 +316,8 @@ class FSMLocation(models.Model):
         for location in self:
             action = self.env.ref('fieldservice.action_fsm_location').read()[0]
             sublocation = self.get_action_views(0, 0, location)
+            action['context'] = self.env.context.copy()
+            action['context'].update({'default_fsm_parent_id': self.id})
             if len(sublocation) > 1 or len(sublocation) == 0:
                 action['domain'] = [('id', 'in', sublocation.ids)]
             elif sublocation:
@@ -341,6 +349,16 @@ class FSMLocation(models.Model):
         if not self._check_recursion(parent='fsm_parent_id'):
             raise ValidationError(_('You cannot create recursive location.'))
         return True
+
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        if self.country_id and self.country_id != self.state_id.country_id:
+            self.state_id = False
+
+    @api.onchange('state_id')
+    def _onchange_state(self):
+        if self.state_id.country_id:
+            self.country_id = self.state_id.country_id
 
 
 class FSMPerson(models.Model):

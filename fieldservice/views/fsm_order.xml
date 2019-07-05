@@ -31,7 +31,7 @@
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_assigned)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_assigned)d, %(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
                     <button id="action_enroute"
                             name="action_enroute" string="En Route"
                             class="oe_highlight"
@@ -82,13 +82,14 @@
                             <field name="district_id" invisible='1'/>
                             <field name="region_id" invisible='1'/>
                             <field name="customer_id"/>
-                            <field name="equipment_id"
-                                   groups="fieldservice.group_fsm_equipment"
-                                   options="{'no_create': True}"
-                                   domain="[('current_location_id','=',location_id)]"/>
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
                             <field name="person_id"/>
+                            <field name="equipment_id"
+                                attrs="{'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
+                                groups="fieldservice.group_fsm_equipment"
+                                options="{'no_create': True}"
+                                domain="[('current_location_id','=',location_id)]"/>
                         </group>
                     </group>
                     <group string="Description">
@@ -143,6 +144,9 @@
                             </group>
                         </page>
                         <page string="Instructions">
+                            <group string="Location Directions">
+                                <field name="location_directions" nolabel="1" widget="html"/>
+                            </group>
                             <group string="Instructions">
                                 <field name="todo" nolabel="1" widget="html"/>
                             </group>
@@ -156,6 +160,20 @@
                                 </group>
                                 <group id="execution-right"/>
                             </group>
+                        </page>
+                        <page string="Equipments"
+                            groups="fieldservice.group_fsm_equipment"
+                            attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
+                            <field name="equipment_ids"
+                                   attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
+                                   options="{'no_create': True}"
+                                   domain="[('current_location_id','=',location_id)]">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="person_id"/>
+                                    <field name="location_id"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -306,8 +324,12 @@
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
             <search string="Orders">
+                <filter string="My Orders"
+                        domain="[('person_id.partner_id.user_ids', '=', uid)]"
+                        name="my_orders"/>
+                <separator/>
                 <field name="name"
-                       filter_domain="['|', ('name', 'ilike', self), ('code', '=like', str(self) + '%')]"
+                       filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
                        string="FSM Order Name"/>
                 <field name="location_id"/>
                 <field name="branch_id"/>
@@ -327,9 +349,16 @@
                 <filter string="Done"
                         domain="[('stage_id.is_closed', '=', True)]"
                         name="done"/>
-                <filter string="Past Due"
+                <separator/>
+                <filter string="Past Due Orders"
                         domain="[('stage_id.name', 'not in', ['Started', 'Completed', 'Cancelled']), ('scheduled_date_start', '&lt;', current_date)]"
                         name="past_due"/>
+                <filter string="Today Orders"
+                        domain="[('scheduled_date_start','&gt;=',context_today().strftime('%%Y-%%m-%%d 00:00:00')), ('scheduled_date_start','&lt;=',context_today().strftime('%%Y-%%m-%%d 23:59:59'))]"
+                        name="order_today"/>
+                <filter string="Future Orders"
+                        domain="[('scheduled_date_start', '&gt;', context_today().strftime('%Y-%m-%d'))]"
+                        name="order_upcoming_all"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter name="territory_id" string="Territory" domain=""
@@ -361,11 +390,31 @@
         </field>
     </record>
 
+    <record id="fsm_order_calendar_view" model="ir.ui.view">
+            <field name="name">Orders</field>
+            <field name="model">fsm.order</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                <calendar string="FSM Orders" date_start="scheduled_date_start"
+                          date_delay="scheduled_duration" color="stage_id">
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="location_id"/>
+                    <field name="phone"/>
+                    <field name="customer_id"/>
+                    <field name="person_id"/>
+                    <field name="person_phone"/>
+                    <field name="city"/>
+                    <field name="state_name"/>
+                </calendar>
+            </field>
+        </record>
+
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,timeline,tree,form</field>
+        <field name="view_mode">kanban,timeline,tree,form,calendar</field>
         <field name="search_view_id" ref="fsm_order_search_view"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
