@@ -71,7 +71,7 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_stock(self):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
-            self.group_stock_request_submit = True
+            self.group_bypass_submit_request = True
 
     @api.onchange('module_fieldservice_purchase')
     def _onchange_module_fieldservice_purchase(self):
