@@ -42,7 +42,7 @@
                                        invisible='1'/>
                                 <field name='invoice_line_tax_ids'
                                        widget='many2many_tags' invisible='1'/>
-                                <field name='price_unit'/>
+                                <field name='price_unit' groups="fieldservice.group_fsm_manager"/>
                             </tree>
                         </field>
                     </group>
