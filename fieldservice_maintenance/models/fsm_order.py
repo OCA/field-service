@@ -1,7 +1,8 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
+# from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -9,9 +10,9 @@ class FSMOrder(models.Model):
     _description = 'Field Service Order Maintenance'
 
     type = fields.Selection(selection_add=[('maintenance', 'Maintenance')])
-    request_id = fields.Many2one(
-        'maintenance.request', 'Maintenance Request')
-        
+    request_id = fields.Many2one('maintenance.request',
+                                 string='Maintenance Request')
+
     # @api.model
     # def create(self, vals):
     #     # if FSM order with type maintenance is create then
@@ -28,7 +29,8 @@ class FSMOrder(models.Model):
     #                 fsm_order=True).create({
     #                     'name': order.name or '',
     #                     'employee_id': employee_rec.id,
-    #                     'equipment_id': equipment.maintenance_equipment_id.id,
+    #                     'equipment_id':
+    #                         equipment.maintenance_equipment_id.id,
     #                     'category_id': equipment.category_id.id,
     #                     'request_date': fields.Date.context_today(self),
     #                     'maintenance_type': 'corrective',
