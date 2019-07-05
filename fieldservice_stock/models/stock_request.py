@@ -29,3 +29,11 @@ class StockRequest(models.Model):
             fsm_order = self.env['fsm.order'].browse(vals['fsm_order_id'])
             fsm_order.write({'request_stage': 'draft'})
         return res
+
+    def _prepare_procurement_values(self, group_id=False):
+        res = self.super()._prepare_procurement_values(group_id=group_id)
+        res.update({
+            'fsm_order_id': self.fsm_order_id.id,
+            'partner_id': self.fsm_order_id.location_id.partner_id.id,
+        })
+        return res
