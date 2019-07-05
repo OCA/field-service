@@ -4,7 +4,7 @@
 from odoo import fields, models
 
 
-class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+class ProcurementGroup(models.Model):
+    _inherit = 'procurement.group'
 
     carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method")
