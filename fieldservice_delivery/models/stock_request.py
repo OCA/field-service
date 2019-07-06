@@ -10,7 +10,7 @@ class StockRequest(models.Model):
     carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method")
 
     def _prepare_procurement_values(self, group_id=False):
-        res = self.super()._prepare_procurement_values(group_id=group_id)
+        res = super()._prepare_procurement_values(group_id=group_id)
         res.update({
             'carrier_id': self.fsm_order_id.carrier_id.id or False,
         })
