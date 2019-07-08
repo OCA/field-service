@@ -33,7 +33,8 @@ class FSMOrder(models.Model):
     bill_to = fields.Selection([('location', 'Bill Location'),
                                 ('contact', 'Bill Contact')],
                                string="Bill to",
-                               required=True)
+                               required=True,
+                               default="location")
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
