@@ -23,6 +23,6 @@ class AccountAnalyticLine(models.Model):
         return super(AccountAnalyticLine, self).create(vals)
 
     @api.onchange('product_id')
-    def oncahnge_produc_id(self):
+    def onchange_product_id(self):
         if self.product_id:
             self.name = self.product_id.name
