@@ -75,12 +75,14 @@ class FSMOrder(models.Model):
     @api.depends('picking_ids')
     def _compute_picking_ids(self):
         for order in self:
-            order.delivery_count = len(
-                [picking for picking in order.picking_ids if
-                 picking.picking_type_id.code == 'outgoing'])
-            order.return_count = len(
-                [picking for picking in order.picking_ids if
-                 picking.picking_type_id.code == 'incoming'])
+            picking_ids = []
+            for req in order.stock_request_ids:
+                if req.picking_ids:
+                    for picking in req.picking_ids:
+                        if (picking.picking_type_id.code == 'outgoing' and
+                                picking.id not in picking_ids):
+                            picking_ids.append(picking.id)
+            order.delivery_count = len(picking_ids)
 
     @api.multi
     def action_view_delivery(self):
@@ -89,16 +91,22 @@ class FSMOrder(models.Model):
         of given fsm order ids. It can either be a in a list or in a form
         view, if there is only one delivery order to show.
         """
+
         action = self.env.ref('stock.action_picking_tree_all').read()[0]
-        pickings = self.mapped('picking_ids')
-        delivery_ids = [picking.id for picking in pickings if
-                        picking.picking_type_id.code == 'outgoing']
+        for order in self:
+            pickings = []
+            for req in order.stock_request_ids:
+                if req.picking_ids:
+                    for picking in req.picking_ids:
+                        if (picking.picking_type_id.code == 'outgoing' and
+                                picking.id not in pickings):
+                            pickings.append(picking.id)
         if len(pickings) > 1:
-            action['domain'] = [('id', 'in', delivery_ids)]
+            action['domain'] = [('id', 'in', pickings)]
         elif pickings:
             action['views'] = [(self.env.ref('stock.view_picking_form').id,
                                 'form')]
-            action['res_id'] = pickings.id
+            action['res_id'] = pickings[0]
         return action
 
     @api.multi
