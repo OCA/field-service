@@ -29,7 +29,9 @@
                                 attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
                         <field name="account_stage" widget="statusbar"/>
                     </header>
-                    <field name='bill_to' widget='radio' options="{'horizontal': true}"/>
+                    <group>
+                        <field name="bill_to" widget="radio" options="{'horizontal': true}"/>
+                    </group>
                     <group string="Contractor Costs">
                         <field name='contractor_cost_ids' nolabel="1">
                             <tree editable="bottom">
