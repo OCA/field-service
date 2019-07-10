@@ -267,8 +267,11 @@ class FSMLocation(models.Model):
                 action['views'] = [(self.env.ref('base.view_partner_form').id,
                                     'form')]
                 action['res_id'] = contacts.id
+                action['context'].update({'active_id': contacts.id})
             else:
                 action['domain'] = [('id', 'in', contacts.ids)]
+                action['context'].update({'active_ids': contacts.ids})
+                action['context'].update({'active_id': ''})
             return action
 
     @api.multi
