@@ -169,7 +169,7 @@ class FSMOrder(models.Model):
     equipment_id = fields.Many2one('fsm.equipment', string='Equipment')
 
     # Equipment used for all other Service Orders
-    equipment_ids = fields.Many2many('fsm.equipment', string='Equipment')
+    equipment_ids = fields.Many2many('fsm.equipment', string='Equipments')
     type = fields.Selection([], string='Type')
 
     @api.model
