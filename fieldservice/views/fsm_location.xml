@@ -58,7 +58,8 @@
                                 name="action_view_contacts"
                                 class="oe_stat_button"
                                 icon="fa-user-circle-o"
-                                groups="base.group_user">
+                                groups="base.group_user"
+                                context="{'default_street': street, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}">
                             <field name="contact_count" widget="statinfo" string="Contacts"/>
                         </button>
                     </div>
