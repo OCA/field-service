@@ -19,7 +19,7 @@
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_confirmed)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
                     <button id="action_assign"
                             name="action_assign" string="Assign"
                             class="oe_highlight"
@@ -43,7 +43,7 @@
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_enroute)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_scheduled)d, %(fieldservice.fsm_stage_enroute)d))]}"/>
                     <button id="action_complete"
                             name="action_complete" string="Complete"
                             class="oe_highlight"
@@ -51,7 +51,7 @@
                             groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_started)d)]}"/>
                     <button id="action_cancel"
-                            name="action_cancel" string="Cancel"
+                            name="action_cancel" string="Cancel Order"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
