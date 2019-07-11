@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_maintenance',
         'odoo12-addon-fieldservice_partner_multi_relation',
         'odoo12-addon-fieldservice_purchase',
+        'odoo12-addon-fieldservice_recurring',
         'odoo12-addon-fieldservice_repair',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_skill',
