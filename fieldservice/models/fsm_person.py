@@ -34,9 +34,25 @@ class FSMPerson(models.Model):
         for arg in args:
             if isinstance(arg, (list)):
                 if arg[0] == 'location_ids':
-                    self.env.cr.execute("SELECT person_id "
-                                        "FROM fsm_location_person "
-                                        "WHERE location_id=%s", (arg[2],))
+                    # If given int search ID, else search name
+                    if isinstance(arg[2], int):
+                        self.env.cr.execute("SELECT person_id "
+                                            "FROM fsm_location_person "
+                                            "WHERE location_id=%s", (arg[2],))
+                    else:
+                        arg[2] = '%' + arg[2] + '%'
+                        self.env.cr.execute("SELECT id "
+                                            "FROM fsm_location "
+                                            "WHERE complete_name like %s",
+                                            (arg[2],))
+                        location_ids = self.env.cr.fetchall()
+                        if location_ids:
+                            location_ids = \
+                                [location[0] for location in location_ids]
+                            self.env.cr.execute("SELECT DISTINCT person_id "
+                                                "FROM fsm_location_person "
+                                                "WHERE location_id in %s",
+                                                [tuple(location_ids)])
                     workers_ids = self.env.cr.fetchall()
                     if workers_ids:
                         preferred_workers_list = \
