@@ -190,8 +190,7 @@ class FSMLocation(models.Model):
                 child_locs = self.env['fsm.location'].\
                     search([('fsm_parent_id', '=', child.id)])
                 equip = self.env['fsm.equipment'].\
-                    search_count([('location_id',
-                                   '=', child.id)])
+                    search_count([('location_id', '=', child.id)])
             if child_locs:
                 for loc in child_locs:
                     equip += loc.comp_count(0, 1, loc)
@@ -336,16 +335,6 @@ class FSMLocation(models.Model):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)
             loc.equipment_count = equipment
-        for location in self:
-            child_locs = self.env['fsm.location']. \
-                search([('fsm_parent_id', '=', location.id)])
-            equipment = (self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        'in', child_locs.ids)]) +
-                         self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        '=', location.id)]))
-            location.equipment_count = equipment or 0
 
     @api.constrains('fsm_parent_id')
     def _check_location_recursion(self):
