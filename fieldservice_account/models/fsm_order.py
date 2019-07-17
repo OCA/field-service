@@ -46,6 +46,7 @@ class FSMOrder(models.Model):
     def _compute_total_cost(self):
         for order in self:
             order.total_cost = 0.0
+            rate = 0
             for line in order.employee_timesheet_ids:
                 for emp in line.user_id.employee_ids:
                     rate = emp.timesheet_cost
