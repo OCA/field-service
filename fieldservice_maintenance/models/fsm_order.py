@@ -7,7 +7,6 @@ from odoo import fields, models
 
 class FSMOrder(models.Model):
     _inherit = 'fsm.order'
-    _description = 'Field Service Order Maintenance'
 
     type = fields.Selection(selection_add=[('maintenance', 'Maintenance')])
     request_id = fields.Many2one('maintenance.request',
