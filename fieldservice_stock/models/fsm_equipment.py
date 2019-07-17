@@ -6,7 +6,6 @@ from odoo import api, fields, models
 
 class FSMEquipment(models.Model):
     _inherit = 'fsm.equipment'
-    _description = "FSM Equipment Inherits"
 
     product_id = fields.Many2one(
         'product.product', string='Product', required=True)
