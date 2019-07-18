@@ -8,6 +8,5 @@ from . import (
     fsm_equipment,
     product_template,
     stock_production_lot,
-    fsm_wizard,
-    stock_request
+    fsm_wizard
 )
