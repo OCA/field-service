@@ -48,9 +48,7 @@ class FSMOrder(models.Model):
             order.total_cost = 0.0
             rate = 0
             for line in order.employee_timesheet_ids:
-                for emp in line.user_id.employee_ids:
-                    rate = emp.timesheet_cost
-                    continue
+                rate = line.employee_id.timesheet_cost
                 order.total_cost += line.unit_amount * rate
             for cost in order.contractor_cost_ids:
                 order.total_cost += cost.price_unit * cost.quantity
