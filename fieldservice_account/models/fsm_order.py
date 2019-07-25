@@ -79,9 +79,11 @@ class FSMOrder(models.Model):
         return super(FSMOrder, self).action_complete()
 
     def create_bills(self):
-        jrnl = self.env['account.journal'].search([('type', '=', 'purchase'),
-                                                   ('active', '=', True)],
-                                                  limit=1)
+        jrnl = self.env['account.journal'].search([
+            ('company_id', '=', self.env.user.company_id.id),
+            ('type', '=', 'purchase'),
+            ('active', '=', True)],
+            limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
             'partner_id': self.person_id.partner_id.id,
@@ -109,9 +111,11 @@ class FSMOrder(models.Model):
                 order.account_stage = 'confirmed'
 
     def account_create_invoice(self):
-        jrnl = self.env['account.journal'].search([('type', '=', 'sale'),
-                                                   ('active', '=', True)],
-                                                  limit=1)
+        jrnl = self.env['account.journal'].search([
+            ('company_id', '=', self.env.user.company_id.id),
+            ('type', '=', 'sale'),
+            ('active', '=', True)],
+            limit=1)
         if self.bill_to == 'contact':
             if not self.customer_id:
                 raise ValidationError(_("Contact empty"))
