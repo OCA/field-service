@@ -1,9 +1,7 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-
-from odoo.addons.base_geoengine import fields as geo_fields
 
 
 class FSMOrder(models.Model):
@@ -14,13 +12,13 @@ class FSMOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(FSMOrder, self).create(vals)
+        res = super().create(vals)
         res.create_geometry()
         return res
 
     @api.onchange('location_id')
     def onchange_location_id(self):
-        res = super(FSMOrder, self).onchange_location_id()
+        res = super().onchange_location_id()
         if self.location_id:
             self.create_geometry()
         return res
@@ -29,9 +27,9 @@ class FSMOrder(models.Model):
         for order in self:
             lat = order.location_id.partner_latitude
             lng = order.location_id.partner_longitude
-            point = geo_fields.GeoPoint.from_latlon(cr=order.env.cr,
-                                                    latitude=lat,
-                                                    longitude=lng)
+            point = fields.GeoPoint.from_latlon(cr=order.env.cr,
+                                                latitude=lat,
+                                                longitude=lng)
             order.shape = point
 
     @api.multi

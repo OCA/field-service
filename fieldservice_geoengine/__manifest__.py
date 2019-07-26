@@ -4,6 +4,7 @@
 {
     'name': 'Field Service Geoengine',
     'summary': 'Extend field service functionality based on Geoengine',
+    'license': 'AGPL-3',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -14,10 +15,9 @@
     ],
     'data': [
         'security/res_groups.xml',
+        'views/fsm_team.xml',
         'views/fsm_order.xml',
-        'views/fsm_team.xml'
     ],
-    'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
         'wolfhall',
