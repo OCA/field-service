@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Accounting',
     'summary': 'Track employee time and invoice for Field Service Orders',
-    'version': '12.0.2.0.0',
+    'version': '12.0.2.0.1',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
