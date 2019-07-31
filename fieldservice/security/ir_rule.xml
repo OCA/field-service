@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fsm_stage_comp_rule" model="ir.rule">
+        <field name="name">FSM Stage Entry</field>
+        <field name="model_id" ref="model_fsm_stage"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+</odoo>

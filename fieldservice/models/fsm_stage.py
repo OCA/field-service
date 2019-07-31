@@ -42,6 +42,9 @@ class FSMStage(models.Model):
                                    ('location', 'Location'),
                                    ('worker', 'Worker')], 'Type',
                                   required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id.id)
 
     @api.multi
     def get_color_information(self):
