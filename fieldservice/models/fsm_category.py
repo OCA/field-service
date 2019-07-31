@@ -12,8 +12,11 @@ class FSMCategory(models.Model):
     parent_id = fields.Many2one('fsm.category', string='Parent')
     color = fields.Integer('Color Index', default=10)
     full_name = fields.Char(string="Full Name", compute="_compute_full_name")
-
     description = fields.Char(string='Description')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, index=True,
+        default=lambda self: self.env.user.company_id,
+        help="Company related to this category")
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Category name already exists!"),
