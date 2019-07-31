@@ -33,6 +33,10 @@ class FSMEquipment(models.Model):
                                default=lambda self: self._default_stage_id())
     hide = fields.Boolean(default=False)
     color = fields.Integer('Color Index')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, index=True,
+        default=lambda self: self.env.user.company_id,
+        help="Company related to this equipment")
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Equipment name already exists!"),
