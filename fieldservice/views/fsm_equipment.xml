@@ -39,6 +39,8 @@
                 <field name="person_id"/>
                 <field name="location_id"/>
                 <field name="current_location_id"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -75,6 +77,9 @@
                         <group id="main-right">
                             <field name="managed_by_id"/>
                             <field name="owned_by_id"/>
+                            <field name="company_id"
+                                   options="{'no_create': True}"
+                                   groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <group id="secondary"/>
@@ -145,27 +150,27 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
-                        <div class="o_dropdown_kanban dropdown">
-                            <a role="button"
-                               class="dropdown-toggle o-no-caret btn"
-                               data-toggle="dropdown" href="#"
-                               aria-label="Dropdown menu"
-                               title="Dropdown menu">
-                                <span class="fa fa-ellipsis-v"/>
-                            </a>
-                            <div class="dropdown-menu" role="menu">
-                                <a t-if="widget.editable" role="menuitem"
-                                   type="edit" class="dropdown-item">Edit
+                            <div class="o_dropdown_kanban dropdown">
+                                <a role="button"
+                                   class="dropdown-toggle o-no-caret btn"
+                                   data-toggle="dropdown" href="#"
+                                   aria-label="Dropdown menu"
+                                   title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
                                 </a>
-                                <a t-if="widget.deletable" role="menuitem"
-                                   type="delete" class="dropdown-item">Delete
-                                </a>
-                                <div role="separator"
-                                     class="dropdown-divider"></div>
-                                <ul class="oe_kanban_colorpicker"
-                                    data-field="color"/>
+                                <div class="dropdown-menu" role="menu">
+                                    <a t-if="widget.editable" role="menuitem"
+                                       type="edit" class="dropdown-item">Edit
+                                    </a>
+                                    <a t-if="widget.deletable" role="menuitem"
+                                       type="delete" class="dropdown-item">Delete
+                                    </a>
+                                    <div role="separator"
+                                         class="dropdown-divider"></div>
+                                    <ul class="oe_kanban_colorpicker"
+                                        data-field="color"/>
+                                </div>
                             </div>
-                        </div>
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
