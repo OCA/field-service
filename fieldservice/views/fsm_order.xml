@@ -86,10 +86,13 @@
                                    groups="fieldservice.group_fsm_team"/>
                             <field name="person_id"/>
                             <field name="equipment_id"
-                                attrs="{'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
-                                groups="fieldservice.group_fsm_equipment"
-                                options="{'no_create': True}"
-                                domain="[('current_location_id','=',location_id)]"/>
+                                   attrs="{'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
+                                   groups="fieldservice.group_fsm_equipment"
+                                   options="{'no_create': True}"
+                                   domain="[('current_location_id','=',location_id)]"/>
+                            <field name="company_id"
+                                   options="{'no_create': True}"
+                                   groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <group string="Description">
@@ -162,8 +165,8 @@
                             </group>
                         </page>
                         <page string="Equipments"
-                            groups="fieldservice.group_fsm_equipment"
-                            attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
+                              groups="fieldservice.group_fsm_equipment"
+                              attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
                             <field name="equipment_ids"
                                    attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
                                    options="{'no_create': True}"
@@ -207,6 +210,8 @@
                 <field name="location_id"/>
                 <field name="person_id"/>
                 <field name="stage_id" string="Stage"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -391,24 +396,24 @@
     </record>
 
     <record id="fsm_order_calendar_view" model="ir.ui.view">
-            <field name="name">Orders</field>
-            <field name="model">fsm.order</field>
-            <field name="type">calendar</field>
-            <field name="arch" type="xml">
-                <calendar string="FSM Orders" date_start="scheduled_date_start"
-                          date_delay="scheduled_duration" color="stage_id">
-                    <field name="name"/>
-                    <field name="stage_id"/>
-                    <field name="location_id"/>
-                    <field name="phone"/>
-                    <field name="customer_id"/>
-                    <field name="person_id"/>
-                    <field name="person_phone"/>
-                    <field name="city"/>
-                    <field name="state_name"/>
-                </calendar>
-            </field>
-        </record>
+        <field name="name">Orders</field>
+        <field name="model">fsm.order</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="FSM Orders" date_start="scheduled_date_start"
+                      date_delay="scheduled_duration" color="stage_id">
+                <field name="name"/>
+                <field name="stage_id"/>
+                <field name="location_id"/>
+                <field name="phone"/>
+                <field name="customer_id"/>
+                <field name="person_id"/>
+                <field name="person_phone"/>
+                <field name="city"/>
+                <field name="state_name"/>
+            </calendar>
+        </field>
+    </record>
 
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>

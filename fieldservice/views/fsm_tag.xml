@@ -8,6 +8,8 @@
         <field name="arch" type="xml">
             <tree string="tags">
                 <field name="full_name"/>
+                <field name="company_id"
+                       groups="base.group_multi_company"/>
             </tree>
         </field>
     </record>
@@ -26,6 +28,9 @@
                         </group>
                         <group>
                             <field name="color" groups="base.group_no_one"/>
+                            <field name="company_id"
+                                   options="{'no_create': True}"
+                                   groups="base.group_multi_company"/>
                         </group>
                     </group>
                 </sheet>
