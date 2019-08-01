@@ -10,6 +10,8 @@ class FSMLocation(models.Model):
     inventory_location_id = fields.Many2one('stock.location',
                                             string='Inventory Location',
                                             required=True)
+    shipping_address_id = fields.Many2one('res.partner',
+                                          string='Shipping Location')
 
     @api.onchange('fsm_parent_id')
     def _onchange_fsm_parent_id(self):
