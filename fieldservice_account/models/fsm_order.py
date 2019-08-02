@@ -184,6 +184,7 @@ class FSMOrder(models.Model):
             con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
         self.account_stage = 'invoiced'
+        return invoice
 
     def account_no_invoice(self):
         self.account_stage = 'no'
