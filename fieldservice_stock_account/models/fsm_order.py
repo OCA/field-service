@@ -8,34 +8,32 @@ from odoo.exceptions import ValidationError
 class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
-    def _prepare_inv_line_for_stock_requests(self, invoice=False):
+    def _prepare_inv_line_for_stock_request(self, stock_request, invoice=False):
+        accounts = stock_request.product_id.product_tmpl_id.\
+            get_product_accounts()
+        account = accounts['income']
+        vals = {
+            'product_id': stock_request.product_id.id,
+            'quantity': stock_request.qty_done,
+            'name': stock_request.product_id.name,
+            'price_unit': 0,
+            'show_in_report': False,
+            'account_id': account.id,
+            'invoice_id': invoice.id
+        }
+        return vals
+
+    def _create_inv_line_for_stock_requests(self, invoice=False):
         for stock_request in self.stock_request_ids:
-            accounts = stock_request.product_id.product_tmpl_id.\
-                get_product_accounts()
-            account = accounts['income']
-            vals = {
-                'product_id': stock_request.product_id.id,
-                'quantity': stock_request.qty_done,
-                'name': stock_request.product_id.name,
-                'price_unit': 0,
-                'show_in_report': False,
-                'account_id': account.id,
-                'invoice_id': invoice.id
-            }
+            vals = self._prepare_inv_line_for_stock_request(
+                stock_request, invoice)
             self.env['account.invoice.line'].create(vals)
 
     def account_create_invoice(self):
-        res = super().account_create_invoice()
+        invoice = super().account_create_invoice()
         if self.location_id.inventory_location_id.usage == 'customer':
-            invoice = self.env['account.invoice'].search(
-                [('fsm_order_id', '=', self.id)], limit=1)
-            # Check if any line checked with show in report with Price = 0
-            invoice_lines_ids = invoice.invoice_line_ids.filtered(
-                lambda l: l.show_in_report and l.price_unit == 0.0)
-            if invoice_lines_ids:
-                invoice_lines_ids.write({'show_in_report': False})
-            self._prepare_inv_line_for_stock_requests(invoice)
-        return res
+            self._create_inv_line_for_stock_requests(invoice)
+        return invoice
 
     def account_no_invoice(self):
         res = super().account_no_invoice()
