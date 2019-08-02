@@ -11,8 +11,7 @@
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice_account',
-        'fieldservice_stock',
+        'fieldservice_stock_account',
         'stock_request_analytic',
     ],
     'development_status': 'Beta',
