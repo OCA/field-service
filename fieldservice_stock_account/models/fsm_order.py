@@ -8,7 +8,8 @@ from odoo.exceptions import ValidationError
 class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
-    def _prepare_inv_line_for_stock_request(self, stock_request, invoice=False):
+    def _prepare_inv_line_for_stock_request(self, stock_request,
+                                            invoice=False):
         accounts = stock_request.product_id.product_tmpl_id.\
             get_product_accounts()
         account = accounts['income']
