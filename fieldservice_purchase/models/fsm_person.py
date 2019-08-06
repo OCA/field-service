@@ -16,13 +16,13 @@ class FSMPerson(models.Model):
     def _compute_pricelist_count(self):
         for worker in self:
             worker.pricelist_count = self.env['product.supplierinfo'].\
-                search_count([('id', '=', worker.id)])
+                search_count([('name', '=', worker.partner_id.id)])
 
     @api.multi
     def action_view_pricelists(self):
         for worker in self:
             pricelist = self.env['product.supplierinfo'].search(
-                [('id', '=', worker.id)])
+                [('name', '=', worker.partner_id.id)])
             action = self.env.ref(
                 'product.product_supplierinfo_type_action').read()[0]
             if len(pricelist) == 1:
