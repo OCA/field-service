@@ -1,7 +1,7 @@
 <odoo>
 
     <record id="stock_location_vehicle" model="stock.location">
-        <field name="name">Vehicle</field>
+        <field name="name">Vehicles</field>
         <field name="usage">view</field>
         <field name="company_id"></field>
     </record>
@@ -10,7 +10,7 @@
         <field name="name">Storage</field>
         <field name="usage">internal</field>
         <field name="location_id" ref="stock_location_vehicle"/>
-        <field name="company_id"></field>
+        <field name="company_id" ref="base.main_company"/>
     </record>
 
     <data noupdate="1">
@@ -20,7 +20,7 @@
             <field name="name">Vehicle Loading</field>
             <field name="prefix">VL</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id"></field>
         </record>
 
         <record id="picking_type_output_to_vehicle" model="stock.picking.type">
@@ -40,7 +40,7 @@
             <field name="name">Location Delivery</field>
             <field name="prefix">LD</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id"></field>
         </record>
 
         <record id="picking_type_vehicle_to_location"
@@ -98,7 +98,7 @@
             <field name="name">Location Pickup</field>
             <field name="prefix">LP</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id"></field>
         </record>
 
         <record id="picking_type_location_to_vehicle"
@@ -130,7 +130,7 @@
             <field name="name">Vehicle Returns</field>
             <field name="prefix">VR</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id"></field>
         </record>
 
         <record id="picking_type_vehicle_to_input" model="stock.picking.type">
