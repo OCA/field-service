@@ -65,6 +65,7 @@ class StockRule(models.Model):
         })
         return vals
 
+
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
