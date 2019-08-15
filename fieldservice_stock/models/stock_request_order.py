@@ -49,6 +49,6 @@ class StockRequestOrder(models.Model):
             if not group:
                 values = self._prepare_procurement_group_values()
                 group = self.env['procurement.group'].create(values)
-            self.procurement_group_id = group.id
+            self.procurement_group_id = group[0].id
             self.change_childs()
         return super().action_confirm()
