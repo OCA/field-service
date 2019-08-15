@@ -41,7 +41,7 @@ class StockRequestOrder(models.Model):
             return {}
 
     @api.multi
-    def _action_confirm(self):
+    def action_confirm(self):
         if self.fsm_order_id:
             fsm_order = self.env['fsm.order'].browse(self.fsm_order_id.id)
             group = self.env['procurement.group'].search([
@@ -51,4 +51,4 @@ class StockRequestOrder(models.Model):
                 group = self.env['procurement.group'].create(values)
             self.procurement_group_id = group.id
             self.change_childs()
-        return super()._action_confirm()
+        return super().action_confirm()
