@@ -98,8 +98,8 @@ class FSMRecurringOrder(models.Model):
         for rec in self:
             if not rec.start_date:
                 rec.start_date = datetime.now()
-            rec._create_order(date=rec.start_date)
             rec.write({'state': 'progress'})
+            rec._generate_orders()
 
     @api.multi
     def action_renew(self):
@@ -119,7 +119,7 @@ class FSMRecurringOrder(models.Model):
         if self.state != 'progress':
             return ruleset
         # set next_date which is used as the rrule 'dtstart' parameter
-        next_date = datetime.now()
+        next_date = self.start_date
         last_order = self.env['fsm.order'].search([
             ('fsm_recurring_id', '=', self.id),
             ('stage_id', '!=', self.env.ref(
@@ -164,18 +164,15 @@ class FSMRecurringOrder(models.Model):
         vals = self._prepare_order_values(date)
         return self.env['fsm.order'].create(vals)
 
-    @api.model
-    def _cron_generate_orders(self):
+    @api.multi
+    def _generate_orders(self):
         """
-        Executed by Cron task to create field service orders from any
-        recurring orders which are in progress, or to renew, and up to
-        the max orders allowed by the recurring order
+        create field service orders from self
+        up to the max orders allowed by the recurring order
         @return {recordset} orders: all the order objects created
         """
         orders = self.env['fsm.order']
-        for rec in self.env['fsm.recurring'].search([
-            ('state', 'in', ('progress', 'pending'))
-        ]):
+        for rec in self:
             schedule_dates = rec._get_rruleset()
             order_dates = []
             for order in rec.fsm_order_ids:
@@ -186,10 +183,22 @@ class FSMRecurringOrder(models.Model):
             for date in schedule_dates:
                 if date.date() in order_dates:
                     continue
-                if max_orders >= order_count or not max_orders:
-                    orders += rec._create_order(date=date)
+                if max_orders > order_count or not max_orders:
+                    orders |= rec._create_order(date=date)
                     order_count += 1
         return orders
+
+    @api.model
+    def _cron_generate_orders(self):
+        """
+        Executed by Cron task to create field service orders from any
+        recurring orders which are in progress, or to renew, and up to
+        the max orders allowed by the recurring order
+        @return {recordset} orders: all the order objects created
+        """
+        return self.env['fsm.recurring'].search([
+            ('state', 'in', ('progress', 'pending'))
+        ])._generate_orders()
 
     @api.model
     def _cron_manage_expiration(self):
