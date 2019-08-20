@@ -21,6 +21,7 @@
         'security/recurring_security.xml',
         'views/fsm_frequency.xml',
         'views/fsm_frequency_set.xml',
+        'views/fsm_order.xml',
         'views/fsm_recurring_template.xml',
         'views/fsm_recurring.xml',
         'data/recurring_cron.xml',
