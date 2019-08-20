@@ -3,23 +3,29 @@
 
 {
     'name': 'Field Service - Sales',
-    'summary': 'Sales',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
+    'summary': 'Sales integration for Field Service',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
-        'sale',
+        'fieldservice_recurring',
+        'sale_management',
     ],
     'data': [
-        'views/fsm_location.xml'
+        'views/fsm_location.xml',
+        'views/fsm_order.xml',
+        'views/fsm_recurring.xml',
+        'views/product.xml',
+        'views/sale_order.xml',
     ],
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
         'wolfhall',
         'max3903',
+        'brian10048',
     ],
     'installable': True,
 }
