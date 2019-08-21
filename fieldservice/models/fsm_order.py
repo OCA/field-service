@@ -98,6 +98,11 @@ class FSMOrder(models.Model):
 
     @api.onchange('location_id')
     def _onchange_location_id_customer(self):
+        if self.env['ir.config_parameter'].get_param(
+                'fieldservice.auto_populate_the_equipments'):
+            fsm_equipment_rec = self.env['fsm.equipment'].search([
+                ('current_location_id', '=', self.location_id.id)])
+            self.equipment_ids = [(6, 0, fsm_equipment_rec.ids)]
         if self.location_id:
             return {'domain': {'customer_id': [('service_location_id', '=',
                                                 self.location_id.name)]}}
