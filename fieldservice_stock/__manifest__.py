@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Stock',
     'summary': 'Inventory and Stock Operations for Field Services',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
