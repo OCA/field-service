@@ -65,21 +65,23 @@ class FSMLocation(models.Model):
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
 
-    @api.depends('name', 'fsm_parent_id.complete_name')
+    @api.depends('partner_id.name', 'fsm_parent_id.complete_name')
     def _compute_complete_name(self):
         for loc in self:
             if loc.fsm_parent_id:
                 if loc.ref:
                     loc.complete_name = '%s / [%s] %s' % (
-                        loc.fsm_parent_id.complete_name, loc.ref, loc.name)
+                        loc.fsm_parent_id.complete_name, loc.ref,
+                        loc.partner_id.name)
                 else:
                     loc.complete_name = '%s / %s' % (
-                        loc.fsm_parent_id.complete_name, loc.name)
+                        loc.fsm_parent_id.complete_name, loc.partner_id.name)
             else:
                 if loc.ref:
-                    loc.complete_name = '[%s] %s' % (loc.ref, loc.name)
+                    loc.complete_name = '[%s] %s' % (loc.ref,
+                                                     loc.partner_id.name)
                 else:
-                    loc.complete_name = loc.name
+                    loc.complete_name = loc.partner_id.name
 
     @api.multi
     def name_get(self):
@@ -190,8 +192,7 @@ class FSMLocation(models.Model):
                 child_locs = self.env['fsm.location'].\
                     search([('fsm_parent_id', '=', child.id)])
                 equip = self.env['fsm.equipment'].\
-                    search_count([('location_id',
-                                   '=', child.id)])
+                    search_count([('location_id', '=', child.id)])
             if child_locs:
                 for loc in child_locs:
                     equip += loc.comp_count(0, 1, loc)
@@ -336,16 +337,6 @@ class FSMLocation(models.Model):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)
             loc.equipment_count = equipment
-        for location in self:
-            child_locs = self.env['fsm.location']. \
-                search([('fsm_parent_id', '=', location.id)])
-            equipment = (self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        'in', child_locs.ids)]) +
-                         self.env['fsm.equipment'].
-                         search_count([('location_id',
-                                        '=', location.id)]))
-            location.equipment_count = equipment or 0
 
     @api.constrains('fsm_parent_id')
     def _check_location_recursion(self):
