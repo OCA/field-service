@@ -10,7 +10,7 @@
                 <field name="name"/>
                 <field name="phone"/>
                 <field name="email"/>
-                <field name="category_ids" widget="many2many_tags"/>
+                <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="calendar_id"/>
             </tree>
         </field>
@@ -112,7 +112,7 @@
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_person_search_view"/>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
+            <p class="o_view_nocontent_smiling_face">
                 Add Field Service Workers here.
             </p>
         </field>
