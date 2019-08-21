@@ -67,8 +67,9 @@ class ResConfigSettings(models.TransientModel):
 
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        res.update(auto_populate_the_equipments=self.env['ir.config_parameter'].sudo().
-                   get_param('fieldservice.auto_populate_the_equipments'))
+        res.update(
+            auto_populate_the_equipments=self.env['ir.config_parameter'].sudo().
+            get_param('fieldservice.auto_populate_the_equipments'))
         return res
 
     def set_values(self):
