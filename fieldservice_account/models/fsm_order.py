@@ -46,10 +46,9 @@ class FSMOrder(models.Model):
     def _compute_total_cost(self):
         for order in self:
             order.total_cost = 0.0
+            rate = 0
             for line in order.employee_timesheet_ids:
-                for emp in line.user_id.employee_ids:
-                    rate = emp.timesheet_cost
-                    continue
+                rate = line.employee_id.timesheet_cost
                 order.total_cost += line.unit_amount * rate
             for cost in order.contractor_cost_ids:
                 order.total_cost += cost.price_unit * cost.quantity
@@ -80,9 +79,11 @@ class FSMOrder(models.Model):
         return super(FSMOrder, self).action_complete()
 
     def create_bills(self):
-        jrnl = self.env['account.journal'].search([('type', '=', 'purchase'),
-                                                   ('active', '=', True)],
-                                                  limit=1)
+        jrnl = self.env['account.journal'].search([
+            ('company_id', '=', self.env.user.company_id.id),
+            ('type', '=', 'purchase'),
+            ('active', '=', True)],
+            limit=1)
         fpos = self.customer_id.property_account_position_id
         vals = {
             'partner_id': self.person_id.partner_id.id,
@@ -110,9 +111,11 @@ class FSMOrder(models.Model):
                 order.account_stage = 'confirmed'
 
     def account_create_invoice(self):
-        jrnl = self.env['account.journal'].search([('type', '=', 'sale'),
-                                                   ('active', '=', True)],
-                                                  limit=1)
+        jrnl = self.env['account.journal'].search([
+            ('company_id', '=', self.env.user.company_id.id),
+            ('type', '=', 'sale'),
+            ('active', '=', True)],
+            limit=1)
         if self.bill_to == 'contact':
             if not self.customer_id:
                 raise ValidationError(_("Contact empty"))
@@ -181,6 +184,7 @@ class FSMOrder(models.Model):
             con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
         self.account_stage = 'invoiced'
+        return invoice
 
     def account_no_invoice(self):
         self.account_stage = 'no'

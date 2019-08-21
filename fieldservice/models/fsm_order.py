@@ -67,6 +67,10 @@ class FSMOrder(models.Model):
     request_late = fields.Datetime(string='Latest Request Date',
                                    compute='_compute_request_late')
     color = fields.Integer('Color Index')
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, index=True,
+        default=lambda self: self.env.user.company_id,
+        help="Company related to this order")
 
     def _compute_request_late(self):
         for rec in self:
@@ -205,10 +209,11 @@ class FSMOrder(models.Model):
                 + timedelta(hours=vals.get('scheduled_duration'))
             vals['scheduled_date_end'] = str(date_to_with_delta)
         if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start')) + \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_end'] = str(date_to_with_delta)
+            if vals['scheduled_date_start']:
+                date_to_with_delta = fields.Datetime.from_string(
+                    vals.get('scheduled_date_start')) + \
+                    timedelta(hours=self.scheduled_duration)
+                vals['scheduled_date_end'] = str(date_to_with_delta)
         res = super(FSMOrder, self).write(vals)
         for order in self:
             if 'customer_id' not in vals and order.customer_id is False:

@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Stock',
     'summary': 'Inventory and Stock Operations for Field Services',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
@@ -12,6 +12,7 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
+        'stock_request_direction',
         'stock_request_picking_type',
     ],
     'data': [
@@ -23,7 +24,8 @@
         'views/fsm_equipment.xml',
         'views/product_template.xml',
         'views/stock_production_lot.xml',
-        'views/stock_request.xml'
+        'views/stock_request.xml',
+        'views/stock_request_order.xml',
     ],
     'license': 'AGPL-3',
     'development_status': 'Beta',

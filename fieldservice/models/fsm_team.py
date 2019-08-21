@@ -57,6 +57,10 @@ class FSMTeam(models.Model):
         string="Orders to Schedule")
     sequence = fields.Integer('Sequence', default=1,
                               help="Used to sort teams. Lower is better.")
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, index=True,
+        default=lambda self: self.env.user.company_id,
+        help="Company related to this team")
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Team name already exists!"),
