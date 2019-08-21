@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_skill',
         'odoo12-addon-fieldservice_stage_server_action',
         'odoo12-addon-fieldservice_stock',
+        'odoo12-addon-fieldservice_stock_account',
         'odoo12-addon-fieldservice_substatus',
         'odoo12-addon-fieldservice_vehicle',
         'odoo12-addon-fieldservice_vehicle_stock',
