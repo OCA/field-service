@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Field Service Tag -->
+    <!-- Field Service Schedule -->
     <record id="fsm_schedule_tree_view" model="ir.ui.view">
         <field name="name">Schedules</field>
         <field name="model">resource.calendar</field>
@@ -32,11 +32,8 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Create a tag.
-            </p>
-            <p>
-                Module not yet enabled.
+            <p class="o_view_nocontent_smiling_face">
+                Create a schedule.
             </p>
         </field>
     </record>
