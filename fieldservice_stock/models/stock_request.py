@@ -1,8 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from odoo import api, fields, models
 from datetime import datetime, timedelta
+from odoo import api, fields, models
 
 
 class StockRequest(models.Model):
@@ -42,15 +41,9 @@ class StockRequest(models.Model):
         if 'fsm_order_id' in vals and vals['fsm_order_id']:
             fsm_order = self.env['fsm.order'].browse(vals['fsm_order_id'])
             fsm_order.request_stage = 'draft'
-
-            val_date = vals['expected_date']
-            if not isinstance(vals['expected_date'], str):
-                val_date = datetime.strftime(vals['expected_date'],
-                                             '%Y-%m-%d %H:%M:%S')
-
-            val_date = datetime.strptime(val_date, '%Y-%m-%d %H:%M:%S')
+            val_date = datetime.strptime(vals['expected_date'],
+                                         '%Y-%m-%d %H:%M:%S')
             date_window_after = val_date - timedelta(hours=1)
-
             order = self.env['stock.request.order'].search([
                 ('fsm_order_id', '=', vals['fsm_order_id']),
                 ('direction', '=', vals['direction']),
