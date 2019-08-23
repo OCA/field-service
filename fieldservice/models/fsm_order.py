@@ -194,19 +194,20 @@ class FSMOrder(models.Model):
             req_date = req_date.replace(minute=0, second=0)
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
-        self._cacl_scheduled_duration_or_end(vals)
+        self._cacl_scheduled_dates(vals)
         return super(FSMOrder, self).create(vals)
 
     @api.multi
     def write(self, vals):
-        self._cacl_scheduled_duration_or_end(vals)
+        self._cacl_scheduled_dates(vals)
         res = super(FSMOrder, self).write(vals)
         for order in self:
             if 'customer_id' not in vals and order.customer_id is False:
                 order.customer_id = order.location_id.customer_id.id
         return res
 
-    def _cacl_scheduled_duration_or_end(self, vals):
+    def _cacl_scheduled_dates(self, vals):
+        """Calculate scheduled dates and duration"""
         if 'scheduled_date_end' in vals:
             date_to_with_delta = fields.Datetime.from_string(
                 vals.get('scheduled_date_end')) - \
