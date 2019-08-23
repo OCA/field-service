@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="routes_config_settings_form_view_inherit" model="ir.ui.view">
+        <field name="name">routes.config.settings.form.view.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id"
+               ref="fieldservice.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='fieldservice']" position="inside">
+                <h2>Worker Setting</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <label for="start_time"
+                               string="Start Time" class="col-4 col-lg-4"/>
+                        <field name="start_time" widget='float_time' class="oe_inline"/>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <label for="start_location"
+                               string="Start Location" class="col-4 col-lg-4"/>
+                        <field name="start_location" class="oe_inline"/>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <label for="end_location"
+                               string="End Location" class="col-4 col-lg-4"/>
+                        <field name="end_location" class="oe_inline"/>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <label for="time_before_overtime"
+                               string="Time Before Overtime" class="col-4 col-lg-4"/>
+                        <field name="time_before_overtime" widget='float_time' class="oe_inline"/>
+                    </div>
+                    <div class="col-xs-6 col-md-6 o_setting_box">
+                        <label for="maximal_allowable_time"
+                               string="Maximal Allowable Time" class="col-4 col-lg-4"/>
+                        <field name="maximal_allowable_time" widget='float_time' class="oe_inline"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_fsm_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'fieldservice'}</field>
+    </record>
+
+</odoo>

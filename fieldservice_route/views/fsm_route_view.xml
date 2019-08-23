@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fsm_route_tree_inherit" model="ir.ui.view">
+        <field name="name">fsm.route.tree.inherit</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice.fsm_route_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="person_id"/>
+                <field name="stage_id"/>
+                <field name="territory_ids"/>
+                <field name="planned_start_time" widget="float_time"/>
+                <field name="start_location"/>
+                <field name="end_location"/>
+                <field name="location_id"/>
+                <field name="vehicle_id"/>
+                <field name="number_of_orders"/>
+                <field name="scheduled_date"/>
+                <field name="capacity" widget="float_time"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_route_form_inherit" model="ir.ui.view">
+        <field name="name">fsm.route.form.inherit</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice.fsm_route_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group[1]" position="after">
+                <group col="4">
+                    <field name="stage_id"/>
+                    <field name="planned_start_time" widget="float_time"/>
+                    <field name="start_location"/>
+                    <field name="end_location"/>
+                    <field name="number_of_orders"/>
+                    <field name="scheduled_date"/>
+                    <field name="time_before_overtime" widget="float_time"/>
+                    <field name="maximal_allowable_time" widget="float_time"/>
+                    <field name="capacity" widget="progressbar"/>
+                    <field name="territory_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='order_ids']/tree" position="inside">
+                <field name="type"/>
+                <field name="priority"/>
+                <field name="scheduled_duration"/>
+                <field name="date_start"/>
+                <field name="duration"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_route_search_view" model="ir.ui.view">
+        <field name="name">fsm.route.search.view</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <search string="Search Redirect">
+                <group>
+                    <filter name="today" string="Today"
+                            domain="[('scheduled_date', '=', context_today().strftime('%Y-%m-%d'))]"
+                            help="Today"/>
+                    <filter name="tomorrow" string="Tomorrow"
+                            domain="[('scheduled_date', '=', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"
+                            help="Tomorrow"/>
+                    <filter name="remainder_of_week" string="Remainder Of Week"
+                            domain="[('scheduled_date','&gt;=', context_today().strftime('%Y-%m-%d')),
+                            ('scheduled_date','&lt;', (context_today() + datetime.timedelta(days=-context_today().weekday(), weeks=1)).strftime('%Y-%m-%d'))]"
+                            help="Remainder Of week"/>
+                </group>
+                <group expand="0" name="group_by" string="Group By">
+                    <filter name="scheduled_date" string="Scheduled Date"
+                            context="{'group_by' : 'scheduled_date'}"/>
+                    <filter name="status" string="Status"
+                            context="{'group_by': 'stage_id'}"/>
+                    <filter name="fsm_team_id" string="Team"
+                            context="{'group_by': 'fsm_team_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_route" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Add Day Routes here.
+            </p>
+        </field>
+        <field name="context">{"search_default_today":1}</field>
+    </record>
+
+</odoo>

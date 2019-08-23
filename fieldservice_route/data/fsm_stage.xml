@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="fsm_stage_draft" model="fsm.stage">
+        <field name="name">Draft</field>
+        <field name="sequence">10</field>
+        <field name="is_default">True</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#ECF0F1</field>
+    </record>
+
+    <record id="fsm_stage_submitted_to_worker" model="fsm.stage">
+        <field name="name">Submitted to worker</field>
+        <field name="sequence">20</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#F1C40F</field>
+    </record>
+
+    <record id="fsm_stage_worker_confirms_route" model="fsm.stage">
+        <field name="name">Worker confirms route</field>
+        <field name="sequence">30</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#F39C12</field>
+    </record>
+
+    <record id="fsm_stage_started" model="fsm.stage">
+        <field name="name">Started</field>
+        <field name="sequence">40</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#16A085</field>
+    </record>
+
+    <record id="fsm_stage_en_route" model="fsm.stage">
+        <field name="name">En-Route</field>
+        <field name="sequence">50</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#9B59B6</field>
+    </record>
+
+    <record id="fsm_stage_on_site" model="fsm.stage">
+        <field name="name">On-site</field>
+        <field name="sequence">60</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#C0392B</field>
+    </record>
+
+    <record id="fsm_stage_on_break" model="fsm.stage">
+        <field name="name">On-Break</field>
+        <field name="sequence">70</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#95A5A6</field>
+    </record>
+
+    <record id="fsm_stage_at_lunch" model="fsm.stage">
+        <field name="name">At Lunch</field>
+        <field name="sequence">80</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#7F8C8D</field>
+    </record>
+
+    <record id="fsm_stage_unavailable" model="fsm.stage">
+        <field name="name">Unavailable</field>
+        <field name="sequence">100</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#1C2833</field>
+    </record>
+
+    <record id="fsm_stage_waiting_for_customer" model="fsm.stage">
+        <field name="name">Waiting for Customer</field>
+        <field name="sequence">110</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#1C2833</field>
+    </record>
+
+    <record id="fsm_stage_checked_out" model="fsm.stage">
+        <field name="name">Checked Out</field>
+        <field name="sequence">120</field>
+        <field name="stage_type">route</field>
+        <field name="custom_color">#1C2833</field>
+    </record>
+
+</odoo>
