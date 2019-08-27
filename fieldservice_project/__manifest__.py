@@ -8,7 +8,7 @@
     'license': 'AGPL-3',
     'author': 'Pavlov Media, Odoo Community Association (OCA)',
     'category': 'Project',
-    'website': 'https://www.pavlovmedia.com',
+    'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
         'project',
