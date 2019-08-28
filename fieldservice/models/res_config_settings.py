@@ -26,9 +26,6 @@ class ResConfigSettings(models.TransientModel):
     group_fsm_template = fields.Boolean(
         string='Manage Template',
         implied_group='fieldservice.group_fsm_template')
-    group_fsm_project = fields.Boolean(
-        string='Projects and Tasks',
-        implied_group='fieldservice.group_fsm_project')
 
     # Modules
     module_fieldservice_account = fields.Boolean(
