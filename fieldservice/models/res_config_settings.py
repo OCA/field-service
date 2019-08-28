@@ -26,6 +26,9 @@ class ResConfigSettings(models.TransientModel):
     group_fsm_template = fields.Boolean(
         string='Manage Template',
         implied_group='fieldservice.group_fsm_template')
+    group_fsm_project = fields.Boolean(
+        string='Projects and Tasks',
+        implied_group='fieldservice.group_fsm_project')
 
     # Modules
     module_fieldservice_account = fields.Boolean(
@@ -56,6 +59,8 @@ class ResConfigSettings(models.TransientModel):
         string='Auto-populate Workers on Location based on Territory',
         related='company_id.auto_populate_persons_on_location',
         readonly=False)
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
