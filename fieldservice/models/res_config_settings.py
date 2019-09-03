@@ -58,6 +58,8 @@ class ResConfigSettings(models.TransientModel):
         string='Auto-populate Workers on Location based on Territory',
         related='company_id.auto_populate_persons_on_location',
         readonly=False)
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
