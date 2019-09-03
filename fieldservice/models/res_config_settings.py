@@ -51,6 +51,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Sub-Statuses')
     module_fieldservice_recurring = fields.Boolean(
         string='Manage Recurring Orders')
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
