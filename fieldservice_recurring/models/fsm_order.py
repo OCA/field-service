@@ -13,12 +13,14 @@ class FSMOrder(models.Model):
         'fsm.recurring', 'Recurring Order', readonly=True)
 
     def _compute_request_late(self):
-        if not self.fsm_recurring_id:
-            return super(FSMOrder, self)._compute_request_late()
-        else:
-            days_late = self.fsm_recurring_id.fsm_frequency_set_id.buffer_late
-            self.request_late = \
-                self.scheduled_date_start + timedelta(days=days_late)
+        for rec in self:
+            if not rec.fsm_recurring_id:
+                return super(FSMOrder, self)._compute_request_late()
+            else:
+                days_late = rec.fsm_recurring_id.fsm_frequency_set_id.\
+                    buffer_late
+                rec.request_late = rec.scheduled_date_start + timedelta(
+                    days=days_late)
 
     @api.multi
     def action_view_fsm_recurring(self):
