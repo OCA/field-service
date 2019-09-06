@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
             <tree string="Recurring Orders">
                 <field name="name"/>
-                <field name="customer_id"/>
                 <field name="location_id"/>
                 <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
                 <field name="end_date"/>
@@ -57,7 +56,6 @@
                         <group>
                             <field name="fsm_recurring_template_id"/>
                             <field name="location_id"/>
-                            <field name="customer_id"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
