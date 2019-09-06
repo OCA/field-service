@@ -8,48 +8,12 @@
         <field name="arch" type="xml">
             <form string="Order">
                 <header>
-                    <button id="action_confirm"
-                            name="action_confirm" string="Confirm"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"/>
-                    <button id="action_request"
-                            name="action_request" string="Request"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
-                    <button id="action_assign"
-                            name="action_assign" string="Assign"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
-                    <button id="action_schedule"
-                            name="action_schedule" string="Schedule"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_assigned)d, %(fieldservice.fsm_stage_confirmed)d, %(fieldservice.fsm_stage_requested)d))]}"/>
-                    <button id="action_enroute"
-                            name="action_enroute" string="En Route"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_scheduled)d)]}"/>
-                    <button id="action_start"
-                            name="action_start" string="Start"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice.fsm_stage_scheduled)d, %(fieldservice.fsm_stage_enroute)d))]}"/>
                     <button id="action_complete"
                             name="action_complete" string="Complete"
                             class="oe_highlight"
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_started)d)]}"/>
+                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}" />
                     <button id="action_cancel"
                             name="action_cancel" string="Cancel Order"
                             type="object"
@@ -113,19 +77,9 @@
                                 </group>
                                 <group id="schedule" string="Schedule Details">
                                     <field name="scheduled_date_start"
-                                           style="color:Blue"
-                                           attrs="{'invisible': [('stage_id', 'in',
-                                           (%(fieldservice.fsm_stage_new)d,
-                                            %(fieldservice.fsm_stage_confirmed)d,
-                                            %(fieldservice.fsm_stage_requested)d,
-                                            %(fieldservice.fsm_stage_assigned)d))]}"/>
+                                           style="color:Blue"/>
                                     <field name="scheduled_date_start"
-                                           style="color:Red"
-                                           attrs="{'invisible': [('stage_id', 'in',
-                                           (%(fieldservice.fsm_stage_scheduled)d,
-                                            %(fieldservice.fsm_stage_enroute)d,
-                                            %(fieldservice.fsm_stage_started)d,
-                                            %(fieldservice.fsm_stage_completed)d))]}"/>
+                                           style="color:Red"/>
                                     <field name="scheduled_duration"/>
                                     <field name="scheduled_date_end"
                                            readonly="1"/>
@@ -195,15 +149,7 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Orders" default_order="scheduled_date_start"
-                  decoration-danger="stage_id in (%(fieldservice.fsm_stage_new)d,
-                                                  %(fieldservice.fsm_stage_confirmed)d,
-                                                  %(fieldservice.fsm_stage_requested)d,
-                                                  %(fieldservice.fsm_stage_assigned)d)"
-                  decoration-info="stage_id in (%(fieldservice.fsm_stage_scheduled)d,
-                                                %(fieldservice.fsm_stage_enroute)d,
-                                                %(fieldservice.fsm_stage_started)d,
-                                                %(fieldservice.fsm_stage_completed)d)">
+            <tree string="Orders" default_order="scheduled_date_start">
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
@@ -346,19 +292,10 @@
                 <filter string="To Do"
                         domain="[('stage_id.is_closed', '=', False)]"
                         name="todo"/>
-                <filter string="Unassigned"
-                        domain="[('person_id', '=', False)]"
-                        name="unassigned"/>
-                <filter string="Unscheduled"
-                        domain="[('scheduled_date_start', '=', False)]"
-                        name="unscheduled"/>
                 <filter string="Done"
                         domain="[('stage_id.is_closed', '=', True)]"
                         name="done"/>
                 <separator/>
-                <filter string="Past Due Orders"
-                        domain="[('stage_id.name', 'not in', ['Started', 'Completed', 'Cancelled']), ('scheduled_date_start', '&lt;', current_date)]"
-                        name="past_due"/>
                 <filter string="Today Orders"
                         domain="[('scheduled_date_start','&gt;=',context_today().strftime('%%Y-%%m-%%d 00:00:00')), ('scheduled_date_start','&lt;=',context_today().strftime('%%Y-%%m-%%d 23:59:59'))]"
                         name="order_today"/>
