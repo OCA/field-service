@@ -8,7 +8,7 @@
         <field name="model">fsm.location</field>
         <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='customer_id']" position="after">
+            <xpath expr="//field[@name='contact_id']" position="before">
                 <field name="shipping_address_id"/>
             </xpath>
             <xpath expr="//form/sheet/group/group[2]" position="inside">
