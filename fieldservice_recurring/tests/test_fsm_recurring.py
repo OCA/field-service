@@ -27,7 +27,6 @@ class FSMRecurringCase(TransactionCase):
                 'email': 'tp@email.com',
                 'partner_id': self.test_loc_partner.id,
                 'owner_id': self.test_loc_partner.id,
-                'customer_id': self.test_loc_partner.id,
                 })
 
     def test_cron_generate_orders_rule1(self):
