@@ -35,6 +35,11 @@ class FSMOrder(models.Model):
                                string="Bill to",
                                required=True,
                                default="location")
+    customer_id = fields.Many2one('res.partner', string='Contact',
+                                  domain=[('customer', '=', True)],
+                                  change_default=True,
+                                  index=True,
+                                  track_visibility='always')
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -188,3 +193,24 @@ class FSMOrder(models.Model):
 
     def account_no_invoice(self):
         self.account_stage = 'no'
+
+    @api.onchange('location_id')
+    def _onchange_location_id_customer_account(self):
+        if self.location_id:
+            return {'domain': {'customer_id': [('service_location_id', '=',
+                                                self.location_id.name)]}}
+        else:
+            return {'domain': {'customer_id': [('id', '!=', None)]}}
+
+    @api.onchange('customer_id')
+    def _onchange_customer_id_location(self):
+        if self.customer_id:
+            self.location_id = self.customer_id.service_location_id
+
+    @api.multi
+    def write(self, vals):
+        res = super(FSMOrder, self).write(vals)
+        for order in self:
+            if 'customer_id' not in vals and order.customer_id is False:
+                order.customer_id = order.location_id.customer_id.id
+        return res
