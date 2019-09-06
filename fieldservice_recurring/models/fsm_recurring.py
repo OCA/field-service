@@ -25,11 +25,6 @@ class FSMRecurringOrder(models.Model):
     fsm_recurring_template_id = fields.Many2one(
         'fsm.recurring.template', 'Recurring Template',
         readonly=True, states={'draft': [('readonly', False)]})
-    customer_id = fields.Many2one(
-        'res.partner', string='Contact',
-        domain=[('customer', '=', True)],
-        change_default=True, index=True,
-        track_visibility='always',)
     location_id = fields.Many2one(
         'fsm.location', string='Location', index=True, required=True)
     description = fields.Text(string='Description')
@@ -146,7 +141,6 @@ class FSMRecurringOrder(models.Model):
         earliest_date = schedule_date + relativedelta(days=-days_early)
         return {
             'fsm_recurring_id': self.id,
-            'customer_id': self.customer_id.id,
             'location_id': self.location_id.id,
             'scheduled_date_start': schedule_date,
             'request_early': str(earliest_date),
