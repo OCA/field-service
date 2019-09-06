@@ -149,7 +149,7 @@
         <field name="name">fsm.order.tree</field>
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
-            <tree string="Orders" default_order="scheduled_date_start">
+            <tree name="orders" string="Orders" default_order="scheduled_date_start">
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
                 <field name="customer_id"/>
