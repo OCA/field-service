@@ -81,7 +81,6 @@
                             <field name="branch_id" invisible='1'/>
                             <field name="district_id" invisible='1'/>
                             <field name="region_id" invisible='1'/>
-                            <field name="customer_id"/>
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
                             <field name="person_id"/>
@@ -208,7 +207,6 @@
                                                 %(fieldservice.fsm_stage_completed)d)">
                 <field name="scheduled_date_start"/>
                 <field name="name"/>
-                <field name="customer_id"/>
                 <field name="location_id"/>
                 <field name="person_id"/>
                 <field name="stage_id" string="Stage"/>
@@ -240,7 +238,6 @@
                        options='{"group_by_tooltip": {"legend_priority": "Use of stars"}}'/>
                 <field name="name"/>
                 <field name="priority"/>
-                <field name="customer_id"/>
                 <field name="location_id"/>
                 <field name="person_id"/>
                 <field name="color"/>
@@ -280,11 +277,6 @@
                                     <field name="tag_ids"
                                            widget="many2many_tags"
                                            options="{'color_field': 'color'}"/>
-                                </div>
-                                <div class="text-muted o_kanban_record_subtitle">
-                                    <span t-if="record.customer_id.value">
-                                        <t t-esc="record.customer_id.value"/>
-                                    </span>
                                 </div>
                                 <div>
                                     <field name="location_id"/>
@@ -409,7 +401,6 @@
                 <field name="stage_id"/>
                 <field name="location_id"/>
                 <field name="phone"/>
-                <field name="customer_id"/>
                 <field name="person_id"/>
                 <field name="person_phone"/>
                 <field name="city"/>

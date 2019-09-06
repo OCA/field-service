@@ -54,11 +54,7 @@ class FSMOrder(models.Model):
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
-    customer_id = fields.Many2one('res.partner', string='Contact',
-                                  domain=[('customer', '=', True)],
-                                  change_default=True,
-                                  index=True,
-                                  track_visibility='always')
+
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True, required=True)
     location_directions = fields.Char(string='Location Directions')
@@ -102,16 +98,6 @@ class FSMOrder(models.Model):
             fsm_equipment_rec = self.env['fsm.equipment'].search([
                 ('current_location_id', '=', self.location_id.id)])
             self.equipment_ids = [(6, 0, fsm_equipment_rec.ids)]
-        if self.location_id:
-            return {'domain': {'customer_id': [('service_location_id', '=',
-                                                self.location_id.name)]}}
-        else:
-            return {'domain': {'customer_id': [('id', '!=', None)]}}
-
-    @api.onchange('customer_id')
-    def _onchange_customer_id_location(self):
-        if self.customer_id:
-            self.location_id = self.customer_id.service_location_id
 
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
@@ -205,9 +191,6 @@ class FSMOrder(models.Model):
     def write(self, vals):
         self._calc_scheduled_dates(vals)
         res = super(FSMOrder, self).write(vals)
-        for order in self:
-            if 'customer_id' not in vals and order.customer_id is False:
-                order.customer_id = order.location_id.customer_id.id
         return res
 
     def _calc_scheduled_dates(self, vals):
