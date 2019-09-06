@@ -6,3 +6,4 @@
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Brian McMaster <brian@mcmpest.com>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
