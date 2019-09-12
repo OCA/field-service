@@ -64,33 +64,31 @@ class FSMOrder(models.Model):
     location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
                                     default=datetime.now())
-    request_late = fields.Datetime(string='Latest Request Date',
-                                   compute='_compute_request_late')
     color = fields.Integer('Color Index')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, index=True,
         default=lambda self: self.env.user.company_id,
         help="Company related to this order")
 
-    def _compute_request_late(self):
-        for rec in self:
-            if not rec.request_late:
-                if rec.priority == '0':
-                    if rec.request_early:
-                        rec.request_late = fields.Datetime.from_string(
-                            rec.request_early) + timedelta(days=3)
-                    else:
-                        rec.request_late = datetime.now() + timedelta(days=3)
-                elif rec.priority == '1':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(days=2)
-                elif rec.priority == '2':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(days=1)
-                elif rec.priority == '3':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(hours=8)
+    def _compute_request_late(self, vals):
+        if vals.get('priority') == '0':
+            if vals.get('request_early'):
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=3)
+            else:
+                vals['request_late'] = datetime.now() + timedelta(days=3)
+        elif vals.get('priority') == '1':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(days=2)
+        elif vals.get('priority') == '2':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(days=1)
+        elif vals.get('priority') == '3':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(hours=8)
+        return vals
 
+    request_late = fields.Datetime(string='Latest Request Date')
     description = fields.Text(string='Description')
 
     person_ids = fields.Many2many('fsm.person',
@@ -195,6 +193,8 @@ class FSMOrder(models.Model):
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
         self._calc_scheduled_dates(vals)
+        if not vals.get('request_late'):
+            vals = self._compute_request_late(vals)
         return super(FSMOrder, self).create(vals)
 
     @api.multi
