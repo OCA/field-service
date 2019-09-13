@@ -1,0 +1,34 @@
+<odoo>
+    <!-- Field Service Location hierarchy Wizard Form View-->
+    <record id="fsm_location_hierarchy_wiz_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.builder.wiz.form</field>
+        <field name="model">fsm.location.builder.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+              <field name="level_ids">
+                <tree editable="bottom">
+                  <field name="sequence" widget="handle"/>
+                  <field name="name"/>
+                  <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                  <field name="spacer"/>
+                  <field name="start_number"/>
+                  <field name="end_number"/>
+                  <field name="total_number"/>
+                </tree>
+              </field>
+              <footer>
+                <button name="create_sub_locations" string="Create Sub Locations" class="oe_right oe_highlight" type="object"/>
+                <button string="Cancel" class="oe_right" special="cancel"/>
+              </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="fsm_location_hierarchy_wizard_action"
+                name="Location Hierarchy Builder"
+                res_model="fsm.location.builder.wizard"
+                src_model="fsm.location"
+                view_mode="form"
+                target="new"
+                context = "{'default_primary_location_id': active_id, 'default_owner_id': context.get('owner_id.id',False)}"/>
+</odoo>
