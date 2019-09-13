@@ -194,7 +194,21 @@ class FSMOrder(models.Model):
                          'request_early': str(req_date)})
         self._calc_scheduled_dates(vals)
         if not vals.get('request_late'):
-            vals = self._compute_request_late(vals)
+            if vals.get('priority') == '0':
+                if vals.get('request_early'):
+                    vals['request_late'] = fields.Datetime.\
+                        from_string(vals.get('request_early')) + timedelta(days=3)
+                else:
+                    vals['request_late'] = datetime.now() + timedelta(days=3)
+            elif vals.get('priority') == '1':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=2)
+            elif vals.get('priority') == '2':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=1)
+            elif vals.get('priority') == '3':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(hours=8)
         return super(FSMOrder, self).create(vals)
 
     @api.multi
