@@ -224,6 +224,16 @@ class FSMOrder(models.Model):
                 order.customer_id = order.location_id.customer_id.id
         return res
 
+    @api.multi
+    def unlink(self):
+        for order in self:
+            if order.stage_id == order._default_stage_id():
+                res = super(FSMOrder, order).unlink()
+            else:
+                raise ValidationError(_(
+                    "You cannot delete a confirmed order."))
+        return res
+
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
         if 'scheduled_date_end' in vals:
