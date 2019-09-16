@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Main FORM view-->
+    <record id="contract_contract_form_view" model="ir.ui.view">
+        <field name="name">contract.contract form view (in contract)</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_form_view"></field>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+            	<field name="fsm_location_id" />
+			</field>
+
+			<xpath expr="//button[@name='action_show_invoices']" position="before">
+				<button type="object"
+						name="action_view_fsm_recurring"
+                        class="oe_stat_button"
+                        icon="fa-calendar"
+                        string="FSM Recurring"
+                ></button>
+                <button type="object"
+                        name="action_view_fsm_order"
+                        class="oe_stat_button"
+                        icon="fa-tasks"
+                        string="FSM Order"
+                ></button>
+            </xpath>
+        </field>
+	</record>
+</odoo>
