@@ -36,7 +36,7 @@ class FSMOrder(models.Model):
     inventory_location_id = fields.Many2one(
         related='location_id.inventory_location_id', readonly=True)
     warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse',
-                                   required=True, readonly=True,
+                                   required=True,
                                    default=_default_warehouse_id,
                                    help="Warehouse used to ship the materials")
     return_count = fields.Integer(string='Return Orders',
@@ -53,9 +53,9 @@ class FSMOrder(models.Model):
             for line in rec.stock_request_ids:
                 if line.state == 'draft':
                     if line.order_id:
-                        line.order_id.action_confirm()
+                        line.order_id.action_submit()
                     else:
-                        line.action_confirm()
+                        line.action_submit()
             rec.request_stage = 'submitted'
 
     @api.multi
