@@ -200,8 +200,9 @@ class FSMOrder(models.Model):
         if not vals.get('request_late'):
             if vals.get('priority') == '0':
                 if vals.get('request_early'):
-                    vals['request_late'] = fields.Datetime.\
-                        from_string(vals.get('request_early')) + timedelta(days=3)
+                    vals['request_late'] = \
+                        fields.Datetime.from_string(vals.get('request_early'))\
+                        + timedelta(days=3)
                 else:
                     vals['request_late'] = datetime.now() + timedelta(days=3)
             elif vals.get('priority') == '1':
@@ -224,14 +225,18 @@ class FSMOrder(models.Model):
                 order.customer_id = order.location_id.customer_id.id
         return res
 
+    def can_unlink(self):
+        """:return True if the order can be deleted, False otherwise"""
+        return self.stage_id == self._default_stage_id()
+
     @api.multi
     def unlink(self):
         for order in self:
-            if order.stage_id == order._default_stage_id():
+            if order.can_unlink():
                 res = super(FSMOrder, order).unlink()
             else:
                 raise ValidationError(_(
-                    "You cannot delete a confirmed order."))
+                    "You cannot delete this order."))
         return res
 
     def _calc_scheduled_dates(self, vals):
