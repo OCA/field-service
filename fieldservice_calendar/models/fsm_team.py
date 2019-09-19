@@ -1,0 +1,14 @@
+# Copyright (C) 2010 Akretion
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
+
+
+class FSMTeam(models.Model):
+    _inherit = 'fsm.team'
+
+    calendar_user_id = fields.Many2one(
+        'res.users',
+        string="Team's calendar",
+        help="Responsible for orders's calendar",
+    )
