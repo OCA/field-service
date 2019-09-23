@@ -76,4 +76,5 @@ class FSMStage(models.Model):
 
     team_ids = fields.Many2many(
         'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
-        string='Teams', default=_default_team_ids)
+        string='Teams',
+        default=lambda self: self._default_team_ids())
