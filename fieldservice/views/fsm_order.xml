@@ -59,23 +59,23 @@
                                    groups="base.group_multi_company"/>
                         </group>
                     </group>
-                    <group string="Description">
+                    <group string="Description" name="description_grp">
                         <field name="description" nolabel="1"/>
                     </group>
-                    <group string="Resolution">
+                    <group string="Resolution" name="resolution_grp">
                         <field name="resolution" nolabel="1"/>
                     </group>
                     <notebook>
-                        <page string="Planning">
+                        <page string="Planning" name="planning_page">
                             <group>
-                                <group string="Requirements">
+                                <group string="Requirements" name="requirements_grp">
                                     <field name="category_ids"
                                            widget="many2many_tags"
                                            options="{'color_field': 'color'}"/>
                                     <field name="request_early"/>
                                     <field name="request_late"/>
                                 </group>
-                                <group id="schedule" string="Schedule Details">
+                                <group id="schedule" string="Schedule Details" name="schedule_grp">
                                     <field name="scheduled_date_start"
                                            style="color:Blue"/>
                                     <field name="scheduled_date_start"
@@ -85,7 +85,7 @@
                                            readonly="1"/>
                                 </group>
                             </group>
-                            <group string="Request Workers">
+                            <group string="Request Workers" name="request_workers">
                                 <field name="person_ids" widget="many2many"
                                        nolabel="1"
                                        context="{'search_default_location_ids': location_id}">
@@ -100,15 +100,15 @@
                                 </field>
                             </group>
                         </page>
-                        <page string="Instructions">
-                            <group string="Instructions">
+                        <page string="Instructions" name="instructions_page">
+                            <group string="Instructions" name="instructions_grp">
                                 <field name="todo" nolabel="1" widget="html"/>
                             </group>
-                            <group string="Location Directions">
+                            <group string="Location Directions" name="location_directions_grp">
                                 <field name="location_directions" nolabel="1" widget="html"/>
                             </group>
                         </page>
-                        <page string="Execution">
+                        <page string="Execution" name="execution_page">
                             <group>
                                 <group id="execution-left">
                                     <field name="date_start"/>
@@ -120,6 +120,7 @@
                         </page>
                         <page string="Equipments"
                               groups="fieldservice.group_fsm_equipment"
+                              name="equipements_page"
                               attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
                             <field name="equipment_ids"
                                    attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
