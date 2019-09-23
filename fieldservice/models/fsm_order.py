@@ -47,7 +47,7 @@ class FSMOrder(models.Model):
                                help="Classify and analyze your orders")
     color = fields.Integer('Color Index', default=0)
     team_id = fields.Many2one('fsm.team', string='Team',
-                              default=_default_team_id,
+                              default=lambda self: self._default_team_id(),
                               index=True, required=True,
                               track_visibility='onchange')
 
