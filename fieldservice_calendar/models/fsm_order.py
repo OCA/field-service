@@ -1,8 +1,7 @@
 # Copyright (C) 2010 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -11,7 +10,9 @@ class FSMOrder(models.Model):
     calendar_event_id = fields.Many2one(
         'calendar.event',
         string='Meeting',
-#        ondelete='cascade',
+        readonly=True,
+        # ondelete='cascade',
+        # TODO : gerer la supression proprement
     )
 
     @api.model
@@ -32,7 +33,7 @@ class FSMOrder(models.Model):
 
     def _prepare_calendar_event(self):
         model_id = self.env.ref('fieldservice.model_fsm_order').id
-        return {
+        vals = {
             'name': self.name,
             'description': self.description,
             'start': self.scheduled_date_start,
@@ -42,8 +43,16 @@ class FSMOrder(models.Model):
             'res_id': self.id,  # link back with "Document" button
             'location': self._serialize_location(),
             'user_id': self.team_id.calendar_user_id.id,
-            'partner_ids': [],
         }
+        if self.team_id.calendar_user_id:
+            # if partner_ids = [], then no attendees to the event
+            # if no partner_ids, then attendees is current user
+            # here we set the calendar_user_id of the team as the attendee
+            # instead of current user
+            # because we want to use the calendar of calendar_user_id
+            vals['partner_ids'] = [
+                (4, self.team_id.calendar_user_id.partner_id.id, False)]
+        return vals
 
     @api.multi
     def write(self, vals):
