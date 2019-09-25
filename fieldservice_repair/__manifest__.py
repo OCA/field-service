@@ -13,6 +13,7 @@
         'repair',
     ],
     'data': [
+        'data/fsm_order_type.xml',
         'views/fsm_order_view.xml'
     ],
     'license': 'AGPL-3',
