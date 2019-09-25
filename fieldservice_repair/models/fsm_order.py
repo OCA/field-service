@@ -9,7 +9,6 @@ from odoo import fields, models
 class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
-    type = fields.Selection(selection_add=[('repair', 'Repair')])
     repair_id = fields.Many2one('repair.order', string='Repair Order')
 
     # @api.model
