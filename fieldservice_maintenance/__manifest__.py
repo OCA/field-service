@@ -14,6 +14,7 @@
         'hr',
     ],
     'data': [
+        'data/fsm_order_type.xml',
         'views/maintenance_view.xml',
         'views/fsm_equipment_view.xml',
         'views/fsm_order_view.xml',
