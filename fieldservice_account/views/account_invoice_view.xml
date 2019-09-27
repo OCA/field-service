@@ -23,4 +23,25 @@
         </field>
     </record>
 
+    <record id="view_account_invoice_fsm_tree" model="ir.ui.view">
+        <field name="name">view.account.invoice.fsm.tree</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="fsm_order_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_fsm_search" model="ir.ui.view">
+        <field name="name">view.account.invoice.fsm.search</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="fsm_order_id" string="FSM Order"/>
+            </field>
+        </field>
+    </record>
 </odoo>
