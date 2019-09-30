@@ -23,5 +23,4 @@ from . import (
     fsm_order,
     fsm_route,
     fsm_order_type,
-
 )

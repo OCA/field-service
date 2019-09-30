@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Branch Tree View -->
+    <!-- FSM Order Type Tree View -->
     <record id="fsm_order_type_tree_view" model="ir.ui.view">
         <field name="name">fsm.order.type.tree</field>
         <field name="model">fsm.order.type</field>
@@ -12,12 +12,12 @@
         </field>
     </record>
 
-    <!-- Branch Form View -->
+    <!-- FSM Order Type Form View -->
     <record id="fsm_order_type_form_view" model="ir.ui.view">
         <field name="name">fsm.order.type.form</field>
         <field name="model">fsm.order.type</field>
         <field name="arch" type="xml">
-            <form string="Branch">
+            <form string="Type">
                 <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
