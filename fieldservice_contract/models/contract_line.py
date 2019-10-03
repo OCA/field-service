@@ -1,4 +1,5 @@
 # Copyright 2019 Akretion <raphael.reverdy@akretion.com>
+# Copyright 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
@@ -203,7 +204,8 @@ class ContractLine(models.Model):
                 fsm_recurring for fsm_recurring in fsm_recurrings}
         result = {}
         for line in self:
-            # If the contract was confirmed, cancelled, set to draft then confirmed,
+            # If the contract was confirmed, cancelled,
+            # set to draft then confirmed,
             # avoid creating a new fsm_recurring.
             fsm_recurring = fsm_recurring_cl_mapping.get(line.id)
             # If not found, create one fsm_recurring for the line
