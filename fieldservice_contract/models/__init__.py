@@ -1,3 +1,4 @@
+from . import account_invoice
 from . import account_invoice_line
 from . import contract
 from . import contract_line
