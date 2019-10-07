@@ -56,7 +56,9 @@ class FSMOrder(models.Model):
 
     @api.multi
     def write(self, vals):
-        old_person = self.person_id
+        old_persons = {}
+        for rec in self:
+            old_persons[rec.id] = rec.person_id
         res = super().write(vals)
         if 'scheduled_date_start' in vals or 'scheduled_date_end' in vals:
             self.update_calendar_date(vals)
@@ -64,7 +66,7 @@ class FSMOrder(models.Model):
         if 'location_id' in vals:
             self.update_calendar_location()
         if 'person_id' in vals:
-            self.update_calendar_person(old_person)
+            self.update_calendar_person(old_persons)
         return res
 
     @api.multi
@@ -90,7 +92,7 @@ class FSMOrder(models.Model):
         return '%s %s' % (partner_id.name, partner_id._display_address())
 
     @api.multi
-    def update_calendar_person(self, old_person):
+    def update_calendar_person(self, old_persons):
         if self._context.get('recurse_order_calendar'):
             # avoid recursion
             return
@@ -98,10 +100,10 @@ class FSMOrder(models.Model):
             with_ctx = rec.calendar_event_id.with_context(
                 recurse_order_calendar=True
             )
-            if old_person:
+            if old_persons.get(rec.id):
                 # remove buddy
                 with_ctx.partner_ids = [
-                    (3, old_person.partner_id.id, False)
+                    (3, old_persons[rec.id].partner_id.id, False)
                 ]
             if rec.person_id:
                 # add the new one
