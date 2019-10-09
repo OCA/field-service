@@ -162,7 +162,7 @@ class FSMOrder(models.Model):
 
     # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many('fsm.equipment', string='Equipments')
-    type = fields.Selection([], string='Type')
+    type = fields.Many2one('fsm.order.type', string="Type")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -312,7 +312,7 @@ class FSMOrder(models.Model):
 
     def copy_notes(self):
         self.description = ""
-        if self.type not in ['repair', 'maintenance']:
+        if self.type.name not in ['repair', 'maintenance']:
             for equipment_id in self.equipment_ids:
                 if equipment_id:
                     if equipment_id.notes is not False:
