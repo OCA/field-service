@@ -23,7 +23,7 @@ addon | version | summary
 [fieldservice](fieldservice/) | 12.0.1.3.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.2.0.1 | Track employee time and invoice for Field Service Orders
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage FSM Agreements
-[fieldservice_default_flow](fieldservice_default_flow/) | 12.0.1.2.0 | Common stages
+[fieldservice_default_flow](fieldservice_isp_flow/) | 12.0.1.2.0 | Common stages
 [fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Delivery and Carriers for Field Services
 [fieldservice_distribution](fieldservice_distribution/) | 12.0.1.0.0 | Manage your distribution structure
 [fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Extend field service functionality based on Geoengine

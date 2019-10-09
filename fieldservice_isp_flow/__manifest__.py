@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service - Default Flow',
-    'summary': 'Common stages',
+    'name': 'Field Service - Flow for ISP',
+    'summary': 'FSM Stages for Internet Service Providers',
     'version': '12.0.1.2.0',
     'category': 'Field Service',
     'author':
