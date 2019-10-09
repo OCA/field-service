@@ -10,14 +10,6 @@
                 <strong>Date Completed:</strong>
                 <p t-field="doc.date_end"/>
             </div>
-            <t t-if="doc.customer_id">
-                <t t-set="information_block">
-                    <t t-if="doc.customer_id">
-                        <div t-field="doc.customer_id"
-                             t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;]}"/>
-                    </t>
-                </t>
-            </t>
             <div class="page">
                 <div class="oe_structure"/>
                 <hr/>

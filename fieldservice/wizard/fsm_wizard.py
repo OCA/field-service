@@ -28,13 +28,17 @@ class FSMWizard(models.TransientModel):
                 self.action_convert_location(partner)
         return {'type': 'ir.actions.act_window_close'}
 
+    def _prepare_fsm_location(self, partner):
+        return {
+            'partner_id': partner.id,
+            'owner_id': partner.id,
+        }
+
     def action_convert_location(self, partner):
         res = self.env['fsm.location'].search_count(
             [('partner_id', '=', partner.id)])
         if res == 0:
-            vals = {'partner_id': partner.id,
-                    'owner_id': partner.id,
-                    'customer_id': partner.id}
+            vals = self._prepare_fsm_location(partner)
             self.env['fsm.location'].create(vals)
             partner.write({'fsm_location': True})
             self.action_other_address(partner)
