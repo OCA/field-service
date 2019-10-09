@@ -3,9 +3,20 @@
 
 # Field Service
 
-Odoo modules for field service management.
+[Field service management](https://en.wikipedia.org/wiki/Field_service_management) (FSM) coordinates company resources employed at, or en route to, client sites, rather than on the company's premises. FSM most commonly refers to companies who need to manage installation, service or repairs of systems or equipment.
 
+Examples of field service use cases are:
 
+- In telecommunications and cable industry, technicians who install cable or run phone lines into residences or business establishments.
+- In healthcare, mobile nurses who provide in-home care for elderly or disabled.
+- In gas utilities, engineers who are dispatched to investigate and repair suspected leaks.
+- In heavy engineering, mining, industrial and manufacturing, technicians dispatched for preventative maintenance and repair.
+- In property maintenance, including landscaping, irrigation, and home and office cleaning.
+- In HVAC industry, technicians have the expertise and equipment to investigate units in residential, commercial and industrial environments.
+
+[//]: # (addons)
+
+[//]: # (end addons)
 
 ----
 
