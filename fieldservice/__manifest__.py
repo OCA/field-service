@@ -4,7 +4,7 @@
 {
     'name': 'Field Service',
     'summary': 'Manage Field Service Locations, Workers and Orders',
-    'version': '12.0.1.2.0',
+    'version': '12.0.1.3.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
@@ -45,6 +45,7 @@
         'views/fsm_template.xml',
         'views/fsm_team.xml',
         'views/menu.xml',
+        'views/fsm_order_type.xml',
         'wizard/fsm_wizard.xml',
     ],
     'demo': [

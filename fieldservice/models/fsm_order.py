@@ -47,50 +47,44 @@ class FSMOrder(models.Model):
                                help="Classify and analyze your orders")
     color = fields.Integer('Color Index', default=0)
     team_id = fields.Many2one('fsm.team', string='Team',
-                              default=_default_team_id,
+                              default=lambda self: self._default_team_id(),
                               index=True, required=True,
                               track_visibility='onchange')
 
     # Request
     name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
-    customer_id = fields.Many2one('res.partner', string='Contact',
-                                  domain=[('customer', '=', True)],
-                                  change_default=True,
-                                  index=True,
-                                  track_visibility='always')
+
     location_id = fields.Many2one('fsm.location', string='Location',
                                   index=True, required=True)
     location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
                                     default=datetime.now())
-    request_late = fields.Datetime(string='Latest Request Date',
-                                   compute='_compute_request_late')
     color = fields.Integer('Color Index')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, index=True,
         default=lambda self: self.env.user.company_id,
         help="Company related to this order")
 
-    def _compute_request_late(self):
-        for rec in self:
-            if not rec.request_late:
-                if rec.priority == '0':
-                    if rec.request_early:
-                        rec.request_late = fields.Datetime.from_string(
-                            rec.request_early) + timedelta(days=3)
-                    else:
-                        rec.request_late = datetime.now() + timedelta(days=3)
-                elif rec.priority == '1':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(days=2)
-                elif rec.priority == '2':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(days=1)
-                elif rec.priority == '3':
-                    rec.request_late = fields.Datetime.from_string(
-                        rec.request_early) + timedelta(hours=8)
+    def _compute_request_late(self, vals):
+        if vals.get('priority') == '0':
+            if vals.get('request_early'):
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=3)
+            else:
+                vals['request_late'] = datetime.now() + timedelta(days=3)
+        elif vals.get('priority') == '1':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(days=2)
+        elif vals.get('priority') == '2':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(days=1)
+        elif vals.get('priority') == '3':
+            vals['request_late'] = fields.Datetime.\
+                from_string(vals.get('request_early')) + timedelta(hours=8)
+        return vals
 
+    request_late = fields.Datetime(string='Latest Request Date')
     description = fields.Text(string='Description')
 
     person_ids = fields.Many2many('fsm.person',
@@ -102,16 +96,6 @@ class FSMOrder(models.Model):
             fsm_equipment_rec = self.env['fsm.equipment'].search([
                 ('current_location_id', '=', self.location_id.id)])
             self.equipment_ids = [(6, 0, fsm_equipment_rec.ids)]
-        if self.location_id:
-            return {'domain': {'customer_id': [('service_location_id', '=',
-                                                self.location_id.name)]}}
-        else:
-            return {'domain': {'customer_id': [('id', '!=', None)]}}
-
-    @api.onchange('customer_id')
-    def _onchange_customer_id_location(self):
-        if self.customer_id:
-            self.location_id = self.customer_id.service_location_id
 
     # Planning
     person_id = fields.Many2one('fsm.person', string='Assigned To',
@@ -178,7 +162,7 @@ class FSMOrder(models.Model):
 
     # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many('fsm.equipment', string='Equipments')
-    type = fields.Selection([], string='Type')
+    type = fields.Many2one('fsm.order.type', string="Type")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -199,15 +183,43 @@ class FSMOrder(models.Model):
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
         self._calc_scheduled_dates(vals)
+        if not vals.get('request_late'):
+            if vals.get('priority') == '0':
+                if vals.get('request_early'):
+                    vals['request_late'] = \
+                        fields.Datetime.from_string(vals.get('request_early'))\
+                        + timedelta(days=3)
+                else:
+                    vals['request_late'] = datetime.now() + timedelta(days=3)
+            elif vals.get('priority') == '1':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=2)
+            elif vals.get('priority') == '2':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(days=1)
+            elif vals.get('priority') == '3':
+                vals['request_late'] = fields.Datetime.\
+                    from_string(vals.get('request_early')) + timedelta(hours=8)
         return super(FSMOrder, self).create(vals)
 
     @api.multi
     def write(self, vals):
         self._calc_scheduled_dates(vals)
         res = super(FSMOrder, self).write(vals)
+        return res
+
+    def can_unlink(self):
+        """:return True if the order can be deleted, False otherwise"""
+        return self.stage_id == self._default_stage_id()
+
+    @api.multi
+    def unlink(self):
         for order in self:
-            if 'customer_id' not in vals and order.customer_id is False:
-                order.customer_id = order.location_id.customer_id.id
+            if order.can_unlink():
+                res = super(FSMOrder, order).unlink()
+            else:
+                raise ValidationError(_(
+                    "You cannot delete this order."))
         return res
 
     def _calc_scheduled_dates(self, vals):
@@ -255,7 +267,7 @@ class FSMOrder(models.Model):
 
     def copy_notes(self):
         self.description = ""
-        if self.type not in ['repair', 'maintenance']:
+        if self.type.name not in ['repair', 'maintenance']:
             for equipment_id in self.equipment_ids:
                 if equipment_id:
                     if equipment_id.notes is not False:

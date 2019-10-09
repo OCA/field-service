@@ -19,10 +19,6 @@ class FSMLocation(models.Model):
     owner_id = fields.Many2one('res.partner', string='Related Owner',
                                required=True, ondelete='restrict',
                                auto_join=True)
-    customer_id = fields.Many2one('res.partner', string='Billed Customer',
-                                  required=True, ondelete='restrict',
-                                  auto_join=True,
-                                  track_visibility='onchange')
     contact_id = fields.Many2one('res.partner', string='Primary Contact',
                                  domain="[('is_company', '=', False),"
                                         " ('fsm_location', '=', False)]",
@@ -146,7 +142,6 @@ class FSMLocation(models.Model):
     @api.onchange('fsm_parent_id')
     def _onchange_fsm_parent_id(self):
         self.owner_id = self.fsm_parent_id.owner_id or False
-        self.customer_id = self.fsm_parent_id.customer_id or False
         self.contact_id = self.fsm_parent_id.contact_id or False
         self.direction = self.fsm_parent_id.direction or False
         self.street = self.fsm_parent_id.street or False

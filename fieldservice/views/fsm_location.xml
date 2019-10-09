@@ -18,7 +18,6 @@
                 <field name="zip"/>
                 <field name="territory_id"/>
                 <field name="owner_id"/>
-                <field name="customer_id"/>
             </tree>
         </field>
     </record>
@@ -71,7 +70,6 @@
                             <field name="id" invisible="1"/>
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]"/>
                             <field name="owner_id"/>
-                            <field name="customer_id"/>
                             <field name="contact_id" context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"/>
                             <field name="phone" widget="phone"/>
                             <field name="fax" widget="phone"/>
@@ -155,7 +153,6 @@
                        string="Location"/>
                 <field name="partner_id"/>
                 <field name="owner_id"/>
-                <field name="customer_id"/>
                 <field name="partner_latitude"/>
                 <field name="partner_longitude"/>
                 <field name="territory_id"/>
@@ -174,7 +171,6 @@
                 <field name="ref"/>
                 <group expand="0" string="Group By">
                     <filter name="owner_id" string="Owner" domain="[]" context="{'group_by':'owner_id'}"/>
-                    <filter name="customer_id" string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
                 </group>
             </search>
         </field>

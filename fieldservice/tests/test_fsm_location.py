@@ -39,7 +39,7 @@ class FSMLocation(TransactionCase):
             f.fsm_parent_id = self.test_location
         location = f.save()
         # Test child location equal to parent location
-        for x in ['owner_id', 'customer_id', 'contact_id', 'direction',
+        for x in ['owner_id', 'contact_id', 'direction',
                   'street', 'street2', 'city', 'zip', 'state_id', 'country_id',
                   'tz', 'territory_id']:
             self.assertEqual(location[x], self.test_location[x])
