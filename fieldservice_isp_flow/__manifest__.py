@@ -4,11 +4,11 @@
 {
     'name': 'Field Service - Flow for ISP',
     'summary': 'FSM Stages for Internet Service Providers',
-    'version': '12.0.1.2.0',
+    'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author':
-        'Open Source Integrators,'
-        ' Akretion, Odoo Community Association (OCA)',
+        'Open Source Integrators, '
+        'Akretion, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice',
@@ -20,4 +20,5 @@
     'application': False,
     'license': 'AGPL-3',
     'development_status': 'Beta',
+    'maintainers': ['osi-scampbell'],
 }
