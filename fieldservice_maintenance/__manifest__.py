@@ -11,7 +11,6 @@
     'depends': [
         'fieldservice_stock',
         'maintenance',
-        'hr',
     ],
     'data': [
         'data/fsm_order_type.xml',
