@@ -45,6 +45,7 @@
         'views/fsm_equipment.xml',
         'views/fsm_template.xml',
         'views/fsm_team.xml',
+        'views/fsm_order_type.xml',
         'views/menu.xml',
         'wizard/fsm_wizard.xml',
     ],
