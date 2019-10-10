@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <!-- Fields Service Orders Form View -->
@@ -9,7 +8,7 @@
         <field name="arch" type="xml">
             <field name="location_id" position="after">
                 <field name="agreement_id"
-                       domain="['|', ('partner_id', '=', customer_id), ('fsm_location_id', '=', location_id), ('is_template', '=', False)]"/>
+                       domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]"/>
                 <field name="serviceprofile_id"
                        domain="[('agreement_id', '=', agreement_id)]"/>
             </field>
