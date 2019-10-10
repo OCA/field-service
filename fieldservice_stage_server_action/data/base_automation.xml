@@ -7,10 +7,6 @@
             <field name="state">multi</field>
             <field name="child_ids" eval=
                 "[(6, 0, [
-                    ref('fsm_order_parent_confirmed'), 
-                    ref('fsm_order_parent_requested'),
-                    ref('fsm_order_parent_assigned'),
-                    ref('fsm_order_parent_scheduled'),
                     ref('fsm_order_parent_completed'),
                     ref('fsm_order_parent_canceled')])
                 ]"/>
