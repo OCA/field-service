@@ -38,6 +38,7 @@
         'views/fsm_location_person.xml',
         'views/fsm_person.xml',
         'views/fsm_order.xml',
+        'views/fsm_order_type.xml',
         'views/fsm_route.xml',
         'views/fsm_schedule.xml',
         'views/fsm_category.xml',
@@ -45,7 +46,6 @@
         'views/fsm_template.xml',
         'views/fsm_team.xml',
         'views/menu.xml',
-        'views/fsm_order_type.xml',
         'wizard/fsm_wizard.xml',
     ],
     'demo': [
