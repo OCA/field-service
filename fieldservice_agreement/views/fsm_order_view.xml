@@ -7,7 +7,7 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
-            <field name="customer_id" position="after">
+            <field name="location_id" position="after">
                 <field name="agreement_id"
                        domain="['|', ('partner_id', '=', customer_id), ('fsm_location_id', '=', location_id), ('is_template', '=', False)]"/>
                 <field name="serviceprofile_id"
