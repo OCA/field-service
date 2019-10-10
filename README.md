@@ -46,6 +46,10 @@ addon | version | summary
 
 [//]: # (end addons)
 
+## Translation Status
+
+[![Translation status](https://translation.odoo-community.org/widgets/field-service-12-0/-/multi-auto.svg)](https://translation.odoo-community.org/engage/field-service-12-0/?utm_source=widget)
+
 ----
 
 OCA, or the [Odoo Community Association](http://odoo-community.org/), is a nonprofit organization whose

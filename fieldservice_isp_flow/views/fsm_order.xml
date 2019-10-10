@@ -20,45 +20,45 @@
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_default_flow.fsm_stage_confirmed)d, %(fieldservice_default_flow.fsm_stage_requested)d))]}"/>
+                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"/>
                 <button id="action_assign"
                         name="action_assign" string="Assign"
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_default_flow.fsm_stage_confirmed)d, %(fieldservice_default_flow.fsm_stage_requested)d))]}"/>
+                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"/>
                 <button id="action_schedule"
                         name="action_schedule" string="Schedule"
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_default_flow.fsm_stage_assigned)d, %(fieldservice_default_flow.fsm_stage_confirmed)d, %(fieldservice_default_flow.fsm_stage_requested)d))]}"/>
+                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_assigned)d, %(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"/>
                 <button id="action_enroute"
                         name="action_enroute" string="En Route"
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', '!=', %(fieldservice_default_flow.fsm_stage_scheduled)d)]}"/>
+                        attrs="{'invisible': [('stage_id', '!=', %(fieldservice_isp_flow.fsm_stage_scheduled)d)]}"/>
                 <button id="action_start"
                         name="action_start" string="Start"
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_default_flow.fsm_stage_scheduled)d, %(fieldservice_default_flow.fsm_stage_enroute)d))]}"/>
+                        attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_scheduled)d, %(fieldservice_isp_flow.fsm_stage_enroute)d))]}"/>
             </button>
             <field name="scheduled_date_start" position="attributes">
                 <attribute name="invisible">[('stage_id', 'in',
                        (%(fieldservice.fsm_stage_new)d,
-                        %(fieldservice_default_flow.fsm_stage_confirmed)d,
-                        %(fieldservice_default_flow.fsm_stage_requested)d,
-                        %(fieldservice_default_flow.fsm_stage_assigned)d))]</attribute>
+                        %(fieldservice_isp_flow.fsm_stage_confirmed)d,
+                        %(fieldservice_isp_flow.fsm_stage_requested)d,
+                        %(fieldservice_isp_flow.fsm_stage_assigned)d))]</attribute>
             </field>
 
             <field name="scheduled_date_start" position="attributes">
                 <attribute name="invisible">[('stage_id', 'in',
-                       (%(fieldservice_default_flow.fsm_stage_scheduled)d,
-                        %(fieldservice_default_flow.fsm_stage_enroute)d,
-                        %(fieldservice_default_flow.fsm_stage_started)d,
+                       (%(fieldservice_isp_flow.fsm_stage_scheduled)d,
+                        %(fieldservice_isp_flow.fsm_stage_enroute)d,
+                        %(fieldservice_isp_flow.fsm_stage_started)d,
                         %(fieldservice.fsm_stage_completed)d))]</attribute>
             </field>   
         </field>       
@@ -73,14 +73,14 @@
             <tree name="orders" position="attributes">
                 <attribute name="decoration-danger">stage_id in (
                     %(fieldservice.fsm_stage_new)d,
-                    %(fieldservice_default_flow.fsm_stage_confirmed)d,
-                    %(fieldservice_default_flow.fsm_stage_requested)d,
-                    %(fieldservice_default_flow.fsm_stage_assigned)d)</attribute>
+                    %(fieldservice_isp_flow.fsm_stage_confirmed)d,
+                    %(fieldservice_isp_flow.fsm_stage_requested)d,
+                    %(fieldservice_isp_flow.fsm_stage_assigned)d)</attribute>
 
                 <attribute name="decoration-info">stage_id in (
-                    %(fieldservice_default_flow.fsm_stage_scheduled)d,
-                    %(fieldservice_default_flow.fsm_stage_enroute)d,
-                    %(fieldservice_default_flow.fsm_stage_started)d,
+                    %(fieldservice_isp_flow.fsm_stage_scheduled)d,
+                    %(fieldservice_isp_flow.fsm_stage_enroute)d,
+                    %(fieldservice_isp_flow.fsm_stage_started)d,
                     %(fieldservice.fsm_stage_completed)d)</attribute>
             </tree>
         </field>
