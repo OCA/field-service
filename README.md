@@ -24,10 +24,10 @@ addon | version | summary
 [fieldservice_account](fieldservice_account/) | 12.0.2.0.1 | Track employee time and invoice for Field Service Orders
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage FSM Agreements
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | CRM Opportunity integration for Field Service
-[fieldservice_default_flow](fieldservice_default_flow/) | 12.0.1.2.0 | Common stages
 [fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Delivery and Carriers for Field Services
 [fieldservice_distribution](fieldservice_distribution/) | 12.0.1.0.0 | Manage your distribution structure
 [fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Extend field service functionality based on Geoengine
+[fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.0.0 | FSM Stages for Internet Service Providers
 [fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.0.0 | Maintenance
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Field Service Partner Relations
 [fieldservice_project](fieldservice_project/) | 12.0.1.0.0 | Create field service orders from a project or project task
