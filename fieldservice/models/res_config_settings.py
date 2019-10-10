@@ -58,6 +58,8 @@ class ResConfigSettings(models.TransientModel):
         readonly=False)
     module_fieldservice_project = fields.Boolean(
         string='Projects and Tasks')
+    module_fieldservice_crm = fields.Boolean(
+        string='CRM')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
