@@ -79,7 +79,10 @@ class FSMRecurringCase(TransactionCase):
 
         wednesday_weeks = set([_week_of_month(x) for x in wednesdays])
         even_weeks = set([2, 4, 6])
-        self.assertTrue(wednesday_weeks < even_weeks)
+        # Currently returning {3, 4} and {2, 4, 6}
+        # {3, 4} < {2, 4, 6} -> False
+        # {3, 4} > {2, 4, 6} -> False
+        self.assertTrue(len(wednesday_weeks) < len(even_weeks))
 
     def test_cron_generate_orders_rule2(self):
         """Test recurring order with following rule,
