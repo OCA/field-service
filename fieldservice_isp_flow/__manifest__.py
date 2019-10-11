@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Flow for ISP',
-    'summary': 'FSM Stages for Internet Service Providers',
+    'summary': 'Field Service workflow for Internet Service Providers',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author':
