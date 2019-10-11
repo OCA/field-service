@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Skills",
-    "summary": "Manage your FS workers skills",
+    "summary": "Manage your Field Service workers skills",
     "version": "12.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
