@@ -1,7 +1,7 @@
 <odoo>
 
     <template id="report_fsm_order_document_account" inherit_id="fieldservice.report_fsm_order_document">
-        <xpath expr="//div[contains(@class, 'page')]" position="before">
+        <xpath expr="//div[hasclass('page')]" position="before">
             <t t-if="doc.customer_id">
                 <t t-set="information_block">
                     <t t-if="doc.customer_id">

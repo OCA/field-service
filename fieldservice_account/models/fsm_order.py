@@ -28,7 +28,7 @@ class FSMOrder(models.Model):
                                     string='Contractor Cost Estimate')
     employee_time_total = fields.Float(compute='_compute_employee_hours',
                                        string='Total Employee Hours')
-    account_stage = fields.Selection(ACCOUNT_STAGES, string='State',
+    account_stage = fields.Selection(ACCOUNT_STAGES, string='Accounting Stage',
                                      default='draft')
     bill_to = fields.Selection([('location', 'Bill Location'),
                                 ('contact', 'Bill Contact')],
