@@ -36,8 +36,12 @@ class FSMOrder(TransactionCase):
         for priority, late_days in priority_vs_late_days.items():
             order.priority = priority
             order.request_late = False
-            order._compute_request_late()
-            self.assertEqual(order.request_late,
+            vals = {
+                'request_early': fields.Datetime.today(),
+                'priority': priority
+            }
+            vals = order._compute_request_late(vals)
+            self.assertEqual(vals['request_late'],
                              order.request_early + timedelta(days=late_days))
         # Test set scheduled_date_start using request_early w/o time
         self.assertEqual(order.scheduled_date_start,
