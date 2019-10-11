@@ -110,7 +110,7 @@ class FSMLocation(TransactionCase):
         self.assertEqual((self.test_location.equipment_count,
                           self.location_1.equipment_count,
                           self.location_2.equipment_count,
-                          self.location_3.equipment_count), (2, 6, 7, 2))  # !!
+                          self.location_3.equipment_count), (9, 8, 7, 2))  # !!
         # Test smart button to open equipment
         loc_eq_ids = self.test_location.action_view_equipment()['domain'][0][2]
         loc_1_eq_ids = self.location_1.action_view_equipment()['domain'][0][2]
