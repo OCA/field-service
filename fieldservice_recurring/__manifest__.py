@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service Recurring Work Orders',
-    'summary': 'Manage recurring field service works',
+    'summary': 'Manage recurring Field Service orders',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author':
