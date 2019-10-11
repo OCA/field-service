@@ -113,7 +113,7 @@
             <field name="priority" position="after">
                 <field name="customer_id"/>
             </field>
-            <xpath expr="//div[contains(@class, 'oe_kanban_content')]/div[2]" position="after"> 
+            <xpath expr="//div[hasclass('oe_kanban_content')]/div[2]" position="after">
                 <div class="text-muted o_kanban_record_subtitle">
                     <span t-if="record.customer_id.value">
                         <t t-esc="record.customer_id.value"/>
