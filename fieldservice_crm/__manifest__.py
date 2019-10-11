@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - CRM',
     'version': '12.0.1.0.1',
-    'summary': 'CRM Opportunity integration for Field Service',
+    'summary': 'Create Field Service orders from the CRM',
     'category': 'Field Service',
     'author': 'Patrick Wilson, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
