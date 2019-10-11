@@ -11,7 +11,7 @@ class Lead(models.Model):
                                     string='Service Orders')
     fsm_location_id = fields.Many2one('fsm.location', string='FSM Location')
     fsm_order_count = fields.Integer(compute='_compute_fsm_order_count',
-                                     string='FS Orders')
+                                     string='# FSM Orders')
 
     @api.multi
     def _compute_fsm_order_count(self):

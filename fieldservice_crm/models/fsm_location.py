@@ -8,7 +8,7 @@ class FSMLocation(models.Model):
     _inherit = 'fsm.location'
 
     opportunity_count = fields.Integer(compute='_compute_opportunity_count',
-                                       string='Opportunities')
+                                       string='# Opportunities')
 
     @api.multi
     def _compute_opportunity_count(self):
