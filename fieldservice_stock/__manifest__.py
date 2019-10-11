@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Stock',
-    'summary': 'Inventory and Stock Operations for Field Services',
+    'summary': 'Integrate the logistics operations with Field Service',
     'version': '12.0.1.0.1',
     'category': 'Field Service',
     'author': "Open Source Integrators, "

@@ -4,7 +4,11 @@
 from . import (
     fsm_location,
     fsm_order,
-    stock,
+    stock_move_line,
+    stock_move,
+    procurement_group,
+    stock_rule,
+    stock_picking,
     fsm_equipment,
     product_template,
     stock_production_lot,
