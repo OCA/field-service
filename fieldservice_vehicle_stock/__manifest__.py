@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service Vehicles - Stock',
-    'summary': 'Inventory Operations for Field Service with Vehicles',
+    'summary': 'Track inventory of Field Service vehicles',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
