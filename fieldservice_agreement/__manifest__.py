@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Agreements',
-    'summary': 'Manage FSM Agreements',
+    'summary': 'Manage Field Service agreements and contracts',
     'author': 'Open Source Integrators, '
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
