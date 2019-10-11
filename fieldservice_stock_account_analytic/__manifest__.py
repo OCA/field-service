@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Stock - Analytic Accounting',
-    'summary': 'Track costs of delivered items with the analytic accounting',
+    'summary': 'Track costs of delivered items with analytic accounting',
     'license': 'AGPL-3',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
