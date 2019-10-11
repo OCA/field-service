@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service Geoengine',
-    'summary': 'Extend field service functionality based on Geoengine',
+    'summary': 'Display Field Service locations on a map with Open Street Map',
     'license': 'AGPL-3',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
