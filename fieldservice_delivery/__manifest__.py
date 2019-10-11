@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Delivery',
-    'summary': 'Delivery and Carriers for Field Services',
+    'summary': 'Select delivery methods and carriers on Field Service orders',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
