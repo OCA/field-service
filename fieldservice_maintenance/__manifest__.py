@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Maintenance',
-    'summary': 'Maintenance',
+    'summary': 'Integrate Field Service orders with maintenance requests',
     'version': '12.0.1.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
