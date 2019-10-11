@@ -41,7 +41,7 @@ class Agreement(models.Model):
     def _compute_equipment_count(self):
         for agreement in self:
             agreement.equipment_count = self.env['fsm.equipment'].search_count(
-                [('agreement_id', 'in', agreement.ids)])
+                [('agreement_id', '=', agreement.id)])
 
     @api.multi
     def action_view_fsm_equipment(self):
