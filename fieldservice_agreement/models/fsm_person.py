@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class FSMPerson(models.Model):
     _inherit = 'fsm.person'
 
-    agreement_count = fields.Integer(string='Agreements',
+    agreement_count = fields.Integer(string='# of Agreements',
                                      compute='_compute_agreements')
 
     def _compute_agreements(self):

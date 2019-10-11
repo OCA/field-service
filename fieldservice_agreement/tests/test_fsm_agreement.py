@@ -17,6 +17,8 @@ class FSMOrder(TransactionCase):
         self.agreement_type = self.env.ref('agreement_legal.'
                                            'agreement_type_agreement')
         self.test_person = self.env.ref('fieldservice.test_person')
+        self.service = self.env.ref(
+            'product.product_product_1_product_template')
 
     def test_fsm_agreement(self):
         """
@@ -36,26 +38,35 @@ class FSMOrder(TransactionCase):
             f.partner_id = self.test_person.partner_id
         agreement = f.save()
         profile = self.Serviceprofile.create({'name': 'Test Profile',
-                                              'agreement_id': agreement.id})
+                                              'agreement_id': agreement.id,
+                                              'product_id': self.service.id})
         # Create 2 Orders, that link to this agreement
-        view_id = ('fieldservice.fsm_order_form')
-        with Form(self.Order, view=view_id) as f:
-            f.location_id = self.test_location
-            f.agreement_id = agreement
-        order1 = f.save()
-        order2 = order1.copy()
+        vals = {
+            'name': 'Order1',
+            'location_id': self.test_location.id,
+            'agreement_id': agreement.id
+        }
+        order1 = self.Order.create(vals)
+        vals = {
+            'name': 'Order2',
+            'location_id': self.test_location.id,
+            'agreement_id': agreement.id
+        }
+        order2 = self.Order.create(vals)
+        agreement._compute_service_order_count()
         self.assertEqual(agreement.service_order_count, 2)
         self.assertEqual([order1.id, order2.id],
                          agreement.action_view_service_order()['domain'][0][2])
         # Create 3 equipment, that link to this agreement
-        view_id = ('fieldservice.fsm_equipment_form_view')
-        with Form(self.Equipment, view=view_id) as f:
-            f.name = 'EQ1'
-            f.current_location_id = self.test_location
-            f.agreement_id = agreement
-        equipment1 = f.save()
+        vals = {
+            'name': 'EQ1',
+            'current_location_id': self.test_location.id,
+            'agreement_id': agreement.id
+        }
+        equipment1 = self.Equipment.create(vals)
         equipment2 = equipment1.copy({'name': 'EQ2'})
         equipment3 = equipment1.copy({'name': 'EQ3'})
+        agreement._compute_equipment_count()
         self.assertEqual(agreement.equipment_count, 3)
         self.assertEqual([equipment1.id, equipment2.id, equipment3.id],
                          agreement.action_view_fsm_equipment()['domain'][0][2])
