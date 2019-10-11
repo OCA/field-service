@@ -14,8 +14,8 @@ class FSMOrder(TransactionCase):
         self.Serviceprofile = self.env['agreement.serviceprofile']
         self.Equipment = self.env['fsm.equipment']
         self.test_location = self.env.ref('fieldservice.test_location')
-        self.agreement_type = self.env.ref('agreement_legal.'
-                                           'agreement_type_agreement')
+        self.agreement_type = self.env.\
+            ref('agreement_legal.agreement_type_agreement')
         self.test_person = self.env.ref('fieldservice.test_person')
         self.service = self.env.ref(
             'product.product_product_1_product_template')

@@ -17,14 +17,16 @@ class FSMPerson(models.Model):
     @api.multi
     def action_view_agreements(self):
         for person in self:
-            action = self.env.ref('agreement_legal.\
-                agreement_operations_agreement').read()[0]
+            action = self.env.\
+                ref('agreement_legal.agreement_operations_agreement').\
+                read()[0]
             agreements = self.env['agreement'].search(
                 [('partner_id', '=', person.partner_id.id)])
             if len(agreements) == 1:
                 action['views'] = [
-                    (self.env.ref('agreement_legal.\
-                        partner_agreement_form_view').id, 'form')]
+                    (self.env.
+                     ref('agreement_legal.partner_agreement_form_view').
+                     id, 'form')]
                 action['res_id'] = agreements.id
             else:
                 action['domain'] = [('id', 'in', agreements.ids)]
