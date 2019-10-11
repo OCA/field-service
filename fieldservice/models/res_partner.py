@@ -18,7 +18,7 @@ class ResPartner(models.Model):
         domain=[('fsm_parent_id', '=', False)])
     owned_location_count = fields.Integer(
         compute='_compute_owned_location_count',
-        string="Owned Locations")
+        string="# of Owned Locations")
 
     @api.multi
     def _compute_owned_location_count(self):
