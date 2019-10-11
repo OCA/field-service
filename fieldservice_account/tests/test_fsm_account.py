@@ -38,6 +38,13 @@ class FSMAccountCase(TransactionCase):
                 })
         self.test_person = self.env['fsm.person'].create({'name': 'Worker-1'})
         self.test_analytic = self.env.ref('analytic.analytic_administratif')
+        self.account_id = self.env['account.account'].create({
+            'code': 'NC1110',
+            'name': 'Test Payable Account',
+            'user_type_id':
+                self.env.ref('account.data_account_type_payable').id,
+            'reconcile': True
+        })
 
     def _create_workorder(self, bill_to, contractors, timesheets):
         # Create a new work order
@@ -113,15 +120,21 @@ class FSMAccountCase(TransactionCase):
         """
         # Setup required data
         self.test_location.analytic_account_id = self.test_analytic
-        contractors = [{'product': self.env.ref('product.expense_hotel'),
+        contractors = [{'name': 'contractor_line_1',
+                        'product_id': self.env.ref('product.expense_hotel').id,
+                        'account_id': self.account_id.id,
                         'quantity': 2,
                         'price_unit': 200}, ]
-        self.env.ref('hr.employee_qdp').timesheet_cost = 100.0
-        timesheets = [{'employee': self.env.ref('hr.employee_qdp'),
-                       'product': self.env.ref('product.expense_hotel'),
+        self.env.ref('hr.employee_qdp').timesheet_cost = 100
+        timesheets = [{'name': 'timesheet_line_1',
+                       'employee_id': self.env.ref('hr.employee_qdp').id,
+                       'account_id': self.test_analytic.id,
+                       'product_id': self.env.ref('product.expense_hotel').id,
                        'unit_amount': 6},
-                      {'employee': self.env.ref('hr.employee_qdp'),
-                       'product': self.env.ref('product.expense_hotel'),
+                      {'name': 'timesheet_line_2',
+                       'employee_id': self.env.ref('hr.employee_qdp').id,
+                       'account_id': self.test_analytic.id,
+                       'product_id': self.env.ref('product.expense_hotel').id,
                        'unit_amount': 4}, ]
         order = self._create_workorder(bill_to='location',
                                        contractors=contractors,
@@ -140,15 +153,21 @@ class FSMAccountCase(TransactionCase):
         # Setup required data
         self.test_location.analytic_account_id = self.test_analytic
         # Create a new work order with contract = 500 and timesheet = 300
-        contractors = [{'product': self.env.ref('product.expense_hotel'),
+        contractors = [{'name': 'contractor_line_2',
+                        'product_id': self.env.ref('product.expense_hotel').id,
+                        'account_id': self.account_id.id,
                         'quantity': 2,
                         'price_unit': 100},
-                       {'product': self.env.ref('product.expense_hotel'),
+                       {'name': 'contractor_line_3',
+                        'product_id': self.env.ref('product.expense_hotel').id,
+                        'account_id': self.account_id.id,
                         'quantity': 1,
                         'price_unit': 300}, ]
         self.env.ref('hr.employee_qdp').timesheet_cost = 20.0
-        timesheets = [{'employee': self.env.ref('hr.employee_qdp'),
-                       'product': self.env.ref('product.expense_hotel'),
+        timesheets = [{'name': 'timesheet_line_3',
+                       'employee_id': self.env.ref('hr.employee_qdp').id,
+                       'account_id': self.test_analytic.id,
+                       'product_id': self.env.ref('product.expense_hotel').id,
                        'unit_amount': 10}, ]
         order = self._create_workorder(bill_to='contact',
                                        contractors=contractors,

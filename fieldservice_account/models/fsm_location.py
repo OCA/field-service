@@ -9,10 +9,9 @@ class FSMLocation(models.Model):
 
     analytic_account_id = fields.Many2one('account.analytic.account',
                                           string='Analytic Account')
-    customer_id = fields.Many2one('res.partner', string='Billed Customer',
-                                  required=True, ondelete='restrict',
-                                  auto_join=True,
-                                  track_visibility='onchange')
+    customer_id = fields.Many2one(
+        'res.partner', string='Billed Customer', required=True,
+        ondelete='restrict', auto_join=True, track_visibility='onchange')
 
     @api.onchange('fsm_parent_id')
     def _onchange_fsm_parent_id_account(self):
