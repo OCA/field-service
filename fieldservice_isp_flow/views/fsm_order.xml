@@ -95,15 +95,6 @@
                ref="fieldservice.fsm_order_search_view"/>
         <field name="arch" type="xml">
             <search string="Orders">
-                
-                <filter name="todo" position="after">
-                    <filter string="Unassigned"
-                            domain="[('person_id', '=', False)]"
-                            name="unassigned"/>
-                    <filter string="Unscheduled"
-                            domain="[('scheduled_date_start', '=', False)]"
-                            name="unscheduled"/>
-                </filter>
                 <filter name="order_today" position="before">
                     <filter string="Past Due Orders"
                             domain="[('stage_id.name', 'not in', ['Started', 'Completed', 'Cancelled']), ('scheduled_date_start', '&lt;', current_date)]"
