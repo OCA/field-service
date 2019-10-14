@@ -20,19 +20,19 @@ class FSMOrder(models.Model):
         if order.type == maintenance:
             if order.equipment_id and not order.request_id:
                 equipment = order.equipment_id
-                team_id = equipment.maintenance_equipment_id and\
-                    equipment.maintenance_equipment_id.maintenance_team_id.id
-                request_id = self.env['maintenance.request'].with_context(
-                    fsm_order=True).create({
-                        'name': order.name or '',
-                        'equipment_id':
-                            equipment.maintenance_equipment_id.id,
-                        'category_id': equipment.category_id.id,
-                        'request_date': fields.Date.context_today(self),
-                        'maintenance_type': 'corrective',
-                        'maintenance_team_id': team_id,
-                        'schedule_date': order.request_early,
-                        'description': order.description
-                    })
-                order.request_id = request_id
+                maintenance_equipment_id = equipment.maintenance_equipment_id
+                if maintenance_equipment_id:
+                    team_id = maintenance_equipment_id.maintenance_team_id.id
+                    request_id = self.env['maintenance.request'].with_context(
+                        fsm_order=True).create({
+                            'name': order.name or '',
+                            'equipment_id': maintenance_equipment_id.id,
+                            'category_id': equipment.category_id.id,
+                            'request_date': fields.Date.context_today(self),
+                            'maintenance_type': 'corrective',
+                            'maintenance_team_id': team_id,
+                            'schedule_date': order.request_early,
+                            'description': order.description
+                        })
+                    order.request_id = request_id
         return order
