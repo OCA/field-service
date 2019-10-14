@@ -293,6 +293,12 @@
                 <filter string="To Do"
                         domain="[('stage_id.is_closed', '=', False)]"
                         name="todo"/>
+                <filter string="Unassigned"
+                        domain="[('person_id', '=', False)]"
+                        name="unassigned"/>
+                <filter string="Unscheduled"
+                        domain="[('scheduled_date_start', '=', False)]"
+                        name="unscheduled"/>
                 <filter string="Done"
                         domain="[('stage_id.is_closed', '=', True)]"
                         name="done"/>
