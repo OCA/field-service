@@ -11,20 +11,9 @@
                 <group string="Maintenance">
                     <field name="maintenance_team_id" required="1"/>
                     <field name="category_id"/>
+                    <field name="model"/>
                 </group>
             </group>
-        </field>
-    </record>
-
-    <record id="fsm_equipment_form_view_model" model="ir.ui.view">
-        <field name="name">fsm.equipment.model</field>
-        <field name="model">fsm.equipment</field>
-        <field name="inherit_id"
-               ref="fieldservice_stock.fsm_equipment_form_view_stock"/>
-        <field name="arch" type="xml">
-            <field name="product_id" position="after">
-                <field name="model"/>
-            </field>
         </field>
     </record>
 
