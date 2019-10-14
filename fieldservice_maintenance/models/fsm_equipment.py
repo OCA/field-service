@@ -21,8 +21,7 @@ class FSMEquipment(models.Model):
             'note': vals.get('notes', False),
             'serial_no':
                 vals['lot_id'] and
-                self.env['stock.production.lot'].browse(vals['lot_id']).name
-                or False})
+                self.env['stock.production.lot'].browse(vals['lot_id']).name})
         if maintenance_equipment_id:
             vals.update({
                 'maintenance_equipment_id': maintenance_equipment_id.id})
