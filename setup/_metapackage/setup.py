@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_recurring',
         'odoo12-addon-fieldservice_repair',
         'odoo12-addon-fieldservice_sale',
+        'odoo12-addon-fieldservice_sale_recurring',
         'odoo12-addon-fieldservice_skill',
         'odoo12-addon-fieldservice_stage_server_action',
         'odoo12-addon-fieldservice_stock',
