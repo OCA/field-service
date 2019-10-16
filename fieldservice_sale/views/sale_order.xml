@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_order_form_inherit_sale_fieldservice" model="ir.ui.view">
         <field name="name">sale.order.form.sale.fieldservice</field>
@@ -13,14 +12,6 @@
                         attrs="{'invisible': [('fsm_order_count', '=', 0)]}"
                         groups="fieldservice.group_fsm_user">
                     <field name="fsm_order_count" widget="statinfo" string="FSM Orders"/>
-                </button>
-                <button type="object"
-                        name="action_view_fsm_recurring"
-                        class="oe_stat_button"
-                        icon="fa-calendar"
-                        attrs="{'invisible': [('fsm_recurring_count', '=', 0)]}"
-                        groups="fieldservice.group_fsm_user">
-                    <field name="fsm_recurring_count" widget="statinfo" string="FSM Recurring Orders"/>
                 </button>
             </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
