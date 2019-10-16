@@ -5,10 +5,9 @@ To setup a product for quoting and selling field service orders:
 * Set the Product Type to 'Service' under General Information tab
 * Under Invoicing tab, set the Field Service Tracking option
 * Select the FSM Order Template that will be used for creating FSM Orders when
-    a Sale Order is confirmed with this product
+  a Sale Order is confirmed with this product
 
-
-To setup a sales territory, you need to:
+To setup a sales territory:
 
 * Go to Field Service > Master Data > Locations
 * Create or select a location
