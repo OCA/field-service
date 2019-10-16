@@ -1,0 +1,31 @@
+<odoo>
+
+    <!-- Fleet Vehicle Action -->
+    <act_window id="vehicle_fsm_action"
+                name="Convert to FSM Vehicle"
+                res_model="fsm.fleet.wizard"
+                src_model="fleet.vehicle"
+                view_type="form"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                groups="fieldservice.group_fsm_dispatcher"/>
+
+    <!-- wizard view -->
+    <record id="vehicle_wizard_view" model="ir.ui.view">
+        <field name="name">Convert to a FSM Vehicle</field>
+        <field name="model">fsm.fleet.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Convert to a Field Service Vehicle">
+                <div>
+                    Convert this vehicle record into a Field Service Vehicle.
+                </div>
+                <footer>
+                    <button string="Convert" name="action_convert" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
