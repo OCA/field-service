@@ -1,4 +1,4 @@
-* Open Source Integrators <https://opensourceintegrators.com>
+* Open Source Integrators <https://www.opensourceintegrators.com>
 
   * Steve Campbell <scampbell@opensourceintegrators.com>
   * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
