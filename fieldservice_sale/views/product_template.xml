@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_product_fieldservice_form" model="ir.ui.view">
         <field name="name">product.template.fieldservice.form</field>
@@ -10,8 +9,6 @@
                        attrs="{'invisible': [('type','!=','service')]}"/>
                 <field name="fsm_order_template_id" 
                        attrs="{'invisible':[('field_service_tracking','not in',['order'])]}"/>
-                <field name="fsm_recurring_template_id" 
-                       attrs="{'invisible':[('field_service_tracking','not in',['recurring'])]}"/>
             </xpath>
         </field>
     </record>
