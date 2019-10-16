@@ -34,7 +34,8 @@ addon | version | summary
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.0.0 | Manage recurring field service works
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate FSM orders with MRP repair orders
-[fieldservice_sale](fieldservice_sale/) | 12.0.1.0.1 | Sales integration for Field Service
+[fieldservice_sale](fieldservice_sale/) | 12.0.1.1.0 | Sell field services.
+[fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your FS workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Add Server Actions based on FSM Stage
 [fieldservice_stock](fieldservice_stock/) | 12.0.1.0.1 | Inventory and Stock Operations for Field Services
