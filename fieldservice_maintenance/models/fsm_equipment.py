@@ -26,3 +26,14 @@ class FSMEquipment(models.Model):
             vals.update({
                 'maintenance_equipment_id': maintenance_equipment_id.id})
         return super(FSMEquipment, self).create(vals)
+
+    @api.multi
+    def unlink(self):
+        equipments = self.mapped('maintenance_equipment_id')
+        res = super(FSMEquipment, self).unlink()
+        for equipment in equipments:
+            other = self.env['fsm.equipment'].search(
+                [('maintenance_equipment_id', '=', equipment.id)])
+            if not other:
+                equipment.is_fsm_equipment = False
+        return res
