@@ -9,9 +9,8 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice_stock',
+        'fieldservice',
         'maintenance',
-        'hr',
     ],
     'data': [
         'data/fsm_order_type.xml',
@@ -24,6 +23,7 @@
     'maintainers': [
         'smangukiya',
         'max3903',
+        'bodedra',
     ],
     'installable': True,
 }
