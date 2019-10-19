@@ -96,6 +96,7 @@ Contributors
 
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -123,10 +124,13 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-bodedra| image:: https://github.com/bodedra.png?size=40px
+    :target: https://github.com/bodedra
+    :alt: bodedra
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-smangukiya| |maintainer-max3903| 
+|maintainer-smangukiya| |maintainer-max3903| |maintainer-bodedra| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_maintenance>`_ project on GitHub.
 
