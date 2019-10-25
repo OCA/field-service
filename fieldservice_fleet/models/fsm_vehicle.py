@@ -11,6 +11,7 @@ class FSMVehicle(models.Model):
 
     fleet_vehicle_id = fields.Many2one(
         'fleet.vehicle', string='Vehicle Details',
+        required=True, ondelete='restrict',
     )
 
     _sql_constraints = [
@@ -18,6 +19,15 @@ class FSMVehicle(models.Model):
          'unique(id,fleet_vehicle_id)',
          'FSM vehicle can only be linked to one fleet vehicle')
     ]
+
+    @api.model
+    def create(self, vals):
+        fleet_id = vals.get('fleet_vehicle_id')
+        if fleet_id:
+            fleet = self.env['fleet.vehicle'].browse(fleet_id)
+            if vals.get('person_id', False):
+                vals['driver_id'] = vals.get('person_id')
+            vals['is_fsm_vehicle'] = True
 
     @api.multi
     def write(self, vals):
