@@ -31,6 +31,24 @@
                         </group>
                         <group></group>
                     </group>
+                    <group name="owned_locations" string="Owned Locations">
+                        <field name="owned_location_ids"
+                               nolabel="1"
+                               context="{'default_owner_id': active_id}">
+                            <tree>
+                                <field name="ref"/>
+                                <field name="complete_name"/>
+                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="stage_id"/>
+                                <field name="street"/>
+                                <field name="street2"/>
+                                <field name="city"/>
+                                <field name="state_id"/>
+                                <field name="zip"/>
+                                <field name="territory_id"/>
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </notebook>
         </field>

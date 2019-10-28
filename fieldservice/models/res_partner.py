@@ -11,3 +11,8 @@ class ResPartner(models.Model):
     fsm_person = fields.Boolean('Is a FS Worker')
     service_location_id = fields.Many2one('fsm.location',
                                           string='Primary Service Location')
+    owned_location_ids = fields.One2many('fsm.location',
+                                         'owner_id',
+                                         string='Owned Locations',
+                                         domain=[('fsm_parent_id', '=', False)]
+                                         )
