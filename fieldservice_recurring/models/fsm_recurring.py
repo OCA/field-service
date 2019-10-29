@@ -8,15 +8,6 @@ from dateutil.relativedelta import relativedelta
 from odoo import fields, models, api, _
 from odoo.addons.fieldservice_recurring.models.fsm_frequency import WEEKDAYS_SELECT
 
-FREQUENCIES = [
-    ("1", "First"),
-    ("2", "Second"),
-    ("3", "Third"),
-    ("4", "Forth"),
-    ("5", "last"),
-    ("6", "Each"),
-]
-
 
 class FSMRecurringOrder(models.Model):
     _name = 'fsm.recurring'
@@ -65,9 +56,6 @@ class FSMRecurringOrder(models.Model):
         ],
         default="use_predefined",
     )
-    week_day = fields.Selection(WEEKDAYS_SELECT, string="Week Day")
-    planned_hour = fields.Float("Planned Hours")
-    interval_frequency = fields.Selection(FREQUENCIES, string="Interval Frequency")
     fsm_frequency_ids = fields.Many2many("fsm.frequency", string="Frequency Rules")
 
     @api.onchange("frequency_type ")
@@ -75,46 +63,6 @@ class FSMRecurringOrder(models.Model):
         for fsmr in self:
             if fsmr.frequency_type == "edit_inplace":
                 fmsr.fsm_frequency_set_id = False
-
-    @api.constrains("week_day", "planned_hour")
-    def _check_planned_hour(self):
-        if self.week_day == "none" or not self.week_day:
-            raise UserError(_("Week day must be set"))
-        hours, minutes = self.env["fsm.frequency"]._split_time_to_hour_min(
-            self.planned_hour
-        )
-        if not (0 <= hours <= 23):
-            raise UserError(_("Planned hours must be between 0 and 23"))
-
-    @api.multi
-    def action_add_frequency(self):
-        self.ensure_one()
-        if not self.planned_hour:
-            return False
-        hours, minutes = self.env["fsm.frequency"]._split_time_to_hour_min(
-            self.planned_hour
-        )
-        wd = _(dict(WEEKDAYS_SELECT)[self.week_day])
-        name = wd + "_" + str(hours) + "_" + str(minutes)
-        interval_type = "monthly"
-        set_pos = 0
-        if self.interval_frequency == "6":
-            interval_type = "weekly"
-        elif self.interval_frequency == "5":
-            set_pos = -1
-        else:
-            set_pos = int(self.interval_frequency)
-        freq_vals = {
-            "name": name,
-            "use_planned_hour": True,
-            "week_day": self.week_day,
-            "planned_hour": self.planned_hour,
-            "interval_type": interval_type,
-            "set_pos": set_pos,
-        }
-        print(freq_vals)
-        freq = self.env["fsm.frequency"].create(freq_vals)
-        self.fsm_frequency_ids = (4, freq.id)
 
     @api.multi
     @api.depends('fsm_order_ids')

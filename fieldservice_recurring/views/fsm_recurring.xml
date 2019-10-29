@@ -64,19 +64,13 @@
                         <group>
                             <div attrs="{'invisible': [('frequency_type', '=', 'use_predefined')]}" name="weekdays"
                                 class="oe_edit_only">
-                                <field name="interval_frequency"/>
-                                <field name="week_day"/>
-                                <field name="planned_hour"/>
-                                <button id="action_add_frequency"
-                                    name="action_add_frequency" string="Add Frequency"
-                                    class="oe_highlight oe_edit_only"
-                                    type="object" groups="fieldservice.group_fsm_dispatcher"
-                                    attrs="{'invisible': [('state', '!=', 'draft')]}"/>
-                                <field name="fsm_frequency_ids">
-                                    <tree create="false">
-                                        <field name="set_pos"/>
+                                  <field name="fsm_frequency_ids" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="interval_frequency"/>
                                         <field name="week_day"/>
                                         <field name="planned_hour" widget="float_time"/>
+                                        <field name="interval_type" invisible="1"/>
+                                        <field name="use_planned_hour" invisible="1"/>
                                     </tree>
                                 </field>
                             </div>
