@@ -6,6 +6,16 @@ from dateutil.rrule import rruleset
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields, models, api, _
+from odoo.addons.fieldservice_recurring.models.fsm_frequency import WEEKDAYS_SELECT
+
+FREQUENCIES = [
+    ("1", "First"),
+    ("2", "Second"),
+    ("3", "Third"),
+    ("4", "Forth"),
+    ("5", "last"),
+    ("6", "Each"),
+]
 
 
 class FSMRecurringOrder(models.Model):
@@ -29,7 +39,7 @@ class FSMRecurringOrder(models.Model):
         'fsm.location', string='Location', index=True, required=True)
     description = fields.Text(string='Description')
     fsm_frequency_set_id = fields.Many2one(
-        'fsm.frequency.set', 'Frequency Set', required=True)
+        'fsm.frequency.set', 'Frequency Set')
     start_date = fields.Datetime(String='Start Date')
     end_date = fields.Datetime(
         string='End Date',
@@ -48,6 +58,63 @@ class FSMRecurringOrder(models.Model):
         copy=False, readonly=True)
     fsm_order_count = fields.Integer(
         'Orders Count', compute='_compute_order_count')
+    frequency_type = fields.Selection(
+        [
+            ("use_predefined", "Use predifined frequency"),
+            ("edit_inplace", "Quick edit"),
+        ],
+        default="use_predefined",
+    )
+    week_day = fields.Selection(WEEKDAYS_SELECT, string="Week Day")
+    planned_hour = fields.Float("Planned Hours")
+    interval_frequency = fields.Selection(FREQUENCIES, string="Interval Frequency")
+    fsm_frequency_ids = fields.Many2many("fsm.frequency", string="Frequency Rules")
+
+    @api.onchange("frequency_type ")
+    def _onchange_frequency_type(self):
+        for fsmr in self:
+            if fsmr.frequency_type == "edit_inplace":
+                fmsr.fsm_frequency_set_id = False
+
+    @api.constrains("week_day", "planned_hour")
+    def _check_planned_hour(self):
+        if self.week_day == "none" or not self.week_day:
+            raise UserError(_("Week day must be set"))
+        hours, minutes = self.env["fsm.frequency"]._split_time_to_hour_min(
+            self.planned_hour
+        )
+        if not (0 <= hours <= 23):
+            raise UserError(_("Planned hours must be between 0 and 23"))
+
+    @api.multi
+    def action_add_frequency(self):
+        self.ensure_one()
+        if not self.planned_hour:
+            return False
+        hours, minutes = self.env["fsm.frequency"]._split_time_to_hour_min(
+            self.planned_hour
+        )
+        wd = _(dict(WEEKDAYS_SELECT)[self.week_day])
+        name = wd + "_" + str(hours) + "_" + str(minutes)
+        interval_type = "monthly"
+        set_pos = 0
+        if self.interval_frequency == "6":
+            interval_type = "weekly"
+        elif self.interval_frequency == "5":
+            set_pos = -1
+        else:
+            set_pos = int(self.interval_frequency)
+        freq_vals = {
+            "name": name,
+            "use_planned_hour": True,
+            "week_day": self.week_day,
+            "planned_hour": self.planned_hour,
+            "interval_type": interval_type,
+            "set_pos": set_pos,
+        }
+        print(freq_vals)
+        freq = self.env["fsm.frequency"].create(freq_vals)
+        self.fsm_frequency_ids = (4, freq.id)
 
     @api.multi
     @api.depends('fsm_order_ids')
@@ -81,12 +148,32 @@ class FSMRecurringOrder(models.Model):
         }
         return vals
 
+    def _update_frequency_set(self, vals):
+        if vals.get("fsm_frequency_ids"):
+            if self.exists() and self.fsm_frequency_set_id:
+                self.fsm_frequency_set_id.fsm_frequency_ids = vals.get(
+                    "fsm_frequency_ids"
+                )
+            else:
+                freq_vals = {
+                    "name": vals.get("name") or self.name or _("New"),
+                    "fsm_frequency_ids": vals.get("fsm_frequency_ids"),
+                }
+                freq = self.env["fsm.frequency.set"].create(freq_vals)
+                self.fsm_frequency_set_id = freq
+
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'fsm.recurring') or _('New')
+        self._update_frequency_set(vals)
         return super(FSMRecurringOrder, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        self._update_frequency_set(vals)
+        res = super(FSMRecurringOrder, self).write(vals)
 
     @api.multi
     def action_start(self):

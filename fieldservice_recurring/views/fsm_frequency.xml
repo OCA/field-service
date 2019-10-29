@@ -50,19 +50,28 @@
                             </group>
                             <div attrs="{'invisible': [('use_byweekday', '=', False)]}" name="weekdays">
                                 <group>
-                                    <field name="mo"/>
-                                    <field name="tu"/>
-                                    <field name="we"/>
-                                    <field name="th"/>
-                                    <field name="fr"/>
-                                    <field name="sa"/>
-                                    <field name="su"/>
+                                    <field name="use_planned_hour"/>
                                 </group>
-                            </div>
-                            <group>
-                                <field name="use_bymonthday"/>
-                            </group>
-                            <div attrs="{'invisible': [('use_bymonthday', '=', False)]}" name="monthday">
+                                <div attrs="{'invisible': [('use_planned_hour', '=', False)]}" name="hours">
+                                    <group>
+                                        <field name="week_day"/>
+                                        <field name="planned_hour" widget="float_time"/>
+                                    </group>
+                                <group>
+                                    <field name="use_byweekday"/>
+                                </group>
+                                <div attrs="{'invisible': [('use_byweekday', '=', False)]}" name="weekdays">
+                                    <group>
+                                        <field name="mo"/>
+                                        <field name="tu"/>
+                                        <field name="we"/>
+                                        <field name="th"/>
+                                        <field name="fr"/>
+                                        <field name="sa"/>
+                                        <field name="su"/>
+                                    </group>
+                                </div>
+                                </div>
                                 <group>
                                     <field name="month_day"/>
                                 </group>
@@ -97,7 +106,6 @@
                                 </group>
                             </div>
                         </div>
-                        
                     </group>
                 </sheet>
             </form>

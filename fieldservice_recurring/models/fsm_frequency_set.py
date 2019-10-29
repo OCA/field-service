@@ -38,3 +38,22 @@ class FSMFrequencySet(models.Model):
             else:
                 rset.exrule(rule._get_rrule(dtstart))
         return rset
+
+    def _update_frequency_set(self, vals):
+        if vals.get("fsm_frequency_ids"):
+            if self.exists() and self.fsm_frequency_set_id:
+                self.fsm_frequency_set_id.fsm_frequency_ids = vals.get(
+                    "fsm_frequency_ids"
+                )
+            else:
+                freq_vals = {
+                    "name": name,
+                    "use_planned_hour": True,
+                    "week_day": self.week_day,
+                    "planned_hour": self.planned_hour,
+                    "interval_type": interval_type,
+                    "set_pos": set_pos,
+                }
+                print(freq_vals)
+                freq = self.env["fsm.frequency"].create(freq_vals)
+                self.fsm_frequency_ids = (4, freq.id)

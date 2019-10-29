@@ -33,6 +33,17 @@ FREQUENCY_SELECT = [
     ('daily', 'Daily')
 ]
 
+WEEKDAYS_SELECT = [
+    ("none", "Not defined"),
+    ("mo", "MO"),
+    ("tu", "TU"),
+    ("we", "WE"),
+    ("th", "TH"),
+    ("fr", "FR"),
+    ("sa", "SA"),
+    ("su", "SU"),
+]
+
 
 class FSMFrequency(models.Model):
     _name = 'fsm.frequency'
@@ -95,6 +106,58 @@ class FSMFrequency(models.Model):
             the frequency period. For example, -1 if combined with a
             'Monthly' frequency, and a weekday of (MO, TU, WE, TH, FR),
             will result in the last work day of every month.""")
+    use_rrulestr = fields.Boolean(string="Use rrule string")
+    rrule_string = fields.Char()
+    # simlpe edit helper with planned_hour precision
+    use_planned_hour = fields.Boolean()
+    week_day = fields.Selection(WEEKDAYS_SELECT, string="Week Day")
+    planned_hour = fields.Float("Planned Hours")
+
+    @api.onchange("week_day")
+    def _onchange_week_day(self):
+        """
+        Checks corresponding day boolean
+        """
+        for freq in self:
+            if freq.week_day and freq.week_day != "none":
+                freq.use_byweekday = True
+                weekdays = ["mo", "tu", "we", "th", "fr", "sa", "su"]
+                # Set all checked weekdays to False and check only Week Day
+                for field in weekdays:
+                    freq[field] = False
+                freq[freq.week_day] = True
+
+    @api.onchange("use_planned_hour")
+    def _onchange_use_planned_hour(self):
+        """
+        Checks use_byweekday boolean
+        """
+        for freq in self:
+            freq.use_byweekday = freq.use_planned_hour
+
+    def _byhours(self):
+        self.ensure_one()
+        if not self.use_planned_hour or not self.week_day or self.week_day == "none":
+            return None
+        duration_minute = self.planned_hour * 60
+        hours, minutes = self._split_time_to_hour_min(self.planned_hour)
+        return hours, minutes
+
+    def _split_time_to_hour_min(self, time):
+        if not time:
+            time = 0.0
+        duration_minute = time * 60
+        hours, minutes = divmod(duration_minute, 60)
+        return int(hours), int(minutes)
+
+    @api.constrains("week_day", "planned_hour")
+    def _check_planned_hour(self):
+        if self.week_day == "none" or not self.week_day:
+            raise UserError(_("Week day must be set"))
+        if self.use_planned_hour:
+            hours, minutes = self._byhours()
+            if not (0 <= hours <= 23):
+                raise UserError(_("Planned hours must be between 0 and 23"))
 
     @api.constrains('set_pos')
     def _check_set_pos(self):
