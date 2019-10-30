@@ -21,6 +21,17 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[@name='toggle_active']" position="before">
+                <button class="oe_stat_button"
+                        type="object"
+                        attrs="{'invisible': [('owned_location_count', '=', 0)]}"
+                        name="action_open_owned_locations"
+                        icon="fa-map-marker"
+                        context="{'default_owner_id': active_id}"
+                        groups="fieldservice.group_fsm_user">
+                    <field string="Owned Locations" name="owned_location_count" widget="statinfo"/>
+                </button>
+            </xpath>
             <notebook position="inside">
                 <page string="Field Service">
                     <group>
@@ -30,24 +41,6 @@
                             <field name="service_location_id" context="{'default_contact_id': active_id}"/>
                         </group>
                         <group></group>
-                    </group>
-                    <group name="owned_locations" string="Owned Locations">
-                        <field name="owned_location_ids"
-                               nolabel="1"
-                               context="{'default_owner_id': active_id}">
-                            <tree>
-                                <field name="ref"/>
-                                <field name="complete_name"/>
-                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                <field name="stage_id"/>
-                                <field name="street"/>
-                                <field name="street2"/>
-                                <field name="city"/>
-                                <field name="state_id"/>
-                                <field name="zip"/>
-                                <field name="territory_id"/>
-                            </tree>
-                        </field>
                     </group>
                 </page>
             </notebook>
