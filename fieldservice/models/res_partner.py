@@ -25,7 +25,7 @@ class ResPartner(models.Model):
         for partner in self:
             res = self.env['fsm.location'].search_count(
                 [('owner_id', '=', partner.id)])
-            partner.owned_location_count = res or 0
+            partner.owned_location_count = res
 
     @api.multi
     def action_open_owned_locations(self):
