@@ -41,17 +41,20 @@ class StockRequest(models.Model):
         if 'fsm_order_id' in vals and vals['fsm_order_id']:
             fsm_order = self.env['fsm.order'].browse(vals['fsm_order_id'])
             fsm_order.request_stage = 'draft'
-
+            vals['warehouse_id'] = fsm_order.warehouse_id.id
             val_date = vals['expected_date']
             if not isinstance(vals['expected_date'], str):
-                val_date = datetime.strftime(vals['expected_date'],
-                                             '%Y-%m-%d %H:%M:%S')
-
+                val_date = datetime.strftime(vals['expected_date'], '%Y-%m-%d %H:%M:%S')
             val_date = datetime.strptime(val_date, '%Y-%m-%d %H:%M:%S')
+            picking_type_id = self.env['stock.picking.type'].search(
+                [('code', '=', 'stock_request_order'),
+                 ('warehouse_id', '=', vals['warehouse_id'])],
+                limit=1)
             date_window_after = val_date - timedelta(hours=1)
-
             order = self.env['stock.request.order'].search([
                 ('fsm_order_id', '=', vals['fsm_order_id']),
+                ('warehouse_id', '=', vals['warehouse_id']),
+                ('picking_type_id', '=', picking_type_id.id),
                 ('direction', '=', vals['direction']),
                 ('expected_date', '>', date_window_after),
                 ('state', '=', 'draft')
@@ -61,6 +64,10 @@ class StockRequest(models.Model):
                 vals['order_id'] = order.id
             else:
                 values = self.prepare_order_values(vals)
+                values.update({
+                    'picking_type_id': picking_type_id.id,
+                    'warehouse_id': vals['warehouse_id'],
+                    })
                 vals['order_id'] = self.env['stock.request.order'].\
                     create(values).id
         return super().create(vals)
