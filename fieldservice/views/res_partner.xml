@@ -21,6 +21,17 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[@name='toggle_active']" position="before">
+                <button class="oe_stat_button"
+                        type="object"
+                        attrs="{'invisible': [('owned_location_count', '=', 0)]}"
+                        name="action_open_owned_locations"
+                        icon="fa-map-marker"
+                        context="{'default_owner_id': active_id}"
+                        groups="fieldservice.group_fsm_user">
+                    <field string="Owned Locations" name="owned_location_count" widget="statinfo"/>
+                </button>
+            </xpath>
             <notebook position="inside">
                 <page string="Field Service">
                     <group>
