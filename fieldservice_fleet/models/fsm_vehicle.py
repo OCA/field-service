@@ -24,10 +24,10 @@ class FSMVehicle(models.Model):
     def create(self, vals):
         fleet_id = vals.get('fleet_vehicle_id')
         if fleet_id:
-            fleet = self.env['fleet.vehicle'].browse(fleet_id)
             if vals.get('person_id', False):
                 vals['driver_id'] = vals.get('person_id')
             vals['is_fsm_vehicle'] = True
+        return super().create(vals)
 
     @api.multi
     def write(self, vals):
