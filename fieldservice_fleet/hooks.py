@@ -23,7 +23,8 @@ def pre_init_hook(cr):
             # Get the FSM worker to set as the Fleet driver
             fsm_person_id = veh.get('person_id', False)
             if fsm_person_id:
-                driver_id = env['fsm.person'].browse(fsm_person_id).partner_id.id
+                driver_id = env['fsm.person'].browse(
+                    fsm_person_id).partner_id.id
 
             cr.execute("""
                         INSERT INTO fleet_vehicle (
@@ -40,20 +41,25 @@ def pre_init_hook(cr):
                             True,
                             'kilometers',
                             True);""",
-                         (
-                            veh.get('name'),
-                            model_id,
-                            driver_id
-                         )
-                      )
+                       (
+                           veh.get('name'),
+                           model_id,
+                           driver_id
+                       )
+                       )
 
             # Set this new Fleet vehicle on the existing FSM vehicle
-            cr.execute("""SELECT id FROM fleet_vehicle ORDER BY id desc LIMIT 1""")
+            cr.execute("""
+                        SELECT id
+                        FROM fleet_vehicle
+                        ORDER BY id desc
+                        LIMIT 1
+                       """)
             fleet = cr.dictfetchone()
 
             cr.execute("""
                         UPDATE fsm_vehicle
                         SET fleet_vehicle_id = %s
                         WHERE id = %s;""",
-                        (fleet.get('id'), veh.get('id'))
-                      )
+                       (fleet.get('id'), veh.get('id'))
+                       )
