@@ -22,6 +22,7 @@ def pre_init_hook(cr):
         for veh in vehicles:
             # Get the FSM worker to set as the Fleet driver
             fsm_person_id = veh.get('person_id', False)
+            driver_id = False
             if fsm_person_id:
                 driver_id = env['fsm.person'].browse(
                     fsm_person_id).partner_id.id
