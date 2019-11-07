@@ -1,4 +1,5 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2019, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -32,14 +33,21 @@ class FSMOrder(models.Model):
                                      default='draft')
     bill_to = fields.Selection([('location', 'Bill Location'),
                                 ('contact', 'Bill Contact')],
-                               string="Bill to",
+                               string='Bill to',
                                required=True,
-                               default="location")
+                               default='location')
     customer_id = fields.Many2one('res.partner', string='Contact',
                                   domain=[('customer', '=', True)],
                                   change_default=True,
                                   index=True,
                                   track_visibility='always')
+    cost_method = fields.Selection([('timesheet', 'Timesheets'),
+                                    ('fixed', 'Fixed Rate')],
+                                   string='Cost Method',
+                                   required=True,
+                                   default='timesheet')
+    fixed_cost = fields.Float(string='Fixed Cost')
+    product_id = fields.Many2one('product.product', string='Invoice Product')
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -47,16 +55,19 @@ class FSMOrder(models.Model):
             if user.employee_ids:
                 order.employee = True
 
-    @api.depends('employee_timesheet_ids', 'contractor_cost_ids')
+    @api.depends('employee_timesheet_ids', 'contractor_cost_ids', 'fixed_cost')
     def _compute_total_cost(self):
         for order in self:
             order.total_cost = 0.0
             rate = 0
-            for line in order.employee_timesheet_ids:
-                rate = line.employee_id.timesheet_cost
-                order.total_cost += line.unit_amount * rate
-            for cost in order.contractor_cost_ids:
-                order.total_cost += cost.price_unit * cost.quantity
+            if order.cost_method == 'timesheet':
+                for line in order.employee_timesheet_ids:
+                    rate = line.employee_id.timesheet_cost
+                    order.total_cost += line.unit_amount * rate
+                for cost in order.contractor_cost_ids:
+                    order.total_cost += cost.price_unit * cost.quantity
+            elif order.cost_method == 'fixed':
+                order.total_cost = order.fixed_cost
 
     @api.depends('employee_timesheet_ids')
     def _compute_employee_hours(self):
@@ -75,12 +86,16 @@ class FSMOrder(models.Model):
     def action_complete(self):
         for order in self:
             order.account_stage = 'review'
-        if self.person_id.supplier and not self.contractor_cost_ids:
-            raise ValidationError(_("Cannot move to Complete " +
-                                    "until 'Contractor Costs' is filled in"))
-        if not self.person_id.supplier and not self.employee_timesheet_ids:
-            raise ValidationError(_("Cannot move to Complete until " +
-                                    "'Employee Timesheets' is filled in"))
+            if order.cost_method == 'timesheet':
+                if order.person_id.supplier and not order.contractor_cost_ids:
+                    raise ValidationError(_("""
+                        Cannot move to Complete until 'Contractor Costs'
+                        is filled in"""))
+                if not order.person_id.supplier and \
+                   not order.employee_timesheet_ids:
+                    raise ValidationError(_("""
+                        Cannot move to Complete until 'Employee Timesheets'
+                        is filled in"""))
         return super(FSMOrder, self).action_complete()
 
     def create_bills(self):
@@ -104,15 +119,19 @@ class FSMOrder(models.Model):
 
     def account_confirm(self):
         for order in self:
-            contractor = order.person_id.partner_id.supplier
-            if order.contractor_cost_ids:
-                if contractor:
-                    order.create_bills()
+            if order.cost_method == 'timesheet':
+                contractor = order.person_id.partner_id.supplier
+                if order.contractor_cost_ids:
+                    if contractor:
+                        order.create_bills()
+                        order.account_stage = 'confirmed'
+                    else:
+                        raise ValidationError(_("""
+                            The worker assigned to this order
+                            is not a supplier"""))
+                if order.employee_timesheet_ids:
                     order.account_stage = 'confirmed'
-                else:
-                    raise ValidationError(_("The worker assigned to this order"
-                                            " is not a supplier"))
-            if order.employee_timesheet_ids:
+            elif order.cost_method == 'fixed':
                 order.account_stage = 'confirmed'
 
     def account_create_invoice(self):
@@ -121,72 +140,86 @@ class FSMOrder(models.Model):
             ('type', '=', 'sale'),
             ('active', '=', True)],
             limit=1)
+        inv_partner = False
         if self.bill_to == 'contact':
             if not self.customer_id:
                 raise ValidationError(_("Contact empty"))
-            fpos = self.customer_id.property_account_position_id
-            vals = {
-                'partner_id': self.customer_id.id,
-                'type': 'out_invoice',
-                'journal_id': jrnl.id or False,
-                'fiscal_position_id': fpos.id or False,
-                'fsm_order_id': self.id
-            }
-            invoice = self.env['account.invoice'].sudo().create(vals)
-            price_list = invoice.partner_id.property_product_pricelist
+            inv_partner = self.customer_id
         else:
-            fpos = self.location_id.customer_id.property_account_position_id
-            vals = {
-                'partner_id': self.location_id.customer_id.id,
-                'type': 'out_invoice',
-                'journal_id': jrnl.id or False,
-                'fiscal_position_id': fpos.id or False,
-                'fsm_order_id': self.id
-            }
-            invoice = self.env['account.invoice'].sudo().create(vals)
-            price_list = invoice.partner_id.property_product_pricelist
-        for line in self.employee_timesheet_ids:
-            price = price_list.get_product_price(product=line.product_id,
-                                                 quantity=line.unit_amount,
-                                                 partner=invoice.partner_id,
-                                                 date=False,
-                                                 uom_id=False)
-            template = line.product_id.product_tmpl_id
+            inv_partner = self.location_id.customer_id
+        fpos = inv_partner.property_account_position_id
+        vals = {
+            'partner_id': inv_partner.id,
+            'type': 'out_invoice',
+            'journal_id': jrnl.id or False,
+            'fiscal_position_id': fpos.id or False,
+            'fsm_order_id': self.id
+        }
+        invoice = self.env['account.invoice'].sudo().create(vals)
+        price_list = invoice.partner_id.property_product_pricelist
+        if self.cost_method == 'timesheet':
+            for line in self.employee_timesheet_ids:
+                price = price_list.get_product_price(
+                    product=line.product_id,
+                    quantity=line.unit_amount,
+                    partner=invoice.partner_id,
+                    date=False,
+                    uom_id=False)
+                template = line.product_id.product_tmpl_id
+                accounts = template.get_product_accounts()
+                account = accounts['income']
+                vals = {
+                    'product_id': line.product_id.id,
+                    'account_analytic_id': line.account_id.id,
+                    'quantity': line.unit_amount,
+                    'name': line.name,
+                    'price_unit': price,
+                    'account_id': account.id,
+                    'invoice_id': invoice.id
+                }
+                time_cost = self.env['account.invoice.line'].create(vals)
+                taxes = template.taxes_id
+                time_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
+            for cost in self.contractor_cost_ids:
+                price = price_list.get_product_price(
+                    product=cost.product_id,
+                    quantity=cost.quantity,
+                    partner=invoice.partner_id,
+                    date=False,
+                    uom_id=False)
+                template = cost.product_id.product_tmpl_id
+                accounts = template.get_product_accounts()
+                account = accounts['income']
+                vals = {
+                    'product_id': cost.product_id.id,
+                    'account_analytic_id': cost.account_analytic_id.id,
+                    'quantity': cost.quantity,
+                    'name': cost.name,
+                    'price_unit': price,
+                    'account_id': account.id,
+                    'invoice_id': invoice.id
+                }
+                con_cost = self.env['account.invoice.line'].create(vals)
+                taxes = template.taxes_id
+                con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
+        elif self.cost_method == 'fixed':
+            price = self.fixed_cost
+            template = self.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts['income']
+            analytic = self.location_id.analytic_account_id
             vals = {
-                'product_id': line.product_id.id,
-                'account_analytic_id': line.account_id.id,
-                'quantity': line.unit_amount,
-                'name': line.name,
+                'product_id': self.product_id.id,
+                'account_analytic_id': analytic.id,
+                'quantity': 1,
+                'name': template.name,
                 'price_unit': price,
                 'account_id': account.id,
                 'invoice_id': invoice.id
             }
-            time_cost = self.env['account.invoice.line'].create(vals)
+            fixed = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
-            time_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
-        for cost in self.contractor_cost_ids:
-            price = price_list.get_product_price(product=cost.product_id,
-                                                 quantity=cost.quantity,
-                                                 partner=invoice.partner_id,
-                                                 date=False,
-                                                 uom_id=False)
-            template = cost.product_id.product_tmpl_id
-            accounts = template.get_product_accounts()
-            account = accounts['income']
-            vals = {
-                'product_id': cost.product_id.id,
-                'account_analytic_id': cost.account_analytic_id.id,
-                'quantity': cost.quantity,
-                'name': cost.name,
-                'price_unit': price,
-                'account_id': account.id,
-                'invoice_id': invoice.id
-            }
-            con_cost = self.env['account.invoice.line'].create(vals)
-            taxes = template.taxes_id
-            con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
+            fixed.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
         self.account_stage = 'invoiced'
         return invoice
