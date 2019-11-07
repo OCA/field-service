@@ -30,7 +30,7 @@ addon | version | summary
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.0.0 | FSM Stages for Internet Service Providers
 [fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.0.0 | Maintenance
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Field Service Partner Relations
-[fieldservice_project](fieldservice_project/) | 12.0.1.0.0 | Create field service orders from a project or project task
+[fieldservice_project](fieldservice_project/) | 12.0.1.1.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.0.0 | Manage recurring field service works
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate FSM orders with MRP repair orders
