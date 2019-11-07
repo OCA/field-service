@@ -10,7 +10,7 @@ class FSMLocation(models.Model):
     analytic_account_id = fields.Many2one('account.analytic.account',
                                           string='Analytic Account')
     customer_id = fields.Many2one('res.partner', string='Billed Customer',
-                                  required=True, ondelete='restrict',
+                                  ondelete='restrict',
                                   auto_join=True,
                                   track_visibility='onchange')
 
