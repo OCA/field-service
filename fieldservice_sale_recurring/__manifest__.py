@@ -13,6 +13,7 @@
         'fieldservice_sale',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/fsm_recurring.xml',
         'views/product_template.xml',
         'views/sale_order.xml',
