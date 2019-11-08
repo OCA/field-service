@@ -48,6 +48,10 @@ class FSMOrder(models.Model):
                                    default='timesheet')
     fixed_cost = fields.Float(string='Fixed Cost')
     product_id = fields.Many2one('product.product', string='Invoice Product')
+    invoice_id = fields.Many2one('account.invoice', string='Customer Invoice',
+                                 domain="[('type', '=', 'out_invoice')")
+    bill_id = fields.Many2one('account.invoice', string='Vendor Bill',
+                              domain="[('type', '=', 'in'_invoice')]")
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -98,7 +102,7 @@ class FSMOrder(models.Model):
                         is filled in"""))
         return super(FSMOrder, self).action_complete()
 
-    def create_bills(self):
+    def create_bill(self):
         jrnl = self.env['account.journal'].search([
             ('company_id', '=', self.env.user.company_id.id),
             ('type', '=', 'purchase'),
@@ -116,6 +120,7 @@ class FSMOrder(models.Model):
         for line in self.contractor_cost_ids:
             line.invoice_id = bill
         bill.compute_taxes()
+        self.bill_id = bill.id
 
     def account_confirm(self):
         for order in self:
@@ -123,7 +128,7 @@ class FSMOrder(models.Model):
                 contractor = order.person_id.partner_id.supplier
                 if order.contractor_cost_ids:
                     if contractor:
-                        order.create_bills()
+                        order.create_bill()
                         order.account_stage = 'confirmed'
                     else:
                         raise ValidationError(_("""
@@ -222,6 +227,7 @@ class FSMOrder(models.Model):
             fixed.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
         self.account_stage = 'invoiced'
+        self.invoice_id = invoice.id
         return invoice
 
     def account_no_invoice(self):
