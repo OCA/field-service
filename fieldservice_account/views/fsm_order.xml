@@ -29,13 +29,17 @@
                         <field name="account_stage" widget="statusbar"/>
                     </header>
                     <group>
-                        <field name="bill_to" widget="radio" options="{'horizontal': true}"/>
-                        <field name="cost_method"
-                               attrs="{'readonly': [('account_stage', '=', 'confirmed')]}"/>
-                        <field name="invoice_id"
-                               attrs="{'invisible': [('invoice_id', '=', 'False')]}"/>
-                        <field name="bill_id"
-                               attrs="{'invisible': [('bill_id', '=', 'False')]}"/>
+                        <group>
+                            <field name="bill_to" widget="radio" options="{'horizontal': true}"/>
+                            <field name="cost_method"
+                                attrs="{'readonly': [('account_stage', '=', 'confirmed')]}"/>
+                        </group>
+                        <group>
+                            <field name="invoice_id"
+                                   attrs="{'invisible': [('invoice_id', '=', False)]}"/>
+                            <field name="bill_id"
+                                   attrs="{'invisible': [('bill_id', '=', False)]}"/>
+                        </group>
                     </group>
                     <div attrs="{'invisible': [('cost_method', '=', 'fixed')]}">
                         <group string="Contractor Costs">
@@ -81,7 +85,6 @@
                     </div>
                     <div attrs="{'invisible': [('cost_method', '=', 'timesheet')]}">
                         <group>
-                            <field name="fixed_cost"/>
                             <field name="product_id"
                                    attrs="{'required': [('cost_method', '=', 'fixed')]}"/>
                         </group>

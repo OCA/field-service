@@ -46,12 +46,11 @@ class FSMOrder(models.Model):
                                    string='Cost Method',
                                    required=True,
                                    default='timesheet')
-    fixed_cost = fields.Float(string='Fixed Cost')
     product_id = fields.Many2one('product.product', string='Invoice Product')
     invoice_id = fields.Many2one('account.invoice', string='Customer Invoice',
-                                 domain="[('type', '=', 'out_invoice')")
+                                 domain="[('type', '=', 'out_invoice')]")
     bill_id = fields.Many2one('account.invoice', string='Vendor Bill',
-                              domain="[('type', '=', 'in'_invoice')]")
+                              domain="[('type', '=', 'in_invoice')]")
 
     def _compute_employee(self):
         user = self.env['res.users'].browse(self.env.uid)
@@ -59,7 +58,7 @@ class FSMOrder(models.Model):
             if user.employee_ids:
                 order.employee = True
 
-    @api.depends('employee_timesheet_ids', 'contractor_cost_ids', 'fixed_cost')
+    @api.depends('employee_timesheet_ids', 'contractor_cost_ids')
     def _compute_total_cost(self):
         for order in self:
             order.total_cost = 0.0
@@ -70,8 +69,6 @@ class FSMOrder(models.Model):
                     order.total_cost += line.unit_amount * rate
                 for cost in order.contractor_cost_ids:
                     order.total_cost += cost.price_unit * cost.quantity
-            elif order.cost_method == 'fixed':
-                order.total_cost = order.fixed_cost
 
     @api.depends('employee_timesheet_ids')
     def _compute_employee_hours(self):
@@ -208,7 +205,12 @@ class FSMOrder(models.Model):
                 taxes = template.taxes_id
                 con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         elif self.cost_method == 'fixed':
-            price = self.fixed_cost
+            price = price_list.get_product_price(
+                product=self.product_id,
+                quantity=1,
+                partner=invoice.partner_id,
+                date=False,
+                uom_id=False)
             template = self.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts['income']
