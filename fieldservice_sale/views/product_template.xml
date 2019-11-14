@@ -5,6 +5,7 @@
         <field name="inherit_id" ref="sale.product_template_form_view_invoice_policy"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='service_type']" position="after">
+                <field name="fsm_policy"/>
                 <field name="field_service_tracking" widget="radio"
                        attrs="{'invisible': [('type','!=','service')]}"/>
                 <field name="fsm_order_template_id" 
