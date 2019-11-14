@@ -12,6 +12,6 @@ class FSMWizard(models.TransientModel):
     _inherit = 'fsm.wizard'
 
     def _prepare_fsm_location(self, partner):
-        res = super(FSMWizard)._prepare_fsm_location(partner)
+        res = super()._prepare_fsm_location(partner)
         res['owner_id'] = partner.id
         return res
