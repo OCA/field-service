@@ -8,6 +8,7 @@ from odoo import fields, models, _
 class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
+    sale_id = fields.Many2one('sale.order')
     sale_line_id = fields.Many2one('sale.order.line')
 
     def action_view_sales(self):
