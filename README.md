@@ -21,29 +21,29 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [fieldservice](fieldservice/) | 12.0.1.3.0 | Manage Field Service Locations, Workers and Orders
-[fieldservice_account](fieldservice_account/) | 12.0.2.0.1 | Track employee time and invoice for Field Service Orders
-[fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage FSM Agreements
-[fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | CRM Opportunity integration for Field Service
-[fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Delivery and Carriers for Field Services
+[fieldservice_account](fieldservice_account/) | 12.0.2.0.1 | Track employee time and invoice Field Service orders
+[fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
+[fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | Create Field Service orders from the CRM
+[fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Select delivery methods and carriers on Field Service orders
 [fieldservice_distribution](fieldservice_distribution/) | 12.0.1.0.0 | Manage your distribution structure
-[fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Extend field service functionality based on Geoengine
-[fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.0.0 | FSM Stages for Internet Service Providers
-[fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.0.0 | Maintenance
-[fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Field Service Partner Relations
+[fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Display Field Service locations on a map with Open Street Map
+[fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.0.0 | Field Service workflow for Internet Service Providers
+[fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.0.0 | Integrate Field Service orders with maintenance requests
+[fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 12.0.1.1.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
-[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.0.0 | Manage recurring field service works
-[fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate FSM orders with MRP repair orders
+[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.0.0 | Manage recurring Field Service orders
+[fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
 [fieldservice_sale](fieldservice_sale/) | 12.0.1.1.0 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
-[fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your FS workers skills
-[fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Add Server Actions based on FSM Stage
-[fieldservice_stock](fieldservice_stock/) | 12.0.1.0.1 | Inventory and Stock Operations for Field Services
-[fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.0 | Adds inventory items delivered as part of the field service order to a customer invoice
-[fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.0 | Track costs of delivered items with the analytic accounting
+[fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your Field Service workers skills
+[fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Execute server actions when reaching a Field Service stage
+[fieldservice_stock](fieldservice_stock/) | 12.0.1.0.1 | Integrate the logistics operations with Field Service
+[fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.0 | Invoice inventory items delivered with Field Service orders
+[fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.0 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
-[fieldservice_vehicle](fieldservice_vehicle/) | 12.0.1.0.0 | manage your field service vehicles
-[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.0.0 | Inventory Operations for Field Service with Vehicles
+[fieldservice_vehicle](fieldservice_vehicle/) | 12.0.1.0.0 | Manage Field Service vehicles and assign drivers
+[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.0.0 | Track inventory of Field Service vehicles
 
 [//]: # (end addons)
 
