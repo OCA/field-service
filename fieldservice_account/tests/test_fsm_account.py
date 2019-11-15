@@ -175,7 +175,7 @@ class FSMAccountCase(TransactionCase):
 
     def test_fsm_order_exception(self):
         """Create a new work order, error raised when
-        - If person_is is not set, but user try to add new contractor_cost_ids
+        - If person_id is not set, but user try to add new contractor_cost_ids
         - If analytic account is not set in location,
           and user create contractor_cost_ids (account.move.line)
         """
@@ -188,6 +188,7 @@ class FSMAccountCase(TransactionCase):
             create({
                 'location_id': self.test_location.id,
                 'person_id': self.test_person.id,
+                'cost_method': 'timesheet',
             })
         order.person_id = self.test_person
 
@@ -198,5 +199,6 @@ class FSMAccountCase(TransactionCase):
         with self.assertRaises(ValidationError) as e:
             order.action_complete()
         self.assertEqual(e.exception.name,
-                         "Cannot move to Complete until "
-                         "'Employee Timesheets' is filled in")
+                         """
+                        Cannot move to Complete until 'Employee Timesheets'
+                        is filled in""")
