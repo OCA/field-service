@@ -19,6 +19,21 @@ msgid "<span class=\"o_stat_text\">Sale Orders</span>"
 msgstr ""
 
 #. module: fieldservice_sale
+#: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__qty_delivered_method
+msgid "According to product configuration, the delivered quantity can be automatically computed by mechanism :\n"
+"  - Manual: the quantity is set manually on the line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
+"  - Stock Moves: the quantity comes from confirmed pickings\n"
+""
+msgstr ""
+
+#. module: fieldservice_sale
+#: selection:sale.order.line,qty_delivered_method:0
+msgid "Analytic From Expenses"
+msgstr ""
+
+#. module: fieldservice_sale
 #: selection:product.template,field_service_tracking:0
 msgid "Create a recurring order"
 msgstr ""
@@ -50,11 +65,12 @@ msgstr ""
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_fsm_order
+#: selection:sale.order.line,qty_delivered_method:0
 msgid "Field Service Order"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:67
+#: code:addons/fieldservice_sale/models/sale_order_line.py:93
 #, python-format
 msgid "Field Service Order Created (%s): <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
@@ -95,6 +111,11 @@ msgid "Is a Field Service"
 msgstr ""
 
 #. module: fieldservice_sale
+#: selection:sale.order.line,qty_delivered_method:0
+msgid "Manual"
+msgstr ""
+
+#. module: fieldservice_sale
 #: selection:product.template,service_type:0
 msgid "Manually set quantities on order"
 msgstr ""
@@ -105,6 +126,11 @@ msgstr ""
 msgid "Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
 "Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
 "Create a task and track hours: Create a task on the sales order validation and track the work hours."
+msgstr ""
+
+#. module: fieldservice_sale
+#: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__qty_delivered_method
+msgid "Method to update delivered qty"
 msgstr ""
 
 #. module: fieldservice_sale
@@ -183,11 +209,21 @@ msgid "Service Location"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:73
+#: selection:sale.order.line,qty_delivered_method:0
+msgid "Stock Moves"
+msgstr ""
+
+#. module: fieldservice_sale
+#: code:addons/fieldservice_sale/models/sale_order_line.py:99
 #, python-format
 msgid "This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
 "                "
+msgstr ""
+
+#. module: fieldservice_sale
+#: selection:sale.order.line,qty_delivered_method:0
+msgid "Timesheets"
 msgstr ""
 
 #. module: fieldservice_sale
