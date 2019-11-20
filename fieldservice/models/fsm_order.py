@@ -163,6 +163,11 @@ class FSMOrder(models.Model):
     # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many('fsm.equipment', string='Equipments')
     type = fields.Many2one('fsm.order.type', string="Type")
+    customer_id = fields.Many2one('res.partner', string='Contact',
+                                  domain=[('customer', '=', True)],
+                                  change_default=True,
+                                  index=True,
+                                  track_visibility='always')
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -317,6 +322,19 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
+
+    @api.onchange('location_id')
+    def _onchange_location_id_customer_account(self):
+        if self.location_id:
+            return {'domain': {'customer_id': [('service_location_id', '=',
+                                                self.location_id.name)]}}
+        else:
+            return {'domain': {'customer_id': [('id', '!=', None)]}}
+
+    @api.onchange('customer_id')
+    def _onchange_customer_id_location(self):
+        if self.customer_id:
+            self.location_id = self.customer_id.service_location_id
 
 
 class FSMTeam(models.Model):
