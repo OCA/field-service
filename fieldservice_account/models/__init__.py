@@ -7,4 +7,5 @@ from . import (
     fsm_location_person,
     fsm_order,
     fsm_person,
+    fsm_wizard
 )
