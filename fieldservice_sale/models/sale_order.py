@@ -34,10 +34,10 @@ class SaleOrder(models.Model):
     def _compute_fsm_order_ids(self):
         for order in self:
             orders = self.env["fsm.order"]
-            orders += self.env["fsm.order"].search(
+            orders |= self.env["fsm.order"].search(
                 [("sale_line_id", "in", order.order_line.ids)]
             )
-            orders += self.env["fsm.order"].search([("sale_id", "=", order.id)])
+            orders |= self.env["fsm.order"].search([("sale_id", "=", order.id)])
             order.fsm_order_ids = orders
             order.fsm_order_count = len(order.fsm_order_ids)
 
@@ -116,6 +116,54 @@ class SaleOrder(models.Model):
         """ On SO confirmation, some lines generate field service orders. """
         result = super(SaleOrder, self).action_confirm()
         self.order_line._field_service_generation()
+        return result
+
+    @api.multi
+    def action_invoice_create(self, grouped=False, final=False):
+        invoice_ids = super().action_invoice_create(grouped, final)
+        result = []
+        result.append(invoice_ids)
+
+        for invoice_id in invoice_ids:
+            invoice = self.env["account.invoice"].browse(invoice_id)
+            # check for invoice lines with product fsm policy = lines
+            lines_by_line = self.env["account.invoice.line"].search(
+                [
+                    ("invoice_id", "=", invoice_id),
+                    ("product_id.fsm_policy", "=", "line"),
+                ]
+            )
+            if len(lines_by_line) > 0:
+                line_count = len(invoice.invoice_line_ids)
+                for i in range(len(lines_by_line)):
+                    duplicate = True
+                    if ((i + 1) == len(lines_by_line)) and ((i + 1) == line_count):
+                        duplicate = False
+                    inv = invoice
+                    if duplicate:
+                        inv = invoice.copy()
+                        inv.write({"invoice_line_ids": [(6, 0, [])]})
+                        lines_by_line[i].invoice_id = inv.id
+                    inv.fsm_order_id = lines_by_line[i].fsm_order_id.id
+                    result.append(inv.id)
+
+            # check for invoice lines with product fsm policy = sale
+            lines_by_sale = self.env["account.invoice.line"].search(
+                [
+                    ("invoice_id", "=", invoice_id),
+                    ("product_id.fsm_policy", "=", "sale"),
+                ]
+            )
+            if len(lines_by_sale) > 0:
+                fsm_order = self.env["fsm.order"].search([("sale_id", "=", self.id)])
+                if len(lines_by_sale) == len(invoice.invoice_line_ids):
+                    invoice.fsm_order_id = fsm_order.id
+                elif len(invoice.invoice_line_ids) > len(lines_by_sale):
+                    new = invoice.copy()
+                    new.write({"invoice_line_ids": [(6, 0, [])]})
+                    lines_by_sale.invoice_id = new.id
+                    new.fsm_order_id = fsm_order.id
+                    result.append(new.id)
         return result
 
     @api.multi
