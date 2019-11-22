@@ -144,3 +144,11 @@ class SaleOrderLine(models.Model):
             # create order
             if so_line.product_id.field_service_tracking == 'order':
                 so_line._field_find_fsm_order()
+
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        res = super()._prepare_invoice_line(qty)
+        res.update({
+            'fsm_order_id': self.fsm_order_id,
+        })
+        return res
