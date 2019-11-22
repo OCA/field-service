@@ -29,6 +29,27 @@ class SaleOrder(models.Model):
                 ('sale_line_id', 'in', order.order_line.ids)])
             order.fsm_order_count = len(order.fsm_order_ids)
 
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        """
+        Fill the Sale Order's FS location. Read the FS location from
+        the shipping address if it is linked to a FS location, else try from
+        the commercial_partner address
+        """
+        res = super(SaleOrder, self).onchange_partner_id()
+
+        shipping_location = self.env['fsm.location'].search(
+            [('partner_id', '=', self.partner_shipping_id.id)])
+        commercial_partner_location = self.env['fsm.location'].search(
+            [('partner_id', '=', self.partner_id.commercial_partner_id.id)])
+
+        if shipping_location:
+            self.fsm_location_id = shipping_location
+        elif commercial_partner_location:
+            self.fsm_location_id = commercial_partner_location
+
+        return res
+
     @api.multi
     def action_confirm(self):
         """ On SO confirmation, some lines generate field service orders. """
