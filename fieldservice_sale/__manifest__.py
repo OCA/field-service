@@ -11,6 +11,7 @@
     'depends': [
         'fieldservice',
         'sale_management',
+        'fieldservice_account',
     ],
     'data': [
         'views/fsm_location.xml',
