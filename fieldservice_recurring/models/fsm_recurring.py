@@ -13,6 +13,9 @@ class FSMRecurringOrder(models.Model):
     _description = 'Recurring Field Service Order'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    def _default_team_id(self):
+        return self.env.ref('fieldservice.fsm_team_default')
+
     name = fields.Char(string='Name', required=True, index=True, copy=False,
                        default=lambda self: _('New'))
     state = fields.Selection([
@@ -48,6 +51,10 @@ class FSMRecurringOrder(models.Model):
         copy=False, readonly=True)
     fsm_order_count = fields.Integer(
         'Orders Count', compute='_compute_order_count')
+    team_id = fields.Many2one('fsm.team', string='Team',
+                              default=lambda self: self._default_team_id(),
+                              index=True, required=True,
+                              track_visibility='onchange')
 
     @api.multi
     @api.depends('fsm_order_ids')
@@ -142,6 +149,7 @@ class FSMRecurringOrder(models.Model):
         return {
             'fsm_recurring_id': self.id,
             'location_id': self.location_id.id,
+            'team_id': self.team_id.id,
             'scheduled_date_start': schedule_date,
             'request_early': str(earliest_date),
             'description': self.description,
