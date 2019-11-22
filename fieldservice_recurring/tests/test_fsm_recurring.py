@@ -53,7 +53,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 30,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,
@@ -86,7 +86,7 @@ class FSMRecurringCase(TransactionCase):
 
     def test_cron_generate_orders_rule2(self):
         """Test recurring order with following rule,
-        - Work Order every 3 weeks, for
+        - Work Order every 3 weeks
         """
         rules = self.Frequency
         # Frequency Rule
@@ -100,7 +100,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 100,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,
@@ -135,7 +135,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 365,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,
