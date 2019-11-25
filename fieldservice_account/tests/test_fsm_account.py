@@ -66,9 +66,9 @@ class FSMAccountCase(TransactionCase):
             search([('name', '=', self.test_loc_partner2.name)])
 
         # check if location is created successfully and fields copied over
-        self.assertEqual(self.test_loc_partner2.customer_id,
+        self.assertEqual(self.test_loc_partner2.id,
                          self.wiz_location.customer_id)
-        self.assertEqual(self.test_loc_partner2.owner_id,
+        self.assertEqual(self.test_loc_partner2.id,
                          self.wiz_location.owner_id)
 
     def _create_workorder(self, bill_to, contractors, timesheets):
