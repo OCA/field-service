@@ -27,6 +27,12 @@ class FSMAccountCase(TransactionCase):
                 'phone': 'ABC',
                 'email': 'tlp@email.com',
                 })
+        self.test_loc_partner2 = self.env['res.partner'].\
+            create({
+                'name': 'Test Loc Partner 2',
+                'phone': '123',
+                'email': 'tlp@example.com',
+                })
         # create expected FSM Location to compare to converted FSM Location
         self.test_location = self.env['fsm.location'].\
             create({
@@ -53,16 +59,16 @@ class FSMAccountCase(TransactionCase):
         and owner_id get set correctly
         :return:
         """
-        self.Wizard.action_convert_location(self.test_loc_partner)
+        self.Wizard.action_convert_location(self.test_loc_partner2)
 
         # check if there is a new FSM Location with the same name
         self.wiz_location = self.env['fsm.location']. \
-            search([('name', '=', self.test_loc_partner.name)])
+            search([('name', '=', self.test_loc_partner2.name)])
 
         # check if location is created successfully and fields copied over
-        self.assertEqual(self.test_loc_partner.customer_id,
+        self.assertEqual(self.test_loc_partner2.customer_id,
                          self.wiz_location.customer_id)
-        self.assertEqual(self.test_loc_partner.owner_id,
+        self.assertEqual(self.test_loc_partner2.owner_id,
                          self.wiz_location.owner_id)
 
     def _create_workorder(self, bill_to, contractors, timesheets):
