@@ -11,10 +11,6 @@ class SaleOrder(models.Model):
     fsm_location_id = fields.Many2one(
         'fsm.location', string='Service Location',
         help="SO Lines generating a FSM order will be for this location")
-    date_fsm_request = fields.Datetime(
-        string='Requested Service Date', readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
-        copy=False, default=fields.Datetime.now)
     fsm_order_ids = fields.Many2many(
         'fsm.order', compute='_compute_fsm_order_ids',
         string='Field Service orders associated to this sale')
@@ -54,10 +50,9 @@ class SaleOrder(models.Model):
         return {
             'customer_id': self.partner_id.id,
             'location_id': self.fsm_location_id.id,
-            # 'request_early': ,
-            'scheduled_date_start': self.date_fsm_request,
+            'request_early': self.expected_date,
+            'scheduled_date_start': self.expected_date,
             'description': self.name,
-            # 'template_id': self.product_id.fsm_order_template_id.id,
             'sale_id': self.id,
             'company_id': self.company_id.id,
         }
@@ -126,10 +121,11 @@ class SaleOrder(models.Model):
 
         for invoice_id in invoice_ids:
             invoice = self.env['account.invoice'].browse(invoice_id)
-            # check for invoice lines with product fsm policy = lines
+            # check for invoice lines with product
+            # field_service_tracking = line
             lines_by_line = self.env['account.invoice.line'].search([
                 ('invoice_id', '=', invoice_id),
-                ('product_id.fsm_policy', '=', 'line')
+                ('product_id.field_service_tracking', '=', 'line')
             ])
             if len(lines_by_line) > 0:
                 line_count = len(invoice.invoice_line_ids)
@@ -146,10 +142,11 @@ class SaleOrder(models.Model):
                     inv.fsm_order_id = lines_by_line[i].fsm_order_id.id
                     result.append(inv.id)
 
-            # check for invoice lines with product fsm policy = sale
+            # check for invoice lines with product
+            # field_service_tracking = sale
             lines_by_sale = self.env['account.invoice.line'].search([
                 ('invoice_id', '=', invoice_id),
-                ('product_id.fsm_policy', '=', 'sale')
+                ('product_id.field_service_tracking', '=', 'sale')
             ])
             if len(lines_by_sale) > 0:
                 fsm_order = self.env['fsm.order'].search([
