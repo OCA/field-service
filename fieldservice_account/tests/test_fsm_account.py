@@ -9,6 +9,7 @@ class FSMAccountCase(TransactionCase):
 
     def setUp(self):
         super(FSMAccountCase, self).setUp()
+        self.Wizard = self.env['fsm.wizard']
         self.WorkOrder = self.env['fsm.order']
         self.AccountInvoice = self.env['account.invoice']
         self.AccountInvoiceLine = self.env['account.invoice.line']
@@ -45,6 +46,24 @@ class FSMAccountCase(TransactionCase):
                 self.env.ref('account.data_account_type_payable').id,
             'reconcile': True
         })
+
+    def test_convert_contact_to_fsm_location(self):
+        """
+        Test converting a contact to a location to make sure the customer_id
+        and owner_id get set correctly
+        :return:
+        """
+        self.Wizard.action_convert_location(self.test_loc_partner)
+
+        # check if there is a new FSM Location with the same name
+        self.wiz_location = self.env['fsm.location']. \
+            search([('name', '=', self.test_loc_partner.name)])
+
+        # check if location is created successfully and fields copied over
+        self.assertEqual(self.test_loc_partner.customer_id,
+                         self.wiz_location.customer_id)
+        self.assertEqual(self.test_loc_partner.owner_id,
+                         self.wiz_location.owner_id)
 
     def _create_workorder(self, bill_to, contractors, timesheets):
         # Create a new work order
