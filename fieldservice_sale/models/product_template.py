@@ -12,27 +12,20 @@ class ProductTemplate(models.Model):
         ('field', 'Field Service Orders'),
     ])
     field_service_tracking = fields.Selection([
-        ('no', 'Don\'t create order'),
-        ('order', 'Create a single order')
-    ], string="Field Service Tracking", default="no",
-        help="""On Sales order confirmation, this product can generate a field
-                service order or field service recurring order.""")
-    fsm_order_template_id = fields.Many2one(
-        'fsm.template', 'Field Service Order Template',
-        help="Select the field service order template to be created")
-    fsm_policy = fields.Selection(selection=[
-        ('no', 'None'),
-        ('sale', 'Per Sale Order'),
-        ('line', 'Per Sale Order Line'),
-    ], string='Field Service Policy', default='no',
-        help="""The field service policy determines what happens upon sale
-                order confirmation.
+        ('no', 'Don\'t create FSM order'),
+        ('sale', 'Create one FSM order per sale order'),
+        ('line', 'Create one FSM order per sale order line'),
+    ], string='Field Service Tracking', default='no',
+        help="""Determines what happens upon sale order confirmation:
                 - None: nothing additional, default behavior.
                 - Per Sale Order: One FSM Order will be created for the sale.
                 - Per Sale Order Line: One FSM Order for each sale order line
                 will be created.""")
+    fsm_order_template_id = fields.Many2one(
+        'fsm.template', 'Field Service Order Template',
+        help="Select the field service order template to be created")
 
     @api.onchange('field_service_tracking')
     def _onchange_field_service_tracking(self):
-        if self.field_service_tracking != 'order':
+        if self.field_service_tracking == 'no':
             self.fsm_order_template_id = False
