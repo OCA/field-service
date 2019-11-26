@@ -54,9 +54,4 @@ class FSMOrder(models.Model):
         if not self.resolution:
             raise ValidationError(_("Cannot move to Complete " +
                                     "until 'Resolution' is filled in"))
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_completed').id})
-
-    def action_cancel(self):
-        return self.write({'stage_id': self.env.ref(
-            'fieldservice.fsm_stage_cancelled').id})
+        return super(FSMOrder, self).action_complete()
