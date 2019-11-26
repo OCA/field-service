@@ -42,7 +42,7 @@ addon | version | summary
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Execute server actions when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 12.0.1.0.1 | Integrate the logistics operations with Field Service
 [fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.0 | Invoice inventory items delivered with Field Service orders
-[fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.1 | Track costs of delivered items with analytic accounting
+[fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
 [fieldservice_vehicle](fieldservice_vehicle/) | 12.0.1.0.0 | Manage Field Service vehicles and assign drivers
 [fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.0.0 | Track inventory of Field Service vehicles
