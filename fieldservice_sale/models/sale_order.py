@@ -36,12 +36,25 @@ class SaleOrder(models.Model):
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
+        lines = self.order_line.filtered(
+            lambda sol: sol.product_id.field_service_tracking == "sale"
+        )
+        templates = lines.mapped("product_id.fsm_order_template_id")
+        note = ""
+        hours = 0.0
+        categories = self.env["fsm.category"]
+        for template in templates:
+            note += template.instructions
+            hours += template.hours
+            categories |= template.category_ids
         return {
             "customer_id": self.partner_id.id,
             "location_id": self.fsm_location_id.id,
             "request_early": self.expected_date,
             "scheduled_date_start": self.expected_date,
-            "description": self.name,
+            "todo": note,
+            "category_ids": [(6, 0, categories.ids)],
+            "scheduled_duration": hours,
             "sale_id": self.id,
             "company_id": self.company_id.id,
         }
