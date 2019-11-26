@@ -3,8 +3,8 @@
 
 from . import (
     fsm_location,
+    fsm_order,
     product_template,
-    sale_order,
     sale_order_line,
-    fsm_order
+    sale_order,
 )
