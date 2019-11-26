@@ -7,8 +7,6 @@ from odoo import api, fields, models
 class FSMLocation(models.Model):
     _inherit = 'fsm.location'
 
-    analytic_account_id = fields.Many2one('account.analytic.account',
-                                          string='Analytic Account')
     customer_id = fields.Many2one(
         'res.partner', string='Billed Customer', required=True,
         ondelete='restrict', auto_join=True, track_visibility='onchange')
