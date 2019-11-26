@@ -32,21 +32,16 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         """
-        Fill the Sale Order's FS location. Read the FS location from
-        the shipping address if it is linked to a FS location, else try from
-        the commercial_partner address
+        Autofill the Sale Order's FS location with the partner_id,
+        the partner_shipping_id or the partner_id.commercial_partner_id if
+        they are FS locations.
         """
         res = super(SaleOrder, self).onchange_partner_id()
 
-        shipping_location = self.env['fsm.location'].search(
-            [('partner_id', '=', self.partner_shipping_id.id)])
-        commercial_partner_location = self.env['fsm.location'].search(
-            [('partner_id', '=', self.partner_id.commercial_partner_id.id)])
-
-        if shipping_location:
-            self.fsm_location_id = shipping_location
-        elif commercial_partner_location:
-            self.fsm_location_id = commercial_partner_location
+        self.fsm_location_id = self.env['fsm.location'].search(
+            ['|', '|', ('partner_id', '=', self.partner_id.id),
+             ('partner_id', '=', self.partner_shipping_id.id),
+             ('partner_id', '=', self.partner_id.commercial_partner_id.id)])
 
         return res
 
