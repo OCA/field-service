@@ -14,18 +14,10 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'report/fsm_order_report_template.xml',
-        'views/fsm_location.xml',
+        'views/account_invoice.xml',
         'views/fsm_order.xml',
-        'views/fsm_person.xml',
-        'views/fsm_route.xml',
-        'views/account_invoice_view.xml',
-    ],
-    'demo': [
-        'demo/fsm_location.xml',
     ],
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': ['osimallen'],
-    'pre_init_hook': 'pre_init_hook',
 }
