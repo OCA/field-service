@@ -45,22 +45,7 @@
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
                         attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_scheduled)d, %(fieldservice_isp_flow.fsm_stage_enroute)d))]}"/>
-            </button>
-            <field name="scheduled_date_start" position="attributes">
-                <attribute name="invisible">[('stage_id', 'in',
-                       (%(fieldservice.fsm_stage_new)d,
-                        %(fieldservice_isp_flow.fsm_stage_confirmed)d,
-                        %(fieldservice_isp_flow.fsm_stage_requested)d,
-                        %(fieldservice_isp_flow.fsm_stage_assigned)d))]</attribute>
-            </field>
-
-            <field name="scheduled_date_start" position="attributes">
-                <attribute name="invisible">[('stage_id', 'in',
-                       (%(fieldservice_isp_flow.fsm_stage_scheduled)d,
-                        %(fieldservice_isp_flow.fsm_stage_enroute)d,
-                        %(fieldservice_isp_flow.fsm_stage_started)d,
-                        %(fieldservice.fsm_stage_completed)d))]</attribute>
-            </field>   
+            </button> 
         </field>       
     </record>
 
