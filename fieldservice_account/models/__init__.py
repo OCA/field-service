@@ -2,9 +2,6 @@
 
 from . import (
     account_invoice,
-    analytic_account,
-    fsm_location,
-    fsm_location_person,
+    account_invoice_line,
     fsm_order,
-    fsm_person,
 )
