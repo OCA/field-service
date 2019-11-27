@@ -17,8 +17,16 @@
     'data': [
         'data/ir_rule.xml',
         'security/ir.model.access.csv',
+        'report/fsm_order_report_template.xml',
         'views/fsm_location.xml',
+        'views/fsm_order.xml',
+        'views/fsm_person.xml',
+        'views/fsm_route.xml',
     ],
+    'demo': [
+        'demo/fsm_location.xml',
+    ],
+    'pre_init_hook': 'pre_init_hook',
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': ['osimallen'],
