@@ -18,7 +18,11 @@ class ContractContract(models.Model):
         string='Invoiceable stages',
         comodel_name='fsm.stage',
         domain=[['stage_type', '=', 'order']],
+        default=lambda x: x._default_invoiceable_stage()
     )
+
+    def _default_invoiceable_stage(self):
+        return self.env.ref('fieldservice.fsm_stage_completed').ids
 
     @api.multi
     def action_view_fsm_recurring(self):
