@@ -14,6 +14,7 @@
         'contract',
         'fieldservice_sale',
         'fieldservice_recurring',
+        'fieldservice_sale_recurring',
     ],
     'data': [
         'views/account_invoice.xml',
