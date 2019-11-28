@@ -12,6 +12,7 @@
     'version': '12.0.1.0.0',
     'depends': [
         'contract',
+        'product_contract',
         'fieldservice_sale',
         'fieldservice_recurring',
         'fieldservice_sale_recurring',

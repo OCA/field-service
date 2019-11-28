@@ -1,0 +1,1 @@
+This module installs product_contract and fieldservice_sale
