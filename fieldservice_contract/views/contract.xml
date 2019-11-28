@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
             	<field name="fsm_location_id" />
+                <field name="invoiceable_stage_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True, 'no_create_edit': True}" />
 			</field>
 
 			<xpath expr="//button[@name='action_show_invoices']" position="before">

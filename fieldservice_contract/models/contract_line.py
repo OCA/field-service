@@ -50,10 +50,13 @@ class ContractLine(models.Model):
         self.ensure_one()
         quantity = 0
         if self.fsm_direct_order_id or self.fsm_recurring_id:
-            quantity = len(self._invoiceable_fsm_order(
-                period_first_date,
-                period_last_date,
-                invoice_date))
+            if self.product_id.invoice_policy == 'order':
+                quantity = self.quantity
+            else:
+                quantity = len(self._invoiceable_fsm_order(
+                    period_first_date,
+                    period_last_date,
+                    invoice_date))
         else:
             quantity = super()._get_quantity_to_invoice(
                 period_first_date,
@@ -65,12 +68,15 @@ class ContractLine(models.Model):
     def _invoiceable_fsm_order(
         self, period_first_date, period_last_date, invoice_date
     ):
+        invoiceable_stage_ids = self.contract_id.invoiceable_stage_ids
         dom = [
             ('scheduled_date_start', '>=', period_first_date),
             ('scheduled_date_start', '<=', period_last_date),
             ('contract_line_id', '=', self.id),
             ('invoice_line_id', '=', False),
         ]
+        if invoiceable_stage_ids:
+            dom.append(['stage_id', 'in', invoiceable_stage_ids.ids])
         return self.env['fsm.order'].search(dom)
 
     @api.model

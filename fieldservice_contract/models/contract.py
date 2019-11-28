@@ -14,6 +14,12 @@ class ContractContract(models.Model):
         copy=True,
     )
 
+    invoiceable_stage_ids = fields.Many2many(
+        string='Invoiceable stages',
+        comodel_name='fsm.stage',
+        domain=[['stage_type', '=', 'order']],
+    )
+
     @api.multi
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.contract_line_ids.mapped('fsm_recurring_id')
