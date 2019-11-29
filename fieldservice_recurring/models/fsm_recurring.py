@@ -13,16 +13,28 @@ class FSMRecurringOrder(models.Model):
     _name = 'fsm.recurring'
     _description = 'Recurring Field Service Order'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherits = {'fsm.frequency.set': 'fsm_frequency_set_qedit_id'}
 
-    name = fields.Char(string='Name', required=True, index=True, copy=False,
-                       default=lambda self: _('New'))
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('progress', 'In Progress'),
-        ('pending', 'To Renew'),
-        ('close', 'Closed'),
-        ('cancel', 'Cancelled')], readonly=True,
-        default='draft', track_visibility='onchange')
+    name = fields.Char(
+        string="Name",
+        required=True,
+        index=True,
+        copy=False,
+        default=lambda self: _("New"),
+        related='fsm_frequency_set_qedit_id.name', inherited=True, readonly=False
+    )
+    state = fields.Selection(
+        [
+            ("draft", "Draft"),
+            ("progress", "In Progress"),
+            ("pending", "To Renew"),
+            ("close", "Closed"),
+            ("cancel", "Cancelled"),
+        ],
+        readonly=True,
+        default="draft",
+        track_visibility="onchange",
+    )
     fsm_recurring_template_id = fields.Many2one(
         'fsm.recurring.template', 'Recurring Template',
         readonly=True, states={'draft': [('readonly', False)]})
@@ -32,6 +44,10 @@ class FSMRecurringOrder(models.Model):
     fsm_frequency_set_id = fields.Many2one(
         'fsm.frequency.set', 'Frequency Set')
     start_date = fields.Datetime(String='Start Date')
+    fsm_frequency_set_qedit_id = fields.Many2one("fsm.frequency.set",
+            required=True, ondelete='restrict', auto_join=True,
+            string='Quick Edit Frequency Set',
+            help='Quick Edit Frequency Set-related data to the user Recurring Order')
     end_date = fields.Datetime(
         string='End Date',
         help="Recurring orders will not be made after this date")
@@ -56,7 +72,8 @@ class FSMRecurringOrder(models.Model):
         ],
         default="use_predefined",
     )
-    fsm_frequency_ids = fields.Many2many("fsm.frequency", string="Frequency Rules")
+    # fsm_frequency_ids = fields.Many2many("fsm.frequency", string="Frequency Rules")
+    fsm_frequency_ids = fields.Many2many(related='fsm_frequency_set_qedit_id.fsm_frequency_ids', readonly=False, string="Frequency Rules")
 
     @api.onchange("frequency_type ")
     def _onchange_frequency_type(self):

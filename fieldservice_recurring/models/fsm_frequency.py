@@ -1,13 +1,25 @@
 # Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU
-from dateutil.rrule import YEARLY, MONTHLY, WEEKLY, DAILY
-from dateutil.rrule import rrule
+from dateutil.rrule import (
+    DAILY,
+    FR,
+    MO,
+    MONTHLY,
+    SA,
+    SU,
+    TH,
+    TU,
+    WE,
+    WEEKLY,
+    YEARLY,
+    rrule,
+)
 
 from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 
+WEEKDAYS = {"mo": MO, "tu": TU, "we": WE, "th": TH, "fr": FR, "sa": SA, "su": SU}
 
 WEEKDAYS = {
     'mo': MO,
@@ -144,13 +156,11 @@ class FSMFrequency(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('name'):
-            hours, minutes = self._split_time_to_hour_min(
-                vals.get('planned_hour')
-            )
-            wd = _(dict(WEEKDAYS_SELECT)[ vals.get('week_day')])
+        if not vals.get("name"):
+            hours, minutes = self._split_time_to_hour_min(vals.get("planned_hour"))
+            wd = _(dict(WEEKDAYS_SELECT)[vals.get("week_day")])
             name = wd + "_" + str(hours) + "_" + str(minutes)
-            vals['name'] = name
+            vals["name"] = name
         return super(FSMFrequency, self).create(vals)
 
     @api.onchange("week_day")

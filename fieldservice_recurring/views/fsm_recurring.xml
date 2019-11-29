@@ -62,8 +62,7 @@
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                         <group>
-                            <div attrs="{'invisible': [('frequency_type', '=', 'use_predefined')]}" name="weekdays"
-                                class="oe_edit_only">
+                            <div attrs="{'invisible': [('frequency_type', '=', 'use_predefined')]}" name="weekdays">
                                   <field name="fsm_frequency_ids" widget="one2many_list">
                                     <tree editable="bottom">
                                         <field name="interval_frequency"/>
