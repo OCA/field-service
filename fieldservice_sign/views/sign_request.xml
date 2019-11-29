@@ -1,0 +1,17 @@
+<odoo>
+
+    <record id="sign_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">sign.request.form</field>
+        <field name="model">sign.request</field>
+        <field name="inherit_id" ref="sign.sign_request_view_form"/>
+        <field name="arch" type="xml">
+            <field name="request_item_ids" position="before">
+                <group>
+                    <field name="fsm_order_id"/>
+                    <field name="url_link" widget="url"/>
+                </group> 
+            </field>
+        </field>
+    </record>
+
+</odoo>
