@@ -8,15 +8,21 @@ from odoo import fields, models, api
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    fsm_order_ids = fields.One2many(
+        comodel_name='fsm.order',
+        string='FSM Orders',
+        compute='_compute_fsm_order_ids',
+        readonly=True, copy=False)
     fsm_order_count = fields.Integer(
         string='FSM Order Count',
         compute='_compute_fsm_order_ids', readonly=True)
 
-    @api.depends('invoice_line_ids.fsm_order_ids')
+    @api.depends('invoice_line_ids.fsm_order_id')
     def _compute_fsm_order_ids(self):
         for invoice in self:
             if invoice.type == 'out_invoice':
-                orders = invoice.invoice_line_ids.mapped('fsm_order_ids')
+                orders = invoice.invoice_line_ids.mapped('fsm_order_id')
+                invoice.fsm_order_ids = orders
                 invoice.fsm_order_count = len(orders)
             else:
                 invoice.fsm_order_count = 0
