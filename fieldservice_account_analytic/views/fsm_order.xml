@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fsm_order_form_accounting" model="ir.ui.view">
+        <field name="name">fsm.order.form.accounting</field>
+        <field name="model">fsm.order</field>
+        <field name='inherit_id' ref='fieldservice.fsm_order_form'/>
+        <field name="arch" type="xml">
+            <notebook position='inside'>
+                <page name='accounting' string='Accounting'>
+                    <header>
+                        <button id="account_confirm"
+                                name="account_confirm" string="Confirm"
+                                class="oe_highlight"
+                                type="object"
+                                groups="fieldservice.group_fsm_dispatcher"
+                                attrs="{'invisible': [('account_stage', '!=', 'review')]}"/>
+                        <button id="account_create_invoice"
+                                name="account_create_invoice"
+                                string="Create Invoice"
+                                class="oe_highlight"
+                                type="object"
+                                groups="account.group_account_invoice"
+                                attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
+                        <button id="account_no_invoice"
+                                name="account_no_invoice" string="No Invoice"
+                                type="object"
+                                groups="account.group_account_invoice"
+                                attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
+                        <field name="account_stage" widget="statusbar"/>
+                    </header>
+                    <group>
+                        <field name="bill_to" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <group string="Contractor Costs">
+                        <field name='contractor_cost_ids' nolabel="1">
+                            <tree editable="bottom">
+                                <field name='product_id' required='1'/>
+                                <field name='name'/>
+                                <field name='quantity' required='1'/>
+                                <field name='account_id' required='1'
+                                       invisible='1'/>
+                                <field name='account_analytic_id'
+                                       invisible='1'/>
+                                <field name='invoice_line_tax_ids'
+                                       widget='many2many_tags' invisible='1'/>
+                                <field name='price_unit' groups="fieldservice.group_fsm_manager"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name='contractor_total' readonly='1'/>
+                    </group>
+                    <group string="Employee Timesheets">
+                        <field name='employee_timesheet_ids' nolabel="1">
+                            <tree editable="bottom"
+                                  string="Timesheet Activities"
+                                  default_order="date">
+                                <field name="date"/>
+                                <field name="user_id" invisible="1"/>
+                                <field name="employee_id" required="1"/>
+                                <field name="product_id" required='1'
+                                       domain="[('type','=','service')]"/>
+                                <field name='account_id' invisible='1'/>
+                                <field name="name"/>
+                                <field name="unit_amount" string="Duration"
+                                       widget="float_time"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group col="4">
+                        <field name='employee_time_total' readonly='1'/>
+                        <field name='employee' invisible='1'/>
+                    </group>
+                </page>
+            </notebook>
+            <field name="region_id" position="after">
+                <field name="customer_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.search</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="/search/filter[4]" position="after">
+                <filter string="Needs Review"
+                        domain="[('account_stage', '=', 'review')]"
+                        name="needs_review"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_order_tree_view" model="ir.ui.view">
+        <field name="name">fsm.order.tree</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="customer_id"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Dashboard -->
+    <record id="fsm_order_kanban_view" model="ir.ui.view">
+        <field name="name">fsm.order.kanban</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="customer_id"/>
+            </field>
+            <xpath expr="//div[contains(@class, 'oe_kanban_content')]/div[2]" position="after"> 
+                <div class="text-muted o_kanban_record_subtitle">
+                    <span t-if="record.customer_id.value">
+                        <t t-esc="record.customer_id.value"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_order_calendar_view" model="ir.ui.view">
+        <field name="name">Orders</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_calendar_view"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="customer_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>
