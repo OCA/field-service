@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import fields
-from odoo.addons.fieldservice_sale.tests.test_fsm_account import (
+from odoo.addons.fieldservice_account.tests.test_fsm_account import (
     FSMAccountCase
 )
 from odoo.exceptions import ValidationError
