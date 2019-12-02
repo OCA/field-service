@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fsm_recurring_form_view" model="ir.ui.view">
+        <field name="model">fsm.recurring</field>
+        <field name="inherit_id" ref="fieldservice_recurring.fsm_recurring_form_view"/>
+        <field name="arch" type="xml">
+            <field name="fsm_frequency_set_id" position="before">
+                <field name="frequency_type"/>
+            </field>
+            <field name="fsm_frequency_set_id" position="attributes">
+                <attribute name="attrs">
+                        {'invisible':
+                        [('frequency_type', '!=', 'use_predefined')],
+                        'required': [('frequency_type', '=', 'use_predefined')]
+                        }
+                </attribute>
+            </field>
+            <xpath expr="//field[@name='fsm_order_template_id']/.." position="after">
+                <group>
+                    <div attrs="{'invisible': [('frequency_type', '=', 'use_predefined')]}" name="weekdays">
+                          <field name="fsm_frequency_ids" widget="one2many_list">
+                            <tree editable="bottom">
+                                <field name="interval_frequency"/>
+                                <field name="week_day"/>
+                                <field name="planned_hour" widget="float_time"/>
+                                <field name="interval_type" invisible="1"/>
+                                <field name="use_planned_hour" invisible="1"/>
+                            </tree>
+                        </field>
+                    </div>
+                </group>            
+           </xpath>   
+        </field>
+    </record>
+
+</odoo>
