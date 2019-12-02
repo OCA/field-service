@@ -1,10 +1,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import (
-    account_invoice,
+    account_invoice_line,
     analytic_account,
     fsm_location,
     fsm_location_person,
     fsm_order,
-    fsm_person,
 )
