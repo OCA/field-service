@@ -42,21 +42,3 @@ class FSMAccountCase(TransactionCase):
                 'owner_id': self.test_loc_partner.id,
                 'customer_id': self.test_loc_partner.id,
                 })
-
-    def test_convert_contact_to_fsm_location(self):
-        """
-        Test converting a contact to a location to make sure the customer_id
-        and owner_id get set correctly
-        :return:
-        """
-        self.Wizard.action_convert_location(self.test_loc_partner2)
-
-        # check if there is a new FSM Location with the same name
-        self.wiz_location = self.env['fsm.location']. \
-            search([('name', '=', self.test_loc_partner2.name)])
-
-        # check if location is created successfully and fields copied over
-        self.assertEqual(self.test_loc_partner2,
-                         self.wiz_location.customer_id)
-        self.assertEqual(self.test_loc_partner2,
-                         self.wiz_location.owner_id)
