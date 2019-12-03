@@ -67,7 +67,7 @@ class FSMOrder(models.Model):
                     'fsm_order_id': self.id
                 }
                 invoice = self.env['account.invoice'].sudo().create(vals)
-            self._prepare_inv_line_for_stock_requests(invoice)
+            self._create_inv_line_for_stock_requests(invoice)
             # Validate and paid invoice
             invoice.action_invoice_open()
         return res
