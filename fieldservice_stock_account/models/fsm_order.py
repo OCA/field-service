@@ -38,7 +38,8 @@ class FSMOrder(models.Model):
 
     def account_no_invoice(self):
         res = super().account_no_invoice()
-        if self.location_id.inventory_location_id.usage == 'customer':
+        if self.stock_request_ids and \
+            self.location_id.inventory_location_id.usage == 'customer':
             jrnl = self.env['account.journal'].search([
                 ('company_id', '=', self.env.user.company_id.id),
                 ('type', '=', 'sale'),
