@@ -1,54 +1,38 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright 2019 Akretion <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models, api
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = 'account.invoice'
 
-    fsm_order_id = fields.Many2one('fsm.order', string='FSM Order')
+    fsm_order_ids = fields.One2many(
+        comodel_name='fsm.order',
+        string='FSM Orders',
+        compute='_compute_fsm_order_ids',
+        readonly=True, copy=False)
+    fsm_order_count = fields.Integer(
+        string='FSM Order Count',
+        compute='_compute_fsm_order_ids', readonly=True)
 
-
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
-
-    fsm_order_id = fields.Many2one('fsm.order', string='FSM Order')
-
-    @api.model
-    def create(self, vals):
-        order = self.env['fsm.order'].browse(vals.get('fsm_order_id'))
-        if order:
-            if order.location_id.analytic_account_id:
-                vals['account_analytic_id'] = order.location_id.\
-                    analytic_account_id.id
+    @api.depends('invoice_line_ids.fsm_order_id')
+    def _compute_fsm_order_ids(self):
+        for invoice in self:
+            if invoice.type == 'out_invoice':
+                orders = invoice.invoice_line_ids.mapped('fsm_order_id')
+                invoice.fsm_order_ids = orders
+                invoice.fsm_order_count = len(orders)
             else:
-                raise ValidationError(_("No analytic account "
-                                        "set on the order's Location."))
-        return super(AccountInvoiceLine, self).create(vals)
+                invoice.fsm_order_count = 0
 
-    @api.onchange('product_id', 'quantity')
-    def onchange_product_id(self):
-        for line in self:
-            if line.fsm_order_id:
-                partner = line.fsm_order_id.person_id and\
-                    line.fsm_order_id.person_id.partner_id or False
-                if not partner:
-                    raise ValidationError(
-                        _("Please set the field service worker."))
-                fpos = partner.property_account_position_id
-                tmpl = line.product_id.product_tmpl_id
-                if line.product_id:
-                    accounts = tmpl.get_product_accounts()
-                    supinfo = self.env['product.supplierinfo'].search(
-                        [('name', '=', partner.id),
-                         ('product_tmpl_id', '=', tmpl.id),
-                         ('min_qty', '<=', line.quantity)],
-                        order='min_qty DESC')
-                    line.price_unit = \
-                        supinfo and supinfo[0].price or tmpl.standard_price
-                    line.account_id = accounts.get('expense', False)
-                    line.invoice_line_tax_ids = fpos.\
-                        map_tax(tmpl.supplier_taxes_id)
-                    line.name = line.product_id.name
+    @api.multi
+    def action_view_fsm_orders(self):
+        # fetch all orders:
+        # linked to this account
+        line_ids = self.invoice_line_ids.ids
+        action = self.env.ref(
+            'fieldservice.action_fsm_dash_order').read()[0]
+        action['domain'] = [('invoice_line_id', 'in', line_ids)]
+        return action
