@@ -25,10 +25,7 @@ Field Service - Accounting
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds the ability to track employee time and contractor
-costs for Field Service Orders. It also adds functionality to create
-a customer invoice and a vendor bill when a Field Service Order is
-completed.
+This module adds the ability to link field service orders to invoices.
 
 **Table of contents**
 
@@ -43,26 +40,12 @@ No special installation instructions
 Configuration
 =============
 
-To configure this module, you need to:
-
-* Go to Field Service > Master Data > Locations
-* Create or select a location and set their analytic account
+No special configuration instructions.
 
 Usage
 =====
 
-To use the module:
-
-On a field service order, open the "Accounting" tab. Depending on 
-whether the logged in user or an employee or not, they will see 
-either a place to enter timesheet records or contractor costs.
-
-The total cost of the order is calculated based on the entries in 
-the employee timesheet entries and contractor costs.
-
-When an order is completed, a customer invoice will be generated for
-the employee time and the contractor costs. A vendor bill will be 
-created for the contractor costs.
+No specific usage instructions.
 
 Bug Tracker
 ===========
@@ -87,6 +70,8 @@ Contributors
 
 * Michael Allen <mallen@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Rapha??l Reverdy <raphael.reverdy@akretion.com>
+* Brian McMaster <brian@mcmpest.com>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -111,10 +96,16 @@ promote its widespread use.
 .. |maintainer-osimallen| image:: https://github.com/osimallen.png?size=40px
     :target: https://github.com/osimallen
     :alt: osimallen
+.. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
+    :target: https://github.com/brian10048
+    :alt: brian10048
+.. |maintainer-bodedra| image:: https://github.com/bodedra.png?size=40px
+    :target: https://github.com/bodedra
+    :alt: bodedra
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osimallen| 
+|maintainer-osimallen| |maintainer-brian10048| |maintainer-bodedra| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_account>`_ project on GitHub.
 
