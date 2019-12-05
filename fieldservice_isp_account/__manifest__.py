@@ -5,7 +5,7 @@
     'name': 'Field Service - ISP Accounting',
     'summary': """Invoice Field Service orders based on employee time
                   or contractor costs""",
-    'version': '12.0.2.0.1',
+    'version': '12.0.2.0.2',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
@@ -22,5 +22,9 @@
     ],
     'license': 'AGPL-3',
     'development_status': 'Beta',
-    'maintainers': ['osimallen'],
+    'maintainers': [
+        'osimallen',
+        'brian10048',
+        'bodedra',
+    ],
 }
