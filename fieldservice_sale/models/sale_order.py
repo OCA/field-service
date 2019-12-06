@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
     )
 
     @api.multi
-    @api.depends("order_line.product_id")
+    @api.depends("order_line")
     def _compute_fsm_order_ids(self):
         for order in self:
             orders = self.env["fsm.order"]
@@ -117,9 +117,9 @@ class SaleOrder(models.Model):
         return result
 
     @api.multi
-    def action_confirm(self):
+    def _action_confirm(self):
         """ On SO confirmation, some lines generate field service orders. """
-        result = super(SaleOrder, self).action_confirm()
+        result = super(SaleOrder, self)._action_confirm()
         self.order_line._field_service_generation()
         return result
 
