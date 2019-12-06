@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Sale Stock',
-    'version': '12.0.0.1.0',
+    'version': '12.0.1.0.0',
     'summary': 'Sell stockable items linked to field service orders.',
     'category': 'Field Service',
     'author': 'Brian McMaster, Odoo Community Association (OCA)',
@@ -20,4 +20,5 @@
         'brian10048',
     ],
     'installable': True,
+    'auto_install': True,
 }
