@@ -17,9 +17,9 @@ class SaleOrder(models.Model):
             pickings.write({'fsm_order_id': fsm_order.id})
 
     @api.multi
-    def action_confirm(self):
+    def _action_confirm(self):
         """ On SO confirmation, link the fsm order on the pickings
             created by the sale order """
-        result = super().action_confirm()
+        result = super()._action_confirm()
         self._link_pickings_to_fsm()
         return result
