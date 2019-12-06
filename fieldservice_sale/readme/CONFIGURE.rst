@@ -9,9 +9,7 @@ sale order line:
 
 * Go to Sales > Catalog > Products
 * Create or select a product
-* Set the Product Type to 'Service' under General Information tab
 * Set the Field Service Tracking to 'One FSM Order per Sale Order Line'
-* Under Invoicing tab, set the Field Service Tracking option
 * Select the FSM Order Template that will be used for creating FSM Orders when
   a Sale Order is confirmed with this product
 
@@ -21,6 +19,8 @@ an individual sale order:
 * Go to Sales > Catalog > Products
 * Create or select a product
 * Set the Field Service Tracking to 'One FSM Order per Sale Order'
+* Select the FSM Order Template that will be used for creating FSM Orders when
+  a Sale Order is confirmed with this product
 
 To setup a sales territory:
 
