@@ -57,8 +57,13 @@ class FSMRecurringOrder(models.Model):
         if res.frequency_type == 'edit_inplace':
             res.fsm_frequency_set_id = res.fsm_frequency_set_qedit_id
         return res
-# 
-    # @api.model
-    # def create(self, vals):
-        # self._update_frequency_set(vals)
-        # return super(FSMRecurringOrder, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        res = super(FSMRecurringOrder, self).write(vals)
+        r_edited = self.filtered(lambda r: r.frequency_type == 'edit_inplace'
+                and r.fsm_frequency_set_id != r.fsm_frequency_set_qedit_id)
+        for re in r_edited:
+            re.fsm_frequency_set_id = re.fsm_frequency_set_qedit_id
+
+

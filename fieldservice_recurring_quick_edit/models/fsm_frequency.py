@@ -32,7 +32,6 @@ FREQUENCY_SELECT = [
 ]
 
 WEEKDAYS_SELECT = [
-    ("none", "Not defined"),
     ("mo", "MO"),
     ("tu", "TU"),
     ("we", "WE"),
@@ -40,9 +39,11 @@ WEEKDAYS_SELECT = [
     ("fr", "FR"),
     ("sa", "SA"),
     ("su", "SU"),
+    ("working days", "Working Days"),
+    ("all days", "All Days"),
 ]
 
-FREQUENCIES = [
+INTERVAl_FREQUENCIES = [
     ("1", "First"),
     ("2", "Second"),
     ("3", "Third"),
@@ -58,7 +59,7 @@ class FSMFrequency(models.Model):
     use_rrulestr = fields.Boolean(string="Use rrule string")
     rrule_string = fields.Char()
     # simlpe edit helper with planned_hour precision
-    interval_frequency = fields.Selection(FREQUENCIES, string="Interval Frequency")
+    interval_frequency = fields.Selection(INTERVAl_FREQUENCIES, string="Interval Frequency")
     use_planned_hour = fields.Boolean()
     week_day = fields.Selection(WEEKDAYS_SELECT, string="Week Day")
     planned_hour = fields.Float("Planned Hours")
@@ -97,13 +98,22 @@ class FSMFrequency(models.Model):
         Checks corresponding day boolean
         """
         for freq in self:
-            if freq.week_day and freq.week_day != "none":
+            if freq.week_day:
                 freq.use_byweekday = True
                 weekdays = ["mo", "tu", "we", "th", "fr", "sa", "su"]
+                workingdays = ["mo", "tu", "we", "th", "fr"]
                 # Set all checked weekdays to False and check only Week Day
                 for field in weekdays:
                     freq[field] = False
-                freq[freq.week_day] = True
+                if freq.week_day == "working days":
+                    for field in workingdays:
+                        freq[field] = True 
+                elif freq.week_day == "all days":
+                    for field in weekdays:
+                        freq[field] = True
+                else:
+                    freq[freq.week_day] = True
+
 
     @api.onchange("use_planned_hour")
     def _onchange_use_planned_hour(self):
@@ -116,7 +126,7 @@ class FSMFrequency(models.Model):
     def _byhours(self):
         self.ensure_one()
         if not self.use_planned_hour or not self.week_day or self.week_day == "none":
-            return None
+            return None, None
         duration_minute = self.planned_hour * 60
         hours, minutes = self._split_time_to_hour_min(self.planned_hour)
         return hours, minutes
@@ -130,7 +140,7 @@ class FSMFrequency(models.Model):
 
     @api.constrains("week_day", "planned_hour")
     def _check_planned_hour(self):
-        if self.week_day == "none" or not self.week_day:
+        if not self.week_day:
             raise UserError(_("Week day must be set"))
         if self.use_planned_hour:
             hours, minutes = self._byhours()
@@ -139,11 +149,31 @@ class FSMFrequency(models.Model):
 
     def _get_rrule(self, dtstart=None, until=None):
         self.ensure_one()
-        import pdb; pdb.set_trace()
         if self.use_planned_hour:
+            hours, minutes = self._byhours()
+            freq = FREQUENCIES[self.interval_type]
+            # to avoid bug off creation of rrule if somme args is none
+            # we add anly defined args to kwargs
+            kwargs = {}
+            if self.interval:
+                kwargs['interval'] = self.interval
+            if dtstart:
+                kwargs['dtstart'] = dtstart
+            if until:
+                kwargs['until'] = until
+            if self._byweekday():
+                kwargs['byweekday'] = self._byweekday()
+            if self._bymonth():
+                kwargs['bymonth'] = self._bymonth()
+            if self._bymonthday():
+                kwargs['bymonthday'] = self._bymonthday()
+            if self._bysetpos():
+                kwargs['bysetpos'] = self._bysetpos()
+            if hours or hours == 0:
+                kwargs['byhour'] = hours
+            if minutes or minutes == 0:
+                kwargs['byminute'] = minutes
+                kwargs['bysecond'] = 0
+            return rrule(freq,**kwargs )
+        return super(FSMFrequency, self)._get_rrule(dtstart=dtstart, until=until)
 
-            dtstart = dtstart.replace(hour=0, minute=0, second=0, microsecond=0)
-            dtstart = dtstart + relativedelta(hours=+self.planned_hour)
-
-        res = super(FSMFrequency, self)._get_rrule(dtstart=dtstart, until=until)
-        return res

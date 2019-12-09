@@ -8,17 +8,16 @@
                 <div attrs="{'invisible': [('use_byweekday', '=', False)]}" name="weekdays">
                     <group>
                         <field name="use_planned_hour"/>
-                    </group>    
-               </div>           
+                    </group>
+               </div>
                <div attrs="{'invisible': [('use_planned_hour', '=', False)]}" name="hours">
                     <group>
                         <field name="interval_frequency"/>
                         <field name="week_day"/>
                         <field name="planned_hour" widget="float_time"/>
                     </group>
-               </div>           
-           </xpath>   
+               </div>
+           </xpath>
         </field>
     </record>
-
    </odoo>
