@@ -36,7 +36,7 @@ addon | version | summary
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 12.0.1.1.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
-[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.1.0 | Manage recurring Field Service orders
+[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.1.1 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
 [fieldservice_sale](fieldservice_sale/) | 12.0.1.2.0 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
