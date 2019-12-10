@@ -6,10 +6,10 @@ from odoo import fields
 from odoo.tests.common import TransactionCase, Form
 
 
-class FSMOrder(TransactionCase):
+class TestFSMOrder(TransactionCase):
 
     def setUp(self):
-        super(FSMOrder, self).setUp()
+        super(TestFSMOrder, self).setUp()
         self.Order = self.env['fsm.order']
         self.test_location = self.env.ref('fieldservice.test_location')
 
