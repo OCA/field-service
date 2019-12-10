@@ -66,6 +66,7 @@ class SaleOrderLine(models.Model):
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
+        categories = self.product_id.fsm_order_template_id.category_ids
         return {
             'customer_id': self.order_id.partner_id.id,
             'location_id': self.order_id.fsm_location_id.id,
@@ -73,6 +74,9 @@ class SaleOrderLine(models.Model):
             'scheduled_date_start': self.order_id.expected_date,
             'description': self.name,
             'template_id': self.product_id.fsm_order_template_id.id,
+            'todo': self.product_id.fsm_order_template_id.instructions,
+            'category_ids': [(6, 0, categories.ids)],
+            'scheduled_duration': self.product_id.fsm_order_template_id.hours,
             'sale_id': self.order_id.id,
             'sale_line_id': self.id,
             'company_id': self.company_id.id,
