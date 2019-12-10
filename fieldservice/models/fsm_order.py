@@ -315,6 +315,7 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
+            self.type = self.template_id.type_id
 
 
 class FSMTeam(models.Model):
