@@ -50,6 +50,7 @@ class SaleOrder(models.Model):
         return {
             "customer_id": self.partner_id.id,
             "location_id": self.fsm_location_id.id,
+            "location_directions": self.fsm_location_id.direction,
             "request_early": self.expected_date,
             "scheduled_date_start": self.expected_date,
             "todo": note,
