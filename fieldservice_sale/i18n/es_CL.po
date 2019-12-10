@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_sale
+# 	* fieldservice_sale
 #
 msgid ""
 msgstr ""
@@ -23,12 +23,15 @@ msgstr "<span class=\"o_stat_text\">Pedido de Venta</span>"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__qty_delivered_method
-msgid "According to product configuration, the delivered quantity can be automatically computed by mechanism :\n"
+msgid ""
+"According to product configuration, the delivered quantity can be "
+"automatically computed by mechanism :\n"
 "  - Manual: the quantity is set manually on the line\n"
-"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
-"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted "
+"expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
+"this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
-""
 msgstr ""
 "Seg??n la configuraci??n del producto, la cantidad entregada se puede calcular "
 "autom??ticamente por mecanismo:\n"
@@ -62,16 +65,19 @@ msgstr "Crear un pedido FSM por l??nea de pedido de venta"
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__field_service_tracking
-msgid "Determines what happens upon sale order confirmation:\n"
+msgid ""
+"Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order line\n"
+"                - Per Sale Order: One FSM Order will be created for the "
+"sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order "
+"line\n"
 "                will be created."
 msgstr ""
 "Determina qu?? sucede con la confirmaci??n del pedido de venta:\n"
 "                - Ninguno: nada adicional, comportamiento predeterminado.\n"
-"                - Por orden de venta: se crear?? una orden FSM para la venta."
-"\n"
+"                - Por orden de venta: se crear?? una orden FSM para la "
+"venta.\n"
 "                - Por l??nea de pedido de venta: un pedido FSM por cada l??nea "
 "de pedido de venta\n"
 "                se crear??."
@@ -98,17 +104,19 @@ msgid "Field Service Order"
 msgstr "Orden de Servicio de Campo"
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:99
+#: code:addons/fieldservice_sale/models/sale_order_line.py:88
 #, python-format
-msgid "Field Service Order Created (%s): <a href=\n"
+msgid ""
+"Field Service Order Created (%s): <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order.py:69
+#: code:addons/fieldservice_sale/models/sale_order.py:85
 #, python-format
-msgid "Field Service Order Created: <a href=\n"
+msgid ""
+"Field Service Order Created: <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -143,11 +151,6 @@ msgid "Field Service orders associated to this sale"
 msgstr "Pedidos de servicio de campo asociados a esta venta"
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__is_field_service
-msgid "Is a Field Service"
-msgstr "Es un Servicio de Campo"
-
-#. module: fieldservice_sale
 #: selection:sale.order.line,qty_delivered_method:0
 msgid "Manual"
 msgstr ""
@@ -160,9 +163,13 @@ msgstr "Establecer cantidades manualmente en orden"
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__service_type
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__service_type
-msgid "Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
-"Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
-"Create a task and track hours: Create a task on the sales order validation and track the work hours."
+msgid ""
+"Manually set quantities on order: Invoice based on the manually entered "
+"quantity, without creating an analytic account.\n"
+"Timesheets on contract: Invoice based on the tracked hours on the related "
+"timesheet.\n"
+"Create a task and track hours: Create a task on the sales order validation "
+"and track the work hours."
 msgstr ""
 "Establecer cantidades manualmente en el pedido: Factura basada en la "
 "cantidad ingresada manualmente, sin crear una cuenta anal??tica.\n"
@@ -218,14 +225,6 @@ msgid "Sales Order Line"
 msgstr "L??nea de Pedido de Ventas"
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__is_field_service
-msgid "Sales Order item should generate an Order and/or\n"
-"                Order Recurrence, depending on the product settings."
-msgstr ""
-"El art??culo de pedido de ventas debe generar un pedido y / o\n"
-"                Repetici??n de pedidos, seg??n la configuraci??n del producto."
-
-#. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/fsm_order.py:22
 #, python-format
 msgid "Sales Orders"
@@ -253,9 +252,10 @@ msgid "Stock Moves"
 msgstr "Movimientos de Inventario"
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order.py:75
+#: code:addons/fieldservice_sale/models/sale_order.py:91
 #, python-format
-msgid "This order has been created from: <a href=\n"
+msgid ""
+"This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -264,9 +264,10 @@ msgstr ""
 "                "
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:105
+#: code:addons/fieldservice_sale/models/sale_order_line.py:94
 #, python-format
-msgid "This order has been created from: <a href=\n"
+msgid ""
+"This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
 "                "
 msgstr ""
@@ -289,3 +290,14 @@ msgstr "Hojas de tiempo en el proyecto (una tarifa por SO / Proyecto)"
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_template__service_type
 msgid "Track Service"
 msgstr "Servicio de Seguimiento"
+
+#~ msgid "Is a Field Service"
+#~ msgstr "Es un Servicio de Campo"
+
+#~ msgid ""
+#~ "Sales Order item should generate an Order and/or\n"
+#~ "                Order Recurrence, depending on the product settings."
+#~ msgstr ""
+#~ "El art??culo de pedido de ventas debe generar un pedido y / o\n"
+#~ "                Repetici??n de pedidos, seg??n la configuraci??n del "
+#~ "producto."
