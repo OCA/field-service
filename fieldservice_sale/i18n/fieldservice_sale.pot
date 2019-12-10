@@ -40,22 +40,32 @@ msgstr ""
 
 #. module: fieldservice_sale
 #: selection:product.template,field_service_tracking:0
-msgid "Create a single order"
+msgid "Create one FSM order per sale order"
 msgstr ""
 
 #. module: fieldservice_sale
 #: selection:product.template,field_service_tracking:0
-msgid "Don't create order"
+msgid "Create one FSM order per sale order line"
+msgstr ""
+
+#. module: fieldservice_sale
+#: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
+#: model:ir.model.fields,help:fieldservice_sale.field_product_template__field_service_tracking
+msgid "Determines what happens upon sale order confirmation:\n"
+"                - None: nothing additional, default behavior.\n"
+"                - Per Sale Order: One FSM Order will be created for the sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order line\n"
+"                will be created."
+msgstr ""
+
+#. module: fieldservice_sale
+#: selection:product.template,field_service_tracking:0
+msgid "Don't create FSM order"
 msgstr ""
 
 #. module: fieldservice_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_order_form_inherit_sale_fieldservice
 msgid "FSM Orders"
-msgstr ""
-
-#. module: fieldservice_sale
-#: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_order_form_inherit_sale_fieldservice
-msgid "Field Service Information"
 msgstr ""
 
 #. module: fieldservice_sale
@@ -70,9 +80,17 @@ msgid "Field Service Order"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:93
+#: code:addons/fieldservice_sale/models/sale_order_line.py:99
 #, python-format
 msgid "Field Service Order Created (%s): <a href=\n"
+"                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
+"                "
+msgstr ""
+
+#. module: fieldservice_sale
+#: code:addons/fieldservice_sale/models/sale_order.py:69
+#, python-format
+msgid "Field Service Order Created: <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -134,13 +152,6 @@ msgid "Method to update delivered qty"
 msgstr ""
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
-#: model:ir.model.fields,help:fieldservice_sale.field_product_template__field_service_tracking
-msgid "On Sales order confirmation, this product can generate a field\n"
-"                service order or field service recurring order."
-msgstr ""
-
-#. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__fsm_order_id
 msgid "Order"
 msgstr ""
@@ -151,13 +162,13 @@ msgid "Product Template"
 msgstr ""
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__date_fsm_request
-msgid "Requested Service Date"
+#: model:ir.model.fields,help:fieldservice_sale.field_sale_order__fsm_location_id
+msgid "SO Lines generating a FSM order will be for this location"
 msgstr ""
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,help:fieldservice_sale.field_sale_order__fsm_location_id
-msgid "SO Lines generating a FSM order will be for this location"
+#: model:ir.model.fields,field_description:fieldservice_sale.field_fsm_order__sale_id
+msgid "Sale"
 msgstr ""
 
 #. module: fieldservice_sale
@@ -187,7 +198,7 @@ msgid "Sales Order item should generate an Order and/or\n"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/fsm_order.py:21
+#: code:addons/fieldservice_sale/models/fsm_order.py:22
 #, python-format
 msgid "Sales Orders"
 msgstr ""
@@ -214,7 +225,15 @@ msgid "Stock Moves"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order_line.py:99
+#: code:addons/fieldservice_sale/models/sale_order.py:75
+#, python-format
+msgid "This order has been created from: <a href=\n"
+"                   # data-oe-model=sale.order data-oe-id=%d>%s</a>\n"
+"                "
+msgstr ""
+
+#. module: fieldservice_sale
+#: code:addons/fieldservice_sale/models/sale_order_line.py:105
 #, python-format
 msgid "This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
