@@ -10,8 +10,11 @@ class SaleOrder(models.Model):
     @api.multi
     def _link_pickings_to_fsm(self):
         for order in self:
+            # TODO: We may want to split the picking to have one picking
+            #  per FSM order
             fsm_order = self.env['fsm.order'].search([
-                ('sale_id', '=', order.id)
+                ('sale_id', '=', order.id),
+                ('sale_line_id', '=', False),
             ])
             pickings = order.picking_ids
             pickings.write({'fsm_order_id': fsm_order.id})
