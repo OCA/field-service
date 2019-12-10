@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
         super(SaleOrderLine, self)._compute_qty_delivered_method()
         for line in self:
             if not line.is_expense and line.product_id.type == 'service' \
-               and line.product_id.field_service_tracking == 'order':
+               and line.product_id.field_service_tracking == 'sale':
                 line.qty_delivered_method = 'field_service'
 
     @api.multi
@@ -66,13 +66,19 @@ class SaleOrderLine(models.Model):
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
+        categories = self.product_id.fsm_order_template_id.category_ids
         return {
             'customer_id': self.order_id.partner_id.id,
             'location_id': self.order_id.fsm_location_id.id,
-            # 'request_early': ,
-            'scheduled_date_start': self.order_id.date_fsm_request,
+            'location_directions': self.fsm_location_id.direction,
+            'request_early': self.order_id.expected_date,
+            'scheduled_date_start': self.order_id.expected_date,
             'description': self.name,
             'template_id': self.product_id.fsm_order_template_id.id,
+            'todo': self.product_id.fsm_order_template_id.instructions,
+            'category_ids': [(6, 0, categories.ids)],
+            'scheduled_duration': self.product_id.fsm_order_template_id.hours,
+            'sale_id': self.order_id.id,
             'sale_line_id': self.id,
             'company_id': self.company_id.id,
         }
@@ -133,7 +139,20 @@ class SaleOrderLine(models.Model):
         """ For service lines, create the field service order. If it already
             exists, it simply links the existing one to the line.
         """
-        for so_line in self.filtered(lambda sol: sol.is_field_service):
-            # create order
-            if so_line.product_id.field_service_tracking == 'order':
-                so_line._field_find_fsm_order()
+        if any(sol.product_id.field_service_tracking == 'sale' for sol in self):
+            sales = self.env['sale.order'].search([
+                ('order_line', 'in', self.ids)])
+            sales._field_find_fsm_order()
+
+        for so_line in self.filtered(
+            lambda sol: sol.product_id.field_service_tracking == 'line'
+        ):
+            so_line._field_find_fsm_order()
+
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        res = super()._prepare_invoice_line(qty)
+        res.update({
+            'fsm_order_id': self.fsm_order_id,
+        })
+        return res
