@@ -94,9 +94,9 @@ class SaleOrderLine(models.Model):
         """ For service lines, create the field service order. If it already
             exists, it simply links the existing one to the line.
         """
-        for so_line in self.filtered(lambda sol: sol.is_field_service):
-            # create order
-            if so_line.product_id.field_service_tracking == 'recurring':
-                so_line._field_find_fsm_recurring()
-            else:
-                super()._field_service_generation()
+        result = super()._field_service_generation()
+        for so_line in self.filtered(
+            lambda sol: sol.product_id.field_service_tracking == 'recurring'
+        ):
+            so_line._field_find_fsm_recurring()
+        return result
