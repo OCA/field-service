@@ -26,7 +26,7 @@ Field Service - Sales
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 The module integrates the Field Service application with the Sales one and
-allows you to sell field service products.
+allows you to sell products that generate field service orders.
 
 **Table of contents**
 
@@ -44,12 +44,27 @@ https://github.com/OCA/geospatial/tree/12.0/base_geoengine
 Configuration
 =============
 
-To setup a product for quoting and selling field service orders:
+Products must be configured properly in order to create field service
+orders upon sale order confirmation.
+
+The field service tracking of a product defines how it generates a field service
+order if the product is sold via sale order.
+
+To configure a product that generates a unique field service order on each
+sale order line:
 
 * Go to Sales > Catalog > Products
 * Create or select a product
-* Set the Product Type to 'Service' under General Information tab
-* Under Invoicing tab, set the Field Service Tracking option
+* Set the Field Service Tracking to 'One FSM Order per Sale Order Line'
+* Select the FSM Order Template that will be used for creating FSM Orders when
+  a Sale Order is confirmed with this product
+
+To configure a product that generates a unique field service order for
+an individual sale order:
+
+* Go to Sales > Catalog > Products
+* Create or select a product
+* Set the Field Service Tracking to 'One FSM Order per Sale Order'
 * Select the FSM Order Template that will be used for creating FSM Orders when
   a Sale Order is confirmed with this product
 
