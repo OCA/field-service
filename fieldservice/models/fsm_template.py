@@ -8,11 +8,12 @@ class FSMTemplate(models.Model):
     _name = 'fsm.template'
     _description = 'Field Service Order Template'
 
-    name = fields.Char(string="Name", required=True)
-    instructions = fields.Text(string="Instructions")
-    category_ids = fields.Many2many('fsm.category', string="Categories")
-    hours = fields.Float(string="Hours")
+    name = fields.Char(string='Name', required=True)
+    instructions = fields.Text(string='Instructions')
+    category_ids = fields.Many2many('fsm.category', string='Categories')
+    hours = fields.Float(string='Hours')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, index=True,
         default=lambda self: self.env.user.company_id,
-        help="Company related to this template")
+        help='Company related to this template')
+    type_id = fields.Many2one('fsm.order.type', string='Type')
