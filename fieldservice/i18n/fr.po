@@ -2001,9 +2001,9 @@ msgid "Need Scheduled"
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:56
-#: code:addons/fieldservice/models/fsm_order.py:175
-#: code:addons/fieldservice/models/fsm_order.py:177
+#: code:addons/fieldservice/models/fsm_order.py:71
+#: code:addons/fieldservice/models/fsm_order.py:191
+#: code:addons/fieldservice/models/fsm_order.py:193
 #: code:addons/fieldservice/models/fsm_route.py:13
 #: code:addons/fieldservice/models/fsm_route.py:33
 #: code:addons/fieldservice/models/fsm_route.py:35
@@ -3142,6 +3142,7 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__stage_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__type_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_territory__type
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
@@ -3343,9 +3344,22 @@ msgid "You cannot create recursive location."
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:221
+#: code:addons/fieldservice/models/fsm_order.py:237
 #, python-format
 msgid "You cannot delete this order."
+msgstr ""
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:23
+#, python-format
+msgid ""
+"You must create an                                     FSM Order Stage first."
+msgstr ""
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:33
+#, python-format
+msgid "You must create an                                     FSM Team first."
 msgstr ""
 
 #. module: fieldservice

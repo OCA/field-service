@@ -20,8 +20,8 @@ class FSMOrder(models.Model):
         if stage_ids:
             return stage_ids[0]
         else:
-            raise ValidationError(_(
-                    "You must create an FSM Order Stage first."))
+            raise ValidationError(_("You must create an \
+                                    FSM Order Stage first."))
 
     def _default_team_id(self):
         team_ids = self.env['fsm.team'].\
@@ -30,8 +30,8 @@ class FSMOrder(models.Model):
         if team_ids:
             return team_ids[0]
         else:
-            raise ValidationError(_(
-                    "You must create an FSM Team first."))
+            raise ValidationError(_("You must create an \
+                                    FSM Team first."))
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
