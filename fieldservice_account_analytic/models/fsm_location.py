@@ -8,7 +8,8 @@ class FSMLocation(models.Model):
     _inherit = 'fsm.location'
 
     analytic_account_id = fields.Many2one('account.analytic.account',
-                                          string='Analytic Account')
+                                          string='Analytic Account',
+                                          company_dependent=True)
 
     customer_id = fields.Many2one(
         'res.partner', string='Billed Customer', required=True,
