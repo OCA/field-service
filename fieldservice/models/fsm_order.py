@@ -13,10 +13,25 @@ class FSMOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stage_id(self):
-        return self.env.ref('fieldservice.fsm_stage_new')
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('company_id', '=', self.env.user.company_id.id)],
+                   order='sequence asc')
+        if stage_ids:
+            return stage_ids[0]
+        else:
+            raise ValidationError(_(
+                    "You must create an FSM Order Stage first."))
 
     def _default_team_id(self):
-        return self.env.ref('fieldservice.fsm_team_default')
+        team_ids = self.env['fsm.team'].\
+            search([('company_id', '=', self.env.user.company_id.id)],
+                   order='sequence asc')
+        if team_ids:
+            return team_ids[0]
+        else:
+            raise ValidationError(_(
+                    "You must create an FSM Team first."))
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
@@ -176,8 +191,9 @@ class FSMOrder(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([('stage_type',
-                                                   '=', 'order')])
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('company_id', '=', self.env.user.company_id.id)])
         return stage_ids
 
     @api.model
