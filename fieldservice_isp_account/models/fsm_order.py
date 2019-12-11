@@ -84,7 +84,8 @@ class FSMOrder(models.Model):
             'type': 'in_invoice',
             'journal_id': jrnl.id or False,
             'fiscal_position_id': fpos.id or False,
-            'fsm_order_id': self.id
+            'fsm_order_id': self.id,
+            'company_id': self.env.user.company_id.id
         }
         bill = self.env['account.invoice'].sudo().create(vals)
         for line in self.contractor_cost_ids:
@@ -130,7 +131,8 @@ class FSMOrder(models.Model):
                 'type': 'out_invoice',
                 'journal_id': jrnl.id or False,
                 'fiscal_position_id': fpos.id or False,
-                'fsm_order_id': self.id
+                'fsm_order_id': self.id,
+                'company_id': self.env.user.company_id.id
             }
             invoice = self.env['account.invoice'].sudo().create(vals)
             price_list = invoice.partner_id.property_product_pricelist
