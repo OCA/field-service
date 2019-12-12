@@ -7,6 +7,29 @@
             <field name="location_id" position="before">
                 <field name="invoice_id" />
             </field>
+            <notebook position="inside">
+                <page name="invoices" string="Invoices">
+                    <field name="invoice_ids" readonly="1">
+                        <tree string="Invoice">
+                            <field name="partner_id" groups="base.group_user" string="Customer"/>
+                            <field name="date_invoice"/>
+                            <field name="number"/>
+                            <field name="reference" invisible="1"/>
+                            <field name="name" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            <field name="user_id"/>
+                            <field name="date_due"/>
+                            <field name="origin"/>
+                            <field name="amount_untaxed_invoice_signed" string="Tax Excluded" sum="Total"/>
+                            <field name="amount_tax_signed" string="Tax" sum="Total"/>
+                            <field name="amount_total_signed" string="Total" sum="Total"/>
+                            <field name="residual_signed" string="Amount Due" sum="Amount Due"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
 </odoo>
