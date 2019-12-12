@@ -16,6 +16,7 @@ class AccountInvoice(models.Model):
     fsm_order_count = fields.Integer(
         string='FSM Order Count',
         compute='_compute_fsm_order_ids', readonly=True)
+    fsm_order_id = fields.Many2one('fsm.order', 'FSM Order')
 
     @api.depends('invoice_line_ids.fsm_order_id')
     def _compute_fsm_order_ids(self):
