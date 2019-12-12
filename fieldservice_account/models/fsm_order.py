@@ -17,3 +17,7 @@ class FSMOrder(models.Model):
         related="invoice_line_id.invoice_id",
         readonly=True,
     )
+    invoice_ids = fields.One2many('account.invoice',
+                                  'fsm_order_id',
+                                  'Invoices'
+                                  )
