@@ -18,9 +18,8 @@ class StockMove(models.Model):
             'current_stock_location_id': move_line.location_dest_id.id}
 
     def _action_done(self):
-        res = False
+        res = super()._action_done()
         for rec in self:
-            res = super(StockMove, rec)._action_done()
             if rec.picking_code == 'outgoing' and rec.state == 'done':
                 if rec.product_tmpl_id.create_fsm_equipment:
                     for line in rec.move_line_ids:
