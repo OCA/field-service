@@ -3,10 +3,10 @@
     <record id="fsm_order_form_isp_account" model="ir.ui.view">
         <field name="name">fsm.order.form.isp.account</field>
         <field name="model">fsm.order</field>
-        <field name="inherit_id" 
+        <field name="inherit_id"
                ref="fieldservice_account_analytic.fsm_order_form_analytic"/>
         <field name="arch" type="xml">
-            <page name="accounting" position="inside">
+            <group name="bill_to" position="before">
                 <header>
                     <button id="account_confirm"
                             name="account_confirm" string="Confirm"
@@ -28,7 +28,7 @@
                             attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"/>
                     <field name="account_stage" widget="statusbar"/>
                 </header>
-            </page>
+            </group>
             <group name="bill_to" position="after">
                 <group string="Contractor Costs">
                     <field name="contractor_cost_ids" nolabel="1">
