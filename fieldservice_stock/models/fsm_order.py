@@ -44,6 +44,8 @@ class FSMOrder(models.Model):
     request_stage = fields.Selection(REQUEST_STATES, string='Request State',
                                      default='draft', readonly=True,
                                      store=True)
+    move_ids = fields.One2many('stock.move', 'fsm_order_id',
+                               string='Operations')
 
     @api.multi
     def action_request_submit(self):
