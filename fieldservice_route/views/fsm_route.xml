@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="fsm_route_tree" model="ir.ui.view">
+        <field name="name">fsm.route.tree</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <tree string="Routes">
+                <field name="name"/>
+                <field name="territory_id"/>
+                <field name="fsm_person_id"/>
+                <field name="day_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_route_form" model="ir.ui.view">
+        <field name="name">fsm.route.form</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <form string="Route">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group col="4">
+                        <field name="fsm_person_id"/>
+                        <field name="day_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route" model="ir.actions.act_window">
+        <field name="name">Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Routes here.
+            </p>
+        </field>
+    </record>
+
+</odoo>
