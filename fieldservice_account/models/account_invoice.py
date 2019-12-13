@@ -20,12 +20,9 @@ class AccountInvoice(models.Model):
     @api.depends('invoice_line_ids.fsm_order_id')
     def _compute_fsm_order_ids(self):
         for invoice in self:
-            if invoice.type == 'out_invoice':
-                orders = invoice.invoice_line_ids.mapped('fsm_order_id')
-                invoice.fsm_order_ids = orders
-                invoice.fsm_order_count = len(orders)
-            else:
-                invoice.fsm_order_count = 0
+            orders = invoice.invoice_line_ids.mapped('fsm_order_id')
+            invoice.fsm_order_ids = orders
+            invoice.fsm_order_count = len(orders)
 
     @api.multi
     def action_view_fsm_orders(self):
