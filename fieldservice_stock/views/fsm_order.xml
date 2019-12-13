@@ -70,6 +70,7 @@
                             <field name="state"/>
                         </tree>
                     </field>
+                    <field name="move_ids" readonly="1" attrs="{'invisible': [('move_ids', '=', False)]}"/>
                 </page>
             </xpath>
         </field>
