@@ -23,6 +23,11 @@
         "views/fsm_recurring.xml",
         "data/recurring_cron.xml",
     ],
+    "demo": [
+        "demo/frequency_demo.xml",
+        "demo/frequency_set_demo.xml",
+        "demo/recur_template_demo.xml",
+    ],
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["wolfhall", "max3903", "brian10048"],
