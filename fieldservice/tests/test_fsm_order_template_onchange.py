@@ -1,12 +1,10 @@
-
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import fields
-from odoo.addons.fieldservice.tests.test_fsm_order import TestFSMOrder
+from . import test_fsm_order
 
 
-class TestTemplateOnchange(TestFSMOrder):
+class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
 
     def setUp(self):
         super(TestTemplateOnchange, self).setUp()
@@ -31,7 +29,7 @@ class TestTemplateOnchange(TestFSMOrder):
         self.fsm_template_1 = self.env['fsm.template'].create({
             'name': 'Test FSM Template #1',
             'instructions': 'These are the instructions for Template #1',
-            'category_ids': (6, 0 , categories),
+            'category_ids': (6, 0, categories),
             'hours': 2.25,
             'type_id': self.fsm_type_a.id,
         })
