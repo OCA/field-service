@@ -15,7 +15,7 @@ class FSMOrder(models.Model):
     def _default_stage_id(self):
         stage_ids = self.env['fsm.stage'].\
             search([('stage_type', '=', 'order'),
-                    ('company_id', '=', self.env.user.company_id.id)],
+                    ('company_id', '=', self.env.user.company_id.id or False)],
                    order='sequence asc')
         if stage_ids:
             return stage_ids[0]
@@ -25,8 +25,8 @@ class FSMOrder(models.Model):
 
     def _default_team_id(self):
         team_ids = self.env['fsm.team'].\
-            search([('company_id', '=', self.env.user.company_id.id)],
-                   order='sequence asc')
+            search([('company_id', '=', self.env.user.company_id.id or False)],
+                    order='sequence asc')
         if team_ids:
             return team_ids[0]
         else:
