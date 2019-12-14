@@ -15,7 +15,8 @@ class FSMOrder(models.Model):
     def _default_stage_id(self):
         stage_ids = self.env['fsm.stage'].\
             search([('stage_type', '=', 'order'),
-                    ('company_id', '=', self.env.user.company_id.id or False)],
+                    ('company_id', '=', self.env.user.company_id.id or False),
+                    ('is_default', '=', True)],
                    order='sequence asc')
         if stage_ids:
             return stage_ids[0]
