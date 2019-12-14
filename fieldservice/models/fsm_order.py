@@ -27,7 +27,7 @@ class FSMOrder(models.Model):
     def _default_team_id(self):
         team_ids = self.env['fsm.team'].\
             search([('company_id', '=', self.env.user.company_id.id or False)],
-                    order='sequence asc')
+                   order='sequence asc')
         if team_ids:
             return team_ids[0]
         else:
