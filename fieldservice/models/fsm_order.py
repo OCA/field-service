@@ -15,24 +15,28 @@ class FSMOrder(models.Model):
     def _default_stage_id(self):
         stage_ids = self.env['fsm.stage'].\
             search([('stage_type', '=', 'order'),
-                    ('company_id', '=', self.env.user.company_id.id or False),
-                    ('is_default', '=', True)],
+                    ('is_default', '=', True),
+                    '|',
+                    ('company_id', '=', self.env.user.company_id.id),
+                    ('company_id', '=', False)],
                    order='sequence asc')
         if stage_ids:
             return stage_ids[0]
         else:
-            raise ValidationError(_("You must create an \
-                                    FSM Order Stage first."))
+            raise ValidationError(_(
+                "You must create an FSM order stage first."))
 
     def _default_team_id(self):
         team_ids = self.env['fsm.team'].\
-            search([('company_id', '=', self.env.user.company_id.id or False)],
+            search(['|',
+                    ('company_id', '=', self.env.user.company_id.id),
+                    ('company_id', '=', False)],
                    order='sequence asc')
         if team_ids:
             return team_ids[0]
         else:
-            raise ValidationError(_("You must create an \
-                                    FSM Team first."))
+            raise ValidationError(_(
+                "You must create an FSM team first."))
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
