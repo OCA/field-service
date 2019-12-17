@@ -243,22 +243,81 @@ class FSMOrder(models.Model):
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
-        if 'scheduled_date_end' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_end')) - \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_start'] = str(date_to_with_delta)
-        if 'scheduled_duration' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start))\
-                + timedelta(hours=vals.get('scheduled_duration'))
-            vals['scheduled_date_end'] = str(date_to_with_delta)
-        if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
-            if vals['scheduled_date_start']:
+        if (vals.get('scheduled_duration')
+                or vals.get('scheduled_date_start')
+                or vals.get('scheduled_date_end')):
+            date_end = ''
+            date_start = ''
+            if vals.get('scheduled_duration', False):
                 date_to_with_delta = fields.Datetime.from_string(
-                    vals.get('scheduled_date_start')) + \
-                    timedelta(hours=self.scheduled_duration)
-                vals['scheduled_date_end'] = str(date_to_with_delta)
+                    vals.get('scheduled_date_start',
+                             self.scheduled_date_start)) + timedelta(
+                    hours=vals.get('scheduled_duration', False))
+                date_end = str(date_to_with_delta)
+
+            if (vals.get('scheduled_date_start', False)
+                    and self.scheduled_date_start != vals.get(
+                        'scheduled_date_start', False)
+                    and vals.get('scheduled_date_end', False)
+                    and self.scheduled_date_end != vals.get(
+                        'scheduled_date_end', False)):
+                new_date_start = fields.Datetime.from_string(
+                    vals.get('scheduled_date_start', False))
+                new_date_end = fields.Datetime.from_string(
+                    vals.get('scheduled_date_end', False))
+                hours = new_date_end.replace(second=0) - new_date_start.replace(second=0)
+                hrs = hours.total_seconds() / 3600
+                self.scheduled_duration = float(hrs)
+
+            elif (vals.get('scheduled_date_start', False)
+                  and self.scheduled_date_start != vals.get(
+                        'scheduled_date_start', False)):
+                old_date_start = fields.Datetime.from_string(self.scheduled_date_start)
+                new_date_start = fields.Datetime.from_string(
+                    vals.get('scheduled_date_start', False))
+                date_end = fields.Datetime.from_string(self.scheduled_date_end)
+                if old_date_start and new_date_start:
+                    if old_date_start > new_date_start:
+                        hours = old_date_start.replace(second=0) - new_date_start.replace(second=0)
+                        hrs = hours.total_seconds() / 3600
+                        self.scheduled_duration += float(hrs)
+                    elif old_date_start < new_date_start:
+                        hours = new_date_start.replace(second=0) - old_date_start.replace(second=0)
+                        hrs = hours.total_seconds() / 3600
+                        if date_end and not new_date_start >= date_end:
+                            self.scheduled_duration -= float(hrs)
+                hrs = vals.get('scheduled_duration', False) or self.scheduled_duration or 0
+                date_to_with_delta = fields.Datetime.from_string(
+                    vals.get('scheduled_date_start', False)) + timedelta(hours=hrs)
+                date_end = str(date_to_with_delta)
+
+            elif (vals.get('scheduled_date_end', False)
+                  and self.scheduled_date_end != vals.get(
+                        'scheduled_date_end', False)):
+
+                old_date_end = fields.Datetime.from_string(self.scheduled_date_end)
+                new_date_end = fields.Datetime.from_string(
+                    vals.get('scheduled_date_end', False))
+                date_start = fields.Datetime.from_string(self.scheduled_date_start)
+                if old_date_end and new_date_end:
+                    if old_date_end > new_date_end:
+                        hours = old_date_end.replace(second=0) - new_date_end.replace(second=0)
+                        hrs = hours.total_seconds() / 3600
+                        if date_start and not new_date_end <= date_start:
+                            self.scheduled_duration -= hrs
+                    else:
+                        hours = new_date_end.replace(second=0) - old_date_end.replace(second=0)
+                        hrs = hours.total_seconds() / 3600
+                        self.scheduled_duration += hrs
+                hrs = vals.get('scheduled_duration', False) or self.scheduled_duration or 0
+                date_to_with_delta = fields.Datetime.from_string(
+                    vals.get('scheduled_date_end', False)) - timedelta(hours=hrs)
+                date_start = str(date_to_with_delta)
+
+            if date_end:
+                vals['scheduled_date_end'] = date_end
+            if date_start:
+                vals['scheduled_date_start'] = date_start
 
     def action_complete(self):
         return self.write({'stage_id': self.env.ref(
