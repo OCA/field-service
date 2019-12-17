@@ -3,5 +3,4 @@
 
 from . import (
     fsm_vehicle,
-    fsm_route,
 )
