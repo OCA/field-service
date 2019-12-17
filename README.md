@@ -27,6 +27,7 @@ addon | version | summary
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | Create Field Service orders from the CRM
 [fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Select delivery methods and carriers on Field Service orders
 [fieldservice_distribution](fieldservice_distribution/) | 12.0.1.0.0 | Manage your distribution structure
+[fieldservice_fleet](fieldservice_fleet/) | 12.0.1.0.0 | Link Field Service vehicles with Odoo Fleet
 [fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Display Field Service locations on a map with Open Street Map
 [fieldservice_google_map](fieldservice_google_map/) | 12.0.1.0.0 | This module displays map views on the order and location using Google Map View module.
 [fieldservice_isp_account](fieldservice_isp_account/) | 12.0.2.1.0 | Invoice Field Service orders based on employee time or contractor costs
