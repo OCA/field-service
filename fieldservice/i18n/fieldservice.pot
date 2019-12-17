@@ -147,11 +147,6 @@ msgid "Actual duration in hours"
 msgstr ""
 
 #. module: fieldservice
-#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_route
-msgid "Add Day Routes here."
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_person
 msgid "Add Field Service Workers here."
 msgstr ""
@@ -248,7 +243,6 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__person_id
 msgid "Assigned To"
 msgstr ""
 
@@ -488,7 +482,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__company_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__company_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__company_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__company_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__company_id
@@ -533,11 +526,6 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__company_id
 msgid "Company related to this order"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_route__company_id
-msgid "Company related to this route"
 msgstr ""
 
 #. module: fieldservice
@@ -726,7 +714,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__create_uid
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__create_uid
@@ -747,7 +734,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__create_date
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__create_date
@@ -805,29 +791,7 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__date
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__date
 msgid "Date"
-msgstr ""
-
-#. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_form
-msgid "Day Route"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.actions.act_window,name:fieldservice.action_fsm_report_route
-#: model:ir.actions.act_window,name:fieldservice.action_fsm_route
-#: model:ir.ui.menu,name:fieldservice.menu_fsm_report_route
-#: model:ir.ui.menu,name:fieldservice.menu_fsm_route
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_graph_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_pivot_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_tree
-msgid "Day Routes"
-msgstr ""
-
-#. module: fieldservice
-#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_route
-msgid "Day Routes Report"
 msgstr ""
 
 #. module: fieldservice
@@ -889,7 +853,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__display_name
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__display_name
@@ -1114,11 +1077,6 @@ msgid "Field Service Order Type"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model,name:fieldservice.model_fsm_route
-msgid "Field Service Route"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_stage
 msgid "Field Service Stage"
 msgstr ""
@@ -1297,7 +1255,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__id
@@ -1483,7 +1440,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region____last_update
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team____last_update
@@ -1504,7 +1460,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__write_uid
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__write_uid
@@ -1525,7 +1480,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__write_date
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__write_date
@@ -1566,6 +1520,21 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_maintenance
 msgid "Link FSM orders to maintenance requests"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
+msgid "Link FSM vehicles to Fleet vehicles"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link Field Service vehicles with Fleet vehicles"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link to Fleet Vehicles"
 msgstr ""
 
 #. module: fieldservice
@@ -1857,11 +1826,6 @@ msgid "Manager"
 msgstr ""
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_form
-msgid "Map"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Mapping Tools"
 msgstr ""
@@ -1953,7 +1917,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__name
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__name
@@ -1973,12 +1936,9 @@ msgid "Need Scheduled"
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:71
-#: code:addons/fieldservice/models/fsm_order.py:191
+#: code:addons/fieldservice/models/fsm_order.py:74
 #: code:addons/fieldservice/models/fsm_order.py:193
-#: code:addons/fieldservice/models/fsm_route.py:13
-#: code:addons/fieldservice/models/fsm_route.py:33
-#: code:addons/fieldservice/models/fsm_route.py:35
+#: code:addons/fieldservice/models/fsm_order.py:195
 #, python-format
 msgid "New"
 msgstr ""
@@ -2206,7 +2166,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_operation_order
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_order
 #: model:ir.actions.act_window,name:fieldservice.fsm_order_action_from_dashboard
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_route__order_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_ids
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_order
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
@@ -2214,7 +2173,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_timeline_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_tree_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_route_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
@@ -2494,11 +2452,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_user_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__route_id
-msgid "Route"
 msgstr ""
 
 #. module: fieldservice
@@ -3270,32 +3223,27 @@ msgid "You can add a description to help your coworkers understand the meaning a
 msgstr ""
 
 #. module: fieldservice
-#: sql_constraint:fsm.route:0
-msgid "You cannot create 2 routes for the same worker on the same day!"
-msgstr ""
-
-#. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:339
 #, python-format
 msgid "You cannot create recursive location."
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:237
+#: code:addons/fieldservice/models/fsm_order.py:239
 #, python-format
 msgid "You cannot delete this order."
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:23
+#: code:addons/fieldservice/models/fsm_order.py:25
 #, python-format
-msgid "You must create an                                     FSM Order Stage first."
+msgid "You must create an FSM order stage first."
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:33
+#: code:addons/fieldservice/models/fsm_order.py:36
 #, python-format
-msgid "You must create an                                     FSM Team first."
+msgid "You must create an FSM team first."
 msgstr ""
 
 #. module: fieldservice
