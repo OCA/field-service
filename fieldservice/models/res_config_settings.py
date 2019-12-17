@@ -33,8 +33,12 @@ class ResConfigSettings(models.TransientModel):
         string='CRM')
     module_fieldservice_distribution = fields.Boolean(
         string='Manage Distribution')
+    module_fieldservice_fleet = fields.Boolean(
+        string='Link FSM vehicles to Fleet vehicles')
     module_fieldservice_geoengine = fields.Boolean(
         string='Use GeoEngine')
+    module_fieldservice_google_map = fields.Boolean(
+        string="Allow Field Service Google Map")
     module_fieldservice_location_builder = fields.Boolean(
         string='Use FSM Location Builder')
     module_fieldservice_maintenance = fields.Boolean(
@@ -57,8 +61,6 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Recurring Orders')
     module_fieldservice_project = fields.Boolean(
         string='Projects and Tasks')
-    module_fieldservice_google_map = fields.Boolean(
-        string="Allow Field Service Google Map")
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
