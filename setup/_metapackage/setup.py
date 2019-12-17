@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_crm',
         'odoo12-addon-fieldservice_delivery',
         'odoo12-addon-fieldservice_distribution',
+        'odoo12-addon-fieldservice_fleet',
         'odoo12-addon-fieldservice_geoengine',
         'odoo12-addon-fieldservice_google_map',
         'odoo12-addon-fieldservice_isp_account',
