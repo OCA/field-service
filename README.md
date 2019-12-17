@@ -21,7 +21,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [fieldservice](fieldservice/) | 12.0.1.5.1 | Manage Field Service Locations, Workers and Orders
-[fieldservice_account](fieldservice_account/) | 12.0.2.0.2 | Track invoices linked to Field Service orders
+[fieldservice_account](fieldservice_account/) | 12.0.2.0.3 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.2.1.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | Create Field Service orders from the CRM
