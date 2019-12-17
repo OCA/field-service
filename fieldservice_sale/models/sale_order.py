@@ -29,6 +29,22 @@ class SaleOrder(models.Model):
             order.fsm_order_ids = orders
             order.fsm_order_count = len(order.fsm_order_ids)
 
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        """
+        Autofill the Sale Order's FS location with the partner_id,
+        the partner_shipping_id or the partner_id.commercial_partner_id if
+        they are FS locations.
+        """
+        res = super(SaleOrder, self).onchange_partner_id()
+
+        self.fsm_location_id = self.env['fsm.location'].search(
+            ['|', '|', ('partner_id', '=', self.partner_id.id),
+             ('partner_id', '=', self.partner_shipping_id.id),
+             ('partner_id', '=', self.partner_id.commercial_partner_id.id)])
+
+        return res
+
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
         lines = self.order_line.filtered(
