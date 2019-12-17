@@ -21,6 +21,5 @@ from . import (
     res_country,
     fsm_equipment,
     fsm_order,
-    fsm_route,
     fsm_order_type,
 )

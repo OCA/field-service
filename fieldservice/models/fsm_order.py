@@ -117,7 +117,6 @@ class FSMOrder(models.Model):
                                 index=True)
     person_phone = fields.Char(related="person_id.phone",
                                string="Worker Phone")
-    route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
     scheduled_duration = fields.Float(string='Scheduled duration',
                                       help='Scheduled duration of the work in'
