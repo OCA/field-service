@@ -1,6 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from math import ceil
+
+from dateutil.rrule import rrule, WEEKLY
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
@@ -53,7 +54,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 30,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,
@@ -70,23 +71,17 @@ class FSMRecurringCase(TransactionCase):
         days = set([x.weekday() for x in all_dates])
         mon_to_fri = set([0, 1, 2, 3, 4])
         self.assertTrue(days <= mon_to_fri)
+
         wednesdays = [x for x in all_dates if x.weekday() == 2]
-
-        def _week_of_month(dt):
-            first_day = dt.replace(day=1)
-            adjusted_dom = dt.day + first_day.weekday()
-            return int(ceil(adjusted_dom/7.0))
-
-        wednesday_weeks = set([_week_of_month(x) for x in wednesdays])
-        even_weeks = set([2, 4, 6])
-        # Currently returning {3, 4} and {2, 4, 6}
-        # {3, 4} < {2, 4, 6} -> False
-        # {3, 4} > {2, 4, 6} -> False
-        self.assertTrue(len(wednesday_weeks) < len(even_weeks))
+        first_dom = all_dates[0].replace(day=1)
+        odd_wednesdays = list(
+            rrule(WEEKLY, interval=2, dtstart=first_dom, count=3)
+        )
+        self.assertTrue(wednesdays not in odd_wednesdays)
 
     def test_cron_generate_orders_rule2(self):
         """Test recurring order with following rule,
-        - Work Order every 3 weeks, for
+        - Work Order every 3 weeks
         """
         rules = self.Frequency
         # Frequency Rule
@@ -100,7 +95,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 100,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,
@@ -135,7 +130,7 @@ class FSMRecurringCase(TransactionCase):
             'schedule_days': 365,
             'fsm_frequency_ids': [(6, 0, rules.ids)]
         })
-        # Create Recurring Orddr link to this rule set
+        # Create Recurring Order link to this rule set
         recurring = self.Recurring.create({
             'fsm_frequency_set_id': fr_set.id,
             'location_id': self.test_location.id,

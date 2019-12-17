@@ -38,7 +38,8 @@ class FSMOrder(models.Model):
 
     def account_no_invoice(self):
         res = super().account_no_invoice()
-        if self.location_id.inventory_location_id.usage == 'customer':
+        if self.stock_request_ids and \
+                self.location_id.inventory_location_id.usage == 'customer':
             jrnl = self.env['account.journal'].search([
                 ('company_id', '=', self.env.user.company_id.id),
                 ('type', '=', 'sale'),
@@ -67,7 +68,7 @@ class FSMOrder(models.Model):
                     'fsm_order_id': self.id
                 }
                 invoice = self.env['account.invoice'].sudo().create(vals)
-            self._prepare_inv_line_for_stock_requests(invoice)
+            self._create_inv_line_for_stock_requests(invoice)
             # Validate and paid invoice
             invoice.action_invoice_open()
         return res

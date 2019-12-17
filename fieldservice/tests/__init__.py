@@ -7,3 +7,4 @@ from . import test_fsm_location
 from . import test_fsm_person
 from . import test_fsm_team
 from . import test_fsm_order
+from . import test_fsm_order_template_onchange

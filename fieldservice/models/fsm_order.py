@@ -13,10 +13,28 @@ class FSMOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stage_id(self):
-        return self.env.ref('fieldservice.fsm_stage_new')
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('is_default', '=', True),
+                    ('company_id', 'in', (self.env.user.company_id.id,
+                                          False))],
+                   order='sequence asc', limit=1)
+        if stage_ids:
+            return stage_ids[0]
+        else:
+            raise ValidationError(_(
+                "You must create an FSM order stage first."))
 
     def _default_team_id(self):
-        return self.env.ref('fieldservice.fsm_team_default')
+        team_ids = self.env['fsm.team'].\
+            search([('company_id', 'in', (self.env.user.company_id.id,
+                                          False))],
+                   order='sequence asc', limit=1)
+        if team_ids:
+            return team_ids[0]
+        else:
+            raise ValidationError(_(
+                "You must create an FSM team first."))
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
@@ -166,8 +184,9 @@ class FSMOrder(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([('stage_type',
-                                                   '=', 'order')])
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('company_id', '=', self.env.user.company_id.id)])
         return stage_ids
 
     @api.model
@@ -286,7 +305,7 @@ class FSMOrder(models.Model):
                         self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             s = self.location_id.direction
-            if s is not False and s is not '<p><br></p>':
+            if s is not False and s != '<p><br></p>':
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
                 s = s.replace('</p>', '\n')
@@ -317,6 +336,7 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
+            self.type = self.template_id.type_id
 
 
 class FSMTeam(models.Model):

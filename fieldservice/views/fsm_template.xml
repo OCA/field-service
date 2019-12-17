@@ -25,15 +25,17 @@
                     <h1><field name="name"/></h1>
                     <group>
                         <group>
-                            <field name="category_ids"
-                                   widget="many2many_tags"
-                                   options="{'color_field': 'color'}"/>
-                        </group>
-                        <group>
                             <field name="hours"/>
                             <field name="company_id"
                                    options="{'no_create': True}"
                                    groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="type_id"/>
+                            <field name="category_ids"
+                                   widget="many2many_tags"
+                                   options="{'color_field': 'color'}"
+                                   groups="fieldservice.group_fsm_category"/>
                         </group>
                     </group>
                     <group string="Instructions">
