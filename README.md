@@ -20,9 +20,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.1.5.2 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 12.0.2.0.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.2.0.3 | Track invoices linked to Field Service orders
-[fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.2.1.0 | Track analytic accounts on Field Service locations and orders
+[fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.0.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.0.1 | Create Field Service orders from the CRM
 [fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Select delivery methods and carriers on Field Service orders
@@ -48,7 +48,7 @@ addon | version | summary
 [fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.1 | Invoice inventory items delivered with Field Service orders
 [fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
-[fieldservice_vehicle](fieldservice_vehicle/) | 12.0.1.0.0 | Manage Field Service vehicles and assign drivers
+[fieldservice_vehicle](fieldservice_vehicle/) | 12.0.2.0.0 | Manage Field Service vehicles and assign drivers
 [fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.0.0 | Track inventory of Field Service vehicles
 
 [//]: # (end addons)
