@@ -17,3 +17,6 @@ class FSMTemplate(models.Model):
         default=lambda self: self.env.user.company_id,
         help='Company related to this template')
     type_id = fields.Many2one('fsm.order.type', string='Type')
+    team_id = fields.Many2one(
+        'fsm.team', string='Team',
+        help='Choose a team to be set on orders of this template')
