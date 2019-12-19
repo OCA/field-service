@@ -451,6 +451,20 @@ msgid "Children"
 msgstr "Niños"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
+#, fuzzy
+#| msgid "Stage Color"
+msgid "Choose Color"
+msgstr "Color de Etapa"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
+#, fuzzy
+#| msgid "Company related to this template"
+msgid "Choose a team to be set on orders of this template"
+msgstr "Empresa relacionada con esta plantilla"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__city
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__city
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__city
@@ -470,11 +484,6 @@ msgstr "Clasifica y analiza tus pedidos"
 #, python-format
 msgid "Clear"
 msgstr "Limpiar"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
-msgid "Color Code"
-msgstr "Código de Color"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__color
@@ -2525,6 +2534,11 @@ msgid "Responsible User"
 msgstr "Usuario Responsable"
 
 #. module: fieldservice
+#: selection:fsm.stage,stage_type:0
+msgid "Route"
+msgstr "Ruta"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
@@ -2881,6 +2895,7 @@ msgstr "ID de Impuesto"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__team_id
 msgid "Team"
 msgstr "Equipo"
 
@@ -3457,6 +3472,9 @@ msgstr "plantilla"
 msgid "templates"
 msgstr "plantillas"
 
+#~ msgid "Color Code"
+#~ msgstr "Código de Color"
+
 #~ msgid "Add Day Routes here."
 #~ msgstr "Agregue rutas de día aquí."
 
@@ -3477,9 +3495,6 @@ msgstr "plantillas"
 
 #~ msgid "Map"
 #~ msgstr "Mapa"
-
-#~ msgid "Route"
-#~ msgstr "Ruta"
 
 #~ msgid "You cannot create 2 routes for the same worker on the same day!"
 #~ msgstr "¡No puede crear 2 rutas para el mismo trabajador el mismo día!"

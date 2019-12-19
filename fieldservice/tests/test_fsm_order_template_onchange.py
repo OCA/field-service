@@ -17,6 +17,9 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
         self.fsm_type_a = self.env['fsm.order.type'].create({
             'name': 'FSM Order Type A'
         })
+        self.fsm_team_a = self.env['fsm.team'].create({
+            'name': 'FSM Team A'
+        })
 
     def test_fsm_order_onchange_template(self):
         """ Test the onchange function for FSM Template
@@ -32,6 +35,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
             'category_ids': (6, 0, categories),
             'hours': 2.25,
             'type_id': self.fsm_type_a.id,
+            'team_id': self.fsm_team_a.id,
         })
         self.fso = self.Order.create({
             'location_id': self.test_location.id,
@@ -54,4 +58,8 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
         self.assertEqual(
             self.fso.todo,
             self.fsm_template_1.instructions
+        )
+        self.assertEqual(
+            self.fso.team_id.id,
+            self.fsm_team_a.id
         )
