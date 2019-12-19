@@ -2,14 +2,21 @@
 
     <record id="view_fsm_order_form_inherit_acct_payment" model="ir.ui.view">
         <field name="model">fsm.order</field>
-        <field name="inherit_id" ref="fieldservice_account.view_fsm_order_form_inherit_account"/>
+        <field name="inherit_id"
+               ref="fieldservice_account.view_fsm_order_form_inherit_account"/>
         <field name="arch" type="xml">
             <div class="oe_button_box" position="inside">
-                <button class="oe_stat_button" name="open_fieldservice_payments" string="Payments" type="object" icon="fa-bars"/>
+                <button class="oe_stat_button"
+                        name="action_view_payments"
+                        string="Payments"
+                        type="object"
+                        icon="fa-bars"
+                        attrs="{'invisible': [('payment_count', '=', 0)]}">
+                    <field name="payment_count"
+                           widget="statinfo"
+                           string="Payments"/>
+                </button>
             </div>
-            <xpath expr="//page[@name='invoices']/field[@name='invoice_ids']/tree/field[@name='state']" position="after">
-                <button name="%(account.action_account_invoice_payment)d" type="action" string="Register Payment" attrs="{'invisible': [('state', '!=', 'open')]}" context="{'default_fsm_order_id': parent.id}"/>
-            </xpath>
         </field>
     </record>
 
