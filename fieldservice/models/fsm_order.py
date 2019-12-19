@@ -394,6 +394,7 @@ class FSMOrder(models.Model):
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
             self.type = self.template_id.type_id
+            self.team_id = self.template_id.team_id
 
 
 class FSMTeam(models.Model):
