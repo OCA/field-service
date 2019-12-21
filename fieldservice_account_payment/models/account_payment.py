@@ -14,7 +14,7 @@ class AccountPayment(models.Model):
         string='FSM Order Count',
         compute='_compute_fsm_order_count', readonly=True)
 
-    @api.depends('payment_ids')
+    @api.depends('fsm_order_ids')
     def _compute_fsm_order_count(self):
         for payment in self:
             payment.fsm_order_count = len(payment.fsm_order_ids)
