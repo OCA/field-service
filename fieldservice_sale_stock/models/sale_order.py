@@ -17,7 +17,10 @@ class SaleOrder(models.Model):
                 ('sale_line_id', '=', False),
             ])
             pickings = order.picking_ids
-            pickings.write({'fsm_order_id': fsm_order.id})
+            for picking in pickings:
+                picking.fsm_order_id = fsm_order.id
+                for move in picking.move_lines:
+                    move.fsm_order_id = move.sale_line_id.fsm_order_id.id
 
     @api.multi
     def _action_confirm(self):
