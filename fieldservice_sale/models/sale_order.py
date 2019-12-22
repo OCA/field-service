@@ -48,7 +48,6 @@ class SaleOrder(models.Model):
             hours += template.hours
             categories |= template.category_ids
         return {
-            "customer_id": self.partner_id.id,
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
             "request_early": self.expected_date,
