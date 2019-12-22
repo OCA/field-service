@@ -125,7 +125,7 @@ class FSMOrder(models.Model):
         action = self.env.ref('stock.action_picking_tree_all').read()[0]
         pickings = self.mapped('picking_ids')
         return_ids = [picking.id for picking in pickings if
-                       picking.picking_type_id.code == 'incoming']
+                      picking.picking_type_id.code == 'incoming']
         if len(return_ids) > 1:
             action['domain'] = [('id', 'in', return_ids)]
         elif pickings:
