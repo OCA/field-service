@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_fsm_order_form_inherit_stock" model="ir.ui.view">
@@ -20,7 +19,7 @@
                         class="oe_stat_button"
                         icon="fa-truck"
                         attrs="{'invisible': [('return_count', '=', 0)]}" groups="base.group_user">
-                    <field name="return_count" widget="statinfo" string="Receipts"/>
+                    <field name="return_count" widget="statinfo" string="Returns"/>
                 </button>
             </div>
             <xpath expr="//notebook/page[1]" position="after">
