@@ -83,7 +83,7 @@ class SaleOrderLine(models.Model):
             # create fsm_order
             values = so_line._field_create_fsm_order_prepare_values()
             fsm_order = self.env['fsm.order'].sudo().create(values)
-            so_line.write({'fsm_order_id': fsm_order.id})
+            so_line.fsm_order_id = fsm_order.id
             # post message on SO
             msg_body = _(
                 """Field Service Order Created (%s): <a href=
@@ -129,19 +129,20 @@ class SaleOrderLine(models.Model):
             exists, it simply links the existing one to the line.
         """
         if any(sol.product_id.field_service_tracking == 'sale' for sol in self):
-            sales = self.env['sale.order'].search([
-                ('order_line', 'in', self.ids)])
-            sales._field_find_fsm_order()
+            sales = self.order_id
+            so_fo_mapping = sales._field_find_fsm_order()
+            for so_line in self.filtered(
+                lambda sol: sol.product_id.field_service_tracking == 'sale'):
+                so_line.fsm_order_id = so_fo_mapping[so_line.order_id.id].id
 
         for so_line in self.filtered(
-            lambda sol: sol.product_id.field_service_tracking == 'line'
-        ):
+            lambda sol: sol.product_id.field_service_tracking == 'line'):
             so_line._field_find_fsm_order()
 
     @api.multi
     def _prepare_invoice_line(self, qty):
         res = super()._prepare_invoice_line(qty)
         res.update({
-            'fsm_order_id': self.fsm_order_id,
+            'fsm_order_id': self.fsm_order_id.id,
         })
         return res
