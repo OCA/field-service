@@ -128,15 +128,17 @@ class SaleOrderLine(models.Model):
         """ For service lines, create the field service order. If it already
             exists, it simply links the existing one to the line.
         """
-        if any(sol.product_id.field_service_tracking == 'sale' for sol in self):
+        if any(sol.product_id.field_service_tracking == 'sale'
+               for sol in self):
             sales = self.order_id
             so_fo_mapping = sales._field_find_fsm_order()
             for so_line in self.filtered(
-                lambda sol: sol.product_id.field_service_tracking == 'sale'):
+                    lambda sol:
+                    sol.product_id.field_service_tracking == 'sale'):
                 so_line.fsm_order_id = so_fo_mapping[so_line.order_id.id].id
 
         for so_line in self.filtered(
-            lambda sol: sol.product_id.field_service_tracking == 'line'):
+                lambda sol: sol.product_id.field_service_tracking == 'line'):
             so_line._field_find_fsm_order()
 
     @api.multi
