@@ -18,8 +18,8 @@ class SaleOrder(models.Model):
         compute="_compute_fsm_order_ids",
         string="Field Service orders associated to this sale",
     )
-    fsm_order_count = fields.Float(
-        string="Field Service Orders", compute="_compute_fsm_order_ids"
+    fsm_order_count = fields.Integer(
+        string="FSM Orders", compute="_compute_fsm_order_ids"
     )
 
     @api.multi
