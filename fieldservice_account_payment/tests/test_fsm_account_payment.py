@@ -15,14 +15,28 @@ class FSMAccountPaymentCase(TransactionCase):
         self.payment_method_manual_in = \
             self.env.ref("account.account_payment_method_manual_in")
         self.payment_model = self.env['account.payment']
-        # create a Partner
+        self.test_analytic = self.env.ref('analytic.analytic_administratif')
+        # create a Res Partner
         self.test_partner = self.env['res.partner'].\
             create({
                 'name': 'Test Partner',
                 'phone': '123',
                 'email': 'tp@email.com',
-                })
-        # Create a location
+            })
+        # create a Res Partner to be converted to FSM Location/Person
+        self.test_loc_partner = self.env['res.partner'].\
+            create({
+                'name': 'Test Loc Partner',
+                'phone': 'ABC',
+                'email': 'tlp@email.com',
+            })
+        self.test_loc_partner2 = self.env['res.partner'].\
+            create({
+                'name': 'Test Loc Partner 2',
+                'phone': '123',
+                'email': 'tlp@example.com',
+            })
+        # create expected FSM Location to compare to converted FSM Location
         self.test_location = self.env['fsm.location'].\
             create({
                 'name': 'Test Location',
@@ -31,7 +45,15 @@ class FSMAccountPaymentCase(TransactionCase):
                 'partner_id': self.test_loc_partner.id,
                 'owner_id': self.test_loc_partner.id,
                 'customer_id': self.test_loc_partner.id,
-                })
+                'analytic_account_id': self.test_analytic.id
+            })
+        self.account_income = self.env['account.account'].create({
+            'code': 'X1112',
+            'name': 'Sale - Test Account',
+            'user_type_id': self.env.ref(
+                'account.data_account_type_direct_costs').id
+        })
+
         # Create a FSM order
         self.test_order = self.env['fsm.order'].create({
             'location_id': self.test_location.id,
@@ -43,13 +65,13 @@ class FSMAccountPaymentCase(TransactionCase):
         self.test_invoice = self.env['account.invoice'].create({
             'partner_id': self.test_partner.id,
             'type': 'out_invoice',
-            'date_invoice': datetime.today(),
-            'invoice_line_ids': [(6, 0, [{
+            'date_invoice': datetime.today().date(),
+            'invoice_line_ids': [(0, 0, {
                 'name': 'Test',
                 'quantity': 1.00,
                 'price_unit': 100.00,
                 'fsm_order_id': self.test_order.id,
-            }])],
+                'account_id': self.account_income.id})],
             'fsm_order_ids': [(6, 0, [self.test_order.id])]
         })
         # Create a payment method
@@ -64,14 +86,15 @@ class FSMAccountPaymentCase(TransactionCase):
 
         ctx = {'active_model': 'account.invoice',
                'active_ids': [self.test_invoice.id]}
-        register_payments = self.register_payments_model.with_context(ctx).create({
-            'payment_date': datetime.today(),
-            'journal_id': self.bank_journal.id,
-            'payment_method_id': self.payment_method_manual_in.id,
-        })
+        register_payments = self.register_payments_model.with_context(
+            ctx).create({'payment_date': datetime.today(),
+                         'journal_id': self.bank_journal.id,
+                         'payment_method_id': self.payment_method_manual_in.id,
+                         })
         register_payments.create_payments()
         payment = self.payment_model.search([], order="id desc", limit=1)
-
+        payment.action_view_fsm_orders()
+        self.test_invoice.fsm_order_ids.action_view_payments()
         self.assertAlmostEquals(payment.amount, 100)
         self.assertEqual(payment.state, 'posted')
         self.assertEqual(self.test_invoice.state, 'paid')
