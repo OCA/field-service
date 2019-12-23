@@ -1,7 +1,7 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent Consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -28,5 +28,5 @@ class FSMOrder(models.Model):
             action['views'] = \
                 [(self.env.ref('account.view_account_payment_form').id,
                   'form')]
-            action['res_id'] = self.payment_ids[0]
+            action['res_id'] = self.payment_ids[0].id
         return action
