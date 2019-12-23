@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_fleet',
         'odoo12-addon-fieldservice_geoengine',
         'odoo12-addon-fieldservice_google_map',
+        'odoo12-addon-fieldservice_google_marker_icon_picker',
         'odoo12-addon-fieldservice_isp_account',
         'odoo12-addon-fieldservice_isp_flow',
         'odoo12-addon-fieldservice_location_builder',
