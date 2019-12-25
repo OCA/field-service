@@ -1,0 +1,1 @@
+This module allows you to do an inventory of the vehicle at the end of the day and reconcile the expected product remaining products in the vehicle and the count done by the manager. If the difference is positive, a journal entry is created and the amount is due by the driver
