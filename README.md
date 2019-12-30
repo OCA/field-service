@@ -43,7 +43,7 @@ addon | version | summary
 [fieldservice_route](fieldservice_route/) | 12.0.1.0.0 | A Field Service route is the sorted list of orders that one worker/vehicle will perform during a day.
 [fieldservice_sale](fieldservice_sale/) | 12.0.2.0.0 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
-[fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.0 | Sell stockable items linked to field service orders.
+[fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.1 | Sell stockable items linked to field service orders.
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Execute server actions when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 12.0.1.1.0 | Integrate the logistics operations with Field Service
