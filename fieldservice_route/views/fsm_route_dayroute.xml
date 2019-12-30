@@ -1,4 +1,4 @@
-<odoo> 
+<odoo>
 
     <record id="fsm_route_dayroute_tree" model="ir.ui.view">
         <field name="name">fsm.route.dayroute.tree</field>
@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="person_id"/>
                 <field name="date"/>
+                <field name="stage_id"/>
             </tree>
         </field>
     </record>
@@ -25,22 +26,30 @@
                            domain="[('stage_type', '=', 'route')]"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1"/>
                         </h1>
                     </div>
-                    <group col="4">
-                        <field name="person_id" required="1"/>
-                        <field name="date" required="1"/>
-                    </group>
-                    <group>
-                        <field name="route_id"/>
+                    <group id="main">
+                        <group id="left">
+                            <field name="person_id" required="1"/>
+                            <field name="team_id"/>
+                        </group>
+                        <group id="right">
+                            <field name="date" required="1"/>
+                            <field name="route_id"/>
+                            <field name="territory_id"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Orders">
-                            <group>
-                                <field name="order_count"/>
+                            <group id="orders">
+                                <group id="orders-left">
+                                    <field name="order_count"/>
+                                </group>
+                                <group id="orders-right"/>
                             </group>
                             <field name="order_ids" nolabel="1"
                                    widget="many2many"
@@ -55,17 +64,19 @@
                             </field>
                         </page>
                         <page string="Planning">
-                            <group col="4">
-                                <field name="team_id"/>
-                                <field name="territory_id"/>
-                                <field name="date_start_planned"/>
-                                <field name="longitude"/>
-                                <field name="latitude"/>
-                                <field name="start_location_id"/>
-                                <field name="end_location_id"/>
-                                <field name="last_location_id"/>
-                                <field name="work_time"/>
-                                <field name="max_allow_time"/>
+                            <group id="planning">
+                                <group id="planning-left" string="Timing">
+                                    <field name="date_start_planned"/>
+                                    <field name="work_time"/>
+                                    <field name="max_allow_time"/>
+                                </group>
+                                <group id="planning-right" string="Positioning">
+                                    <field name="longitude"/>
+                                    <field name="latitude"/>
+                                    <field name="start_location_id"/>
+                                    <field name="end_location_id"/>
+                                    <field name="last_location_id"/>
+                                </group>
                             </group>
                         </page>
                     </notebook>

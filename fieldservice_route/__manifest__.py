@@ -4,9 +4,8 @@
 
 {
     'name': 'Field Service Route',
-    'summary': '''A Field Service route is the sorted list of orders that one
-    worker/vehicle will perform during a day.''',
-    'version': '12.0.1.0.0',
+    'summary': 'Organize the routes of each day.',
+    'version': '12.0.1.1.0',
     'category': 'Field Service',
     'license': 'AGPL-3',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -26,7 +25,6 @@
         'views/fsm_order.xml',
         'views/menu.xml',
     ],
-    'application': True,
     'development_status': 'Beta',
     'maintainers': [
         'max3903'
