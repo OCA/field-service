@@ -40,6 +40,7 @@ addon | version | summary
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.1.1 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
+[fieldservice_route](fieldservice_route/) | 12.0.1.0.0 | A Field Service route is the sorted list of orders that one worker/vehicle will perform during a day.
 [fieldservice_sale](fieldservice_sale/) | 12.0.2.0.0 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
 [fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.0 | Sell stockable items linked to field service orders.
