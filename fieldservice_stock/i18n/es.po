@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-11-26 17:58+0000\n"
-"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"PO-Revision-Date: 2019-11-18 06:35+0000\n"
+"Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
-"Language: de\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,70 +19,70 @@ msgstr ""
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Cancelar"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_product_product__create_fsm_equipment
 #: model:ir.model.fields,field_description:fieldservice_stock.field_product_template__create_fsm_equipment
 msgid "Creates a FSM Equipment"
-msgstr ""
+msgstr "Crea Equipos FSM"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_equipment__current_stock_location_id
 msgid "Current Inventory Location"
-msgstr ""
+msgstr "Ubicación Actual de Inventario"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Deliveries"
-msgstr ""
+msgstr "Entregas"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__delivery_count
 msgid "Delivery Orders"
-msgstr ""
+msgstr "Pedidos de Entrega"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_production_lot__fsm_equipment_id
 msgid "Equipment"
-msgstr ""
+msgstr "Equipo"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_request__fsm_order_id
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_request_order__fsm_order_id
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.stock_request_order_fsm_order_search
 msgid "FSM Order"
-msgstr ""
+msgstr "Orden FSM"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_fsm_wizard
 msgid "FSM Record Conversion"
-msgstr ""
+msgstr "Conversión de Registro FSM"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_fsm_equipment
 msgid "Field Service Equipment"
-msgstr "Service-Equipment"
+msgstr "Equipo de Servicio de Campo"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_fsm_location
 msgid "Field Service Location"
-msgstr "Field-Service-Ort"
+msgstr "Ubicación del Servicio de Campo"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_fsm_order
@@ -90,30 +90,30 @@ msgstr "Field-Service-Ort"
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_move__fsm_order_id
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_picking__fsm_order_id
 msgid "Field Service Order"
-msgstr "Field-Service-Auftrag"
+msgstr "Orden de Servicio de Campo"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
 msgid "In progress"
-msgstr ""
+msgstr "En progreso"
 
 #. module: fieldservice_stock
 #: model:ir.ui.menu,name:fieldservice_stock.menu_fsm_stock_inventory
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.fsm_equipment_form_view_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Inventory"
-msgstr ""
+msgstr "Inventario"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_location__inventory_location_id
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__inventory_location_id
 msgid "Inventory Location"
-msgstr ""
+msgstr "Ubicación de Inventario"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Lote / Serie"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__move_ids
@@ -123,7 +123,7 @@ msgstr ""
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__stock_request_ids
 msgid "Order Lines"
-msgstr ""
+msgstr "Líneas de Pedido"
 
 #. module: fieldservice_stock
 #: code:addons/fieldservice_stock/models/fsm_order.py:54
@@ -131,115 +131,120 @@ msgstr ""
 #: code:addons/fieldservice_stock/models/fsm_order.py:80
 #, python-format
 msgid "Please create a stock request."
-msgstr ""
+msgstr "Por favor cree una solicitud de stock."
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_procurement_group
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__procurement_group_id
 msgid "Procurement Group"
-msgstr ""
+msgstr "Grupo de Adquisiciones"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_equipment__product_id
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Movimientos de Producto (Línea de Movimiento de Stock)"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_product_template
 msgid "Product Template"
-msgstr "Produktvorlage"
+msgstr "Plantilla de Producto"
 
 #. module: fieldservice_stock
 #: model:ir.ui.menu,name:fieldservice_stock.menu_fsm_product
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__request_stage
 msgid "Request State"
-msgstr ""
+msgstr "Estado de Solicitud"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__return_count
 msgid "Return Orders"
-msgstr ""
+msgstr "Órdenes de Devolución"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
+#, fuzzy
+#| msgid "Return Orders"
 msgid "Returns"
-msgstr ""
+msgstr "Órdenes de Devolución"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_equipment__lot_id
 msgid "Serial #"
-msgstr ""
+msgstr "# de Serial"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Set to Draft"
-msgstr ""
+msgstr "Establecer en Borrador"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_location__shipping_address_id
 msgid "Shipping Location"
-msgstr ""
+msgstr "Lugar de Envío"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de Stock"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_request
 msgid "Stock Request"
-msgstr ""
+msgstr "Solicitud de Stock"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_request_order
 msgid "Stock Request Order"
-msgstr ""
+msgstr "Pedido de Solicitud de Stock"
 
 #. module: fieldservice_stock
 #: model:ir.ui.menu,name:fieldservice_stock.menu_fsm_stock_request
 msgid "Stock Requests"
-msgstr ""
+msgstr "Solicitudes de Stock"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regla de Stock"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
 msgid "Submitted"
-msgstr ""
+msgstr "Enviado"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferir"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__picking_ids
 msgid "Transfers"
-msgstr ""
+msgstr "Transferencias"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "Almacén"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,help:fieldservice_stock.field_fsm_order__warehouse_id
 msgid "Warehouse used to ship the materials"
-msgstr ""
+msgstr "Almacén utilizado para enviar los materiales"
+
+#~ msgid "Receipts"
+#~ msgstr "Ingresos"
