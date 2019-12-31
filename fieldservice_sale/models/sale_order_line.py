@@ -59,7 +59,7 @@ class SaleOrderLine(models.Model):
         return {
             'customer_id': self.order_id.partner_id.id,
             'location_id': self.order_id.fsm_location_id.id,
-            'location_directions': self.fsm_location_id.direction,
+            'location_directions': self.order_id.fsm_location_id.direction,
             'request_early': self.order_id.expected_date,
             'scheduled_date_start': self.order_id.expected_date,
             'description': self.name,
