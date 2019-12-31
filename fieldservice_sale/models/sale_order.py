@@ -131,8 +131,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         invoice_ids = super().action_invoice_create(grouped, final)
-        result = []
-        result.append(invoice_ids)
+        result = invoice_ids or []
 
         for invoice_id in invoice_ids:
             invoice = self.env["account.invoice"].browse(invoice_id)
