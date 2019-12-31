@@ -302,7 +302,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="col-xs-12 col-md-6 o_setting_box"
+                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
                             <div class="o_setting_left_pane">
                                 <field name="module_fieldservice_route_account"/>
                             </div>
@@ -314,7 +315,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="col-xs-12 col-md-6 o_setting_box"
+                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
                             <div class="o_setting_left_pane">
                                 <field name="module_fieldservice_route_stock"/>
                             </div>
@@ -329,8 +331,7 @@
                     </div>
                     <h2>Mapping Tools</h2>
                     <div class="row mt16 o_settings_container" id="mapping">
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
                                 <field name="module_fieldservice_geoengine"/>
                             </div>
@@ -342,8 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
                                 <field name="module_fieldservice_google_map"/>
                             </div>
