@@ -41,7 +41,7 @@ addon | version | summary
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.1.1 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
 [fieldservice_route](fieldservice_route/) | 12.0.1.0.0 | A Field Service route is the sorted list of orders that one worker/vehicle will perform during a day.
-[fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.1.0.0 | This module allows you to set the vehicle on the routes and day routes.
+[fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.1.0.1 | This module allows you to set the vehicle on the routes and day routes.
 [fieldservice_sale](fieldservice_sale/) | 12.0.2.0.0 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.0.0 | Sell recurring field services.
 [fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.1 | Sell stockable items linked to field service orders.
