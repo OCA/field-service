@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -14,8 +15,8 @@ class SaleOrder(models.Model):
     fsm_order_ids = fields.Many2many(
         'fsm.order', compute='_compute_fsm_order_ids',
         string='Field Service orders associated to this sale')
-    fsm_order_count = fields.Float(
-        string='Field Service Orders', compute='_compute_fsm_order_ids')
+    fsm_order_count = fields.Integer(
+        string='FSM Orders', compute='_compute_fsm_order_ids')
 
     @api.multi
     @api.depends('order_line')
@@ -58,7 +59,6 @@ class SaleOrder(models.Model):
             hours += template.hours
             categories |= template.category_ids
         return {
-            'customer_id': self.partner_id.id,
             'location_id': self.fsm_location_id.id,
             'location_directions': self.fsm_location_id.direction,
             'request_early': self.expected_date,
@@ -123,14 +123,17 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         """ On SO confirmation, some lines generate field service orders. """
         result = super(SaleOrder, self)._action_confirm()
-        self.order_line._field_service_generation()
+        if any(sol.product_id.field_service_tracking != 'no'
+               for sol in self):
+            if not self.fsm_location_id:
+                raise ValidationError(_("FSM Location must be set"))
+            self.order_line._field_service_generation()
         return result
 
     @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         invoice_ids = super().action_invoice_create(grouped, final)
-        result = []
-        result.append(invoice_ids)
+        result = invoice_ids or []
 
         for invoice_id in invoice_ids:
             invoice = self.env['account.invoice'].browse(invoice_id)
