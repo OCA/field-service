@@ -40,9 +40,11 @@
                                    groups="fieldservice.group_fsm_team"/>
                         </group>
                     </group>
-                    <group string="Instructions">
-                        <field name="instructions" nolabel="1" widget="html"/>
-                    </group>
+                    <notebook>
+                        <page string="Instructions" name="instructions_page">
+                            <field name="instructions" nolabel="1" widget="html"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
