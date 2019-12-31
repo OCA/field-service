@@ -88,6 +88,13 @@ msgid "Don't create FSM order"
 msgstr "No cree un pedido FSM"
 
 #. module: fieldservice_sale
+#: code:addons/fieldservice_sale/models/sale_order.py:129
+#, python-format
+msgid "FSM Location must be set"
+msgstr ""
+
+#. module: fieldservice_sale
+#: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_order_count
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_order_form_inherit_sale_fieldservice
 msgid "FSM Orders"
 msgstr "Pedidos FSM"
@@ -134,7 +141,6 @@ msgstr ""
 "Pedido de servicio de campo generado por el art??culo de pedido de ventas"
 
 #. module: fieldservice_sale
-#: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_order_count
 #: selection:product.template,service_type:0
 msgid "Field Service Orders"
 msgstr "??rdenes de servicio de campo"
