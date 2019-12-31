@@ -307,6 +307,12 @@ msgstr ""
 "territorio"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Automatically creates a day route when an order is assigned and scheduled"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
 msgid "Bank"
@@ -412,11 +418,37 @@ msgid "Channels"
 msgstr "Canales"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check collected payments"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_company
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_company
 msgid "Check if the contact is a company, otherwise it is a person"
 msgstr ""
 "Compruebe si el contacto es una empresa, de lo contrario es una persona"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check inventory"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check the amount collected by the worker during the route"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_account
+msgid "Check the amount collected during the route"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_stock
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check the inventory of the vehicle at the end of the route"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__customer
@@ -1744,6 +1776,13 @@ msgid "Manage Equipments"
 msgstr "Gestionar Equipos"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
+#, fuzzy
+#| msgid "Activities"
+msgid "Manage FSM Activities"
+msgstr "Actividades"
+
+#. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_equipment
 msgid "Manage Field Service Equipment"
 msgstr "Gestionar Equipo de Servicio de Campo"
@@ -1767,6 +1806,13 @@ msgstr "Gestionar Equipos de Servicio de Campo"
 #: model:res.groups,name:fieldservice.group_fsm_category
 msgid "Manage Field Service Worker Categories"
 msgstr "Gestionar Categorías de Trabajador de Servicio de Campo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Manage Order Templates"
+msgid "Manage Order Activities"
+msgstr "Gestionar Plantilla de Pedidos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1820,6 +1866,13 @@ msgstr "Gestionar Vehículos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Manage Categories"
+msgid "Manage activities"
+msgstr "Gestionar Categorías"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage agreements and contracts"
 msgstr "Gestionar acuerdos y contratos"
 
@@ -1854,6 +1907,20 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage recurring orders"
 msgstr "Gestionar pedidos recurrentes"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
+#, fuzzy
+#| msgid "Manage Teams"
+msgid "Manage routes"
+msgstr "Gestionar Equipos"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Manage tags on service orders"
+msgid "Manage routes of yoru workers"
+msgstr "Administrar etiquetas en pedidos de servicio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2536,6 +2603,13 @@ msgstr "Usuario Responsable"
 #. module: fieldservice
 #: selection:fsm.stage,stage_type:0
 msgid "Route"
+msgstr "Ruta"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Route"
+msgid "Routes"
 msgstr "Ruta"
 
 #. module: fieldservice
