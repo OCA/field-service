@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2018 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -13,6 +13,7 @@
     'depends': [
         'fieldservice_vehicle',
         'fieldservice_stock',
+        'stock_putaway_method',
     ],
     'data': [
         'security/ir.model.access.csv',
