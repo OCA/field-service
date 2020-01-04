@@ -49,6 +49,12 @@ class ResConfigSettings(models.TransientModel):
         string='Manage subcontractors and their pricelists')
     module_fieldservice_repair = fields.Boolean(
         string='Link FSM orders to MRP Repair orders')
+    module_fieldservice_route = fields.Boolean(
+        string='Manage routes')
+    module_fieldservice_route_account = fields.Boolean(
+        string='Check the amount collected during the route')
+    module_fieldservice_route_stock = fields.Boolean(
+        string='Check the inventory of the vehicle at the end of the route')
     module_fieldservice_sale = fields.Boolean(
         string='Sell FSM orders')
     module_fieldservice_skill = fields.Boolean(
