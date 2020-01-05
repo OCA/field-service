@@ -21,7 +21,7 @@ class FSMOrder(models.Model):
     @api.multi
     def action_view_invoices(self):
         action = self.env.ref(
-            'account.action_account_invoice').read()[0]
+            'account.action_invoice_tree').read()[0]
         if self.invoice_count > 1:
             action['domain'] = [('id', 'in', self.invoice_ids)]
         elif self.invoice_ids:
