@@ -35,7 +35,7 @@
                     <group id="main">
                         <group id="left">
                             <field name="person_id" required="1"/>
-                            <field name="team_id"/>
+                            <field name="team_id" groups="fieldservice.group_fsm_team"/>
                         </group>
                         <group id="right">
                             <field name="date" required="1"/>

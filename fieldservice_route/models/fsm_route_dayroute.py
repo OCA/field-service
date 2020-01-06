@@ -1,13 +1,17 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class FSMRouteDayRoute(models.Model):
     _name = 'fsm.route.dayroute'
     _description = 'Field Service Route Dayroute'
+
+    @api.model
+    def _get_default_person(self):
+        return self.route_id.fsm_person_id.id or False
 
     @api.depends('route_id')
     def _compute_order_count(self):
@@ -18,7 +22,8 @@ class FSMRouteDayRoute(models.Model):
 
     name = fields.Char(string='Name', required=True,
                        default=lambda self: _('New'))
-    person_id = fields.Many2one('fsm.person', string='Person')
+    person_id = fields.Many2one('fsm.person', string='Person',
+                                default=_get_default_person)
     route_id = fields.Many2one('fsm.route', string='Route')
     date = fields.Date(string='Date')
     team_id = fields.Many2one('fsm.team', string='Team')
@@ -61,3 +66,12 @@ class FSMRouteDayRoute(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'fsm.route.dayroute') or _('New')
         return super(FSMRouteDayRoute, self).create(vals)
+
+    @api.constrains('date', 'route_id')
+    def check_day(self):
+        # Get the day of the week in english
+        dayname = self.date.strftime('%A').lower()
+        day = self.env.ref('fieldservice_route.fsm_route_day_' + dayname)
+        if day.id not in self.route_id.day_ids.ids:
+            raise UserError(_("The route %s does not run on %s!" %
+                              self.route_id.name, day.name))
