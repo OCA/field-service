@@ -121,8 +121,9 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         """ On SO confirmation, some lines generate field service orders. """
         result = super(SaleOrder, self)._action_confirm()
-        if any(sol.product_id.field_service_tracking != 'no'
-               for sol in self.order_line):
+        if any(
+            sol.product_id.field_service_tracking != "no" for sol in self.order_line
+        ):
             if not self.fsm_location_id:
                 raise ValidationError(_("FSM Location must be set"))
             self.order_line._field_service_generation()
@@ -154,8 +155,7 @@ class SaleOrder(models.Model):
                         inv = invoice.copy()
                         inv.write({"invoice_line_ids": [(6, 0, [])]})
                         lines_by_line[i].invoice_id = inv.id
-                    inv.fsm_order_ids = \
-                        [(4, lines_by_line[i].fsm_order_id.id)]
+                    inv.fsm_order_ids = [(4, lines_by_line[i].fsm_order_id.id)]
                     result.append(inv.id)
 
             # check for invoice lines with product
