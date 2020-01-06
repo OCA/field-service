@@ -20,6 +20,7 @@
         'data/fsm_stock_data.xml',
         'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
+        'views/stock_picking.xml',
     ],
     'installable': True,
     'auto_install': True,
