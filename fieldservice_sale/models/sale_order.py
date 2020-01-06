@@ -61,8 +61,8 @@ class SaleOrder(models.Model):
         return {
             'location_id': self.fsm_location_id.id,
             'location_directions': self.fsm_location_id.direction,
-            'request_early': self.expected_date,
-            'scheduled_date_start': self.expected_date,
+            'request_early': self.commitment_date or self.expected_date,
+            'scheduled_date_start': self.commitment_date or self.expected_date,
             'todo': note,
             'category_ids': [(6, 0, categories.ids)],
             'scheduled_duration': hours,
