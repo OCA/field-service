@@ -130,7 +130,8 @@ class SaleOrderLine(models.Model):
         """
         if any(sol.product_id.field_service_tracking == 'sale'
                for sol in self):
-            sales = self.order_id
+            sales = self.env['sale.order'].search([
+                ('order_line', 'in', self.ids)])
             so_fo_mapping = sales._field_find_fsm_order()
             for so_line in self.filtered(
                     lambda sol:
