@@ -1,5 +1,11 @@
 <odoo>
 
+    <!-- Putaway Strategy -->
+    <record id="putaway_vehicle" model="product.putaway">
+        <field name="name">Vehicle Assignment</field>
+        <field name="method">vehicle</field>
+    </record>
+
     <record id="stock_location_vehicle" model="stock.location">
         <field name="name">Vehicles</field>
         <field name="usage">view</field>
@@ -11,7 +17,7 @@
         <field name="usage">internal</field>
         <field name="location_id" ref="stock_location_vehicle"/>
         <field name="company_id" ref="base.main_company"/>
-        <field name="putaway_strategy_id">vehicle</field>
+        <field name="putaway_strategy_id" ref="putaway_vehicle"/>
     </record>
 
     <data noupdate="1">
