@@ -15,13 +15,23 @@ class FSMOrderRouteCase(TransactionCase):
         self.fsm_route_obj = self.env['fsm.route']
         self.test_person = self.env.ref("fieldservice.test_person")
         self.test_location = self.env.ref("fieldservice.test_location")
+        self.date = datetime.now()
+        self.days = [
+                self.env.ref('fieldservice_route.fsm_route_day_sunday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_monday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_tuesday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_wednesday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_thursday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_friday').id,
+                self.env.ref('fieldservice_route.fsm_route_day_saturday').id
+        ]
         self.fsm_route_id = self.fsm_route_obj.create(
             {
                 'name': 'Demo Route',
                 'fsm_person_id': self.test_person.id,
+                'day_ids': [(6, 0, self.days)]
             })
         self.test_location.fsm_route_id = self.fsm_route_id.id
-        self.date = datetime.now()
 
     def test_create_day_route(self):
         order = self.fsm_order_obj.create({'location_id':
