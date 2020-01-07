@@ -36,7 +36,7 @@ class FSMOrder(models.Model):
         for rec in self:
             old_route_id = False
             person_id = vals.get('person_id') or rec.person_id.id or \
-                        rec.fsm_route_id.fsm_person_id.id
+                rec.fsm_route_id.fsm_person_id.id
             scheduled_date_start = vals.get('scheduled_date_start') or \
                 rec.scheduled_date_start
             fsm_route = fsm_route_obj.search([
