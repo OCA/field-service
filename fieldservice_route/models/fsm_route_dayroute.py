@@ -25,7 +25,7 @@ class FSMRouteDayRoute(models.Model):
     person_id = fields.Many2one('fsm.person', string='Person',
                                 default=_get_default_person)
     route_id = fields.Many2one('fsm.route', string='Route')
-    date = fields.Date(string='Date')
+    date = fields.Date(string='Date', required=True)
     team_id = fields.Many2one('fsm.team', string='Team')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                domain="[('stage_type', '=', 'route')]",
