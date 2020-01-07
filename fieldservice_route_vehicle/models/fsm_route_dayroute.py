@@ -30,5 +30,6 @@ class FSMRouteDayRoute(models.Model):
                         picking.vehicle_id = vals.get('vehicle_id')
                         # Set the vehicle on the previous picking as well
                         if picking.move_line_ids[0].move_orig_ids[0]:
-                            picking.move_line_ids[0].move_orig_ids[0].picking_id.vehicle_id = vals.get('vehicle_id')
+                            picking.move_line_ids[0].move_orig_ids[0].\
+                                picking_id.vehicle_id = vals.get('vehicle_id')
         return res
