@@ -1,4 +1,4 @@
-# Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
+# Copyright (C) 2019 - TODAY, mourad EL HADJ MIMOUNE, Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.rrule import (
@@ -16,20 +16,10 @@ from dateutil.rrule import (
     rrule,
 )
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from dateutil.relativedelta import relativedelta
-
-WEEKDAYS = {"mo": MO, "tu": TU, "we": WE, "th": TH, "fr": FR, "sa": SA, "su": SU}
-
-FREQUENCIES = {"yearly": YEARLY, "monthly": MONTHLY, "weekly": WEEKLY, "daily": DAILY}
-
-FREQUENCY_SELECT = [
-    ("yearly", "Yearly"),
-    ("monthly", "Monthly"),
-    ("weekly", "Weekly"),
-    ("daily", "Daily"),
-]
+from odoo.addons.fieldservice_recurring.models.fsm_frequency import (
+        WEEKDAYS, FREQUENCIES, FREQUENCY_SELECT)
 
 WEEKDAYS_SELECT = [
     ("mo", "MO"),
@@ -59,9 +49,10 @@ class FSMFrequency(models.Model):
     use_rrulestr = fields.Boolean(string="Use rrule string")
     rrule_string = fields.Char()
     # simlpe edit helper with planned_hour precision
-    interval_frequency = fields.Selection(INTERVAl_FREQUENCIES, string="Interval Frequency")
+    interval_frequency = fields.Selection(
+        INTERVAl_FREQUENCIES)
     use_planned_hour = fields.Boolean()
-    week_day = fields.Selection(WEEKDAYS_SELECT, string="Week Day")
+    week_day = fields.Selection(WEEKDAYS_SELECT)
     planned_hour = fields.Float("Planned Hours")
 
     @api.onchange("interval_frequency")
@@ -86,7 +77,8 @@ class FSMFrequency(models.Model):
     @api.model
     def create(self, vals):
         if not vals.get("name"):
-            hours, minutes = self._split_time_to_hour_min(vals.get("planned_hour"))
+            hours, minutes = self._split_time_to_hour_min(
+                vals.get("planned_hour"))
             wd = _(dict(WEEKDAYS_SELECT)[vals.get("week_day")])
             name = wd + "_" + str(hours) + "_" + str(minutes)
             vals["name"] = name
@@ -107,13 +99,12 @@ class FSMFrequency(models.Model):
                     freq[field] = False
                 if freq.week_day == "working days":
                     for field in workingdays:
-                        freq[field] = True 
+                        freq[field] = True
                 elif freq.week_day == "all days":
                     for field in weekdays:
                         freq[field] = True
                 else:
                     freq[freq.week_day] = True
-
 
     @api.onchange("use_planned_hour")
     def _onchange_use_planned_hour(self):
@@ -125,9 +116,9 @@ class FSMFrequency(models.Model):
 
     def _byhours(self):
         self.ensure_one()
-        if not self.use_planned_hour or not self.week_day or self.week_day == "none":
+        if not self.use_planned_hour\
+                or not self.week_day or self.week_day == "none":
             return None, None
-        duration_minute = self.planned_hour * 60
         hours, minutes = self._split_time_to_hour_min(self.planned_hour)
         return hours, minutes
 
@@ -144,7 +135,7 @@ class FSMFrequency(models.Model):
             raise UserError(_("Week day must be set"))
         if self.use_planned_hour:
             hours, minutes = self._byhours()
-            if not (0 <= hours <= 23):
+            if not 0 <= hours <= 23:
                 raise UserError(_("Planned hours must be between 0 and 23"))
 
     def _get_rrule(self, dtstart=None, until=None):
@@ -174,6 +165,6 @@ class FSMFrequency(models.Model):
             if minutes or minutes == 0:
                 kwargs['byminute'] = minutes
                 kwargs['bysecond'] = 0
-            return rrule(freq,**kwargs )
-        return super(FSMFrequency, self)._get_rrule(dtstart=dtstart, until=until)
-
+            return rrule(freq, **kwargs)
+        return super(FSMFrequency, self)._get_rrule(
+            dtstart=dtstart, until=until)
