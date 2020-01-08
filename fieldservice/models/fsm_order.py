@@ -200,6 +200,9 @@ class FSMOrder(models.Model):
             req_date = req_date.replace(minute=0, second=0)
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
+        vals.update(
+            {'scheduled_date_end': self._context.get(
+                'default_scheduled_date_end') or False})
         self._calc_scheduled_dates(vals)
         if not vals.get('request_late'):
             if vals.get('priority') == '0':
@@ -234,29 +237,46 @@ class FSMOrder(models.Model):
     def unlink(self):
         for order in self:
             if order.can_unlink():
-                res = super(FSMOrder, order).unlink()
+                return super(FSMOrder, order).unlink()
             else:
                 raise ValidationError(_(
                     "You cannot delete this order."))
-        return res
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
-        if 'scheduled_date_end' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_end')) - \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_start'] = str(date_to_with_delta)
-        if 'scheduled_duration' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start))\
-                + timedelta(hours=vals.get('scheduled_duration'))
-            vals['scheduled_date_end'] = str(date_to_with_delta)
-        if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
-            if vals['scheduled_date_start']:
+
+        if (vals.get('scheduled_duration')
+            or vals.get('scheduled_date_start')
+                or vals.get('scheduled_date_end')):
+
+            if (vals.get('scheduled_date_start')
+                    and vals.get('scheduled_date_end')):
+                new_date_start = fields.Datetime.from_string(vals.get(
+                    'scheduled_date_start', False))
+                new_date_end = fields.Datetime.from_string(
+                    vals.get('scheduled_date_end', False))
+                hours = new_date_end.replace(
+                    second=0) - new_date_start.replace(second=0)
+                hrs = hours.total_seconds() / 3600
+                vals['scheduled_duration'] = float(hrs)
+
+            elif vals.get('scheduled_date_end'):
+                hrs = vals.get('scheduled_duration',
+                               False) or self.scheduled_duration or 0
                 date_to_with_delta = fields.Datetime.from_string(
-                    vals.get('scheduled_date_start')) + \
-                    timedelta(hours=self.scheduled_duration)
+                    vals.get('scheduled_date_end', False)
+                ) - timedelta(hours=hrs)
+                vals['scheduled_date_start'] = str(date_to_with_delta)
+
+            elif (vals.get('scheduled_duration', False)
+                  or (vals.get('scheduled_date_start', False)
+                      and (self.scheduled_date_start != vals.get(
+                          'scheduled_date_start', False)))):
+                hours = vals.get('scheduled_duration', False)
+                start_date_val = vals.get('scheduled_date_start',
+                                          self.scheduled_date_start)
+                start_date = fields.Datetime.from_string(start_date_val)
+                date_to_with_delta = start_date + timedelta(hours=hours)
                 vals['scheduled_date_end'] = str(date_to_with_delta)
 
     def action_complete(self):
