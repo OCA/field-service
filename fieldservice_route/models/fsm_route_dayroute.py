@@ -59,6 +59,7 @@ class FSMRouteDayRoute(models.Model):
         return self.env['fsm.stage'].search([('stage_type', '=', 'route'),
                                              ('is_default', '=', True)],
                                             limit=1)
+
     @api.onchange('route_id')
     def _onchange_person(self):
         self.fsm_person_id = self._get_default_person()
