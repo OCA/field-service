@@ -1,4 +1,5 @@
 <odoo>
+
     <record id="view_fsm_order_form_inherit_sale" model="ir.ui.view">
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
@@ -7,12 +8,14 @@
                 <button type="object"
                         name="action_view_sales"
                         class="oe_stat_button"
-                        icon="fa-credit-card"
-                        attrs="{'invisible': [('sale_line_id', '=', False)]}">
-                    <span class="o_stat_text">Sale Orders</span>
+                        icon="fa-usd"
+                        attrs="{'invisible': [('sale_line_id', '=', False), ('sale_id', '=', False)]}">
+                    <span class="o_stat_text">Sale Order</span>
+                    <field name="sale_id" attrs="{'invisible': 1}"/>
                     <field name="sale_line_id" attrs="{'invisible': 1}"/>
                 </button>
             </xpath>
         </field>
     </record>
+
 </odoo>
