@@ -59,19 +59,26 @@ class FSMRouteDayRoute(models.Model):
         return self.env['fsm.stage'].search([('stage_type', '=', 'route'),
                                              ('is_default', '=', True)],
                                             limit=1)
+    @api.onchange('route_id')
+    def _onchange_person(self):
+        self.fsm_person_id = self._get_default_person()
 
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'fsm.route.dayroute') or _('New')
-        return super(FSMRouteDayRoute, self).create(vals)
+        return super().create(vals)
 
     @api.constrains('date', 'route_id')
     def check_day(self):
-        # Get the day of the week in english
-        dayname = self.date.strftime('%A').lower()
-        day = self.env.ref('fieldservice_route.fsm_route_day_' + dayname)
-        if day.id not in self.route_id.day_ids.ids:
-            raise UserError(_("The route %s does not run on %s!" %
-                              self.route_id.name, day.name))
+        for rec in self:
+            if rec.date and rec.route_id:
+                # Get the day of the week in english
+                dayname = rec.date.strftime('%A').lower()
+                day = self.env.ref(
+                    'fieldservice_route.fsm_route_day_' + dayname)
+                if day.id not in rec.route_id.day_ids.ids:
+                    raise UserError(_(
+                        "The route %s does not run on %s!" %
+                        (rec.route_id.name, day.name)))
