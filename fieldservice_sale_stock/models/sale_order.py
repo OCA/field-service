@@ -1,6 +1,5 @@
 # Copyright (C) 2019 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, models
 
 
@@ -26,6 +25,6 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         """ On SO confirmation, link the fsm order on the pickings
             created by the sale order """
-        result = super()._action_confirm()
+        res = super()._action_confirm()
         self._link_pickings_to_fsm()
-        return result
+        return res
