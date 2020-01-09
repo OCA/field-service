@@ -1,7 +1,6 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
@@ -34,6 +33,26 @@ class SaleOrder(models.Model):
             orders |= self.env["fsm.order"].search([("sale_id", "=", order.id)])
             order.fsm_order_ids = orders
             order.fsm_order_count = len(order.fsm_order_ids)
+
+    @api.onchange("partner_id")
+    def onchange_partner_id(self):
+        """
+        Autofill the Sale Order's FS location with the partner_id,
+        the partner_shipping_id or the partner_id.commercial_partner_id if
+        they are FS locations.
+        """
+        super(SaleOrder, self).onchange_partner_id()
+        domain = [
+            "|",
+            "|",
+            ("partner_id", "=", self.partner_id.id),
+            ("partner_id", "=", self.partner_shipping_id.id),
+            ("partner_id", "=", self.partner_id.commercial_partner_id.id),
+        ]
+        if self.partner_id.fsm_location:
+            domain = [("partner_id", "=", self.partner_id.id)]
+        location_ids = self.env["fsm.location"].search(domain)
+        self.fsm_location_id = location_ids and location_ids[0] or False
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
