@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_account',
         'odoo12-addon-fieldservice_account_analytic',
         'odoo12-addon-fieldservice_account_payment',
+        'odoo12-addon-fieldservice_activity',
         'odoo12-addon-fieldservice_agreement',
         'odoo12-addon-fieldservice_crm',
         'odoo12-addon-fieldservice_delivery',
