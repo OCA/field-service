@@ -3,6 +3,7 @@
 
 from . import (
     fsm_vehicle,
+    fsm_order,
     stock_request,
     product_putaway,
     stock_picking,
