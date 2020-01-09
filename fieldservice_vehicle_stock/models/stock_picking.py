@@ -1,6 +1,6 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import fields, models, _
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
@@ -25,3 +25,12 @@ class StockPicking(models.Model):
                 raise UserError(_(
                     "You must provide the vehicle for this picking type."))
         return super().action_assign()
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('fsm_order_id', False):
+            order = self.env['fsm.order'].browse(vals.get('fsm_order_id'))
+            vals.update({
+                'fsm_vehicle_id': order.vehicle_id.id or False,
+            })
+        return super().write(vals)
