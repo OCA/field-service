@@ -23,9 +23,9 @@ Field Service Route Stock
     :target: https://runbot.odoo-community.org/runbot/264/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to do an inventory of the vehicle at the end of the day and reconcile the expected product remaining products in the vehicle and the count done by the manager. If the difference is positive, a journal entry is created and the amount is due by the driver.
+This module allows you to do an inventory of the vehicle at the end of the day and reconcile the expected product remaining products in the vehicle and the count done by the manager. If the difference is positive, a journal entry is created and the amount is due by the driver
 
 **Table of contents**
 
@@ -93,7 +93,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-max3903|
+|maintainer-max3903| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_route_stock>`_ project on GitHub.
 
