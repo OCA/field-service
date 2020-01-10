@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo12-addon-fieldservice_recurring',
         'odoo12-addon-fieldservice_repair',
         'odoo12-addon-fieldservice_route',
+        'odoo12-addon-fieldservice_route_account',
         'odoo12-addon-fieldservice_route_vehicle',
         'odoo12-addon-fieldservice_sale',
         'odoo12-addon-fieldservice_sale_recurring',
