@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="fsm_route_dayroute_inventory" model="ir.ui.view">
+        <field name="model">fsm.route.dayroute</field>
+        <field name="inherit_id"
+               ref="fieldservice_route.fsm_route_dayroute_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[2]" position="after">
+                <page string="Inventory" name="inventory">
+                    <group>
+                        <field name="final_inventory_id" context="{'dayroute_id': id}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
