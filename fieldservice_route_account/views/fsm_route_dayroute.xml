@@ -1,0 +1,24 @@
+<odoo>
+
+    <record id="fsm_route_dayroute_inherit_dayroute" model="ir.ui.view">
+        <field name="model">fsm.route.dayroute</field>
+        <field name="inherit_id"
+               ref="fieldservice_route.fsm_route_dayroute_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[2]" position="after">
+                <page string="Accounting" name="accounting">
+                    <field name="dayroute_payment_ids">
+                        <tree string="Accounting" editable="bottom">
+                            <field name="journal_id"/>
+                            <field name="amount_collected"/>
+                            <field name="amount_counted"/>
+                            <field name="difference"/>
+                            <field name="move_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
