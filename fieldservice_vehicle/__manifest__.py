@@ -1,6 +1,5 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
     'name': 'Field Service Vehicles',
     'summary': 'Manage Field Service vehicles and assign drivers',
@@ -15,6 +14,8 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/fsm_vehicle.xml',
+        'views/fsm_person.xml',
+        'views/fsm_order.xml',
         'views/menu.xml',
     ],
     'license': 'AGPL-3',
@@ -23,5 +24,4 @@
         'wolfhall',
         'max3903',
     ],
-    'installable': True,
 }
