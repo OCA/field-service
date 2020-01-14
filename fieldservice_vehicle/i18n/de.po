@@ -37,9 +37,23 @@ msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: fieldservice_vehicle
+#: model:ir.model.fields,field_description:fieldservice_vehicle.field_fsm_person__vehicle_id
+#, fuzzy
+#| msgid "Vehicle"
+msgid "Default Vehicle"
+msgstr "Fahrzeug"
+
+#. module: fieldservice_vehicle
 #: model:ir.model.fields,field_description:fieldservice_vehicle.field_fsm_vehicle__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
+
+#. module: fieldservice_vehicle
+#: model:ir.model,name:fieldservice_vehicle.model_fsm_order
+#, fuzzy
+#| msgid "Field Service Route"
+msgid "Field Service Order"
+msgstr "Service-Route"
 
 #. module: fieldservice_vehicle
 #: model:ir.model,name:fieldservice_vehicle.model_fsm_vehicle
@@ -50,6 +64,13 @@ msgstr "Service-Fahrzeug"
 #: model:ir.actions.act_window,name:fieldservice_vehicle.action_fsm_vehicle
 msgid "Field Service Vehicles"
 msgstr "Service-Fahrzeuge"
+
+#. module: fieldservice_vehicle
+#: model:ir.model,name:fieldservice_vehicle.model_fsm_person
+#, fuzzy
+#| msgid "Field Service Route"
+msgid "Field Service Worker"
+msgstr "Service-Route"
 
 #. module: fieldservice_vehicle
 #: model:ir.model.fields,field_description:fieldservice_vehicle.field_fsm_vehicle__id
@@ -82,6 +103,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: fieldservice_vehicle
+#: model:ir.model.fields,field_description:fieldservice_vehicle.field_fsm_order__vehicle_id
 #: model_terms:ir.ui.view,arch_db:fieldservice_vehicle.fsm_vehicle_form_view
 msgid "Vehicle"
 msgstr "Fahrzeug"
@@ -108,9 +130,6 @@ msgstr "Fahrzeug-Bericht"
 
 #~ msgid "Assigned Vehicle"
 #~ msgstr "Zugewiesenes Fahrzeug"
-
-#~ msgid "Field Service Route"
-#~ msgstr "Service-Route"
 
 #~ msgid "The vehicle is already assigned to another route on that day!"
 #~ msgstr ""
