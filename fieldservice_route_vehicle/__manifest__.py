@@ -12,7 +12,7 @@
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice_vehicle',
+        'fieldservice_vehicle_stock',
         'fieldservice_route',
     ],
     'data': [
