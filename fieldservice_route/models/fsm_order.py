@@ -76,7 +76,8 @@ class FSMOrder(models.Model):
                     'person_id': route.person_id.id,
                     'scheduled_date_start': route.date,
                 })
-            if vals.get('person_id', False) or \
-                    vals.get('scheduled_date_start', False):
+            if (vals.get('person_id', False) or rec.person_id) and \
+                    (vals.get('scheduled_date_start', False) or
+                     rec.scheduled_date_start):
                 rec._manage_fsm_route(vals)
         return super(FSMOrder, self).write(vals)
