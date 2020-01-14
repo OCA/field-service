@@ -1,13 +1,17 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class FSMRouteDayRoute(models.Model):
     _name = 'fsm.route.dayroute'
     _description = 'Field Service Route Dayroute'
+
+    @api.model
+    def _get_default_person(self):
+        return self.route_id.fsm_person_id.id or False
 
     @api.depends('route_id')
     def _compute_order_count(self):
@@ -18,9 +22,10 @@ class FSMRouteDayRoute(models.Model):
 
     name = fields.Char(string='Name', required=True,
                        default=lambda self: _('New'))
-    person_id = fields.Many2one('fsm.person', string='Person')
+    person_id = fields.Many2one('fsm.person', string='Person',
+                                default=_get_default_person)
     route_id = fields.Many2one('fsm.route', string='Route')
-    date = fields.Date(string='Date')
+    date = fields.Date(string='Date', required=True)
     team_id = fields.Many2one('fsm.team', string='Team')
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                domain="[('stage_type', '=', 'route')]",
@@ -55,9 +60,26 @@ class FSMRouteDayRoute(models.Model):
                                              ('is_default', '=', True)],
                                             limit=1)
 
+    @api.onchange('route_id')
+    def _onchange_person(self):
+        self.fsm_person_id = self._get_default_person()
+
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'fsm.route.dayroute') or _('New')
-        return super(FSMRouteDayRoute, self).create(vals)
+        return super().create(vals)
+
+    @api.constrains('date', 'route_id')
+    def check_day(self):
+        for rec in self:
+            if rec.date and rec.route_id:
+                # Get the day of the week in english
+                dayname = rec.date.strftime('%A').lower()
+                day = self.env.ref(
+                    'fieldservice_route.fsm_route_day_' + dayname)
+                if day.id not in rec.route_id.day_ids.ids:
+                    raise UserError(_(
+                        "The route %s does not run on %s!" %
+                        (rec.route_id.name, day.name)))
