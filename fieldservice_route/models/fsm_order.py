@@ -32,28 +32,29 @@ class FSMOrder(models.Model):
         }
 
     def _manage_fsm_route(self, vals):
-        fsm_route_obj = self.env['fsm.route.dayroute']
+        dayroute_obj = self.env['fsm.route.dayroute']
         for rec in self:
-            old_route_id = False
             person_id = vals.get('person_id') or rec.person_id.id or \
                 rec.fsm_route_id.fsm_person_id.id
             scheduled_date_start = vals.get('scheduled_date_start') or \
                 rec.scheduled_date_start
-            fsm_route = fsm_route_obj.search([
+            dayroute = dayroute_obj.search([
                 ('person_id', '=', person_id),
                 ('date', '=', scheduled_date_start)],
                 limit=1)
-            old_route_id = rec.dayroute_id
-            if fsm_route:
-                rec.dayroute_id = fsm_route.id
-                if old_route_id and not old_route_id.order_ids:
-                    old_route_id.unlink()
-            elif not fsm_route and person_id or scheduled_date_start:
-                fsm_route_obj.create(rec.prepare_dayroute_values(
+            old_dayroute_id = rec.dayroute_id
+            if dayroute:
+                vals.update({
+                    'dayroute_id': dayroute.id})
+                if old_dayroute_id and not old_dayroute_id.order_ids:
+                    old_dayroute_id.unlink()
+            elif not dayroute and person_id or scheduled_date_start:
+                dayroute_obj.create(rec.prepare_dayroute_values(
                     person_id, scheduled_date_start
                 ))
-                if old_route_id and not old_route_id.order_ids:
-                    old_route_id.unlink()
+                if old_dayroute_id and not old_dayroute_id.order_ids:
+                    old_dayroute_id.unlink()
+        return vals
 
     @api.model
     def create(self, vals):
@@ -79,5 +80,5 @@ class FSMOrder(models.Model):
             if (vals.get('person_id', False) or rec.person_id) and \
                     (vals.get('scheduled_date_start', False) or
                      rec.scheduled_date_start):
-                rec._manage_fsm_route(vals)
+                vals = rec._manage_fsm_route(vals)
         return super(FSMOrder, self).write(vals)
