@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="fsm_vehicle_stock_picking_view" model="ir.ui.view">
+        <field name="model">stock.picking.fsm_vehicle_id.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="carrier_id" position="before">
+                <field name="fsm_vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_vehicle_stock_picking_tree" model="ir.ui.view">
+        <field name="model">stock.picking.fsm_vehicle_id.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="fsm_vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
