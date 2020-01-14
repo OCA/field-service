@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_vehicle_stock
+# 	* fieldservice_vehicle_stock
 #
 msgid ""
 msgstr ""
@@ -25,6 +25,13 @@ msgstr "Consultar Disponibilidad"
 #: model_terms:ir.ui.view,arch_db:fieldservice_vehicle_stock.fsm_order_form_view
 msgid "Deliver"
 msgstr "Despachar"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_order
+#, fuzzy
+#| msgid "Field Service Vehicle"
+msgid "Field Service Order"
+msgstr "Vehículo de Servicio de Campo"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_vehicle
@@ -52,6 +59,11 @@ msgid "Location Return"
 msgstr "Ubicación de Retorno"
 
 #. module: fieldservice_vehicle_stock
+#: model:ir.model,name:fieldservice_vehicle_stock.model_product_putaway
+msgid "Put Away Strategy"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_vehicle_stock.fsm_order_form_view
 msgid "Register lots, packs, location"
 msgstr "Registrar lotes, paquetes, ubicación"
@@ -65,6 +77,18 @@ msgstr "Solicitud de Stock"
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_stock_to_vehicle_to_location
 msgid "Stock to Vehicle to Location"
 msgstr "Stock a Vehículo a Ubicación"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__fsm_vehicle_id
+#, fuzzy
+#| msgid "Vehicle Loading"
+msgid "Vehicle"
+msgstr "Carga del Vehículo"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_output_to_vehicle
@@ -91,3 +115,9 @@ msgstr "Vehículo → Bodega"
 #: model:stock.rule,name:fieldservice_vehicle_stock.procurement_rule_output_to_vehicle
 msgid "Warehouse → Vehicle"
 msgstr "Bodega → Vehículo"
+
+#. module: fieldservice_vehicle_stock
+#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:25
+#, python-format
+msgid "You must provide the vehicle for this picking type."
+msgstr ""
