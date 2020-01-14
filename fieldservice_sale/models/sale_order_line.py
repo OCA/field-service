@@ -1,7 +1,6 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models, _
 
 
@@ -107,40 +106,40 @@ class SaleOrderLine(models.Model):
             :return a mapping with the so line id and its linked fsm_order
             :rtype dict
         """
-        # one search for all so lines
-        fsm_orders = self.env['fsm.order'].search([
-            ('sale_line_id', 'in', self.ids)])
-        fsm_order_sol_mapping = {
-            fsm_order.sale_line_id.id: fsm_order for fsm_order in fsm_orders}
-        result = {}
-        for so_line in self:
-            # If the SO was confirmed, cancelled, set to draft then confirmed,
-            # avoid creating a new fsm_order.
-            fsm_order = fsm_order_sol_mapping.get(so_line.id)
-            # If not found, create one fsm_order for the so line
-            if not fsm_order:
-                fsm_order = so_line._field_create_fsm_order()[so_line.id]
-            result[so_line.id] = fsm_order
-        return result
+        for rec in self:
+            # one search for all so lines
+            fsm_orders = self.env['fsm.order'].search([
+                ('sale_line_id', 'in', rec.ids)])
+            fsm_order_sol_mapping = {
+                fsm_order.sale_line_id.id: fsm_order for fsm_order in fsm_orders}
+            res = {}
+            for so_line in rec:
+                # If the SO was confirmed, cancelled, set to draft then confirmed,
+                # avoid creating a new fsm_order.
+                fsm_order = fsm_order_sol_mapping.get(so_line.id)
+                # If not found, create one fsm_order for the so line
+                if not fsm_order:
+                    fsm_order = so_line._field_create_fsm_order()[so_line.id]
+                res[so_line.id] = fsm_order
+            return res
 
     @api.multi
     def _field_service_generation(self):
         """ For service lines, create the field service order. If it already
             exists, it simply links the existing one to the line.
         """
-        if any(sol.product_id.field_service_tracking == 'sale'
-               for sol in self):
-            sales = self.env['sale.order'].search([
-                ('order_line', 'in', self.ids)])
-            so_fo_mapping = sales._field_find_fsm_order()
-            for so_line in self.filtered(
-                    lambda sol:
-                    sol.product_id.field_service_tracking == 'sale'):
-                so_line.fsm_order_id = so_fo_mapping[so_line.order_id.id].id
-
-        for so_line in self.filtered(
-                lambda sol: sol.product_id.field_service_tracking == 'line'):
-            so_line._field_find_fsm_order()
+        for rec in self:
+            if any(sol.product_id.field_service_tracking == 'sale'
+                   for sol in rec):
+                sale = rec.order_id
+                so_fo_mapping = sale._field_find_fsm_order()
+                for so_line in rec.filtered(
+                        lambda sol:
+                        sol.product_id.field_service_tracking == 'sale'):
+                    so_line.fsm_order_id = so_fo_mapping[so_line.order_id.id].id
+            for so_line in rec.filtered(
+                    lambda sol: sol.product_id.field_service_tracking == 'line'):
+                so_line._field_find_fsm_order()
 
     @api.multi
     def _prepare_invoice_line(self, qty):
