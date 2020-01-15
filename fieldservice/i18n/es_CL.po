@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-11-21 20:35+0000\n"
+"PO-Revision-Date: 2020-01-15 06:13+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
 "Language: es_CL\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
@@ -311,6 +311,7 @@ msgstr ""
 msgid ""
 "Automatically creates a day route when an order is assigned and scheduled"
 msgstr ""
+"Crea automáticamente una ruta de día cuando se asigna y programa un pedido"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
@@ -420,7 +421,7 @@ msgstr "Canales"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check collected payments"
-msgstr ""
+msgstr "Verificar pagos cobrados"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_company
@@ -432,23 +433,23 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check inventory"
-msgstr ""
+msgstr "Consultar inventario"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check the amount collected by the worker during the route"
-msgstr ""
+msgstr "Verificar el monto recaudado por el trabajador durante la ruta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_account
 msgid "Check the amount collected during the route"
-msgstr ""
+msgstr "Consulta el importe recaudado durante la ruta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check the inventory of the vehicle at the end of the route"
-msgstr ""
+msgstr "Verifique el inventario del vehículo al final de la ruta"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__customer
@@ -484,17 +485,13 @@ msgstr "Niños"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
-#, fuzzy
-#| msgid "Stage Color"
 msgid "Choose Color"
-msgstr "Color de Etapa"
+msgstr "Elige Color"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
-#, fuzzy
-#| msgid "Company related to this template"
 msgid "Choose a team to be set on orders of this template"
-msgstr "Empresa relacionada con esta plantilla"
+msgstr "Elija un equipo para establecer en los pedidos de esta plantilla"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__city
@@ -1626,17 +1623,17 @@ msgstr "Vincular pedidos FSM a solicitudes de mantenimiento"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
 msgid "Link FSM vehicles to Fleet vehicles"
-msgstr ""
+msgstr "Vincular vehículos FSM a vehículos de flota"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link Field Service vehicles with Fleet vehicles"
-msgstr ""
+msgstr "Vincular vehículos de servicio de campo con vehículos de flota"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link to Fleet Vehicles"
-msgstr ""
+msgstr "Enlace a vehículos de flota"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1777,10 +1774,8 @@ msgstr "Gestionar Equipos"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
-#, fuzzy
-#| msgid "Activities"
 msgid "Manage FSM Activities"
-msgstr "Actividades"
+msgstr "Gestiona Actividades FSM"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_equipment
@@ -1809,10 +1804,8 @@ msgstr "Gestionar Categorías de Trabajador de Servicio de Campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Order Templates"
 msgid "Manage Order Activities"
-msgstr "Gestionar Plantilla de Pedidos"
+msgstr "Gestionar Actividades de Pedidos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1866,10 +1859,8 @@ msgstr "Gestionar Vehículos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Categories"
 msgid "Manage activities"
-msgstr "Gestionar Categorías"
+msgstr "Gestionar actividades"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1910,17 +1901,13 @@ msgstr "Gestionar pedidos recurrentes"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
-#, fuzzy
-#| msgid "Manage Teams"
 msgid "Manage routes"
-msgstr "Gestionar Equipos"
+msgstr "Gestionar Rutas"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage tags on service orders"
 msgid "Manage routes of yoru workers"
-msgstr "Administrar etiquetas en pedidos de servicio"
+msgstr "Administra las rutas de tus trabajadores"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2607,10 +2594,8 @@ msgstr "Ruta"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Route"
 msgid "Routes"
-msgstr "Ruta"
+msgstr "Rutas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
@@ -3484,13 +3469,13 @@ msgstr "No puedes eliminar este pedido."
 #: code:addons/fieldservice/models/fsm_order.py:25
 #, python-format
 msgid "You must create an FSM order stage first."
-msgstr ""
+msgstr "Primero debe crear una etapa de pedido FSM."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:36
 #, python-format
 msgid "You must create an FSM team first."
-msgstr ""
+msgstr "Primero debe crear un equipo FSM."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
