@@ -20,6 +20,7 @@
         'report/fsm_order_report_template.xml',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
+        'views/res_config_settings.xml'
     ],
     'demo': [
         'demo/fsm_location.xml',
