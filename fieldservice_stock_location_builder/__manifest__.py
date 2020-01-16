@@ -10,7 +10,8 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice_stock',
-        'fieldservice_location_builder'
+        'fieldservice_location_builder',
+        'fieldservice_account'
     ],
     'data': [
     ],
