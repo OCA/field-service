@@ -129,17 +129,12 @@ class SaleOrderLine(models.Model):
             exists, it simply links the existing one to the line.
         """
         for rec in self:
-            if any(sol.product_id.field_service_tracking == 'sale'
-                   for sol in rec):
+            if rec.product_id.field_service_tracking == 'sale':
                 sale = rec.order_id
                 so_fo_mapping = sale._field_find_fsm_order()
-                for so_line in rec.filtered(
-                        lambda sol:
-                        sol.product_id.field_service_tracking == 'sale'):
-                    so_line.fsm_order_id = so_fo_mapping[so_line.order_id.id].id
-            for so_line in rec.filtered(
-                    lambda sol: sol.product_id.field_service_tracking == 'line'):
-                so_line._field_find_fsm_order()
+                rec.fsm_order_id = so_fo_mapping[rec.order_id.id].id
+            if rec.product_id.field_service_tracking == 'line':
+                rec._field_find_fsm_order()
 
     @api.multi
     def _prepare_invoice_line(self, qty):
