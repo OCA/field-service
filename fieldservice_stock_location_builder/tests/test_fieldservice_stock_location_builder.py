@@ -1,8 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase, Form
-from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class FSMStockLocationBuilder(TransactionCase):
@@ -34,7 +33,7 @@ class FSMStockLocationBuilder(TransactionCase):
             })
 
     def test_fsm_location_builder(self):
-        #Test createing new sublocations
+        # Test createing new sublocations
         before = self.env['fsm.location'].search_count([])
         self.location_wiz.with_context({'active_id': self.test_location.id})\
             .create_sub_locations()
@@ -43,4 +42,4 @@ class FSMStockLocationBuilder(TransactionCase):
         self.assertEqual(before+18, len(after))
         # Ensure their inventory_location_id matches test locaiton inventory
         self.assertEqual(after[-1:].inventory_location_id,
-            self.test_location.inventory_location_id)
+                         self.test_location.inventory_location_id)

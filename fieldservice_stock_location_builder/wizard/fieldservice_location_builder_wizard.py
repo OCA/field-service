@@ -21,14 +21,17 @@ class FSMLocationBuilderWizard(models.TransientModel):
             for lev_id in range(self.level_ids[num].start_number,
                                 self.level_ids[num].end_number + 1):
                 vals = self.prepare_fsm_location_values(location,
-                    parent, spacer, lev_id, num)
+                                                        parent,
+                                                        spacer,
+                                                        lev_id,
+                                                        num)
                 new_location = self.env['fsm.location'].create(vals)
                 if num < levels:
                     build_location(new_location, num + 1)
         build_location(location, 0)
 
     def prepare_fsm_location_values(self, location, parent,
-            spacer, lev_id, num):
+                                    spacer, lev_id, num):
         return {
             'name': self.
             level_ids[num].name + spacer + str(lev_id),
