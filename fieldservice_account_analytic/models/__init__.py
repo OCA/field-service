@@ -5,4 +5,6 @@ from . import (
     analytic_account,
     fsm_location,
     fsm_order,
+    res_company,
+    res_config_settings
 )
