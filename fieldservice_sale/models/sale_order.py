@@ -121,7 +121,9 @@ class SaleOrder(models.Model):
             :rtype dict
         """
         # one search for all Sale Orders
-        fsm_orders = self.env["fsm.order"].search([("sale_id", "in", self.ids)])
+        fsm_orders = self.env["fsm.order"].search(
+            [("sale_id", "in", self.ids), ("sale_line_id", "=", False)]
+        )
         fsm_order_mapping = {
             fsm_order.sale_id.id: fsm_order for fsm_order in fsm_orders
         }
