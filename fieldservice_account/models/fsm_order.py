@@ -23,7 +23,7 @@ class FSMOrder(models.Model):
         action = self.env.ref(
             'account.action_invoice_tree').read()[0]
         if self.invoice_count > 1:
-            action['domain'] = [('id', 'in', self.invoice_ids)]
+            action['domain'] = [('id', 'in', self.invoice_ids.ids)]
         elif self.invoice_ids:
             action['views'] = \
                 [(self.env.ref('account.invoice_form').id, 'form')]
