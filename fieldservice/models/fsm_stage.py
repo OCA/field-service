@@ -18,6 +18,10 @@ class FSMStage(models.Model):
     _description = 'Field Service Stage'
     _order = 'sequence, name, id'
 
+    def _default_team_ids(self):
+        default_team_id = self.env.context.get('default_team_id')
+        return [default_team_id] if default_team_id else None
+
     name = fields.Char(string='Name', required=True)
     sequence = fields.Integer('Sequence', default=1,
                               help="Used to order stages. Lower is better.")
@@ -45,6 +49,10 @@ class FSMStage(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id.id)
+    team_ids = fields.Many2many(
+        'fsm.team', 'order_team_stage_rel', 'stage_id', 'team_id',
+        string='Teams',
+        default=lambda self: self._default_team_ids())
 
     @api.multi
     def get_color_information(self):

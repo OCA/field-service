@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -183,10 +183,12 @@ class FSMOrder(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].\
-            search([('stage_type', '=', 'order'),
-                    ('company_id', '=', self.env.user.company_id.id)])
-        return stage_ids
+        search_domain = [('stage_type', '=', 'order')]
+        if self.env.context.get('default_team_id'):
+            search_domain = [
+                '&', ('team_ids', 'in', self.env.context['default_team_id'])
+            ] + search_domain
+        return stages.search(search_domain, order=order)
 
     @api.model
     def create(self, vals):
@@ -357,11 +359,3 @@ class FSMOrder(models.Model):
             self.copy_notes()
             self.type = self.template_id.type_id
             self.team_id = self.template_id.team_id
-
-
-class FSMTeam(models.Model):
-    _inherit = 'fsm.team'
-
-    order_ids = fields.One2many(
-        'fsm.order', 'team_id', string='Orders',
-        domain=[('stage_id.is_closed', '=', False)])

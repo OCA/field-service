@@ -21,7 +21,9 @@
                             attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
                     <field name="stage_id" widget="statusbar"
                            options="{'fold_field': 'fold'}"
-                           domain="[('stage_type', '=', 'order')]"/>
+                           domain="['&amp;', '|',
+                                    ('team_ids', '=', team_id), ('team_ids', '=', False),
+                                    ('stage_type', '=', 'order')]"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
