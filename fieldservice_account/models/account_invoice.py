@@ -25,7 +25,7 @@ class AccountInvoice(models.Model):
         action = self.env.ref(
             'fieldservice.action_fsm_dash_order').read()[0]
         if self.fsm_order_count > 1:
-            action['domain'] = [('id', 'in', self.fsm_order_ids)]
+            action['domain'] = [('id', 'in', self.fsm_order_ids.ids)]
         elif self.fsm_order_ids:
             action['views'] = \
                 [(self.env.ref('fieldservice.fsm_order_form').id, 'form')]
