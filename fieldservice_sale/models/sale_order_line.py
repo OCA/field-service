@@ -26,8 +26,8 @@ class SaleOrderLine(models.Model):
     def _compute_qty_delivered_method(self):
         super(SaleOrderLine, self)._compute_qty_delivered_method()
         for line in self:
-            if not line.is_expense and line.product_id.type == 'service' \
-               and line.product_id.field_service_tracking == 'sale':
+            if not line.is_expense and \
+               line.product_id.field_service_tracking == 'line':
                 line.qty_delivered_method = 'field_service'
 
     @api.multi
