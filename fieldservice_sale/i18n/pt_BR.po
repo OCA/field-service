@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_sale
+# 	* fieldservice_sale
 #
 msgid ""
 msgstr ""
@@ -21,12 +21,15 @@ msgstr ""
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__qty_delivered_method
-msgid "According to product configuration, the delivered quantity can be automatically computed by mechanism :\n"
+msgid ""
+"According to product configuration, the delivered quantity can be "
+"automatically computed by mechanism :\n"
 "  - Manual: the quantity is set manually on the line\n"
-"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
-"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted "
+"expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
+"this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
-""
 msgstr ""
 
 #. module: fieldservice_sale
@@ -52,10 +55,13 @@ msgstr ""
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__field_service_tracking
-msgid "Determines what happens upon sale order confirmation:\n"
+msgid ""
+"Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order line\n"
+"                - Per Sale Order: One FSM Order will be created for the "
+"sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order "
+"line\n"
 "                will be created."
 msgstr ""
 
@@ -65,7 +71,7 @@ msgid "Don't create FSM order"
 msgstr ""
 
 #. module: fieldservice_sale
-#: code:addons/fieldservice_sale/models/sale_order.py:130
+#: code:addons/fieldservice_sale/models/sale_order.py:131
 #, python-format
 msgid "FSM Location must be set"
 msgstr ""
@@ -90,7 +96,8 @@ msgstr ""
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order_line.py:87
 #, python-format
-msgid "Field Service Order Created (%s): <a href=\n"
+msgid ""
+"Field Service Order Created (%s): <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -98,7 +105,8 @@ msgstr ""
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order.py:86
 #, python-format
-msgid "Field Service Order Created: <a href=\n"
+msgid ""
+"Field Service Order Created: <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -143,9 +151,13 @@ msgstr ""
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__service_type
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__service_type
-msgid "Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
-"Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
-"Create a task and track hours: Create a task on the sales order validation and track the work hours."
+msgid ""
+"Manually set quantities on order: Invoice based on the manually entered "
+"quantity, without creating an analytic account.\n"
+"Timesheets on contract: Invoice based on the tracked hours on the related "
+"timesheet.\n"
+"Create a task and track hours: Create a task on the sales order validation "
+"and track the work hours."
 msgstr ""
 
 #. module: fieldservice_sale
@@ -223,7 +235,8 @@ msgstr ""
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order.py:92
 #, python-format
-msgid "This order has been created from: <a href=\n"
+msgid ""
+"This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a>\n"
 "                "
 msgstr ""
@@ -231,7 +244,8 @@ msgstr ""
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order_line.py:93
 #, python-format
-msgid "This order has been created from: <a href=\n"
+msgid ""
+"This order has been created from: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
 "                "
 msgstr ""
