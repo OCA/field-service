@@ -46,7 +46,7 @@ addon | version | summary
 [fieldservice_route_account](fieldservice_route_account/) | 12.0.1.0.0 | Field Service Route Account
 [fieldservice_route_stock](fieldservice_route_stock/) | 12.0.1.0.0 | Field Service Route Stock
 [fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.1.1.0 | This module allows you to set the vehicle on the routes and day routes.
-[fieldservice_sale](fieldservice_sale/) | 12.0.2.2.0 | Sell field services.
+[fieldservice_sale](fieldservice_sale/) | 12.0.2.2.1 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.1.0 | Sell recurring field services.
 [fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.2 | Sell stockable items linked to field service orders.
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your Field Service workers skills
