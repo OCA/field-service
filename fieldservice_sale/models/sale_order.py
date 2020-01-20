@@ -157,10 +157,9 @@ class SaleOrder(models.Model):
                         inv = invoice.copy()
                         inv.write({'invoice_line_ids': [(6, 0, [])]})
                         lines_by_line[i].invoice_id = inv.id
+                        result.append(inv.id)
                     inv.fsm_order_ids = \
                         [(4, lines_by_line[i].fsm_order_id.id)]
-                    result.append(inv.id)
-
             # check for invoice lines with product
             # field_service_tracking = sale
             lines_by_sale = self.env['account.invoice.line'].search([
@@ -169,7 +168,8 @@ class SaleOrder(models.Model):
             ])
             if len(lines_by_sale) > 0:
                 fsm_order = self.env['fsm.order'].search([
-                    ('sale_id', '=', self.id)
+                    ('sale_id', '=', self.id),
+                    ('sale_line_id', '=', False)
                 ])
                 if len(lines_by_sale) == len(invoice.invoice_line_ids):
                     invoice.fsm_order_ids = [(4, fsm_order.id)]
@@ -177,7 +177,6 @@ class SaleOrder(models.Model):
                     new = invoice.copy()
                     new.write({'invoice_line_ids': [(6, 0, [])]})
                     lines_by_sale.invoice_id = new.id
-                    new.fsm_order_id = fsm_order.id
                     result.append(new.id)
         return result
 
