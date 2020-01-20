@@ -1,8 +1,8 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -14,8 +14,8 @@ class SaleOrder(models.Model):
     fsm_order_ids = fields.Many2many(
         'fsm.order', compute='_compute_fsm_order_ids',
         string='Field Service orders associated to this sale')
-    fsm_order_count = fields.Float(
-        string='Field Service Orders', compute='_compute_fsm_order_ids')
+    fsm_order_count = fields.Integer(
+        string='FSM Orders', compute='_compute_fsm_order_ids')
 
     @api.multi
     @api.depends('order_line')
@@ -29,6 +29,24 @@ class SaleOrder(models.Model):
             order.fsm_order_ids = orders
             order.fsm_order_count = len(order.fsm_order_ids)
 
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        """
+        Autofill the Sale Order's FS location with the partner_id,
+        the partner_shipping_id or the partner_id.commercial_partner_id if
+        they are FS locations.
+        """
+        super(SaleOrder, self).onchange_partner_id()
+        domain = [
+            '|', '|',
+            ('partner_id', '=', self.partner_id.id),
+            ('partner_id', '=', self.partner_shipping_id.id),
+            ('partner_id', '=', self.partner_id.commercial_partner_id.id)]
+        if self.partner_id.fsm_location:
+            domain = [('partner_id', '=', self.partner_id.id)]
+        location_ids = self.env['fsm.location'].search(domain)
+        self.fsm_location_id = location_ids and location_ids[0] or False
+
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
         lines = self.order_line.filtered(
@@ -38,15 +56,14 @@ class SaleOrder(models.Model):
         hours = 0.0
         categories = self.env['fsm.category']
         for template in templates:
-            note += template.instructions
+            note += template.instructions or ""
             hours += template.hours
             categories |= template.category_ids
         return {
-            'customer_id': self.partner_id.id,
             'location_id': self.fsm_location_id.id,
             'location_directions': self.fsm_location_id.direction,
-            'request_early': self.expected_date,
-            'scheduled_date_start': self.expected_date,
+            'request_early': self.commitment_date or self.expected_date,
+            'scheduled_date_start': self.commitment_date or self.expected_date,
             'todo': note,
             'category_ids': [(6, 0, categories.ids)],
             'scheduled_duration': hours,
@@ -89,7 +106,8 @@ class SaleOrder(models.Model):
         """
         # one search for all Sale Orders
         fsm_orders = self.env['fsm.order'].search([
-            ('sale_id', 'in', self.ids)])
+            ('sale_id', 'in', self.ids),
+            ('sale_line_id', '=', False)])
         fsm_order_mapping = {
             fsm_order.sale_id.id: fsm_order for fsm_order in fsm_orders}
         result = {}
@@ -107,14 +125,17 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         """ On SO confirmation, some lines generate field service orders. """
         result = super(SaleOrder, self)._action_confirm()
-        self.order_line._field_service_generation()
+        if any(sol.product_id.field_service_tracking != 'no'
+               for sol in self.order_line):
+            if not self.fsm_location_id:
+                raise ValidationError(_("FSM Location must be set"))
+            self.order_line._field_service_generation()
         return result
 
     @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         invoice_ids = super().action_invoice_create(grouped, final)
-        result = []
-        result.append(invoice_ids)
+        result = invoice_ids or []
 
         for invoice_id in invoice_ids:
             invoice = self.env['account.invoice'].browse(invoice_id)
@@ -136,7 +157,8 @@ class SaleOrder(models.Model):
                         inv = invoice.copy()
                         inv.write({'invoice_line_ids': [(6, 0, [])]})
                         lines_by_line[i].invoice_id = inv.id
-                    inv.fsm_order_id = lines_by_line[i].fsm_order_id.id
+                    inv.fsm_order_ids = \
+                        [(4, lines_by_line[i].fsm_order_id.id)]
                     result.append(inv.id)
 
             # check for invoice lines with product
@@ -150,7 +172,7 @@ class SaleOrder(models.Model):
                     ('sale_id', '=', self.id)
                 ])
                 if len(lines_by_sale) == len(invoice.invoice_line_ids):
-                    invoice.fsm_order_id = fsm_order.id
+                    invoice.fsm_order_ids = [(4, fsm_order.id)]
                 elif len(invoice.invoice_line_ids) > len(lines_by_sale):
                     new = invoice.copy()
                     new.write({'invoice_line_ids': [(6, 0, [])]})

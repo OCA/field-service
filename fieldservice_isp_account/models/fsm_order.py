@@ -84,7 +84,8 @@ class FSMOrder(models.Model):
             'type': 'in_invoice',
             'journal_id': jrnl.id or False,
             'fiscal_position_id': fpos.id or False,
-            'fsm_order_id': self.id
+            'fsm_order_ids': [(4, self.id)],
+            'company_id': self.env.user.company_id.id
         }
         bill = self.env['account.invoice'].sudo().create(vals)
         for line in self.contractor_cost_ids:
@@ -119,7 +120,7 @@ class FSMOrder(models.Model):
                 'type': 'out_invoice',
                 'journal_id': jrnl.id or False,
                 'fiscal_position_id': fpos.id or False,
-                'fsm_order_id': self.id
+                'fsm_order_ids': [(4, self.id)],
             }
             invoice = self.env['account.invoice'].sudo().create(vals)
             price_list = invoice.partner_id.property_product_pricelist
@@ -130,7 +131,8 @@ class FSMOrder(models.Model):
                 'type': 'out_invoice',
                 'journal_id': jrnl.id or False,
                 'fiscal_position_id': fpos.id or False,
-                'fsm_order_id': self.id
+                'fsm_order_ids': [(4, self.id)],
+                'company_id': self.env.user.company_id.id
             }
             invoice = self.env['account.invoice'].sudo().create(vals)
             price_list = invoice.partner_id.property_product_pricelist
@@ -150,7 +152,8 @@ class FSMOrder(models.Model):
                 'name': line.name,
                 'price_unit': price,
                 'account_id': account.id,
-                'invoice_id': invoice.id
+                'invoice_id': invoice.id,
+                'fsm_order_id': self.id,
             }
             time_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
@@ -171,7 +174,8 @@ class FSMOrder(models.Model):
                 'name': cost.name,
                 'price_unit': price,
                 'account_id': account.id,
-                'invoice_id': invoice.id
+                'invoice_id': invoice.id,
+                'fsm_order_id': self.id,
             }
             con_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id

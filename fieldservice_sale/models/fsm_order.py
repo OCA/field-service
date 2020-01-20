@@ -1,7 +1,6 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import fields, models, _
 
 
@@ -17,7 +16,7 @@ class FSMOrder(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "sale.order",
             "views": [[False, "form"]],
-            "res_id": self.sale_line_id.order_id.id,
+            "res_id": self.sale_line_id.order_id.id or self.sale_id.id,
             "context": {"create": False},
             "name": _("Sales Orders"),
         }

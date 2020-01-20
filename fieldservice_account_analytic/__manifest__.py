@@ -5,7 +5,7 @@
     'name': 'Field Service - Analytic Accounting',
     'summary': """Track analytic accounts on Field Service locations
                   and orders""",
-    'version': '12.0.2.0.2',
+    'version': '12.0.3.1.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
@@ -20,7 +20,6 @@
         'report/fsm_order_report_template.xml',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
-        'views/fsm_route.xml',
     ],
     'demo': [
         'demo/fsm_location.xml',

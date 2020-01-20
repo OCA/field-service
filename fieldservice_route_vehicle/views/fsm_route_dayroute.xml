@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="fsm_route_dayroute_form_inherit" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.form</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="inherit_id"
+               ref="fieldservice_route.fsm_route_dayroute_form"/>
+        <field name="arch" type="xml">
+            <field name="person_id" position="after">
+                <field name="fsm_vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

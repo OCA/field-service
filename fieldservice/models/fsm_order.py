@@ -13,10 +13,28 @@ class FSMOrder(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     def _default_stage_id(self):
-        return self.env.ref('fieldservice.fsm_stage_new')
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('is_default', '=', True),
+                    ('company_id', 'in', (self.env.user.company_id.id,
+                                          False))],
+                   order='sequence asc', limit=1)
+        if stage_ids:
+            return stage_ids[0]
+        else:
+            raise ValidationError(_(
+                "You must create an FSM order stage first."))
 
     def _default_team_id(self):
-        return self.env.ref('fieldservice.fsm_team_default')
+        team_ids = self.env['fsm.team'].\
+            search([('company_id', 'in', (self.env.user.company_id.id,
+                                          False))],
+                   order='sequence asc', limit=1)
+        if team_ids:
+            return team_ids[0]
+        else:
+            raise ValidationError(_(
+                "You must create an FSM team first."))
 
     @api.depends('date_start', 'date_end')
     def _compute_duration(self):
@@ -102,7 +120,6 @@ class FSMOrder(models.Model):
                                 index=True)
     person_phone = fields.Char(related="person_id.phone",
                                string="Worker Phone")
-    route_id = fields.Many2one('fsm.route', string='Route', index=True)
     scheduled_date_start = fields.Datetime(string='Scheduled Start (ETA)')
     scheduled_duration = fields.Float(string='Scheduled duration',
                                       help='Scheduled duration of the work in'
@@ -166,8 +183,9 @@ class FSMOrder(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env['fsm.stage'].search([('stage_type',
-                                                   '=', 'order')])
+        stage_ids = self.env['fsm.stage'].\
+            search([('stage_type', '=', 'order'),
+                    ('company_id', '=', self.env.user.company_id.id)])
         return stage_ids
 
     @api.model
@@ -182,6 +200,9 @@ class FSMOrder(models.Model):
             req_date = req_date.replace(minute=0, second=0)
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
+        vals.update(
+            {'scheduled_date_end': self._context.get(
+                'default_scheduled_date_end') or False})
         self._calc_scheduled_dates(vals)
         if not vals.get('request_late'):
             if vals.get('priority') == '0':
@@ -216,29 +237,46 @@ class FSMOrder(models.Model):
     def unlink(self):
         for order in self:
             if order.can_unlink():
-                res = super(FSMOrder, order).unlink()
+                return super(FSMOrder, order).unlink()
             else:
                 raise ValidationError(_(
                     "You cannot delete this order."))
-        return res
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
-        if 'scheduled_date_end' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_end')) - \
-                timedelta(hours=self.scheduled_duration)
-            vals['scheduled_date_start'] = str(date_to_with_delta)
-        if 'scheduled_duration' in vals:
-            date_to_with_delta = fields.Datetime.from_string(
-                vals.get('scheduled_date_start', self.scheduled_date_start))\
-                + timedelta(hours=vals.get('scheduled_duration'))
-            vals['scheduled_date_end'] = str(date_to_with_delta)
-        if 'scheduled_date_end' not in vals and 'scheduled_date_start' in vals:
-            if vals['scheduled_date_start']:
+
+        if (vals.get('scheduled_duration')
+            or vals.get('scheduled_date_start')
+                or vals.get('scheduled_date_end')):
+
+            if (vals.get('scheduled_date_start')
+                    and vals.get('scheduled_date_end')):
+                new_date_start = fields.Datetime.from_string(vals.get(
+                    'scheduled_date_start', False))
+                new_date_end = fields.Datetime.from_string(
+                    vals.get('scheduled_date_end', False))
+                hours = new_date_end.replace(
+                    second=0) - new_date_start.replace(second=0)
+                hrs = hours.total_seconds() / 3600
+                vals['scheduled_duration'] = float(hrs)
+
+            elif vals.get('scheduled_date_end'):
+                hrs = vals.get('scheduled_duration',
+                               False) or self.scheduled_duration or 0
                 date_to_with_delta = fields.Datetime.from_string(
-                    vals.get('scheduled_date_start')) + \
-                    timedelta(hours=self.scheduled_duration)
+                    vals.get('scheduled_date_end', False)
+                ) - timedelta(hours=hrs)
+                vals['scheduled_date_start'] = str(date_to_with_delta)
+
+            elif (vals.get('scheduled_duration', False)
+                  or (vals.get('scheduled_date_start', False)
+                      and (self.scheduled_date_start != vals.get(
+                          'scheduled_date_start', False)))):
+                hours = vals.get('scheduled_duration', False)
+                start_date_val = vals.get('scheduled_date_start',
+                                          self.scheduled_date_start)
+                start_date = fields.Datetime.from_string(start_date_val)
+                date_to_with_delta = start_date + timedelta(hours=hours)
                 vals['scheduled_date_end'] = str(date_to_with_delta)
 
     def action_complete(self):
@@ -286,7 +324,7 @@ class FSMOrder(models.Model):
                         self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
             s = self.location_id.direction
-            if s is not False and s is not '<p><br></p>':
+            if s is not False and s != '<p><br></p>':
                 s = s.replace('<p>', '')
                 s = s.replace('<br>', '')
                 s = s.replace('</p>', '\n')
@@ -317,6 +355,8 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
+            self.type = self.template_id.type_id
+            self.team_id = self.template_id.team_id
 
 
 class FSMTeam(models.Model):

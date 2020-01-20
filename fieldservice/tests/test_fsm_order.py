@@ -6,10 +6,10 @@ from odoo import fields
 from odoo.tests.common import TransactionCase, Form
 
 
-class FSMOrder(TransactionCase):
+class TestFSMOrder(TransactionCase):
 
     def setUp(self):
-        super(FSMOrder, self).setUp()
+        super(TestFSMOrder, self).setUp()
         self.Order = self.env['fsm.order']
         self.test_location = self.env.ref('fieldservice.test_location')
 
@@ -59,7 +59,7 @@ class FSMOrder(TransactionCase):
             order.scheduled_date_start + timedelta(hours=duration))
         # Set new date end
         order.scheduled_date_end = \
-            order.scheduled_date_end.replace(hour=1, minute=1, second=1)
+            order.scheduled_date_end.replace(hour=1, minute=1, second=0)
         # Check date start
         self.assertEqual(
             order.scheduled_date_start,

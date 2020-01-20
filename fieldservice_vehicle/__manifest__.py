@@ -1,10 +1,9 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
     'name': 'Field Service Vehicles',
     'summary': 'Manage Field Service vehicles and assign drivers',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.1.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
@@ -15,7 +14,8 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/fsm_vehicle.xml',
-        'views/fsm_route.xml',
+        'views/fsm_person.xml',
+        'views/fsm_order.xml',
         'views/menu.xml',
     ],
     'license': 'AGPL-3',
@@ -24,5 +24,4 @@
         'wolfhall',
         'max3903',
     ],
-    'installable': True,
 }
