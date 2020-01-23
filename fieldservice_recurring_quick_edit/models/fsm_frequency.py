@@ -2,24 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.rrule import (
-    DAILY,
-    FR,
-    MO,
-    MONTHLY,
-    SA,
-    SU,
-    TH,
-    TU,
-    WE,
-    WEEKLY,
-    YEARLY,
     rrule,
 )
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from odoo.addons.fieldservice_recurring.models.fsm_frequency import (
-        WEEKDAYS, FREQUENCIES, FREQUENCY_SELECT)
+from odoo.addons.fieldservice_recurring.models.fsm_frequency import FREQUENCIES
 
 WEEKDAYS_SELECT = [
     ("mo", "MO"),
