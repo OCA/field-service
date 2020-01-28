@@ -18,6 +18,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/fsm_stock_data.xml',
+        'views/fsm_territory.xml',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'views/stock.xml',
