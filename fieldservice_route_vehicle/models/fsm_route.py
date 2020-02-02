@@ -10,8 +10,9 @@ class FsmRoute(models.Model):
     def _get_default_vehicle(self):
         return self.fsm_person_id.vehicle_id.id or False
 
-    fsm_vehicle_id = fields.Many2one('fsm.vehicle', string='Vehicle',
+    fsm_vehicle_id = fields.Many2one('fsm.vehicle', string='Main Vehicle',
                                      default=_get_default_vehicle)
+    fsm_vehicle_ids = fields.Many2many('fsm.vehicle', string='Vehicles')
 
     @api.onchange('fsm_person_id')
     def onchange_vehicle(self):
