@@ -8,10 +8,15 @@ class FSMRouteDayRoute(models.Model):
 
     @api.model
     def _get_default_vehicle(self, vals=None):
-        route = self.route_id
-        if not route and vals.get('route_id', False):
+        vehicle_id = False
+        if self.person_id:
+            vehicle_id = self.person_id.vehicle_id.id
+        elif self.route_id:
+            vehicle_id = self.route_id.fsm_vehicle_id.id
+        elif vals and vals.get('route_id', False):
             route = self.env['fsm.route'].browse(vals.get('route_id'))
-        return route.fsm_vehicle_id.id or False
+            vehicle_id = route.fsm_vehicle_id.id
+        return vehicle_id
 
     fsm_vehicle_id = fields.Many2one(
         'fsm.vehicle', string='Vehicle', index=True,
