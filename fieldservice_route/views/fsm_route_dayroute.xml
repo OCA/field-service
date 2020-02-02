@@ -48,13 +48,14 @@
                         <page string="Orders">
                             <group id="orders">
                                 <group id="orders-left">
+                                    <field name="order_max"/>
                                     <field name="order_count"/>
                                 </group>
                                 <group id="orders-right"/>
                             </group>
                             <field name="order_ids" nolabel="1"
                                    widget="many2many"
-                                   domain="[('route_id', '=', False)]">
+                                   domain="[('dayroute_id', '=', False), ('fsm_route_id', '=', route_id)]">
                                 <tree>
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
@@ -90,12 +91,34 @@
         <field name="name">Day Routes</field>
         <field name="res_model">fsm.route.dayroute</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,calendar,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add Day Routes here.
             </p>
         </field>
+    </record>
+
+    <!-- Dashboard -->
+    <record id="fsm_route_dayroute_calendar" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.calendar</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <calendar string="Day Routes"
+                      date_start="date_start_planned"
+                      date_delay="max_allow_time"
+                      color="route_id">
+                <field name="name"/>
+                <field name="person_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_fsm_route_dayroute_dash" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route.dayroute</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">calendar,tree</field>
     </record>
 
     <!-- Reporting -->
