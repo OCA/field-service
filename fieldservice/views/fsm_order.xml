@@ -21,7 +21,8 @@
                             attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
                     <field name="stage_id" widget="statusbar"
                            options="{'fold_field': 'fold'}"
-                           domain="[('stage_type', '=', 'order')]"/>
+                           domain="[('stage_type', '=', 'order'),
+                                    ('team_ids', 'in', (team_id, False))]"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
@@ -179,7 +180,7 @@
         <field name="arch" type="xml">
             <kanban default_group_by="stage_id" class="o_kanban_small_column">
                 <field name="stage_id"
-                       options='{"group_by_tooltip": {"legend_priority": "Use of stars"}}'/>
+                       options='{"group_by_tooltip": {"description": "Description"}}'/>
                 <field name="name"/>
                 <field name="priority"/>
                 <field name="location_id"/>
