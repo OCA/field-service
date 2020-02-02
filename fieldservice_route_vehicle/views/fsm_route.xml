@@ -6,9 +6,14 @@
         <field name="inherit_id"
                ref="fieldservice_route.fsm_route_form"/>
         <field name="arch" type="xml">
-           <field name="day_ids" position="after">
+           <field name="fsm_person_id" position="after">
                <field name="fsm_vehicle_id"/>
            </field>
+            <xpath expr="//notebook" position="inside">
+                <page id="vehicles" string="Vehicles">
+                    <field name="fsm_vehicle_ids"/>
+                </page>
+            </xpath>
         </field>
     </record>
 
