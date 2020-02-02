@@ -101,7 +101,7 @@ class FSMRouteDayRoute(models.Model):
     @api.constrains('order_max', 'order_count')
     def check_capacity(self):
         for rec in self:
-             if rec.order_count > rec.order_max:
-                 raise ValidationError(_(
-                     "The day route is exceeding the maximum number of "
-                     "orders of the route."))
+            if rec.order_count > rec.order_max:
+                raise ValidationError(_(
+                    "The day route is exceeding the maximum number of "
+                    "orders of the route."))
