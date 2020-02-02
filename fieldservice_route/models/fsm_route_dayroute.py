@@ -1,8 +1,9 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from datetime import datetime
 from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class FSMRouteDayRoute(models.Model):
@@ -12,6 +13,13 @@ class FSMRouteDayRoute(models.Model):
     @api.model
     def _get_default_person(self):
         return self.route_id.fsm_person_id.id or False
+
+    @api.model
+    def _get_default_date_start_planned(self):
+        if self.date:
+            return datetime.combine(
+                # TODO: Use the worker timezone and working schedule
+                self.date, datetime.strptime("8:00:01", '%H:%M:%S').time())
 
     @api.depends('route_id')
     def _compute_order_count(self):
@@ -31,11 +39,14 @@ class FSMRouteDayRoute(models.Model):
                                domain="[('stage_type', '=', 'route')]",
                                index=True, copy=False,
                                default=lambda self: self._default_stage_id())
-    territory_id = fields.Many2one('fsm.territory', string='Territory')
+    territory_id = fields.Many2one(
+        'fsm.territory', related='route_id.territory_id', string='Territory')
     longitude = fields.Float("Longitude")
     latitude = fields.Float("Latitude")
     last_location_id = fields.Many2one('fsm.location', string='Last Location')
-    date_start_planned = fields.Datetime(string='Planned Start Time')
+    date_start_planned = fields.Datetime(
+        string='Planned Start Time',
+        default=_get_default_date_start_planned)
     start_location_id = fields.Many2one(
         'fsm.location', string='Start Location')
     end_location_id = fields.Many2one('fsm.location', string='End Location')
@@ -47,6 +58,9 @@ class FSMRouteDayRoute(models.Model):
                                 string='Orders')
     order_count = fields.Integer(string='Number of Orders',
                                  compute=_compute_order_count)
+    order_max = fields.Integer(
+        related='route_id.max_order', string="Capacity",
+        help="Maximum numbers of orders that can be added to this day route.")
 
     _sql_constraints = [
         ('fsm_route_dayroute_person_date_uniq',
@@ -80,6 +94,14 @@ class FSMRouteDayRoute(models.Model):
                 day = self.env.ref(
                     'fieldservice_route.fsm_route_day_' + str(day_index))
                 if day.id not in rec.route_id.day_ids.ids:
-                    raise UserError(_(
+                    raise ValidationError(_(
                         "The route %s does not run on %s!" %
                         (rec.route_id.name, day.name)))
+
+    @api.constrains('order_max', 'order_count')
+    def check_capacity(self):
+        for rec in self:
+             if rec.order_count > rec.order_max:
+                 raise ValidationError(_(
+                     "The day route is exceeding the maximum number of "
+                     "orders of the route."))
