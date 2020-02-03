@@ -11,26 +11,27 @@ class FsmRoute(models.Model):
     @api.model
     @api.depends('fsm_vehicle_id', 'fsm_vehicle_ids')
     def _compute_max_from_vehicles(self):
-        vehicles = self.fsm_vehicle_ids + self.fsm_vehicle_id
-        max_qty = 0
-        for vehicle in vehicles:
-            if vehicle.inventory_location_id:
-                limits = self.env['stock.location.limit'].search([
-                    ('location_id', '=', vehicle.inventory_location_id.id),
-                    ('product_id', '=', self.max_product_id.id)
-                ])
-                for limit in limits:
-                    if limit.uom_id.category_id == \
-                            self.max_product_uom_id.category_id:
-                        # Convert the quantity to the unit of measure of the max
-                        max_qty += limit.qty * \
-                                   limit.uom_id.factor / \
-                                   self.max_product_uom_id.factor
-                    else:
-                        raise UserError(_(
-                            "The unit of measures do not belong to the same "
-                            "category."))
-        self.max_product_qty = max_qty
+        for rec in self:
+            vehicles = rec.fsm_vehicle_ids + rec.fsm_vehicle_id
+            max_qty = 0
+            for vehicle in vehicles:
+                if vehicle.inventory_location_id:
+                    limits = self.env['stock.location.limit'].search([
+                        ('location_id', '=', vehicle.inventory_location_id.id),
+                        ('product_id', '=', rec.max_product_id.id)
+                    ])
+                    for limit in limits:
+                        if limit.uom_id.category_id == \
+                                rec.max_product_uom_id.category_id:
+                            # Convert the quantity to the unit of measure of the max
+                            max_qty += limit.qty * \
+                                       limit.uom_id.factor / \
+                                       rec.max_product_uom_id.factor
+                        else:
+                            raise UserError(_(
+                                "The unit of measures do not belong to the same "
+                                "category."))
+            rec.max_product_qty = max_qty
 
     max_product_id = fields.Many2one('product.product', string='Product')
     max_product_uom_id = fields.Many2one(
