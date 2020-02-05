@@ -1,7 +1,6 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
 
 
@@ -21,16 +20,7 @@ class FsmRoute(models.Model):
                         ('product_id', '=', rec.max_product_id.id)
                     ])
                     for limit in limits:
-                        if limit.uom_id.category_id == \
-                                rec.max_product_uom_id.category_id:
-                            # Convert the quantity to the unit of measure of the max
-                            max_qty += limit.qty * \
-                                       limit.uom_id.factor / \
-                                       rec.max_product_uom_id.factor
-                        else:
-                            raise UserError(_(
-                                "The unit of measures do not belong to the same "
-                                "category."))
+                        max_qty += limit.qty
             rec.max_product_qty = max_qty
 
     max_product_id = fields.Many2one('product.product', string='Product')
