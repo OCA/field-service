@@ -7,7 +7,8 @@
         <field name="inherit_id" ref="fieldservice.fsm_territory_tree_view"/>
         <field name="arch" type="xml">
             <field name="branch_id" position="after">
-                <field name="warehouse_id" groups="stock.stock_multi_warehouses"/>
+                <field name="warehouse_id"
+                       groups="stock.group_stock_multi_warehouses"/>
             </field>
         </field>
     </record>
@@ -19,7 +20,8 @@
         <field name="inherit_id" ref="fieldservice.fsm_territory_form_view"/>
         <field name="arch" type="xml">
             <field name="person_id" position="after">
-                <field name="warehouse_id" groups="stock.stock_multi_warehouses"/>
+                <field name="warehouse_id"
+                       groups="stock.group_stock_multi_warehouses"/>
             </field>
         </field>
     </record>
