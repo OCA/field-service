@@ -65,6 +65,12 @@ procurement rule for that route:
 * Move Supply Method: Take From Stock
 * Operation Type: YourCompany: Receipts
 
+If you are in a multi-warehouse situation:
+
+* Go to Field Service > Configuration > Territories
+* Create or select a territory
+* Set the warehouse that will serve this territory
+
 Usage
 =====
 
