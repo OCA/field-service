@@ -9,7 +9,8 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                        attrs="{'invisible': [('invoice_count', '=', 0)]}"
+                        groups="account.group_account_invoice">
                     <field name="invoice_count"
                            widget="statinfo"
                            string="Invoices/Bills"/>
