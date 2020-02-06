@@ -10,7 +10,8 @@
                         type="object"
                         class="oe_stat_button"
                         icon="fa-map"
-                        attrs="{'invisible': [('fsm_order_count', '=', 0)]}">
+                        attrs="{'invisible': [('fsm_order_count', '=', 0)]}"
+                        groups="fieldservice.group_fsm_user">
                     <field name="fsm_order_count" widget="statinfo" string="FSM Orders"/>
                 </button>
             </div>
@@ -24,7 +25,7 @@
         <field name="inherit_id" ref="account.invoice_supplier_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='origin']" position="after">
-              <field name="fsm_order_ids" widget="many2many_tags"/>
+              <field name="fsm_order_ids" widget="many2many_tags" groups="fieldservice.group_fsm_user"/>
             </xpath>
         </field>
     </record>
