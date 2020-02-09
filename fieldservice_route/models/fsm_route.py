@@ -24,7 +24,4 @@ class FSMRoute(models.Model):
             day_index = date.weekday()
             day = self.env.ref(
                 'fieldservice_route.fsm_route_day_' + str(day_index))
-            if day in self.day_ids:
-                return True
-            else:
-                return False
+            return day in self.day_ids
