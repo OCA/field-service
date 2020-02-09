@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_route
+# 	* fieldservice_route
 #
 msgid ""
 msgstr ""
@@ -30,6 +30,12 @@ msgstr "Agregar rutas aquí."
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__person_id
 msgid "Assigned To"
 msgstr "Asignado a"
+
+#. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__max_order
+#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
+msgid "Capacity"
+msgstr ""
 
 #. module: fieldservice_route
 #: model_terms:ir.actions.act_window,help:fieldservice_route.action_fsm_route_day
@@ -63,9 +69,12 @@ msgstr "Ruta del día"
 
 #. module: fieldservice_route
 #: model:ir.actions.act_window,name:fieldservice_route.action_fsm_route_dayroute
+#: model:ir.actions.act_window,name:fieldservice_route.action_fsm_route_dayroute_dash
 #: model:ir.actions.act_window,name:fieldservice_route.action_fsm_route_dayroute_report
+#: model:ir.ui.menu,name:fieldservice_route.menu_fsm_dash_dayroute
 #: model:ir.ui.menu,name:fieldservice_route.menu_fsm_route_dayroute
 #: model:ir.ui.menu,name:fieldservice_route.menu_fsm_route_dayroute_report
+#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_calendar
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_pivot_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_tree
@@ -183,6 +192,28 @@ msgid "Maximal Allowable Time (in hours)"
 msgstr "Tiempo máximo permitido (en horas)"
 
 #. module: fieldservice_route
+#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
+msgid "Maximum"
+msgstr ""
+
+#. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__max_order
+#, fuzzy
+#| msgid "Number of Orders"
+msgid "Maximum Orders"
+msgstr "Numero de Ordenes"
+
+#. module: fieldservice_route
+#: model:ir.model.fields,help:fieldservice_route.field_fsm_route__max_order
+msgid "Maximum number of orders per day route."
+msgstr ""
+
+#. module: fieldservice_route
+#: model:ir.model.fields,help:fieldservice_route.field_fsm_route_dayroute__max_order
+msgid "Maximum numbers of orders that can be added to this day route."
+msgstr ""
+
+#. module: fieldservice_route
 #: selection:fsm.route.day,name:0
 msgid "Monday"
 msgstr "Lunes"
@@ -195,9 +226,9 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:24
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:69
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:71
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:32
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:83
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:85
 #, python-format
 msgid "New"
 msgstr "Nuevo"
@@ -300,7 +331,13 @@ msgid "Territory"
 msgstr "Territorio"
 
 #. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:85
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:105
+#, python-format
+msgid "The day route is exceeding the maximum number of orders of the route."
+msgstr ""
+
+#. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:99
 #, python-format
 msgid "The route %s does not run on %s!"
 msgstr "La ruta %s no corre en %s!"
@@ -344,3 +381,8 @@ msgstr "Trabajador"
 #: sql_constraint:fsm.route.dayroute:0
 msgid "You cannot create 2 day routes for the same worker on the same day!"
 msgstr "¡No puede crear rutas de 2 días para el mismo trabajador el mismo día!"
+
+#. module: fieldservice_route
+#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
+msgid "orders per day route"
+msgstr ""
