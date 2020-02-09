@@ -58,7 +58,7 @@ class FSMRouteDayRoute(models.Model):
                                 string='Orders')
     order_count = fields.Integer(string='Number of Orders',
                                  compute=_compute_order_count)
-    order_max = fields.Integer(
+    max_order = fields.Integer(
         related='route_id.max_order', string="Capacity",
         help="Maximum numbers of orders that can be added to this day route.")
 
@@ -98,10 +98,10 @@ class FSMRouteDayRoute(models.Model):
                         "The route %s does not run on %s!" %
                         (rec.route_id.name, day.name)))
 
-    @api.constrains('order_max', 'order_count')
+    @api.constrains('max_order', 'order_count')
     def check_capacity(self):
         for rec in self:
-            if rec.order_count > rec.order_max:
+            if rec.order_count > rec.max_order:
                 raise ValidationError(_(
                     "The day route is exceeding the maximum number of "
                     "orders of the route."))
