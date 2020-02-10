@@ -13,6 +13,7 @@
     'depends': [
         'fieldservice_vehicle',
         'fieldservice_stock',
+        'fieldservice_delivery',
         'stock_putaway_method',
     ],
     'data': [
