@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
-# from odoo.addons.base_geoengine import geo_model
+
 
 AVAILABLE_PRIORITIES = [
     ('0', 'Normal'),
@@ -35,7 +35,8 @@ class FSMStage(models.Model):
                                     'as closed.')
     is_default = fields.Boolean('Is a default stage',
                                 help='Used a default stage')
-    custom_color = fields.Char("Color Code", default="#FFFFFF")
+    custom_color = fields.Char("Color Code", default="#FFFFFF",
+                               help="Use Hex Code only Ex:-#FFFFFF")
     description = fields.Text(translate=True)
     stage_type = fields.Selection([('order', 'Order'),
                                    ('equipment', 'Equipment'),
@@ -67,3 +68,10 @@ class FSMStage(models.Model):
                                         "it has the same Type and Sequence "
                                         "of an existing FSM Stage."))
         return super(FSMStage, self).create(vals)
+
+    @api.constrains('custom_color')
+    def _check_custom_color_hex_code(self):
+        if self.custom_color and not self.custom_color.startswith(
+                '#') or len(self.custom_color) != 7:
+            raise ValidationError(
+                _('Color code should be Hex Code. Ex:-#FFFFFF'))
