@@ -18,6 +18,7 @@
         'views/fsm_stage.xml',
     ],
     'development_status': 'Beta',
+    'external_dependencies': {'python': ['webcolors']},
     'maintainers': [
         'wolfhall',
         'max3903',

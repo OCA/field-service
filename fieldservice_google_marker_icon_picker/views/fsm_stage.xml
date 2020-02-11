@@ -5,8 +5,11 @@
         <field name="model">fsm.stage</field>
         <field name="inherit_id" ref="fieldservice.fsm_stage_form_view"/>
         <field name="arch" type="xml">
+            <field name="custom_color" position="before">
+                <field name="choose_color" widget="google_marker_picker"/>
+            </field>
             <field name="custom_color" position="attributes">
-                <attribute name="widget">google_marker_picker</attribute>
+                <attribute name="attrs">{'invisible':[('choose_color', '!=', False)]}</attribute>
             </field>
         </field>
     </record>
