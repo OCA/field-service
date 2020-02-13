@@ -372,11 +372,3 @@ class FSMOrder(models.Model):
             if not self.type:
                 self.type = self.template_id.type_id
             self.team_id = self.template_id.team_id
-
-
-class FSMTeam(models.Model):
-    _inherit = 'fsm.team'
-
-    order_ids = fields.One2many(
-        'fsm.order', 'team_id', string='Orders',
-        domain=[('stage_id.is_closed', '=', False)])
