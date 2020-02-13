@@ -375,7 +375,7 @@ msgid "Cancel Order"
 msgstr "Auftrag abbrechen"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_stage.py:77
+#: code:addons/fieldservice/models/fsm_stage.py:78
 #, python-format
 msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
@@ -470,11 +470,6 @@ msgid "Children"
 msgstr "Untergeordnetes Service-Equipment"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
-msgid "Choose Color"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
 msgid "Choose a team to be set on orders of this template"
 msgstr ""
@@ -501,6 +496,11 @@ msgid "Clear"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
+msgid "Color Code"
+msgstr "Farbcode"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__color
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__color
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__color
@@ -510,6 +510,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__color
 msgid "Color Index"
 msgstr "Farbindex"
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_stage.py:88
+#, python-format
+msgid "Color code should be Hex Code. Ex:-#FFFFFF"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
@@ -3236,6 +3242,12 @@ msgid "Use GeoEngine with OpenStreetMap"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__custom_color
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__custom_color
+msgid "Use Hex Code only Ex:-#FFFFFF"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stock
 msgid "Use Odoo Logistics"
 msgstr ""
@@ -3447,9 +3459,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
 msgid "templates"
 msgstr ""
-
-#~ msgid "Color Code"
-#~ msgstr "Farbcode"
 
 #~ msgid "Add Day Routes here."
 #~ msgstr "Hier können Tagesrouten hinzugefügt werden."
