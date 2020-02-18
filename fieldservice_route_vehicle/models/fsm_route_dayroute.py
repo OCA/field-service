@@ -14,6 +14,8 @@ class FSMRouteDayRoute(models.Model):
         elif self.route_id and self.route_id.fsm_vehicle_id:
             vehicle_id = self.route_id.fsm_vehicle_id.id
         elif vals and vals.get('route_id', False):
+        route = self.route_id
+        if not route and vals and vals.get('route_id', False):
             route = self.env['fsm.route'].browse(vals.get('route_id'))
             vehicle_id = route.fsm_vehicle_id and \
                          route.fsm_vehicle_id.id or False
