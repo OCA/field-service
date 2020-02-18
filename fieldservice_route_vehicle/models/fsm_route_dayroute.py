@@ -9,7 +9,7 @@ class FSMRouteDayRoute(models.Model):
     @api.model
     def _get_default_vehicle(self, vals=None):
         route = self.route_id
-        if not route and vals.get('route_id', False):
+        if not route and vals and vals.get('route_id', False):
             route = self.env['fsm.route'].browse(vals.get('route_id'))
         return route.fsm_vehicle_id.id or False
 
