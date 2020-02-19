@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-05 19:29+0000\n"
+"PO-Revision-Date: 2020-02-13 00:12+0000\n"
 "Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -210,7 +210,7 @@ msgstr "Tudo"
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_operation_order
 msgid "All Orders"
-msgstr "Todos os Pedidos"
+msgstr "Todos os Ordens"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
@@ -380,10 +380,10 @@ msgstr "Cancelar"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Cancel Order"
-msgstr "Cancelar Pedido"
+msgstr "Cancelar Ordem"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_stage.py:77
+#: code:addons/fieldservice/models/fsm_stage.py:78
 #, python-format
 msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
@@ -467,7 +467,7 @@ msgid ""
 "orders."
 msgstr ""
 "Marque esta caixa se este contato for um fornecedor. Pode ser selecionado em "
-"pedidos."
+"ordens de compra."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__employee
@@ -480,11 +480,6 @@ msgstr "Marque esta caixa se este contato for um funcionário."
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 msgid "Children"
 msgstr "Filho"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
-msgid "Choose Color"
-msgstr "Seleciona a cor"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
@@ -503,7 +498,7 @@ msgstr "Cidade"
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__tag_ids
 msgid "Classify and analyze your orders"
-msgstr "Classifique e analise seus pedidos"
+msgstr "Classifique e analise suas ordens"
 
 #. module: fieldservice
 #. openerp-web
@@ -511,6 +506,11 @@ msgstr "Classifique e analise seus pedidos"
 #, python-format
 msgid "Clear"
 msgstr "Limpar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
+msgid "Color Code"
+msgstr "Código da Cor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__color
@@ -522,6 +522,12 @@ msgstr "Limpar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__color
 msgid "Color Index"
 msgstr "Índice de Cores"
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_stage.py:88
+#, python-format
+msgid "Color code should be Hex Code. Ex:-#FFFFFF"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
@@ -708,7 +714,7 @@ msgstr "Estado do país"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create FSM Orders from Opportunities."
-msgstr "Crie pedidos FSM a partir de Oportunidades."
+msgstr "Crie Ordens FSM a partir de Oportunidades."
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_customer
@@ -769,7 +775,7 @@ msgid ""
 "Create vendor bills and customer invoices when completing service orders.\n"
 "                                    Track costs and revenues."
 msgstr ""
-"Crie contas de fornecedores e faturas de clientes ao preencher pedidos de "
+"Crie contas de fornecedores e faturas de clientes ao preencher ordens de "
 "serviço.\n"
 "                                    Acompanhe os custos e as receitas."
 
@@ -935,7 +941,7 @@ msgstr "Nome exibido"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Display locations and orders on a map with OpenStreetMap"
-msgstr "Locais de exibição e pedidos em um mapa com O OpenStreetMap"
+msgstr "Locais de exibição de ordens em um mapa com o OpenStreetMap"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_district
@@ -1067,12 +1073,12 @@ msgid ""
 "stages or orders that are in this stage."
 msgstr ""
 "Texto explicativo para ajudar os usuários a usar o mecanismo de estrela e "
-"prioridade nos estágios ou pedidos que estão neste estágio."
+"prioridade nos estágios ou ordens que estão neste estágio."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "FS Order #"
-msgstr "Ordem FS #"
+msgstr "Ordem SC #"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
@@ -1154,7 +1160,7 @@ msgstr "Modelo de Ordem de Serviço de Campo"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_order_type
 msgid "Field Service Order Type"
-msgstr "Tipo de Ordem deSserviço de Campo"
+msgstr "Tipo de Ordem de Serviço de Campo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_stage
@@ -1250,7 +1256,7 @@ msgstr "Nome Completo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Future Orders"
-msgstr "Pedidos Futuros"
+msgstr "Ordens Futuras"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -1609,12 +1615,12 @@ msgstr "Data da última solicitação"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_repair
 msgid "Link FSM orders to MRP Repair orders"
-msgstr "Vincular os pedidos do SC aos pedidos de reparo do MRP"
+msgstr "Vincular os Ordens do SC as ordens de reparo do MRP"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_maintenance
 msgid "Link FSM orders to maintenance requests"
-msgstr "Vincular os pedidos do FSM às requisições de manutenção"
+msgstr "Vincular os ordens do FSM às requisições de manutenção"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
@@ -1634,17 +1640,17 @@ msgstr "Vincular aos Veículos de Frota"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to MRP repair orders"
-msgstr "Vincule seus pedidos do SC aos pedidos de reparo do MRP"
+msgstr "Vincule suas ordens do SC as ordens de reparo do MRP"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to Projects and Project Tasks"
-msgstr "Vincular seus pedidos do SC aos Projetos e Tarefas do Projeto"
+msgstr "Vincular suas ordens do SC aos Projetos e Tarefas do Projeto"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to maintenance requests"
-msgstr "Vincular seus pedidos do FSM às solicitações de manutenção"
+msgstr "Vincular suas ordens do FSM às solicitações de manutenção"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__location_ids
@@ -2185,7 +2191,7 @@ msgstr "Oportunidade"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Order"
-msgstr "Pedido"
+msgstr "Ordem"
 
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_assigned
@@ -2195,12 +2201,12 @@ msgstr "Ordem Atribuída"
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_cancelled
 msgid "Order Cancelled"
-msgstr "Pedido Cancelado"
+msgstr "Ordem Cancelada"
 
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_completed
 msgid "Order Completed"
-msgstr "Pedido Finalizado"
+msgstr "Ordem Finalizada"
 
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_confirmed
@@ -2210,7 +2216,7 @@ msgstr "Ordem Confirmada"
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_new
 msgid "Order Created"
-msgstr "Pedido Criado"
+msgstr "Ordem Criada"
 
 #. module: fieldservice
 #: model:mail.message.subtype,name:fieldservice.mt_order_enroute
@@ -2253,7 +2259,7 @@ msgstr "Ordem atribuída"
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_cancelled
 msgid "Order cancelled"
-msgstr "Ordem cancelado"
+msgstr "Ordem cancelada"
 
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_completed
@@ -2268,7 +2274,7 @@ msgstr "Ordem confirmada"
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_new
 msgid "Order created"
-msgstr "Pedido criado"
+msgstr "Ordem criada"
 
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_enroute
@@ -2300,7 +2306,7 @@ msgstr "Ordem Iniciada"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
-msgstr "Pedidos"
+msgstr "Ordens"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_count
@@ -2473,13 +2479,13 @@ msgstr "Projetos e Tarefas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
 msgid "Purchase Order"
-msgstr "Pedido de Compra"
+msgstr "Ordem de Compra"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
 msgid "Purchase Order Count"
-msgstr "Contagem de Pedidos de Compra"
+msgstr "Contagem de Ordens de Compra"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -2596,7 +2602,7 @@ msgstr "Contagem de Ordens de Venda"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
 msgid "Sales Order"
-msgstr "Pedidos de Venda"
+msgstr "Ordens de Venda"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
@@ -3275,6 +3281,12 @@ msgid "Use GeoEngine with OpenStreetMap"
 msgstr "Usar GeoEngine com OpenStreetMap"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__custom_color
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__custom_color
+msgid "Use Hex Code only Ex:-#FFFFFF"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stock
 msgid "Use Odoo Logistics"
 msgstr "Usar Logística do Odoo"
@@ -3493,8 +3505,8 @@ msgstr "modelo"
 msgid "templates"
 msgstr "modelos"
 
-#~ msgid "Color Code"
-#~ msgstr "Código da Cor"
+#~ msgid "Choose Color"
+#~ msgstr "Seleciona a cor"
 
 #~ msgid "Add Day Routes here."
 #~ msgstr "Adicione Rotas do Dia aqui."

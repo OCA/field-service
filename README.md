@@ -20,9 +20,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.2.3.2 | Manage Field Service Locations, Workers and Orders
-[fieldservice_account](fieldservice_account/) | 12.0.3.1.0 | Track invoices linked to Field Service orders
-[fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.2.0 | Track analytic accounts on Field Service locations and orders
+[fieldservice](fieldservice/) | 12.0.2.3.3 | Manage Field Service Locations, Workers and Orders
+[fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
+[fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.0.0 | Allow workers to collect payments from the order.
 [fieldservice_activity](fieldservice_activity/) | 12.0.1.0.0 | Field Service Activities are a set of actions that need to be performed on a service order
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
@@ -32,7 +32,7 @@ addon | version | summary
 [fieldservice_fleet](fieldservice_fleet/) | 12.0.1.0.0 | Link Field Service vehicles with Odoo Fleet
 [fieldservice_geoengine](fieldservice_geoengine/) | 12.0.1.0.0 | Display Field Service locations on a map with Open Street Map
 [fieldservice_google_map](fieldservice_google_map/) | 12.0.1.0.0 | This module displays map views on the order and location using Google Map View module.
-[fieldservice_google_marker_icon_picker](fieldservice_google_marker_icon_picker/) | 12.0.1.0.0 | This module displays google marker icon picker based on apply widget on field
+[fieldservice_google_marker_icon_picker](fieldservice_google_marker_icon_picker/) | 12.0.1.1.0 | This module displays google marker icon picker based on apply widget on field
 [fieldservice_isp_account](fieldservice_isp_account/) | 12.0.2.1.1 | Invoice Field Service orders based on employee time or contractor costs
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.1.0 | Field Service workflow for Internet Service Providers
 [fieldservice_location_builder](fieldservice_location_builder/) | 12.0.1.0.0 | Adds a tool to help build out Location Hierarchies
@@ -45,7 +45,7 @@ addon | version | summary
 [fieldservice_route](fieldservice_route/) | 12.0.2.0.0 | Organize the routes of each day.
 [fieldservice_route_account](fieldservice_route_account/) | 12.0.1.0.0 | Field Service Route Account
 [fieldservice_route_stock](fieldservice_route_stock/) | 12.0.1.0.0 | Field Service Route Stock
-[fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.1.1.0 | This module allows you to set the vehicle on the routes and day routes.
+[fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.1.2.0 | This module allows you to set the vehicle on the routes and day routes.
 [fieldservice_sale](fieldservice_sale/) | 12.0.2.2.1 | Sell field services.
 [fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.1.0 | Sell recurring field services.
 [fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.3 | Sell stockable items linked to field service orders.
@@ -56,7 +56,7 @@ addon | version | summary
 [fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
 [fieldservice_vehicle](fieldservice_vehicle/) | 12.0.2.1.0 | Manage Field Service vehicles and assign drivers
-[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.1.1 | Track inventory of Field Service vehicles
+[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.2.0 | Track inventory of Field Service vehicles
 
 [//]: # (end addons)
 
