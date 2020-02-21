@@ -24,7 +24,7 @@ class StockPicking(models.Model):
             ):
                 if rec.fsm_vehicle_id:
                     picking = \
-                        rec.with_context(vehicle_id=self.fsm_vehicle_id.id)
+                        rec.with_context(vehicle_id=rec.fsm_vehicle_id.id)
                     return super(StockPicking, picking).action_assign()
                 else:
                     raise UserError(_(
