@@ -195,7 +195,7 @@ class SaleOrder(models.Model):
                 elif len(invoice.invoice_line_ids) > len(lines_by_sale):
                     new = invoice.copy()
                     new.write({"invoice_line_ids": [(6, 0, [])]})
-                    lines_by_sale.invoice_id = new.id
+                    lines_by_sale.write({"invoice_id": new.id})
                     result.append(new.id)
         return result
 
