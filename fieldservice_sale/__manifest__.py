@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Sales',
-    'version': '12.0.2.3.0',
+    'version': '12.0.2.3.1',
     'summary': 'Sell field services.',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
