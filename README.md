@@ -7,7 +7,11 @@ Odoo modules for field service management.
 
 [//]: # (addons)
 
-
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[base_territory](base_territory/) | 13.0.1.0.0 | This module allows you to define territories, branches, districts and regions to be used for Field Service operations or Sales.
 
 [//]: # (end addons)
 
