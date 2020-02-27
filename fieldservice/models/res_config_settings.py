@@ -57,6 +57,8 @@ class ResConfigSettings(models.TransientModel):
         string='Check the inventory of the vehicle at the end of the route')
     module_fieldservice_sale = fields.Boolean(
         string='Sell FSM orders')
+    module_fieldservice_size = fields.Boolean(
+        string='Manage sizes for orders and locations')
     module_fieldservice_skill = fields.Boolean(
         string='Manage Skills')
     module_fieldservice_stock = fields.Boolean(
