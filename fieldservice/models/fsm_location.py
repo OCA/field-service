@@ -253,10 +253,10 @@ class FSMLocation(models.Model):
         either be a in a list or in a form view, if there is only one
         contact to show.
         '''
-        for contact in self:
+        for location in self:
             action = self.env.ref('contacts.action_contacts').\
                 read()[0]
-            contacts = self.get_action_views(1, 0, contact)
+            contacts = self.get_action_views(1, 0, location)
             action['context'] = self.env.context.copy()
             action['context'].update({'group_by': ''})
             action['context'].update({'default_service_location_id': self.id})

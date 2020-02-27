@@ -342,8 +342,7 @@ class FSMOrder(models.Model):
                 s = s.replace('</p>', '\n')
                 self.location_directions = (s + '\n ')
         if self.template_id:
-            if self.template_id.instructions:
-                self.todo += self.template_id.instructions
+            self.todo = self.template_id.instructions
         if self.description:
             self.description += '\n' + old_desc
         else:
