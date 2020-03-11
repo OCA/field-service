@@ -348,7 +348,6 @@ class FSMOrder(models.Model):
         else:
             self.description = old_desc
 
-
     @api.onchange('location_id')
     def onchange_location_id(self):
         if self.location_id:
