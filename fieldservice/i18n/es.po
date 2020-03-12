@@ -394,6 +394,12 @@ msgstr ""
 "existente."
 
 #. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:237
+#, python-format
+msgid "Cannot move to completed from Kanban"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__category_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__category_ids
@@ -1455,6 +1461,11 @@ msgstr "Facturar tus Pedidos de Servicio"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
 msgid "Invoices"
 msgstr "Facturas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
+msgid "Is Button"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
@@ -3480,12 +3491,14 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:339
+#: code:addons/fieldservice/models/fsm_location.py:341
 #, python-format
 msgid "You cannot create recursive location."
 msgstr "No puede crear una ubicación recursiva."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:244
+#: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "You cannot delete this order."
 msgstr "No puedes eliminar este pedido."
