@@ -425,6 +425,7 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
-            self.type = self.template_id.type_id
+            if not self.type and self.template_id.type_id:
+                self.type = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
