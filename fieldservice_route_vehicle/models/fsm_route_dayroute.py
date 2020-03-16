@@ -18,7 +18,7 @@ class FSMRouteDayRoute(models.Model):
         if not route and vals and vals.get('route_id', False):
             route = self.env['fsm.route'].browse(vals.get('route_id'))
             vehicle_id = route.fsm_vehicle_id and \
-                         route.fsm_vehicle_id.id or False
+                route.fsm_vehicle_id.id or False
         return vehicle_id
 
     fsm_vehicle_id = fields.Many2one(
