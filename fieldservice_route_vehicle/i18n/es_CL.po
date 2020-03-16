@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_route_vehicle
+# 	* fieldservice_route_vehicle
 #
 msgid ""
 msgstr ""
@@ -28,6 +28,20 @@ msgstr "Ruta de Servicio de Campo Dayroute"
 
 #. module: fieldservice_route_vehicle
 #: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route__fsm_vehicle_id
+#, fuzzy
+#| msgid "Vehicle"
+msgid "Main Vehicle"
+msgstr "Vehículo"
+
+#. module: fieldservice_route_vehicle
 #: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route_dayroute__fsm_vehicle_id
 msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: fieldservice_route_vehicle
+#: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route__fsm_vehicle_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice_route_vehicle.fsm_route_form_inherit
+#, fuzzy
+#| msgid "Vehicle"
+msgid "Vehicles"
 msgstr "Vehículo"
