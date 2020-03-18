@@ -24,6 +24,11 @@ class FSMOrder(models.Model):
             [('company_id', '=', company)], limit=1)
         return warehouse_ids and warehouse_ids.id
 
+    @api.model
+    def _get_move_domain(self):
+        return [('picking_id.picking_type_id.code', 'in',
+                 ('outgoing', 'incoming'))]
+
     stock_request_ids = fields.One2many('stock.request', 'fsm_order_id',
                                         string="Order Lines")
 
@@ -44,8 +49,9 @@ class FSMOrder(models.Model):
     request_stage = fields.Selection(REQUEST_STATES, string='Request State',
                                      default='draft', readonly=True,
                                      store=True)
-    move_ids = fields.One2many('stock.move', 'fsm_order_id',
-                               string='Operations')
+    move_ids = fields.One2many(
+        'stock.move', 'fsm_order_id', string='Operations',
+        domain=_get_move_domain)
 
     @api.multi
     def action_request_submit(self):
