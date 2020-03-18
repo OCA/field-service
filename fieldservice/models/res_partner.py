@@ -24,13 +24,15 @@ class ResPartner(models.Model):
 
     def _compute_owned_location_count(self):
         for partner in self:
-            res = self.env["fsm.location"].search_count([("owner_id", "=", partner.id)])
+            res = self.env["fsm.location"].search_count(
+                [("owner_id", "child_of", partner.id)]
+            )
             partner.owned_location_count = res
 
     def action_open_owned_locations(self):
         for partner in self:
             owned_location_ids = self.env["fsm.location"].search(
-                [("owner_id", "=", partner.id)]
+                [("owner_id", "child_of", partner.id)]
             )
             action = self.env.ref("fieldservice.action_fsm_location").read()[0]
             action["context"] = {}
