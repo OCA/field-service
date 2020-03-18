@@ -4,7 +4,7 @@
 {
     'name': 'Field Service Location Builder',
     'summary': 'Adds a tool to help build out Location Hierarchies',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
