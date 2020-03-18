@@ -9,7 +9,7 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice'
+        'fieldservice_account_analytic'
     ],
     'data': [
         'wizard/fsm_location_builder_wizard.xml',
