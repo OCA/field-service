@@ -393,12 +393,7 @@ class FSMOrder(models.Model):
                     else:
                         self.description = self.equipment_id.notes + "\n "
         if self.location_id:
-            s = self.location_id.direction
-            if s and s != "<p><br></p>":
-                s = s.replace("<p>", "")
-                s = s.replace("<br>", "")
-                s = s.replace("</p>", "\n")
-                self.location_directions = s + "\n "
+            self.location_directions = self._get_location_directions(self.location_id)
         if self.template_id:
             self.todo = self.template_id.instructions
         if self.description:
@@ -429,3 +424,16 @@ class FSMOrder(models.Model):
                 self.type = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
+
+    def _get_location_directions(self, location_id):
+        self.location_directions = ""
+        s = self.location_id.direction or ""
+        parent_location = self.location_id.fsm_parent_id
+        # ps => Parent Location Directions
+        # s => String to Return
+        while parent_location.id is not False:
+            ps = parent_location.direction
+            if ps:
+                s += parent_location.direction
+            parent_location = parent_location.fsm_parent_id
+        return s
