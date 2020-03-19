@@ -1,13 +1,6 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models
-
-
-class MaintenanceEquipment(models.Model):
-    _inherit = 'maintenance.equipment'
-
-    is_fsm_equipment = fields.Boolean(string='Is a FSM Equipment')
 
 
 class MaintenanceRequest(models.Model):
