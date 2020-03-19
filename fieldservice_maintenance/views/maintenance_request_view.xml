@@ -1,0 +1,17 @@
+<odoo>
+
+    <!-- Field Service maintenance request Form View-->
+    <record id="hr_equipment_request_view_form_fsm" model="ir.ui.view">
+        <field name="name">equipment.request.form.fsm</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id"
+               ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='equipment_id']" position="after">
+                <field name="fsm_order_id"
+                       attrs="{'invisible': [('fsm_order_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
