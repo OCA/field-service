@@ -28,8 +28,9 @@ class FSMOrderRouteCase(TransactionCase):
         self.fsm_route_id = self.fsm_route_obj.create(
             {
                 'name': 'Demo Route',
+                'max_order': 10,
                 'fsm_person_id': self.test_person.id,
-                'day_ids': [(6, 0, self.days)]
+                'day_ids': [(6, 0, self.days)],
             })
         self.test_location.fsm_route_id = self.fsm_route_id.id
 
