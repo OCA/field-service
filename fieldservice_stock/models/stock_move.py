@@ -20,10 +20,11 @@ class StockMove(models.Model):
     def _action_done(self):
         res = super()._action_done()
         for rec in self:
-            if rec.picking_code == 'outgoing' and rec.state == 'done':
-                if rec.product_tmpl_id.create_fsm_equipment:
-                    for line in rec.move_line_ids:
-                        vals = self.prepare_equipment_values(line)
-                        line.lot_id.fsm_equipment_id = \
-                            rec.env['fsm.equipment'].create(vals)
+            if (rec.state == 'done'
+                    and rec.picking_type_id.create_fsm_equipment
+                    and rec.product_tmpl_id.create_fsm_equipment):
+                for line in rec.move_line_ids:
+                    vals = self.prepare_equipment_values(line)
+                    line.lot_id.fsm_equipment_id = \
+                        rec.env['fsm.equipment'].create(vals)
         return res
