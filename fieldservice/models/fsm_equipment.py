@@ -17,10 +17,7 @@ class FSMEquipment(models.Model):
     branch_id = fields.Many2one("res.branch", string="Branch")
     district_id = fields.Many2one("res.district", string="District")
     region_id = fields.Many2one("res.region", string="Region")
-    current_location_id = fields.Many2one(
-        "fsm.location", string="Current Location", required=True
-    )
-
+    current_location_id = fields.Many2one("fsm.location", string="Current Location")
     managed_by_id = fields.Many2one("res.partner", string="Managed By")
     owned_by_id = fields.Many2one("res.partner", string="Owned By")
     parent_id = fields.Many2one("fsm.equipment", string="Parent")
