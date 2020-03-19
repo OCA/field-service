@@ -8,19 +8,18 @@ from odoo.exceptions import ValidationError
 class FSMRouteDayRoute(models.Model):
     _inherit = 'fsm.route.dayroute'
 
-    @api.model
-    @api.depends('order_ids', 'route_id')
+    @api.depends('order_ids.move_ids', 'route_id')
     def _compute_product_qty(self):
-        product_qty = 0.00
-        if self.order_ids:
-            product = self.route_id.max_product_id
-            for order in self.order_ids:
-                for move in order.move_ids:
-                    if move.product_id == product:
-                        product_qty += move.product_uom_qty
-        self.product_qty = product_qty
+        for rec in self:
+            product_qty = 0.00
+            if rec.order_ids and rec.max_product_id:
+                for order in rec.order_ids:
+                    for move in order.move_ids:
+                        if move.product_id == rec.max_product_id:
+                            product_qty += move.product_uom_qty
+            rec.product_qty = product_qty
+            rec.product_qty_remaining = rec.max_product_qty - product_qty
 
-    @api.model
     @api.depends('fsm_vehicle_id', 'route_id')
     def _compute_vehicle_capacity(self):
         for rec in self:
@@ -41,21 +40,24 @@ class FSMRouteDayRoute(models.Model):
     final_inventory_id = fields.Many2one(
         'stock.inventory', string='Final Inventory')
     product_qty = fields.Float(
-        compute='_compute_product_qty', string="Product Quantity")
-    is_limited = fields.Boolean(compute='_compute_vehicle_capacity',
-                                string="Is Limited?")
+        compute=_compute_product_qty, string="Product Quantity", store=True)
+    product_qty_remaining = fields.Float(
+        compute=_compute_product_qty, string="Available Stock Capacity",
+        store=True)
+    is_limited = fields.Boolean(
+        compute=_compute_vehicle_capacity, string="Is Limited?", store=True)
     max_product_id = fields.Many2one(
         'product.product', related='route_id.max_product_id', store=True)
     max_product_qty = fields.Float(
         compute='_compute_vehicle_capacity',
-        string="Capacity of the vehicle",
+        string="Maximum Stock Capacity",
         help="Maximum quantity of product that the vehicle can carry.")
 
     @api.multi
-    @api.constrains('is_limited', 'product_qty', 'max_product_qty')
+    @api.constrains('is_limited', 'product_qty_remaining')
     def check_vehicle_capacity(self):
         for rec in self:
-            if rec.is_limited and rec.product_qty > rec.max_product_qty:
+            if rec.is_limited and rec.product_qty_remaining < 0:
                 raise ValidationError(_(
                     "The vehicle %s is over capacity (%s > %s) on %s." %
                     (rec.fsm_vehicle_id.name, rec.product_qty,
