@@ -14,10 +14,12 @@
     ],
     'data': [
         'data/fsm_order_type.xml',
-        'views/maintenance_view.xml',
+        'views/maintenance_equipment_view.xml',
+        'views/maintenance_request_view.xml',
         'views/fsm_equipment_view.xml',
         'views/fsm_order_view.xml',
     ],
+    'pre_init_hook': 'pre_init_hook',
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'maintainers': [
