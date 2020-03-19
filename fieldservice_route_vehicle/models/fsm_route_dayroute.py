@@ -48,7 +48,8 @@ class FSMRouteDayRoute(models.Model):
     @api.multi
     def write(self, vals):
         res = super().write(vals)
-        if vals.get('fsm_vehicle_id', False):
-            self.order_ids.vehicle_id = vals.get('fsm_vehicle_id')
+        if vals.get('fsm_vehicle_id', False) and self.order_ids:
+            for order in self.order_ids:
+                order.vehicle_id = vals.get('fsm_vehicle_id')
         self.assign_vehicle_to_pickings()
         return res
