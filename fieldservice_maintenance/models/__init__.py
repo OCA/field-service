@@ -3,6 +3,7 @@
 
 from . import (
     fsm_order,
-    maintenance,
+    maintenance_equipment,
+    maintenance_request,
     fsm_equipment,
 )
