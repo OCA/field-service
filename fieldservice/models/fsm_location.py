@@ -111,7 +111,7 @@ class FSMLocation(models.Model):
         if name:
             recs = self.search([("ref", "ilike", name)] + args, limit=limit)
         if not recs:
-            recs = self.search([("name", operator, name)] + args, limit=limit)
+            recs = self.search([("complete_name", operator, name)] + args, limit=limit)
         return recs.name_get()
 
     _sql_constraints = [
