@@ -1,8 +1,9 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
+from datetime import datetime
 from odoo import api, fields, models
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class FSMOrder(models.Model):
@@ -22,51 +23,68 @@ class FSMOrder(models.Model):
         'fsm.person', string='Assigned To', index=True,
         default=_get_default_person)
 
-    def prepare_dayroute_values(self, person_id, date_start):
+    def prepare_dayroute_values(self, values):
         return {
-            'person_id': person_id,
-            'date': date_start,
-            'route_id': self.fsm_route_id.id,
-            'team_id': self.team_id.id,
-            'order_ids': [(4, self.id)]
+            'person_id': values['person_id'],
+            'date': values['date'],
+            'route_id': values['route_id']}
+
+    def _get_dayroute_values(self, vals):
+        date = False
+        if vals.get('scheduled_date_start'):
+            if type(vals.get('scheduled_date_start')) == str:
+                date = datetime.strptime(vals.get('scheduled_date_start'),
+                                         DEFAULT_SERVER_DATETIME_FORMAT).date()
+            elif isinstance(vals.get('scheduled_date_start'), datetime):
+                date = vals.get('scheduled_date_start').date()
+        return {
+            'person_id':
+                vals.get('person_id') or self.person_id.id or
+                self.fsm_route_id.fsm_person_id.id,
+            'date': date or self.scheduled_date_start.date(),
+            'route_id': vals.get('fsm_route_id') or self.fsm_route_id.id,
         }
+
+    def _get_dayroute_domain(self, values):
+        domain = [('person_id', '=', values['person_id']),
+                  ('date', '=', values['date']),
+                  ('order_remaining', '>', 0)]
+        return domain
+
+    def _can_create_dayroute(self, values):
+        return values['person_id'] and values['date']
 
     def _manage_fsm_route(self, vals):
         dayroute_obj = self.env['fsm.route.dayroute']
-        for rec in self:
-            person_id = vals.get('person_id') or rec.person_id.id or \
-                rec.fsm_route_id.fsm_person_id.id
-            scheduled_date_start = vals.get('scheduled_date_start') or \
-                rec.scheduled_date_start
-            dayroute = dayroute_obj.search([
-                ('person_id', '=', person_id),
-                ('date', '=', scheduled_date_start)],
-                limit=1)
-            old_dayroute_id = rec.dayroute_id
-            if dayroute:
+        values = self._get_dayroute_values(vals)
+        domain = self._get_dayroute_domain(values)
+        dayroute = dayroute_obj.search(domain, limit=1)
+        if dayroute:
+            vals.update({'dayroute_id': dayroute.id})
+        else:
+            if self._can_create_dayroute(values):
+                dayroute = dayroute_obj.create(
+                    self.prepare_dayroute_values(values))
                 vals.update({
                     'dayroute_id': dayroute.id})
-                if old_dayroute_id and not old_dayroute_id.order_ids:
-                    old_dayroute_id.unlink()
-            elif not dayroute and person_id or scheduled_date_start:
-                dayroute_obj.create(rec.prepare_dayroute_values(
-                    person_id, scheduled_date_start
-                ))
-                if old_dayroute_id and not old_dayroute_id.order_ids:
-                    old_dayroute_id.unlink()
+        # If this was the last order of the dayroute,
+        # delete the dayroute
+        if self.dayroute_id and not self.dayroute_id.order_ids:
+            self.dayroute_id.unlink()
         return vals
 
     @api.model
     def create(self, vals):
-        if not vals.get('person_id'):
-            location = self.env['fsm.location'].browse(vals.get('location_id'))
+        location = self.env['fsm.location'].browse(vals.get('location_id'))
+        if not vals.get('fsm_route_id'):
             vals.update({
-                'person_id': location.fsm_route_id.fsm_person_id.id,
-            })
-        res = super(FSMOrder, self).create(vals)
-        if res.person_id and res.scheduled_date_start:
-            res._manage_fsm_route(vals)
-        return res
+                'fsm_route_id': location.fsm_route_id.id})
+        if not vals.get('person_id'):
+            vals.update({
+                'person_id': location.fsm_route_id.fsm_person_id.id})
+        if vals.get('person_id') and vals.get('scheduled_date_start'):
+            vals = self._manage_fsm_route(vals)
+        return super().create(vals)
 
     @api.multi
     def write(self, vals):
@@ -81,4 +99,4 @@ class FSMOrder(models.Model):
                     (vals.get('scheduled_date_start', False) or
                      rec.scheduled_date_start):
                 vals = rec._manage_fsm_route(vals)
-        return super(FSMOrder, self).write(vals)
+        return super().write(vals)
