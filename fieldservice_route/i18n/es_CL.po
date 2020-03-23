@@ -32,7 +32,11 @@ msgid "Assigned To"
 msgstr "Asignado a"
 
 #. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__max_order
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__order_remaining
+msgid "Available Capacity"
+msgstr ""
+
+#. module: fieldservice_route
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "Capacity"
 msgstr ""
@@ -197,6 +201,11 @@ msgid "Maximum"
 msgstr ""
 
 #. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__max_order
+msgid "Maximum Capacity"
+msgstr ""
+
+#. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__max_order
 #, fuzzy
 #| msgid "Number of Orders"
@@ -332,12 +341,14 @@ msgstr "Territorio"
 
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:105
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:116
 #, python-format
 msgid "The day route is exceeding the maximum number of orders of the route."
 msgstr ""
 
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:99
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:110
 #, python-format
 msgid "The route %s does not run on %s!"
 msgstr "La ruta %s no corre en %s!"
@@ -378,11 +389,16 @@ msgid "Worker"
 msgstr "Trabajador"
 
 #. module: fieldservice_route
-#: sql_constraint:fsm.route.dayroute:0
-msgid "You cannot create 2 day routes for the same worker on the same day!"
-msgstr "¡No puede crear rutas de 2 días para el mismo trabajador el mismo día!"
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:22
+#, python-format
+msgid "You must create a FSM team first."
+msgstr ""
 
 #. module: fieldservice_route
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "orders per day route"
 msgstr ""
+
+#~ msgid "You cannot create 2 day routes for the same worker on the same day!"
+#~ msgstr ""
+#~ "¡No puede crear rutas de 2 días para el mismo trabajador el mismo día!"
