@@ -5,7 +5,8 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     auto_populate_persons_on_location = fields.Boolean(
-        string='Auto-populate Workers on Location based on Territory')
+        string="Auto-populate Workers on Location based on Territory"
+    )
