@@ -4,18 +4,17 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-AVAILABLE_PRIORITIES = [
-    ("0", "Normal"),
-    ("1", "Low"),
-    ("2", "High"),
-    ("3", "Urgent"),
-]
+AVAILABLE_PRIORITIES = [("0", "Normal"), ("1", "Low"), ("2", "High"), ("3", "Urgent")]
 
 
 class FSMStage(models.Model):
     _name = "fsm.stage"
     _description = "Field Service Stage"
     _order = "sequence, name, id"
+
+    def _default_team_ids(self):
+        default_team_id = self.env.context.get("default_team_id")
+        return [default_team_id] if default_team_id else None
 
     name = fields.Char(string="Name", required=True)
     sequence = fields.Integer(
@@ -52,8 +51,20 @@ class FSMStage(models.Model):
         "Type",
         required=True,
     )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        default=lambda self: self.env.user.company_id.id,
+    )
+    team_ids = fields.Many2many(
+        "fsm.team",
+        "order_team_stage_rel",
+        "stage_id",
+        "team_id",
+        string="Teams",
+        default=lambda self: self._default_team_ids(),
+    )
 
-    @api.multi
     def get_color_information(self):
         # get stage ids
         stage_ids = self.search([])

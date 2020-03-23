@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Equipment -->
     <record id="fsm_equipment_search_view" model="ir.ui.view">
@@ -58,6 +57,7 @@
                 <field name="location_id" />
                 <field name="current_location_id" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field name="stage_id" />
             </tree>
         </field>
     </record>
@@ -153,7 +153,6 @@
     <record id="action_fsm_equipment" model="ir.actions.act_window">
         <field name="name">Field Service Equipment</field>
         <field name="res_model">fsm.equipment</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_equipment_search_view" />
         <field name="context">{'default_location_id':
@@ -236,7 +235,6 @@
     <record id="action_fsm_dash_equipment" model="ir.actions.act_window">
         <field name="name">Field Service Equipment</field>
         <field name="res_model">fsm.equipment</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -266,7 +264,6 @@
     <record id="action_fsm_report_equipment" model="ir.actions.act_window">
         <field name="name">Equipments</field>
         <field name="res_model">fsm.equipment</field>
-        <field name="view_type">form</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
             <p>

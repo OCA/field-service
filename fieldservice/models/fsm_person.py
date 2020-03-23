@@ -30,7 +30,7 @@ class FSMPerson(models.Model):
     )
     hide = fields.Boolean(default=False)
     mobile = fields.Char(string="Mobile")
-    territory_ids = fields.Many2many("fsm.territory", string="Territories")
+    territory_ids = fields.Many2many("res.territory", string="Territories")
 
     @api.model
     def _search(
@@ -90,7 +90,6 @@ class FSMPerson(models.Model):
         vals.update({"fsm_person": True})
         return super(FSMPerson, self).create(vals)
 
-    @api.multi
     def get_person_information(self, vals):
         # get person ids
         person_ids = self.search([("id", "!=", 0), ("active", "=", True)])

@@ -14,11 +14,11 @@ class FSMLocation(TransactionCase):
         self.location_1 = self.env.ref("fieldservice.location_1")
         self.location_2 = self.env.ref("fieldservice.location_2")
         self.location_3 = self.env.ref("fieldservice.location_3")
-        self.test_territory = self.env.ref("fieldservice.test_territory")
-        self.test_loc_partner = self.env.ref("fieldservice." "test_loc_partner")
-        self.location_partner_1 = self.env.ref("fieldservice." "location_partner_1")
-        self.location_partner_2 = self.env.ref("fieldservice." "location_partner_2")
-        self.location_partner_3 = self.env.ref("fieldservice." "location_partner_3")
+        self.test_territory = self.env.ref("base_territory.test_territory")
+        self.test_loc_partner = self.env.ref("fieldservice.test_loc_partner")
+        self.location_partner_1 = self.env.ref("fieldservice.location_partner_1")
+        self.location_partner_2 = self.env.ref("fieldservice.location_partner_2")
+        self.location_partner_3 = self.env.ref("fieldservice.location_partner_3")
 
     def test_fsm_location(self):
         """ Test createing new location
@@ -36,7 +36,6 @@ class FSMLocation(TransactionCase):
         # Test child location equal to parent location
         for x in [
             "owner_id",
-            "customer_id",
             "contact_id",
             "direction",
             "street",

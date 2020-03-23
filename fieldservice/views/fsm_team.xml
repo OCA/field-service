@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template
         id="assets_backend_team"
@@ -16,7 +15,7 @@
     <record id="fsm_order_action_from_dashboard" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_mode">kanban,timeline,tree,form,calendar</field>
+        <field name="view_mode">kanban,tree,form,calendar</field>
         <field name="context">{'default_team_id': active_id}</field>
         <field name="domain">[('team_id', '=', active_id)]</field>
     </record>
@@ -258,13 +257,11 @@
         <field name="name">Teams</field>
         <field name="res_model">fsm.team</field>
         <field name="view_mode">kanban</field>
-        <field name="view_type">form</field>
         <field name="view_id" ref="view_team_kanban" />
     </record>
     <record id="action_team_settings" model="ir.actions.act_window">
         <field name="name">Teams</field>
         <field name="res_model">fsm.team</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
