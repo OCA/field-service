@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Location Tree View-->
     <record id="fsm_location_tree_view" model="ir.ui.view">
@@ -21,7 +20,6 @@
                 <field name="zip" />
                 <field name="territory_id" />
                 <field name="owner_id" />
-                <field name="customer_id" />
             </tree>
         </field>
     </record>
@@ -105,7 +103,6 @@
                             <field name="id" invisible="1" />
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]" />
                             <field name="owner_id" />
-                            <field name="customer_id" />
                             <field
                                 name="contact_id"
                                 context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"
@@ -228,7 +225,6 @@
                 />
                 <field name="partner_id" />
                 <field name="owner_id" />
-                <field name="customer_id" />
                 <field name="partner_latitude" />
                 <field name="partner_longitude" />
                 <field name="territory_id" />
@@ -252,12 +248,6 @@
                         domain="[]"
                         context="{'group_by':'owner_id'}"
                     />
-                    <filter
-                        name="customer_id"
-                        string="Customer"
-                        domain="[]"
-                        context="{'group_by':'customer_id'}"
-                    />
                 </group>
             </search>
         </field>
@@ -266,7 +256,6 @@
         <field name="name">Service Locations</field>
         <field name="res_model">fsm.location</field>
         <field name="view_id" ref="fsm_location_tree_view" />
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_location_search_view" />
         <field name="help" type="html">
@@ -296,7 +285,6 @@
     <record id="action_fsm_report_location" model="ir.actions.act_window">
         <field name="name">Locations</field>
         <field name="res_model">fsm.location</field>
-        <field name="view_type">form</field>
         <field name="view_mode">pivot,graph</field>
         <field name="help" type="html">
             <p>

@@ -49,20 +49,4 @@
         <field name="phone">123</field>
         <field name="email">tp@email.com</field>
     </record>
-    <!-- fsm.region -->
-    <record id="test_region" model="fsm.region">
-        <field name="name">Test Region</field>
-    </record>
-    <record id="test_district" model="fsm.district">
-        <field name="name">Test District</field>
-        <field name="region_id" eval="ref('test_region')" />
-    </record>
-    <record id="test_branch" model="fsm.branch">
-        <field name="name">Test Branch</field>
-        <field name="district_id" eval="ref('test_district')" />
-    </record>
-    <record id="test_territory" model="fsm.territory">
-        <field name="name">Test Territory</field>
-        <field name="branch_id" eval="ref('test_branch')" />
-    </record>
 </odoo>

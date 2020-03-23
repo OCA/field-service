@@ -13,10 +13,10 @@ class FSMEquipment(models.Model):
     person_id = fields.Many2one("fsm.person", string="Assigned Operator")
     location_id = fields.Many2one("fsm.location", string="Assigned Location")
     notes = fields.Text(string="Notes")
-    territory_id = fields.Many2one("fsm.territory", string="Territory")
-    branch_id = fields.Many2one("fsm.branch", string="Branch")
-    district_id = fields.Many2one("fsm.district", string="District")
-    region_id = fields.Many2one("fsm.region", string="Region")
+    territory_id = fields.Many2one("res.territory", string="Territory")
+    branch_id = fields.Many2one("res.branch", string="Branch")
+    district_id = fields.Many2one("res.district", string="District")
+    region_id = fields.Many2one("res.region", string="Region")
     current_location_id = fields.Many2one(
         "fsm.location", string="Current Location", required=True
     )
@@ -46,7 +46,7 @@ class FSMEquipment(models.Model):
     )
 
     _sql_constraints = [
-        ("name_uniq", "unique (name)", "Equipment name already exists!"),
+        ("name_uniq", "unique (name)", "Equipment name already exists!")
     ]
 
     @api.onchange("location_id")

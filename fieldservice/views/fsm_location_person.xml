@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Location Person Tree View-->
     <record id="fsm_location_person_tree_view" model="ir.ui.view">
@@ -23,7 +22,6 @@
                         <group id="main-left">
                             <field name="location_id" />
                             <field name="owner_id" />
-                            <field name="customer_id" />
                             <field name="contact_id" />
                         </group>
                         <group id="main-right">
@@ -65,7 +63,6 @@
         <field name="name">Location Persons</field>
         <field name="res_model">fsm.location.person</field>
         <field name="view_id" ref="fsm_location_person_tree_view" />
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_location_person_search_view" />
         <field name="help" type="html">

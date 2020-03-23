@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- FSM groups -->
     <record id="group_fsm_user" model="res.groups">
@@ -31,10 +30,6 @@
     </record>
     <record id="group_fsm_tag" model="res.groups">
         <field name="name">Manage Field Service Tags</field>
-        <field name="category_id" ref="base.module_category_hidden" />
-    </record>
-    <record id="group_fsm_substatus" model="res.groups">
-        <field name="name">Manage Field Service Substatus</field>
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
     <record id="group_fsm_equipment" model="res.groups">

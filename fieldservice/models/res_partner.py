@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
@@ -22,13 +22,11 @@ class ResPartner(models.Model):
         compute="_compute_owned_location_count", string="# of Owned Locations"
     )
 
-    @api.multi
     def _compute_owned_location_count(self):
         for partner in self:
             res = self.env["fsm.location"].search_count([("owner_id", "=", partner.id)])
             partner.owned_location_count = res
 
-    @api.multi
     def action_open_owned_locations(self):
         for partner in self:
             owned_location_ids = self.env["fsm.location"].search(

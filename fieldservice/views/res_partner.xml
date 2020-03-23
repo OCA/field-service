@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Customers -->
     <record id="action_fsm_customer" model="ir.actions.act_window">
         <field name="name">Customers</field>
         <field name="res_model">res.partner</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('customer', '=', True)]</field>
+        <field
+            name="context"
+        >{'search_default_customer': 1, 'default_customer_rank': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a Customer.
@@ -20,10 +20,7 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="groups_id" eval="[(4, ref('group_fsm_user'))]" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[@name='button_box']/button[@name='toggle_active']"
-                position="before"
-            >
+            <div name="button_box" position="inside">
                 <button
                     class="oe_stat_button"
                     type="object"
@@ -39,7 +36,7 @@
                         widget="statinfo"
                     />
                 </button>
-            </xpath>
+            </div>
             <notebook position="inside">
                 <page string="Field Service">
                     <group>

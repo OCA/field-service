@@ -27,7 +27,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
             {
                 "name": "Test FSM Template #1",
                 "instructions": "These are the instructions for Template #1",
-                "category_ids": (6, 0, categories),
+                "category_ids": [(6, 0, categories)],
                 "hours": 2.25,
                 "type_id": self.fsm_type_a.id,
                 "team_id": self.fsm_team_a.id,
