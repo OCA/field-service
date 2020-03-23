@@ -50,6 +50,7 @@
                                 <group id="orders-left">
                                     <field name="max_order"/>
                                     <field name="order_count"/>
+                                    <field name="order_remaining"/>
                                 </group>
                                 <group id="orders-right"/>
                             </group>
@@ -118,7 +119,7 @@
         <field name="name">Day Routes</field>
         <field name="res_model">fsm.route.dayroute</field>
         <field name="view_type">form</field>
-        <field name="view_mode">calendar,tree</field>
+        <field name="view_mode">calendar,tree,form</field>
     </record>
 
     <!-- Reporting -->
