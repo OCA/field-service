@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class ResCountryState(models.Model):
-    _inherit = 'res.country.state'
+    _inherit = "res.country.state"
 
-    territory_id = fields.Many2one('fsm.territory', string="Territory")
+    territory_id = fields.Many2one("fsm.territory", string="Territory")

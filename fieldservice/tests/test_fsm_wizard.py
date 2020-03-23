@@ -14,23 +14,24 @@ class FSMWizard(TransactionCase):
         - test_convert_sublocation: tests that the sub-contacts on a
         res.partner are converted into Other Addresses.
     """
+
     def setUp(self):
         super(FSMWizard, self).setUp()
-        self.Wizard = self.env['fsm.wizard']
-        self.test_partner = self.env.ref('fieldservice.test_partner')
-        self.test_parent_partner = \
-            self.env.ref('fieldservice.test_parent_partner')
-        self.test_loc_partner = self.env.ref('fieldservice.test_loc_partner')
-        self.test_location = self.env.ref('fieldservice.test_location')
-        self.test_person = self.env.ref('fieldservice.test_person')
+        self.Wizard = self.env["fsm.wizard"]
+        self.test_partner = self.env.ref("fieldservice.test_partner")
+        self.test_parent_partner = self.env.ref("fieldservice.test_parent_partner")
+        self.test_loc_partner = self.env.ref("fieldservice.test_loc_partner")
+        self.test_location = self.env.ref("fieldservice.test_location")
+        self.test_person = self.env.ref("fieldservice.test_person")
 
     def test_convert_location(self):
         # convert test_partner to FSM Location
         self.Wizard.action_convert_location(self.test_partner)
 
         # check if there is a new FSM Location with name 'Test Partner'
-        self.wiz_location = self.env['fsm.location'].\
-            search([('name', '=', 'Test Partner')])
+        self.wiz_location = self.env["fsm.location"].search(
+            [("name", "=", "Test Partner")]
+        )
 
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_location.phone, self.wiz_location.phone)
@@ -41,8 +42,7 @@ class FSMWizard(TransactionCase):
         self.Wizard.action_convert_person(self.test_partner)
 
         # check if there is a new FSM Person with name 'Test Partner'
-        self.wiz_person = self.env['fsm.person'].\
-            search([('name', '=', 'Test Partner')])
+        self.wiz_person = self.env["fsm.person"].search([("name", "=", "Test Partner")])
 
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_person.phone, self.wiz_person.phone)
@@ -53,9 +53,8 @@ class FSMWizard(TransactionCase):
         self.Wizard.action_convert_location(self.test_parent_partner)
 
         # check if 'Parent Partner' creation successful and fields copied over
-        wiz_parent = self.env['fsm.location'].\
-            search([('name', '=', 'Parent Partner')])
+        wiz_parent = self.env["fsm.location"].search([("name", "=", "Parent Partner")])
 
         # check all children were assigned type 'other'
         for child in wiz_parent.child_ids:
-            self.assertEqual(child.type, 'other')
+            self.assertEqual(child.type, "other")
