@@ -20,7 +20,6 @@ class FSMLocationPerson(models.Model):
     phone = fields.Char(related="person_id.phone", string="Phone")
     email = fields.Char(related="person_id.email", string="Email")
     owner_id = fields.Many2one(related="location_id.owner_id", string="Owner")
-    customer_id = fields.Many2one(related="location_id.customer_id", string="Customer")
     contact_id = fields.Many2one(related="location_id.contact_id", string="Contact")
 
     _sql_constraints = [
