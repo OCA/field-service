@@ -28,14 +28,6 @@ class FSMLocation(models.Model):
         ondelete="restrict",
         auto_join=True,
     )
-    customer_id = fields.Many2one(
-        "res.partner",
-        string="Billed Customer",
-        required=True,
-        ondelete="restrict",
-        auto_join=True,
-        track_visibility="onchange",
-    )
     contact_id = fields.Many2one(
         "res.partner",
         string="Primary Contact",
@@ -43,10 +35,10 @@ class FSMLocation(models.Model):
         index=True,
     )
     description = fields.Char(string="Description")
-    territory_id = fields.Many2one("fsm.territory", string="Territory")
-    branch_id = fields.Many2one("fsm.branch", string="Branch")
-    district_id = fields.Many2one("fsm.district", string="District")
-    region_id = fields.Many2one("fsm.region", string="Region")
+    territory_id = fields.Many2one("res.territory", string="Territory")
+    branch_id = fields.Many2one("res.branch", string="Branch")
+    district_id = fields.Many2one("res.district", string="District")
+    region_id = fields.Many2one("res.region", string="Region")
     territory_manager_id = fields.Many2one(
         string="Primary Assignment", related="territory_id.person_id"
     )
@@ -93,11 +85,11 @@ class FSMLocation(models.Model):
             if loc.fsm_parent_id:
                 if loc.ref:
                     loc.complete_name = "{} / [{}] {}".format(
-                        loc.fsm_parent_id.complete_name, loc.ref, loc.partner_id.name,
+                        loc.fsm_parent_id.complete_name, loc.ref, loc.partner_id.name
                     )
                 else:
                     loc.complete_name = "{} / {}".format(
-                        loc.fsm_parent_id.complete_name, loc.partner_id.name,
+                        loc.fsm_parent_id.complete_name, loc.partner_id.name
                     )
             else:
                 if loc.ref:
@@ -105,7 +97,6 @@ class FSMLocation(models.Model):
                 else:
                     loc.complete_name = loc.partner_id.name
 
-    @api.multi
     def name_get(self):
         results = []
         for rec in self:
@@ -174,7 +165,6 @@ class FSMLocation(models.Model):
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id(self):
         self.owner_id = self.fsm_parent_id.owner_id or False
-        self.customer_id = self.fsm_parent_id.customer_id or False
         self.contact_id = self.fsm_parent_id.contact_id or False
         self.direction = self.fsm_parent_id.direction or False
         self.street = self.fsm_parent_id.street or False
@@ -284,7 +274,6 @@ class FSMLocation(models.Model):
                     subloc += loc.get_action_views(0, 0, loc)
             return subloc
 
-    @api.multi
     def action_view_contacts(self):
         """
         This function returns an action that display existing contacts
@@ -307,13 +296,11 @@ class FSMLocation(models.Model):
                 action["context"].update({"active_id": ""})
             return action
 
-    @api.multi
     def _compute_contact_ids(self):
         for loc in self:
             contacts = self.comp_count(1, 0, loc)
             loc.contact_count = contacts
 
-    @api.multi
     def action_view_equipment(self):
         """
         This function returns an action that display existing
@@ -337,13 +324,11 @@ class FSMLocation(models.Model):
                 action["res_id"] = equipment.id
             return action
 
-    @api.multi
     def _compute_sublocation_ids(self):
         for loc in self:
             sublocation = self.comp_count(0, 0, loc)
             loc.sublocation_count = sublocation
 
-    @api.multi
     def action_view_sublocation(self):
         """
         This function returns an action that display existing
@@ -367,7 +352,6 @@ class FSMLocation(models.Model):
                 action["res_id"] = sublocation.id
             return action
 
-    @api.multi
     def _compute_equipment_ids(self):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)

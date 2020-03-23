@@ -22,11 +22,10 @@
         <field name="email">tp@email.com</field>
         <field name="partner_id" eval="ref('test_loc_partner')" />
         <field name="owner_id" eval="ref('test_loc_partner')" />
-        <field name="customer_id" eval="ref('test_loc_partner')" />
-        <field name="territory_id" eval="ref('test_territory')" />
-        <field name="branch_id" eval="ref('test_branch')" />
-        <field name="district_id" eval="ref('test_district')" />
-        <field name="region_id" eval="ref('test_region')" />
+        <field name="territory_id" eval="ref('base_territory.test_territory')" />
+        <field name="branch_id" eval="ref('base_territory.test_branch')" />
+        <field name="district_id" eval="ref('base_territory.test_district')" />
+        <field name="region_id" eval="ref('base_territory.test_region')" />
         <field name="direction">New the old inventory</field>
         <field name="street">14 Tower A, main street</field>
         <field name="street2">Bangkok, Thailand</field>
@@ -36,18 +35,15 @@
         <field name="name">Location 1</field>
         <field name="partner_id" eval="ref('location_partner_1')" />
         <field name="owner_id" eval="ref('location_partner_1')" />
-        <field name="customer_id" eval="ref('location_partner_1')" />
     </record>
     <record id="location_2" model="fsm.location">
         <field name="name">Location 2</field>
         <field name="partner_id" eval="ref('location_partner_2')" />
         <field name="owner_id" eval="ref('location_partner_2')" />
-        <field name="customer_id" eval="ref('location_partner_2')" />
     </record>
     <record id="location_3" model="fsm.location">
         <field name="name">Location 3</field>
         <field name="partner_id" eval="ref('location_partner_3')" />
         <field name="owner_id" eval="ref('location_partner_3')" />
-        <field name="customer_id" eval="ref('location_partner_3')" />
     </record>
 </odoo>

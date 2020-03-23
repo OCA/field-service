@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Main Menu -->
     <menuitem
@@ -57,14 +56,6 @@
         parent="operations"
         sequence="30"
     />
-    <menuitem
-        id="menu_fsm_route"
-        name="Day Routes"
-        action="action_fsm_route"
-        parent="operations"
-        sequence="40"
-        groups="base.group_no_one"
-    />
     <!-- Master Data Menu -->
     <menuitem
         id="menu_fsm_customer"
@@ -119,14 +110,6 @@
         sequence="10"
     />
     <menuitem
-        id="menu_fsm_report_route"
-        name="Day Routes"
-        action="action_fsm_report_route"
-        parent="reporting"
-        sequence="30"
-        groups="base.group_no_one"
-    />
-    <menuitem
         id="menu_fsm_report_equipment"
         name="Equipments"
         action="action_fsm_report_equipment"
@@ -150,21 +133,14 @@
         action="action_fsm_config"
     />
     <menuitem
-        id="menu_fsm_schedules"
-        name="Schedules"
-        action="action_fsm_schedule"
-        parent="config"
-        sequence="20"
-    />
-    <menuitem
         id="menu_fsm_stage"
         name="Stages"
         action="action_fsm_stage"
         parent="config"
-        sequence="30"
+        sequence="20"
     />
     <!-- Config / Orders -->
-    <menuitem id="menu_fsm_config_order" name="Orders" parent="config" sequence="40" />
+    <menuitem id="menu_fsm_config_order" name="Orders" parent="config" sequence="30" />
     <menuitem
         id="menu_fsm_tag"
         name="Tags"
@@ -173,40 +149,20 @@
         sequence="30"
         groups="fieldservice.group_fsm_tag"
     />
+    <menuitem
+        id="menu_fsm_order_type"
+        name="Order Types"
+        action="action_fsm_order_type"
+        parent="menu_fsm_config_order"
+        sequence="30"
+        groups="fieldservice.group_fsm_manager"
+    />
     <!-- Config / Locations -->
     <menuitem
         id="menu_fsm_config_location"
         name="Locations"
         parent="config"
         sequence="40"
-    />
-    <menuitem
-        id="menu_fsm_territory"
-        name="Territories"
-        action="action_fsm_territory"
-        parent="menu_fsm_config_location"
-        sequence="50"
-    />
-    <menuitem
-        id="menu_fsm_branch"
-        name="Branches"
-        action="action_fsm_branch"
-        parent="menu_fsm_config_location"
-        sequence="60"
-    />
-    <menuitem
-        id="menu_fsm_district"
-        name="Districts"
-        action="action_fsm_district"
-        parent="menu_fsm_config_location"
-        sequence="70"
-    />
-    <menuitem
-        id="menu_fsm_region"
-        name="Regions"
-        action="action_fsm_region"
-        parent="menu_fsm_config_location"
-        sequence="80"
     />
     <!-- Config / Workers -->
     <menuitem
