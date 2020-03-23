@@ -16,15 +16,6 @@ comes pre-configured for use.
 #. Select *Order* type to apply this stage to your orders.
 #. Additonally, you can set a color for the stage.
 
-You need to add attribute mention below with the tag <timeline> as base element.
-
-* colors (optional): it allows to set certain specific colors if the expressed
-  condition (JS syntax) is met.
-* custom_color (optional): it allows to set custom color for fsm.stages
-  example custom_color = "true". And there is minor condition to follow to
-  implement this as. Define any one stage color condition like
-  colors="#ffffff:stage_id=='New';"
-
 Field Service Areas
 ~~~~~~~~~~~~~~~~~~~
 
@@ -37,12 +28,12 @@ are managed under an encompassing Region.
 Setup a Territory
 -----------------
 
-#. Go to *Field Service > Configuration > Locations > Territories*
+#. Go to Settings > Users & Companies > Territories*
 #. Create or select a territory
 #. Set the territory Name and description
 #. Select or create a branch which this territory serves
-#. Choose a type of zip, state, or country whichs defines the boundary used
-#. Input a list of zip codes, states, or countries based on your desired
+#. Choose a type of zip, country whichs defines the boundary used
+#. Input a list of zip codes, countries based on your desired
    configuration
 
 Setup Branches, Districts, and Regions

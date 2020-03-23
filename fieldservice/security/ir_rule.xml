@@ -17,14 +17,6 @@
             name="domain_force"
         >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
-    <record id="fsm_route_comp_rule" model="ir.rule">
-        <field name="name">FSM Routes Entry</field>
-        <field name="model_id" ref="model_fsm_route" />
-        <field name="global" eval="True" />
-        <field
-            name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
-    </record>
     <record id="fsm_team_comp_rule" model="ir.rule">
         <field name="name">FSM Teams Entry</field>
         <field name="model_id" ref="model_fsm_team" />
@@ -52,6 +44,14 @@
     <record id="fsm_equipment_comp_rule" model="ir.rule">
         <field name="name">FSM Equipments Entry</field>
         <field name="model_id" ref="model_fsm_equipment" />
+        <field name="global" eval="True" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    <record id="fsm_stage_comp_rule" model="ir.rule">
+        <field name="name">FSM Stage Entry</field>
+        <field name="model_id" ref="model_fsm_stage" />
         <field name="global" eval="True" />
         <field
             name="domain_force"
