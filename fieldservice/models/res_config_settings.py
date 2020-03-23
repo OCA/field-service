@@ -5,83 +5,76 @@ from odoo import api, fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     # Groups
     group_fsm_team = fields.Boolean(
-        string='Manage Teams',
-        implied_group='fieldservice.group_fsm_team')
+        string="Manage Teams", implied_group="fieldservice.group_fsm_team"
+    )
     group_fsm_category = fields.Boolean(
-        string='Manage Categories',
-        implied_group='fieldservice.group_fsm_category')
+        string="Manage Categories", implied_group="fieldservice.group_fsm_category"
+    )
     group_fsm_tag = fields.Boolean(
-        string='Manage Tags',
-        implied_group='fieldservice.group_fsm_tag')
+        string="Manage Tags", implied_group="fieldservice.group_fsm_tag"
+    )
     group_fsm_substatus = fields.Boolean(
-        string='Manage Substatus',
-        implied_group='fieldservice.group_fsm_substatus')
+        string="Manage Substatus", implied_group="fieldservice.group_fsm_substatus"
+    )
     group_fsm_equipment = fields.Boolean(
-        string='Manage Equipment',
-        implied_group='fieldservice.group_fsm_equipment')
+        string="Manage Equipment", implied_group="fieldservice.group_fsm_equipment"
+    )
     group_fsm_template = fields.Boolean(
-        string='Manage Template',
-        implied_group='fieldservice.group_fsm_template')
+        string="Manage Template", implied_group="fieldservice.group_fsm_template"
+    )
 
     # Modules
-    module_fieldservice_account = fields.Boolean(
-        string='Invoice your FSM orders')
-    module_fieldservice_activity = fields.Boolean(
-        string='Manage FSM Activities')
-    module_fieldservice_agreement = fields.Boolean(
-        string='Manage Agreements')
-    module_fieldservice_distribution = fields.Boolean(
-        string='Manage Distribution')
-    module_fieldservice_geoengine = fields.Boolean(
-        string='Use GeoEngine')
+    module_fieldservice_account = fields.Boolean(string="Invoice your FSM orders")
+    module_fieldservice_activity = fields.Boolean(string="Manage FSM Activities")
+    module_fieldservice_agreement = fields.Boolean(string="Manage Agreements")
+    module_fieldservice_distribution = fields.Boolean(string="Manage Distribution")
+    module_fieldservice_geoengine = fields.Boolean(string="Use GeoEngine")
     module_fieldservice_maintenance = fields.Boolean(
-        string='Link FSM orders to maintenance requests')
+        string="Link FSM orders to maintenance requests"
+    )
     module_fieldservice_purchase = fields.Boolean(
-        string='Manage subcontractors and their pricelists')
+        string="Manage subcontractors and their pricelists"
+    )
     module_fieldservice_repair = fields.Boolean(
-        string='Link FSM orders to MRP Repair orders')
-    module_fieldservice_skill = fields.Boolean(
-        string='Manage Skills')
-    module_fieldservice_stock = fields.Boolean(
-        string='Use Odoo Logistics')
-    module_fieldservice_vehicle = fields.Boolean(
-        string='Manage Vehicles')
-    module_fieldservice_substatus = fields.Boolean(
-        string='Manage Sub-Statuses')
-    module_fieldservice_recurring = fields.Boolean(
-        string='Manage Recurring Orders')
+        string="Link FSM orders to MRP Repair orders"
+    )
+    module_fieldservice_skill = fields.Boolean(string="Manage Skills")
+    module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
+    module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
+    module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
+    module_fieldservice_recurring = fields.Boolean(string="Manage Recurring Orders")
     auto_populate_persons_on_location = fields.Boolean(
-        string='Auto-populate Workers on Location based on Territory',
-        related='company_id.auto_populate_persons_on_location',
-        readonly=False)
-    module_fieldservice_project = fields.Boolean(
-        string='Projects and Tasks')
-    module_fieldservice_crm = fields.Boolean(
-        string='CRM')
+        string="Auto-populate Workers on Location based on Territory",
+        related="company_id.auto_populate_persons_on_location",
+        readonly=False,
+    )
+    module_fieldservice_project = fields.Boolean(string="Projects and Tasks")
+    module_fieldservice_crm = fields.Boolean(string="CRM")
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
-        string='Auto-populate Workers on Location based on Territory',
-        related='company_id.auto_populate_persons_on_location',
-        readonly=False)
+        string="Auto-populate Workers on Location based on Territory",
+        related="company_id.auto_populate_persons_on_location",
+        readonly=False,
+    )
 
     # Dependencies
-    @api.onchange('module_fieldservice_repair')
+    @api.onchange("module_fieldservice_repair")
     def _onchange_module_fieldservice_repair(self):
         if self.module_fieldservice_repair:
             self.group_fsm_equipment = True
 
-    @api.onchange('module_fieldservice_stock')
+    @api.onchange("module_fieldservice_stock")
     def _onchange_module_fieldservice_stock(self):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
             self.group_stock_request_order = True
 
-    @api.onchange('module_fieldservice_purchase')
+    @api.onchange("module_fieldservice_purchase")
     def _onchange_module_fieldservice_purchase(self):
         if self.module_fieldservice_purchase:
             self.group_manage_vendor_price = True
