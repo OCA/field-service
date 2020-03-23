@@ -9,10 +9,10 @@ class FSMEquipment(TransactionCase):
         super(FSMEquipment, self).setUp()
         self.Equipment = self.env["fsm.equipment"]
         self.test_location = self.env.ref("fieldservice.test_location")
-        self.test_territory = self.env.ref("fieldservice.test_territory")
-        self.test_branch = self.env.ref("fieldservice.test_branch")
-        self.test_district = self.env.ref("fieldservice.test_district")
-        self.test_region = self.env.ref("fieldservice.test_region")
+        self.test_territory = self.env.ref("base_territory.test_territory")
+        self.test_branch = self.env.ref("base_territory.test_branch")
+        self.test_district = self.env.ref("base_territory.test_district")
+        self.test_region = self.env.ref("base_territory.test_region")
         self.current_location = self.env.ref("fieldservice.location_1")
 
     def test_fsm_equipment(self):

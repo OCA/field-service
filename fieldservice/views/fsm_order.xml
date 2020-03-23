@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
@@ -28,7 +27,8 @@
                         name="stage_id"
                         widget="statusbar"
                         options="{'fold_field': 'fold'}"
-                        domain="[('stage_type', '=', 'order')]"
+                        domain="[('stage_type', '=', 'order'),
+                                    ('team_ids', 'in', (team_id, False))]"
                     />
                 </header>
                 <sheet>
@@ -40,7 +40,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="type" />
+                            <field
+                                name="type"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
                             <field
                                 name="template_id"
                                 groups="fieldservice.group_fsm_template"
@@ -58,7 +61,6 @@
                             <field name="branch_id" invisible='1' />
                             <field name="district_id" invisible='1' />
                             <field name="region_id" invisible='1' />
-                            <field name="customer_id" />
                             <field
                                 name="team_id"
                                 groups="fieldservice.group_fsm_team"
@@ -96,19 +98,8 @@
                                     <field name="request_early" />
                                     <field name="request_late" />
                                 </group>
-                                <group
-                                    id="schedule"
-                                    string="Schedule Details"
-                                    name="schedule_grp"
-                                >
-                                    <field
-                                        name="scheduled_date_start"
-                                        style="color:Blue"
-                                    />
-                                    <field
-                                        name="scheduled_date_start"
-                                        style="color:Red"
-                                    />
+                                <group id="schedule" string="Schedule Details">
+                                    <field name="scheduled_date_start" />
                                     <field name="scheduled_duration" />
                                     <field name="scheduled_date_end" readonly="1" />
                                 </group>
@@ -174,6 +165,8 @@
                                     <field name="name" />
                                     <field name="person_id" />
                                     <field name="location_id" />
+                                    <field name="current_location_id" />
+                                    <field name="stage_id" />
                                 </tree>
                             </field>
                         </page>
@@ -198,7 +191,6 @@
             <tree name="orders" string="Orders" default_order="scheduled_date_start">
                 <field name="scheduled_date_start" />
                 <field name="name" />
-                <field name="customer_id" />
                 <field name="location_id" />
                 <field name="person_id" />
                 <field name="stage_id" string="Stage" />
@@ -209,7 +201,6 @@
     <record id="action_fsm_operation_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -225,11 +216,10 @@
             <kanban default_group_by="stage_id" class="o_kanban_small_column">
                 <field
                     name="stage_id"
-                    options='{"group_by_tooltip": {"legend_priority": "Use of stars"}}'
+                    options='{"group_by_tooltip": {"description": "Description"}}'
                 />
                 <field name="name" />
                 <field name="priority" />
-                <field name="customer_id" />
                 <field name="location_id" />
                 <field name="person_id" />
                 <field name="color" />
@@ -286,11 +276,6 @@
                                         options="{'color_field': 'color'}"
                                     />
                                 </div>
-                                <div class="text-muted o_kanban_record_subtitle">
-                                    <span t-if="record.customer_id.value">
-                                        <t t-esc="record.customer_id.value" />
-                                    </span>
-                                </div>
                                 <div>
                                     <field name="location_id" />
                                 </div>
@@ -321,27 +306,6 @@
             </kanban>
         </field>
     </record>
-    <template
-        id="assets_backend"
-        name="web_timeline_custom assets"
-        inherit_id="web.assets_backend"
-    >
-        <xpath expr="." position="inside">
-            <script
-                type="text/javascript"
-                src="/fieldservice/static/src/js/fsm_gantt.js"
-            />
-            <link
-                rel="stylesheet"
-                type="text/less"
-                href="/fieldservice/static/src/scss/fsm_gantt_person_filter.scss"
-            />
-            <script
-                type="text/javascript"
-                src="/fieldservice/static/src/js/fsm_gantt_person_filter.js"
-            />
-        </xpath>
-    </template>
     <!-- Search for fsm.order-->
     <record id="fsm_order_search_view" model="ir.ui.view">
         <field name="name">fsm.order.search</field>
@@ -439,23 +403,6 @@
             </search>
         </field>
     </record>
-    <record id="fsm_order_timeline_view" model="ir.ui.view">
-        <field name="name">fsm.order.timeline</field>
-        <field name="model">fsm.order</field>
-        <field name="type">timeline</field>
-        <field name="arch" type="xml">
-            <timeline
-                date_start="scheduled_date_start"
-                date_stop="scheduled_date_end"
-                string="Orders"
-                default_group_by="person_id"
-                event_open_popup="true"
-                colors="#ffffff:stage_id=='New';"
-                custom_color="true"
-            >
-            </timeline>
-        </field>
-    </record>
     <record id="fsm_order_calendar_view" model="ir.ui.view">
         <field name="name">Orders</field>
         <field name="model">fsm.order</field>
@@ -471,7 +418,6 @@
                 <field name="stage_id" />
                 <field name="location_id" />
                 <field name="phone" />
-                <field name="customer_id" />
                 <field name="person_id" />
                 <field name="person_phone" />
                 <field name="city" />
@@ -482,8 +428,7 @@
     <record id="action_fsm_dash_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">kanban,timeline,tree,form,calendar</field>
+        <field name="view_mode">kanban,tree,form,calendar</field>
         <field name="search_view_id" ref="fsm_order_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -513,7 +458,6 @@
     <record id="action_fsm_report_order" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
             <p>
