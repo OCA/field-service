@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Stage -->
     <record id="fsm_stage_tree_view" model="ir.ui.view">
@@ -36,6 +35,10 @@
                             <field name="fold" />
                             <field name="is_closed" />
                             <field name="is_default" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
                         </group>
                     </group>
                     <group string="Stage Description and Tooltips">
@@ -56,7 +59,6 @@
     <record id="action_fsm_stage" model="ir.actions.act_window">
         <field name="name">Stages</field>
         <field name="res_model">fsm.stage</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'search_default_group_stage_type': 1}</field>
         <field name="help" type="html">

@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -40,14 +40,17 @@ class FSMOrder(models.Model):
         else:
             raise ValidationError(_("You must create an FSM team first."))
 
-    @api.depends("date_start", "date_end")
+    api.depends("date_start", "date_end")
+
     def _compute_duration(self):
+        duration = 0.0
         for rec in self:
             if rec.date_start and rec.date_end:
                 start = fields.Datetime.from_string(rec.date_start)
                 end = fields.Datetime.from_string(rec.date_end)
                 delta = end - start
-                rec.duration = delta.total_seconds() / 3600
+                duration = delta.total_seconds() / 3600
+            rec.duration = duration
 
     @api.depends("stage_id")
     def _get_stage_color(self):
@@ -95,14 +98,7 @@ class FSMOrder(models.Model):
         copy=False,
         default=lambda self: _("New"),
     )
-    customer_id = fields.Many2one(
-        "res.partner",
-        string="Contact",
-        domain=[("customer", "=", True)],
-        change_default=True,
-        index=True,
-        track_visibility="always",
-    )
+
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
@@ -149,24 +145,15 @@ class FSMOrder(models.Model):
 
     @api.onchange("location_id")
     def _onchange_location_id_customer(self):
-        if self.location_id:
-            return {
-                "domain": {
-                    "customer_id": [("service_location_id", "=", self.location_id.name)]
-                }
-            }
-        else:
-            return {"domain": {"customer_id": [("id", "!=", None)]}}
-
-    @api.onchange("customer_id")
-    def _onchange_customer_id_location(self):
-        if self.customer_id:
-            self.location_id = self.customer_id.service_location_id
+        if self.company_id.auto_populate_equipments_on_order:
+            fsm_equipment_rec = self.env["fsm.equipment"].search(
+                [("current_location_id", "=", self.location_id.id)]
+            )
+            self.equipment_ids = [(6, 0, fsm_equipment_rec.ids)]
 
     # Planning
     person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
-    route_id = fields.Many2one("fsm.route", string="Route", index=True)
     scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
     scheduled_duration = fields.Float(
         string="Scheduled duration", help="Scheduled duration of the work in" " hours"
@@ -188,19 +175,19 @@ class FSMOrder(models.Model):
 
     # Location
     territory_id = fields.Many2one(
-        "fsm.territory",
+        "res.territory",
         string="Territory",
         related="location_id.territory_id",
         store=True,
     )
     branch_id = fields.Many2one(
-        "fsm.branch", string="Branch", related="location_id.branch_id", store=True
+        "res.branch", string="Branch", related="location_id.branch_id", store=True
     )
     district_id = fields.Many2one(
-        "fsm.district", string="District", related="location_id.district_id", store=True
+        "res.district", string="District", related="location_id.district_id", store=True
     )
     region_id = fields.Many2one(
-        "fsm.region", string="Region", related="location_id.region_id", store=True
+        "res.region", string="Region", related="location_id.region_id", store=True
     )
 
     # Fields for Geoengine Identify
@@ -231,17 +218,17 @@ class FSMOrder(models.Model):
 
     # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many("fsm.equipment", string="Equipments")
-    type = fields.Selection([], string="Type")
+    type = fields.Many2one("fsm.order.type", string="Type")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env["fsm.stage"].search(
-            [
-                ("stage_type", "=", "order"),
-                ("company_id", "=", self.env.user.company_id.id),
-            ]
-        )
-        return stage_ids
+        search_domain = [("stage_type", "=", "order")]
+        if self.env.context.get("default_team_id"):
+            search_domain = [
+                "&",
+                ("team_ids", "in", self.env.context["default_team_id"]),
+            ] + search_domain
+        return stages.search(search_domain, order=order)
 
     @api.model
     def create(self, vals):
@@ -254,6 +241,12 @@ class FSMOrder(models.Model):
             vals.update(
                 {"scheduled_date_start": str(req_date), "request_early": str(req_date)}
             )
+        vals.update(
+            {
+                "scheduled_date_end": self._context.get("default_scheduled_date_end")
+                or False
+            }
+        )
         self._calc_scheduled_dates(vals)
         if not vals.get("request_late"):
             if vals.get("priority") == "0":
@@ -277,36 +270,32 @@ class FSMOrder(models.Model):
                 ) + timedelta(hours=8)
         return super(FSMOrder, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         self._calc_scheduled_dates(vals)
         res = super(FSMOrder, self).write(vals)
-        for order in self:
-            if "customer_id" not in vals and order.customer_id is False:
-                order.customer_id = order.location_id.customer_id.id
         return res
+
+    def can_unlink(self):
+        """:return True if the order can be deleted, False otherwise"""
+        return self.stage_id == self._default_stage_id()
+
+    def unlink(self):
+        for order in self:
+            if order.can_unlink():
+                return super(FSMOrder, order).unlink()
+            else:
+                raise ValidationError(_("You cannot delete this order."))
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
+
         if (
             vals.get("scheduled_duration")
             or vals.get("scheduled_date_start")
             or vals.get("scheduled_date_end")
         ):
-            date_end = ""
-            date_start = ""
-            if vals.get("scheduled_duration", False):
-                date_to_with_delta = fields.Datetime.from_string(
-                    vals.get("scheduled_date_start", self.scheduled_date_start)
-                ) + timedelta(hours=vals.get("scheduled_duration", False))
-                date_end = str(date_to_with_delta)
 
-            if (
-                vals.get("scheduled_date_start", False)
-                and self.scheduled_date_start != vals.get("scheduled_date_start", False)
-                and vals.get("scheduled_date_end", False)
-                and self.scheduled_date_end != vals.get("scheduled_date_end", False)
-            ):
+            if vals.get("scheduled_date_start") and vals.get("scheduled_date_end"):
                 new_date_start = fields.Datetime.from_string(
                     vals.get("scheduled_date_start", False)
                 )
@@ -317,63 +306,9 @@ class FSMOrder(models.Model):
                     second=0
                 )
                 hrs = hours.total_seconds() / 3600
-                self.scheduled_duration = float(hrs)
+                vals["scheduled_duration"] = float(hrs)
 
-            elif vals.get(
-                "scheduled_date_start", False
-            ) and self.scheduled_date_start != vals.get("scheduled_date_start", False):
-                old_date_start = fields.Datetime.from_string(self.scheduled_date_start)
-                new_date_start = fields.Datetime.from_string(
-                    vals.get("scheduled_date_start", False)
-                )
-                date_end = fields.Datetime.from_string(self.scheduled_date_end)
-                if old_date_start and new_date_start:
-                    if old_date_start > new_date_start:
-                        hours = old_date_start.replace(
-                            second=0
-                        ) - new_date_start.replace(second=0)
-                        hrs = hours.total_seconds() / 3600
-                        self.scheduled_duration += float(hrs)
-                    elif old_date_start < new_date_start:
-                        hours = new_date_start.replace(
-                            second=0
-                        ) - old_date_start.replace(second=0)
-                        hrs = hours.total_seconds() / 3600
-                        if date_end and not new_date_start >= date_end:
-                            self.scheduled_duration -= float(hrs)
-                hrs = (
-                    vals.get("scheduled_duration", False)
-                    or self.scheduled_duration
-                    or 0
-                )
-                date_to_with_delta = fields.Datetime.from_string(
-                    vals.get("scheduled_date_start", False)
-                ) + timedelta(hours=hrs)
-                date_end = str(date_to_with_delta)
-
-            elif vals.get(
-                "scheduled_date_end", False
-            ) and self.scheduled_date_end != vals.get("scheduled_date_end", False):
-
-                old_date_end = fields.Datetime.from_string(self.scheduled_date_end)
-                new_date_end = fields.Datetime.from_string(
-                    vals.get("scheduled_date_end", False)
-                )
-                date_start = fields.Datetime.from_string(self.scheduled_date_start)
-                if old_date_end and new_date_end:
-                    if old_date_end > new_date_end:
-                        hours = old_date_end.replace(second=0) - new_date_end.replace(
-                            second=0
-                        )
-                        hrs = hours.total_seconds() / 3600
-                        if date_start and not new_date_end <= date_start:
-                            self.scheduled_duration -= hrs
-                    else:
-                        hours = new_date_end.replace(second=0) - old_date_end.replace(
-                            second=0
-                        )
-                        hrs = hours.total_seconds() / 3600
-                        self.scheduled_duration += hrs
+            elif vals.get("scheduled_date_end"):
                 hrs = (
                     vals.get("scheduled_duration", False)
                     or self.scheduled_duration
@@ -382,12 +317,21 @@ class FSMOrder(models.Model):
                 date_to_with_delta = fields.Datetime.from_string(
                     vals.get("scheduled_date_end", False)
                 ) - timedelta(hours=hrs)
-                date_start = str(date_to_with_delta)
+                vals["scheduled_date_start"] = str(date_to_with_delta)
 
-            if date_end:
-                vals["scheduled_date_end"] = date_end
-            if date_start:
-                vals["scheduled_date_start"] = date_start
+            elif vals.get("scheduled_duration", False) or (
+                vals.get("scheduled_date_start", False)
+                and (
+                    self.scheduled_date_start != vals.get("scheduled_date_start", False)
+                )
+            ):
+                hours = vals.get("scheduled_duration", False)
+                start_date_val = vals.get(
+                    "scheduled_date_start", self.scheduled_date_start
+                )
+                start_date = fields.Datetime.from_string(start_date_val)
+                date_to_with_delta = start_date + timedelta(hours=hours)
+                vals["scheduled_date_end"] = str(date_to_with_delta)
 
     def action_complete(self):
         return self.write(
@@ -471,15 +415,5 @@ class FSMOrder(models.Model):
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
             self.type = self.template_id.type_id
-            self.team_id = self.template_id.team_id
-
-
-class FSMTeam(models.Model):
-    _inherit = "fsm.team"
-
-    order_ids = fields.One2many(
-        "fsm.order",
-        "team_id",
-        string="Orders",
-        domain=[("stage_id.is_closed", "=", False)],
-    )
+            if self.template_id.team_id:
+                self.team_id = self.template_id.team_id

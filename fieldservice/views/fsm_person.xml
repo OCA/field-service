@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Worker -->
     <record id="fsm_person_tree" model="ir.ui.view">
@@ -138,7 +137,6 @@
                                 <tree editable="bottom">
                                     <field name="location_id" />
                                     <field name="owner_id" />
-                                    <field name="customer_id" />
                                     <field name="contact_id" />
                                 </tree>
                             </field>
@@ -160,7 +158,6 @@
     <record id="action_fsm_person" model="ir.actions.act_window">
         <field name="name">Field Service Workers</field>
         <field name="res_model">fsm.person</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="fsm_person_search_view" />
         <field name="help" type="html">
