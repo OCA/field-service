@@ -3,7 +3,7 @@
 {
     'name': 'Field Service Vehicles',
     'summary': 'Manage Field Service vehicles and assign drivers',
-    'version': '12.0.2.1.0',
+    'version': '12.0.2.1.1',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
