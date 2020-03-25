@@ -8,7 +8,7 @@ class FsmRoute(models.Model):
     _inherit = 'fsm.route'
 
     @api.model
-    @api.depends('fsm_vehicle_id', 'fsm_vehicle_ids')
+    @api.depends('max_product_id', 'fsm_vehicle_id', 'fsm_vehicle_ids')
     def _compute_max_from_vehicles(self):
         for rec in self:
             vehicles = rec.fsm_vehicle_ids + rec.fsm_vehicle_id
@@ -27,5 +27,5 @@ class FsmRoute(models.Model):
     max_product_uom_id = fields.Many2one(
         'uom.uom', related='max_product_id.uom_id', string='UoM', store=True)
     max_product_qty = fields.Float(
-        compute='_compute_max_from_vehicles', string='Maximum Quantity',
+        compute=_compute_max_from_vehicles, string='Maximum Quantity',
         store=True, digits=dp.get_precision('Product Quantity'))
