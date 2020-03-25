@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_size
+# 	* fieldservice_size
 #
 msgid ""
 msgstr ""
@@ -102,6 +102,12 @@ msgstr "Tamaños de Ubicación"
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__name
 msgid "Name"
 msgstr "Nombre"
+
+#. module: fieldservice_size
+#: code:addons/fieldservice_size/models/fsm_size.py:30
+#, python-format
+msgid "Only one default order size per type is allowed."
+msgstr ""
 
 #. module: fieldservice_size
 #: sql_constraint:fsm.location.size:0
