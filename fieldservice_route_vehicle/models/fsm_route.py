@@ -15,9 +15,11 @@ class FsmRoute(models.Model):
                                      default=_get_default_vehicle)
     fsm_vehicle_ids = fields.Many2many('fsm.vehicle', string='Vehicles')
 
+    @api.multi
     @api.onchange('fsm_person_id')
     def onchange_vehicle(self):
-        self.fsm_vehicle_id = self._get_default_vehicle()
+        for rec in self:
+            rec.fsm_vehicle_id = rec._get_default_vehicle()
 
     @api.constrains('fsm_vehicle_id', 'fsm_vehicle_ids')
     def check_vehicles(self):
