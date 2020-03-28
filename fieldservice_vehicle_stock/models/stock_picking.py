@@ -11,6 +11,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def action_assign(self):
+        res = {}
         for rec in self:
             if rec.picking_type_id in (
                 # Vehicle Loading
