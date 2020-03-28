@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 class FSMRouteDayRoute(models.Model):
     _inherit = 'fsm.route.dayroute'
 
-    @api.depends('order_ids.move_ids', 'route_id')
+    @api.depends('order_ids.move_ids', 'route_id', 'max_product_qty')
     def _compute_product_qty(self):
         for rec in self:
             product_qty = 0.00
