@@ -57,7 +57,7 @@ addon | version | summary
 [fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
 [fieldservice_vehicle](fieldservice_vehicle/) | 12.0.2.1.1 | Manage Field Service vehicles and assign drivers
-[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.2.1 | Track inventory of Field Service vehicles
+[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.1.2.2 | Track inventory of Field Service vehicles
 
 [//]: # (end addons)
 
