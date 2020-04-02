@@ -11,6 +11,7 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice_account_analytic',
+        'fieldservice_project',
         'hr_timesheet',
     ],
     'data': [
