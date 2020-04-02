@@ -19,6 +19,7 @@
         'views/fsm_location_views.xml',
         'views/fsm_order_views.xml',
         'security/ir.model.access.csv',
+        'views/fsm_team.xml'
     ],
     'installable': True,
 }
