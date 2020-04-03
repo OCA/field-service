@@ -38,7 +38,7 @@ addon | version | summary
 [fieldservice_location_builder](fieldservice_location_builder/) | 12.0.1.1.0 | Adds a tool to help build out Location Hierarchies
 [fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.0.0 | Integrate Field Service orders with maintenance requests
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
-[fieldservice_project](fieldservice_project/) | 12.0.1.1.0 | Create field service orders from a project or project task
+[fieldservice_project](fieldservice_project/) | 12.0.1.2.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.0.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.1.1 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
