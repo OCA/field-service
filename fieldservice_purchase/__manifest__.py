@@ -15,6 +15,7 @@
         'purchase',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/fsm_person.xml',
     ],
     'development_status': 'Beta',
