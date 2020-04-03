@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Sales',
-    'version': '12.0.2.3.1',
+    'version': '12.0.2.4.0',
     'summary': 'Sell field services.',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -14,6 +14,7 @@
         'fieldservice_account',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'views/product_template.xml',
