@@ -14,6 +14,7 @@
         'fieldservice_account',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'views/product_template.xml',
