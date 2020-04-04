@@ -5,7 +5,7 @@
     'name': 'Field Service Route Vehicle',
     'summary': 'This module allows you to set the vehicle'
     ' on the routes and day routes.',
-    'version': '12.0.2.1.0',
+    'version': '12.0.2.1.1',
     'category': 'Field Service',
     'license': 'AGPL-3',
     'author': "Open Source Integrators, "
