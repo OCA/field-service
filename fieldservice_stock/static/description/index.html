@@ -422,6 +422,26 @@ procurement rule for that route:</p>
 <li>Create or select a territory</li>
 <li>Set the warehouse that will serve this territory</li>
 </ul>
+<p>Products can be automatically converted into FSM Equipments.
+This is only available only for products tracked by serial number.
+This needs to be enabled both on Operation Types and Products.
+For example, we may want to create the FSM Equipment on Delivery,
+or on Receipts.</p>
+<p>To enable on Products:</p>
+<ul class="simple">
+<li>Go to Inventory &gt; Master Data &gt; Products</li>
+<li>Open the Product form, Inventory tab</li>
+<li>On the “Traceability” section, make sure
+“Tracking” is set to “By Unique Serial Number”</li>
+<li>Enable the “Creates FSM Equipment” checkbox</li>
+</ul>
+<p>To enable on Operation Types:</p>
+<ul class="simple">
+<li>Go to Inventory &gt; Configuration &gt; Operation Types</li>
+<li>Select the intended Operation Type (“Receipts” for example)</li>
+<li>On the “Traceability” section, enable the
+“Create FSM Equipment” checkbox</li>
+</ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#id3">Usage</a></h1>
