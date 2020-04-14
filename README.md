@@ -20,7 +20,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.2.4.2 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 12.0.2.5.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.0.0 | Allow workers to collect payments from the order.
@@ -52,7 +52,7 @@ addon | version | summary
 [fieldservice_size](fieldservice_size/) | 12.0.0.1.1 | Manage Sizes for Field Service Locations and Orders
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Execute server actions when reaching a Field Service stage
-[fieldservice_stock](fieldservice_stock/) | 12.0.1.5.0 | Integrate the logistics operations with Field Service
+[fieldservice_stock](fieldservice_stock/) | 12.0.2.0.0 | Integrate the logistics operations with Field Service
 [fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.1 | Invoice inventory items delivered with Field Service orders
 [fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.1.0 | Add sub-statuses to Field Service orders
