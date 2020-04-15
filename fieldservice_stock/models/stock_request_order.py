@@ -11,7 +11,7 @@ class StockRequestOrder(models.Model):
         'fsm.order', string="FSM Order", ondelete='cascade',
         index=True, copy=False)
 
-    @api.onchange('direction', 'fsm_order_id')
+    @api.onchange('warehouse_id', 'direction', 'fsm_order_id')
     def _onchange_location_id(self):
         super()._onchange_location_id()
         if self.fsm_order_id:
