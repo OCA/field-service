@@ -417,7 +417,12 @@
                 <field name="stage_id" />
                 <field name="location_id" />
                 <field name="phone" />
-                <field name="person_id" />
+                <field
+                    name="person_id"
+                    write_model="fsm.person.calendar.filter"
+                    write_field="fsm_person_id"
+                    avatar_field="image_small"
+                />
                 <field name="person_phone" />
                 <field name="city" />
                 <field name="state_name" />
