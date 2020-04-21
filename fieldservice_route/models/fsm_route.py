@@ -14,6 +14,9 @@ class FSMRoute(models.Model):
     day_ids = fields.Many2many('fsm.route.day', string='Days')
     max_order = fields.Integer('Maximum Orders', default=0,
                                help="Maximum number of orders per day route.")
+    max_dayroute = fields.Integer(
+        'Maximum Routes', default=1,
+        help="Maximum number of day routes per day.")
 
     def run_on(self, date):
         """

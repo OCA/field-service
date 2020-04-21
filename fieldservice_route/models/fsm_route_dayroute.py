@@ -116,3 +116,15 @@ class FSMRouteDayRoute(models.Model):
                 raise ValidationError(_(
                     "The day route is exceeding the maximum number of "
                     "orders of the route."))
+
+    @api.constrains('route_id', 'date')
+    def check_max_dayroute(self):
+        if self.route_id:
+            dayroutes = self.search([
+                ('route_id', '=', self.route_id.id),
+                ('date', '=', self.date),
+            ])
+            if len(dayroutes) > self.route_id.max_dayroute:
+                raise ValidationError(_(
+                    "This route only runs %s time(s) a day." %
+                    self.route_id.max_dayroute))
