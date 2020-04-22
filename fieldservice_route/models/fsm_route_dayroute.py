@@ -119,12 +119,14 @@ class FSMRouteDayRoute(models.Model):
 
     @api.constrains('route_id', 'date')
     def check_max_dayroute(self):
-        if self.route_id:
-            dayroutes = self.search([
-                ('route_id', '=', self.route_id.id),
-                ('date', '=', self.date),
-            ])
-            if len(dayroutes) > self.route_id.max_dayroute:
-                raise ValidationError(_(
-                    "This route only runs %s time(s) a day." %
-                    self.route_id.max_dayroute))
+        for rec in self:
+            if rec.route_id:
+                # TODO: use a single read_group instead of a loop repeatd search
+                dayroutes = self.search([
+                    ('route_id', '=', rec.route_id.id),
+                    ('date', '=', rec.date),
+                ])
+                if len(dayroutes) > rec.route_id.max_dayroute:
+                    raise ValidationError(_(
+                        "This route only runs %s time(s) a day." %
+                        rec.route_id.max_dayroute))
