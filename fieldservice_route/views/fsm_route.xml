@@ -24,10 +24,27 @@
                             <field name="name"/>
                         </h1>
                     </div>
-                    <group col="4">
-                        <field name="fsm_person_id"/>
-                        <field name="day_ids" widget="many2many_tags"/>
+                    <group id="main">
+                        <group id="left">
+                            <field name="fsm_person_id"/>
+                        </group>
+                        <group id="right">
+                            <field name="day_ids" widget="many2many_tags"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page id="capacity" string="Capacity">
+                            <group id="capacity">
+                                <group id="capacity-left">
+                                    <label for="max_order" string="Maximum"/>
+                                    <div>
+                                        <field name="max_order"/> orders per day route
+                                    </div>
+                                </group>
+                                <group id="capacity-right"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

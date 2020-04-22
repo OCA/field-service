@@ -7,8 +7,18 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet/notebook/page[2]" position="after">
                 <page string="Inventory" name="inventory">
-                    <group>
-                        <field name="final_inventory_id" context="{'dayroute_id': id}"/>
+                    <group id="inventory">
+                        <group id="inventory-left">
+                            <field name="is_limited" invisible="1"/>
+                            <field name="max_product_id"/>
+                            <field name="max_product_qty" readonly="1"
+                                   attrs="{'invisible': [('is_limited', '=', False)]}"/>
+                            <field name="product_qty" readonly="1"/>
+                            <field name="product_qty_remaining" readonly="1"/>
+                        </group>
+                        <group id="inventory-right">
+                            <field name="final_inventory_id" context="{'dayroute_id': id}"/>
+                        </group>
                     </group>
                 </page>
             </xpath>

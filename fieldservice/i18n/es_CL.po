@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-01-15 06:13+0000\n"
+"PO-Revision-Date: 2020-02-21 07:13+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
 "Language: es_CL\n"
@@ -384,7 +384,7 @@ msgid "Cancel Order"
 msgstr "Cancelar Orden"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_stage.py:77
+#: code:addons/fieldservice/models/fsm_stage.py:78
 #, python-format
 msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
@@ -392,6 +392,12 @@ msgid ""
 msgstr ""
 "No se puede crear Etapa de FSM porque tiene el mismo tipo y secuencia de una "
 "existente."
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:237
+#, python-format
+msgid "Cannot move to completed from Kanban"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
@@ -484,11 +490,6 @@ msgid "Children"
 msgstr "Niños"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
-msgid "Choose Color"
-msgstr "Elige Color"
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
 msgid "Choose a team to be set on orders of this template"
 msgstr "Elija un equipo para establecer en los pedidos de esta plantilla"
@@ -515,6 +516,11 @@ msgid "Clear"
 msgstr "Limpiar"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
+msgid "Color Code"
+msgstr "Código de Color"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__color
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__color
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__color
@@ -524,6 +530,12 @@ msgstr "Limpiar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__color
 msgid "Color Index"
 msgstr "Índice de Color"
+
+#. module: fieldservice
+#: code:addons/fieldservice/models/fsm_stage.py:88
+#, python-format
+msgid "Color code should be Hex Code. Ex:-#FFFFFF"
+msgstr "El código de color debe ser el código hexadecimal. Ej: - # FFFFFF"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
@@ -1451,6 +1463,11 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
+msgid "Is Button"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_is_follower
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_is_follower
@@ -1809,6 +1826,13 @@ msgstr "Gestionar Actividades de Pedidos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Manage Order Activities"
+msgid "Manage Order Sizes"
+msgstr "Gestionar Actividades de Pedidos"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Sub-Statuses"
 msgstr "Gestionar Subestados de Pedido"
 
@@ -1908,6 +1932,12 @@ msgstr "Gestionar Rutas"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage routes of yoru workers"
 msgstr "Administra las rutas de tus trabajadores"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage sizes for orders and locations"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -3313,6 +3343,12 @@ msgid "Use GeoEngine with OpenStreetMap"
 msgstr "Use GeoEngine con OpenStreetMap"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__custom_color
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__custom_color
+msgid "Use Hex Code only Ex:-#FFFFFF"
+msgstr "Utilice solo Código Hexadecimal Ej: - # FFFFFF"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stock
 msgid "Use Odoo Logistics"
 msgstr "Use Logística de Odoo"
@@ -3454,13 +3490,13 @@ msgstr ""
 "comprender el significado y el propósito de la etapa."
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_location.py:339
+#: code:addons/fieldservice/models/fsm_location.py:341
 #, python-format
 msgid "You cannot create recursive location."
 msgstr "No puede crear una ubicación recursiva."
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:244
+#: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "You cannot delete this order."
 msgstr "No puedes eliminar este pedido."
@@ -3531,8 +3567,8 @@ msgstr "plantilla"
 msgid "templates"
 msgstr "plantillas"
 
-#~ msgid "Color Code"
-#~ msgstr "Código de Color"
+#~ msgid "Choose Color"
+#~ msgstr "Elige Color"
 
 #~ msgid "Add Day Routes here."
 #~ msgstr "Agregue rutas de día aquí."

@@ -9,6 +9,7 @@ class StockPicking(models.Model):
 
     fsm_vehicle_id = fields.Many2one('fsm.vehicle', string='Vehicle')
 
+    @api.multi
     def action_assign(self):
         for rec in self:
             if rec.picking_type_id.require_vehicle_id:
@@ -33,8 +34,6 @@ class StockPicking(models.Model):
     @api.multi
     def write(self, vals):
         if vals.get('fsm_order_id', False):
-            order = self.env['fsm.order'].browse(vals.get('fsm_order_id'))
-            vals.update({
-                'fsm_vehicle_id': order.vehicle_id.id or False,
-            })
+            fsm_order = self.env['fsm.order'].browse(vals.get('fsm_order_id'))
+            vals.update(self.prepare_fsm_values(fsm_order))
         return super().write(vals)
