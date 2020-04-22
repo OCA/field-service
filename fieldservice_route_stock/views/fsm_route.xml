@@ -1,0 +1,22 @@
+<odoo>
+
+    <record id="fsm_route_stock_form" model="ir.ui.view">
+        <field name="name">fsm.route.stock.form</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='capacity-right']" position="inside">
+                <field name="max_product_id" domain="[('type', '=', 'product')]"/>
+                <label for="max_product_qty"/>
+                <div>
+                    <field name="max_product_qty"/><![CDATA[&nbsp;]]>
+                    <field name="max_product_uom_id"
+                           options="{'no_open': True, 'no_create': True}"
+                           groups="uom.group_uom"
+                           class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
