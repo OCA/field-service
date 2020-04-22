@@ -1,0 +1,14 @@
+<odoo>
+
+    <record model="ir.ui.view" id="picking_type_form_require_vehicle">
+        <field name="name">picking.type.form.require.vehicle</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <field name="show_operations" position="after">
+                <field name="require_vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

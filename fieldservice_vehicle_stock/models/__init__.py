@@ -7,4 +7,5 @@ from . import (
     stock_request,
     product_putaway,
     stock_picking,
+    stock_picking_type
 )
