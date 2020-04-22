@@ -6,7 +6,7 @@
     'summary': 'This module displays google marker icon picker based on'
     ' apply widget on field',
     'license': 'AGPL-3',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
@@ -18,6 +18,7 @@
         'views/fsm_stage.xml',
     ],
     'development_status': 'Beta',
+    'external_dependencies': {'python': ['webcolors']},
     'maintainers': [
         'wolfhall',
         'max3903',
