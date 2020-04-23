@@ -1,7 +1,21 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+
+from datetime import timedelta
 from odoo import fields, models
+
+
+def daterange(start_date, end_date=None):
+    """
+    Generator for each date in a period of time
+    Optimizaed for single date special case
+    """
+    if end_date:
+        for n in range(int((end_date - start_date).days)):
+            yield start_date + timedelta(n)
+    else:
+        yield start_date
 
 
 class FSMRoute(models.Model):
@@ -18,13 +32,27 @@ class FSMRoute(models.Model):
         'Maximum Routes', default=1,
         help="Maximum number of day routes per day.")
 
-    def run_on(self, date):
+    def run_on(self, check_date):
         """
-        :param date: date
-        :return: True if the route runs on the date, False otherwise.
+        Does this Route run on this Day?
+        If no run days are set, we consider it does.
+
+        Returns the Day record, or False.
         """
-        if date:
-            day_index = date.weekday()
-            day = self.env.ref(
-                'fieldservice_route.fsm_route_day_' + str(day_index))
-            return day in self.day_ids
+        day_name = check_date.strftime('%A').lower()
+        day_rec = self.env.ref(
+            'fieldservice_route.fsm_route_day_' + day_name)
+        route_days = self.mapped('day_ids')
+        if route_days and day_rec not in route_days:
+            return False
+        return day_rec
+
+    def get_scheduled_dates(self, date_from, date_to=False):
+        """
+        Return a list of scheduled dates for any of the given Routes
+        """
+        calendar = []
+        for day in daterange(date_from, date_to):
+            if self.run_on(day):
+                calendar.append(day)
+        return calendar
