@@ -39,9 +39,9 @@ class FSMRoute(models.Model):
 
         Returns the Day record, or False.
         """
-        day_name = check_date.strftime('%A').lower()
+        day_index = check_date.weekday()
         day_rec = self.env.ref(
-            'fieldservice_route.fsm_route_day_' + day_name)
+            'fieldservice_route.fsm_route_day_' + str(day_index))
         route_days = self.mapped('day_ids')
         if route_days and day_rec not in route_days:
             return False
