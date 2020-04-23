@@ -100,7 +100,7 @@ class FSMRouteDayRoute(models.Model):
     def check_day(self):
         for rec in self:
             if rec.date and rec.route_id:
-                run_day = rec.route_id.runs_on(rec.date)
+                run_day = rec.route_id.run_on(rec.date)
                 if not run_day:
                     raise ValidationError(_(
                         "The route %s does not run on %s!" %
