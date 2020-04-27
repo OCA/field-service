@@ -30,15 +30,20 @@
                         </group>
                         <group id="right">
                             <field name="day_ids" widget="many2many_tags"/>
+                            <field name="territory_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page id="capacity" string="Capacity">
                             <group id="capacity">
                                 <group id="capacity-left">
+                                    <label for="max_dayroute" string="Maximum"/>
+                                    <div>
+                                        <field name="max_dayroute"/> day route(s) per day.
+                                    </div>
                                     <label for="max_order" string="Maximum"/>
                                     <div>
-                                        <field name="max_order"/> orders per day route
+                                        <field name="max_order"/> orders per day route.
                                     </div>
                                 </group>
                                 <group id="capacity-right"/>

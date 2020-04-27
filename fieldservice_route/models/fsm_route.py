@@ -28,6 +28,9 @@ class FSMRoute(models.Model):
     day_ids = fields.Many2many('fsm.route.day', string='Days')
     max_order = fields.Integer('Maximum Orders', default=0,
                                help="Maximum number of orders per day route.")
+    max_dayroute = fields.Integer(
+        'Maximum Routes', default=1,
+        help="Maximum number of day routes per day.")
 
     def run_on(self, check_date):
         """
@@ -36,7 +39,6 @@ class FSMRoute(models.Model):
 
         Returns the Day record, or False.
         """
-        # Get the day of the week: Monday -> 0, Sunday -> 6
         day_index = check_date.weekday()
         day_rec = self.env.ref(
             'fieldservice_route.fsm_route_day_' + str(day_index))
