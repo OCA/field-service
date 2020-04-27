@@ -9,7 +9,7 @@ from odoo import fields, models
 def daterange(start_date, end_date=None):
     """
     Generator for each date in a period of time
-    Optimizaed for single date special case
+    Optimized for single date special case
     """
     if end_date:
         for n in range(int((end_date - start_date).days)):
