@@ -14,7 +14,7 @@ class FSMAnalyticLocationBuilder(TransactionCase):
                 {
                     'name': 'Test Analytic Account',
                     'partner_id': self.env.ref('fieldservice.'
-                                               'test_loc_partner')
+                                               'test_loc_partner').id
                 })
         self.test_loc_partner = self.env.ref('fieldservice.'
                                              'test_loc_partner')
