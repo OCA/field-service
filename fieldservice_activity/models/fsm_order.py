@@ -11,14 +11,22 @@ class FSMOrder(models.Model):
     order_activity_ids = fields.One2many('fsm.activity', 'fsm_order_id',
                                          'Activites')
 
+    @api.multi
     @api.onchange('template_id')
     def _onchange_template_id(self):
         res = super()._onchange_template_id()
-        if self.template_id:
-            for temp_activity_id in self.template_id.temp_activity_ids:
-                activity_id = temp_activity_id
-                activity_id.fsm_template_id = False
-                activity_id.fsm_order_id = self
+        for rec in self:
+            if rec.template_id:
+                activity_list = []
+                for temp_activity in rec.template_id.temp_activity_ids:
+                    activity_list.append((0, 0,
+                                          {'name': temp_activity.name,
+                                           'required': temp_activity.required,
+                                           'ref': temp_activity.ref,
+                                           'state': temp_activity.state}))
+                rec.order_activity_ids = activity_list
+                rec.template_id.temp_activity_ids.write(
+                    {'fsm_template_id': False})
         return res
 
     @api.multi
