@@ -9,6 +9,8 @@ class FSMStockLocationBuilder(TransactionCase):
     def setUp(self):
         super(FSMStockLocationBuilder, self).setUp()
         self.test_location = self.env.ref('fieldservice.test_location')
+        self.test_location.partner_latitude = 0.0
+        self.test_location.partner_longitude = 0.0
         self.test_location.inventory_location_id = self.\
             env.ref('fieldservice_stock.stock_location_field')
         self.test_loc_partner = self.env.ref('fieldservice.'
