@@ -9,12 +9,13 @@ class FSMAnalyticLocationBuilder(TransactionCase):
     def setUp(self):
         super(FSMAnalyticLocationBuilder, self).setUp()
         self.test_location = self.env.ref('fieldservice.test_location')
-        self.test_location.analytic_account_id = self.env['account.analytic'].\
-            create({
+        self.test_location.analytic_account_id = self.\
+            env['account.analytic.account'].create(
+                {
                     'name': 'Test Analytic Account',
                     'partner_id': self.env.ref('fieldservice.'
                                                'test_loc_partner')
-                    })
+                })
         self.test_loc_partner = self.env.ref('fieldservice.'
                                              'test_loc_partner')
         self.test_location.customer_id = self.test_loc_partner
