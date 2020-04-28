@@ -12,6 +12,7 @@ class TestFSMActivity(TransactionCase):
         self.Order = self.env['fsm.order']
         self.test_location = self.env.ref('fieldservice.test_location')
         self.Activity = self.env['fsm.activity']
+        self.template_obj = self.env['fsm.template']
 
     def test_fsm_activity(self):
         """ Test creating new activites, and moving them along thier stages,
@@ -67,3 +68,23 @@ class TestFSMActivity(TransactionCase):
             'ref': ref,
             'fsm_order_id': order_id
         }
+
+    def test_onchange_template_id(self):
+        # Create a Template
+        self.template = self.template_obj.create(
+            {'name': 'Demo template',
+             'temp_activity_ids': [(0, 0, {
+                 'name': "Activity new",
+                 'required': True,
+                 'ref': 'Ref new',
+                 'state': 'todo',
+             })]})
+        # Create an Order
+        self.fso = self.Order.create({
+            'location_id': self.test_location.id,
+            'template_id': self.template.id,
+        })
+        # Test _onchange_template_id()
+        self.fso._onchange_template_id()
+        self.assertNotEquals(self.fso.order_activity_ids.ids,
+                             self.fso.template_id.temp_activity_ids.ids)
