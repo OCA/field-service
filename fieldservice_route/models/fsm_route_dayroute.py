@@ -100,14 +100,21 @@ class FSMRouteDayRoute(models.Model):
     def check_day(self):
         for rec in self:
             if rec.date and rec.route_id:
-                # Get the day of the week: Monday -> 0, Sunday -> 6
-                day_index = rec.date.weekday()
-                day = self.env.ref(
-                    'fieldservice_route.fsm_route_day_' + str(day_index))
-                if day.id not in rec.route_id.day_ids.ids:
+                noon = datetime.combine(
+                    rec.date, datetime.strptime("12:00:00", '%H:%M:%S').time())
+                holiday = self.env['resource.calendar.leaves'].search([
+                    ('date_from', '<=', noon),
+                    ('date_to', '>=', noon),
+                ])
+                if len(holiday) > 0:
+                    raise ValidationError(_(
+                        "%s is a holiday (%s). No route is running." %
+                        (rec.date, holiday[0].name)))
+                run_day = rec.route_id.run_on(rec.date)
+                if not run_day:
                     raise ValidationError(_(
                         "The route %s does not run on %s!" %
-                        (rec.route_id.name, day.name)))
+                        (rec.route_id.name, run_day.name)))
 
     @api.constrains('route_id', 'max_order', 'order_count')
     def check_capacity(self):
