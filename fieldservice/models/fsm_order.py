@@ -40,8 +40,7 @@ class FSMOrder(models.Model):
         else:
             raise ValidationError(_("You must create an FSM team first."))
 
-    api.depends("date_start", "date_end")
-
+    @api.depends("date_start", "date_end")
     def _compute_duration(self):
         duration = 0.0
         for rec in self:
