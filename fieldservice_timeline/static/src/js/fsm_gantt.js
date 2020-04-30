@@ -1,4 +1,4 @@
-odoo.define('fieldservice_web_timeline_view.fsm_gantt', function (require) {
+odoo.define('fieldservice_timeline.fsm_gantt', function (require) {
     'use strict';
 
     var core = require('web.core');
