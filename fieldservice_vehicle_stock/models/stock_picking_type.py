@@ -8,6 +8,6 @@ class StockPickingType(models.Model):
 
     require_vehicle_id = fields.Boolean(
         string='Require Vehicle',
-        help="Stock Pickings with this enabled must have the vehicle "
-             "set before they can reserve quantities. ",
+        help="When enabled, Pickings with this Operation Type must have a "
+             "vehicle set before they can reserve quantities. ",
         default=False)
