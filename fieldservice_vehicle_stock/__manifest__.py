@@ -14,6 +14,7 @@
         'fieldservice_vehicle',
         'fieldservice_stock',
         'fieldservice_delivery',
+        'stock_picking_batch',
         'stock_putaway_method',
     ],
     'data': [
@@ -22,7 +23,8 @@
         'views/fsm_vehicle.xml',
         'views/fsm_order.xml',
         'views/stock_picking.xml',
-        'views/stock_picking_type.xml'
+        'views/stock_picking_type.xml',
+        'views/stock_picking_batch.xml',
     ],
     'installable': True,
     'auto_install': True,
