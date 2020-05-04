@@ -8,3 +8,6 @@ class StockPickingBatch(models.Model):
 
     vehicle_id = fields.Many2one('fsm.vehicle', string="Vehicle")
     date = fields.Date(string="Date")
+    company_id = fields.Many2one(
+        'res.company',
+        default=lambda s: s.env.user.company_id)
