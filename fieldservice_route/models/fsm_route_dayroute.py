@@ -137,3 +137,12 @@ class FSMRouteDayRoute(models.Model):
                     raise ValidationError(_(
                         "This route only runs %s time(s) a day." %
                         rec.route_id.max_dayroute))
+
+    @api.constrains('stage_id', 'order_ids')
+    def check_complete_orders(self):
+        for rec in self:
+            if rec.stage_id.is_closed:
+                if any(order.stage_id.is_closed == False
+                       for order in rec.order_ids):
+                    raise ValidationError(_(
+                        "You must close (complete or cancel) all orders."))
