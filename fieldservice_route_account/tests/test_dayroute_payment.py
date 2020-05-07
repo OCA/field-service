@@ -157,16 +157,19 @@ class TestDayrouteAccount(common.TransactionCase):
         # Validating the payment
         payment.action_validate_invoice_payment()
         # A dayroute payment will be created.
-        for dayroute_payment in\
+        for dayroute_payment in \
                 self.test_order.dayroute_id.dayroute_payment_ids:
             self.assertTrue(dayroute_payment)
             self.assertEqual(dayroute_payment.amount_collected, 560.0)
             dayroute_payment.amount_counted = 500
             self.assertEqual(dayroute_payment.difference, 60.0)
-            dayroute_close_state = self.env['fsm.stage'].search(
-                ["&", ("stage_type", "=", "route"),
-                 ("is_closed", "=", True)])
+            # Closing Orders
+            self.test_order.action_complete()
             # Closing Day Route
+            dayroute_close_state = self.env['fsm.stage'].search([
+                ("stage_type", "=", "route"),
+                ("is_closed", "=", True)
+            ])
             self.test_order.dayroute_id.write(
                 {'stage_id': dayroute_close_state.id})
             # A journal entry will be created.
