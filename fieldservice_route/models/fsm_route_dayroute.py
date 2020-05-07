@@ -128,7 +128,7 @@ class FSMRouteDayRoute(models.Model):
     def check_max_dayroute(self):
         for rec in self:
             if rec.route_id:
-                # TODO: use a single read_group instead of a loop repeatd search
+                # TODO: use a single read_group instead of a search in a loop
                 dayroutes = self.search([
                     ('route_id', '=', rec.route_id.id),
                     ('date', '=', rec.date),
@@ -142,7 +142,7 @@ class FSMRouteDayRoute(models.Model):
     def check_complete_orders(self):
         for rec in self:
             if rec.stage_id.is_closed:
-                if any(order.stage_id.is_closed == False
-                       for order in rec.order_ids):
+                if any(order.stage_id.is_closed is False for order in
+                       rec.order_ids):
                     raise ValidationError(_(
                         "You must close (complete or cancel) all orders."))
