@@ -39,4 +39,4 @@ class AccountPayment(models.Model):
         for invoice in self.invoice_ids:
             fsm_order_ids.append(invoice.fsm_order_ids.id)
         if len(fsm_order_ids) > 0:
-            self.fsm_order_ids = [(6, 0, fsm_order_ids)]
+            self.fsm_order_ids = [(6, 0, fsm_order_ids.ids)]
