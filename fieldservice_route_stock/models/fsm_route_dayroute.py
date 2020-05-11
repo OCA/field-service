@@ -52,6 +52,8 @@ class FSMRouteDayRoute(models.Model):
         compute='_compute_vehicle_capacity',
         string="Maximum Stock Capacity",
         help="Maximum quantity of product that the vehicle can carry.")
+    picking_count = fields.Integer(
+        compute='_compute_picking_count', string='Transfers')
 
     @api.multi
     @api.constrains('is_limited', 'product_qty_remaining')
@@ -112,3 +114,26 @@ class FSMRouteDayRoute(models.Model):
                     move_id = accout_move_obj.create(move_vals)
                     rec.final_inventory_id.adjustment_move_id = move_id.id
         return super().write(vals)
+
+    @api.depends('order_ids.delivery_count', 'order_ids.return_count')
+    def _compute_picking_count(self):
+        for dayroute in self:
+            for order in dayroute.order_ids:
+                dayroute.picking_count += \
+                    order.delivery_count + order.return_count
+
+    @api.multi
+    def action_view_picking(self):
+        action = self.env.ref(
+            'stock.action_picking_tree_all').read()[0]
+        picking_ids = []
+        for order in self.order_ids:
+            for picking in order.picking_ids:
+                picking_ids.append(picking.id)
+        if self.picking_count > 1:
+            action['domain'] = [('id', 'in', picking_ids)]
+        elif self.picking_count == 1:
+            action['views'] = \
+                [(self.env.ref('stock.view_picking_form').id, 'form')]
+            action['res_id'] = picking_ids[0]
+        return action
