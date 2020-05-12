@@ -38,20 +38,19 @@ class FSMOrder(models.Model):
                 return {'domain': {'location_id': [('customer_id', 'child_of',
                                                     rec.customer_id.id)]}}
 
-    @api.depends('scheduled_date_start')
-    def onchange_scheduled_date_start(self):
-        for rec in self:
-            for invoice in rec.invoice_ids.filtered(
-                    lambda x: x.state == 'draft'):
-                invoice.date_invoice = \
-                    fields.Date.context_today(rec, rec.scheduled_date_start)
-
     @api.multi
     def write(self, vals):
         for order in self:
             if 'customer_id' not in vals and order.customer_id is False:
                 vals.update({'customer_id': order.location_id.customer_id.id})
-            return super(FSMOrder, self).write(vals)
+            res = super(FSMOrder, self).write(vals)
+            if vals.get('scheduled_date_start', False):
+                for invoice in order.invoice_ids.filtered(
+                        lambda x: x.state == 'draft'):
+                    invoice.date_invoice = \
+                        fields.Date.context_today(
+                            order, order.scheduled_date_start)
+        return res
 
     @api.depends('invoice_ids')
     def _compute_account_invoice_count(self):
