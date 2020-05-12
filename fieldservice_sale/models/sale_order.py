@@ -156,6 +156,8 @@ class SaleOrder(models.Model):
                     if duplicate:
                         inv = invoice.copy()
                         inv.write({'invoice_line_ids': [(6, 0, [])]})
+                        inv.compute_taxes()
+                        invoice.compute_taxes()
                         lines_by_line[i].invoice_id = inv.id
                         result.append(inv.id)
                     inv.fsm_order_ids = \
@@ -177,6 +179,8 @@ class SaleOrder(models.Model):
                     new = invoice.copy()
                     new.write({'invoice_line_ids': [(6, 0, [])]})
                     lines_by_sale.write({'invoice_id': new.id})
+                    new.compute_taxes()
+                    invoice.compute_taxes()
                     result.append(new.id)
         return result
 
