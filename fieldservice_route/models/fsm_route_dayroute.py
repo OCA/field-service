@@ -114,7 +114,7 @@ class FSMRouteDayRoute(models.Model):
                 if not run_day:
                     raise ValidationError(_(
                         "The route %s does not run on %s!" %
-                        (rec.route_id.name, run_day.name)))
+                        (rec.route_id.name, rec.date)))
 
     @api.constrains('route_id', 'max_order', 'order_count')
     def check_capacity(self):
