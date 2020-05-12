@@ -14,10 +14,13 @@
                     <field name="picking_count" widget="statinfo" string="Transfers"/>
                 </button>
             </div>
+            <field name="territory_id" position="after">
+                <field name="batch_picking_id" readonly="1"/>
+            </field>
             <xpath expr="//sheet/notebook/page[2]" position="after">
                 <page string="Inventory" name="inventory">
                     <group id="inventory">
-                        <group id="inventory-left">
+                        <group id="inventory-left" string="Capacity">
                             <field name="is_limited" invisible="1"/>
                             <field name="max_product_id"/>
                             <field name="max_product_qty" readonly="1"
@@ -25,7 +28,7 @@
                             <field name="product_qty" readonly="1"/>
                             <field name="product_qty_remaining" readonly="1"/>
                         </group>
-                        <group id="inventory-right">
+                        <group id="inventory-right" string="Control">
                             <field name="final_inventory_id" context="{'dayroute_id': id}"/>
                         </group>
                     </group>

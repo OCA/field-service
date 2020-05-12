@@ -15,7 +15,12 @@ class FSMRouteDayRoute(models.Model):
             if rec.order_ids and rec.max_product_id:
                 for order in rec.order_ids:
                     for move in order.move_ids:
-                        if move.product_id == rec.max_product_id:
+                        # If the product is the product used for the capacity
+                        # or one of his equivalents, count it
+                        equiv_ids = rec.max_product_id.product_tmpl_id.\
+                            equivalent_product_ids.ids
+                        equiv_ids.append(rec.max_product_id.product_tmpl_id.id)
+                        if move.product_id.product_tmpl_id.id in equiv_ids:
                             product_qty += move.product_uom_qty
             rec.product_qty = product_qty
             rec.product_qty_remaining = rec.max_product_qty - product_qty
@@ -54,6 +59,8 @@ class FSMRouteDayRoute(models.Model):
         help="Maximum quantity of product that the vehicle can carry.")
     picking_count = fields.Integer(
         compute='_compute_picking_count', string='Transfers')
+    batch_picking_id = fields.Many2one(
+        "stock.picking.batch", string="Batch Picking")
 
     @api.multi
     @api.constrains('is_limited', 'product_qty_remaining')
@@ -115,12 +122,11 @@ class FSMRouteDayRoute(models.Model):
                     rec.final_inventory_id.adjustment_move_id = move_id.id
         return super().write(vals)
 
-    @api.depends('order_ids.delivery_count', 'order_ids.return_count')
+    @api.depends('order_ids')
     def _compute_picking_count(self):
         for dayroute in self:
             for order in dayroute.order_ids:
-                dayroute.picking_count += \
-                    order.delivery_count + order.return_count
+                dayroute.picking_count += len(order.picking_ids)
 
     @api.multi
     def action_view_picking(self):
