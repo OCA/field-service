@@ -18,7 +18,8 @@ class FSMRouteDayRoute(models.Model):
     def write(self, values):
         result = super(FSMRouteDayRoute, self).write(values)
         for record in self:
-            if record.stage_id.stage_type == 'route' and\
+            if values.get('stage_id', False) and \
+                    record.stage_id.stage_type == 'route' and \
                     record.stage_id.is_closed:
                 for route_payment in record.dayroute_payment_ids:
                     if route_payment.difference > 0:
