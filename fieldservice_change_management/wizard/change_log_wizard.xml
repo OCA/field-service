@@ -1,0 +1,41 @@
+<odoo>
+
+    <!-- Location Change Log Action -->
+    <act_window id="change_log_wizard_action"
+                name="Create Change Logs"
+                res_model="change.log.wizard"
+                src_model="fsm.location"
+                view_type="form"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                groups="change_log_group_user"/>
+
+    <!-- wizard view -->
+    <record id="change_log_wizard_view" model="ir.ui.view">
+        <field name="name">Create Change Log on Locations</field>
+        <field name="model">change.log.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Change Logs on Location(s)">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="change_date"/>
+                        <field name="description"/>
+                        <field name="user_id"/>
+                        <field name="type_id"/>
+                        <field name="impact_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="fsm_location_ids"/>
+                </group>
+                <footer>
+                    <!--<button string="Create" name="action_create" type="object" class="btn-primary"/>-->
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
