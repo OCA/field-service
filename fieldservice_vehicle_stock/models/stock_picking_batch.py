@@ -5,6 +5,7 @@ from odoo import fields, models
 
 class StockPickingBatch(models.Model):
     _inherit = 'stock.picking.batch'
+    _order = "date desc"
 
     vehicle_id = fields.Many2one('fsm.vehicle', string="Vehicle")
     date = fields.Date(string="Date")
