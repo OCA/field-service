@@ -1,9 +1,8 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
     'name': 'Field Service - Sales',
-    'version': '12.0.2.4.0',
+    'version': '12.0.2.5.0',
     'summary': 'Sell field services.',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -15,6 +14,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'views/fsm_branch.xml',
         'views/fsm_location.xml',
         'views/fsm_order.xml',
         'views/product_template.xml',
