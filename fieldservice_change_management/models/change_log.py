@@ -24,7 +24,6 @@ class ChangeLog(models.Model):
     type_id = fields.Many2one('change.log.type', string="Type", required=True)
     impact_id = fields.Many2one('change.log.impact', string="Impact",
                                 required=True)
-    color = fields.Integer()
     stage_id = fields.Many2one(
         'change.log.stage',
         string="Stage",
