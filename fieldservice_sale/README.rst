@@ -90,8 +90,8 @@ Usage
 Known issues / Roadmap
 ======================
 
-The roadmap of the Field Service application is documented on
-`Github <https://github.com/OCA/field-service/issues/1>`_.
+* Provide a mapping between an address and the branch and use it to set the
+  pricelist of a new partner
 
 Bug Tracker
 ===========
