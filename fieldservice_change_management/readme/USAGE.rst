@@ -1,7 +1,7 @@
-To use this module:
+To use this module, you need to:
 
-* Go to Field Service > Operations > Orders
-* Select or create a field service order and set the agreement
-* Go to Agreement > Agreements
-* Open the previous agreement
-* Click on the smart button "Service Orders" to see the list of related field service orders
+* Open a FSM Location
+* Click on ‘Change Log’ smart button
+* Create or view Change Logs
+* You can print change logs from the location, location list or change log list.
+* Users with Change Log Manager access will have access to all change logs via the menu on the main dashboard.
