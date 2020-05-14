@@ -40,13 +40,17 @@
                         <label for="name" class="oe_edit_only" string="Name" />
                         <h1><field name="name" /></h1>
                     </div>
-                    <group name="general_info" colspan="2" col="4">
-                        <field name="location_id" required="1"/>
-                        <field name="type_id"/>
-                        <field name="user_id"/>
-                        <field name="impact_id"/>
-                        <field name="implemented_on"/>
-                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}"/>
+                    <group name="general_info">
+                        <group>
+                            <field name="location_id" required="1"/>
+                            <field name="user_id"/>
+                            <field name="implemented_on"/>
+                        </group>
+                        <group>
+                            <field name="type_id"/>
+                            <field name="impact_id"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}"/>
+                        </group>
                     </group>
                     <group name="description">
                         <field name="description"/>
