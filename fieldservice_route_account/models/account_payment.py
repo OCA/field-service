@@ -7,18 +7,20 @@ from odoo import models
 class AccountPayment(models.Model):
     _inherit = "account.payment"
 
-    def action_validate_invoice_payment(self):
-        result = super(AccountPayment, self).action_validate_invoice_payment()
+    def post(self):
+        res = super().post()
         dayroute_payment_obj = self.env['fsm.route.dayroute.payment']
-        for record in self:
-            for fsm_order_rec in record.fsm_order_ids:
-                dayroute_payment = dayroute_payment_obj.\
-                    search([('journal_id', '=', record.journal_id.id),
-                            ('dayroute_id', '=',
-                                fsm_order_rec.dayroute_id.id)])
-                if not dayroute_payment:
-                    dayroute_payment_obj.create({
-                        'journal_id': self.journal_id.id,
-                        'dayroute_id': fsm_order_rec.dayroute_id.id
-                    })
-        return result
+        for rec in self:
+            for fsm_order_rec in rec.fsm_order_ids:
+                if fsm_order_rec.dayroute_id:
+                    dayroute_payment = dayroute_payment_obj.search([
+                        ('journal_id', '=', rec.journal_id.id),
+                        ('dayroute_id', '=',
+                         fsm_order_rec.dayroute_id.id)
+                    ])
+                    if not dayroute_payment:
+                        dayroute_payment_obj.create({
+                            'journal_id': self.journal_id.id,
+                            'dayroute_id': fsm_order_rec.dayroute_id.id
+                        })
+        return res
