@@ -136,8 +136,8 @@ class FSMRouteDayRoute(models.Model):
                 ])
                 if len(dayroutes) > rec.route_id.max_dayroute:
                     raise ValidationError(_(
-                        "This route only runs %s time(s) a day." %
-                        rec.route_id.max_dayroute))
+                        "The route %s only runs %s time(s) a day." %
+                        (rec.route_id.name, rec.route_id.max_dayroute)))
 
     @api.constrains('stage_id', 'order_ids')
     def check_complete_orders(self):
