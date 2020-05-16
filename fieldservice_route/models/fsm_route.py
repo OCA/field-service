@@ -21,6 +21,7 @@ def daterange(start_date, end_date=None):
 class FSMRoute(models.Model):
     _name = 'fsm.route'
     _description = 'Field Service Route'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Name', required=True)
     territory_id = fields.Many2one('fsm.territory', string='Territory')

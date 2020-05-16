@@ -10,6 +10,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 class FSMRouteDayRoute(models.Model):
     _name = 'fsm.route.dayroute'
     _description = 'Field Service Route Dayroute'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'date desc'
 
     def _default_team_id(self):
@@ -31,14 +32,17 @@ class FSMRouteDayRoute(models.Model):
 
     name = fields.Char(string='Name', required=True, copy=False,
                        default=lambda self: _('New'))
-    person_id = fields.Many2one('fsm.person', string='Person')
+    person_id = fields.Many2one('fsm.person', string='Person',
+                                track_visibility='onchange')
     route_id = fields.Many2one('fsm.route', string='Route')
-    date = fields.Date(string='Date', required=True)
+    date = fields.Date(string='Date', required=True,
+                       track_visibility='onchange')
     team_id = fields.Many2one('fsm.team', string='Team',
                               default=lambda self: self._default_team_id())
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                domain="[('stage_type', '=', 'route')]",
                                index=True, copy=False,
+                               track_visibility='onchange',
                                default=lambda self: self._default_stage_id())
     territory_id = fields.Many2one(
         'fsm.territory', related='route_id.territory_id', string='Territory')
