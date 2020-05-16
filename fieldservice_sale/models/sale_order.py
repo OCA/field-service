@@ -189,11 +189,13 @@ class SaleOrder(models.Model):
                 ]
             )
             if len(lines_by_sale) > 0:
-                fsm_order = self.env["fsm.order"].search(
-                    [("sale_id", "=", self.id), ("sale_line_id", "=", False)]
+                fsm_orders = self.env["fsm.order"].search(
+                    [("sale_id", "in", self.ids), ("sale_line_id", "=", False)]
                 )
                 if len(lines_by_sale) == len(invoice.invoice_line_ids):
-                    invoice.fsm_order_ids = [(4, fsm_order.id)]
+                    invoice.fsm_order_ids = [
+                        (4, fsm_order.id) for fsm_order in fsm_orders
+                    ]
                 elif len(invoice.invoice_line_ids) > len(lines_by_sale):
                     new = invoice.copy()
                     new.write({"invoice_line_ids": [(6, 0, [])]})
