@@ -38,5 +38,5 @@ class AccountPayment(models.Model):
         fsm_order_ids = []
         for invoice in self.invoice_ids:
             fsm_order_ids.append(invoice.fsm_order_ids.id)
-        if len(fsm_order_ids) > 0:
+        if fsm_order_ids:
             self.fsm_order_ids = [(6, 0, fsm_order_ids)]
