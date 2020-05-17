@@ -51,7 +51,7 @@ class FSMRouteDayRoute(models.Model):
     @api.multi
     def action_view_invoices(self):
         action = self.env.ref(
-            'account.action_invoice_tree').read()[0]
+            'account.action_invoice_tree1').read()[0]
         invoice_ids = []
         for order in self.order_ids:
             for invoice in order.invoice_ids:
