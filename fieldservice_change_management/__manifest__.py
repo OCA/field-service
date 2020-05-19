@@ -28,4 +28,6 @@
         'views/fsm_location.xml',
     ],
     'application': True,
+    'development_status': 'Beta',
+    'maintainers': ['patrickrwilson'],
 }
