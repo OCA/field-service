@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Change Management',
     'summary': 'Manage Change Logs on Locations',
-    'author': 'Patrick Wilson: Pavlov Media',
+    'author': 'Pavlov Media, Odoo Community Association (OCA)',
     'website': 'https://www.pavlovmedia.com',
     'category': 'Extra Tools',
     'version': '12.0.1.0.0',
