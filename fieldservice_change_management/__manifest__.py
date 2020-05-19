@@ -9,8 +9,8 @@
     'category': 'Extra Tools',
     'version': '12.0.1.0.0',
     'license': 'Other proprietary',
-    'depends': ['mail',
-                'fieldservice',
+    'depends': [
+        'fieldservice',
     ],
     'data': [
         'security/security.xml',
