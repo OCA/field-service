@@ -110,8 +110,10 @@ class FSMLocation(models.Model):
         recs = self.browse()
         if name:
             recs = self.search([("ref", "ilike", name)] + args, limit=limit)
-        if not recs:
+        if not recs and self.env.user.company_id.seach_on_complete_name:
             recs = self.search([("complete_name", operator, name)] + args, limit=limit)
+        if not recs and not self.env.user.company_id.seach_on_complete_name:
+            recs = self.search([("name", operator, name)] + args, limit=limit)
         return recs.name_get()
 
     _sql_constraints = [
