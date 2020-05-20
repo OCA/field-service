@@ -81,6 +81,10 @@ class ResConfigSettings(models.TransientModel):
         string='Auto-populate equipments on Order based on the Location',
         related='company_id.auto_populate_equipments_on_order',
         readonly=False)
+    seach_on_complete_name = fields.Boolean(
+        string='Search Location By Hierarchy',
+        related='company_id.seach_on_complete_name',
+        readonly=False)
 
     # Dependencies
     @api.onchange('group_fsm_equipment')
