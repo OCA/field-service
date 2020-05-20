@@ -46,7 +46,8 @@ class FSMRouteDayRoute(models.Model):
         'stock.inventory', string='Final Inventory')
     inventory_location_id = fields.Many2one(
         related='fsm_vehicle_id.inventory_location_id')
-    adjustment_move_id = fields.Many2one('account.move', 'Adjustment Move')
+    adjustment_invoice_id = fields.Many2one(
+        'account.invoice', string='Adjustment Invoice')
     product_qty = fields.Float(
         compute=_compute_product_qty, string="Product Quantity", store=True)
     product_qty_remaining = fields.Float(
@@ -77,51 +78,45 @@ class FSMRouteDayRoute(models.Model):
 
     @api.multi
     def write(self, vals):
-        stage_obj = self.env['fsm.stage']
-        accout_move_obj = self.env['account.move']
-        # default inventory of all products so used all category
-        product_categ = self.env.ref('product.product_category_all')
-        journal = product_categ.property_stock_journal
+        Stage = self.env['fsm.stage']
+        Invoice = self.env['account.invoice']
         for rec in self:
             if vals.get('stage_id', False):
-                stage = stage_obj.browse(vals.get('stage_id'))
+                stage = Stage.browse(vals.get('stage_id'))
                 if (stage.is_closed and stage.stage_type == 'route' and
                         rec.final_inventory_id.state == 'done'):
                     partner = rec.person_id.partner_id.commercial_partner_id
-                    account = partner.property_account_receivable_id
-                    amount = 0
                     lines = []
                     moves = rec.final_inventory_id.move_ids.filtered(
                         lambda x:
                         x.location_id.id == rec.inventory_location_id.id)
                     if moves:
                         for move in moves:
-                            for acc_move in move.account_move_ids:
-                                # For each debit line
-                                for move_line in acc_move.line_ids.filtered(
-                                        lambda x: x.debit != 0):
-                                    amount += move_line.debit
-                                    lines.append((0, 0, {
-                                        'account_id': move_line.account_id.id,
-                                        'name': rec.final_inventory_id.name,
-                                        'debit': 0,
-                                        'credit': move_line.debit,
-                                    }))
-                        lines.append((0, 0, {
-                            'account_id': account.id,
-                            'name': rec.final_inventory_id.name,
+                            account = \
+                                move.product_id.property_account_income_id or\
+                                move.product_id.categ_id.\
+                                    property_account_income_categ_id
+                            lines.append((0, 0, {
+                                'name': move.product_id.name,
+                                'product_id': move.product_id.id,
+                                'account_id': account.id,
+                                'quantity': move.product_uom_qty,
+                                'uom_id': move.product_uom.id,
+                                'price_unit': move.product_id.list_price
+                            }))
+                        invoice_vals = {
+                            'name': rec.name,
                             'partner_id': partner.id,
-                            'debit': amount,
-                            'credit': 0,
-                        }))
-                        move_vals = {
-                            'journal_id': journal.id,
-                            'ref': rec.name,
-                            'line_ids': lines,
+                            'date_invoice': rec.date,
+                            'type': 'out_invoice',
+                            'journal_id':
+                                self.env['account.journal'].search([
+                                    ('type', '=', 'sale'),
+                                ], limit=1).id,
+                            'invoice_line_ids': lines,
                         }
-                        move = accout_move_obj.create(move_vals)
-                        move.post()
-                        vals.update({'adjustment_move_id': move.id})
+                        invoice = Invoice.create(invoice_vals)
+                        vals.update({'adjustment_invoice_id': invoice.id})
         return super().write(vals)
 
     @api.depends('order_ids')

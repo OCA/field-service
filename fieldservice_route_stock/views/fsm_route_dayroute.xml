@@ -31,9 +31,9 @@
                         <group id="inventory-right" string="Control">
                             <field name="inventory_location_id" invisible="1" />
                             <field name="final_inventory_id" domain="[('location_id', '=', inventory_location_id)]" context="{'dayroute_id': id}"/>
-                            <field name="adjustment_move_id"
+                            <field name="adjustment_invoice_id"
                                    readonly="1"
-                                   attrs="{'invisible': [('adjustment_move_id', '=', False)]}" />
+                                   attrs="{'invisible': [('adjustment_invoice_id', '=', False)]}" />
                         </group>
                     </group>
                 </page>
