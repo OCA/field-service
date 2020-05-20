@@ -12,11 +12,12 @@ class FSMOrder(models.Model):
     invoice_count = fields.Integer(
         string='Invoice Count',
         compute='_compute_account_invoice_count', readonly=True)
-    customer_id = fields.Many2one('res.partner', string='Customer',
-                                  domain=[('customer', '=', True)],
-                                  change_default=True,
-                                  index=True,
-                                  track_visibility='always')
+    customer_id = fields.Many2one(
+        'res.partner', string='Customer',
+        domain=[('customer', '=', True)],
+        change_default=True,
+        index=True,
+        track_visibility='always')
 
     @api.multi
     @api.onchange('location_id')
@@ -37,6 +38,16 @@ class FSMOrder(models.Model):
                     self.env.user.company_id.fsm_filter_location_by_customer:
                 return {'domain': {'location_id': [('customer_id', 'child_of',
                                                     rec.customer_id.id)]}}
+
+    @api.model
+    def create(self, vals):
+        if 'customer_id' not in vals:
+            location = self.env['fsm.location'].browse(vals.get('location_id'))
+            vals.update({
+                'customer_id':
+                    location and location.customer_id and
+                    location.customer_id.id or False})
+        return super().create(vals)
 
     @api.multi
     def write(self, vals):
