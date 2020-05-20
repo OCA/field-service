@@ -44,6 +44,9 @@ class FSMRouteDayRoute(models.Model):
 
     final_inventory_id = fields.Many2one(
         'stock.inventory', string='Final Inventory')
+    inventory_location_id = fields.Many2one(
+        related='fsm_vehicle_id.inventory_location_id')
+    adjustment_move_id = fields.Many2one('account.move', 'Adjustment Move')
     product_qty = fields.Float(
         compute=_compute_product_qty, string="Product Quantity", store=True)
     product_qty_remaining = fields.Float(
@@ -78,48 +81,47 @@ class FSMRouteDayRoute(models.Model):
         accout_move_obj = self.env['account.move']
         # default inventory of all products so used all category
         product_categ = self.env.ref('product.product_category_all')
+        journal = product_categ.property_stock_journal
         for rec in self:
-            journal_id = False
-            amount = 0
             if vals.get('stage_id', False):
-                account = (rec.fsm_vehicle_id.person_id.
-                           property_account_receivable_id)
-                partner = rec.fsm_vehicle_id.person_id.partner_id
                 stage = stage_obj.browse(vals.get('stage_id'))
                 if (stage.is_closed and stage.stage_type == 'route' and
                         rec.final_inventory_id.state == 'done'):
-                    inventory_account = (
-                        product_categ and
-                        product_categ.property_stock_account_output_categ_id)
-                    for move in rec.final_inventory_id.move_ids:
-                        for acc_move in move.account_move_ids:
-                            journal_id = acc_move.journal_id.id
-                            for move_line in acc_move.line_ids:
-                                amount += move_line.debit
-                    if not journal_id:
-                        journal_id = self.env['account.journal'].search(
-                            [('type', '=', 'general'), ('code', '=', 'STJ')],
-                            limit=1).id
-                    move_line_debit_vals = {
-                        'account_id': account.id,
-                        'name': 'Inventory Adjustment',
-                        'partner_id': partner.id,
-                        'debit': amount,
-                        'credit': 0,
-                    }
-                    move_line_credit_vals = {
-                        'account_id': inventory_account.id,
-                        'name': 'Inventory Adjustment',
-                        'debit': 0,
-                        'credit': amount,
-                    }
-                    move_vals = {
-                        'journal_id': journal_id,
-                        'line_ids': [(0, 0, move_line_debit_vals),
-                                     (0, 0, move_line_credit_vals)]
-                    }
-                    move_id = accout_move_obj.create(move_vals)
-                    rec.final_inventory_id.adjustment_move_id = move_id.id
+                    partner = rec.person_id.partner_id.commercial_partner_id
+                    account = partner.property_account_receivable_id
+                    amount = 0
+                    lines = []
+                    moves = rec.final_inventory_id.move_ids.filtered(
+                        lambda x:
+                        x.location_id.id == rec.inventory_location_id.id)
+                    if moves:
+                        for move in moves:
+                            for acc_move in move.account_move_ids:
+                                # For each debit line
+                                for move_line in acc_move.line_ids.filtered(
+                                        lambda x: x.debit != 0):
+                                    amount += move_line.debit
+                                    lines.append((0, 0, {
+                                        'account_id': move_line.account_id.id,
+                                        'name': rec.final_inventory_id.name,
+                                        'debit': 0,
+                                        'credit': move_line.debit,
+                                    }))
+                        lines.append((0, 0, {
+                            'account_id': account.id,
+                            'name': rec.final_inventory_id.name,
+                            'partner_id': partner.id,
+                            'debit': amount,
+                            'credit': 0,
+                        }))
+                        move_vals = {
+                            'journal_id': journal.id,
+                            'ref': rec.name,
+                            'line_ids': lines,
+                        }
+                        move = accout_move_obj.create(move_vals)
+                        move.post()
+                        vals.update({'adjustment_move_id': move.id})
         return super().write(vals)
 
     @api.depends('order_ids')
