@@ -17,29 +17,36 @@ class FSMRouteDayRoute(models.Model):
     @api.multi
     def write(self, values):
         result = super(FSMRouteDayRoute, self).write(values)
-        for record in self:
+        for rec in self:
             if values.get('stage_id', False) and \
-                    record.stage_id.stage_type == 'route' and \
-                    record.stage_id.is_closed:
-                for route_payment in record.dayroute_payment_ids:
+                    rec.stage_id.stage_type == 'route' and \
+                    rec.stage_id.is_closed:
+                for route_payment in rec.dayroute_payment_ids:
                     if route_payment.difference > 0:
+                        partner = rec.person_id.partner_id.commercial_partner_id
+                        account = partner.property_account_receivable_id
+                        amount = route_payment.difference
+                        lines = [
+                            (0, 0, {
+                                'name': rec.name,
+                                'account_id': account.id,
+                                'partner_id': partner.id,
+                                'debit': amount,
+                            }), (0, 0, {
+                                'name': rec.name,
+                                'account_id':
+                                    route_payment.journal_id.
+                                 default_credit_account_id.id,
+                            'credit': amount,
+                            })
+                        ]
                         route_payment.move_id = \
                             self.env['account.move'].create({
                                 'journal_id': route_payment.journal_id.id,
-                                'line_ids': [
-                                    (0, 0, {
-                                        'account_id': record.person_id.
-                                     partner_id.
-                                     property_account_receivable_id.id,
-                                        'partner_id': record.
-                                     person_id.partner_id.id,
-                                        'debit': route_payment.difference}),
-                                    (0, 0, {
-                                        'account_id': route_payment.
-                                     journal_id.default_credit_account_id.id,
-                                        'credit': route_payment.difference})]
+                                'ref': rec.name,
+                                'line_ids': lines,
                             })
-                        route_payment.move_id.action_post()
+                        route_payment.move_id.post()
         return result
 
     @api.depends('order_ids.invoice_count')
