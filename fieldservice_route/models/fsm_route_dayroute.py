@@ -1,7 +1,8 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from datetime import datetime
+import pytz
+from datetime import datetime, time
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -104,22 +105,25 @@ class FSMRouteDayRoute(models.Model):
     @api.constrains('date', 'route_id')
     def check_day(self):
         for rec in self:
-            if rec.date and rec.route_id:
-                noon = datetime.combine(
-                    rec.date, datetime.strptime("12:00:00", '%H:%M:%S').time())
-                holiday = self.env['resource.calendar.leaves'].search([
-                    ('date_from', '<=', noon),
-                    ('date_to', '>=', noon),
+            if rec.date:
+                user_tz = self.env.user.tz or pytz.utc
+                local = pytz.timezone(user_tz)
+                midnight = datetime.combine(rec.date, time())
+                utc_midnight = local.localize(midnight).astimezone(pytz.utc)
+                holidays = self.env['resource.calendar.leaves'].search([
+                    ('date_from', '<=', utc_midnight),
+                    ('date_to', '>=', utc_midnight),
                 ])
-                if len(holiday) > 0:
+                if holidays:
                     raise ValidationError(_(
                         "%s is a holiday (%s). No route is running." %
-                        (rec.date, holiday[0].name)))
-                run_day = rec.route_id.run_on(rec.date)
-                if not run_day:
-                    raise ValidationError(_(
-                        "The route %s does not run on %s!" %
-                        (rec.route_id.name, rec.date)))
+                        (rec.date, holidays[0].name)))
+                if rec.route_id:
+                    run_day = rec.route_id.run_on(rec.date)
+                    if not run_day:
+                        raise ValidationError(_(
+                            "The route %s does not run on %s!" %
+                            (rec.route_id.name, rec.date)))
 
     @api.constrains('route_id', 'max_order', 'order_count')
     def check_capacity(self):

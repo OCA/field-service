@@ -11,7 +11,7 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice'
+        'fieldservice',
     ],
     'data': [
         'data/ir_sequence.xml',
