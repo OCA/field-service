@@ -437,3 +437,22 @@ class FSMOrder(models.Model):
                 s += parent_location.direction
             parent_location = parent_location.fsm_parent_id
         return s
+
+    @api.constrains("scheduled_date_start")
+    def check_day(self):
+        for rec in self:
+            if rec.scheduled_date_start:
+                holidays = self.env["resource.calendar.leaves"].search(
+                    [
+                        ("date_from", ">=", rec.scheduled_date_start),
+                        ("date_to", "<=", rec.scheduled_date_start),
+                    ]
+                )
+                if holidays:
+                    raise ValidationError(
+                        _(
+                            "%s is a holiday (%s)."
+                            % (rec.scheduled_date_start.date(), holidays[0].name)
+                        )
+                    )
+
