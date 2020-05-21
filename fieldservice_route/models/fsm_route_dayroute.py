@@ -15,10 +15,9 @@ class FSMRouteDayRoute(models.Model):
     _order = 'date desc'
 
     def _default_team_id(self):
-        team_ids = self.env['fsm.team'].\
-            search([('company_id', 'in', (self.env.user.company_id.id,
-                                          False))],
-                   order='sequence asc', limit=1)
+        team_ids = self.env['fsm.team'].search([
+            ('company_id', 'in', (self.env.user.company_id.id, False))
+        ], order='sequence asc', limit=1)
         if team_ids:
             return team_ids[0]
         else:
@@ -45,6 +44,10 @@ class FSMRouteDayRoute(models.Model):
                                index=True, copy=False,
                                track_visibility='onchange',
                                default=lambda self: self._default_stage_id())
+    is_closed = fields.Boolean(related='stage_id.is_closed')
+    date_close = fields.Datetime()
+    company_id = fields.Many2one(
+        'res.company', default=lambda s: s.env.user.company_id)
     territory_id = fields.Many2one(
         'fsm.territory', related='route_id.territory_id', string='Territory')
     longitude = fields.Float("Longitude")
@@ -84,6 +87,15 @@ class FSMRouteDayRoute(models.Model):
             self.date_start_planned = datetime.combine(
                 self.date, datetime.strptime("8:00:00", '%H:%M:%S').time())
 
+    @api.multi
+    def write(self, values):
+        if values.get('stage_id', False) and not \
+                self.env.context.get('is_writing_flag', False):
+            new_stage = self.env['fsm.stage'].browse(values.get('stage_id'))
+            if new_stage.is_closed:
+                values.update({'date_close': fields.Datetime.now()})
+        return super().write(values)
+
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
@@ -94,8 +106,8 @@ class FSMRouteDayRoute(models.Model):
             # TODO: Use the worker timezone and working schedule
             date = vals.get('date')
             if type(vals.get('date')) == str:
-                date = datetime.strptime(vals.get('date'),
-                                         DEFAULT_SERVER_DATE_FORMAT).date()
+                date = datetime.strptime(
+                    vals.get('date'), DEFAULT_SERVER_DATE_FORMAT).date()
             vals.update({
                 'date_start_planned': datetime.combine(
                     date, datetime.strptime("8:00:00", '%H:%M:%S').time())
