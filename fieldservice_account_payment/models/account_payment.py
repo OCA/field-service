@@ -11,7 +11,7 @@ class AccountPayment(models.Model):
         'fsm.order', 'fsm_order_account_payment',
         'payment_id', 'fsm_order_id', string='FSM Orders',
         compute='_compute_fsm_order_ids',
-        store=True, index=True)
+        store=True, index=True, copy=False)
     fsm_order_count = fields.Integer(
         string='FSM Order Count',
         compute='_compute_fsm_order_count', readonly=True)
@@ -37,6 +37,7 @@ class AccountPayment(models.Model):
     def _compute_fsm_order_ids(self):
         fsm_order_ids = []
         for invoice in self.invoice_ids:
-            fsm_order_ids.append(invoice.fsm_order_ids.id)
+            if invoice.fsm_order_ids:
+                fsm_order_ids.extend(invoice.fsm_order_ids.ids)
         if fsm_order_ids:
             self.fsm_order_ids = [(6, 0, fsm_order_ids)]
