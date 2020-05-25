@@ -10,7 +10,7 @@ class AccountInvoice(models.Model):
 
     fsm_order_ids = fields.Many2many(
         'fsm.order', 'fsm_order_account_invoice_rel',
-        'invoice_id', 'fsm_order_id', string='FSM Orders')
+        'invoice_id', 'fsm_order_id', string='FSM Orders', copy=False)
     fsm_order_count = fields.Integer(
         string='FSM Order Count',
         compute='_compute_fsm_order_count', readonly=True)
