@@ -371,3 +371,17 @@ class FSMOrder(models.Model):
                 self.type = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
+
+    @api.constrains('scheduled_date_start')
+    def check_day(self):
+        for rec in self:
+            if rec.scheduled_date_start:
+                holidays = self.env['resource.calendar.leaves'].search([
+                    ('date_from', '>=', rec.scheduled_date_start),
+                    ('date_to', '<=', rec.scheduled_date_start),
+                ])
+                if holidays:
+                    raise ValidationError(_(
+                        "%s is a holiday (%s)." %
+                        (rec.scheduled_date_start.date(), holidays[0].name)
+                    ))
