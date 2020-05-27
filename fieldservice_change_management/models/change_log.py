@@ -31,4 +31,3 @@ class ChangeLog(models.Model):
         default=lambda self: self.env.ref(
             'fieldservice_change_management.change_log_stage_active') or 0,
         help="Select the current stage of the Bandwidth Change.")
-
