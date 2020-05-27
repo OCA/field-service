@@ -32,7 +32,8 @@ class FSMLocation(models.Model):
             if len(change_log_ids) > 1:
                 action['domain'] = [('id', 'in', change_log_ids.ids)]
             elif len(change_log_ids) == 1:
-                action['views'] = [(
-                    self.env.ref('fieldservice_change_management.change_log_view_form').id, 'form')]
+                action['views'] = [(self.env.ref(
+                    'fieldservice_change_management.change_log_view_form').id,
+                    'form')]
                 action['res_id'] = change_log_ids.ids[0]
             return action
