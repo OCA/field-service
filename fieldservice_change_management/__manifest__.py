@@ -8,7 +8,7 @@
     'website': 'https://www.pavlovmedia.com',
     'category': 'Extra Tools',
     'version': '12.0.1.0.0',
-    'license': 'Other proprietary',
+    'license': 'AGPL-3',
     'depends': [
         'fieldservice',
     ],
