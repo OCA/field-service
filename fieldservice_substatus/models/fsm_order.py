@@ -11,6 +11,7 @@ class FSMOrder(models.Model):
         'fsm.stage.status',
         string='Sub-Status',
         required=True,
+        track_visibility='onchange',
         default=lambda self: self._default_stage_id().sub_stage_id)
 
     @api.multi
@@ -21,3 +22,10 @@ class FSMOrder(models.Model):
             if sub_stage_id:
                 vals.update({'sub_stage_id': sub_stage_id.id})
         return super(FSMOrder, self).write(vals)
+
+    @api.multi
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if 'sub_stage_id' in init_values:
+            return 'fieldservice_substatus.fso_substatus_changed'
+        return super()._track_subtype(init_values)
