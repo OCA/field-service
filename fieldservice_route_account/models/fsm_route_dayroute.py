@@ -10,12 +10,16 @@ class FSMRouteDayRoute(models.Model):
 
     dayroute_payment_ids = fields.One2many(
         'fsm.route.dayroute.payment', 'dayroute_id', string='Payment Summary')
+    invoice_count = fields.Integer(
+        string='Invoice Count',
+        compute='_compute_invoice_count', readonly=True)
 
     @api.multi
     def write(self, values):
         result = super(FSMRouteDayRoute, self).write(values)
         for record in self:
-            if record.stage_id.stage_type == 'route' and\
+            if values.get('stage_id', False) and \
+                    record.stage_id.stage_type == 'route' and \
                     record.stage_id.is_closed:
                 for route_payment in record.dayroute_payment_ids:
                     if route_payment.difference > 0:
@@ -37,3 +41,25 @@ class FSMRouteDayRoute(models.Model):
                             })
                         route_payment.move_id.action_post()
         return result
+
+    @api.depends('order_ids.invoice_count')
+    def _compute_invoice_count(self):
+        for dayroute in self:
+            for order in dayroute.order_ids:
+                dayroute.invoice_count += order.invoice_count
+
+    @api.multi
+    def action_view_invoices(self):
+        action = self.env.ref(
+            'account.action_invoice_tree').read()[0]
+        invoice_ids = []
+        for order in self.order_ids:
+            for invoice in order.invoice_ids:
+                invoice_ids.append(invoice.id)
+        if self.invoice_count > 1:
+            action['domain'] = [('id', 'in', invoice_ids)]
+        elif self.invoice_count == 1:
+            action['views'] = \
+                [(self.env.ref('account.invoice_form').id, 'form')]
+            action['res_id'] = invoice_ids[0]
+        return action
