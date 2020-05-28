@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, _
+from odoo import api, models, _
 from odoo.exceptions import ValidationError
 
 
@@ -55,3 +55,24 @@ class FSMOrder(models.Model):
             raise ValidationError(_("Cannot move to Complete " +
                                     "until 'Resolution' is filled in"))
         return super(FSMOrder, self).action_complete()
+
+    @api.multi
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if 'stage_id' in init_values:
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice_isp_flow.fsm_stage_confirmed').id:
+                return 'fieldservice.mt_order_confirmed'
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice_isp_flow.fsm_stage_scheduled').id:
+                return 'fieldservice.mt_order_scheduled'
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice_isp_flow.fsm_stage_assigned').id:
+                return 'fieldservice.mt_order_assigned'
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice_isp_flow.fsm_stage_enroute').id:
+                return 'fieldservice.mt_order_enroute'
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice_isp_flow.fsm_stage_started').id:
+                return 'fieldservice.mt_order_started'
+        return super()._track_subtype(init_values)
