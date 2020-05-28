@@ -48,6 +48,12 @@ msgid "# of Owned Locations"
 msgstr "# de Locais Próprios"
 
 #. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:386
+#, python-format
+msgid "%s is a holiday (%s)."
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "<span>Reporting</span>"
 msgstr "<span>Relatórios</span>"
@@ -108,6 +114,7 @@ msgstr "Ação Necessária"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__active
 msgid "Active"
 msgstr "Ativo"
 
@@ -795,6 +802,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_uid
@@ -815,6 +823,7 @@ msgstr "Criado por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_date
@@ -934,6 +943,7 @@ msgstr "Expedição"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__display_name
@@ -1113,9 +1123,23 @@ msgid "FSM Orders"
 msgstr "Ordens FSM"
 
 #. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_person_calendar_filter
+#, fuzzy
+#| msgid "Person Filter"
+msgid "FSM Person Calendar Filter"
+msgstr "Filtro de Pessoa"
+
+#. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_wizard
 msgid "FSM Record Conversion"
 msgstr "Conversão do Registro FSM"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__fsm_person_id
+#, fuzzy
+#| msgid "Is a FS Worker"
+msgid "FSM Worker"
+msgstr "É um Trabalhador de SC"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fax
@@ -1346,6 +1370,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__id
@@ -1544,6 +1569,7 @@ msgstr "Idioma"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person____last_update
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag____last_update
@@ -1564,6 +1590,7 @@ msgstr "Última modificação em"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_uid
@@ -1584,6 +1611,7 @@ msgstr "Última atualização por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_date
@@ -1985,6 +2013,11 @@ msgstr "Ferramentas de Mapeamento"
 #: model:ir.ui.menu,name:fieldservice.data
 msgid "Master Data"
 msgstr "Dados Principais"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__user_id
+msgid "Me"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_medium
@@ -3461,6 +3494,13 @@ msgstr "Você não pode criar localização recursiva."
 #: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "You cannot delete this order."
+msgstr "Você não pode excluir essa ordem."
+
+#. module: fieldservice
+#: sql_constraint:fsm.person.calendar.filter:0
+#, fuzzy
+#| msgid "You cannot delete this order."
+msgid "You cannot have the same worker twice."
 msgstr "Você não pode excluir essa ordem."
 
 #. module: fieldservice
