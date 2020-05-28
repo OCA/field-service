@@ -56,6 +56,15 @@ class FSMOrder(models.Model):
         """ Get stage color"""
         self.custom_color = self.stage_id.custom_color or "#FFFFFF"
 
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if "stage_id" in init_values:
+            if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_completed").id:
+                return "fieldservice.mt_order_completed"
+            if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_cancelled").id:
+                return "fieldservice.mt_order_cancelled"
+        return super()._track_subtype(init_values)
+
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
