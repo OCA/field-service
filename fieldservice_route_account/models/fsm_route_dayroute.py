@@ -23,23 +23,22 @@ class FSMRouteDayRoute(models.Model):
                     rec.stage_id.is_closed:
                 for route_payment in rec.dayroute_payment_ids:
                     if route_payment.difference > 0:
-                        partner = rec.person_id.partner_id.commercial_partner_id
+                        partner = \
+                            rec.person_id.partner_id.commercial_partner_id
                         account = partner.property_account_receivable_id
                         amount = route_payment.difference
-                        lines = [
-                            (0, 0, {
-                                'name': rec.name,
-                                'account_id': account.id,
-                                'partner_id': partner.id,
-                                'debit': amount,
-                            }), (0, 0, {
-                                'name': rec.name,
-                                'account_id':
-                                    route_payment.journal_id.
-                                 default_credit_account_id.id,
+                        lines = [(0, 0, {
+                            'name': rec.name,
+                            'account_id': account.id,
+                            'partner_id': partner.id,
+                            'debit': amount,
+                        }), (0, 0, {
+                            'name': rec.name,
+                            'account_id':
+                                route_payment.journal_id.
+                                default_credit_account_id.id,
                             'credit': amount,
-                            })
-                        ]
+                        })]
                         route_payment.move_id = \
                             self.env['account.move'].create({
                                 'journal_id': route_payment.journal_id.id,
