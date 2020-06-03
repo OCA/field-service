@@ -49,6 +49,8 @@ class ResConfigSettings(models.TransientModel):
         string='Projects and Tasks')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
     module_fieldservice_purchase = fields.Boolean(
         string='Manage subcontractors and their pricelists')
     module_fieldservice_recurring = fields.Boolean(
@@ -82,6 +84,10 @@ class ResConfigSettings(models.TransientModel):
     auto_populate_equipments_on_order = fields.Boolean(
         string='Auto-populate equipments on Order based on the Location',
         related='company_id.auto_populate_equipments_on_order',
+        readonly=False)
+    search_on_complete_name = fields.Boolean(
+        string='Search Location By Hierarchy',
+        related='company_id.search_on_complete_name',
         readonly=False)
 
     # Dependencies
