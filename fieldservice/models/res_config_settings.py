@@ -45,8 +45,12 @@ class ResConfigSettings(models.TransientModel):
         string='Use FSM Location Builder')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
     module_fieldservice_purchase = fields.Boolean(
         string='Manage subcontractors and their pricelists')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
     module_fieldservice_repair = fields.Boolean(
         string='Link FSM orders to MRP Repair orders')
     module_fieldservice_route = fields.Boolean(
@@ -67,10 +71,6 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
-    module_fieldservice_recurring = fields.Boolean(
-        string='Manage Recurring Orders')
-    module_fieldservice_project = fields.Boolean(
-        string='Projects and Tasks')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
@@ -81,9 +81,9 @@ class ResConfigSettings(models.TransientModel):
         string='Auto-populate equipments on Order based on the Location',
         related='company_id.auto_populate_equipments_on_order',
         readonly=False)
-    seach_on_complete_name = fields.Boolean(
+    search_on_complete_name = fields.Boolean(
         string='Search Location By Hierarchy',
-        related='company_id.seach_on_complete_name',
+        related='company_id.search_on_complete_name',
         readonly=False)
 
     # Dependencies

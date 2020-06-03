@@ -11,6 +11,6 @@ class ResCompany(models.Model):
         string='Auto-populate Workers on Location based on Territory')
     auto_populate_equipments_on_order = fields.Boolean(
         string='Auto-populate Equipments on Order based on Location')
-    seach_on_complete_name = fields.Boolean(
+    search_on_complete_name = fields.Boolean(
         string='Search Location By Hierarchy'
     )
