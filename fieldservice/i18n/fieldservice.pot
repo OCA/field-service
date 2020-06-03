@@ -46,6 +46,7 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:386
+#: code:addons/fieldservice/models/fsm_order.py:407
 #, python-format
 msgid "%s is a holiday (%s)."
 msgstr ""
@@ -381,6 +382,7 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:237
+#: code:addons/fieldservice/models/fsm_order.py:249
 #, python-format
 msgid "Cannot move to completed from Kanban"
 msgstr ""
@@ -2066,8 +2068,11 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:74
+#: code:addons/fieldservice/models/fsm_order.py:86
 #: code:addons/fieldservice/models/fsm_order.py:195
 #: code:addons/fieldservice/models/fsm_order.py:197
+#: code:addons/fieldservice/models/fsm_order.py:207
+#: code:addons/fieldservice/models/fsm_order.py:209
 #, python-format
 msgid "New"
 msgstr ""
@@ -2666,8 +2671,20 @@ msgid "Search FSM Workers"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__search_on_complete_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__search_on_complete_name
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Search Location By Hierarchy"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
 msgid "Search Location Worker"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Search Locations based on their full hierarchy name"
 msgstr ""
 
 #. module: fieldservice
@@ -3370,12 +3387,14 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:341
+#: code:addons/fieldservice/models/fsm_location.py:346
 #, python-format
 msgid "You cannot create recursive location."
 msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:252
+#: code:addons/fieldservice/models/fsm_order.py:264
 #, python-format
 msgid "You cannot delete this order."
 msgstr ""
