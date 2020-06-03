@@ -31,6 +31,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage FSM Activities')
     module_fieldservice_agreement = fields.Boolean(
         string='Manage Agreements')
+    module_fieldservice_change_management = fields.Boolean(
+        string='Change Management')
     module_fieldservice_crm = fields.Boolean(
         string='CRM')
     module_fieldservice_distribution = fields.Boolean(
@@ -43,10 +45,14 @@ class ResConfigSettings(models.TransientModel):
         string="Allow Field Service Google Map")
     module_fieldservice_location_builder = fields.Boolean(
         string='Use FSM Location Builder')
+    module_fieldservice_project = fields.Boolean(
+        string='Projects and Tasks')
     module_fieldservice_maintenance = fields.Boolean(
         string='Link FSM orders to maintenance requests')
     module_fieldservice_purchase = fields.Boolean(
         string='Manage subcontractors and their pricelists')
+    module_fieldservice_recurring = fields.Boolean(
+        string='Manage Recurring Orders')
     module_fieldservice_repair = fields.Boolean(
         string='Link FSM orders to MRP Repair orders')
     module_fieldservice_route = fields.Boolean(
@@ -67,12 +73,6 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
-    module_fieldservice_recurring = fields.Boolean(
-        string='Manage Recurring Orders')
-    module_fieldservice_project = fields.Boolean(
-        string='Projects and Tasks')
-    module_fieldservice_change_management = fields.Boolean(
-        string='Change Management')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
