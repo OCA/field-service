@@ -4,7 +4,7 @@
 {
     'name': 'Field Service - Flow for ISP',
     'summary': 'Field Service workflow for Internet Service Providers',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'category': 'Field Service',
     'author':
         'Open Source Integrators, '
