@@ -13,4 +13,4 @@ class ResCompany(models.Model):
     auto_populate_equipments_on_order = fields.Boolean(
         string="Auto-populate Equipments on Order based on Location"
     )
-    seach_on_complete_name = fields.Boolean(string="Search Location By Hierarchy")
+    search_on_complete_name = fields.Boolean(string="Search Location By Hierarchy")
