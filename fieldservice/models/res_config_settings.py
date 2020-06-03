@@ -28,6 +28,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_account = fields.Boolean(string="Invoice your FSM orders")
     module_fieldservice_activity = fields.Boolean(string="Manage FSM Activities")
     module_fieldservice_agreement = fields.Boolean(string="Manage Agreements")
+    module_fieldservice_change_management = fields.Boolean(string="Change Management")
     module_fieldservice_crm = fields.Boolean(string="CRM")
     module_fieldservice_distribution = fields.Boolean(string="Manage Distribution")
     module_fieldservice_fleet = fields.Boolean(
