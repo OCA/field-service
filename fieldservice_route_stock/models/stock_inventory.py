@@ -20,7 +20,8 @@ class Inventory(models.Model):
             if dayroute and dayroute.fsm_vehicle_id:
                 res.update({
                     'location_id': dayroute.inventory_location_id.id,
-                    'name': dayroute.fsm_vehicle_id.name + ' ' +
+                    'name':
+                        dayroute.fsm_vehicle_id.name + ' ' +
                         dayroute.date.strftime(DEFAULT_SERVER_DATE_FORMAT),
                     'dayroute_id': dayroute.id,
                 })

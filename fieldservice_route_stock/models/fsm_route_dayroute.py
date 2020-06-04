@@ -93,9 +93,9 @@ class FSMRouteDayRoute(models.Model):
                     if moves:
                         for move in moves:
                             account = \
-                                move.product_id.property_account_income_id or\
+                                move.product_id.property_account_income_id or \
                                 move.product_id.categ_id.\
-                                    property_account_income_categ_id
+                                property_account_income_categ_id
                             lines.append((0, 0, {
                                 'name': move.product_id.name,
                                 'product_id': move.product_id.id,
