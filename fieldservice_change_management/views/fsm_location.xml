@@ -9,7 +9,8 @@
                         class="oe_stat_button"
                         icon="fa-pencil-square-o"
                         groups="fieldservice_change_management.change_log_group_readonly"
-                        context="{'default_location_id': active_id}">
+                        context="{'search_default_location_id': active_id,
+                                  'default_location_id': active_id}">
                     <field name="change_log_count"
                            widget="statinfo"
                            string="Change Logs"/>
