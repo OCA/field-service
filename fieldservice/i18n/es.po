@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-21 07:13+0000\n"
+"PO-Revision-Date: 2020-06-07 05:19+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -51,7 +51,7 @@ msgstr "# de Ubicaciones Propias"
 #: code:addons/fieldservice/models/fsm_order.py:407
 #, python-format
 msgid "%s is a holiday (%s)."
-msgstr ""
+msgstr "%s es un dia festivo (%s)."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -404,7 +404,7 @@ msgstr ""
 #: code:addons/fieldservice/models/fsm_order.py:249
 #, python-format
 msgid "Cannot move to completed from Kanban"
-msgstr ""
+msgstr "No se puede mover a completada desde Kanban"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
@@ -428,10 +428,8 @@ msgstr "¡Nombre de la categoría ya existe!"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_change_management
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Agreements"
 msgid "Change Management"
-msgstr "Gestionar Acuerdos"
+msgstr "Gestión del Cambio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__channel_ids
@@ -737,10 +735,8 @@ msgstr "Estado País"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Create a Service Location"
 msgid "Create Change Logs on FSM Locations."
-msgstr "Crear una Ubicación de Servicio"
+msgstr "Crear registros de cambios en ubicaciones de servicio."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1505,7 +1501,7 @@ msgstr "Facturas"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
 msgid "Is Button"
-msgstr ""
+msgstr "Es un Botón"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
@@ -1869,10 +1865,8 @@ msgstr "Gestionar Actividades de Pedidos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Order Activities"
 msgid "Manage Order Sizes"
-msgstr "Gestionar Actividades de Pedidos"
+msgstr "Gestionar Tamaños de Pedido"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1980,7 +1974,7 @@ msgstr "Administra las rutas de tus trabajadores"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sizes for orders and locations"
-msgstr ""
+msgstr "Administre tamaños para pedidos y ubicaciones"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2040,7 +2034,7 @@ msgstr "Data Maestra"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__user_id
 msgid "Me"
-msgstr ""
+msgstr "Yo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_medium
@@ -2751,10 +2745,8 @@ msgstr "Buscar Trabajadores de FSM"
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__search_on_complete_name
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__search_on_complete_name
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Search Location Worker"
 msgid "Search Location By Hierarchy"
-msgstr "Trabajador de Ubicación de Búsqueda"
+msgstr "Buscar Ubicación por Jerarquía"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
@@ -2764,7 +2756,7 @@ msgstr "Trabajador de Ubicación de Búsqueda"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Locations based on their full hierarchy name"
-msgstr ""
+msgstr "Buscar ubicaciones en función de su nombre de jerarquía completo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -3565,10 +3557,8 @@ msgstr "No puedes eliminar este pedido."
 
 #. module: fieldservice
 #: sql_constraint:fsm.person.calendar.filter:0
-#, fuzzy
-#| msgid "You cannot delete this order."
 msgid "You cannot have the same worker twice."
-msgstr "No puedes eliminar este pedido."
+msgstr "No puedes tener la misma trabajadora dos veces."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:25
