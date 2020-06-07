@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-01-16 22:38+0000\n"
+"PO-Revision-Date: 2020-06-07 05:19+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
 "Language: es_CL\n"
@@ -18,10 +18,8 @@ msgstr ""
 
 #. module: fieldservice_route_vehicle
 #: model:ir.model,name:fieldservice_route_vehicle.model_fsm_order
-#, fuzzy
-#| msgid "Field Service Route"
 msgid "Field Service Order"
-msgstr "Ruta de Servicio de Campo"
+msgstr "Pedido de Servicio de Campo"
 
 #. module: fieldservice_route_vehicle
 #: model:ir.model,name:fieldservice_route_vehicle.model_fsm_route
@@ -35,10 +33,8 @@ msgstr "Ruta de Servicio de Campo Dayroute"
 
 #. module: fieldservice_route_vehicle
 #: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route__fsm_vehicle_id
-#, fuzzy
-#| msgid "Vehicle"
 msgid "Main Vehicle"
-msgstr "Vehículo"
+msgstr "Vehículo Principal"
 
 #. module: fieldservice_route_vehicle
 #: code:addons/fieldservice_route_vehicle/models/fsm_route.py:27
@@ -47,6 +43,8 @@ msgid ""
 "The main vehicle doesn't need to be in the list of vehicles. Please remove "
 "it."
 msgstr ""
+"El vehículo principal no necesita estar en la lista de vehículos. Por favor "
+"quítelo."
 
 #. module: fieldservice_route_vehicle
 #: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route_dayroute__fsm_vehicle_id
@@ -56,7 +54,5 @@ msgstr "Vehículo"
 #. module: fieldservice_route_vehicle
 #: model:ir.model.fields,field_description:fieldservice_route_vehicle.field_fsm_route__fsm_vehicle_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_route_vehicle.fsm_route_form_inherit
-#, fuzzy
-#| msgid "Vehicle"
 msgid "Vehicles"
-msgstr "Vehículo"
+msgstr "Vehículos"
