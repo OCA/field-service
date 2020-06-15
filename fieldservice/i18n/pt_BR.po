@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-25 09:13+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-06-15 13:19+0000\n"
+"Last-Translator: Daniel Reis <dgreis@sapo.pt>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "# de Locais Próprios"
 #: code:addons/fieldservice/models/fsm_order.py:407
 #, python-format
 msgid "%s is a holiday (%s)."
-msgstr ""
+msgstr "%s é um feriado (%s)."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -403,7 +403,7 @@ msgstr ""
 #: code:addons/fieldservice/models/fsm_order.py:249
 #, python-format
 msgid "Cannot move to completed from Kanban"
-msgstr ""
+msgstr "Não é possível mover para status concluído direto do Kanban"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
@@ -427,10 +427,8 @@ msgstr "Nome da categoria já existe!"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_change_management
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Agreements"
 msgid "Change Management"
-msgstr "Gerenciar Acordos"
+msgstr "Gestão de Modificações"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__channel_ids
@@ -548,7 +546,7 @@ msgstr "Índice de Cores"
 #: code:addons/fieldservice/models/fsm_stage.py:88
 #, python-format
 msgid "Color code should be Hex Code. Ex:-#FFFFFF"
-msgstr ""
+msgstr "O Código da Cor deveria ser um Código Hexadecimal. Ex:-#FFFFFF"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
@@ -734,10 +732,8 @@ msgstr "Estado do país"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Create a Service Location"
 msgid "Create Change Logs on FSM Locations."
-msgstr "Criar um Local de Serviço"
+msgstr "Criar Registos de Alterações em um Local de Serviço."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1139,10 +1135,8 @@ msgstr "Ordens FSM"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_person_calendar_filter
-#, fuzzy
-#| msgid "Person Filter"
 msgid "FSM Person Calendar Filter"
-msgstr "Filtro de Pessoa"
+msgstr "Filtro de Calendário para Pessoa FSM"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_wizard
@@ -1151,10 +1145,8 @@ msgstr "Conversão do Registro FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__fsm_person_id
-#, fuzzy
-#| msgid "Is a FS Worker"
 msgid "FSM Worker"
-msgstr "É um Trabalhador de SC"
+msgstr "É Trabalhador FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fax
@@ -1501,7 +1493,7 @@ msgstr "Faturas"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
 msgid "Is Button"
-msgstr ""
+msgstr "É Botão"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
@@ -1865,10 +1857,8 @@ msgstr "Gerenciar Atividades da Ordem"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
-#| msgid "Manage Order Activities"
 msgid "Manage Order Sizes"
-msgstr "Gerenciar Atividades da Ordem"
+msgstr "Gerenciar Tamanhos de Ordem"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1943,7 +1933,7 @@ msgstr "Gerencie diferentes equipes de trabalhadores do Serviço de Campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage equipments at the service location"
-msgstr ""
+msgstr "Gerenciar equipamentos no local do serviço"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
