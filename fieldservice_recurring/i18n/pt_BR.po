@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-05 22:13+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-06-17 02:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -55,12 +55,12 @@ msgstr "Estado de Atividade"
 #. module: fieldservice_recurring
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_recurring
 msgid "Add a Field Service Recurring Orders here."
-msgstr ""
+msgstr "Adicione aqui pedidos recorrentes de servi??o de campo."
 
 #. module: fieldservice_recurring
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_recurring_template
 msgid "Add a Field Service Recurring Template here."
-msgstr ""
+msgstr "Adicione aqui um modelo recorrentes de servi??o de campo."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__apr
@@ -100,6 +100,8 @@ msgstr "Cancelado"
 msgid "Checking this box will make this an exclusive rule. Exclusive\n"
 "            rules prevent the configured days from being a schedule option"
 msgstr ""
+"Marcar esta caixa far?? desta uma regra exclusiva. Regras exclusivas impedem "
+"que os dias configurados sejam uma op????o de agendamento"
 
 #. module: fieldservice_recurring
 #: selection:fsm.recurring,state:0
@@ -147,7 +149,7 @@ msgstr "Dia do M??s"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__schedule_days
 msgid "Days Ahead to Schedule"
-msgstr ""
+msgstr "Dias futuros para programa????o"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__dec
@@ -158,6 +160,8 @@ msgstr "Dezembro"
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_frequency_set
 msgid "Define a Frequency Rule Set for scheduling recurring orders here."
 msgstr ""
+"Defina aqui um conjunto de regras de frequ??ncia para agendar pedidos "
+"recorrentes."
 
 #. module: fieldservice_recurring
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_frequency
@@ -187,7 +191,7 @@ msgstr "Provis??rio"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__buffer_early
 msgid "Early Buffer"
-msgstr ""
+msgstr "Folga (buffer) Inicial"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__end_date
@@ -212,7 +216,7 @@ msgstr "Frequ??ncias de Servi??o de Campo"
 #. module: fieldservice_recurring
 #: model:ir.actions.act_window,name:fieldservice_recurring.action_fsm_frequency_set
 msgid "Field Service Frequency Rule Sets"
-msgstr ""
+msgstr "Conjuntos de regras de frequ??ncia de servi??o de campo"
 
 #. module: fieldservice_recurring
 #: model:ir.model,name:fieldservice_recurring.model_fsm_order
@@ -281,17 +285,17 @@ msgstr "Nome de Frequ??ncia"
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_tree_view
 msgid "Frequency Rule Set"
-msgstr ""
+msgstr "Conjuntos de regras de frequ??ncia"
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_form_view
 msgid "Frequency Rule Set Name"
-msgstr ""
+msgstr "Nome do conjunto de regras de frequ??ncia"
 
 #. module: fieldservice_recurring
 #: model:ir.model,name:fieldservice_recurring.model_fsm_frequency_set
 msgid "Frequency Rule Set for Field Service Orders"
-msgstr ""
+msgstr "Conjuntos de regras de frequ??ncia para ordens de servi??o em campo"
 
 #. module: fieldservice_recurring
 #: model:ir.model,name:fieldservice_recurring.model_fsm_frequency
@@ -308,7 +312,7 @@ msgstr "Regras de Frequ??ncia"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_frequency_set_id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__fsm_frequency_set_id
 msgid "Frequency Set"
-msgstr ""
+msgstr "Conjunto de Frequ??ncias"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__fr
@@ -407,7 +411,7 @@ msgstr "??ltima Atualiza????o em"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__buffer_late
 msgid "Late Buffer"
-msgstr ""
+msgstr "Folga (buffer) Final"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__location_id
@@ -661,6 +665,10 @@ msgid "Specify an occurrence number, positive or negative,\n"
 "            'Monthly' frequency, and a weekday of (MO, TU, WE, TH, FR),\n"
 "            will result in the last work day of every month."
 msgstr ""
+"Especifique um n??mero de ocorr??ncia, positivo ou negativo, correspondente ?? "
+"en??sima ocorr??ncia da regra dentro do per??odo de frequ??ncia. Por exemplo, -1 "
+"se combinado com uma frequ??ncia 'Mensal' e um dia da semana de (MO, TU, WE, "
+"TH, FR) resultar??o no ??ltimo dia ??til de cada m??s."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__start_date
@@ -679,6 +687,10 @@ msgid "Status based on activities\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Status baseado em atividades\n"
+"Vencido: a data de vencimento j?? passou\n"
+"Hoje: a data da atividade ?? hoje\n"
+"Planejado: Atividades futuras."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__su
@@ -705,18 +717,24 @@ msgstr "Nome do Modelo"
 msgid "The allowed number of days after the computed schedule date\n"
 "           that an event can be done"
 msgstr ""
+"O n??mero de dias permitido ap??s a data de programa????o calculada em que um "
+"evento pode ser realizado"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__buffer_early
 msgid "The allowed number of days before the computed schedule date\n"
 "            that an event can be done"
 msgstr ""
+"O n??mero de dias permitido antes da data de programa????o calculada em que um "
+"evento pode ser realizado"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__schedule_days
 msgid "The number of days from today that the scheduler will generate\n"
 "            orders for this rule"
 msgstr ""
+"O n??mero de dias a partir de hoje em que o planejador poder?? gerar pedidos "
+"para esta regra"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__interval
@@ -816,12 +834,16 @@ msgstr "Semanal"
 msgid "When selected you will be able to choose which days of the\n"
 "            week the scheduler will include (or exclude if Exclusive rule)"
 msgstr ""
+"Quando selecionado, voc?? poder?? escolher em quais dias da semana o "
+"planejador poder?? incluir (ou excluir se a regra for Exclusiva)"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__use_bymonthday
 msgid "When selected you will be able to specify which calendar day\n"
 "            of the month the event occurs on"
 msgstr ""
+"Quando selecionado, voc?? poder?? especificar qual dia do m??s em que o evento "
+"ocorrer??"
 
 #. module: fieldservice_recurring
 #: selection:fsm.frequency,interval_type:0
