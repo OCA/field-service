@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-17 02:19+0000\n"
+"PO-Revision-Date: 2020-06-17 22:19+0000\n"
 "Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -29,12 +29,12 @@ msgstr "Crie uma ordem recorrente"
 #. module: fieldservice_sale_recurring
 #: selection:product.template,field_service_tracking:0
 msgid "Create one FSM order per sale order"
-msgstr "Crie uma ordem FSM por pedido de venda"
+msgstr "Crie um pedido FSM por pedido de venda"
 
 #. module: fieldservice_sale_recurring
 #: selection:product.template,field_service_tracking:0
 msgid "Create one FSM order per sale order line"
-msgstr "Crie um Ordem FSM por linha de pedido de venda"
+msgstr "Crie um Pedido FSM por linha de pedido de venda"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model.fields,help:fieldservice_sale_recurring.field_product_product__field_service_tracking
@@ -46,10 +46,12 @@ msgid "Determines what happens upon sale order confirmation:\n"
 "                will be created."
 msgstr ""
 "Determina o que acontece ap??s a confirma????o do pedido de venda:\n"
-"- Nenhum: nada adicional, comportamento padr??o.\n"
-"- Por pedido de venda: um pedido FSM ser?? criado para a venda.\n"
-"- Por linha de pedido de venda: um pedido FSM ser?? criado para cada linha de "
-"pedido de venda."
+"                -  Nenhum: nada adicional, comportamento padr??o.\n"
+"                -  Por pedido de venda: um pedido FSM ser?? criado para a "
+"venda.\n"
+"                -  Por linha de pedido de venda: um pedido FSM ser?? criado "
+"para cada linha\n"
+"                de pedido de venda."
 
 #. module: fieldservice_sale_recurring
 #: selection:product.template,field_service_tracking:0
@@ -99,7 +101,7 @@ msgstr ""
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_product_template
 msgid "Product Template"
-msgstr "Template de Produto"
+msgstr "Modelo de Produto"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_fsm_recurring
