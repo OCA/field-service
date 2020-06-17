@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-10 15:33+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-06-17 16:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,16 @@ msgstr "Etapa Contábil"
 #, python-format
 msgid "Cannot move to Complete until 'Contractor Costs' is filled in"
 msgstr ""
+"Não é possível mover para \"Concluído\" até que \"Custos do contratante\" "
+"seja preenchido"
 
 #. module: fieldservice_isp_account
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:71
 #, python-format
 msgid "Cannot move to Complete until 'Employee Timesheets' is filled in"
 msgstr ""
+"Não é possível mover para \"Concluído\" até que o \"Quadro de horários dos "
+"funcionários\" seja preenchido"
 
 #. module: fieldservice_isp_account
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
@@ -84,22 +88,22 @@ msgstr "Funcionario"
 #: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__employee_timesheet_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
 msgid "Employee Timesheets"
-msgstr ""
+msgstr "Quadro de horários dos funcionários"
 
 #. module: fieldservice_isp_account
 #: model:product.template,name:fieldservice_isp_account.field_service_overtime
 msgid "FSM Overtime"
-msgstr ""
+msgstr "Horas Extras do FSM (Field Service Management)"
 
 #. module: fieldservice_isp_account
 #: model:product.template,name:fieldservice_isp_account.field_service_regular_time
 msgid "FSM Regular Time"
-msgstr ""
+msgstr "Horário Regular do FSM (Field Service Management)"
 
 #. module: fieldservice_isp_account
 #: model:product.template,name:fieldservice_isp_account.field_service_travel_time
 msgid "FSM Travel Time"
-msgstr ""
+msgstr "Tempo de Viagem do FSM (Field Service Management)"
 
 #. module: fieldservice_isp_account
 #: model:ir.model,name:fieldservice_isp_account.model_fsm_order
@@ -159,6 +163,8 @@ msgstr "Operações"
 msgid "Overtime for Field Service Employees\n"
 "        "
 msgstr ""
+"Horas extras para funcionários de serviço de campo\n"
+"        "
 
 #. module: fieldservice_isp_account
 #: code:addons/fieldservice_isp_account/models/account_invoice_line.py:19
@@ -172,6 +178,8 @@ msgid "Regular time for Field Service\n"
 "            Employees\n"
 "        "
 msgstr ""
+"Horário regular para funcionários do serviço de campo\n"
+"        "
 
 #. module: fieldservice_isp_account
 #: model:ir.actions.act_window,name:fieldservice_isp_account.action_account_fsm_order
@@ -201,6 +209,8 @@ msgid "Travel time for Field Service\n"
 "            Employees\n"
 "        "
 msgstr ""
+"Horário regular para funcionários do serviço de campo\n"
+"        "
 
 #. module: fieldservice_isp_account
 #: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_person__bill_count
