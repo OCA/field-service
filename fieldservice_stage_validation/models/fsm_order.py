@@ -16,7 +16,7 @@ class FSMOrder(models.Model):
             values = rec.read(field_names)
 
             for name in field_names:
-                if values[0][name] == False:
-                    raise ValidationError(_('Cannot move to stage "%s" ' \
+                if not values[0][name]:
+                    raise ValidationError(_('Cannot move to stage "%s" '
                                             'until the "%s" field is set.'
                                             % (stage.name, name)))
