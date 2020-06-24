@@ -1,5 +1,6 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
 
 
@@ -19,12 +20,18 @@ class MaintenanceRequest(models.Model):
             fsm_equipment = self.env['fsm.equipment'].search(
                 [('maintenance_equipment_id', '=', request.equipment_id.id)],
                 limit=1)
-            fsm_order_id = self.env['fsm.order'].create(
-                {'type': 'maintenance',
-                 'equipment_id': fsm_equipment.id,
-                 'location_id': fsm_equipment and
-                 fsm_equipment.current_location_id.id,
-                 'request_id': request.id
-                 })
-            request.fsm_order_id = fsm_order_id
+            fsm_order_type = self.env['fsm.order.type'].search(
+                [('internal_type', '=', 'maintenance')],
+                order="id desc", limit=1)
+            try:
+                fsm_order_id = self.env['fsm.order'].create(
+                    {'type': fsm_order_type.id,
+                     'equipment_id': fsm_equipment.id,
+                     'location_id': fsm_equipment and
+                     fsm_equipment.current_location_id.id,
+                     'request_id': request.id
+                     })
+                request.fsm_order_id = fsm_order_id
+            except:
+                pass
         return request
