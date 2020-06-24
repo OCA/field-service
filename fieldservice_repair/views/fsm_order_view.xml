@@ -8,9 +8,11 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
             <field name="priority" position="before">
+                <field name="internal_type" invisible="1"/>
                 <field name="repair_id"
                        readonly="1"
-                       attrs="{'invisible': [('type', '!=', 'repair')]}"/>
+                       attrs="{'invisible': [('internal_type', '!=', 'repair')]}"/>
+
             </field>
         </field>
     </record>
