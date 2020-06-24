@@ -10,9 +10,10 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
         <field name="arch" type="xml">
             <field name="priority" position="before">
+                <field name="internal_type" invisible="1"/>
                 <field name="request_id"
                        readonly="1"
-                       attrs="{'invisible': [('type', '!=', 'maintenance')]}"/>
+                       attrs="{'invisible': [('internal_type', '!=', 'maintenance')]}"/>
             </field>
         </field>
     </record>
