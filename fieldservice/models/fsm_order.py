@@ -228,6 +228,9 @@ class FSMOrder(models.Model):
     equipment_ids = fields.Many2many("fsm.equipment", string="Equipments")
     type = fields.Many2one("fsm.order.type", string="Type")
 
+    internal_type = fields.Selection(string='Internal Type',
+                                     related='type.internal_type')
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [("stage_type", "=", "order")]
