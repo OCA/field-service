@@ -23,7 +23,7 @@ Field Service - Repair
     :target: https://runbot.odoo-community.org/runbot/264/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Odoo Repair App does not support Field Service operations for products outside the company facilities.
 On the other hand, the Field Service App does not support part management (add, update, remove) of an equipment.
@@ -92,6 +92,7 @@ Contributors
 
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Marcel Savegnago - Escodoo <marcel.savegnago@escodoo.com.br>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -122,7 +123,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-smangukiya| |maintainer-max3903| 
+|maintainer-smangukiya| |maintainer-max3903|
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_repair>`_ project on GitHub.
 
