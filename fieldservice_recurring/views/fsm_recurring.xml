@@ -10,6 +10,7 @@
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
+                <field name="person_id"/>
                 <field name="end_date"/>
                 <field name="state"/>
             </tree>
@@ -47,6 +48,7 @@
                     </div>
                     <group>
                         <group>
+                            <field name="fsm_recurring_template_id"/>
                             <field name="fsm_order_template_id" groups="fieldservice.group_fsm_template"/>
                             <field name="fsm_frequency_set_id"/>
                             <field name="start_date"/>
@@ -54,10 +56,10 @@
                             <field name="max_orders"/>
                         </group>
                         <group>
-                            <field name="fsm_recurring_template_id"/>
                             <field name="location_id"/>
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
+                            <field name="person_id"/>
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
