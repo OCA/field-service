@@ -7,3 +7,4 @@ from . import (
     maintenance_request,
     fsm_equipment,
 )
+from . import fsm_order_type
