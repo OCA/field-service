@@ -67,9 +67,10 @@
                                 groups="fieldservice.group_fsm_team"
                             />
                             <field name="person_id" />
+                            <field name="internal_type" invisible="1" />
                             <field
                                 name="equipment_id"
-                                attrs="{'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
+                                attrs="{'invisible':[('internal_type', 'not in',['repair', 'maintenance'])]}"
                                 groups="fieldservice.group_fsm_equipment"
                                 options="{'no_create': True}"
                                 domain="[('current_location_id','=',location_id)]"
@@ -154,11 +155,11 @@
                             string="Equipments"
                             groups="fieldservice.group_fsm_equipment"
                             name="equipements_page"
-                            attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}"
+                            attrs="{'invisible': [('internal_type', 'in', ['repair', 'maintenance'])]}"
                         >
                             <field
                                 name="equipment_ids"
-                                attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
+                                attrs="{'required': [('internal_type', 'not in', ['repair', 'maintenance'])]}"
                                 options="{'no_create': True}"
                                 domain="[('current_location_id','=',location_id)]"
                             >
