@@ -50,6 +50,18 @@ class FSMOrder(models.Model):
         """ Get stage color"""
         self.custom_color = self.stage_id.custom_color or '#FFFFFF'
 
+    @api.multi
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if 'stage_id' in init_values:
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice.fsm_stage_completed').id:
+                return 'fieldservice.mt_order_completed'
+            if self.stage_id.id == self.env.\
+                    ref('fieldservice.fsm_stage_cancelled').id:
+                return 'fieldservice.mt_order_cancelled'
+        return super()._track_subtype(init_values)
+
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                track_visibility='onchange',
                                index=True, copy=False,
@@ -335,12 +347,8 @@ class FSMOrder(models.Model):
                     else:
                         self.description = (self.equipment_id.notes + '\n ')
         if self.location_id:
-            s = self.location_id.direction
-            if s and s != '<p><br></p>':
-                s = s.replace('<p>', '')
-                s = s.replace('<br>', '')
-                s = s.replace('</p>', '\n')
-                self.location_directions = (s + '\n ')
+            self.location_directions = self.\
+                _get_location_directions(self.location_id)
         if self.template_id:
             self.todo = self.template_id.instructions
         if self.description:
@@ -371,3 +379,30 @@ class FSMOrder(models.Model):
                 self.type = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
+
+    def _get_location_directions(self, location_id):
+        self.location_directions = ""
+        s = self.location_id.direction or ""
+        parent_location = self.location_id.fsm_parent_id
+        # ps => Parent Location Directions
+        # s => String to Return
+        while parent_location.id is not False:
+            ps = parent_location.direction
+            if ps:
+                s += parent_location.direction
+            parent_location = parent_location.fsm_parent_id
+        return s
+
+    @api.constrains('scheduled_date_start')
+    def check_day(self):
+        for rec in self:
+            if rec.scheduled_date_start:
+                holidays = self.env['resource.calendar.leaves'].search([
+                    ('date_from', '>=', rec.scheduled_date_start),
+                    ('date_to', '<=', rec.scheduled_date_start),
+                ])
+                if holidays:
+                    raise ValidationError(_(
+                        "%s is a holiday (%s)." %
+                        (rec.scheduled_date_start.date(), holidays[0].name)
+                    ))
