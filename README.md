@@ -53,6 +53,7 @@ addon | version | summary
 [fieldservice_size](fieldservice_size/) | 12.0.0.1.1 | Manage Sizes for Field Service Locations and Orders
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 12.0.1.0.0 | Execute server actions when reaching a Field Service stage
+[fieldservice_stage_validation](fieldservice_stage_validation/) | 12.0.0.1.0 | Validate input data when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 12.0.2.1.1 | Integrate the logistics operations with Field Service
 [fieldservice_stock_account](fieldservice_stock_account/) | 12.0.1.0.1 | Invoice inventory items delivered with Field Service orders
 [fieldservice_stock_account_analytic](fieldservice_stock_account_analytic/) | 12.0.1.0.2 | Track costs of delivered items with analytic accounting
