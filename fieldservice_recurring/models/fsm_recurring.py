@@ -76,6 +76,11 @@ class FSMRecurringOrder(models.Model):
         required=True,
         track_visibility="onchange",
     )
+    person_id = fields.Many2one(
+        'fsm.person',
+        string='Assigned To',
+        index=True,
+        track_visibility='onchange')
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
@@ -184,12 +189,15 @@ class FSMRecurringOrder(models.Model):
             "template_id": self.fsm_order_template_id.id,
             "scheduled_duration": self.fsm_order_template_id.hours,
             "category_ids": [(6, False, self.fsm_order_template_id.category_ids.ids)],
-            # 'company_id': self.company_id.id,
+            "company_id": self.company_id.id,
+            "person_id": self.person_id.id,
         }
 
     def _create_order(self, date):
         self.ensure_one()
         vals = self._prepare_order_values(date)
+        order = self.env['fsm.order'].create(vals)
+        order._onchange_template_id()
         return self.env["fsm.order"].create(vals)
 
     def _generate_orders(self):
