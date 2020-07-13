@@ -69,6 +69,7 @@ class FSMLocation(models.Model):
         string="Complete Name", compute="_compute_complete_name", store=True
     )
     hide = fields.Boolean(default=False)
+
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
@@ -79,7 +80,7 @@ class FSMLocation(models.Model):
         default=lambda self: self._default_stage_id(),
     )
 
-    @api.depends("partner_id.name", "fsm_parent_id.complete_name")
+    @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):
         for loc in self:
             if loc.fsm_parent_id:
@@ -285,15 +286,15 @@ class FSMLocation(models.Model):
             action = self.env.ref("contacts.action_contacts").read()[0]
             contacts = self.get_action_views(1, 0, location)
             action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
             action["context"].update({"default_service_location_id": self.id})
-            if len(contacts) == 1:
-                action["views"] = [(self.env.ref("base.view_partner_form").id, "form")]
-                action["res_id"] = contacts.id
-                action["context"].update({"active_id": contacts.id})
-            else:
+            if len(contacts) == 0 or len(contacts) > 1:
                 action["domain"] = [("id", "in", contacts.ids)]
-                action["context"].update({"active_ids": contacts.ids})
-                action["context"].update({"active_id": ""})
+            elif contacts:
+                action["views"] = [
+                    (self.env.ref("base." + "view_partner_form").id, "form")
+                ]
+                action["res_id"] = contacts.id
             return action
 
     def _compute_contact_ids(self):
@@ -311,6 +312,7 @@ class FSMLocation(models.Model):
             action = self.env.ref("fieldservice.action_fsm_equipment").read()[0]
             equipment = self.get_action_views(0, 1, location)
             action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
             action["context"].update({"default_location_id": self.id})
             if len(equipment) == 0 or len(equipment) > 1:
                 action["domain"] = [("id", "in", equipment.ids)]
@@ -339,6 +341,7 @@ class FSMLocation(models.Model):
             action = self.env.ref("fieldservice.action_fsm_location").read()[0]
             sublocation = self.get_action_views(0, 0, location)
             action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
             action["context"].update({"default_fsm_parent_id": self.id})
             if len(sublocation) > 1 or len(sublocation) == 0:
                 action["domain"] = [("id", "in", sublocation.ids)]
