@@ -203,12 +203,11 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 this.timeline.fit();
             }
         },
-
         /**
          * Apply/clear User Filter
          * @param {Object} clear
          */
-        apply_clear_user_filter : function (clear) {
+        apply_clear_user_filter : function (clear, synch=false) {
             var self = this;
             if (clear) {
                 self.user_domains = false;
@@ -224,10 +223,32 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 self.do_search(
                     self.last_domains, self.last_contexts, self.last_group_bys);
             } else {
-                var filters = _.invoke(this.propositions, 'get_filter');
-                var domain = filters[0] && filters[0].attrs &&
+                // Added code for Synch Filters
+                var domain = false;
+                if (synch) {
+                    var same_domain = [];
+                    if (self.last_domains) {
+                       var main_domain = _.clone(self.last_domains);
+                       var flag = true
+                        _.each(main_domain, function(mdomain){
+                            if(_.isArray(mdomain)){
+                                if(_.has(self.custom_fields,mdomain[0])){
+                                    same_domain.push(mdomain)
+                                }else{
+                                    flag = false;
+                                }
+                            }
+                        });
+                        if(flag){
+                            same_domain =  main_domain;
+                        }
+                    }
+                    domain = same_domain
+                } else {
+                    var filters = _.invoke(this.propositions, 'get_filter');
+                    domain = filters[0] && filters[0].attrs &&
                     filters[0].attrs.domain ? filters[0].attrs.domain : false;
-
+                }
                 /* New method call improved by Sandip on 2018-09-21 */
                 if (domain) {
                     this._rpc({
@@ -271,6 +292,9 @@ odoo.define('fsm_gantt.person_filter', function (require) {
         start : function () {
             var self = this;
 
+            // Added code for Synch Filters
+            this.$el.find('.oe_timeline_button_synch').click(
+                $.proxy(this.on_apply_synch, this));
             /* Bind User Filter Apply/Clear Click Event */
             this.$el.find('.oe_timeline_button_apply').click(
                 $.proxy(this.on_apply_clicked, this));
@@ -286,6 +310,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
                 var prop =
                     new search_filters.ExtendedSearchProposition(self, fields);
                 self.propositions.push(prop);
+                self.custom_fields = fields;
                 prop.appendTo(self.$el.find('#user_filer'));
                 self.$el.find(
                     '#user_filer .o_searchview_extended_delete_prop').hide();
@@ -297,6 +322,11 @@ odoo.define('fsm_gantt.person_filter', function (require) {
         /**
          * Call apply User Filter
          */
+        // Added code for Synch Filters
+        on_apply_synch : function () {
+            this.apply_clear_user_filter(false, true);
+        },
+
         on_apply_clicked : function () {
             this.apply_clear_user_filter(false);
         },
