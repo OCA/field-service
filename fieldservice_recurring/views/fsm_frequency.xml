@@ -20,19 +20,13 @@
             <form string="Frequency">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button
-                            name="toggle_active"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="active"
-                                widget="boolean_button"
-                                options='{"terminology": "archive"}'
-                            />
-                        </button>
                     </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div class="oe_title">
                         <h1>
                             <field name="name" placeholder="Frequency Name" />
@@ -40,6 +34,7 @@
                     </div>
                     <group>
                         <group>
+                            <field name="active" invisible="1" />
                             <label for="interval" />
                             <div class="o_row">
                                 <field name="interval" />
@@ -124,7 +119,6 @@
     <record id="action_fsm_frequency" model="ir.actions.act_window">
         <field name="name">Field Service Frequencies</field>
         <field name="res_model">fsm.frequency</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
