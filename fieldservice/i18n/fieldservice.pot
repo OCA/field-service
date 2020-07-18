@@ -46,6 +46,7 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:407
+#: code:addons/fieldservice/models/fsm_order.py:410
 #, python-format
 msgid "%s is a holiday (%s)."
 msgstr ""
@@ -381,6 +382,7 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:249
+#: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "Cannot move to completed from Kanban"
 msgstr ""
@@ -1069,6 +1071,11 @@ msgid "FS Order #"
 msgstr ""
 
 #. module: fieldservice
+#: selection:fsm.order.type,internal_type:0
+msgid "FSM"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 msgid "FSM Equipment Name"
 msgstr ""
@@ -1419,6 +1426,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref
 msgid "Internal Reference"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
+msgid "Internal Type"
 msgstr ""
 
 #. module: fieldservice
@@ -2073,6 +2086,8 @@ msgstr ""
 #: code:addons/fieldservice/models/fsm_order.py:86
 #: code:addons/fieldservice/models/fsm_order.py:207
 #: code:addons/fieldservice/models/fsm_order.py:209
+#: code:addons/fieldservice/models/fsm_order.py:210
+#: code:addons/fieldservice/models/fsm_order.py:212
 #, python-format
 msgid "New"
 msgstr ""
@@ -3399,6 +3414,7 @@ msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:264
+#: code:addons/fieldservice/models/fsm_order.py:267
 #, python-format
 msgid "You cannot delete this order."
 msgstr ""
