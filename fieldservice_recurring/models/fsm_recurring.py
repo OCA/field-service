@@ -1,4 +1,4 @@
-# Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
+# Copyright (C) 2019 Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
@@ -79,7 +79,6 @@ class FSMRecurringOrder(models.Model):
         "fsm.person", string="Assigned To", index=True, track_visibility="onchange"
     )
 
-    @api.multi
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
         data = self.env["fsm.order"].read_group(
@@ -124,7 +123,6 @@ class FSMRecurringOrder(models.Model):
             )
         return super(FSMRecurringOrder, self).create(vals)
 
-    @api.multi
     def action_start(self):
         for rec in self:
             if not rec.start_date:
@@ -132,11 +130,9 @@ class FSMRecurringOrder(models.Model):
             rec.write({"state": "progress"})
             rec._generate_orders()
 
-    @api.multi
     def action_renew(self):
         return self.action_start()
 
-    @api.multi
     def action_cancel(self):
         for order in self.fsm_order_ids.filtered(
             lambda o: o.stage_id.is_closed is False
@@ -201,7 +197,6 @@ class FSMRecurringOrder(models.Model):
         order._onchange_template_id()
         return order
 
-    @api.multi
     def _generate_orders(self):
         """
         create field service orders from self
