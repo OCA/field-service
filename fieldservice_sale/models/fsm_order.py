@@ -1,14 +1,14 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import fields, models, _
+from odoo import _, fields, models
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
-    sale_id = fields.Many2one('sale.order')
-    sale_line_id = fields.Many2one('sale.order.line')
+    sale_id = fields.Many2one("sale.order")
+    sale_line_id = fields.Many2one("sale.order.line")
 
     def action_view_sales(self):
         self.ensure_one()
