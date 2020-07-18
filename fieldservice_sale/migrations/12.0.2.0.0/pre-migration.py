@@ -6,5 +6,7 @@ def migrate(env, version):
     if not version:
         return
 
-    env.execute("UPDATE product_template SET field_service_tracking = 'sale' "
-                "WHERE field_service_tracking = 'order';")
+    env.execute(
+        "UPDATE product_template SET field_service_tracking = 'sale' "
+        "WHERE field_service_tracking = 'order';"
+    )
