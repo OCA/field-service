@@ -1,10 +1,10 @@
-# Copyright (C) 2019 - TODAY, Brian McMaster, Open Source Integrators
+# Copyright (C) 2019 Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service Recurring Work Orders",
     "summary": "Manage recurring Field Service orders",
-    "version": "12.0.1.2.0",
+    "version": "13.0.1.0.0",
     "category": "Field Service",
     "author": "Brian McMaster, "
     "Open Source Integrators, "
