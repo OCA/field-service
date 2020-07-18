@@ -4,8 +4,10 @@ from odoo import fields, models
 
 
 class FSMBranch(models.Model):
-    _inherit = 'fsm.branch'
+    _inherit = "fsm.branch"
 
     pricelist_id = fields.Many2one(
-        'product.pricelist', string='Default Pricelist',
-        help="Default pricelist for new customers of this branch.")
+        "product.pricelist",
+        string="Default Pricelist",
+        help="Default pricelist for new customers of this branch.",
+    )
