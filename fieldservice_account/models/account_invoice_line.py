@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+    _inherit = "account.invoice.line"
 
-    fsm_order_id = fields.Many2one('fsm.order', string='FSM Order')
+    fsm_order_id = fields.Many2one("fsm.order", string="FSM Order")
