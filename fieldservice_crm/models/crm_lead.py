@@ -1,7 +1,7 @@
-# Copyright (C) 2019 - TODAY, Patrick Wilson
+# Copyright (C) 2019, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Lead(models.Model):
@@ -15,7 +15,6 @@ class Lead(models.Model):
         compute="_compute_fsm_order_count", string="# FSM Orders"
     )
 
-    @api.multi
     def _compute_fsm_order_count(self):
         for opportunity in self:
             opportunity.fsm_order_count = self.env["fsm.order"].search_count(
