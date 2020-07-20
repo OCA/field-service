@@ -17,7 +17,6 @@ class SaleOrder(models.Model):
         string="FSM Recurring Orders", compute="_compute_fsm_recurring_ids"
     )
 
-    @api.multi
     @api.depends("order_line.product_id")
     def _compute_fsm_recurring_ids(self):
         for order in self:
@@ -26,7 +25,6 @@ class SaleOrder(models.Model):
             )
             order.fsm_recurring_count = len(order.fsm_recurring_ids)
 
-    @api.multi
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.mapped("fsm_recurring_ids")
         action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]
