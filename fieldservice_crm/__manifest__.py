@@ -1,9 +1,9 @@
-# Copyright (C) 2019 - TODAY, Patrick Wilson
+# Copyright (C) 2019, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service - CRM",
-    "version": "12.0.1.1.0",
+    "version": "13.0.1.0.0",
     "summary": "Create Field Service orders from the CRM",
     "category": "Field Service",
     "author": "Patrick Wilson, Odoo Community Association (OCA)",
