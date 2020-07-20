@@ -1,22 +1,27 @@
 # Copyright (C) 2019 Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU
-from dateutil.rrule import YEARLY, MONTHLY, WEEKLY, DAILY
-from dateutil.rrule import rrule
+from dateutil.rrule import (
+    DAILY,
+    FR,
+    MO,
+    MONTHLY,
+    SA,
+    SU,
+    TH,
+    TU,
+    WE,
+    WEEKLY,
+    YEARLY,
+    rrule,
+)
 
-from odoo import fields, models, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-
 
 WEEKDAYS = {"mo": MO, "tu": TU, "we": WE, "th": TH, "fr": FR, "sa": SA, "su": SU}
 
-FREQUENCIES = {
-    "yearly": YEARLY,
-    "monthly": MONTHLY,
-    "weekly": WEEKLY,
-    "daily": DAILY,
-}
+FREQUENCIES = {"yearly": YEARLY, "monthly": MONTHLY, "weekly": WEEKLY, "daily": DAILY}
 
 FREQUENCY_SELECT = [
     ("yearly", "Yearly"),
