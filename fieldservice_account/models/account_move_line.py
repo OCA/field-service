@@ -4,7 +4,7 @@
 from odoo import fields, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     fsm_order_id = fields.Many2one("fsm.order", string="FSM Order")
