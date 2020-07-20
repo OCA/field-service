@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class FSMOrder(models.Model):

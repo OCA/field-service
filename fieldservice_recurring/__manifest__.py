@@ -10,7 +10,7 @@
     "Open Source Integrators, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": ["fieldservice",],
+    "depends": ["fieldservice"],
     "data": [
         "data/ir_sequence.xml",
         "security/res_groups.xml",
@@ -25,5 +25,5 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["wolfhall", "max3903", "brian10048",],
+    "maintainers": ["wolfhall", "max3903", "brian10048"],
 }
