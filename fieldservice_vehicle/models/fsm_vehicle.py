@@ -4,12 +4,12 @@ from odoo import fields, models
 
 
 class FSMVehicle(models.Model):
-    _name = 'fsm.vehicle'
-    _description = 'Field Service Vehicle'
+    _name = "fsm.vehicle"
+    _description = "Field Service Vehicle"
 
-    name = fields.Char(string='Name', required='True')
-    person_id = fields.Many2one('fsm.person', string='Assigned Driver')
+    name = fields.Char(string="Name", required="True")
+    person_id = fields.Many2one("fsm.person", string="Assigned Driver")
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', "Vehicle name already exists!"),
+        ("name_uniq", "unique (name)", "Vehicle name already exists!"),
     ]
