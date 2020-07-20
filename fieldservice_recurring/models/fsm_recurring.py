@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
-from dateutil.rrule import rruleset
-from dateutil.relativedelta import relativedelta
 
-from odoo import fields, models, api, _
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import rruleset
+
+from odoo import _, api, fields, models
 
 
 class FSMRecurringOrder(models.Model):
@@ -89,10 +90,9 @@ class FSMRecurringOrder(models.Model):
             ["fsm_recurring_id"],
             ["fsm_recurring_id"],
         )
-        count_data = dict(
-            (item["fsm_recurring_id"][0], item["fsm_recurring_id_count"])
-            for item in data
-        )
+        count_data = {
+            item["fsm_recurring_id"][0]: item["fsm_recurring_id_count"] for item in data
+        }
         for recurring in self:
             recurring.fsm_order_count = count_data.get(recurring.id, 0)
 
