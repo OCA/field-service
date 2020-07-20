@@ -4,14 +4,14 @@
 {
     "name": "Field Service - Accounting",
     "summary": "Track invoices linked to Field Service orders",
-    "version": "12.0.3.1.1",
+    "version": "13.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "account"],
     "data": [
         "security/ir.model.access.csv",
-        "views/account_invoice.xml",
+        "views/account_move.xml",
         "views/fsm_order.xml",
     ],
     "license": "AGPL-3",
