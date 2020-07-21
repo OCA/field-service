@@ -9,7 +9,6 @@
     'website': 'https://github.com/ursais/osi-addons',
     'depends': [
         'fieldservice',
-        'fieldservice_substatus',
         'base_automation'
     ],
     'data': [
