@@ -30,7 +30,6 @@ class FSMVehicle(models.Model):
             vals["is_fsm_vehicle"] = True
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         # update fsm.vehicle worker based on the fleet.vehicle driver
         if "driver_id" in vals:
