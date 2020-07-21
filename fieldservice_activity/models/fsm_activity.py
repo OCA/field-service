@@ -6,7 +6,7 @@ from datetime import datetime
 from odoo import fields, models
 
 
-class FSMActiity(models.Model):
+class FSMActivity(models.Model):
     _name = "fsm.activity"
     _description = "Field Service Activity"
 
@@ -35,13 +35,11 @@ class FSMActiity(models.Model):
         default="todo",
     )
 
-    @api.multi
     def action_done(self):
         self.completed = True
         self.completed_on = datetime.now()
         self.completed_by = self.env.user
         self.state = "done"
 
-    @api.multi
     def action_cancel(self):
         self.state = "cancel"
