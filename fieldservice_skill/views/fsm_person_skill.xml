@@ -34,7 +34,6 @@
         <field name="name">Worker Skills</field>
         <field name="res_model">fsm.person.skill</field>
         <field name="view_id" ref="fsm_person_skill_tree" />
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -75,7 +74,6 @@
     <record id="action_fsm_person_skill_report" model="ir.actions.act_window">
         <field name="name">Worker Skills</field>
         <field name="res_model">fsm.person.skill</field>
-        <field name="view_type">form</field>
         <field name="view_mode">graph,pivot</field>
         <field name="help" type="html">
             <p>
