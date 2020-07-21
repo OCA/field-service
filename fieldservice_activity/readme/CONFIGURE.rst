@@ -1,3 +1,3 @@
 To use this module, you need to:
 
-* Go to Field Service > Settings > Manage Activites
+* Go to Field Service > Configuration > Manage Order Activities

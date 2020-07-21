@@ -10,7 +10,6 @@ class FSMOrder(models.Model):
 
     order_activity_ids = fields.One2many("fsm.activity", "fsm_order_id", "Activites")
 
-    @api.multi
     @api.onchange("template_id")
     def _onchange_template_id(self):
         res = super()._onchange_template_id()
@@ -34,7 +33,6 @@ class FSMOrder(models.Model):
                 rec.template_id.temp_activity_ids.write({"fsm_template_id": False})
         return res
 
-    @api.multi
     def action_complete(self):
         res = super().action_complete()
         for activity_id in self.order_activity_ids:
