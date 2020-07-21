@@ -9,10 +9,7 @@
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": [
-        "hr_skill",
-        "fieldservice",
-    ],
+    "depends": ["hr_skill", "fieldservice"],
     "data": [
         "security/ir.model.access.csv",
         "views/fsm_person.xml",
@@ -20,12 +17,9 @@
         "views/fsm_person_skill.xml",
         "views/fsm_order.xml",
         "views/hr_skill.xml",
-        "views/fsm_template.xml"
+        "views/fsm_template.xml",
     ],
     "development_status": "Beta",
-    "maintainers": [
-        "osi-scampbell",
-        "max3903",
-    ],
-    'installable': True,
+    "maintainers": ["osi-scampbell", "max3903"],
+    "installable": True,
 }
