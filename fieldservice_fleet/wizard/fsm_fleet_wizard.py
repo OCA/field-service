@@ -2,7 +2,7 @@
 # Copyright (C) 2019 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import _, models
 from odoo.exceptions import UserError
 
 
@@ -14,7 +14,6 @@ class FSMFleetWizard(models.TransientModel):
     _name = "fsm.fleet.wizard"
     _description = "FSM Fleet Vehicle Conversion"
 
-    @api.multi
     def action_convert(self):
         vehicles = self.env["fleet.vehicle"].browse(self._context.get("active_ids", []))
         for vehicle in vehicles:
