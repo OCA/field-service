@@ -6,31 +6,22 @@
         <field name="arch" type="xml">
             <form string="Order">
                 <header>
-                    <button
-                        id="action_complete"
-                        name="action_complete"
-                        string="Complete"
-                        class="oe_highlight"
-                        type="object"
-                        groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
-                    />
-                    <field name="is_button" invisible="1" />
-                    <button
-                        id="action_cancel"
-                        name="action_cancel"
-                        string="Cancel Order"
-                        type="object"
-                        groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
-                    />
-                    <field
-                        name="stage_id"
-                        widget="statusbar"
-                        options="{'fold_field': 'fold'}"
-                        domain="[('stage_type', '=', 'order'),
-                                    ('team_ids', 'in', (team_id, False))]"
-                    />
+                    <button id="action_complete"
+                            name="action_complete" string="Complete"
+                            class="oe_highlight"
+                            type="object"
+                            groups="fieldservice.group_fsm_user"
+                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}" />
+                    <field name="is_button" invisible="1"/>
+                    <button id="action_cancel"
+                            name="action_cancel" string="Cancel Order"
+                            type="object"
+                            groups="fieldservice.group_fsm_dispatcher"
+                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
+                    <field name="stage_id" widget="statusbar"
+                           options="{'fold_field': 'fold'}"
+                           domain="[('stage_type', '=', 'order'),
+                                    ('team_ids', 'in', (team_id, False))]"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
