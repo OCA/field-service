@@ -5,9 +5,9 @@ from odoo.exceptions import ValidationError
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
-    @api.constrains('stage_id')
+    @api.constrains("stage_id")
     def _validate_stage_fields(self):
         for rec in self:
             stage = rec.stage_id
@@ -17,6 +17,9 @@ class FSMOrder(models.Model):
 
             for name in field_names:
                 if not values[0][name]:
-                    raise ValidationError(_('Cannot move to stage "%s" '
-                                            'until the "%s" field is set.'
-                                            % (stage.name, name)))
+                    raise ValidationError(
+                        _(
+                            'Cannot move to stage "%s" '
+                            'until the "%s" field is set.' % (stage.name, name)
+                        )
+                    )
