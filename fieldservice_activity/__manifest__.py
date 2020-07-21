@@ -2,25 +2,20 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Field Service Activity',
-    'summary': '''Field Service Activities are a set of actions
-     that need to be performed on a service order''',
-    'version': '12.0.1.0.0',
-    'category': 'Field Service',
-    'license': 'AGPL-3',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/field-service',
-    'depends': [
-        'fieldservice'
+    "name": "Field Service Activity",
+    "summary": """Field Service Activities are a set of actions
+     that need to be performed on a service order""",
+    "version": "12.0.1.0.0",
+    "category": "Field Service",
+    "license": "AGPL-3",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/field-service",
+    "depends": ["fieldservice"],
+    "data": [
+        "views/fsm_order.xml",
+        "views/fsm_template.xml",
+        "security/ir.model.access.csv",
     ],
-    'data': [
-        'views/fsm_order.xml',
-        'views/fsm_template.xml',
-        'security/ir.model.access.csv'
-    ],
-    'development_status': 'Beta',
-    'maintainers': [
-        'max3903',
-        'osi-scampbell'
-    ],
+    "development_status": "Beta",
+    "maintainers": ["max3903", "osi-scampbell"],
 }
