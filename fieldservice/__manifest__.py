@@ -41,6 +41,9 @@
         "views/fsm_template.xml",
         "views/fsm_team.xml",
         "views/fsm_order_type.xml",
+        "views/fsm_branch.xml",
+        "views/fsm_district.xml",
+        "views/fsm_region.xml",
         "views/menu.xml",
         "wizard/fsm_wizard.xml",
     ],
@@ -52,5 +55,5 @@
     ],
     "application": True,
     "development_status": "Beta",
-    "maintainers": ["wolfhall", "max3903"],
+    "maintainers": ["wolfhall", "max3903","robertsvx27"],
 }
