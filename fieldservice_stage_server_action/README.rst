@@ -75,6 +75,8 @@ Contributors
   * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
   * Steve Campbell <scampbell@opensourceintegrators.com>
 
+* Brian McMaster <brian@mcmpest.com>
+
 Maintainers
 ~~~~~~~~~~~
 
