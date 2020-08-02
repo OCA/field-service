@@ -10,7 +10,9 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-base_territory',
         'odoo13-addon-fieldservice',
+        'odoo13-addon-fieldservice_crm',
         'odoo13-addon-fieldservice_recurring',
+        'odoo13-addon-fieldservice_vehicle',
     ],
     classifiers=[
         'Programming Language :: Python',

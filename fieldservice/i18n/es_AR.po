@@ -17,6 +17,19 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+#, fuzzy
+#| msgid "Settings"
+msgid "# Meetings"
+msgstr "Configuraciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -196,8 +209,8 @@ msgstr "Todas las Órdenes"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 "Todos los correos electrónicos y documentos enviados a este contacto serán "
 "traducidos a este idioma."
@@ -266,8 +279,7 @@ msgstr "Autocompletar equipos en Orden según la Ubicación"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 "Autocompletar los equipos en el pedido en función del contenido de la "
 "ubicación"
@@ -379,7 +391,8 @@ msgstr "Verificar pagos cobrados"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_company
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_company
 msgid "Check if the contact is a company, otherwise it is a person"
-msgstr "Compruebe si el contacto es una empresa, de lo contrario es una persona"
+msgstr ""
+"Compruebe si el contacto es una empresa, de lo contrario es una persona"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1210,6 +1223,14 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignations related to "
+"this partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
@@ -1275,8 +1296,8 @@ msgstr "Referencia Interna"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 msgid ""
-"Invoice & Delivery addresses are used in sales orders. Private addresses are"
-" only visible by authorized users."
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
 msgstr ""
 "Las direcciones de Facturación y Entrega se utilizan en pedidos de ventas. "
 "Las direcciones privadas solo son visibles para usuarios autorizados."
@@ -1391,6 +1412,12 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización en"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
@@ -1679,7 +1706,8 @@ msgstr "Gestionar equipos en la ubicación del servicio"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Manage inventory and stock operations.\n"
-"                                    Automatically activate Lots &amp; Serial Numbers."
+"                                    Automatically activate Lots &amp; Serial "
+"Numbers."
 msgstr ""
 "Gestionar inventario y operaciones de stock.\n"
 "                                    Activa automáticamente Lotes y Números "
@@ -1762,6 +1790,14 @@ msgid "Master Data"
 msgstr "Datos Maestros"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+#, fuzzy
+#| msgid "Settings"
+msgid "Meetings"
+msgstr "Configuraciones"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -1816,8 +1852,6 @@ msgid "Need Scheduled"
 msgstr "Necesidad Programada"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -1930,6 +1964,17 @@ msgstr "Horas de Oficina"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Operaciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2275,6 +2320,14 @@ msgstr "Rutas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Error de entrega de SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+#, fuzzy
+#| msgid "Manage Teams"
+msgid "Sales Team"
+msgstr "Gestionar Equipos"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2628,8 +2681,8 @@ msgstr "El trabajador ya está vinculado a esta ubicación."
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 "Este campo se utiliza para buscar en la dirección de correo electrónico, ya "
 "que el campo de correo electrónico principal puede contener, estrictamente, "
@@ -2813,12 +2866,34 @@ msgid "Website Link"
 msgstr "Vínculo de Sitio Web"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+#, fuzzy
+#| msgid "Messages"
+msgid "Website Messages"
+msgstr "Mensajes"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Al imprimir documentos y exportar / importar datos, los valores de tiempo se "
 "calculan de acuerdo con esta zona horaria.\n"

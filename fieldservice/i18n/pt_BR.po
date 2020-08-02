@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Reuniões"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "# Oportunidades"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1206,6 +1217,16 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignations related to "
+"this partner"
+msgstr ""
+"Se definida, essa equipe de vendas será usada para vendas e atribuições "
+"relacionadas a este parceiro"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
@@ -1393,6 +1414,12 @@ msgstr "Última atualização por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última atualização em"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "A última notificação foi marcada como lida"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
@@ -1764,6 +1791,12 @@ msgid "Master Data"
 msgstr "Dados Principais"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Reuniões"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -1934,6 +1967,17 @@ msgstr "Horário de Atendimento"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Operações"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr "Oportunidades"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr "Oportunidade"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2285,6 +2329,12 @@ msgstr "Rotas"
 #| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Erro de entrega de Mensagem"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr "Equipe de Vendas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2818,6 +2868,24 @@ msgid "Website Link"
 msgstr "Site"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr "Mensagens do Site"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr "Histórico de Comunicação do Site"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
@@ -2920,12 +2988,6 @@ msgstr "modelo"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
 msgid "templates"
 msgstr "modelos"
-
-#~ msgid "# Meetings"
-#~ msgstr "# Reuniões"
-
-#~ msgid "# Opportunities"
-#~ msgstr "# Oportunidades"
 
 #~ msgid "# Tasks"
 #~ msgstr "# Tarefas"
@@ -3031,13 +3093,6 @@ msgstr "modelos"
 #~ msgid "If checked new messages require your attention."
 #~ msgstr "Se marcado, novas mensagens solicitarão sua atenção."
 
-#~ msgid ""
-#~ "If set, this Sales Team will be used for sales and assignations related "
-#~ "to this partner"
-#~ msgstr ""
-#~ "Se definida, essa equipe de vendas será usada para vendas e atribuições "
-#~ "relacionadas a este parceiro"
-
 #~ msgid "Invoice"
 #~ msgstr "Fatura"
 
@@ -3052,9 +3107,6 @@ msgstr "modelos"
 
 #~ msgid "Journal Items"
 #~ msgstr "Itens do Diário"
-
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "A última notificação foi marcada como lida"
 
 #~ msgid ""
 #~ "Last time the invoices & payments matching was performed for this "
@@ -3071,9 +3123,6 @@ msgstr "modelos"
 #~ msgid "Medium-sized image"
 #~ msgstr "Imagem de tamanho médio"
 
-#~ msgid "Meetings"
-#~ msgstr "Reuniões"
-
 #~ msgid "Message for Invoice"
 #~ msgstr "Mensagem para Fatura"
 
@@ -3085,12 +3134,6 @@ msgstr "modelos"
 
 #~ msgid "Message for Stock Picking"
 #~ msgstr "Mensagem para Separação de Estoque"
-
-#~ msgid "Opportunities"
-#~ msgstr "Oportunidades"
-
-#~ msgid "Opportunity"
-#~ msgstr "Oportunidade"
 
 #~ msgid "Overdue"
 #~ msgstr "Vencido"
@@ -3133,9 +3176,6 @@ msgstr "modelos"
 
 #~ msgid "Sales Order"
 #~ msgstr "Pedidos de Venda"
-
-#~ msgid "Sales Team"
-#~ msgstr "Equipe de Vendas"
 
 #~ msgid "Sales Warnings"
 #~ msgstr "Avisos de Vendas"
@@ -3236,12 +3276,6 @@ msgstr "modelos"
 
 #~ msgid "Vendor Payment Terms"
 #~ msgstr "Termos de Pagamento do Fornecedor"
-
-#~ msgid "Website Messages"
-#~ msgstr "Mensagens do Site"
-
-#~ msgid "Website communication history"
-#~ msgstr "Histórico de Comunicação do Site"
 
 #~ msgid "ZIP Codes"
 #~ msgstr "CEPs"

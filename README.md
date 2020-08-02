@@ -13,7 +13,9 @@ addon | version | summary
 --- | --- | ---
 [base_territory](base_territory/) | 13.0.1.0.0 | This module allows you to define territories, branches, districts and regions to be used for Field Service operations or Sales.
 [fieldservice](fieldservice/) | 13.0.1.0.0 | Manage Field Service Locations, Workers and Orders
+[fieldservice_crm](fieldservice_crm/) | 13.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_recurring](fieldservice_recurring/) | 13.0.1.0.1 | Manage recurring Field Service orders
+[fieldservice_vehicle](fieldservice_vehicle/) | 13.0.1.0.0 | Manage Field Service vehicles and assign drivers
 [fieldservice_account](fieldservice_account/) | 13.0.1.0.0 | This module adds the ability to link field service orders to invoices.
 [fieldservice_sale](fieldservice_sale/) | 13.0.1.0.0 | Sell field services.
 
