@@ -96,7 +96,6 @@ msgstr "Aktiv"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active_lang_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_lang_count
 #, fuzzy
-#| msgid "Attachment Count"
 msgid "Active Lang Count"
 msgstr "Anhangsanzahl"
 
@@ -220,7 +219,6 @@ msgstr "Verwendung von Google Maps für Field-Service erlauben"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #, fuzzy
-#| msgid "Allow Field Service Google Map"
 msgid "Allow Field Service Web Timeline View"
 msgstr "Verwendung von Google Maps für Field-Service erlauben"
 
@@ -1561,7 +1559,6 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
 #, fuzzy
-#| msgid "Activities"
 msgid "Manage FSM Activities"
 msgstr "Aktivitäten"
 
@@ -1593,14 +1590,12 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #, fuzzy
-#| msgid "Activities"
 msgid "Manage Order Activities"
 msgstr "Aktivitäten"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #, fuzzy
-#| msgid "Activities"
 msgid "Manage Order Sizes"
 msgstr "Aktivitäten"
 
@@ -1657,7 +1652,6 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #, fuzzy
-#| msgid "Activities"
 msgid "Manage activities"
 msgstr "Aktivitäten"
 
@@ -1697,7 +1691,6 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
 #, fuzzy
-#| msgid "Activities"
 msgid "Manage routes"
 msgstr "Aktivitäten"
 
@@ -1771,7 +1764,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
 #, fuzzy
-#| msgid "# Meetings"
 msgid "Meetings"
 msgstr "# Besprechungen"
 
@@ -1947,14 +1939,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
 #, fuzzy
-#| msgid "# Opportunities"
 msgid "Opportunities"
 msgstr "# Verkaufschancen"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count_ids
+msgid "Opportunities Count"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
 #, fuzzy
-#| msgid "# Opportunities"
 msgid "Opportunity"
 msgstr "# Verkaufschancen"
 
@@ -2596,6 +2592,12 @@ msgstr ""
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_team
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_team
 msgid "Teams"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__opportunity_count_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__opportunity_count_ids
+msgid "Technical field used for stat button"
 msgstr ""
 
 #. module: fieldservice
