@@ -19,7 +19,7 @@ class FSMLocation(models.Model):
     def _compute_distrib_sublocation_ids(self):
         for location in self:
             location.distrib_count = self.env['fsm.location'].search_count(
-                [('fsm_parent_id', 'child_of', location.id), (
+                [('dist_parent_id', '=', location.id), (
                     'id', '!=', location.id), (
                     'is_a_distribution', '=', True)])
 
@@ -33,8 +33,11 @@ class FSMLocation(models.Model):
         """
         for location in self:
             action = self.env.ref('fieldservice.action_fsm_location').read()[0]
-            sublocation = self.get_action_views(0, 0, location)
-            sublocation.filtered(lambda r: r.is_a_distribution)
+            sublocation = self.env["fsm.location"].search(
+                [('dist_parent_id', '=', location.id),
+                 ('id', '!=', location.id),
+                 ('is_a_distribution', '=', True)]
+            )
             if len(sublocation) == 1:
                 action['views'] = [(self.env.
                                     ref('fieldservice.' +
