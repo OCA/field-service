@@ -5,6 +5,21 @@
         <field name="model">fsm.recurring</field>
         <field name="inherit_id" ref="fieldservice_recurring.fsm_recurring_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_fms_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('fsm_order_count', '=', 0)]}">
+                    <field name="fsm_order_count" widget="statinfo" string="Orders"/>
+                </button>
+            </xpath>
+            <button name="action_cancel" position="before">
+                <button id="generate_orders"
+                        name="generate_orders" string="Generate Orders"
+                    type="object"/>
+            </button>
+
             <field name="fsm_frequency_set_id" position="before">
                 <field name="frequency_type"/>
             </field>

@@ -64,3 +64,29 @@ class FSMRecurringOrder(models.Model):
         for re in r_edited:
             re.fsm_frequency_set_id = re.fsm_frequency_set_qedit_id
         return res
+
+
+    def action_view_fms_order(self):
+        fms_orders = self.mapped('fsm_order_ids')
+        action = self.env.ref('fieldservice.action_fsm_operation_order').read()[0]
+        if len(fms_orders) > 1:
+            action['domain'] = [('id', 'in', fms_orders.ids)]
+        elif len(fms_orders) == 1:
+            form_view = [(self.env.ref('fieldservice.fsm_order_form').id, 'form')]
+            if 'views' in action:
+                action['views'] = form_view + [(state,view) for state,view in action['views'] if view != 'form']
+            else:
+                action['views'] = form_view
+            action['res_id'] = fms_orders.id
+        else:
+            action = {'type': 'ir.actions.act_window_close'}
+        action["key2"] = "client_action_multi"
+        return action
+
+    @api.multi
+    def generate_orders(self):
+        """
+        Executed from form view (call private method) _generate_orders
+        """
+        return self._generate_orders()
+
