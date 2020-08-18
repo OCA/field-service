@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-11-18 06:35+0000\n"
+"PO-Revision-Date: 2020-03-20 01:13+0000\n"
 "Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
 "Language-Team: none\n"
 "Language: es_CL\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Allocated Quantity"
-msgstr ""
+msgstr "Cantidad Asignada"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
@@ -30,6 +30,13 @@ msgstr "Cancelar"
 #: selection:fsm.order,request_stage:0
 msgid "Cancelled"
 msgstr "Cancelado"
+
+#. module: fieldservice_stock
+#: model:ir.model.fields,field_description:fieldservice_stock.field_stock_picking_type__create_fsm_equipment
+#, fuzzy
+#| msgid "Creates a FSM Equipment"
+msgid "Create Fsm Equipment"
+msgstr "Crea Equipos FSM"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_product_product__create_fsm_equipment
@@ -60,7 +67,7 @@ msgstr "Hecho"
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Done Quantity"
-msgstr ""
+msgstr "Cantidad Hecha"
 
 #. module: fieldservice_stock
 #: selection:fsm.order,request_stage:0
@@ -128,12 +135,12 @@ msgstr "Lote / Serie"
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Moves"
-msgstr ""
+msgstr "Movimientos"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__move_ids
 msgid "Operations"
-msgstr ""
+msgstr "Operaciones"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__stock_request_ids
@@ -141,9 +148,14 @@ msgid "Order Lines"
 msgstr "Líneas de Pedido"
 
 #. module: fieldservice_stock
-#: code:addons/fieldservice_stock/models/fsm_order.py:54
-#: code:addons/fieldservice_stock/models/fsm_order.py:67
-#: code:addons/fieldservice_stock/models/fsm_order.py:80
+#: model:ir.model,name:fieldservice_stock.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: fieldservice_stock
+#: code:addons/fieldservice_stock/models/fsm_order.py:60
+#: code:addons/fieldservice_stock/models/fsm_order.py:73
+#: code:addons/fieldservice_stock/models/fsm_order.py:86
 #, python-format
 msgid "Please create a stock request."
 msgstr "Por favor cree una solicitud de stock."
@@ -175,9 +187,16 @@ msgid "Products"
 msgstr "Productos"
 
 #. module: fieldservice_stock
+#: model:ir.model.fields,help:fieldservice_stock.field_stock_picking_type__create_fsm_equipment
+msgid ""
+"Products with the 'Creates a FSM Equipment' flag will automatically be "
+"converted to an FSM Equipment."
+msgstr ""
+
+#. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Reference"
-msgstr ""
+msgstr "Referencias"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__request_stage
@@ -186,10 +205,8 @@ msgstr "Estado de Solicitud"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
-#, fuzzy
-#| msgid "Request State"
 msgid "Requested Quantity"
-msgstr "Estado de Solicitud"
+msgstr "Cantidad Pedida"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__return_count
@@ -198,10 +215,8 @@ msgstr "Órdenes de Devolución"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
-#, fuzzy
-#| msgid "Return Orders"
 msgid "Returns"
-msgstr "Órdenes de Devolución"
+msgstr "Devoluciones"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_equipment__lot_id
@@ -256,6 +271,16 @@ msgstr "Enviado"
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_fsm_territory
 msgid "Territory"
+msgstr "Territorio"
+
+#. module: fieldservice_stock
+#: code:addons/fieldservice_stock/models/stock_request.py:58
+#, python-format
+msgid ""
+"There is already a Stock Request Order                                   "
+"with the same Field Service Order and                                   "
+"Warehouse that is in Draft state. Please                                   "
+"add this Stock Request there.                                   (%s)"
 msgstr ""
 
 #. module: fieldservice_stock
@@ -271,7 +296,7 @@ msgstr "Transferencias"
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidad de Medida"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__warehouse_id

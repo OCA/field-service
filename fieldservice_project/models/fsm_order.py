@@ -29,3 +29,8 @@ class FSMOrder(models.Model):
                                          'fsm_order_form').id, 'form')]
         action['res_id'] = order.id
         return action
+
+    @api.onchange('team_id')
+    def onchange_team_id(self):
+        if self.team_id:
+            self.project_id = self.team_id.project_id

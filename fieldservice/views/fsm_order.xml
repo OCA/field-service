@@ -14,6 +14,7 @@
                             type="object"
                             groups="fieldservice.group_fsm_dispatcher"
                             attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}" />
+                    <field name="is_button" invisible="1"/>
                     <button id="action_cancel"
                             name="action_cancel" string="Cancel Order"
                             type="object"
@@ -49,8 +50,9 @@
                             <field name="team_id"
                                    groups="fieldservice.group_fsm_team"/>
                             <field name="person_id"/>
+                            <field name="internal_type" invisible="1"/>
                             <field name="equipment_id"
-                                   attrs="{'invisible':[('type', 'not in',['repair', 'maintenance'])]}"
+                                   attrs="{'invisible':[('internal_type', 'not in',['repair', 'maintenance'])]}"
                                    groups="fieldservice.group_fsm_equipment"
                                    options="{'no_create': True}"
                                    domain="[('current_location_id','=',location_id)]"/>
@@ -118,9 +120,9 @@
                         <page string="Equipments"
                               groups="fieldservice.group_fsm_equipment"
                               name="equipements_page"
-                              attrs="{'invisible': [('type', 'in', ['repair', 'maintenance'])]}">
+                              attrs="{'invisible': [('internal_type', 'in', ['repair', 'maintenance'])]}">
                             <field name="equipment_ids"
-                                   attrs="{'required': [('type', 'not in', ['repair', 'maintenance'])]}"
+                                   attrs="{'required': [('internal_type', 'not in', ['repair', 'maintenance'])]}"
                                    options="{'no_create': True}"
                                    domain="[('current_location_id','=',location_id)]">
                                 <tree>
@@ -351,7 +353,10 @@
                 <field name="stage_id"/>
                 <field name="location_id"/>
                 <field name="phone"/>
-                <field name="person_id"/>
+                <field name="person_id"
+                       write_model="fsm.person.calendar.filter"
+                       write_field="fsm_person_id"
+                       avatar_field="image_small"/>
                 <field name="person_phone"/>
                 <field name="city"/>
                 <field name="state_name"/>

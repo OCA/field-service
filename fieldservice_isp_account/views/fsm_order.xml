@@ -50,7 +50,7 @@
                     <field name="contractor_total" readonly="1"/>
                 </group>
                 <group string="Employee Timesheets">
-                    <field name="employee_timesheet_ids" nolabel="1">
+                    <field name="employee_timesheet_ids" nolabel="1" context="{'default_project_id': project_id, 'default_task_id': project_task_id}">
                         <tree editable="bottom"
                                 string="Timesheet Activities"
                                 default_order="date">
@@ -63,6 +63,8 @@
                             <field name="name"/>
                             <field name="unit_amount" string="Duration"
                                     widget="float_time"/>
+                            <field name="project_id" invisible="1"/>
+                            <field name="task_id" invisible="1"/>
                         </tree>
                     </field>
                 </group>

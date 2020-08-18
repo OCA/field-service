@@ -156,6 +156,8 @@ class SaleOrder(models.Model):
                     if duplicate:
                         inv = invoice.copy()
                         inv.write({'invoice_line_ids': [(6, 0, [])]})
+                        inv.compute_taxes()
+                        invoice.compute_taxes()
                         lines_by_line[i].invoice_id = inv.id
                         result.append(inv.id)
                     inv.fsm_order_ids = \
@@ -167,16 +169,19 @@ class SaleOrder(models.Model):
                 ('product_id.field_service_tracking', '=', 'sale')
             ])
             if len(lines_by_sale) > 0:
-                fsm_order = self.env['fsm.order'].search([
-                    ('sale_id', '=', self.id),
+                fsm_orders = self.env['fsm.order'].search([
+                    ('sale_id', 'in', self.ids),
                     ('sale_line_id', '=', False)
                 ])
                 if len(lines_by_sale) == len(invoice.invoice_line_ids):
-                    invoice.fsm_order_ids = [(4, fsm_order.id)]
+                    invoice.fsm_order_ids = \
+                        [(4, fsm_order.id) for fsm_order in fsm_orders]
                 elif len(invoice.invoice_line_ids) > len(lines_by_sale):
                     new = invoice.copy()
                     new.write({'invoice_line_ids': [(6, 0, [])]})
                     lines_by_sale.write({'invoice_id': new.id})
+                    new.compute_taxes()
+                    invoice.compute_taxes()
                     result.append(new.id)
         return result
 

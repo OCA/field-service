@@ -11,6 +11,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def action_assign(self):
+        res = {}
         for rec in self:
             if rec.picking_type_id in (
                 # Vehicle Loading
@@ -25,11 +26,11 @@ class StockPicking(models.Model):
                 if rec.fsm_vehicle_id:
                     picking = \
                         rec.with_context(vehicle_id=rec.fsm_vehicle_id.id)
-                    return super(StockPicking, picking).action_assign()
+                    res = super(StockPicking, picking).action_assign()
                 else:
                     raise UserError(_(
                         "You must provide the vehicle for this picking type."))
-            res = super().action_assign()
+            res = super(StockPicking, rec).action_assign()
         return res
 
     def prepare_fsm_values(self, fsm_order):
