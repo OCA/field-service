@@ -36,7 +36,8 @@ class FSMStockLocationBuilder(TransactionCase):
 
     def test_fsm_location_builder(self):
         # Test createing new sublocations
-        self.env['ir.config_parameter'].set_param('google.api_key_geocode', 'YOURAPICODEHERE')
+        self.env['ir.config_parameter'].set_param('google.api_key_geocode',
+                                                  'YOURAPICODEHERE')
         before = self.env['fsm.location'].search_count([])
         self.location_wiz.with_context({'active_id': self.test_location.id})\
             .create_sub_locations()
