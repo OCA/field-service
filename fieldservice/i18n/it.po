@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-08-19 13:00+0000\n"
+"PO-Revision-Date: 2020-08-20 18:00+0000\n"
 "Last-Translator: ilaria-franchini <i.franchini@apuliasoftware.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1483,10 +1483,8 @@ msgstr "Riferimento interno"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
-#, fuzzy
-#| msgid "Internal Reference"
 msgid "Internal Type"
-msgstr "Riferimento interno"
+msgstr "Tipo interno"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
@@ -1663,57 +1661,61 @@ msgid ""
 "It is set either if there's not at least an unreconciled debit and an "
 "unreconciled credit or if you click the \"Done\" button."
 msgstr ""
+"L'ultima volta che l'abbinamento fatture e pagamenti è stato eseguito per "
+"questo partner. Viene impostato se non sono presenti almeno un debito non "
+"riconciliato e un credito non riconciliato o se si fa clic sul pulsante \""
+"Fine\"."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_time_entries_checked
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_time_entries_checked
 msgid "Latest Invoices & Payments Matching Date"
-msgstr ""
+msgstr "Data ultime fatture e pagamenti corrispondenti"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
 msgid "Latest Request Date"
-msgstr ""
+msgstr "Data ultima richiesta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_repair
 msgid "Link FSM orders to MRP Repair orders"
-msgstr ""
+msgstr "Collega gli ordini FSM agli ordini di riparazione MRP"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_maintenance
 msgid "Link FSM orders to maintenance requests"
-msgstr ""
+msgstr "Collega gli ordini FSM alle richieste di manutenzione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
 msgid "Link FSM vehicles to Fleet vehicles"
-msgstr ""
+msgstr "Collega i veicoli FSM ai veicoli della flotta"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link Field Service vehicles with Fleet vehicles"
-msgstr ""
+msgstr "Collega i veicoli di assistenza sul campo con i veicoli della flotta"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link to Fleet Vehicles"
-msgstr ""
+msgstr "Collegamento ai veicoli della flotta"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to MRP repair orders"
-msgstr ""
+msgstr "Collega i tuoi ordini FSM agli ordini di riparazione MRP"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to Projects and Project Tasks"
-msgstr ""
+msgstr "Collega i tuoi ordini FSM a progetti e attività di progetto"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to maintenance requests"
-msgstr ""
+msgstr "Collega i tuoi ordini FSM alle richieste di manutenzione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__location_ids
@@ -1736,7 +1738,7 @@ msgstr "Ubicazione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__location_directions
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Location Directions"
-msgstr ""
+msgstr "Indicazioni sull'ubicazione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__notes
@@ -1746,7 +1748,7 @@ msgstr "Note ubicazione"
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location_person
 msgid "Location Persons"
-msgstr ""
+msgstr "Ubicazione delle persone"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__phone
@@ -1756,18 +1758,18 @@ msgstr "Telefono ubicazione"
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_location
 msgid "Location Reports."
-msgstr ""
+msgstr "Rapporti sull'ubicazione."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_form_view
 msgid "Location Worker"
-msgstr ""
+msgstr "Ubicazione del lavoratore"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_location_person
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_tree_view
 msgid "Location Workers"
-msgstr ""
+msgstr "Ubicazione lavoratori"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_location
@@ -1782,12 +1784,12 @@ msgstr "Ubicazioni"
 #. module: fieldservice
 #: selection:fsm.order,priority:0
 msgid "Low"
-msgstr ""
+msgstr "Basso"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "MRP Repair"
-msgstr ""
+msgstr "Riparazione MRP"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_main_attachment_id
@@ -1801,155 +1803,156 @@ msgstr "Allegato principale"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Maintenance"
-msgstr ""
+msgstr "Manutenzione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Make sure to send the right worker with the appropriate skills"
 msgstr ""
+"Assicurati di inviare il lavoratore giusto con le competenze appropriate"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_agreement
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Agreements"
-msgstr ""
+msgstr "Gestire accordi"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Categories"
-msgstr ""
+msgstr "Gestire categorie"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_distribution
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Distribution"
-msgstr ""
+msgstr "Gestisci distribuzione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_equipment
 msgid "Manage Equipment"
-msgstr ""
+msgstr "Gestisci attrezzatura"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Equipments"
-msgstr ""
+msgstr "Gestisci attrezzature"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
 msgid "Manage FSM Activities"
-msgstr ""
+msgstr "Gestisci attività FSM"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_equipment
 msgid "Manage Field Service Equipment"
-msgstr ""
+msgstr "Gestisci attrezzatura di assistenza sul campo"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_template
 msgid "Manage Field Service Order Templates"
-msgstr ""
+msgstr "Gestisci modelli di ordini di assistenza sul campo"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_tag
 msgid "Manage Field Service Tags"
-msgstr ""
+msgstr "Gestisci le etichette di assistenza sul campo"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_team
 msgid "Manage Field Service Teams"
-msgstr ""
+msgstr "Gestisci le squadre di assistenza sul campo"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_category
 msgid "Manage Field Service Worker Categories"
-msgstr ""
+msgstr "Gestisci le categorie di lavoratori di assistenza sul campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Activities"
-msgstr ""
+msgstr "Gestisci ordini di attività"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Sizes"
-msgstr ""
+msgstr "Gestisci la dimensione degli ordini"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Sub-Statuses"
-msgstr ""
+msgstr "Gestisci gli stati secondari degli ordini"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Templates"
-msgstr ""
+msgstr "Gestisci modelli di ordine"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Recurring Orders"
-msgstr ""
+msgstr "Gestisci ordini ricorrenti"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_skill
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Skills"
-msgstr ""
+msgstr "Gestisci abilità"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_substatus
 msgid "Manage Sub-Statuses"
-msgstr ""
+msgstr "Gestisci stati secondari"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_tag
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Tags"
-msgstr ""
+msgstr "Gestisci tag"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_team
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Teams"
-msgstr ""
+msgstr "Gestisci tag"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_template
 msgid "Manage Template"
-msgstr ""
+msgstr "Gestisci modello"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_vehicle
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Vehicles"
-msgstr ""
+msgstr "Gestisci veicoli"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage activities"
-msgstr ""
+msgstr "Gestisci le attività"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage agreements and contracts"
-msgstr ""
+msgstr "Gestisci accordi e contratti"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage different categories of Field Service workers"
-msgstr ""
+msgstr "Gestisci diverse categorie di lavoratori dell'assistenza sul campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage different teams of Field Service workers"
-msgstr ""
+msgstr "Gestisci diverse squadre di lavoratori di assistenza sul campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage equipments at the service location"
-msgstr ""
+msgstr "Gestisci apparecchiature presso la sede del servizio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1958,93 +1961,97 @@ msgid ""
 "                                    Automatically activate Lots &amp; Serial "
 "Numbers."
 msgstr ""
+"Gestisci l'inventario e e le operazioni di magazzino.\n"
+"..................................Attiva automaticamente lotti &amp; Numeri "
+"di serie."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage recurring orders"
-msgstr ""
+msgstr "Gestisci ordini ricorrenti"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
 msgid "Manage routes"
-msgstr ""
+msgstr "Gestisci le rotte"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage routes of yoru workers"
-msgstr ""
+msgstr "Gestisci rotte dei tuoi lavoratori"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sizes for orders and locations"
-msgstr ""
+msgstr "Gestisci dimensioni per ordini e ubicazioni"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sub-statuses"
-msgstr ""
+msgstr "Gestisci sottostati"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_purchase
 msgid "Manage subcontractors and their pricelists"
-msgstr ""
+msgstr "Gestisci i subappaltatori e i loro listini prezzi"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage subcontractors with pricelists"
-msgstr ""
+msgstr "Gestisci i subappaltatori con listini prezzi"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage tags on service orders"
-msgstr ""
+msgstr "Gestisci i tag sugli ordini di servizio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage templates"
-msgstr ""
+msgstr "Gestisci modelli"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage vehicles"
-msgstr ""
+msgstr "Gestisci i veicoli"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage your distribution structure"
-msgstr ""
+msgstr "Gestisci la tua struttura di distribuzione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__managed_by_id
 msgid "Managed By"
-msgstr ""
+msgstr "Gestito da"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_manager
+#, fuzzy
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Mapping Tools"
-msgstr ""
+msgstr "Strumenti di mappatura"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.data
 msgid "Master Data"
-msgstr ""
+msgstr "Dati principali"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__user_id
 msgid "Me"
-msgstr ""
+msgstr "Me stesso"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_medium
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Immagine di medie dimensioni"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__image_medium
@@ -2054,6 +2061,9 @@ msgid ""
 "128x128px image, with aspect ratio preserved. Use this field in form views "
 "or some kanban views."
 msgstr ""
+"Immagine di medie dimensioni di questo contatto. Viene automaticamente "
+"ridimensionata come immagine 128x128px, mantenendo le proporzioni. Usa "
+"questo campo nelle viste modulo o in alcune viste kanban."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
@@ -2068,7 +2078,7 @@ msgstr "Appuntamenti"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Errore di consegna del messaggio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn_msg
@@ -2080,7 +2090,7 @@ msgstr "Messaggio per fattura"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
 msgid "Message for Purchase Order"
-msgstr ""
+msgstr "Messaggio per ordini di acquisto"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
@@ -2092,7 +2102,7 @@ msgstr "Messaggio per ordine di vendita"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
 msgid "Message for Stock Picking"
-msgstr ""
+msgstr "Messaggio per picking di magazzino"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
@@ -2108,7 +2118,7 @@ msgstr "Messaggi"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__mobile
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
@@ -2136,12 +2146,12 @@ msgstr "Nome"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Need Assigned"
-msgstr ""
+msgstr "Necessita assegnazione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Need Scheduled"
-msgstr ""
+msgstr "Necessita programmazione"
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:86
@@ -2158,7 +2168,7 @@ msgstr "Nuovo"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_date_deadline
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Prossima attività in scadenza"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_summary
@@ -2167,7 +2177,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_summary
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Riepilogo attività successiva"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_type_id
@@ -2176,19 +2186,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_type_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Riepilogo attività successiva"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Next Stage"
-msgstr ""
+msgstr "Prossima fase"
 
 #. module: fieldservice
 #: selection:fsm.order,priority:0
 msgid "Normal"
-msgstr ""
+msgstr "Normale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__notes
@@ -2232,7 +2242,7 @@ msgstr "Numero di messaggi che richiedono un'azione"
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error_counter
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Numero di messaggi con errore di consegna"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_unread_counter
@@ -2246,7 +2256,7 @@ msgstr "Numero di messaggi non letti"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_id
 msgid "Office Hours"
-msgstr ""
+msgstr "Orario di ufficio"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2315,7 +2325,7 @@ msgstr "Ordine iniziato"
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_tree
 msgid "Order Team"
-msgstr ""
+msgstr "Ordine Squadra"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_template
@@ -2394,7 +2404,7 @@ msgstr "Numero ordini"
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_order
 msgid "Orders Reports."
-msgstr ""
+msgstr "Rapporti sugli ordini."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_need_assign_count
@@ -2409,19 +2419,19 @@ msgstr "Ordini da programmare"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Others"
-msgstr ""
+msgstr "Altri"
 
 #. module: fieldservice
 #: selection:fsm.equipment,activity_state:0
 #: selection:fsm.location,activity_state:0 selection:fsm.order,activity_state:0
 #: selection:fsm.team,activity_state:0
 msgid "Overdue"
-msgstr ""
+msgstr "In ritardo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
 msgid "Owned By"
-msgstr ""
+msgstr "Posseduto da"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_ids
@@ -2430,13 +2440,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__owned_location_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
 msgid "Owned Locations"
-msgstr ""
+msgstr "Luoghi di proprietà"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__owner_id
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
 msgid "Owner"
-msgstr ""
+msgstr "Proprietario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__parent_id
@@ -2444,13 +2454,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__parent_id
 msgid "Parent"
-msgstr ""
+msgstr "Genitore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_name
 msgid "Parent name"
-msgstr ""
+msgstr "Nome genitore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
@@ -2462,20 +2472,20 @@ msgstr "Contratti del partner"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit_limit
 msgid "Payable Limit"
-msgstr ""
+msgstr "Limite pagabile"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
 msgid "Payment Tokens"
-msgstr ""
+msgstr "Token pagamento"
 
 #. module: fieldservice
 #. openerp-web
 #: code:addons/fieldservice/static/src/xml/fsm_gantt_person_filter.xml:4
 #, python-format
 msgid "Person Filter"
-msgstr ""
+msgstr "Filtro persona"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone
@@ -2494,12 +2504,12 @@ msgstr "Pianificata"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Planning"
-msgstr ""
+msgstr "Pianificazione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Preferred Workers"
-msgstr ""
+msgstr "Lavoratori preferiti"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2518,12 +2528,12 @@ msgstr "Listino prezzi"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_territory__person_id
 msgid "Primary Assignment"
-msgstr ""
+msgstr "Assegnamento primario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_id
 msgid "Primary Contact"
-msgstr ""
+msgstr "Contatto primario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__service_location_id
@@ -2531,7 +2541,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__service_location_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__service_location_id
 msgid "Primary Service Location"
-msgstr ""
+msgstr "Ubicazione servizio primario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__priority
@@ -2541,7 +2551,7 @@ msgstr "Priorità"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__legend_priority
 msgid "Priority Management Explanation"
-msgstr ""
+msgstr "Spiegazione della gestione delle priorità"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2587,7 +2597,7 @@ msgstr "Regione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__region_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__partner_id
 msgid "Region Manager"
-msgstr ""
+msgstr "Manager regione"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_region
@@ -2605,7 +2615,7 @@ msgstr "Azienda collegata"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owner_id
 msgid "Related Owner"
-msgstr ""
+msgstr "Proprietario correlato"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_id
@@ -2617,23 +2627,23 @@ msgstr "Partner collegato"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
 msgid "Relation Count"
-msgstr ""
+msgstr "Conteggio relazioni"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
 msgid "Relation valid"
-msgstr ""
+msgstr "Validità relazioni"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
-msgstr ""
+msgstr "Rapporto"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Request Workers"
-msgstr ""
+msgstr "Richiesta lavoratori"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -2644,12 +2654,12 @@ msgstr "Requisiti"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__resolution
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Resolution"
-msgstr ""
+msgstr "Risoluzione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "Resolution Notes"
-msgstr ""
+msgstr "Note risoluzione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_user_id
@@ -2663,12 +2673,12 @@ msgstr "Utente responsabile"
 #. module: fieldservice
 #: selection:fsm.stage,stage_type:0
 msgid "Route"
-msgstr ""
+msgstr "Rotta"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Routes"
-msgstr ""
+msgstr "Rotte"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
@@ -2692,7 +2702,7 @@ msgstr "Team di vendita"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
 msgid "Sales Warnings"
-msgstr ""
+msgstr "Avvertenze di vendita"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2703,44 +2713,44 @@ msgstr "Addetto vendite"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Schedule Details"
-msgstr ""
+msgstr "Dettaglio pianificazione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_end
 msgid "Scheduled End"
-msgstr ""
+msgstr "Fine pianificazione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_start
 msgid "Scheduled Start (ETA)"
-msgstr ""
+msgstr "Inizio pianificazione (ETA)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
 msgid "Scheduled duration"
-msgstr ""
+msgstr "Durata pianificazione"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__scheduled_duration
 msgid "Scheduled duration of the work in hours"
-msgstr ""
+msgstr "Durata programmata del lavoro in ore"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_schedule
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_schedules
 msgid "Schedules"
-msgstr ""
+msgstr "Programmi"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
 msgid "Search FSM Location"
-msgstr ""
+msgstr "Ricerca ubicazione FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
 msgid "Search FSM Workers"
-msgstr ""
+msgstr "Ricerca lavoratori FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__search_on_complete_name
@@ -2752,17 +2762,17 @@ msgstr "Cerca posizione per gerarchia"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
 msgid "Search Location Worker"
-msgstr ""
+msgstr "Ricerca ubicazione lavoratore"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Locations based on their full hierarchy name"
-msgstr ""
+msgstr "Ricerca ubicazioni basate sul nome completo della gerarchia"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Select field services on sale orders."
-msgstr ""
+msgstr "Seleziona i servizi sul campo sugli ordini di vendita."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
@@ -2770,6 +2780,8 @@ msgid ""
 "Select whether you want to convert this record to a Field\n"
 "                    Service Worker or Location."
 msgstr ""
+"Seleziona se desideri convertire questo record in un campo\n"
+"...................Addetto all'assistenza o posizione."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
@@ -2785,22 +2797,26 @@ msgid ""
 "Selecting \"Blocking Message\" will throw an exception with the message and "
 "block the flow. The Message has to be written in the next field."
 msgstr ""
+"Selezionando l'opzione \"Avviso\" notificherà all'utente il messaggio, "
+"selezionando \"Messaggio di blocco\" verrà generata un'eccezione con il "
+"messaggio e il flusso verrà bloccato. Il messaggio deve essere scritto nel "
+"campo successivo."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__self
 msgid "Self"
-msgstr ""
+msgstr "Se stesso"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_sale
 msgid "Sell FSM orders"
-msgstr ""
+msgstr "Vendere ordini FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell Service Orders"
-msgstr ""
+msgstr "Vendere ordini di servizi"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__sequence
@@ -2813,23 +2829,23 @@ msgstr "Sequenza"
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location
 msgid "Service Locations"
-msgstr ""
+msgstr "Ubicazioni servizio"
 
 #. module: fieldservice
 #: model:ir.actions.report,name:fieldservice.action_report_fsm_order
 msgid "Service Order"
-msgstr ""
+msgstr "Ordine servizio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
 msgid "Service Orders"
-msgstr ""
+msgstr "Ordini servizi"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_closed
 msgid "Services in this stage are considered as closed."
-msgstr ""
+msgstr "I servizi in questa fase sono considerati chiusi."
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
@@ -2842,43 +2858,43 @@ msgstr "Impostazioni"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_share
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_share
 msgid "Share Partner"
-msgstr ""
+msgstr "Condividi partner"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_expiration
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_expiration
 msgid "Signup Expiration"
-msgstr ""
+msgstr "Scadenza iscrizione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_token
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_token
 msgid "Signup Token"
-msgstr ""
+msgstr "Scadenza token"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
 msgid "Signup Token Type"
-msgstr ""
+msgstr "Scadenza tipo token"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_valid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_valid
 msgid "Signup Token is Valid"
-msgstr ""
+msgstr "Scadenza validità token"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_url
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_url
 msgid "Signup URL"
-msgstr ""
+msgstr "Scadenza URL"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_small
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_small
 msgid "Small-sized image"
-msgstr ""
+msgstr "Immagine piccole dimensioni"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__image_small
@@ -2888,6 +2904,9 @@ msgid ""
 "image, with aspect ratio preserved. Use this field anywhere a small image is "
 "required."
 msgstr ""
+"Immagine di piccole dimensioni di questo contatto. Viene automaticamente "
+"ridimensionata come immagine 64x64px, mantenendo le proporzioni. Usa questo "
+"campo ovunque sia richiesta una piccola immagine."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
@@ -2907,7 +2926,7 @@ msgstr "Colore fase"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
 msgid "Stage Description and Tooltips"
-msgstr ""
+msgstr "Descrizione della fase e suggerimenti"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__stage_name
@@ -2949,12 +2968,16 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Stato basato sulle attività\n"
+"Scaduto: la data di scadenza è già passata\n"
+"Oggi: la data dell'attività è oggi\n"
+"Pianificato: attività future."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
 msgid "Stock Picking"
-msgstr ""
+msgstr "Picking inventario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -2985,12 +3008,12 @@ msgstr "Indirizzo2"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sublocation_count
 msgid "Sub Locations"
-msgstr ""
+msgstr "Posizioni secondarie"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Sub-Locations"
-msgstr ""
+msgstr "Posizioni secondarie"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
@@ -3066,7 +3089,7 @@ msgstr "Modelli"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_territory_tree_view
 msgid "Territories"
-msgstr ""
+msgstr "Territori"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_territory
@@ -3080,7 +3103,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_territory_form_view
 msgid "Territory"
-msgstr ""
+msgstr "Territorio"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
@@ -3089,6 +3112,8 @@ msgid ""
 "The Tax Identification Number. Complete it if the contact is subjected to "
 "government taxes. Used in some legal statements."
 msgstr ""
+"Il numero di identificazione fiscale. Completalo se il contatto è soggetto a "
+"tasse governative. Utilizzato in alcune dichiarazioni legali."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
@@ -3096,6 +3121,8 @@ msgstr ""
 msgid ""
 "The fiscal position determines the taxes/accounts used for this contact."
 msgstr ""
+"La posizione fiscale determina le tasse / conti utilizzati per questo "
+"contatto."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__country_name
@@ -3106,7 +3133,7 @@ msgstr "Il nome completo della nazione."
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__user_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__user_id
 msgid "The internal user in charge of this contact."
-msgstr ""
+msgstr "L'utente interno responsabile di questo contatto."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__has_unreconciled_entries
@@ -3115,6 +3142,8 @@ msgid ""
 "The partner has at least one unreconciled debit and credit since last time "
 "the invoices & payments matching was performed."
 msgstr ""
+"Il partner ha almeno un debito e un credito non riconciliati dall'ultima "
+"volta che è stata eseguita l'abbinamento fatture e pagamenti."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
@@ -3125,6 +3154,11 @@ msgid ""
 "use the same timezone that is otherwise used to pick and render date and "
 "time values: your computer's timezone."
 msgstr ""
+"Il fuso orario del partner, utilizzato per produrre valori di data e ora "
+"corretti all'interno dei rapporti stampati. È importante impostare un valore "
+"per questo campo. È necessario utilizzare lo stesso fuso orario che viene "
+"altrimenti utilizzato per selezionare e visualizzare i valori di data e ora: "
+"il fuso orario del computer."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
@@ -3132,6 +3166,8 @@ msgstr ""
 msgid ""
 "The stock location used as destination when sending goods to this contact."
 msgstr ""
+"L'ubicazione dello stock utilizzata come destinazione quando si inviano le "
+"merci a questo contatto."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
@@ -3139,11 +3175,13 @@ msgstr ""
 msgid ""
 "The stock location used as source when receiving goods from this contact."
 msgstr ""
+"L'ubicazione dello stock utilizzata come origine quando si ricevono le merci "
+"da questo contatto."
 
 #. module: fieldservice
 #: sql_constraint:fsm.location.person:0
 msgid "The worker is already linked to this location."
-msgstr ""
+msgstr "Il lavoratore è già collegato a questa posizione."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_payable_id
@@ -3152,6 +3190,8 @@ msgid ""
 "This account will be used instead of the default one as the payable account "
 "for the current partner"
 msgstr ""
+"Questo conto verrà utilizzato al posto di quello predefinito come conto "
+"fornitori per il partner corrente"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_receivable_id
@@ -3160,6 +3200,8 @@ msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
 msgstr ""
+"Questo conto verrà utilizzato al posto di quello predefinito come conto "
+"clienti per il partner corrente"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
@@ -3168,12 +3210,15 @@ msgid ""
 "This currency will be used, instead of the default one, for purchases from "
 "the current partner"
 msgstr ""
+"Questa valuta verrà utilizzata, al posto di quella predefinita, per gli "
+"acquisti dal partner attuale"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_delivery_carrier_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__property_delivery_carrier_id
 msgid "This delivery method will be used when invoicing from picking."
 msgstr ""
+"Questo metodo di consegna verrà utilizzato per la fatturazione dal ritiro."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__image
@@ -3182,6 +3227,8 @@ msgid ""
 "This field holds the image used as avatar for this contact, limited to "
 "1024x1024px"
 msgstr ""
+"Questo campo contiene l'immagine usata come avatar per questo contatto, "
+"limitata a 1024x1024px"
 
 #. module: fieldservice
 #: sql_constraint:fsm.location:0
@@ -3195,6 +3242,8 @@ msgid ""
 "This payment term will be used instead of the default one for purchase "
 "orders and vendor bills"
 msgstr ""
+"Questo termine di pagamento verrà utilizzato al posto di quello predefinito "
+"per gli ordini di acquisto e le fatture fornitore"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_term_id
@@ -3203,6 +3252,8 @@ msgid ""
 "This payment term will be used instead of the default one for sales orders "
 "and customer invoices"
 msgstr ""
+"Questo termine di pagamento verrà utilizzato al posto di quello predefinito "
+"per gli ordini di vendita e le fatture dei clienti"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
@@ -3211,6 +3262,8 @@ msgid ""
 "This pricelist will be used, instead of the default one, for sales to the "
 "current partner"
 msgstr ""
+"Questo listino verrà utilizzato, al posto di quello predefinito, per le "
+"vendite al partner corrente"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
@@ -3218,6 +3271,8 @@ msgid ""
 "This stage is folded in the kanban view when there are no record in that "
 "stage to display."
 msgstr ""
+"Questa fase viene piegata nella visualizzazione kanban quando non ci sono "
+"record da visualizzare in quella fase."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz
@@ -3229,7 +3284,7 @@ msgstr "Fuso orario"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz_offset
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__tz_offset
 msgid "Timezone offset"
-msgstr ""
+msgstr "Offset timezone"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__title
@@ -3269,31 +3324,31 @@ msgstr "Ordini odierni"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
 msgid "Total Invoiced"
-msgstr ""
+msgstr "Totale fatturato"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
 msgid "Total Payable"
-msgstr ""
+msgstr "Totale pagabile"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
 msgid "Total Receivable"
-msgstr ""
+msgstr "Totale crediti"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
 msgid "Total amount this customer owes you."
-msgstr ""
+msgstr "Importo totale che questo cliente ti deve."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
 msgid "Total amount you have to pay to this vendor."
-msgstr ""
+msgstr "Importo totale che devi pagare a questo venditore."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
@@ -3303,12 +3358,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Unassigned"
-msgstr ""
+msgstr "Non assegnato"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_unread
@@ -3331,59 +3386,60 @@ msgstr "Numero messaggi non letti"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Unscheduled"
-msgstr ""
+msgstr "Non programmato"
 
 #. module: fieldservice
 #: selection:fsm.order,priority:0
 msgid "Urgent"
-msgstr ""
+msgstr "Urgente"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_location_builder
 msgid "Use FSM Location Builder"
-msgstr ""
+msgstr "Usa costruttore di ubicazione FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_geoengine
 msgid "Use GeoEngine"
-msgstr ""
+msgstr "Usa GeoEngine"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Use GeoEngine with OpenStreetMap"
-msgstr ""
+msgstr "Usa GeoEngine con OpenStreetMap"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__custom_color
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__custom_color
 msgid "Use Hex Code only Ex:-#FFFFFF"
-msgstr ""
+msgstr "Usa codice esadecimale solo Ex:-#FFFFFF"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stock
 msgid "Use Odoo Logistics"
-msgstr ""
+msgstr "Usa Odoo logistica"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Use Odoo Purchase"
-msgstr ""
+msgstr "Usa Odoo Acquisti"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Use Odoo Stock Logistics"
-msgstr ""
+msgstr "Usa Odoo Stock Logistica"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact from the Point of Sale."
 msgstr ""
+"Usa un codice a barre per identificare questi contatti dal punto di vendita."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_default
 msgid "Used a default stage"
-msgstr ""
+msgstr "Utilizzato uno stadio predefinito"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
@@ -3392,16 +3448,18 @@ msgid ""
 "Used by Sales and Purchase Apps to select the relevant address depending on "
 "the context."
 msgstr ""
+"Utilizzato dalle app di vendita e acquisto per selezionare l'indirizzo "
+"pertinente a seconda del contesto."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__sequence
 msgid "Used to order stages. Lower is better."
-msgstr ""
+msgstr "Utilizzato per ordinare le fasi. È meglio più basso."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__sequence
 msgid "Used to sort teams. Lower is better."
-msgstr ""
+msgstr "Utilizzato per ordinare le squadre. È meglio più basso."
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_user
@@ -3418,13 +3476,13 @@ msgstr "Utenti"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__currency_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__currency_id
 msgid "Utility field to express amount currency"
-msgstr ""
+msgstr "Campo di utilità per esprimere l'importo in valuta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stage_validation
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Validate data at each stage"
-msgstr ""
+msgstr "Convalida i dati in ogni fase"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -3441,7 +3499,7 @@ msgstr "Ubicazione fornitore"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
-msgstr ""
+msgstr "Termini di pagamento venditore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3473,12 +3531,12 @@ msgstr "Cronologia comunicazioni sito web"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
 msgid "Worker"
-msgstr ""
+msgstr "Lavoratore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_phone
 msgid "Worker Phone"
-msgstr ""
+msgstr "Telefono lavoratore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__person_ids
@@ -3486,12 +3544,12 @@ msgstr ""
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_person
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Workers"
-msgstr ""
+msgstr "Lavoratori"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_id
 msgid "Working Schedule"
-msgstr ""
+msgstr "Programma lavorazione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
@@ -3499,6 +3557,8 @@ msgid ""
 "You can add a description to help your coworkers understand the meaning and "
 "purpose of the stage."
 msgstr ""
+"Puoi aggiungere una descrizione per aiutare i tuoi colleghi a comprendere il "
+"significato e lo scopo della fase."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:346
@@ -3515,19 +3575,19 @@ msgstr "Impossibile eliminare questo ordine."
 #. module: fieldservice
 #: sql_constraint:fsm.person.calendar.filter:0
 msgid "You cannot have the same worker twice."
-msgstr ""
+msgstr "Non puoi avere lo stesso lavoratore due volte."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:25
 #, python-format
 msgid "You must create an FSM order stage first."
-msgstr ""
+msgstr "Devi prima creare una fase di ordine FSM."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:36
 #, python-format
 msgid "You must create an FSM team first."
-msgstr ""
+msgstr "Devi prima creare un team FSM."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -3538,7 +3598,7 @@ msgstr "CAP"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_territory__zip_codes
 msgid "ZIP Codes"
-msgstr ""
+msgstr "CAP"
 
 #. module: fieldservice
 #: selection:fsm.territory,type:0
@@ -3551,17 +3611,17 @@ msgstr "CAP"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_branch
 msgid "branch"
-msgstr ""
+msgstr "ramo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_form_view
 msgid "schedule"
-msgstr ""
+msgstr "programma"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_tree_view
 msgid "schedules"
-msgstr ""
+msgstr "programmi"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
