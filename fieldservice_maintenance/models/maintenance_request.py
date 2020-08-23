@@ -1,7 +1,8 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo import api, fields, models, _
 
 
 class MaintenanceRequest(models.Model):
@@ -32,6 +33,13 @@ class MaintenanceRequest(models.Model):
                      'request_id': request.id
                      })
                 request.fsm_order_id = fsm_order_id
-            except:
-                pass
+            except Exception:
+                if not fsm_equipment.current_location_id.id:
+                    raise UserError(_(
+                        'Missing current location on FSM equipment %s') % self.name)
+                else:
+                    raise UserError(_(
+                        'You cannot create the maintenance request. '
+                        'Please check the FSM equipment.'
+                    ))
         return request
