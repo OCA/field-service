@@ -15,6 +15,7 @@
         'hr_timesheet',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/time_products.xml',
         'views/account.xml',
         'views/fsm_order.xml',
