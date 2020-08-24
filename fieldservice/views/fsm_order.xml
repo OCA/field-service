@@ -355,13 +355,13 @@
                     ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
                     ]"
-                    name="order_upcoming_all"/>
+                    name="order_upcoming_week"/>
                 <filter string="Due Within 30 Days"
                     domain="[
                     ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
                     ]"
-                    name="order_upcoming_all"/>
+                    name="order_upcoming_month"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter
