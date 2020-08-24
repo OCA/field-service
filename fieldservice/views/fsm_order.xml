@@ -298,19 +298,26 @@
                         name="done"/>
                 <separator/>
                 <filter string="Today Orders"
-                        domain="[('scheduled_date_start','&gt;=',context_today().strftime('%%Y-%%m-%%d 00:00:00')), ('scheduled_date_start','&lt;=',context_today().strftime('%%Y-%%m-%%d 23:59:59'))]"
-                        name="order_today"/>
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
+                    ]"
+                    name="order_today"/>
                 <filter string="Future Orders"
-                        domain="[('scheduled_date_start', '&gt;', context_today().strftime('%Y-%m-%d'))]"
-                        name="order_upcoming_all"/>
+                    domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
+                    name="order_upcoming_all"/>
                 <filter string="Due Within 7 Days"
-                        domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=7)).strftime('%Y-%m-%d')),
-                                ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
-                        name="order_upcoming_all"/>
+                    domain="[
+                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
+                    ]"
+                    name="order_upcoming_week"/>
                 <filter string="Due Within 30 Days"
-                        domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=30)).strftime('%Y-%m-%d')),
-                                ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
-                        name="order_upcoming_all"/>
+                    domain="[
+                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
+                    ]"
+                    name="order_upcoming_month"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter name="territory_id" string="Territory" domain=""
