@@ -136,28 +136,6 @@ class FSMOrder(models.Model):
             }
             invoice = self.env['account.invoice'].sudo().create(vals)
             price_list = invoice.partner_id.property_product_pricelist
-        for line in self.employee_timesheet_ids:
-            price = price_list.get_product_price(product=line.product_id,
-                                                 quantity=line.unit_amount,
-                                                 partner=invoice.partner_id,
-                                                 date=False,
-                                                 uom_id=False)
-            template = line.product_id.product_tmpl_id
-            accounts = template.get_product_accounts()
-            account = accounts['income']
-            vals = {
-                'product_id': line.product_id.id,
-                'account_analytic_id': line.account_id.id,
-                'quantity': line.unit_amount,
-                'name': line.name,
-                'price_unit': price,
-                'account_id': account.id,
-                'invoice_id': invoice.id,
-                'fsm_order_id': self.id,
-            }
-            time_cost = self.env['account.invoice.line'].create(vals)
-            taxes = template.taxes_id
-            time_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         for cost in self.contractor_cost_ids:
             price = price_list.get_product_price(product=cost.product_id,
                                                  quantity=cost.quantity,
@@ -180,6 +158,28 @@ class FSMOrder(models.Model):
             con_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
             con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
+        for line in self.employee_timesheet_ids:
+            price = price_list.get_product_price(product=line.product_id,
+                                                 quantity=line.unit_amount,
+                                                 partner=invoice.partner_id,
+                                                 date=False,
+                                                 uom_id=False)
+            template = line.product_id.product_tmpl_id
+            accounts = template.get_product_accounts()
+            account = accounts['income']
+            vals = {
+                'product_id': line.product_id.id,
+                'account_analytic_id': line.account_id.id,
+                'quantity': line.unit_amount,
+                'name': line.name,
+                'price_unit': price,
+                'account_id': account.id,
+                'invoice_id': invoice.id,
+                'fsm_order_id': self.id,
+            }
+            time_cost = self.env['account.invoice.line'].create(vals)
+            taxes = template.taxes_id
+            time_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
         invoice.compute_taxes()
         self.account_stage = 'invoiced'
         return invoice
