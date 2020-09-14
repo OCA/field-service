@@ -24,22 +24,14 @@ class MaintenanceRequest(models.Model):
             fsm_order_type = self.env['fsm.order.type'].search(
                 [('internal_type', '=', 'maintenance')],
                 order="id desc", limit=1)
-            try:
-                fsm_order_id = self.env['fsm.order'].create(
-                    {'type': fsm_order_type.id,
-                     'equipment_id': fsm_equipment.id,
-                     'location_id': fsm_equipment and
-                     fsm_equipment.current_location_id.id,
-                     'request_id': request.id
-                     })
-                request.fsm_order_id = fsm_order_id
-            except Exception:
-                if not fsm_equipment.current_location_id.id:
-                    raise UserError(_(
-                        'Missing current location on FSM equipment %s') % self.name)
-                else:
-                    raise UserError(_(
-                        'You cannot create the maintenance request. '
-                        'Please check the FSM equipment.'
-                    ))
+            if not fsm_equipment.current_location_id.id:
+                raise UserError(_(
+                    'Missing current location on FSM equipment %s') % self.name)
+            fsm_order_id = self.env['fsm.order'].create(
+                {'type': fsm_order_type.id,
+                 'equipment_id': fsm_equipment.id,
+                 'location_id': fsm_equipment.current_location_id.id,
+                 'request_id': request.id
+                 })
+            request.fsm_order_id = fsm_order_id
         return request
