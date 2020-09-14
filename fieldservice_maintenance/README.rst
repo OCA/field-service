@@ -23,7 +23,7 @@ Field Service - Maintenance
     :target: https://runbot.odoo-community.org/runbot/264/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Odoo Maintenance App does not support Field Service operations for equipments
 outside the company facilities. On the other hand, the Field Service App does
@@ -131,7 +131,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-smangukiya| |maintainer-max3903| |maintainer-bodedra|
+|maintainer-smangukiya| |maintainer-max3903| |maintainer-bodedra| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/12.0/fieldservice_maintenance>`_ project on GitHub.
 
