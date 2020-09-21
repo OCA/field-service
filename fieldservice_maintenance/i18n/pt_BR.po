@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_maintenance
+# 	* fieldservice_maintenance
 #
 msgid ""
 msgstr ""
@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
+msgid "FSM"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model,name:fieldservice_maintenance.model_fsm_equipment
 msgid "Field Service Equipment"
 msgstr "Equipamento de Serviço de Campo"
@@ -28,12 +33,25 @@ msgid "Field Service Order"
 msgstr "Ordem de Serviço de Campo"
 
 #. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_fsm_order_type
+#, fuzzy
+#| msgid "Field Service Order"
+msgid "Field Service Order Type"
+msgstr "Ordem de Serviço de Campo"
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__internal_type
+msgid "Internal Type"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__is_fsm_equipment
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__is_fsm_equipment
 msgid "Is a FSM Equipment"
 msgstr "É um equipamento FSM"
 
 #. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.fsm_equipment_form_view_maintenance
 msgid "Maintenance"
 msgstr "Manutenção"
@@ -48,6 +66,12 @@ msgstr "Equipamento de Manutenção"
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__request_id
 msgid "Maintenance Request"
 msgstr "Requisição de Manutenção"
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/models/maintenance_request.py:28
+#, python-format
+msgid "Missing current location on FSM equipment %s"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.hr_equipment_view_form
