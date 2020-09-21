@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
+msgid "FSM"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model,name:fieldservice_maintenance.model_fsm_equipment
 msgid "Field Service Equipment"
 msgstr ""
@@ -25,12 +30,23 @@ msgid "Field Service Order"
 msgstr ""
 
 #. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_fsm_order_type
+msgid "Field Service Order Type"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__internal_type
+msgid "Internal Type"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__is_fsm_equipment
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__is_fsm_equipment
 msgid "Is a FSM Equipment"
 msgstr ""
 
 #. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.fsm_equipment_form_view_maintenance
 msgid "Maintenance"
 msgstr ""
@@ -44,6 +60,12 @@ msgstr ""
 #: model:ir.model,name:fieldservice_maintenance.model_maintenance_request
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__request_id
 msgid "Maintenance Request"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/models/maintenance_request.py:28
+#, python-format
+msgid "Missing current location on FSM equipment %s"
 msgstr ""
 
 #. module: fieldservice_maintenance
