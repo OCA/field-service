@@ -42,7 +42,7 @@ addon | version | summary
 [fieldservice_project](fieldservice_project/) | 12.0.1.2.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.1.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.2.0 | Manage recurring Field Service orders
-[fieldservice_repair](fieldservice_repair/) | 12.0.1.0.0 | Integrate Field Service orders with MRP repair orders
+[fieldservice_repair](fieldservice_repair/) | 12.0.1.1.0 | Integrate Field Service orders with MRP repair orders
 [fieldservice_route](fieldservice_route/) | 12.0.2.2.0 | Organize the routes of each day.
 [fieldservice_route_account](fieldservice_route_account/) | 12.0.1.1.1 | Field Service Route Account
 [fieldservice_route_stock](fieldservice_route_stock/) | 12.0.1.2.1 | Field Service Route Stock
