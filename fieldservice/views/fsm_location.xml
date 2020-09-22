@@ -131,6 +131,14 @@
                                 <group id="others-right"></group>
                             </group>
                         </page>
+                        <page string="Geo Location" id="geo-locaion-page" >
+                           <group id="gp-goloc">
+                                <field name="partner_latitude" placeholder="lat"/>
+                                <field name="partner_longitude" placeholder="log"/>
+                                <button name="geo_loc_button" string="Update Geo Loc" type='object'/>
+                            </group>
+                            
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">

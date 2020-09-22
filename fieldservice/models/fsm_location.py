@@ -356,6 +356,11 @@ class FSMLocation(models.Model):
         if self.state_id.country_id:
             self.country_id = self.state_id.country_id
 
+    @api.multi
+    def geo_loc_button(self):
+        self.partner_id.geo_localize()
+        print('geo locating')
+
 
 class FSMPerson(models.Model):
     _inherit = 'fsm.person'
