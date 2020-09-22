@@ -77,6 +77,8 @@ class ResConfigSettings(models.TransientModel):
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
+    module_fieldservice_mgmtsystem_nonconformity = fields.Boolean(
+        string='Manage Order Non-Conformities')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
