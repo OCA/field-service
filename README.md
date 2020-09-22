@@ -20,7 +20,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.2.12.1 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 12.0.2.13.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.1.0 | Allow workers to collect payments from the order.
@@ -38,7 +38,7 @@ addon | version | summary
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.1.1 | Field Service workflow for Internet Service Providers
 [fieldservice_location_builder](fieldservice_location_builder/) | 12.0.1.1.0 | Adds a tool to help build out Location Hierarchies
 [fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.2.0 | Integrate Field Service orders with maintenance requests
-[fieldservice_mgmtsystem_nonconformity](fieldservice_mgmtsystem_nonconformity/) | 12.0.1.0.0 | Bridge module between Field Service and Non Conformities
+[fieldservice_mgmtsystem_nonconformity](fieldservice_mgmtsystem_nonconformity/) | 12.0.1.1.0 | Bridge module between Field Service and Non Conformities
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 12.0.1.2.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.1.0 | Manage FSM Purchases
