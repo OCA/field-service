@@ -357,6 +357,9 @@ class FSMLocation(models.Model):
                 action["res_id"] = sublocation.id
             return action
 
+    def geo_localize(self):
+        return self.partner_id.geo_localize()
+
     def _compute_equipment_ids(self):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)
