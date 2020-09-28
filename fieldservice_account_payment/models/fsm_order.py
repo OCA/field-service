@@ -23,7 +23,7 @@ class FSMOrder(models.Model):
     def action_view_payments(self):
         action = self.env.ref('account.action_account_payments').read()[0]
         if self.payment_count > 1:
-            action['domain'] = [('id', 'in', self.payment_ids)]
+            action['domain'] = [('id', 'in', self.payment_ids.ids)]
         elif self.payment_ids:
             action['views'] = \
                 [(self.env.ref('account.view_account_payment_form').id,
