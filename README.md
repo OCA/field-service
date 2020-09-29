@@ -24,7 +24,7 @@ addon | version | summary
 [fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.1.0 | Allow workers to collect payments from the order.
-[fieldservice_activity](fieldservice_activity/) | 12.0.1.0.0 | Field Service Activities are a set of actions that need to be performed on a service order
+[fieldservice_activity](fieldservice_activity/) | 12.0.1.1.0 | Field Service Activities are a set of actions that need to be performed on a service order
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
 [fieldservice_change_management](fieldservice_change_management/) | 12.0.1.1.0 | Manage Change Logs on Locations
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.1.0 | Create Field Service orders from the CRM
