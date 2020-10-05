@@ -6,4 +6,4 @@ from odoo import fields, models
 class FSMLocation(models.Model):
     _inherit = "fsm.location"
 
-    sales_territory_id = fields.Many2one("fsm.territory", string="Sales Territory")
+    sales_territory_id = fields.Many2one("res.territory", string="Sales Territory")
