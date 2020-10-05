@@ -3,8 +3,8 @@
 from odoo import fields, models
 
 
-class FSMBranch(models.Model):
-    _inherit = "fsm.branch"
+class ResBranch(models.Model):
+    _inherit = "res.branch"
 
     pricelist_id = fields.Many2one(
         "product.pricelist",
