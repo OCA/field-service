@@ -1,0 +1,12 @@
+<odoo>
+    <record id="res_branch_form_view_pricelist" model="ir.ui.view">
+        <field name="name">res.branch.form.pricelist</field>
+        <field name="model">res.branch</field>
+        <field name="inherit_id" ref="base_territory.res_branch_form_view" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="pricelist_id" groups="product.group_sale_pricelist" />
+            </field>
+        </field>
+    </record>
+</odoo>

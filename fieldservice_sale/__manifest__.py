@@ -10,10 +10,10 @@
     "depends": ["fieldservice", "sale_management", "fieldservice_account"],
     "data": [
         "security/ir.model.access.csv",
-        "views/fsm_branch.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",
         "views/product_template.xml",
+        "views/res_branch.xml",
         "views/sale_order.xml",
         "views/res_config_settings.xml",
     ],
