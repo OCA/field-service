@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     fsm_filter_location_by_contact = fields.Boolean(
-        string='Filter Contacts with Location',
-        related='company_id.fsm_filter_location_by_contact',
-        readonly=False
+        string="Filter Contacts with Location",
+        related="company_id.fsm_filter_location_by_contact",
+        readonly=False,
     )
