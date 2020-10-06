@@ -6,5 +6,5 @@ from . import (
     fsm_location,
     fsm_order,
     res_company,
-    res_config_settings
+    res_config_settings,
 )
