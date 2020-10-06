@@ -6,5 +6,4 @@ def migrate(env, version):
     if not version:
         return
 
-    env.execute("UPDATE fsm_order SET bill_to = 'location' "
-                "WHERE bill_to IS NULL;")
+    env.execute("UPDATE fsm_order SET bill_to = 'location' " "WHERE bill_to IS NULL;")
