@@ -5,14 +5,14 @@ from odoo import api, fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     fsm_filter_location_by_contact = fields.Boolean(
-        string='Filter Contacts with Location'
+        string="Filter Contacts with Location"
     )
 
-    @api.onchange('fsm_filter_location_by_contact')
+    @api.onchange("fsm_filter_location_by_contact")
     def onchange_fsm_filter_location_by_contact(self):
-        fso_ids = self.env['fsm.order'].search([])
+        fso_ids = self.env["fsm.order"].search([])
         for fso_id in fso_ids:
             fso_id._onchange_location_id_customer_account()
