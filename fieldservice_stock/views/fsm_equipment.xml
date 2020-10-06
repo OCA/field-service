@@ -10,8 +10,14 @@
                     <field name="product_id" />
                     <field
                         name="lot_id"
-                        domain="[('product_id', '=', product_id)]"
-                        context="{'default_product_id': product_id}"
+                        domain="[
+                            ('product_id', '=', product_id),
+                            ('company_id', '=', company_id),
+                        ]"
+                        context="{
+                            'default_product_id': product_id,
+                            'default_company_id': company_id,
+                        }"
                     />
                     <field name="current_stock_location_id" />
                 </group>

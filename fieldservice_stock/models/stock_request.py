@@ -45,7 +45,9 @@ class StockRequest(models.Model):
             picking_type_id = self.env["stock.picking.type"].search(
                 [
                     ("code", "=", "stock_request_order"),
+                    "|",
                     ("warehouse_id", "=", vals["warehouse_id"]),
+                    ("warehouse_id", "=", False),
                 ],
                 limit=1,
             )
@@ -107,7 +109,6 @@ class StockRequest(models.Model):
         else:
             return {}
 
-    @api.multi
     def _action_confirm(self):
         for req in self:
             if (not req.procurement_group_id) and req.fsm_order_id:

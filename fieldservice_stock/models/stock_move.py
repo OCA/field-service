@@ -10,16 +10,20 @@ class StockMove(models.Model):
 
     def prepare_equipment_values(self, move_line):
         return {
-            "name": "{} ({})".format(move_line.product_id.name, move_line.lot_id.name),
+            "name": "{} ({})".format(
+                move_line.product_id.name, move_line.lot_id.name
+            ),
             "product_id": move_line.product_id.id,
             "lot_id": move_line.lot_id.id,
-            "location_id": move_line.move_id.stock_request_ids.fsm_order_id.location_id.id,
-            "current_location_id": move_line.move_id.stock_request_ids.fsm_order_id.location_id.id,
+            "location_id": \
+                move_line.move_id.stock_request_ids.fsm_order_id.location_id.id,
+            "current_location_id": \
+                move_line.move_id.stock_request_ids.fsm_order_id.location_id.id,
             "current_stock_location_id": move_line.location_dest_id.id,
         }
 
-    def _action_done(self):
-        res = super()._action_done()
+    def _action_done(self, cancel_backorder=False):
+        res = super()._action_done(cancel_backorder)
         for rec in self:
             if (
                 rec.state == "done"
@@ -28,5 +32,7 @@ class StockMove(models.Model):
             ):
                 for line in rec.move_line_ids:
                     vals = self.prepare_equipment_values(line)
-                    line.lot_id.fsm_equipment_id = rec.env["fsm.equipment"].create(vals)
+                    line.lot_id.fsm_equipment_id = rec.env[
+                        "fsm.equipment"
+                    ].create(vals)
         return res
