@@ -63,7 +63,6 @@ class FSMOrder(models.Model):
         "stock.move", "fsm_order_id", string="Operations", domain=_get_move_domain
     )
 
-    @api.multi
     def action_request_submit(self):
         for rec in self:
             if not rec.stock_request_ids:
@@ -76,7 +75,6 @@ class FSMOrder(models.Model):
                         line.action_submit()
             rec.request_stage = "submitted"
 
-    @api.multi
     def action_request_cancel(self):
         for rec in self:
             if not rec.stock_request_ids:
@@ -89,7 +87,6 @@ class FSMOrder(models.Model):
                         line.action_cancel()
             rec.request_stage = "cancel"
 
-    @api.multi
     def action_request_draft(self):
         for rec in self:
             if not rec.stock_request_ids:
@@ -120,7 +117,6 @@ class FSMOrder(models.Model):
                 ]
             )
 
-    @api.multi
     def action_view_delivery(self):
         """
         This function returns an action that display existing delivery orders
@@ -141,7 +137,6 @@ class FSMOrder(models.Model):
             action["res_id"] = delivery_ids[0]
         return action
 
-    @api.multi
     def action_view_returns(self):
         """
         This function returns an action that display existing return orders

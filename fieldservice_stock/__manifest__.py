@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Stock",
     "summary": "Integrate the logistics operations with Field Service",
-    "version": "12.0.2.2.0",
+    "version": "13.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
@@ -18,12 +18,12 @@
     "data": [
         "security/ir.model.access.csv",
         "data/fsm_stock_data.xml",
-        "views/fsm_territory.xml",
+        "views/fsm_equipment.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",
-        "views/stock.xml",
-        "views/fsm_equipment.xml",
         "views/product_template.xml",
+        "views/res_territory.xml",
+        "views/stock.xml",
         "views/stock_picking_type.xml",
         "views/stock_production_lot.xml",
         "views/stock_request.xml",
@@ -31,5 +31,5 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["brian10048", "wolfhall", "max3903", "smangukiya",],
+    "maintainers": ["brian10048", "wolfhall", "max3903", "smangukiya"],
 }
