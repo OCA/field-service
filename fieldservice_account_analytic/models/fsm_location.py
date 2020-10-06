@@ -23,7 +23,7 @@ class FSMLocation(models.Model):
         required=True,
         ondelete="restrict",
         auto_join=True,
-        track_visibility="onchange",
+        tracking=True,
         default=get_default_customer,
     )
 
