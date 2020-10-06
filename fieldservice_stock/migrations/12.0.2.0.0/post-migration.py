@@ -6,8 +6,10 @@ def migrate(env, version):
     if not version:
         return
 
-    env.execute("""
+    env.execute(
+        """
         UPDATE stock_picking_type
         SET create_fsm_equipment = 'true'
         WHERE code = 'outgoing';
-    """)
+    """
+    )

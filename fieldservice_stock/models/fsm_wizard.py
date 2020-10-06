@@ -5,9 +5,9 @@ from odoo import models
 
 
 class FSMWizard(models.TransientModel):
-    _inherit = 'fsm.wizard'
+    _inherit = "fsm.wizard"
 
     def _prepare_fsm_location(self, partner):
         res = super()._prepare_fsm_location(partner)
-        res['inventory_location_id'] = partner.property_stock_customer.id
+        res["inventory_location_id"] = partner.property_stock_customer.id
         return res
