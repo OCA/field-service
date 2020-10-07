@@ -5,10 +5,10 @@ from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
     # Geometry Field
-    shape = fields.GeoPoint('Coordinate')
+    shape = fields.GeoPoint("Coordinate")
 
     @api.model
     def create(self, vals):
@@ -16,7 +16,7 @@ class FSMOrder(models.Model):
         res.create_geometry()
         return res
 
-    @api.onchange('location_id')
+    @api.onchange("location_id")
     def onchange_location_id(self):
         res = super().onchange_location_id()
         if self.location_id:
@@ -27,9 +27,9 @@ class FSMOrder(models.Model):
         for order in self:
             lat = order.location_id.partner_latitude
             lng = order.location_id.partner_longitude
-            point = fields.GeoPoint.from_latlon(cr=order.env.cr,
-                                                latitude=lat,
-                                                longitude=lng)
+            point = fields.GeoPoint.from_latlon(
+                cr=order.env.cr, latitude=lat, longitude=lng
+            )
             order.shape = point
 
     @api.multi
