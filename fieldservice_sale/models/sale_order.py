@@ -146,58 +146,92 @@ class SaleOrder(models.Model):
             self.order_line._field_service_generation()
         return result
 
-    def action_invoice_create(self, grouped=False, final=False):
-        invoice_ids = super().action_invoice_create(grouped, final)
-        result = invoice_ids or []
+    def _create_invoices(self, grouped=False, final=False):
+        Invoices = self.env["account.move"]
+        InvoiceLines = self.env["account.move.line"]
+        invoice_ids = super()._create_invoices(grouped, final)
+        result = invoice_ids or Invoices
 
-        for invoice_id in invoice_ids:
-            invoice = self.env["account.invoice"].browse(invoice_id)
+        for invoice in invoice_ids:
             # check for invoice lines with product
             # field_service_tracking = line
-            lines_by_line = self.env["account.invoice.line"].search(
+            lines_by_line = InvoiceLines.search(
                 [
-                    ("invoice_id", "=", invoice_id),
+                    ("move_id", "=", invoice.id),
                     ("product_id.field_service_tracking", "=", "line"),
+                    ("exclude_from_invoice_tab", "=", False),
                 ]
             )
             if len(lines_by_line) > 0:
+                # Create a new invoice for each "line" product
                 line_count = len(invoice.invoice_line_ids)
                 for i in range(len(lines_by_line)):
                     duplicate = True
                     if ((i + 1) == len(lines_by_line)) and ((i + 1) == line_count):
+                        # Don't create a new invoice if there's only 1 product
                         duplicate = False
                     inv = invoice
                     if duplicate:
                         inv = invoice.copy()
-                        inv.write({"invoice_line_ids": [(6, 0, [])]})
-                        inv.compute_taxes()
-                        invoice.compute_taxes()
-                        lines_by_line[i].invoice_id = inv.id
-                        result.append(inv.id)
+                        inv.with_context(check_move_validity=False).write(
+                            {'invoice_line_ids': [(6, 0, [])]}
+                        )
+                        lines_by_line[i].with_context(
+                            check_move_validity=False
+                        ).move_id = inv.id
+                        inv.with_context(
+                            check_move_validity=False
+                        )._recompute_dynamic_lines(
+                            recompute_all_taxes=True, recompute_tax_base_amount=True
+                        )
+                        invoice.with_context(
+                            check_move_validity=False
+                        )._recompute_dynamic_lines(
+                            recompute_all_taxes=True, recompute_tax_base_amount=True
+                        )
+                        result |= inv
                     inv.fsm_order_ids = [(4, lines_by_line[i].fsm_order_id.id)]
             # check for invoice lines with product
             # field_service_tracking = sale
-            lines_by_sale = self.env["account.invoice.line"].search(
+            lines_by_sale = InvoiceLines.search(
                 [
-                    ("invoice_id", "=", invoice_id),
+                    ("move_id", "=", invoice.id),
                     ("product_id.field_service_tracking", "=", "sale"),
+                    ("exclude_from_invoice_tab", "=", False),
                 ]
             )
             if len(lines_by_sale) > 0:
+                # Create a new invoice for "sale" products
                 fsm_orders = self.env["fsm.order"].search(
                     [("sale_id", "in", self.ids), ("sale_line_id", "=", False)]
                 )
                 if len(lines_by_sale) == len(invoice.invoice_line_ids):
+                    # Don't create a new invoice if all products are "sale"
                     invoice.fsm_order_ids = [
                         (4, fsm_order.id) for fsm_order in fsm_orders
                     ]
                 elif len(invoice.invoice_line_ids) > len(lines_by_sale):
                     new = invoice.copy()
-                    new.write({"invoice_line_ids": [(6, 0, [])]})
-                    lines_by_sale.write({"invoice_id": new.id})
-                    new.compute_taxes()
-                    invoice.compute_taxes()
-                    result.append(new.id)
+                    new.fsm_order_ids = [
+                        (4, fsm_order.id) for fsm_order in fsm_orders
+                    ]
+                    new.with_context(check_move_validity=False).write(
+                        {'invoice_line_ids': [(6, 0, [])]}
+                    )
+                    lines_by_sale.with_context(check_move_validity=False).write(
+                        {'move_id': new.id}
+                    )
+                    new.with_context(
+                        check_move_validity=False
+                    )._recompute_dynamic_lines(
+                        recompute_all_taxes=True, recompute_tax_base_amount=True
+                    )
+                    invoice.with_context(
+                        check_move_validity=False
+                    )._recompute_dynamic_lines(
+                        recompute_all_taxes=True, recompute_tax_base_amount=True
+                    )
+                    result |= new
         return result
 
     def action_view_fsm_order(self):
