@@ -6,9 +6,6 @@ from odoo import fields, models
 
 class FsmOrderType(models.Model):
 
-    _inherit = 'fsm.order.type'
+    _inherit = "fsm.order.type"
 
-    internal_type = fields.Selection(
-        selection_add=[('repair',
-                        'Repair')],
-    )
+    internal_type = fields.Selection(selection_add=[("repair", "Repair")],)
