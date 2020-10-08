@@ -42,7 +42,6 @@ class FSMLocation(models.Model):
             for order in orders:
                 order.create_geometry()
 
-    @api.multi
     def write(self, vals):
         res = super(FSMLocation, self).write(vals)
         if ("partner_latitude" in vals) and ("partner_longitude" in vals):

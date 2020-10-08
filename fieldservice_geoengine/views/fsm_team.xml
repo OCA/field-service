@@ -5,7 +5,7 @@
     >
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_mode">kanban,timeline,tree,geoengine,form,calendar</field>
+        <field name="view_mode">kanban,tree,geoengine,form,calendar</field>
         <field name="context">{'default_team_id': active_id}</field>
         <field name="domain">[('team_id', '=', active_id)]</field>
     </record>
