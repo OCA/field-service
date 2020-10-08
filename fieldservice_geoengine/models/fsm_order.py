@@ -32,7 +32,6 @@ class FSMOrder(models.Model):
             )
             order.shape = point
 
-    @api.multi
     def geo_localize(self):
         for order in self:
             order.location_id.partner_id.geo_localize()
