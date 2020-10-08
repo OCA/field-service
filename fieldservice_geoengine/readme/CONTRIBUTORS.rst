@@ -5,3 +5,4 @@
 * Michael Allen <mallen@opensourceintegrators.com>
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Murtuza Saleh <murtuza.saleh@serpentcs.com>
+* Jevin Dement <jdement@opensourceintegrators.com>
