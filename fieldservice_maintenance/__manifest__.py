@@ -4,11 +4,11 @@
 {
     "name": "Field Service - Maintenance",
     "summary": "Integrate Field Service orders with maintenance requests",
-    "version": "12.0.1.2.0",
+    "version": "13.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": ["fieldservice", "maintenance",],
+    "depends": ["fieldservice", "maintenance"],
     "data": [
         "data/fsm_order_type.xml",
         "views/maintenance_equipment_view.xml",
@@ -19,6 +19,6 @@
     "pre_init_hook": "pre_init_hook",
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["smangukiya", "max3903", "bodedra",],
+    "maintainers": ["smangukiya", "max3903", "bodedra"],
     "installable": True,
 }
