@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="open_view_skill_form" model="ir.actions.act_window">
+        <field name="name">Skills</field>
+        <field name="res_model">hr.skill</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     <menuitem
         id="menu_hr_skill"
         name="Skills"
-        action="hr_skill.open_view_skill_form"
+        action="open_view_skill_form"
         parent="fieldservice.menu_fsm_config_person"
         sequence="80"
     />
