@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
-    carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method")
+    carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method")

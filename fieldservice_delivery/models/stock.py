@@ -5,15 +5,15 @@ from odoo import fields, models
 
 
 class StockMove(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
     def _get_new_picking_values(self):
         vals = super(StockMove, self)._get_new_picking_values()
-        vals['carrier_id'] = self.fsm_order_id.carrier_id.id
+        vals["carrier_id"] = self.fsm_order_id.carrier_id.id
         return vals
 
 
 class ProcurementGroup(models.Model):
-    _inherit = 'procurement.group'
+    _inherit = "procurement.group"
 
-    carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method")
+    carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method")
