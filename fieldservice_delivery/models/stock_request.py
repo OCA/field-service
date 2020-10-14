@@ -11,7 +11,5 @@ class StockRequest(models.Model):
 
     def _prepare_procurement_values(self, group_id=False):
         res = super()._prepare_procurement_values(group_id=group_id)
-        res.update(
-            {"carrier_id": self.fsm_order_id.carrier_id.id or False,}
-        )
+        res.update({"carrier_id": self.fsm_order_id.carrier_id.id or False})
         return res
