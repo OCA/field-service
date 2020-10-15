@@ -335,6 +335,10 @@ class FSMLocation(models.Model):
             return action
 
     @api.multi
+    def geo_localize(self):
+        return self.partner_id.geo_localize()
+
+    @api.multi
     def _compute_equipment_ids(self):
         for loc in self:
             equipment = self.comp_count(0, 1, loc)
