@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Order Types">
                 <field name="name"/>
+                <field name="internal_type"/>
             </tree>
         </field>
     </record>
@@ -21,6 +22,9 @@
                 <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
+                    <group>
+                        <field name="internal_type"/>
+                    </group>
                 </sheet>
             </form>
         </field>

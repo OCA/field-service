@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-02-05 22:13+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2020-06-17 22:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -30,30 +30,31 @@ msgstr "Contato"
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_type.py:16
 #, python-format
 msgid "FSM Location"
-msgstr "Localização do FSM"
+msgstr "Localização do FSM (Field Service Management)"
 
 #. module: fieldservice_partner_multi_relation
 #: model:ir.model,name:fieldservice_partner_multi_relation.model_fsm_location
 msgid "Field Service Location"
-msgstr "Localização do Serviço de Campo"
+msgstr "Local do Serviço de Campo"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:102
 #, python-format
 msgid "Left Partner not type Company"
-msgstr ""
+msgstr "Parceiro à Esquerda, não Tipo Empresa"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:105
 #, python-format
 msgid "Left Partner not type FSM Location"
 msgstr ""
+"Parceiro à Esquerda, não Tipo Localização no FSM (Field Service Management)"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:99
 #, python-format
 msgid "Left Partner not type Person"
-msgstr ""
+msgstr "Parceiro à Esquerda, não Tipo Pessoa"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_type.py:14
@@ -83,19 +84,20 @@ msgstr "Relações"
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:112
 #, python-format
 msgid "Right Partner not type Company"
-msgstr ""
+msgstr "Parceiro à Direita, não Tipo Empresa"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:116
 #, python-format
 msgid "Right Partner not type FSM Location"
 msgstr ""
+"Parceiro à Direita, não Tipo Localização no FSM (Field Service Management)"
 
 #. module: fieldservice_partner_multi_relation
 #: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:109
 #, python-format
 msgid "Right Partner not type Person"
-msgstr ""
+msgstr "Parceiro à Direita, não Tipo Pessoa"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_tenant_org
@@ -135,7 +137,7 @@ msgstr "[C+L] paga as faturas para"
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_org
 msgid "[L+C] employs"
-msgstr ""
+msgstr "[L + C] emprega"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_org
@@ -160,17 +162,17 @@ msgstr "[L+C] é propriedade de"
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_org
 msgid "[L+C] whose primary contact"
-msgstr ""
+msgstr "[L + C] cujo contato principal"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_org
 msgid "[L+C] whose secondary contact"
-msgstr ""
+msgstr "[L + C] cujo contato secundário"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_loc
 msgid "[L+L] employs"
-msgstr ""
+msgstr "[L + L] emprega"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_loc
@@ -230,17 +232,17 @@ msgstr "[L+L] paga as faturas para"
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_loc
 msgid "[L+L] whose primary contact"
-msgstr ""
+msgstr "[L + L] cujo contato principal"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_loc
 msgid "[L+L] whose secondary contact"
-msgstr ""
+msgstr "[L + L] cujo contato secundário"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_per
 msgid "[L+P] employs"
-msgstr ""
+msgstr "[L + P] emprega"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_per
@@ -265,12 +267,12 @@ msgstr "[L+P] é propriedade de"
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_per
 msgid "[L+P] whose primary contact"
-msgstr ""
+msgstr "[L + P] cujo contato principal"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_per
 msgid "[L+P] whose secondary contact"
-msgstr ""
+msgstr "[L + P] cujo contato secundário"
 
 #. module: fieldservice_partner_multi_relation
 #: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_tenant_per
