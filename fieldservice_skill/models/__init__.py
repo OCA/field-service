@@ -6,3 +6,4 @@ from . import fsm_person
 from . import fsm_category
 from . import fsm_order
 from . import fsm_template
+from . import hr_skill
