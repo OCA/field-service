@@ -7,7 +7,7 @@
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/ursais/osi-addons",
-    "depends": ["fieldservice", "fieldservice_substatus", "base_automation"],
+    "depends": ["fieldservice", "base_automation"],
     "data": [
         "data/ir_server_action.xml",
         "data/fsm_stage.xml",
