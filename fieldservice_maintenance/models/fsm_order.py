@@ -30,7 +30,8 @@ class FSMOrder(models.Model):
                             'maintenance_type': 'corrective',
                             'maintenance_team_id': team_id,
                             'schedule_date': order.request_early,
-                            'description': order.description
+                            'description': order.description,
+                            'fsm_order_id': order.id,
                         })
                     order.request_id = request_id
         return order
