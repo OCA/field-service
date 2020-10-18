@@ -26,12 +26,14 @@ class MaintenanceRequest(models.Model):
                 order="id desc", limit=1)
             if not fsm_equipment.current_location_id.id:
                 raise UserError(_(
-                    'Missing current location on FSM equipment %s') % self.name)
+                    'Missing current location on FSM equipment %s')
+                    % fsm_equipment.name)
             fsm_order_id = self.env['fsm.order'].create(
                 {'type': fsm_order_type.id,
                  'equipment_id': fsm_equipment.id,
                  'location_id': fsm_equipment.current_location_id.id,
-                 'request_id': request.id
+                 'request_id': request.id,
+                 'description': request.description,
                  })
             request.fsm_order_id = fsm_order_id
         return request
