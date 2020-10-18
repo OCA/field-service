@@ -42,14 +42,14 @@ addon | version | summary
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 12.0.1.2.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.1.0 | Manage FSM Purchases
-[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.2.0 | Manage recurring Field Service orders
+[fieldservice_recurring](fieldservice_recurring/) | 12.0.1.3.0 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.1.0 | Integrate Field Service orders with MRP repair orders
 [fieldservice_route](fieldservice_route/) | 12.0.2.3.0 | Organize the routes of each day.
 [fieldservice_route_account](fieldservice_route_account/) | 12.0.1.1.1 | Field Service Route Account
 [fieldservice_route_stock](fieldservice_route_stock/) | 12.0.1.2.1 | Field Service Route Stock
 [fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.2.1.1 | This module allows you to set the vehicle on the routes and day routes.
 [fieldservice_sale](fieldservice_sale/) | 12.0.2.5.1 | Sell field services.
-[fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.1.0 | Sell recurring field services.
+[fieldservice_sale_recurring](fieldservice_sale_recurring/) | 12.0.1.2.0 | Sell recurring field services.
 [fieldservice_sale_stock](fieldservice_sale_stock/) | 12.0.1.0.4 | Sell stockable items linked to field service orders.
 [fieldservice_size](fieldservice_size/) | 12.0.0.1.1 | Manage Sizes for Field Service Locations and Orders
 [fieldservice_skill](fieldservice_skill/) | 12.0.1.1.0 | Manage your Field Service workers skills
