@@ -37,7 +37,7 @@ addon | version | summary
 [fieldservice_isp_account](fieldservice_isp_account/) | 12.0.2.3.2 | Invoice Field Service orders based on employee time or contractor costs
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 12.0.1.1.1 | Field Service workflow for Internet Service Providers
 [fieldservice_location_builder](fieldservice_location_builder/) | 12.0.1.1.0 | Adds a tool to help build out Location Hierarchies
-[fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.2.0 | Integrate Field Service orders with maintenance requests
+[fieldservice_maintenance](fieldservice_maintenance/) | 12.0.1.2.1 | Integrate Field Service orders with maintenance requests
 [fieldservice_mgmtsystem_nonconformity](fieldservice_mgmtsystem_nonconformity/) | 12.0.1.1.0 | Bridge module between Field Service and Non Conformities
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 12.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 12.0.1.2.0 | Create field service orders from a project or project task
