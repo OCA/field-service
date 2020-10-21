@@ -15,9 +15,7 @@ class FSMOrder(models.Model):
         # if FSM order with type maintenance is create then
         # create maintenance request
         order = super(FSMOrder, self).create(vals)
-        maintenance = self.env.ref(
-            'fieldservice_maintenance.fsm_order_type_maintenance')
-        if order.type == maintenance:
+        if order.type.internal_type == 'maintenance':
             if order.equipment_id and not order.request_id:
                 equipment = order.equipment_id
                 maintenance_equipment_id = equipment.maintenance_equipment_id
@@ -32,7 +30,8 @@ class FSMOrder(models.Model):
                             'maintenance_type': 'corrective',
                             'maintenance_team_id': team_id,
                             'schedule_date': order.request_early,
-                            'description': order.description
+                            'description': order.description,
+                            'fsm_order_id': order.id,
                         })
                     order.request_id = request_id
         return order

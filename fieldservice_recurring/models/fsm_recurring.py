@@ -55,6 +55,8 @@ class FSMRecurringOrder(models.Model):
                               default=lambda self: self._default_team_id(),
                               index=True, required=True,
                               track_visibility='onchange')
+    person_id = fields.Many2one('fsm.person', string='Assigned To',
+                                index=True, track_visibility='onchange')
 
     @api.multi
     @api.depends('fsm_order_ids')
@@ -158,13 +160,16 @@ class FSMRecurringOrder(models.Model):
             'category_ids': [(
                 6, False,
                 self.fsm_order_template_id.category_ids.ids)],
-            # 'company_id': self.company_id.id,
+            'company_id': self.company_id.id,
+            'person_id': self.person_id.id,
         }
 
     def _create_order(self, date):
         self.ensure_one()
         vals = self._prepare_order_values(date)
-        return self.env['fsm.order'].create(vals)
+        order = self.env['fsm.order'].create(vals)
+        order._onchange_template_id()
+        return order
 
     @api.multi
     def _generate_orders(self):

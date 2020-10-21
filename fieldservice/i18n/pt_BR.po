@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-17 16:19+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
+"PO-Revision-Date: 2020-07-02 00:19+0000\n"
+"Last-Translator: Daniel Reis <dgreis@sapo.pt>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -48,10 +48,29 @@ msgid "# of Owned Locations"
 msgstr "# de Locais Próprios"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:407
+#: code:addons/fieldservice/models/fsm_order.py:410
 #, python-format
 msgid "%s is a holiday (%s)."
 msgstr "%s é um feriado (%s)."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "<span class=\"oe_inline\"> ( On  </span>"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#, fuzzy
+#| msgid "<span>View</span>"
+msgid "<span> : Lat : </span>"
+msgstr "<span>Visualizar</span>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#, fuzzy
+#| msgid "<span>Reporting</span>"
+msgid "<span> ;  Long:  </span>"
+msgstr "<span>Relatórios</span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -280,7 +299,7 @@ msgstr "Auto-preencher os equipamentos na ordem"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Auto-fill the workers on the location"
-msgstr "Auto-encher os trabalhadores no local"
+msgstr "Auto-preencher os trabalhadores na localização"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_equipments_on_order
@@ -400,7 +419,7 @@ msgstr ""
 "de um Estágio FSM existente."
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:249
+#: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "Cannot move to completed from Kanban"
 msgstr "Não é possível mover para status concluído direto do Kanban"
@@ -440,6 +459,11 @@ msgstr "Canais"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check collected payments"
 msgstr "Verificar pagamentos efetuados"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check if data is input on certain fields at a specific stage"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_company
@@ -1108,6 +1132,11 @@ msgid "FS Order #"
 msgstr "Ordem SC #"
 
 #. module: fieldservice
+#: selection:fsm.order.type,internal_type:0
+msgid "FSM"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 msgid "FSM Equipment Name"
 msgstr "Nome do Equipamento FSM"
@@ -1307,16 +1336,37 @@ msgid "Geo Latitude"
 msgstr "Latitude Geográfica"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#, fuzzy
+#| msgid "Vendor Location"
+msgid "Geo Location"
+msgstr "Localização de Fornecedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_longitude
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_longitude
 msgid "Geo Longitude"
-msgstr "Geo Logintude"
+msgstr "Longitude Geográfica"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#, fuzzy
+#| msgid "Geolocation Date"
+msgid "Geolocate"
+msgstr "Data de Geolocalização"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#, fuzzy
+#| msgid "Geolocation Date"
+msgid "Geolocation"
+msgstr "Data de Geolocalização"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__date_localization
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__date_localization
 msgid "Geolocation Date"
-msgstr "Dados de Geolocalização"
+msgstr "Data de Geolocalização"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
@@ -1469,6 +1519,14 @@ msgid "Internal Reference"
 msgstr "Referência Interna"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
+#, fuzzy
+#| msgid "Internal Reference"
+msgid "Internal Type"
+msgstr "Referência Interna"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn
 msgid "Invoice"
@@ -1536,7 +1594,7 @@ msgstr "É um Trabalhador de SC"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier
 msgid "Is a Vendor"
-msgstr "É um Vendedor"
+msgstr "É um Fornecedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__is_closed
@@ -1657,6 +1715,13 @@ msgstr "Última Data de Correspondência das Faturas e Pagamentos"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
 msgid "Latest Request Date"
 msgstr "Data da última solicitação"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Link FSM orders to maintenance requests"
+msgid "Link FSM Orders to Non-Conformities"
+msgstr "Vincular os ordens do FSM às requisições de manutenção"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_repair
@@ -1782,6 +1847,7 @@ msgid "Main Attachment"
 msgstr "Anexo Principal"
 
 #. module: fieldservice
+#: selection:fsm.order.type,internal_type:0
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Maintenance"
 msgstr "Manutenção"
@@ -1853,6 +1919,14 @@ msgstr "Gerenciar Categorias de Trabalhadores de Serviço de Campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Activities"
+msgstr "Gerenciar Atividades da Ordem"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_mgmtsystem_nonconformity
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+#, fuzzy
+#| msgid "Manage Order Activities"
+msgid "Manage Order Non-Conformities"
 msgstr "Gerenciar Atividades da Ordem"
 
 #. module: fieldservice
@@ -2134,8 +2208,8 @@ msgstr "Necessidade Programada"
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:86
-#: code:addons/fieldservice/models/fsm_order.py:207
-#: code:addons/fieldservice/models/fsm_order.py:209
+#: code:addons/fieldservice/models/fsm_order.py:210
+#: code:addons/fieldservice/models/fsm_order.py:212
 #, python-format
 msgid "New"
 msgstr "Novo"
@@ -2613,6 +2687,13 @@ msgstr "Contagem de Relações"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
 msgid "Relation valid"
 msgstr "Relação válida"
+
+#. module: fieldservice
+#: selection:fsm.order.type,internal_type:0
+#, fuzzy
+#| msgid "MRP Repair"
+msgid "Repair"
+msgstr "MRP Reparo"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
@@ -3454,6 +3535,12 @@ msgid "Utility field to express amount currency"
 msgstr "Campo Utilitário para expressar o valor da moeda"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stage_validation
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Validate data at each stage"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Veículos"
@@ -3530,13 +3617,13 @@ msgstr ""
 "entender o significado e o propósito do estágio."
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_location.py:346
+#: code:addons/fieldservice/models/fsm_location.py:350
 #, python-format
 msgid "You cannot create recursive location."
 msgstr "Você não pode criar localização recursiva."
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:264
+#: code:addons/fieldservice/models/fsm_order.py:267
 #, python-format
 msgid "You cannot delete this order."
 msgstr "Você não pode excluir essa ordem."

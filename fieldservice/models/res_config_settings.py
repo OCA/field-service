@@ -69,12 +69,16 @@ class ResConfigSettings(models.TransientModel):
         string='Manage sizes for orders and locations')
     module_fieldservice_skill = fields.Boolean(
         string='Manage Skills')
+    module_fieldservice_stage_validation = fields.Boolean(
+        string='Validate data at each stage')
     module_fieldservice_stock = fields.Boolean(
         string='Use Odoo Logistics')
     module_fieldservice_vehicle = fields.Boolean(
         string='Manage Vehicles')
     module_fieldservice_substatus = fields.Boolean(
         string='Manage Sub-Statuses')
+    module_fieldservice_mgmtsystem_nonconformity = fields.Boolean(
+        string='Manage Order Non-Conformities')
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(

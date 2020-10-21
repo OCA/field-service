@@ -3,13 +3,12 @@
 {
     'name': 'FSM Stage Server Action',
     'summary': 'Execute server actions when reaching a Field Service stage',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'website': 'https://github.com/ursais/osi-addons',
     'depends': [
         'fieldservice',
-        'fieldservice_substatus',
         'base_automation'
     ],
     'data': [
