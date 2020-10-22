@@ -143,9 +143,9 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def _isp_account_installed(self):
-        """ Checks if module is installed which will require more
-            logic for the tests.
-            :return Boolean indicating the installed status of the module
+        """Checks if module is installed which will require more
+        logic for the tests.
+        :return Boolean indicating the installed status of the module
         """
         result = False
         isp_account_module = self.env["ir.module.module"].search(
@@ -156,9 +156,9 @@ class TestFSMSaleOrder(TestFSMSale):
         return result
 
     def _fulfill_order(self, order):
-        """ Extra logic required to fulfill FSM order status and prevent
-            validation error when attempting to complete the FSM order
-            :return FSM Order with additional fields set
+        """Extra logic required to fulfill FSM order status and prevent
+        validation error when attempting to complete the FSM order
+        :return FSM Order with additional fields set
         """
         analytic_account = self.env.ref("analytic.analytic_administratif")
         self.test_location.analytic_account_id = analytic_account.id
@@ -177,9 +177,9 @@ class TestFSMSaleOrder(TestFSMSale):
         return order
 
     def test_sale_order_1(self):
-        """ Test the sales order 1 flow from sale to invoice.
-            - One FSM order linked to the Sale Order should be created.
-            - One Invoice linked to the FSM Order should be created.
+        """Test the sales order 1 flow from sale to invoice.
+        - One FSM order linked to the Sale Order should be created.
+        - One Invoice linked to the FSM Order should be created.
         """
         # Confirm the sale order
         self.sale_order_1.action_confirm()
@@ -207,7 +207,6 @@ class TestFSMSaleOrder(TestFSMSale):
         fsm_order.action_complete()
 
         # Invoice the order
-        Invoice = self.env["account.move"]
         invoice = self.sale_order_1._create_invoices()
         # 1 invoices created
         self.assertEqual(
@@ -219,10 +218,10 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def test_sale_order_2(self):
-        """ Test the sales order 2 flow from sale to invoice.
-            - One FSM order linked to the Sale Order Line should be created.
-            - The FSM Order should update qty_delivered when completed.
-            - One Invoice linked to the FSM Order should be created.
+        """Test the sales order 2 flow from sale to invoice.
+        - One FSM order linked to the Sale Order Line should be created.
+        - The FSM Order should update qty_delivered when completed.
+        - One Invoice linked to the FSM Order should be created.
         """
         sol = self.sol_service_per_line_1
         # Confirm the sale order
@@ -255,7 +254,6 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
         # Invoice the order
-        Invoice = self.env["account.move"]
         invoice = self.sale_order_2._create_invoices()
         # 1 invoice created
         self.assertEqual(
@@ -267,10 +265,10 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def test_sale_order_3(self):
-        """ Test sale order 3 flow from sale to invoice.
-            - An FSM order should be created for each Sale Order Line.
-            - The FSM Order should update qty_delivered when completed.
-            - An Invoice linked to each FSM Order should be created.
+        """Test sale order 3 flow from sale to invoice.
+        - An FSM order should be created for each Sale Order Line.
+        - The FSM Order should update qty_delivered when completed.
+        - An Invoice linked to each FSM Order should be created.
         """
         sol1 = self.sol_service_per_line_2
         sol2 = self.sol_service_per_line_3
@@ -318,7 +316,6 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
         # Invoice the sale order
-        Invoice = self.env["account.invoice"]
         invoices = self.sale_order_3._create_invoices()
         # 2 invoices created
         self.assertEqual(
@@ -337,10 +334,10 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def test_sale_order_4(self):
-        """ Test sale order 4 flow from sale to invoice.
-            - Two FSM orders linked to the Sale Order Lines should be created.
-            - One FSM order linked to the Sale Order should be created.
-            - Three Invoices should be created (One for each FSM Order).
+        """Test sale order 4 flow from sale to invoice.
+        - Two FSM orders linked to the Sale Order Lines should be created.
+        - One FSM order linked to the Sale Order should be created.
+        - Three Invoices should be created (One for each FSM Order).
         """
         sol1 = self.sol_service_per_line_4
         sol2 = self.sol_service_per_line_5
@@ -406,7 +403,6 @@ class TestFSMSaleOrder(TestFSMSale):
         # qty_delivered does not update for FSM orders linked only to the sale
 
         # Invoice the sale order
-        Invoice = self.env["account.move"]
         invoices = self.sale_order_4._create_invoices()
         # 3 invoices created
         self.assertEqual(
