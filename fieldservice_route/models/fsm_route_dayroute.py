@@ -1,7 +1,8 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from datetime import datetime
+import pytz
+from datetime import datetime, time
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -10,12 +11,13 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 class FSMRouteDayRoute(models.Model):
     _name = 'fsm.route.dayroute'
     _description = 'Field Service Route Dayroute'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = 'date desc'
 
     def _default_team_id(self):
-        team_ids = self.env['fsm.team'].\
-            search([('company_id', 'in', (self.env.user.company_id.id,
-                                          False))],
-                   order='sequence asc', limit=1)
+        team_ids = self.env['fsm.team'].search([
+            ('company_id', 'in', (self.env.user.company_id.id, False))
+        ], order='sequence asc', limit=1)
         if team_ids:
             return team_ids[0]
         else:
@@ -30,15 +32,22 @@ class FSMRouteDayRoute(models.Model):
 
     name = fields.Char(string='Name', required=True, copy=False,
                        default=lambda self: _('New'))
-    person_id = fields.Many2one('fsm.person', string='Person')
+    person_id = fields.Many2one('fsm.person', string='Person',
+                                track_visibility='onchange')
     route_id = fields.Many2one('fsm.route', string='Route')
-    date = fields.Date(string='Date', required=True)
+    date = fields.Date(string='Date', required=True,
+                       track_visibility='onchange')
     team_id = fields.Many2one('fsm.team', string='Team',
                               default=lambda self: self._default_team_id())
     stage_id = fields.Many2one('fsm.stage', string='Stage',
                                domain="[('stage_type', '=', 'route')]",
                                index=True, copy=False,
+                               track_visibility='onchange',
                                default=lambda self: self._default_stage_id())
+    is_closed = fields.Boolean(related='stage_id.is_closed')
+    date_close = fields.Datetime()
+    company_id = fields.Many2one(
+        'res.company', default=lambda s: s.env.user.company_id)
     territory_id = fields.Many2one(
         'fsm.territory', related='route_id.territory_id', string='Territory')
     longitude = fields.Float("Longitude")
@@ -78,6 +87,15 @@ class FSMRouteDayRoute(models.Model):
             self.date_start_planned = datetime.combine(
                 self.date, datetime.strptime("8:00:00", '%H:%M:%S').time())
 
+    @api.multi
+    def write(self, values):
+        if values.get('stage_id', False) and not \
+                self.env.context.get('is_writing_flag', False):
+            new_stage = self.env['fsm.stage'].browse(values.get('stage_id'))
+            if new_stage.is_closed:
+                values.update({'date_close': fields.Datetime.now()})
+        return super().write(values)
+
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
@@ -88,8 +106,8 @@ class FSMRouteDayRoute(models.Model):
             # TODO: Use the worker timezone and working schedule
             date = vals.get('date')
             if type(vals.get('date')) == str:
-                date = datetime.strptime(vals.get('date'),
-                                         DEFAULT_SERVER_DATE_FORMAT).date()
+                date = datetime.strptime(
+                    vals.get('date'), DEFAULT_SERVER_DATE_FORMAT).date()
             vals.update({
                 'date_start_planned': datetime.combine(
                     date, datetime.strptime("8:00:00", '%H:%M:%S').time())
@@ -99,20 +117,53 @@ class FSMRouteDayRoute(models.Model):
     @api.constrains('date', 'route_id')
     def check_day(self):
         for rec in self:
-            if rec.date and rec.route_id:
-                # Get the day of the week: Monday -> 0, Sunday -> 6
-                day_index = rec.date.weekday()
-                day = self.env.ref(
-                    'fieldservice_route.fsm_route_day_' + str(day_index))
-                if day.id not in rec.route_id.day_ids.ids:
+            if rec.date:
+                user_tz = self.env.user.tz or pytz.utc
+                local = pytz.timezone(user_tz)
+                midnight = datetime.combine(rec.date, time())
+                utc_midnight = local.localize(midnight).astimezone(pytz.utc)
+                holidays = self.env['resource.calendar.leaves'].search([
+                    ('date_from', '<=', utc_midnight),
+                    ('date_to', '>=', utc_midnight),
+                ])
+                if holidays:
                     raise ValidationError(_(
-                        "The route %s does not run on %s!" %
-                        (rec.route_id.name, day.name)))
+                        "%s is a holiday (%s). No route is running." %
+                        (rec.date, holidays[0].name)))
+                if rec.route_id:
+                    run_day = rec.route_id.run_on(rec.date)
+                    if not run_day:
+                        raise ValidationError(_(
+                            "The route %s does not run on %s!" %
+                            (rec.route_id.name, rec.date)))
 
     @api.constrains('route_id', 'max_order', 'order_count')
     def check_capacity(self):
         for rec in self:
-            if rec.route_id and rec.order_count > rec.max_order:
+            if rec.max_order and rec.order_count > rec.max_order:
                 raise ValidationError(_(
                     "The day route is exceeding the maximum number of "
                     "orders of the route."))
+
+    @api.constrains('route_id', 'date')
+    def check_max_dayroute(self):
+        for rec in self:
+            if rec.route_id:
+                # TODO: use a single read_group instead of a search in a loop
+                dayroutes = self.search([
+                    ('route_id', '=', rec.route_id.id),
+                    ('date', '=', rec.date),
+                ])
+                if len(dayroutes) > rec.route_id.max_dayroute:
+                    raise ValidationError(_(
+                        "The route %s only runs %s time(s) a day." %
+                        (rec.route_id.name, rec.route_id.max_dayroute)))
+
+    @api.constrains('stage_id', 'order_ids')
+    def check_complete_orders(self):
+        for rec in self:
+            if rec.stage_id.is_closed:
+                if any(order.stage_id.is_closed is False for order in
+                       rec.order_ids):
+                    raise ValidationError(_(
+                        "You must close (complete or cancel) all orders."))

@@ -33,8 +33,9 @@ class FSMOrder(models.Model):
         date = False
         if vals.get('scheduled_date_start'):
             if type(vals.get('scheduled_date_start')) == str:
-                date = datetime.strptime(vals.get('scheduled_date_start'),
-                                         DEFAULT_SERVER_DATETIME_FORMAT).date()
+                date = datetime.strptime(
+                    vals.get('scheduled_date_start'),
+                    DEFAULT_SERVER_DATETIME_FORMAT).date()
             elif isinstance(vals.get('scheduled_date_start'), datetime):
                 date = vals.get('scheduled_date_start').date()
         return {
@@ -46,13 +47,22 @@ class FSMOrder(models.Model):
         }
 
     def _get_dayroute_domain(self, values):
-        domain = [('person_id', '=', values['person_id']),
-                  ('date', '=', values['date']),
-                  ('order_remaining', '>', 0)]
-        return domain
+        return [
+            ('stage_id.is_closed', '=', False),
+            ('person_id', '=', values['person_id']),
+            ('date', '=', values['date']),
+            ('order_remaining', '>', 0)
+        ]
 
     def _can_create_dayroute(self, values):
-        return values['person_id'] and values['date']
+        res = values['person_id'] and values['date']
+        if self.fsm_route_id:
+            dayroutes = self.env['fsm.route.dayroute'].search([
+                ('date', '=', values['date']),
+                ('route_id', '=', self.fsm_route_id.id),
+            ])
+            res = len(dayroutes) < self.fsm_route_id.max_dayroute
+        return res
 
     def _manage_fsm_route(self, vals):
         dayroute_obj = self.env['fsm.route.dayroute']
