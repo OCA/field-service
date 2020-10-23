@@ -5,6 +5,7 @@
 from datetime import datetime
 
 from odoo.tests.common import TransactionCase
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DSDF
 
 
 class FSMOrderRouteCase(TransactionCase):
@@ -15,7 +16,7 @@ class FSMOrderRouteCase(TransactionCase):
         self.fsm_route_obj = self.env["fsm.route"]
         self.test_person = self.env.ref("fieldservice.test_person")
         self.test_location = self.env.ref("fieldservice.test_location")
-        self.date = datetime.now()
+        self.date = datetime.now().strftime(DSDF) or datetime.now()
         self.days = [
             self.env.ref("fieldservice_route.fsm_route_day_0").id,
             self.env.ref("fieldservice_route.fsm_route_day_1").id,

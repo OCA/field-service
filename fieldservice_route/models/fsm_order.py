@@ -16,7 +16,6 @@ class FSMOrder(models.Model):
 
     dayroute_id = fields.Many2one("fsm.route.dayroute", string="Day Route", index=True)
     fsm_route_id = fields.Many2one(related="location_id.fsm_route_id", string="Route")
-
     person_id = fields.Many2one(
         "fsm.person", string="Assigned To", index=True, default=_get_default_person
     )
@@ -84,7 +83,6 @@ class FSMOrder(models.Model):
             vals = self._manage_fsm_route(vals)
         return super().create(vals)
 
-    @api.multi
     def write(self, vals):
         for rec in self:
             if vals.get("route_id", False):
