@@ -9,7 +9,7 @@ class FSMRoute(models.Model):
     _description = "Field Service Route"
 
     name = fields.Char("Name", required=True)
-    territory_id = fields.Many2one("fsm.territory", string="Territory")
+    territory_id = fields.Many2one("res.territory", string="Territory")
     fsm_person_id = fields.Many2one("fsm.person", string="Person")
     day_ids = fields.Many2many("fsm.route.day", string="Days")
     max_order = fields.Integer(
