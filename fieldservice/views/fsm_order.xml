@@ -15,6 +15,7 @@
                         groups="fieldservice.group_fsm_dispatcher"
                         attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
                     />
+                    <field name="is_button" invisible="1" />
                     <button
                         id="action_cancel"
                         name="action_cancel"
@@ -363,14 +364,12 @@
                 />
                 <filter
                     string="Due Within 7 Days"
-                    domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=7)).strftime('%Y-%m-%d')),
-                                ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
+                    domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=7)).strftime('%Y-%m-%d')), ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
                     name="order_upcoming_all"
                 />
                 <filter
                     string="Due Within 30 Days"
-                    domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=30)).strftime('%Y-%m-%d')),
-                                ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
+                    domain="[('scheduled_date_start','&lt;=',(context_today()+relativedelta(days=30)).strftime('%Y-%m-%d')), ('create_date','&gt;=',context_today().strftime('%Y-%m-%d'))]"
                     name="order_upcoming_all"
                 />
                 <separator />
