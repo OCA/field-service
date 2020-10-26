@@ -53,9 +53,8 @@ You need to add attribute mention below with the tag <timeline> as base element.
   condition (JS syntax) is met.
 * custom_color (optional): it allows to set custom color for fsm.stages
   example custom_color = "true". And there is minor condition to follow to
-  implement this as. Define any one stage color condition like 
+  implement this as. Define any one stage color condition like
   colors="#ffffff:stage_id=='New';"
-
 
 Usage
 =====
@@ -81,7 +80,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_geoengine%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_geoengine%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -103,6 +102,7 @@ Contributors
 * Michael Allen <mallen@opensourceintegrators.com>
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Murtuza Saleh <murtuza.saleh@serpentcs.com>
+* Jevin Dement <jdement@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
