@@ -60,9 +60,9 @@ class FSMOrder(models.Model):
         self.ensure_one()
         if "stage_id" in init_values:
             if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_completed").id:
-                return "fieldservice.mt_order_completed"
+                return self.env.ref("fieldservice.mt_order_completed")
             if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_cancelled").id:
-                return "fieldservice.mt_order_cancelled"
+                return self.env.ref("fieldservice.mt_order_cancelled")
         return super()._track_subtype(init_values)
 
     stage_id = fields.Many2one(
