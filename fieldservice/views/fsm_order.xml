@@ -6,22 +6,31 @@
         <field name="arch" type="xml">
             <form string="Order">
                 <header>
-                    <button id="action_complete"
-                            name="action_complete" string="Complete"
-                            class="oe_highlight"
-                            type="object"
-                            groups="fieldservice.group_fsm_user"
-                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}" />
-                    <field name="is_button" invisible="1"/>
-                    <button id="action_cancel"
-                            name="action_cancel" string="Cancel Order"
-                            type="object"
-                            groups="fieldservice.group_fsm_dispatcher"
-                            attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"/>
-                    <field name="stage_id" widget="statusbar"
-                           options="{'fold_field': 'fold'}"
-                           domain="[('stage_type', '=', 'order'),
-                                    ('team_ids', 'in', (team_id, False))]"/>
+                    <button
+                        id="action_complete"
+                        name="action_complete"
+                        string="Complete"
+                        class="oe_highlight"
+                        type="object"
+                        groups="fieldservice.group_fsm_user"
+                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
+                    />
+                    <field name="is_button" invisible="1" />
+                    <button
+                        id="action_cancel"
+                        name="action_cancel"
+                        string="Cancel Order"
+                        type="object"
+                        groups="fieldservice.group_fsm_dispatcher"
+                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
+                    />
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold'}"
+                        domain="[('stage_type', '=', 'order'),
+                                    ('team_ids', 'in', (team_id, False))]"
+                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
@@ -305,55 +314,75 @@
         <field name="model">fsm.order</field>
         <field name="arch" type="xml">
             <search string="Orders">
-                <filter string="My Orders"
-                        domain="[('person_id.partner_id.user_ids', '=', uid)]"
-                        name="my_orders"/>
-                <separator/>
-                <field name="name"
-                       filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
-                       string="FSM Order Name"/>
-                <field name="location_id"/>
-                <field name="branch_id"/>
-                <field name="district_id"/>
-                <field name="region_id"/>
-                <field name="team_id" groups="fieldservice.group_fsm_team"/>
-                <field name="person_ids"/>
-                <separator/>
-                <filter string="To Do"
-                        domain="[('stage_id.is_closed', '=', False)]"
-                        name="todo"/>
-                <filter string="Unassigned"
-                        domain="[('person_id', '=', False)]"
-                        name="unassigned"/>
-                <filter string="Unscheduled"
-                        domain="[('scheduled_date_start', '=', False)]"
-                        name="unscheduled"/>
-                <filter string="Done"
-                        domain="[('stage_id.is_closed', '=', True)]"
-                        name="done"/>
-                <separator/>
-                <filter string="Today Orders"
+                <filter
+                    string="My Orders"
+                    domain="[('person_id.partner_id.user_ids', '=', uid)]"
+                    name="my_orders"
+                />
+                <separator />
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    string="FSM Order Name"
+                />
+                <field name="location_id" />
+                <field name="branch_id" />
+                <field name="district_id" />
+                <field name="region_id" />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
+                <field name="person_ids" />
+                <separator />
+                <filter
+                    string="To Do"
+                    domain="[('stage_id.is_closed', '=', False)]"
+                    name="todo"
+                />
+                <filter
+                    string="Unassigned"
+                    domain="[('person_id', '=', False)]"
+                    name="unassigned"
+                />
+                <filter
+                    string="Unscheduled"
+                    domain="[('scheduled_date_start', '=', False)]"
+                    name="unscheduled"
+                />
+                <filter
+                    string="Done"
+                    domain="[('stage_id.is_closed', '=', True)]"
+                    name="done"
+                />
+                <separator />
+                <filter
+                    string="Today Orders"
                     domain="[
                     ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
                     ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
                     ]"
-                    name="order_today"/>
-                <filter string="Future Orders"
+                    name="order_today"
+                />
+                <filter
+                    string="Future Orders"
                     domain="[('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0))))]"
-                    name="order_upcoming_all"/>
-                <filter string="Due Within 7 Days"
+                    name="order_upcoming_all"
+                />
+                <filter
+                    string="Due Within 7 Days"
                     domain="[
                     ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
                     ]"
-                    name="order_upcoming_week"/>
-                <filter string="Due Within 30 Days"
+                    name="order_upcoming_week"
+                />
+                <filter
+                    string="Due Within 30 Days"
                     domain="[
                     ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
                     ]"
-                    name="order_upcoming_month"/>
-                <separator/>
+                    name="order_upcoming_month"
+                />
+                <separator />
                 <group expand="0" string="Group By">
                     <filter
                         name="territory_id"
