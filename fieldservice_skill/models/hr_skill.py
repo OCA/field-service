@@ -7,4 +7,7 @@ from odoo import fields, models
 class HRSkill(models.Model):
     _inherit = "hr.skill"
 
-    color = fields.Integer(string="Color Index", default=10,)
+    color = fields.Integer(
+        string="Color Index",
+        default=10,
+    )
