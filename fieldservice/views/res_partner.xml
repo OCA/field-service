@@ -27,7 +27,7 @@
                     name="action_open_owned_locations"
                     icon="fa-map-marker"
                     context="{'default_owner_id': active_id}"
-                    groups="fieldservice.group_fsm_user"
+                    groups="fieldservice.group_fsm_user_own"
                 >
                     <field
                         string="Owned Locations"
@@ -37,7 +37,7 @@
                 </button>
             </div>
             <notebook position="inside">
-                <page string="Field Service" groups="fieldservice.group_fsm_user">
+                <page string="Field Service" groups="fieldservice.group_fsm_user_own">
                     <group>
                         <group>
                             <field name="fsm_location" readonly="1" />
