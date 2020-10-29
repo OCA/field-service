@@ -18,7 +18,7 @@
         <field name="name">res.partner.fsm.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
-        <field name="groups_id" eval="[(4, ref('group_fsm_user'))]" />
+        <field name="groups_id" eval="[(4, ref('group_fsm_user_own'))]" />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button
@@ -28,7 +28,7 @@
                     name="action_open_owned_locations"
                     icon="fa-map-marker"
                     context="{'default_owner_id': active_id}"
-                    groups="fieldservice.group_fsm_user"
+                    groups="fieldservice.group_fsm_user_own"
                 >
                     <field
                         string="Owned Locations"

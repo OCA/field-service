@@ -12,7 +12,7 @@
                         string="Complete"
                         class="oe_highlight"
                         type="object"
-                        groups="fieldservice.group_fsm_user"
+                        groups="fieldservice.group_fsm_user_own"
                         attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
                     />
                     <field name="is_button" invisible="1" />
