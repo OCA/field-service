@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-fieldservice_crm',
         'odoo13-addon-fieldservice_geoengine',
         'odoo13-addon-fieldservice_recurring',
+        'odoo13-addon-fieldservice_skill',
         'odoo13-addon-fieldservice_vehicle',
     ],
     classifiers=[
