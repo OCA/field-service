@@ -17,6 +17,7 @@ addon | version | summary
 [fieldservice_crm](fieldservice_crm/) | 13.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_geoengine](fieldservice_geoengine/) | 13.0.1.0.0 | Display Field Service locations on a map with Open Street Map
 [fieldservice_recurring](fieldservice_recurring/) | 13.0.1.0.1 | Manage recurring Field Service orders
+[fieldservice_skill](fieldservice_skill/) | 13.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_vehicle](fieldservice_vehicle/) | 13.0.1.0.0 | Manage Field Service vehicles and assign drivers
 
 [//]: # (end addons)
