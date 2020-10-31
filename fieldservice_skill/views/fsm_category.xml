@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Field Service Category Form Extended-->
+    <record id="fsm_category_form" model="ir.ui.view">
+        <field name="name">fsm.category.form</field>
+        <field name="model">fsm.category</field>
+        <field name="inherit_id" ref="fieldservice.fsm_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Skills">
+                    <field name="skill_ids" nolabel="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
