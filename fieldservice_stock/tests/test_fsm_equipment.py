@@ -36,7 +36,6 @@ class TestFSMEquipment(TransactionCase):
     def test_onchange_product(self):
         equipment = self.equipment
         equipment._onchange_product()
-        # self.assertFalse(equipment.lot_id)
         self.assertFalse(equipment.current_stock_location_id)
 
     def test_compute_current_stock_loc_id(self):
