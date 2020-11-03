@@ -30,7 +30,6 @@ class FSMEquipment(models.Model):
     @api.onchange('product_id')
     def _onchange_product(self):
         for equipment in self:
-            # self.lot_id = False
             self.current_stock_location_id = False
 
     @api.model
