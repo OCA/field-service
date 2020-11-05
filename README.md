@@ -20,7 +20,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.2.17.0 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 12.0.2.18.0 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.1.0 | Allow workers to collect payments from the order.
@@ -44,7 +44,7 @@ addon | version | summary
 [fieldservice_purchase](fieldservice_purchase/) | 12.0.1.1.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 12.0.1.3.0 | Manage recurring Field Service orders
 [fieldservice_repair](fieldservice_repair/) | 12.0.1.1.0 | Integrate Field Service orders with MRP repair orders
-[fieldservice_route](fieldservice_route/) | 12.0.2.3.0 | Organize the routes of each day.
+[fieldservice_route](fieldservice_route/) | 12.0.2.4.0 | Organize the routes of each day.
 [fieldservice_route_account](fieldservice_route_account/) | 12.0.1.1.1 | Field Service Route Account
 [fieldservice_route_stock](fieldservice_route_stock/) | 12.0.1.2.1 | Field Service Route Stock
 [fieldservice_route_vehicle](fieldservice_route_vehicle/) | 12.0.2.1.1 | This module allows you to set the vehicle on the routes and day routes.
