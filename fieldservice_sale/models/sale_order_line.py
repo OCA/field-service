@@ -82,6 +82,8 @@ class SaleOrderLine(models.Model):
             # create fsm_order
             values = so_line._field_create_fsm_order_prepare_values()
             fsm_order = self.env['fsm.order'].sudo().create(values)
+            if fsm_order.template_id.team_id:
+                fsm_order.team_id = fsm_order.template_id.team_id
             so_line.fsm_order_id = fsm_order.id
             # post message on SO
             msg_body = _(
@@ -131,7 +133,7 @@ class SaleOrderLine(models.Model):
         for rec in self:
             if rec.product_id.field_service_tracking == 'sale':
                 sale = rec.order_id
-                so_fo_mapping = sale._field_find_fsm_order()
+                so_fo_mapping = sale._field_find_fsm_order(rec)
                 rec.fsm_order_id = so_fo_mapping[rec.order_id.id].id
             if rec.product_id.field_service_tracking == 'line':
                 rec._field_find_fsm_order()
