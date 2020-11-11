@@ -1,5 +1,6 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
+# Copyright (C) 2020 raphael.reverdy@akretion.com
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 
@@ -29,7 +30,10 @@ class SaleOrderLine(models.Model):
     def _compute_qty_delivered_method(self):
         super(SaleOrderLine, self)._compute_qty_delivered_method()
         for line in self:
-            if not line.is_expense and line.product_id.field_service_tracking == "line":
+            if not line.is_expense and line.product_id.field_service_tracking in (
+                "sale",
+                "line",
+            ):
                 line.qty_delivered_method = "field_service"
 
     @api.depends("fsm_order_id.stage_id")
@@ -139,7 +143,7 @@ class SaleOrderLine(models.Model):
             if rec.product_id.field_service_tracking == "line":
                 rec._field_find_fsm_order()
 
-    def _prepare_invoice_line(self, qty):
-        res = super()._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self):
+        res = super()._prepare_invoice_line()
         res.update({"fsm_order_id": self.fsm_order_id.id})
         return res

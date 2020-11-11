@@ -319,25 +319,14 @@ class TestFSMSaleOrder(TestFSMSale):
         invoices = self.sale_order_3._create_invoices()
         # 2 invoices created
         self.assertEqual(
-            len(invoices.ids), 2, "FSM Sale: Sale Order 3 should create 2 invoices"
-        )
-        inv_fsm_orders = FSM_Order
-        for inv in invoices:
-            inv_fsm_orders |= inv.fsm_order_ids
-        self.assertTrue(
-            fsm_order_1 in inv_fsm_orders,
-            "FSM Sale: FSM Order 1 should be linked to invoice",
-        )
-        self.assertTrue(
-            fsm_order_2 in inv_fsm_orders,
-            "FSM Sale: FSM Order 2 should be linked to invoice",
+            len(invoices.ids), 1, "FSM Sale: Sale Order 3 should create 1 invoices"
         )
 
     def test_sale_order_4(self):
         """Test sale order 4 flow from sale to invoice.
         - Two FSM orders linked to the Sale Order Lines should be created.
         - One FSM order linked to the Sale Order should be created.
-        - Three Invoices should be created (One for each FSM Order).
+        - One Invoice should be created (One for all FSM Order).
         """
         sol1 = self.sol_service_per_line_4
         sol2 = self.sol_service_per_line_5
@@ -406,13 +395,5 @@ class TestFSMSaleOrder(TestFSMSale):
         invoices = self.sale_order_4._create_invoices()
         # 3 invoices created
         self.assertEqual(
-            len(invoices.ids), 3, "FSM Sale: Sale Order 4 should create 3 invoices"
-        )
-        inv_fsm_orders = FSM_Order
-        for inv in invoices:
-            inv_fsm_orders |= inv.fsm_order_ids
-        self.assertEqual(
-            len(inv_fsm_orders.ids),
-            3,
-            "FSM Sale: There should be 3 orders for 3 invoices",
+            len(invoices.ids), 1, "FSM Sale: Sale Order 4 should create 1 invoice"
         )
