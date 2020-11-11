@@ -10,19 +10,21 @@ class AccountMove(models.Model):
 
     fsm_order_ids = fields.Many2many(
         "fsm.order",
-        "fsm_order_account_move_rel",
-        "invoice_id",
-        "fsm_order_id",
-        string="FSM Orders",
+        compute="_compute_fsm_order_ids",
+        string="Field Service orders associated to this invoice",
     )
     fsm_order_count = fields.Integer(
-        string="FSM Order Count", compute="_compute_fsm_order_count", readonly=True
+        string="FSM Orders", compute="_compute_fsm_order_ids"
     )
 
-    @api.depends("fsm_order_ids")
-    def _compute_fsm_order_count(self):
-        for invoice in self:
-            invoice.fsm_order_count = len(invoice.fsm_order_ids)
+    @api.depends("line_ids")
+    def _compute_fsm_order_ids(self):
+        for order in self:
+            orders = self.env["fsm.order"].search(
+                [("invoice_lines", "in", order.line_ids.ids)]
+            )
+            order.fsm_order_ids = orders
+            order.fsm_order_count = len(order.fsm_order_ids)
 
     def action_view_fsm_orders(self):
         action = self.env.ref("fieldservice.action_fsm_dash_order").read()[0]
