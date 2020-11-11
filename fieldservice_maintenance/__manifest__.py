@@ -11,10 +11,12 @@
     "depends": ["fieldservice", "maintenance"],
     "data": [
         "data/fsm_order_type.xml",
+        "security/ir.model.access.csv",
         "views/maintenance_equipment_view.xml",
         "views/maintenance_request_view.xml",
         "views/fsm_equipment_view.xml",
         "views/fsm_order_view.xml",
+        "wizard/maintenance_equipment_wizard.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "license": "AGPL-3",
