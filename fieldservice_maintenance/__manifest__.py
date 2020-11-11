@@ -17,9 +17,4 @@
         "views/fsm_order_view.xml",
         "wizard/maintenance_equipment_wizard.xml",
     ],
-    "pre_init_hook": "pre_init_hook",
-    "license": "AGPL-3",
-    "development_status": "Beta",
-    "maintainers": ["smangukiya", "max3903", "bodedra"],
-    "installable": True,
 }
