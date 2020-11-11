@@ -6,27 +6,45 @@ from odoo import api, fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    invoice_ids = fields.Many2many(
-        "account.move",
-        "fsm_order_account_invoice_rel",
+    invoice_lines = fields.Many2many(
+        "account.move.line",
+        "fsm_order_account_move_line_rel",
         "fsm_order_id",
-        "invoice_id",
-        string="Invoices/Bills",
-    )
-    invoice_count = fields.Integer(
-        string="Invoice Count", compute="_compute_account_invoice_count", readonly=True
+        "account_move_line_id",
+        string="Invoice Lines",
+        copy=False,
     )
 
-    @api.depends("invoice_ids")
-    def _compute_account_invoice_count(self):
+    invoice_ids = fields.Many2many(
+        "account.move",
+        string="Invoices",
+        compute="_compute_get_invoiced",
+        readonly=True,
+        copy=False,
+    )
+
+    invoice_count = fields.Integer(
+        string="Invoice Count",
+        compute="_compute_get_invoiced",
+        readonly=True,
+        copy=False,
+    )
+
+    @api.depends("invoice_lines")
+    def _compute_get_invoiced(self):
         for order in self:
-            order.invoice_count = len(order.invoice_ids)
+            invoices = order.invoice_lines.mapped("move_id").filtered(
+                lambda r: r.type in ("out_invoice", "out_refund")
+            )
+            order.invoice_ids = invoices
+            order.invoice_count = len(invoices)
 
     def action_view_invoices(self):
         action = self.env.ref("account.action_move_out_invoice_type").read()[0]
-        if self.invoice_count > 1:
-            action["domain"] = [("id", "in", self.invoice_ids.ids)]
-        elif self.invoice_ids:
+        invoices = self.mapped("invoice_ids")
+        if len(invoices) > 1:
+            action["domain"] = [("id", "in", invoices.ids)]
+        elif invoices:
             action["views"] = [(self.env.ref("account.view_move_form").id, "form")]
-            action["res_id"] = self.invoice_ids[0].id
+            action["res_id"] = invoices.ids[0]
         return action
