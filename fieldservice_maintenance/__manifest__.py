@@ -11,7 +11,6 @@
     "depends": ["fieldservice", "maintenance"],
     "data": [
         "data/fsm_order_type.xml",
-        "security/ir.model.access.csv",
         "views/maintenance_equipment_view.xml",
         "views/maintenance_request_view.xml",
         "views/fsm_equipment_view.xml",
