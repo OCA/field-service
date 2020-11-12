@@ -5,7 +5,7 @@ from odoo import _, api, models
 from odoo.exceptions import UserError
 
 
-class MainenanceEquipmentWizard(models.Model):
+class MainenanceEquipmentWizard(models.TransientModel):
     _name = 'maintenance.equipment.wizard'
 
     @api.multi
@@ -13,7 +13,7 @@ class MainenanceEquipmentWizard(models.Model):
         maintenance_equpment_ids = self.env['maintenance.equipment'].\
             browse(self._context.get('active_ids', []))
         for maintenance_id in maintenance_equpment_ids:
-            if not maintenance_id.serial_no or not maintenance_id.serial_no:
+            if not maintenance_id.product_id or not maintenance_id.serial_no:
                 raise UserError(_("To convert maintenance equipment %s \
                                    to an FSM Equipment, \
                                    you must assign a Product and \
