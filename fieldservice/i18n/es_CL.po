@@ -792,11 +792,6 @@ msgid "Create a new team"
 msgstr "Crear un nuevo equipo"
 
 #. module: fieldservice
-#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_schedule
-msgid "Create a schedule."
-msgstr "Crea un horario."
-
-#. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_tag
 msgid "Create a tag."
 msgstr "Crear una etiqueta."
@@ -2812,7 +2807,6 @@ msgid "Scheduled duration of the work in hours"
 msgstr "Duración programada del trabajo en horas"
 
 #. module: fieldservice
-#: model:ir.actions.act_window,name:fieldservice.action_fsm_schedule
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_schedules
 msgid "Schedules"
 msgstr "Horarios"
@@ -3545,6 +3539,11 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_user_own
+msgid "User (only own documents)"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_ids
 msgid "Users"
@@ -3694,16 +3693,6 @@ msgid "branch"
 msgstr "sucursal"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_form_view
-msgid "schedule"
-msgstr "calendario"
-
-#. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_tree_view
-msgid "schedules"
-msgstr "calendarios"
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
 msgid "tag"
 msgstr "etiqueta"
@@ -3722,6 +3711,15 @@ msgstr "plantilla"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
 msgid "templates"
 msgstr "plantillas"
+
+#~ msgid "Create a schedule."
+#~ msgstr "Crea un horario."
+
+#~ msgid "schedule"
+#~ msgstr "calendario"
+
+#~ msgid "schedules"
+#~ msgstr "calendarios"
 
 #~ msgid "Choose Color"
 #~ msgstr "Elige Color"

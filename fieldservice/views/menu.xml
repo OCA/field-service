@@ -5,7 +5,7 @@
     <menuitem id="root"
               name="Field Service"
               sequence="10"
-              groups="group_fsm_user"
+              groups="group_fsm_user_own"
               web_icon="fieldservice,static/description/icon.png"/>
     <menuitem id="dashboard" name="Dashboard" sequence="10" parent="root"/>
     <menuitem id="operations" name="Operations" sequence="20" parent="root"/>
@@ -28,7 +28,7 @@
               parent="dashboard"
               sequence="10"
               groups="group_fsm_team"/>
-              
+
     <menuitem id="menu_fsm_dash_order"
               name="Orders"
               action="action_fsm_dash_order"
@@ -81,7 +81,7 @@
               action="action_fsm_location_person"
               parent="data"
               sequence="85"/>
-    
+
     <menuitem id="menu_fsm_template"
               name="Templates"
               action="action_fsm_template"
@@ -102,7 +102,7 @@
               parent="reporting"
               sequence="40"
               groups="group_fsm_equipment"/>
-    
+
     <menuitem id="menu_fsm_report_location"
               name="Locations"
               action="action_fsm_report_location"
@@ -118,7 +118,7 @@
 
     <menuitem id="menu_fsm_schedules"
               name="Schedules"
-              action="action_fsm_schedule"
+              action="resource.action_resource_calendar_form"
               parent="config"
               sequence="20"/>
 

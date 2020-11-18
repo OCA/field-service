@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-01 16:00+0000\n"
+"PO-Revision-Date: 2020-11-16 04:36+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -56,21 +56,17 @@ msgstr "%s es una vacación (%s)."
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "<span class=\"oe_inline\"> ( On  </span>"
-msgstr ""
+msgstr "<span class=\"oe_inline\"> ( En  </span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
-#| msgid "<span>View</span>"
 msgid "<span> : Lat : </span>"
-msgstr "<span>Vistas</span>"
+msgstr "<span> : Lat : </span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
-#| msgid "<span>Reporting</span>"
 msgid "<span> ;  Long:  </span>"
-msgstr "<span>Informes</span>"
+msgstr "<span> ;  Long:  </span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -791,11 +787,6 @@ msgid "Create a new team"
 msgstr "Crear un nuevo equipo"
 
 #. module: fieldservice
-#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_schedule
-msgid "Create a schedule."
-msgstr "Crear una agenda."
-
-#. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_tag
 msgid "Create a tag."
 msgstr "Crear una etiqueta."
@@ -1343,10 +1334,8 @@ msgstr "Geo Latitud"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
-#| msgid "Vendor Location"
 msgid "Geo Location"
-msgstr "Ubicación del Vendedor"
+msgstr "Ubicación Geolocalizada"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_longitude
@@ -1356,17 +1345,13 @@ msgstr "Geo Longitud"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
-#| msgid "Geolocation Date"
 msgid "Geolocate"
-msgstr "Fecha de Geolocalización"
+msgstr "Geolocalizar"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
-#| msgid "Geolocation Date"
 msgid "Geolocation"
-msgstr "Fecha de Geolocalización"
+msgstr "Geolocalización"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__date_localization
@@ -2795,7 +2780,6 @@ msgid "Scheduled duration of the work in hours"
 msgstr "Duración programada del trabajo en horas"
 
 #. module: fieldservice
-#: model:ir.actions.act_window,name:fieldservice.action_fsm_schedule
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_schedules
 msgid "Schedules"
 msgstr "Horarios"
@@ -3526,6 +3510,11 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_user_own
+msgid "User (only own documents)"
+msgstr "Usuario (solo documentos propios)"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_ids
 msgid "Users"
@@ -3673,16 +3662,6 @@ msgid "branch"
 msgstr "sucursal"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_form_view
-msgid "schedule"
-msgstr "horario"
-
-#. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_schedule_tree_view
-msgid "schedules"
-msgstr "horarios"
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
 msgid "tag"
 msgstr "etiqueta"
@@ -3701,3 +3680,12 @@ msgstr "plantilla"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
 msgid "templates"
 msgstr "plantillas"
+
+#~ msgid "Create a schedule."
+#~ msgstr "Crear una agenda."
+
+#~ msgid "schedule"
+#~ msgstr "horario"
+
+#~ msgid "schedules"
+#~ msgstr "horarios"
