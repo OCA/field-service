@@ -9,13 +9,16 @@ class StockMove(models.Model):
     fsm_order_id = fields.Many2one("fsm.order", string="Field Service Order")
 
     def prepare_equipment_values(self, move_line):
-        fsm_order = move_line.move_id.stock_request_ids.fsm_order_id
         return {
             "name": "{} ({})".format(move_line.product_id.name, move_line.lot_id.name),
             "product_id": move_line.product_id.id,
             "lot_id": move_line.lot_id.id,
-            "location_id": fsm_order.location_id.id,
-            "current_location_id": fsm_order.location_id.id,
+            "location_id": (
+                move_line.move_id.stock_request_ids.fsm_order_id.location_id.id
+            ),
+            "current_location_id": (
+                move_line.move_id.stock_request_ids.fsm_order_id.location_id.id
+            ),
             "current_stock_location_id": move_line.location_dest_id.id,
         }
 
