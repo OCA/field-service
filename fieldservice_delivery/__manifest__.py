@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2018, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -10,7 +10,7 @@
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/field-service',
     'depends': [
-        'fieldservice_stock',
+        'fieldservice_stock_request',
         'delivery',
     ],
     'data': [

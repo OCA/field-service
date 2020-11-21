@@ -11,7 +11,7 @@
     'website': 'https://github.com/OCA/field-service',
     'depends': [
         'fieldservice_account',
-        'fieldservice_stock',
+        'fieldservice_stock_request',
         'account_invoice_report_hide_line',
     ],
     'data': [],

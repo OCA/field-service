@@ -23,19 +23,7 @@
                 </button>
             </div>
             <xpath expr="//notebook/page[1]" position="after">
-                <page string="Inventory">
-                    <header>
-                        <button name="action_request_submit"
-                                attrs="{'invisible': [('request_stage', 'not in', ['draft'])]}"
-                                type="object" class="oe_highlight" string="Submit"/>
-                        <button name="action_request_draft" type="object"
-                                attrs="{'invisible': [('request_stage', 'not in', ['cancel'])]}"
-                                class="oe_highlight" string="Set to Draft"/>
-                        <button name="action_request_cancel"
-                                attrs="{'invisible': [('request_stage', 'not in', ['draft','submitted','open'])]}"
-                                type="object" string="Cancel"/>
-                        <field name='request_stage' widget="statusbar"/>
-                    </header>
+                <page string="Inventory" id="stock">
                     <group groups="stock.group_stock_user">
                         <group id="stock-left">
                             <field name="warehouse_id"
@@ -43,32 +31,6 @@
                         </group>
                         <group id="stock-right"></group>
                     </group>
-                    <field name="stock_request_ids" nolabel="1">
-                        <tree editable="bottom">
-                            <field name="name" readonly="1"/>
-                            <field name="product_id"/>
-                            <field name="order_id"/>
-                            <field name="product_uom_id"
-                                   options="{'no_open': True, 'no_create': True}"
-                                   groups="uom.group_uom"/>
-                            <field name="direction" required="1"/>
-                            <field name="route_id"
-                                   options="{'no_create': True}"
-                                   groups="stock.group_stock_multi_locations"
-                                   invisible="1"/>
-                            <field name="route_ids" invisible="1"/>
-                            <field name="product_uom_qty"/>
-                            <field name="qty_in_progress"/>
-                            <field name="qty_done"/>
-                            <field name="expected_date"/>
-                            <field name="picking_policy" invisible="1"/>
-                            <field name="warehouse_id" invisible="1"/>
-                            <field name="location_id" invisible="1"/>
-                            <field name="procurement_group_id" invisible="1"/>
-                            <field name="company_id" invisible="1"/>
-                            <field name="state"/>
-                        </tree>
-                    </field>
                     <field name="move_ids" readonly="1" attrs="{'invisible': [('move_ids', '=', False)]}">
                         <tree decoration-muted="state == 'cancel'" default_order='date_expected, picking_id, sequence' string="Moves">
                             <field name="reference"/>
