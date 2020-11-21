@@ -1,17 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
-
-from odoo.exceptions import UserError
-
-
-REQUEST_STATES = [
-    ('draft', 'Draft'),
-    ('submitted', 'Submitted'),
-    ('open', 'In progress'),
-    ('done', 'Done'),
-    ('cancel', 'Cancelled')]
+from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -29,9 +19,6 @@ class FSMOrder(models.Model):
         return [('picking_id.picking_type_id.code', 'in',
                  ('outgoing', 'incoming'))]
 
-    stock_request_ids = fields.One2many('stock.request', 'fsm_order_id',
-                                        string="Order Lines")
-
     picking_ids = fields.One2many('stock.picking', 'fsm_order_id',
                                   string='Transfers')
     delivery_count = fields.Integer(string='Delivery Orders',
@@ -46,51 +33,9 @@ class FSMOrder(models.Model):
                                    help="Warehouse used to ship the materials")
     return_count = fields.Integer(string='Return Orders',
                                   compute='_compute_picking_ids')
-    request_stage = fields.Selection(REQUEST_STATES, string='Request State',
-                                     default='draft', readonly=True,
-                                     store=True)
     move_ids = fields.One2many(
         'stock.move', 'fsm_order_id', string='Operations',
         domain=_get_move_domain)
-
-    @api.multi
-    def action_request_submit(self):
-        for rec in self:
-            if not rec.stock_request_ids:
-                raise UserError(_('Please create a stock request.'))
-            for line in rec.stock_request_ids:
-                if line.state == 'draft':
-                    if line.order_id:
-                        line.order_id.action_submit()
-                    else:
-                        line.action_submit()
-            rec.request_stage = 'submitted'
-
-    @api.multi
-    def action_request_cancel(self):
-        for rec in self:
-            if not rec.stock_request_ids:
-                raise UserError(_('Please create a stock request.'))
-            for line in rec.stock_request_ids:
-                if line.state in ('draft', 'submitted'):
-                    if line.order_id:
-                        line.order_id.action_cancel()
-                    else:
-                        line.action_cancel()
-            rec.request_stage = 'cancel'
-
-    @api.multi
-    def action_request_draft(self):
-        for rec in self:
-            if not rec.stock_request_ids:
-                raise UserError(_('Please create a stock request.'))
-            for line in rec.stock_request_ids:
-                if line.state == 'cancel':
-                    if line.order_id:
-                        line.order_id.action_draft()
-                    else:
-                        line.action_draft()
-            rec.request_stage = 'draft'
 
     @api.depends('picking_ids')
     def _compute_picking_ids(self):
