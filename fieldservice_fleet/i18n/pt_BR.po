@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_fleet
+# 	* fieldservice_fleet
 #
 msgid ""
 msgstr ""
@@ -17,11 +17,12 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_fleet
-#: code:addons/fieldservice_fleet/wizard/fsm_fleet_wizard.py:39
+#: code:addons/fieldservice_fleet/wizard/fsm_fleet_wizard.py:0
 #, python-format
 msgid "A Field Service Vehicle related to that Fleet Vehicle already exists."
 msgstr ""
-"Um Ve??culo de Servi??o de Campo relacionado a esse Ve??culo de Frota j?? existe."
+"Um Ve??culo de Servi??o de Campo relacionado a esse Ve??culo de Frota j?? "
+"existe."
 
 #. module: fieldservice_fleet
 #: model_terms:ir.ui.view,arch_db:fieldservice_fleet.vehicle_wizard_view
@@ -36,7 +37,8 @@ msgstr "Converter"
 #. module: fieldservice_fleet
 #: model_terms:ir.ui.view,arch_db:fieldservice_fleet.vehicle_wizard_view
 msgid "Convert this vehicle record into a Field Service Vehicle."
-msgstr "Converta este registro do ve??culo em um Ve??culo de Servi??o de Campo."
+msgstr ""
+"Converta este registro do ve??culo em um Ve??culo de Servi??o de Campo."
 
 #. module: fieldservice_fleet
 #: model:ir.actions.act_window,name:fieldservice_fleet.vehicle_fsm_action
@@ -69,11 +71,11 @@ msgid "FSM Fleet Vehicle Conversion"
 msgstr "Convers??o de ve??culo de frota FSM (Field Services Management)"
 
 #. module: fieldservice_fleet
-#: sql_constraint:fsm.vehicle:0
+#: model:ir.model.constraint,message:fieldservice_fleet.constraint_fsm_vehicle_fsm_vehicle_fleet_uniq
 msgid "FSM vehicle can only be linked to one fleet vehicle"
 msgstr ""
-"O ve??culo no FSM (Field Services Management) s?? pode ser vinculado a um "
-"??nico ve??culo da frota"
+"O ve??culo no FSM (Field Services Management) s?? pode ser vinculado a um ??"
+"nico ve??culo da frota"
 
 #. module: fieldservice_fleet
 #: model:ir.model,name:fieldservice_fleet.model_fsm_vehicle
