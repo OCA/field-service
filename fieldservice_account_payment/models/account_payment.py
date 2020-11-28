@@ -36,8 +36,9 @@ class AccountPayment(models.Model):
     @api.depends('invoice_ids.fsm_order_ids')
     def _compute_fsm_order_ids(self):
         fsm_order_ids = []
-        for invoice in self.invoice_ids:
-            if invoice.fsm_order_ids:
-                fsm_order_ids.extend(invoice.fsm_order_ids.ids)
-        if fsm_order_ids:
-            self.fsm_order_ids = [(6, 0, fsm_order_ids)]
+        for rec in self:
+            for invoice in rec.invoice_ids:
+                if invoice.fsm_order_ids:
+                    fsm_order_ids.extend(invoice.fsm_order_ids.ids)
+            if fsm_order_ids:
+                rec.fsm_order_ids = [(6, 0, fsm_order_ids)]
