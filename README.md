@@ -20,6 +20,7 @@ addon | version | summary
 [fieldservice_recurring](fieldservice_recurring/) | 13.0.1.0.1 | Manage recurring Field Service orders
 [fieldservice_skill](fieldservice_skill/) | 13.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 13.0.1.0.0 | Execute server actions when reaching a Field Service stage
+[fieldservice_stage_validation](fieldservice_stage_validation/) | 13.0.1.0.0 | Validate input data when reaching a Field Service stage
 [fieldservice_vehicle](fieldservice_vehicle/) | 13.0.1.0.0 | Manage Field Service vehicles and assign drivers
 
 [//]: # (end addons)
