@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Field Service - Maintenance",
+    "name": "Field Service - Maintenance Stock",
     "summary": "Integrate Field Service orders with maintenance requests",
     "version": "13.0.1.0.0",
     "category": "Field Service",
