@@ -10,7 +10,7 @@ class FSMEquipment(models.Model):
     maintenance_equipment_id = fields.Many2one(
         "maintenance.equipment",
         string="Related Maintenance Equipment",
-        required=True,
+        required=False,
         ondelete="restrict",
         delegate=True,
         auto_join=True,
@@ -19,21 +19,13 @@ class FSMEquipment(models.Model):
 
     @api.model
     def create(self, vals):
-        lot_id = vals.get("lot_id", False)
-        maintenance_equipment_id = self.env["maintenance.equipment"].create(
-            {
-                "name": vals.get("name"),
-                "is_fsm_equipment": True,
-                "note": vals.get("notes", False),
-                "serial_no": lot_id
-                and self.env["stock.production.lot"].browse(lot_id).name,
-                "maintenance_team_id": vals.get("maintenance_team_id", False)
-                or self.env.ref("maintenance.equipment_team_maintenance").id,
-            }
-        )
+        maintenance_equipment_id = self.env["maintenance.equipment"].\
+            create(self._prepare_maintenance_vals(vals))
         if maintenance_equipment_id:
             vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
-        return super().create(vals)
+        res = super().create(vals)
+        maintenance_equipment_id.fsm_equipment_id = res.id
+        return res
 
     def unlink(self):
         equipments = self.mapped("maintenance_equipment_id")
@@ -45,3 +37,14 @@ class FSMEquipment(models.Model):
             if not other:
                 equipment.is_fsm_equipment = False
         return res
+
+    def _prepare_maintenance_vals(self, vals):
+        return {
+            "name": vals.get("name"),
+            "is_fsm_equipment": True,
+            "note": vals.get("notes", False),
+            "serial_no": vals.get("lot_id", False)
+            and self.env["stock.production.lot"].browse(vals.get("lot_id", False)).name,
+            "maintenance_team_id": vals.get("maintenance_team_id", False)
+            or self.env.ref("maintenance.equipment_team_maintenance").id,
+        }

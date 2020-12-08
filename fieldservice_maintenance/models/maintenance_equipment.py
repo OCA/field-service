@@ -8,3 +8,4 @@ class MaintenanceEquipment(models.Model):
     _inherit = "maintenance.equipment"
 
     is_fsm_equipment = fields.Boolean(string="Is a FSM Equipment")
+    fsm_equipment_id = fields.Many2one('fsm.equipment', 'FSM Equipment')
