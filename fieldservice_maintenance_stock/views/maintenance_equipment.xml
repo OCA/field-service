@@ -1,0 +1,15 @@
+<odoo>
+
+   <record id="hr_equipment_view_form_product_lot" model="ir.ui.view">
+        <field name="name">hr.equipment.view.form.product.lot</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form" />
+        <field name="arch" type="xml">
+            <field name="is_fsm_equipment" position="after">
+                <field name="product_id"/>
+                <field name="lot_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
