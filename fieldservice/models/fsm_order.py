@@ -4,7 +4,7 @@
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 from . import fsm_stage
 
@@ -55,6 +55,15 @@ class FSMOrder(models.Model):
     def _get_stage_color(self):
         """ Get stage color"""
         self.custom_color = self.stage_id.custom_color or "#FFFFFF"
+
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if "stage_id" in init_values:
+            if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_completed").id:
+                return self.env.ref("fieldservice.mt_order_completed")
+            if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_cancelled").id:
+                return self.env.ref("fieldservice.mt_order_cancelled")
+        return super()._track_subtype(init_values)
 
     stage_id = fields.Many2one(
         "fsm.stage",
@@ -219,6 +228,10 @@ class FSMOrder(models.Model):
     equipment_ids = fields.Many2many("fsm.equipment", string="Equipments")
     type = fields.Many2one("fsm.order.type", string="Type")
 
+    internal_type = fields.Selection(
+        string="Internal Type", related="type.internal_type"
+    )
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [("stage_type", "=", "order")]
@@ -269,7 +282,15 @@ class FSMOrder(models.Model):
                 ) + timedelta(hours=8)
         return super(FSMOrder, self).create(vals)
 
+    is_button = fields.Boolean(default=False)
+
     def write(self, vals):
+        if vals.get("stage_id", False) and vals.get("is_button", False):
+            vals["is_button"] = False
+        else:
+            stage_id = self.env["fsm.stage"].browse(vals.get("stage_id"))
+            if stage_id == self.env.ref("fieldservice.fsm_stage_completed"):
+                raise UserError(_("Cannot move to completed from Kanban"))
         self._calc_scheduled_dates(vals)
         res = super(FSMOrder, self).write(vals)
         return res
@@ -334,7 +355,10 @@ class FSMOrder(models.Model):
 
     def action_complete(self):
         return self.write(
-            {"stage_id": self.env.ref("fieldservice.fsm_stage_completed").id}
+            {
+                "stage_id": self.env.ref("fieldservice.fsm_stage_completed").id,
+                "is_button": True,
+            }
         )
 
     def action_cancel(self):
@@ -359,12 +383,14 @@ class FSMOrder(models.Model):
             self.scheduled_date_end = str(date_to_with_delta)
 
     def copy_notes(self):
+        old_desc = self.description
         self.description = ""
+        self.location_directions = ""
         if self.type and self.type.name not in ["repair", "maintenance"]:
             for equipment_id in self.equipment_ids:
                 if equipment_id:
-                    if equipment_id.notes is not False:
-                        if self.description is not False:
+                    if equipment_id.notes:
+                        if self.description:
                             self.description = (
                                 self.description + equipment_id.notes + "\n "
                             )
@@ -372,27 +398,21 @@ class FSMOrder(models.Model):
                             self.description = equipment_id.notes + "\n "
         else:
             if self.equipment_id:
-                if self.equipment_id.notes is not False:
-                    if self.description is not False:
+                if self.equipment_id.notes:
+                    if self.description:
                         self.description = (
                             self.description + self.equipment_id.notes + "\n "
                         )
                     else:
                         self.description = self.equipment_id.notes + "\n "
         if self.location_id:
-            s = self.location_id.direction
-            if s is not False and s != "<p><br></p>":
-                s = s.replace("<p>", "")
-                s = s.replace("<br>", "")
-                s = s.replace("</p>", "\n")
-                if self.location_directions is not False:
-                    self.location_directions = (
-                        self.location_directions + "\n" + s + "\n"
-                    )
-                else:
-                    self.location_directions = s + "\n "
+            self.location_directions = self._get_location_directions(self.location_id)
         if self.template_id:
             self.todo = self.template_id.instructions
+        if self.description:
+            self.description += "\n" + old_desc
+        else:
+            self.description = old_desc
 
     @api.onchange("location_id")
     def onchange_location_id(self):
@@ -413,6 +433,38 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.hours
             self.copy_notes()
-            self.type = self.template_id.type_id
+            if self.template_id.type_id:
+                self.type = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
+
+    def _get_location_directions(self, location_id):
+        self.location_directions = ""
+        s = self.location_id.direction or ""
+        parent_location = self.location_id.fsm_parent_id
+        # ps => Parent Location Directions
+        # s => String to Return
+        while parent_location.id is not False:
+            ps = parent_location.direction
+            if ps:
+                s += parent_location.direction
+            parent_location = parent_location.fsm_parent_id
+        return s
+
+    @api.constrains("scheduled_date_start")
+    def check_day(self):
+        for rec in self:
+            if rec.scheduled_date_start:
+                holidays = self.env["resource.calendar.leaves"].search(
+                    [
+                        ("date_from", ">=", rec.scheduled_date_start),
+                        ("date_to", "<=", rec.scheduled_date_start),
+                    ]
+                )
+                if holidays:
+                    raise ValidationError(
+                        _(
+                            "%s is a holiday (%s)."
+                            % (rec.scheduled_date_start.date(), holidays[0].name)
+                        )
+                    )

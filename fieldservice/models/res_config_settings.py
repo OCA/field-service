@@ -28,6 +28,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_account = fields.Boolean(string="Invoice your FSM orders")
     module_fieldservice_activity = fields.Boolean(string="Manage FSM Activities")
     module_fieldservice_agreement = fields.Boolean(string="Manage Agreements")
+    module_fieldservice_change_management = fields.Boolean(string="Change Management")
     module_fieldservice_crm = fields.Boolean(string="CRM")
     module_fieldservice_distribution = fields.Boolean(string="Manage Distribution")
     module_fieldservice_fleet = fields.Boolean(
@@ -43,9 +44,11 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_maintenance = fields.Boolean(
         string="Link FSM orders to maintenance requests"
     )
+    module_fieldservice_project = fields.Boolean(string="Projects and Tasks")
     module_fieldservice_purchase = fields.Boolean(
         string="Manage subcontractors and their pricelists"
     )
+    module_fieldservice_recurring = fields.Boolean(string="Manage Recurring Orders")
     module_fieldservice_repair = fields.Boolean(
         string="Link FSM orders to MRP Repair orders"
     )
@@ -64,8 +67,6 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
     module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
     module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
-    module_fieldservice_recurring = fields.Boolean(string="Manage Recurring Orders")
-    module_fieldservice_project = fields.Boolean(string="Projects and Tasks")
     module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
@@ -79,6 +80,11 @@ class ResConfigSettings(models.TransientModel):
     auto_populate_equipments_on_order = fields.Boolean(
         string="Auto-populate equipments on Order based on the Location",
         related="company_id.auto_populate_equipments_on_order",
+        readonly=False,
+    )
+    search_on_complete_name = fields.Boolean(
+        string="Search Location By Hierarchy",
+        related="company_id.search_on_complete_name",
         readonly=False,
     )
 

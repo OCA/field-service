@@ -1,0 +1,8 @@
+<odoo>
+    <record id="fieldservice.fsm_stage_completed" model="fsm.stage">
+        <field name="action_id" ref="fsm_order_parent_completed" />
+    </record>
+    <record id="fieldservice.fsm_stage_cancelled" model="fsm.stage">
+        <field name="action_id" ref="fsm_order_parent_canceled" />
+    </record>
+</odoo>
