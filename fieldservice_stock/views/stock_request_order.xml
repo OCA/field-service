@@ -37,15 +37,12 @@
     </record>
     <record id="stock_request_order_fsm_order_search" model="ir.ui.view">
         <field name="model">stock.request.order</field>
-        <field
-            name="inherit_id"
-            ref="stock_request_picking_type.view_stock_request_order_filter"
-        />
+        <field name="inherit_id" ref="stock_request.stock_request_order_search" />
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="fsm_order_id" />
             </field>
-            <filter name="state" position="before">
+            <filter name="warehouse" position="before">
                 <filter
                     string="FSM Order"
                     name="fsm_order_id"
