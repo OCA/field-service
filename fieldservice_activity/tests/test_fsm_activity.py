@@ -47,7 +47,12 @@ class TestFSMActivity(TransactionCase):
         order.order_activity_ids[1].action_cancel()
         self.assertEqual(order.order_activity_ids[1].state, "cancel")
 
-        # Test Reqired Activity
+        # As per FSM order needs, end date may not be set
+        # stop tracking validation error
+        if not order.date_end:
+            order.date_end = datetime.now()
+
+        # Test required Activity
         with self.assertRaises(ValidationError):
             order.action_complete()
 
