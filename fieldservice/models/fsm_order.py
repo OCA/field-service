@@ -319,8 +319,8 @@ class FSMOrder(models.Model):
                 new_date_start = fields.Datetime.from_string(
                     vals.get("scheduled_date_start", False)
                 )
-                if vals.get('scheduled_duration', False):
-                    hours = vals.get('scheduled_duration')
+                if vals.get("scheduled_duration", False):
+                    hours = vals.get("scheduled_duration")
                 else:
                     hours = self.scheduled_duration
                 vals["scheduled_date_end"] = new_date_start + timedelta(hours=hours)
