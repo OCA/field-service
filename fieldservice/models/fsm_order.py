@@ -315,19 +315,15 @@ class FSMOrder(models.Model):
             or vals.get("scheduled_date_end")
         ):
 
-            if vals.get("scheduled_date_start") and vals.get("scheduled_date_end"):
+            if vals.get("scheduled_date_start"):
                 new_date_start = fields.Datetime.from_string(
                     vals.get("scheduled_date_start", False)
                 )
-                new_date_end = fields.Datetime.from_string(
-                    vals.get("scheduled_date_end", False)
-                )
-                hours = new_date_end.replace(second=0) - new_date_start.replace(
-                    second=0
-                )
-                hrs = hours.total_seconds() / 3600
-                vals["scheduled_duration"] = float(hrs)
-
+                if vals.get('scheduled_duration', False):
+                    hours = vals.get('scheduled_duration')
+                else:
+                    hours = self.scheduled_duration
+                vals["scheduled_date_end"] = new_date_start + timedelta(hours=hours)
             elif vals.get("scheduled_date_end"):
                 hrs = (
                     vals.get("scheduled_duration", False)
