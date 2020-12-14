@@ -166,9 +166,9 @@ class FSMOrder(models.Model):
     scheduled_duration = fields.Float(
         string="Scheduled duration", help="Scheduled duration of the work in" " hours"
     )
-    scheduled_date_end = fields.Datetime(string="Scheduled End",
-                                         readonly=True,
-                                         compute="_calc_scheduled_dates")
+    scheduled_date_end = fields.Datetime(
+        string="Scheduled End", readonly=True, compute="_calc_scheduled_dates"
+    )
     sequence = fields.Integer(string="Sequence", default=10)
     todo = fields.Text(string="Instructions")
 
@@ -322,12 +322,11 @@ class FSMOrder(models.Model):
                         hours = order.scheduled_duration
                     else:
                         hours = self.scheduled_duration
-                    order.scheduled_date_end = order.scheduled_date_start + timedelta(hours=hours)
-                elif order.scheduled_date_end:
-                    hrs = (
-                        order.scheduled_duration
-                        or 0
+                    order.scheduled_date_end = order.scheduled_date_start + timedelta(
+                        hours=hours
                     )
+                elif order.scheduled_date_end:
+                    hrs = order.scheduled_duration or 0
                     date_to_with_delta = fields.Datetime.from_string(
                         order.scheduled_date_end
                     ) - timedelta(hours=hrs)
@@ -335,9 +334,7 @@ class FSMOrder(models.Model):
 
                 elif order.scheduled_duration or (
                     order.scheduled_date_start
-                    and (
-                        self.scheduled_date_start != order.scheduled_date_start
-                    )
+                    and (self.scheduled_date_start != order.scheduled_date_start)
                 ):
                     hours = order.scheduled_duration
                     start_date_val = order.scheduled_date_start
