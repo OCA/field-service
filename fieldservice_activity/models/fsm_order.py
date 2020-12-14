@@ -14,6 +14,8 @@ class FSMOrder(models.Model):
     def _onchange_template_id(self):
         res = super()._onchange_template_id()
         for rec in self:
+            # Clear existing activities
+            rec.order_activity_ids = [(5, 0, 0)]
             if rec.template_id:
                 activity_list = []
                 for temp_activity in rec.template_id.temp_activity_ids:
@@ -30,7 +32,6 @@ class FSMOrder(models.Model):
                         )
                     )
                 rec.order_activity_ids = activity_list
-                rec.template_id.temp_activity_ids.write({"fsm_template_id": False})
         return res
 
     def action_complete(self):
