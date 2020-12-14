@@ -13,7 +13,7 @@ addon | version | summary
 --- | --- | ---
 [base_territory](base_territory/) | 13.0.1.0.0 | This module allows you to define territories, branches, districts and regions to be used for Field Service operations or Sales.
 [fieldservice](fieldservice/) | 13.0.1.1.0 | Manage Field Service Locations, Workers and Orders
-[fieldservice_activity](fieldservice_activity/) | 13.0.1.0.0 | Field Service Activities are a set of actions that need to be performed on a service order
+[fieldservice_activity](fieldservice_activity/) | 13.0.1.0.1 | Field Service Activities are a set of actions that need to be performed on a service order
 [fieldservice_crm](fieldservice_crm/) | 13.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_fleet](fieldservice_fleet/) | 13.0.1.0.0 | Link Field Service vehicles with Odoo Fleet
 [fieldservice_geoengine](fieldservice_geoengine/) | 13.0.1.0.0 | Display Field Service locations on a map with Open Street Map
