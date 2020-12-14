@@ -34,6 +34,12 @@ class FSMOrder(models.Model):
                 rec.order_activity_ids = activity_list
         return res
 
+    def create(self, vals):
+        """Update Activities for FSM orders that are generate from SO"""
+        order = super(FSMOrder, self).create(vals)
+        order._onchange_template_id()
+        return order
+
     def action_complete(self):
         res = super().action_complete()
         for activity_id in self.order_activity_ids:
