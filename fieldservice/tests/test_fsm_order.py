@@ -58,12 +58,3 @@ class TestFSMOrder(TransactionCase):
             order.scheduled_date_end,
             order.scheduled_date_start + timedelta(hours=duration),
         )
-        # Set new date end
-        order.scheduled_date_end = order.scheduled_date_end.replace(
-            hour=1, minute=1, second=0
-        )
-        # Check date start
-        self.assertEqual(
-            order.scheduled_date_start,
-            order.scheduled_date_end - timedelta(hours=duration),
-        )
