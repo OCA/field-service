@@ -167,7 +167,7 @@ class FSMOrder(models.Model):
         string="Scheduled duration", help="Scheduled duration of the work in" " hours"
     )
     scheduled_date_end = fields.Datetime(
-        string="Scheduled End", readonly=True, compute="_calc_scheduled_dates"
+        string="Scheduled End", readonly=True, compute="_compute_scheduled_date_end"
     )
     sequence = fields.Integer(string="Sequence", default=10)
     todo = fields.Text(string="Instructions")
@@ -261,7 +261,7 @@ class FSMOrder(models.Model):
                 or False
             }
         )
-        self._calc_scheduled_dates()
+        self._compute_scheduled_date_end()
         if not vals.get("request_late"):
             if vals.get("priority") == "0":
                 if vals.get("request_early"):
@@ -308,7 +308,7 @@ class FSMOrder(models.Model):
                 raise ValidationError(_("You cannot delete this order."))
 
     @api.depends("scheduled_date_start", "scheduled_duration")
-    def _calc_scheduled_dates(self):
+    def _compute_scheduled_date_end(self):
         """Calculate scheduled dates and duration"""
         for order in self:
             if (
