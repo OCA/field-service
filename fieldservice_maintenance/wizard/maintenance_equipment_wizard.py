@@ -26,7 +26,6 @@ class MainenanceEquipmentWizard(models.TransientModel):
         return {
             'name': maintenance_id.name,
             'company_id': maintenance_id.company_id.id,
-            'maintenance_id': maintenance_id.id,
             'maintenance_equipment_id': maintenance_id.id,
             'maintenance_team_id': maintenance_id.maintenance_team_id.id,
         }
