@@ -19,8 +19,9 @@ class FSMEquipment(models.Model):
 
     @api.model
     def create(self, vals):
-        maintenance_equipment_id = self.env["maintenance.equipment"].\
-            create(self._prepare_maintenance_vals(vals))
+        maintenance_equipment_id = self.env["maintenance.equipment"].create(
+            self._prepare_maintenance_vals(vals)
+        )
         if maintenance_equipment_id:
             vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
         res = super().create(vals)

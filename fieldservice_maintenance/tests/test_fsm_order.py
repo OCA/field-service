@@ -12,16 +12,19 @@ class TestFSMOrder(TransactionCase):
         super(TestFSMOrder, self).setUp()
         self.Order = self.env["fsm.order"]
         self.test_location = self.env.ref("fieldservice.test_location")
-        self.maintenance_order_type = self.env['fsm.order.type'].\
-            create({'name': 'Maintenance Request',
-                    'internal_type': 'maintenance'})
-        self.maintenance_team = self.env['maintenance.team'].\
-            create({'name': 'Test Maintenance Team',
-                    'company_id': self.env.user.company_id.id})
-        self.test_equipment = self.env['fsm.equipment'].\
-            create({'name': 'Test Equipment',
-                    'company_id': self.env.user.company_id.id,
-                    'maintenance_team_id': self.maintenance_team.id})
+        self.maintenance_order_type = self.env["fsm.order.type"].create(
+            {"name": "Maintenance Request", "internal_type": "maintenance"}
+        )
+        self.maintenance_team = self.env["maintenance.team"].create(
+            {"name": "Test Maintenance Team", "company_id": self.env.user.company_id.id}
+        )
+        self.test_equipment = self.env["fsm.equipment"].create(
+            {
+                "name": "Test Equipment",
+                "company_id": self.env.user.company_id.id,
+                "maintenance_team_id": self.maintenance_team.id,
+            }
+        )
 
     def test_fsm_order(self):
         # Create an Orders that generates Maintenance Request
@@ -35,6 +38,7 @@ class TestFSMOrder(TransactionCase):
             f.type = self.maintenance_order_type
             f.equipment_id = self.test_equipment
         order = f.save()
-        maintenance_request = self.env['maintenance.request'].\
-            search([('name', '=', order.name)])
+        maintenance_request = self.env["maintenance.request"].search(
+            [("name", "=", order.name)]
+        )
         self.assertTrue(maintenance_request)
