@@ -9,5 +9,5 @@ class FSMEquipment(models.Model):
 
     def _prepare_maintenance_vals(self, vals):
         res = super()._prepare_maintenance_vals(vals)
-        res.update({'product_id': vals.get('product_id'), 'lot_id': vals.get('lot_id')})
+        res.update({"product_id": vals.get("product_id"), "lot_id": vals.get("lot_id")})
         return res

@@ -9,9 +9,7 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice_maintenance", "fieldservice_stock"],
-    "data": [
-        "views/maintenance_equipment.xml",
-    ],
+    "data": ["views/maintenance_equipment.xml"],
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["smangukiya", "max3903", "bodedra"],
