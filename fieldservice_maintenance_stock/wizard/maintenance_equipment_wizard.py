@@ -14,5 +14,5 @@ class MainenanceEquipmentWizard(models.TransientModel):
                                Maintenance Equipment to FSM Equipment"))
         res = super().get_fsm_equipment_vals(maintenance_id)
         res.update({'product_id': maintenance_id.product_id.id,
-                    'lot_id': maintenance_id.lot_id})
+                    'lot_id': maintenance_id.lot_id.id})
         return res
