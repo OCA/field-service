@@ -26,6 +26,7 @@ addon | version | summary
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.2.0 | Allow workers to collect payments from the order.
 [fieldservice_activity](fieldservice_activity/) | 12.0.1.1.0 | Field Service Activities are a set of actions that need to be performed on a service order
 [fieldservice_agreement](fieldservice_agreement/) | 12.0.1.0.0 | Manage Field Service agreements and contracts
+[fieldservice_agreement_helpdesk_mgmt](fieldservice_agreement_helpdesk_mgmt/) | 12.0.1.0.0 | Create links between Field Service, Agreements, and Helpdesk
 [fieldservice_change_management](fieldservice_change_management/) | 12.0.1.1.0 | Manage Change Logs on Locations
 [fieldservice_crm](fieldservice_crm/) | 12.0.1.1.0 | Create Field Service orders from the CRM
 [fieldservice_delivery](fieldservice_delivery/) | 12.0.1.0.0 | Select delivery methods and carriers on Field Service orders
