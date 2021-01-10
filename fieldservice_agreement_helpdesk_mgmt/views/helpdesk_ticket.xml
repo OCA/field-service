@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 - TODAY, Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="helpdesk_ticket_form_view">
+        <field name="name">helpdesk.ticket.form (in fieldservice_agreement_helpdesk_mgmt)</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name="agreement_id" position="attributes">
+                <attribute name="domain">[
+                    '|',
+                    ('partner_id', '=', partner_id),
+                    ('fsm_location_id', '=', fsm_location_id)
+                    ]</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
