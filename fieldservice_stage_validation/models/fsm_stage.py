@@ -13,7 +13,8 @@ class FSMStage(models.Model):
         for rec in self:
             if rec.stage_type:
                 model_string = "fsm." + rec.stage_type
-                # For worker, model name is 'fsm.person'. So need to change 'worker' to 'person'.
+                # For worker, model name is 'fsm.person'.
+                # So need to change 'worker' to 'person'.
                 if model_string == "fsm.worker":
                     model_string = "fsm.person"
                 model_id = Model.search([("model", "=", model_string)], limit=1).id
