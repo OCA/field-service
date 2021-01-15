@@ -7,8 +7,10 @@ from openupgradelib import openupgrade
 def _field_type_change(env):
     openupgrade.m2o_to_x2m(
         env.cr,
-        env["account.move.line"], 'account_move_line',
-        'fsm_order_ids', openupgrade.get_legacy_name('fsm_order_id')
+        env["account.move.line"],
+        "account_move_line",
+        "fsm_order_ids",
+        openupgrade.get_legacy_name("fsm_order_id"),
     )
 
 
