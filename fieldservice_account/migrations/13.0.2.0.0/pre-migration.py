@@ -3,11 +3,8 @@
 
 from openupgradelib import openupgrade
 
-
 column_renames = {
-    'account_move_line': [
-        ('fsm_order_id', None),
-    ],
+    "account_move_line": [("fsm_order_id", None)],
 }
 
 
