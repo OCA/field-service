@@ -14,10 +14,10 @@ Field Service - Stock Request
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/12.0/fieldservice_stock
+    :target: https://github.com/OCA/field-service/tree/12.0/fieldservice_stock_request
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-12-0/field-service-12-0-fieldservice_stock
+    :target: https://translation.odoo-community.org/projects/field-service-12-0/field-service-12-0-fieldservice_stock_request
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/264/12.0
@@ -26,7 +26,7 @@ Field Service - Stock Request
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module is an add-on for the Field Service application in Odoo.
-It provides inventory and stock operations.
+It provides stock requests in field service orders.
 
 **Table of contents**
 
@@ -38,8 +38,6 @@ Configuration
 
 To configure this module, you need to:
 
-* Go to Field Service > Master Data > Locations
-* Create or select a location and set the inventory location
 * Go to Inventory > Configuration > Routes
 * Select the routes that you want to use from a FSM order
 * Check the box 'FSM Order Line' for outbound transfer
@@ -56,33 +54,6 @@ procurement rule for that route:
 * Source Location: Partner Locations/Customers
 * Move Supply Method: Take From Stock
 * Operation Type: YourCompany: Receipts
-
-If you are in a multi-warehouse situation:
-
-* Go to Field Service > Configuration > Territories
-* Create or select a territory
-* Set the warehouse that will serve this territory
-
-Products can be automatically converted into FSM Equipments.
-This is only available only for products tracked by serial number.
-This needs to be enabled both on Operation Types and Products.
-For example, we may want to create the FSM Equipment on Delivery,
-or on Receipts.
-
-To enable on Products:
-
-* Go to Inventory > Master Data > Products
-* Open the Product form, Inventory tab
-* On the "Traceability" section, make sure
-  "Tracking" is set to "By Unique Serial Number"
-* Enable the "Creates FSM Equipment" checkbox
-
-To enable on Operation Types:
-
-* Go to Inventory > Configuration > Operation Types
-* Select the intended Operation Type ("Receipts" for example)
-* On the "Traceability" section, enable the
-  "Create FSM Equipment" checkbox
 
 Usage
 =====
@@ -107,7 +78,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_stock%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_stock_request%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
