@@ -5,28 +5,32 @@ from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
     payment_ids = fields.Many2many(
-        'account.payment', 'fsm_order_account_payment',
-        'fsm_order_id', 'payment_id', string='Payments')
+        "account.payment",
+        "fsm_order_account_payment",
+        "fsm_order_id",
+        "payment_id",
+        string="Payments",
+    )
     payment_count = fields.Integer(
-        string='Payment Count',
-        compute='_compute_account_payment_count', readonly=True)
+        string="Payment Count", compute="_compute_account_payment_count", readonly=True
+    )
 
-    @api.depends('payment_ids')
+    @api.depends("payment_ids")
     def _compute_account_payment_count(self):
         for order in self:
             order.payment_count = len(order.payment_ids)
 
     @api.multi
     def action_view_payments(self):
-        action = self.env.ref('account.action_account_payments').read()[0]
+        action = self.env.ref("account.action_account_payments").read()[0]
         if self.payment_count > 1:
-            action['domain'] = [('id', 'in', self.payment_ids)]
+            action["domain"] = [("id", "in", self.payment_ids)]
         elif self.payment_ids:
-            action['views'] = \
-                [(self.env.ref('account.view_account_payment_form').id,
-                  'form')]
-            action['res_id'] = self.payment_ids[0].id
+            action["views"] = [
+                (self.env.ref("account.view_account_payment_form").id, "form")
+            ]
+            action["res_id"] = self.payment_ids[0].id
         return action
