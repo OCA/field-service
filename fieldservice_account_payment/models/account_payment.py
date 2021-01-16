@@ -27,7 +27,6 @@ class AccountPayment(models.Model):
         for payment in self:
             payment.fsm_order_count = len(payment.fsm_order_ids)
 
-    @api.multi
     def action_view_fsm_orders(self):
         action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
         if self.fsm_order_count > 1:
@@ -37,10 +36,10 @@ class AccountPayment(models.Model):
             action["res_id"] = self.fsm_order_ids[0].id
         return action
 
-    @api.depends("invoice_ids.fsm_order_ids")
+    @api.depends("move_ids.fsm_order_ids")
     def _compute_fsm_order_ids(self):
         fsm_order_ids = []
-        for invoice in self.invoice_ids:
+        for invoice in self.move_ids:
             if invoice.fsm_order_ids:
                 fsm_order_ids.extend(invoice.fsm_order_ids.ids)
         if fsm_order_ids:
