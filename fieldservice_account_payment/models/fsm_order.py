@@ -23,7 +23,6 @@ class FSMOrder(models.Model):
         for order in self:
             order.payment_count = len(order.payment_ids)
 
-    @api.multi
     def action_view_payments(self):
         action = self.env.ref("account.action_account_payments").read()[0]
         if self.payment_count > 1:
