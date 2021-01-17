@@ -3,18 +3,12 @@
 {
     "name": "Field Service",
     "summary": "Manage Field Service Locations, Workers and Orders",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.2.0",
     "license": "AGPL-3",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": [
-        "base_territory",
-        "base_geolocalize",
-        "resource",
-        "contacts",
-        "partner_fax",
-    ],
+    "depends": ["base_territory", "base_geolocalize", "resource", "contacts"],
     "data": [
         "data/ir_sequence.xml",
         "data/mail_message_subtype.xml",
