@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Fieldservice Stage Form View-->
+    <record id="fsm_sub_stage_form_view" model="ir.ui.view">
+        <field name="name">fsm.sub.stage.form</field>
+        <field name="model">fsm.stage</field>
+        <field name="inherit_id" ref="fieldservice.fsm_stage_form_view"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="sub_stage_id" required="1" attrs="{'invisible':[('stage_type', '!=', 'order')]}"/>
+                <field name="sub_stage_ids" widget="many2many_tags" attrs="{'invisible':[('stage_type', '!=', 'order')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

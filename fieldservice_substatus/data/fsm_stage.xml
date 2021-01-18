@@ -1,0 +1,15 @@
+<odoo noupdate="1">
+
+    <record id="fieldservice.fsm_stage_new" model="fsm.stage">
+        <field name="sub_stage_id" ref="fsm_stage_status_default"/>
+    </record>
+
+    <record id="fieldservice.fsm_stage_completed" model="fsm.stage">
+        <field name="sub_stage_id" ref="fsm_stage_status_default"/>
+    </record>
+
+    <record id="fieldservice.fsm_stage_cancelled" model="fsm.stage">
+        <field name="sub_stage_id" ref="fsm_stage_status_default"/>
+    </record>
+
+</odoo>
