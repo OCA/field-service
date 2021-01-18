@@ -7,8 +7,16 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    type = fields.Selection(selection_add=[("fsm_location", "Location")])
     fsm_location = fields.Boolean("Is a FS Location")
     fsm_person = fields.Boolean("Is a FS Worker")
+    fsm_location_id = fields.One2many(
+        comodel_name="fsm.location",
+        string="Related FS Location",
+        inverse_name="partner_id",
+        readonly=1,
+        limit=1,
+    )
     service_location_id = fields.Many2one(
         "fsm.location", string="Primary Service Location"
     )
@@ -44,3 +52,19 @@ class ResPartner(models.Model):
                 ]
                 action["res_id"] = owned_location_ids.ids[0]
             return action
+
+    def _convert_fsm_location(self):
+        res = self.browse(0)
+        wiz = self.env["fsm.wizard"]
+        for rec in self:
+            if rec.type == "fsm_location" and not rec.fsm_location_id:
+                synced = rec.exists()
+                wiz.action_convert_location(synced)
+                res |= synced
+        return res
+
+    def write(self, value):
+        res = super(ResPartner, self).write(value)
+        self.flush()
+        self._convert_fsm_location()
+        return res
