@@ -64,7 +64,7 @@ class TestFSMMaintenance(TransactionCase):
                 "equipment_id": maint_equip_01.id,
             })
         self.assertEqual(
-            e.exception.name,
+            e.exception.args[0],
             (("Missing current location on FSM equipment %s")
                 % fsm_equip_01.name),
             """FSM Maintenance: UserError not thrown when creating maintenance
