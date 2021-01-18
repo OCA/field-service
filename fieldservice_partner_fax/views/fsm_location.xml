@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Field Service Location Form-->
+    <record id="fsm_location_form_fax" model="ir.ui.view">
+        <field name="name">fsm.location.form.fax</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="fax" widget="phone" />
+            </field>
+        </field>
+    </record>
+</odoo>
