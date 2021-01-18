@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class FSMPerson(models.Model):
     _name = "fsm.person"
     _inherits = {"res.partner": "partner_id"}
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Field Service Worker"
 
     partner_id = fields.Many2one(
@@ -19,8 +19,7 @@ class FSMPerson(models.Model):
         auto_join=True,
     )
     category_ids = fields.Many2many("fsm.category", string="Categories")
-    calendar_id = fields.Many2one(
-        "resource.calendar", string="Working Schedule")
+    calendar_id = fields.Many2one("resource.calendar", string="Working Schedule")
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
@@ -34,9 +33,9 @@ class FSMPerson(models.Model):
     mobile = fields.Char(string="Mobile")
     territory_ids = fields.Many2many("res.territory", string="Territories")
 
-    message_main_attachment_id = fields.Many2one(string="Main Attachment",
-                                                 comodel_name='ir.attachment',
-                                                 index=True, copy=False)
+    message_main_attachment_id = fields.Many2one(
+        string="Main Attachment", comodel_name="ir.attachment", index=True, copy=False
+    )
 
     @api.model
     def _search(
@@ -78,8 +77,7 @@ class FSMPerson(models.Model):
                         )
                         location_ids = self.env.cr.fetchall()
                         if location_ids:
-                            location_ids = [location[0]
-                                            for location in location_ids]
+                            location_ids = [location[0] for location in location_ids]
                             self.env.cr.execute(
                                 "SELECT DISTINCT person_id "
                                 "FROM fsm_location_person "
@@ -88,8 +86,7 @@ class FSMPerson(models.Model):
                             )
                     workers_ids = self.env.cr.fetchall()
                     if workers_ids:
-                        preferred_workers_list = [worker[0]
-                                                  for worker in workers_ids]
+                        preferred_workers_list = [worker[0] for worker in workers_ids]
                         return preferred_workers_list
         return res
 
@@ -103,14 +100,12 @@ class FSMPerson(models.Model):
         person_ids = self.search([("id", "!=", 0), ("active", "=", True)])
         person_information_dict = []
         for person in person_ids:
-            person_information_dict.append(
-                {"id": person.id, "name": person.name})
+            person_information_dict.append({"id": person.id, "name": person.name})
         return person_information_dict
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env["fsm.stage"].search(
-            [("stage_type", "=", "worker")])
+        stage_ids = self.env["fsm.stage"].search([("stage_type", "=", "worker")])
         return stage_ids
 
     def _default_stage_id(self):

@@ -6,20 +6,24 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
-                 <div class="app_settings_block"
-                     data-string="Field Service"
-                     string="Field Service"
-                     data-key="fieldservice"
-                     groups="fieldservice.group_fsm_manager">
+                 <div
+                    class="app_settings_block"
+                    data-string="Field Service"
+                    string="Field Service"
+                    data-key="fieldservice"
+                    groups="fieldservice.group_fsm_manager"
+                >
                     <h2>Locations</h2>
                     <div class="row mt16 o_settings_container" id="locations">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="auto_populate_persons_on_location"/>
+                                <field name="auto_populate_persons_on_location" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="auto_populate_persons_on_location"
-                                       string="Auto-fill the workers on the location"/>
+                                <label
+                                    for="auto_populate_persons_on_location"
+                                    string="Auto-fill the workers on the location"
+                                />
                                 <div class="text-muted">
                                     Auto-populate the preferred workers of a location based on the territory
                                 </div>
@@ -27,10 +31,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_distribution"/>
+                                <field name="module_fieldservice_distribution" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_distribution" string="Manage Distribution"/>
+                                <label
+                                    for="module_fieldservice_distribution"
+                                    string="Manage Distribution"
+                                />
                                 <div class="text-muted">
                                     Manage your distribution structure
                                 </div>
@@ -38,10 +45,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                 <field name="module_fieldservice_location_builder"/>
+                                 <field name="module_fieldservice_location_builder" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_location_builder" string="FSM Location Builder"/>
+                                <label
+                                    for="module_fieldservice_location_builder"
+                                    string="FSM Location Builder"
+                                />
                                 <div class="text-muted">
                                     Create multiple FSM Locations at once using Location Builder Wizard
                                 </div>
@@ -49,11 +59,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="search_on_complete_name"/>
+                                <field name="search_on_complete_name" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="search_on_complete_name"
-                                       string="Search Location By Hierarchy"/>
+                                <label
+                                    for="search_on_complete_name"
+                                    string="Search Location By Hierarchy"
+                                />
                                 <div class="text-muted">
                                     Search Locations based on their full hierarchy name
                                 </div>
@@ -64,10 +76,13 @@
                     <div class="row mt16 o_settings_container" id="equipments">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="group_fsm_equipment"/>
+                                <field name="group_fsm_equipment" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="group_fsm_equipment" string="Manage Equipments"/>
+                                <label
+                                    for="group_fsm_equipment"
+                                    string="Manage Equipments"
+                                />
                                 <div class="text-muted">
                                     Manage equipments at the service location
                                 </div>
@@ -78,10 +93,10 @@
                     <div class="row mt16 o_settings_container" id="workers">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="group_fsm_team"/>
+                                <field name="group_fsm_team" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="group_fsm_team" string="Manage Teams"/>
+                                <label for="group_fsm_team" string="Manage Teams" />
                                 <div class="text-muted">
                                     Manage different teams of Field Service workers
                                 </div>
@@ -89,10 +104,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="group_fsm_category"/>
+                                <field name="group_fsm_category" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="group_fsm_category" string="Manage Categories"/>
+                                <label
+                                    for="group_fsm_category"
+                                    string="Manage Categories"
+                                />
                                 <div class="text-muted">
                                     Manage different categories of Field Service workers
                                 </div>
@@ -100,10 +118,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_skill"/>
+                                <field name="module_fieldservice_skill" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_skill" string="Manage Skills"/>
+                                <label
+                                    for="module_fieldservice_skill"
+                                    string="Manage Skills"
+                                />
                                 <div class="text-muted">
                                     Make sure to send the right worker with the appropriate skills
                                 </div>
@@ -111,10 +132,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_purchase"/>
+                                <field name="module_fieldservice_purchase" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_purchase" string="Use Odoo Purchase"/>
+                                <label
+                                    for="module_fieldservice_purchase"
+                                    string="Use Odoo Purchase"
+                                />
                                 <div class="text-muted">
                                     Manage subcontractors with pricelists
                                 </div>
@@ -125,10 +149,13 @@
                     <div class="row mt16 o_settings_container" id="vehicles">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_vehicle"/>
+                                <field name="module_fieldservice_vehicle" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_vehicle" string="Manage Vehicles"/>
+                                <label
+                                    for="module_fieldservice_vehicle"
+                                    string="Manage Vehicles"
+                                />
                                 <div class="text-muted">
                                     Manage vehicles
                                 </div>
@@ -136,10 +163,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_fleet"/>
+                                <field name="module_fieldservice_fleet" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_fleet" string="Link to Fleet Vehicles"/>
+                                <label
+                                    for="module_fieldservice_fleet"
+                                    string="Link to Fleet Vehicles"
+                                />
                                 <div class="text-muted">
                                     Link Field Service vehicles with Fleet vehicles
                                 </div>
@@ -148,14 +178,18 @@
                     </div>
                     <h2>Orders</h2>
                     <div class="row mt16 o_settings_container" id="orders">
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('group_fsm_equipment', '=', False)]}">
+                        <div
+                            class="col-xs-12 col-md-6 o_setting_box"
+                            attrs="{'invisible': [('group_fsm_equipment', '=', False)]}"
+                        >
                             <div class="o_setting_left_pane">
-                                <field name="auto_populate_equipments_on_order"/>
+                                <field name="auto_populate_equipments_on_order" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="auto_populate_equipments_on_order"
-                                       string="Auto-fill the equipments on the order"/>
+                                <label
+                                    for="auto_populate_equipments_on_order"
+                                    string="Auto-fill the equipments on the order"
+                                />
                                 <div class="text-muted">
                                     Auto-populate the equipments on the order based on the location content
                                 </div>
@@ -163,10 +197,10 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="group_fsm_tag"/>
+                                <field name="group_fsm_tag" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="group_fsm_tag" string="Manage Tags"/>
+                                <label for="group_fsm_tag" string="Manage Tags" />
                                 <div class="text-muted">
                                     Manage tags on service orders
                                 </div>
@@ -174,10 +208,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="group_fsm_template"/>
+                                <field name="group_fsm_template" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="group_fsm_template" string="Manage Order Templates"/>
+                                <label
+                                    for="group_fsm_template"
+                                    string="Manage Order Templates"
+                                />
                                 <div class="text-muted">
                                     Manage templates
                                 </div>
@@ -185,10 +222,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_substatus"/>
+                                <field name="module_fieldservice_substatus" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_substatus" string="Manage Order Sub-Statuses"/>
+                                <label
+                                    for="module_fieldservice_substatus"
+                                    string="Manage Order Sub-Statuses"
+                                />
                                 <div class="text-muted">
                                     Manage sub-statuses
                                 </div>
@@ -196,10 +236,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_recurring"/>
+                                <field name="module_fieldservice_recurring" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_recurring" string="Manage Recurring Orders"/>
+                                <label
+                                    for="module_fieldservice_recurring"
+                                    string="Manage Recurring Orders"
+                                />
                                 <div class="text-muted">
                                     Manage recurring orders
                                 </div>
@@ -207,10 +250,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_account"/>
+                                <field name="module_fieldservice_account" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_account" string="Invoice your Service Orders"/>
+                                <label
+                                    for="module_fieldservice_account"
+                                    string="Invoice your Service Orders"
+                                />
                                 <div class="text-muted">
                                     Create vendor bills and customer invoices when completing service orders.
                                     Track costs and revenues.
@@ -219,10 +265,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_stock"/>
+                                <field name="module_fieldservice_stock" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_stock" string="Use Odoo Stock Logistics"/>
+                                <label
+                                    for="module_fieldservice_stock"
+                                    string="Use Odoo Stock Logistics"
+                                />
                                 <div class="text-muted">
                                     Manage inventory and stock operations.
                                     Automatically activate Lots &amp; Serial Numbers.
@@ -231,10 +280,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_sale"/>
+                                <field name="module_fieldservice_sale" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_sale" string="Sell Service Orders"/>
+                                <label
+                                    for="module_fieldservice_sale"
+                                    string="Sell Service Orders"
+                                />
                                 <div class="text-muted">
                                     Select field services on sale orders.
                                 </div>
@@ -242,34 +294,47 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_agreement"/>
+                                <field name="module_fieldservice_agreement" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_agreement" string="Manage Agreements"/>
+                                <label
+                                    for="module_fieldservice_agreement"
+                                    string="Manage Agreements"
+                                />
                                 <div class="text-muted">
                                     Manage agreements and contracts
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('group_fsm_equipment', '=', False)]}">
+                        <div
+                            class="col-xs-12 col-md-6 o_setting_box"
+                            attrs="{'invisible': [('group_fsm_equipment', '=', False)]}"
+                        >
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_maintenance"/>
+                                <field name="module_fieldservice_maintenance" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_maintenance" string="Maintenance"/>
+                                <label
+                                    for="module_fieldservice_maintenance"
+                                    string="Maintenance"
+                                />
                                 <div class="text-muted">
                                     Link your FSM orders to maintenance requests
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('group_fsm_equipment', '=', False)]}">
+                        <div
+                            class="col-xs-12 col-md-6 o_setting_box"
+                            attrs="{'invisible': [('group_fsm_equipment', '=', False)]}"
+                        >
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_repair"/>
+                                <field name="module_fieldservice_repair" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_repair" string="MRP Repair"/>
+                                <label
+                                    for="module_fieldservice_repair"
+                                    string="MRP Repair"
+                                />
                                 <div class="text-muted">
                                     Link your FSM orders to MRP repair orders
                                 </div>
@@ -277,10 +342,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_project"/>
+                                <field name="module_fieldservice_project" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_project" string="Project and Tasks"/>
+                                <label
+                                    for="module_fieldservice_project"
+                                    string="Project and Tasks"
+                                />
                                 <div class="text-muted">
                                     Link your FSM orders to Projects and Project Tasks
                                 </div>
@@ -288,10 +356,10 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_crm"/>
+                                <field name="module_fieldservice_crm" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_crm" string="CRM"/>
+                                <label for="module_fieldservice_crm" string="CRM" />
                                 <div class="text-muted">
                                     Create FSM Orders from Opportunities.
                                 </div>
@@ -299,10 +367,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_activity"/>
+                                <field name="module_fieldservice_activity" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_activity" string="Manage Order Activities"/>
+                                <label
+                                    for="module_fieldservice_activity"
+                                    string="Manage Order Activities"
+                                />
                                 <div class="text-muted">
                                     Manage activities
                                 </div>
@@ -310,10 +381,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_size"/>
+                                <field name="module_fieldservice_size" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_size" string="Manage Order Sizes"/>
+                                <label
+                                    for="module_fieldservice_size"
+                                    string="Manage Order Sizes"
+                                />
                                 <div class="text-muted">
                                     Manage sizes for orders and locations
                                 </div>
@@ -324,37 +398,47 @@
                     <div class="row mt16 o_settings_container" id="routing">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_route"/>
+                                <field name="module_fieldservice_route" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_route"
-                                       string="Manage routes of yoru workers"/>
+                                <label
+                                    for="module_fieldservice_route"
+                                    string="Manage routes of yoru workers"
+                                />
                                 <div class="text-muted">
                                     Automatically creates a day route when an order is assigned and scheduled
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
+                        <div
+                            class="col-xs-12 col-md-6 o_setting_box"
+                            attrs="{'invisible': [('module_fieldservice_route', '=', False)]}"
+                        >
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_route_account"/>
+                                <field name="module_fieldservice_route_account" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_route_account"
-                                       string="Check collected payments"/>
+                                <label
+                                    for="module_fieldservice_route_account"
+                                    string="Check collected payments"
+                                />
                                 <div class="text-muted">
                                     Check the amount collected by the worker during the route
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 o_setting_box"
-                             attrs="{'invisible': [('module_fieldservice_route', '=', False)]}">
+                        <div
+                            class="col-xs-12 col-md-6 o_setting_box"
+                            attrs="{'invisible': [('module_fieldservice_route', '=', False)]}"
+                        >
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_route_stock"/>
+                                <field name="module_fieldservice_route_stock" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_route_stock"
-                                       string="Check inventory"/>
+                                <label
+                                    for="module_fieldservice_route_stock"
+                                    string="Check inventory"
+                                />
                                 <div class="text-muted">
                                     Check the inventory of the vehicle at the end of the route
                                 </div>
@@ -365,11 +449,13 @@
                     <div class="row mt16 o_settings_container" id="mapping">
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_geoengine"/>
+                                <field name="module_fieldservice_geoengine" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_geoengine"
-                                       string="Use GeoEngine with OpenStreetMap"/>
+                                <label
+                                    for="module_fieldservice_geoengine"
+                                    string="Use GeoEngine with OpenStreetMap"
+                                />
                                 <div class="text-muted">
                                     Display locations and orders on a map with OpenStreetMap
                                 </div>
@@ -377,11 +463,13 @@
                         </div>
                         <div class="col-xs-12 col-md-6 o_setting_box">
                             <div class="o_setting_left_pane">
-                                <field name="module_fieldservice_google_map"/>
+                                <field name="module_fieldservice_google_map" />
                             </div>
                             <div class="o_setting_right_pane">
-                                <label for="module_fieldservice_google_map"
-                                       string="Allow Field Service Google Map"/>
+                                <label
+                                    for="module_fieldservice_google_map"
+                                    string="Allow Field Service Google Map"
+                                />
                                 <div class="text-muted">
                                     Allow Field Service Google Map
                                 </div>

@@ -6,8 +6,11 @@
             <field name="res_model">fsm.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
-            <field name="binding_model_id" ref="base.model_res_partner"/>
-            <field name="groups_id" eval="[(4, ref('fieldservice.group_fsm_dispatcher'))]"/>
+            <field name="binding_model_id" ref="base.model_res_partner" />
+            <field
+            name="groups_id"
+            eval="[(4, ref('fieldservice.group_fsm_dispatcher'))]"
+        />
             <field name="binding_view_types">list</field>
     </record>
 

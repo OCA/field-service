@@ -287,10 +287,10 @@ class FSMLocation(models.Model):
         context = dict(self._context) or {}
         for location in self:
             vals = {
-                'name': _('Contacts'),
-                'view_mode': 'tree,form',
-                'res_model': 'res.partner',
-                'type': 'ir.actions.act_window',
+                "name": _("Contacts"),
+                "view_mode": "tree,form",
+                "res_model": "res.partner",
+                "type": "ir.actions.act_window",
             }
             contacts = self.get_action_views(1, 0, location)
             context.update({"group_by": ""})
@@ -298,11 +298,9 @@ class FSMLocation(models.Model):
             if len(contacts) == 0 or len(contacts) > 1:
                 vals["domain"] = [("id", "in", contacts.ids)]
             elif contacts:
-                vals["views"] = [
-                    (self.env.ref("base.view_partner_form").id, "form")
-                ]
+                vals["views"] = [(self.env.ref("base.view_partner_form").id, "form")]
                 vals["res_id"] = contacts.id
-            vals.update({'context': context})
+            vals.update({"context": context})
             return vals
 
     def _compute_contact_ids(self):
@@ -319,10 +317,10 @@ class FSMLocation(models.Model):
         context = dict(self._context) or {}
         for location in self:
             vals = {
-                'name': _('Field Service Equipment'),
-                'view_mode': 'tree,form',
-                'res_model': 'fsm.equipment',
-                'type': 'ir.actions.act_window',
+                "name": _("Field Service Equipment"),
+                "view_mode": "tree,form",
+                "res_model": "fsm.equipment",
+                "type": "ir.actions.act_window",
             }
             equipment = self.get_action_views(0, 1, location)
             context.update({"group_by": ""})
@@ -354,10 +352,10 @@ class FSMLocation(models.Model):
         context = dict(self._context) or {}
         for location in self:
             vals = {
-                'name': _('Service Locations'),
-                'view_mode': 'tree,form',
-                'res_model': 'fsm.location',
-                'type': 'ir.actions.act_window',
+                "name": _("Service Locations"),
+                "view_mode": "tree,form",
+                "res_model": "fsm.location",
+                "type": "ir.actions.act_window",
             }
             sublocation = self.get_action_views(0, 0, location)
             context.update({"group_by": ""})
@@ -372,7 +370,7 @@ class FSMLocation(models.Model):
                     )
                 ]
                 vals["res_id"] = sublocation.id
-            vals.update({'context': context})
+            vals.update({"context": context})
             return vals
 
     def geo_localize(self):

@@ -10,10 +10,10 @@ class FSMPerson(TransactionCase):
         self.Worker = self.env["fsm.person"]
 
     def test_fsm_location(self):
-        """ Test createing new person
-            - Default stage
-            - Change stage
-            - _search
+        """Test createing new person
+        - Default stage
+        - Change stage
+        - _search
         """
         # Create an equipment
         view_id = "fieldservice.fsm_person_form"

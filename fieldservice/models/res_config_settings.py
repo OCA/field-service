@@ -25,16 +25,12 @@ class ResConfigSettings(models.TransientModel):
     )
 
     # Modules
-    module_fieldservice_account = fields.Boolean(
-        string="Invoice your FSM orders")
-    module_fieldservice_activity = fields.Boolean(
-        string="Manage FSM Activities")
+    module_fieldservice_account = fields.Boolean(string="Invoice your FSM orders")
+    module_fieldservice_activity = fields.Boolean(string="Manage FSM Activities")
     module_fieldservice_agreement = fields.Boolean(string="Manage Agreements")
-    module_fieldservice_change_management = fields.Boolean(
-        string="Change Management")
+    module_fieldservice_change_management = fields.Boolean(string="Change Management")
     module_fieldservice_crm = fields.Boolean(string="CRM")
-    module_fieldservice_distribution = fields.Boolean(
-        string="Manage Distribution")
+    module_fieldservice_distribution = fields.Boolean(string="Manage Distribution")
     module_fieldservice_fleet = fields.Boolean(
         string="Link FSM vehicles to Fleet vehicles"
     )
@@ -52,8 +48,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_purchase = fields.Boolean(
         string="Manage subcontractors and their pricelists"
     )
-    module_fieldservice_recurring = fields.Boolean(
-        string="Manage Recurring Orders")
+    module_fieldservice_recurring = fields.Boolean(string="Manage Recurring Orders")
     module_fieldservice_repair = fields.Boolean(
         string="Link FSM orders to MRP Repair orders"
     )
@@ -71,8 +66,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_skill = fields.Boolean(string="Manage Skills")
     module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
     module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
-    module_fieldservice_substatus = fields.Boolean(
-        string="Manage Sub-Statuses")
+    module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
     module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
