@@ -5,13 +5,14 @@ from odoo import fields, models
 
 
 class ChangeLogType(models.Model):
-    _name = 'change.log.type'
-    _order = 'log_type_sequence'
-    _description = 'Change Log Type'
+    _name = "change.log.type"
+    _order = "log_type_sequence"
+    _description = "Change Log Type"
 
     name = fields.Char(string="Type", required=True)
     description = fields.Text(string="Description")
     log_type_sequence = fields.Integer(
         required=True,
-        default=lambda self: self.env[
-            'ir.sequence'].next_by_code('res.log.impact') or 0)
+        default=lambda self: self.env["ir.sequence"].next_by_code("res.log.impact")
+        or 0,
+    )

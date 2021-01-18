@@ -5,9 +5,9 @@ from odoo import fields, models
 
 
 class ChangeLogStage(models.Model):
-    _name = 'change.log.stage'
-    _order = 'stage_sequence'
-    _description = 'Change Log Stage'
+    _name = "change.log.stage"
+    _order = "stage_sequence"
+    _description = "Change Log Stage"
 
     name = fields.Char(string="Stage", required=True)
     description = fields.Text(string="Description")
@@ -15,5 +15,6 @@ class ChangeLogStage(models.Model):
     is_close = fields.Boolean(string="Closing Kanban Stage")
     stage_sequence = fields.Integer(
         required=True,
-        default=lambda self: self.env[
-            'ir.sequence'].next_by_code('res.log.impact') or 0)
+        default=lambda self: self.env["ir.sequence"].next_by_code("res.log.impact")
+        or 0,
+    )
