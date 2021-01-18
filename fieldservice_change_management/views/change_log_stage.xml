@@ -11,12 +11,11 @@
         <field name="model">change.log.stage</field>
         <field name="arch" type="xml">
             <tree editable="top">
-                <field name="stage_sequence"
-                       widget="handle"/>
-                <field name="name"/>
-                <field name="description"/>
-                <field name="fold"/>
-                <field name="is_close"/>
+                <field name="stage_sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+                <field name="fold" />
+                <field name="is_close" />
             </tree>
         </field>
     </record>
@@ -32,7 +31,7 @@
                         <h1><field name="name" /></h1>
                     </div>
                     <group>
-                        <field name="description"/>
+                        <field name="description" />
                     </group>
                 </sheet>
             </form>
@@ -46,9 +45,10 @@
     </record>
 
     <menuitem
-            name="Stages"
-            id="change_log_stage_menu"
-            parent="change_log_configuration_menu"
-            action="change_log_stage_action"
-            sequence="10"/>
+        name="Stages"
+        id="change_log_stage_menu"
+        parent="change_log_configuration_menu"
+        action="change_log_stage_action"
+        sequence="10"
+    />
 </odoo>

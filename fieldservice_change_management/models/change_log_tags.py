@@ -6,13 +6,13 @@ from odoo import fields, models
 
 class ChangeLogTags(models.Model):
     _name = "change.log.tag"
-    _order = 'name'
+    _order = "name"
     _description = "Change Log Tags"
 
     name = fields.Char(required=True)
     description = fields.Text(string="Description")
-    color = fields.Integer(string='Color Index')
+    color = fields.Integer(string="Color Index")
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', "Tag name already exists!"),
+        ("name_uniq", "unique (name)", "Tag name already exists!"),
     ]
