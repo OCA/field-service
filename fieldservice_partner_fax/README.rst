@@ -25,7 +25,8 @@ Field Service - Partner Fax
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to manage a partner's fax number from the field service location screen.
+This module allows you to manage a partner's fax number from the
+field service location screen.
 
 **Table of contents**
 
