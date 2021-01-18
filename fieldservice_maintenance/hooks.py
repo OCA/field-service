@@ -18,14 +18,12 @@ def pre_init_hook(cr):
         for equipment in equipments:
             cr.execute("""INSERT INTO maintenance_equipment (
                 name,
-                equipment_assign_to,
                 maintenance_team_id,
                 is_fsm_equipment,
                 effective_date,
                 active)
             VALUES (
                 %s,
-                'other',
                 1,
                 True,
                 %s,
