@@ -18,7 +18,7 @@ class ChangeLog(models.Model):
     description = fields.Text(string="Description", required=True)
     user_id = fields.Many2one('res.users', string="Changed By",
                               default=lambda self: self.env.user,
-                              track_visibility="onchange",
+                              tracking=True,
                               required="1")
     tag_ids = fields.Many2many('change.log.tag', string="Tags")
     type_id = fields.Many2one('change.log.type', string="Type", required=True)
