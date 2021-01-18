@@ -73,7 +73,7 @@ class FSMLocation(models.Model):
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         copy=False,
         group_expand="_read_group_stage_ids",
@@ -284,20 +284,26 @@ class FSMLocation(models.Model):
         either be a in a list or in a form view, if there is only one
         contact to show.
         """
+        context = dict(self._context) or {}
         for location in self:
-            action = self.env.ref("contacts.action_contacts").read()[0]
+            vals = {
+                'name': _('Contacts'),
+                'view_mode': 'tree,form',
+                'res_model': 'res.partner',
+                'type': 'ir.actions.act_window',
+            }
             contacts = self.get_action_views(1, 0, location)
-            action["context"] = self.env.context.copy()
-            action["context"].update({"group_by": ""})
-            action["context"].update({"default_service_location_id": self.id})
+            context.update({"group_by": ""})
+            context.update({"default_service_location_id": location.id})
             if len(contacts) == 0 or len(contacts) > 1:
-                action["domain"] = [("id", "in", contacts.ids)]
+                vals["domain"] = [("id", "in", contacts.ids)]
             elif contacts:
-                action["views"] = [
-                    (self.env.ref("base." + "view_partner_form").id, "form")
+                vals["views"] = [
+                    (self.env.ref("base.view_partner_form").id, "form")
                 ]
-                action["res_id"] = contacts.id
-            return action
+                vals["res_id"] = contacts.id
+            vals.update({'context': context})
+            return vals
 
     def _compute_contact_ids(self):
         for loc in self:
@@ -310,23 +316,29 @@ class FSMLocation(models.Model):
         equipment of given fsm location id. It can either be a in
         a list or in a form view, if there is only one equipment to show.
         """
+        context = dict(self._context) or {}
         for location in self:
-            action = self.env.ref("fieldservice.action_fsm_equipment").read()[0]
+            vals = {
+                'name': _('Field Service Equipment'),
+                'view_mode': 'tree,form',
+                'res_model': 'fsm.equipment',
+                'type': 'ir.actions.act_window',
+            }
             equipment = self.get_action_views(0, 1, location)
-            action["context"] = self.env.context.copy()
-            action["context"].update({"group_by": ""})
-            action["context"].update({"default_location_id": self.id})
+            context.update({"group_by": ""})
+            context.update({"default_location_id": location.id})
             if len(equipment) == 0 or len(equipment) > 1:
-                action["domain"] = [("id", "in", equipment.ids)]
+                vals["domain"] = [("id", "in", equipment.ids)]
             elif equipment:
-                action["views"] = [
+                vals["views"] = [
                     (
-                        self.env.ref("fieldservice." + "fsm_equipment_form_view").id,
+                        self.env.ref("fieldservice.fsm_equipment_form_view").id,
                         "form",
                     )
                 ]
-                action["res_id"] = equipment.id
-            return action
+                vals["res_id"] = equipment.id
+            vals.update({"context": context})
+            return vals
 
     def _compute_sublocation_ids(self):
         for loc in self:
@@ -339,23 +351,29 @@ class FSMLocation(models.Model):
         sub-locations of a given fsm location id. It can either be a in
         a list or in a form view, if there is only one sub-location to show.
         """
+        context = dict(self._context) or {}
         for location in self:
-            action = self.env.ref("fieldservice.action_fsm_location").read()[0]
+            vals = {
+                'name': _('Service Locations'),
+                'view_mode': 'tree,form',
+                'res_model': 'fsm.location',
+                'type': 'ir.actions.act_window',
+            }
             sublocation = self.get_action_views(0, 0, location)
-            action["context"] = self.env.context.copy()
-            action["context"].update({"group_by": ""})
-            action["context"].update({"default_fsm_parent_id": self.id})
+            context.update({"group_by": ""})
+            context.update({"default_fsm_parent_id": location.id})
             if len(sublocation) > 1 or len(sublocation) == 0:
-                action["domain"] = [("id", "in", sublocation.ids)]
+                vals["domain"] = [("id", "in", sublocation.ids)]
             elif sublocation:
-                action["views"] = [
+                vals["views"] = [
                     (
-                        self.env.ref("fieldservice." + "fsm_location_form_view").id,
+                        self.env.ref("fieldservice.fsm_location_form_view").id,
                         "form",
                     )
                 ]
-                action["res_id"] = sublocation.id
-            return action
+                vals["res_id"] = sublocation.id
+            vals.update({'context': context})
+            return vals
 
     def geo_localize(self):
         return self.partner_id.geo_localize()

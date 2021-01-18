@@ -25,12 +25,16 @@ class ResConfigSettings(models.TransientModel):
     )
 
     # Modules
-    module_fieldservice_account = fields.Boolean(string="Invoice your FSM orders")
-    module_fieldservice_activity = fields.Boolean(string="Manage FSM Activities")
+    module_fieldservice_account = fields.Boolean(
+        string="Invoice your FSM orders")
+    module_fieldservice_activity = fields.Boolean(
+        string="Manage FSM Activities")
     module_fieldservice_agreement = fields.Boolean(string="Manage Agreements")
-    module_fieldservice_change_management = fields.Boolean(string="Change Management")
+    module_fieldservice_change_management = fields.Boolean(
+        string="Change Management")
     module_fieldservice_crm = fields.Boolean(string="CRM")
-    module_fieldservice_distribution = fields.Boolean(string="Manage Distribution")
+    module_fieldservice_distribution = fields.Boolean(
+        string="Manage Distribution")
     module_fieldservice_fleet = fields.Boolean(
         string="Link FSM vehicles to Fleet vehicles"
     )
@@ -48,7 +52,8 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_purchase = fields.Boolean(
         string="Manage subcontractors and their pricelists"
     )
-    module_fieldservice_recurring = fields.Boolean(string="Manage Recurring Orders")
+    module_fieldservice_recurring = fields.Boolean(
+        string="Manage Recurring Orders")
     module_fieldservice_repair = fields.Boolean(
         string="Link FSM orders to MRP Repair orders"
     )
@@ -66,7 +71,8 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_skill = fields.Boolean(string="Manage Skills")
     module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
     module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
-    module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
+    module_fieldservice_substatus = fields.Boolean(
+        string="Manage Sub-Statuses")
     module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
@@ -88,12 +94,6 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
     )
 
-    # Dependencies
-    @api.onchange("group_fsm_equipment")
-    def _onchange_group_fsm_equipment(self):
-        if not self.group_fsm_equipment:
-            self.auto_populate_the_equipments = False
-
     @api.onchange("module_fieldservice_repair")
     def _onchange_module_fieldservice_repair(self):
         if self.module_fieldservice_repair:
@@ -104,8 +104,3 @@ class ResConfigSettings(models.TransientModel):
         if self.module_fieldservice_stock:
             self.group_stock_production_lot = True
             self.group_stock_request_order = True
-
-    @api.onchange("module_fieldservice_purchase")
-    def _onchange_module_fieldservice_purchase(self):
-        if self.module_fieldservice_purchase:
-            self.group_manage_vendor_price = True

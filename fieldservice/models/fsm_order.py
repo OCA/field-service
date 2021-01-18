@@ -68,7 +68,7 @@ class FSMOrder(models.Model):
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         copy=False,
         group_expand="_read_group_stage_ids",
@@ -95,7 +95,7 @@ class FSMOrder(models.Model):
         default=lambda self: self._default_team_id(),
         index=True,
         required=True,
-        track_visibility="onchange",
+        tracking=True,
     )
 
     # Request
@@ -171,7 +171,7 @@ class FSMOrder(models.Model):
     todo = fields.Text(string="Instructions")
 
     # Execution
-    resolution = fields.Text(string="Resolution", placeholder="Resolution of the order")
+    resolution = fields.Text(string="Resolution")
     date_start = fields.Datetime(string="Actual Start")
     date_end = fields.Datetime(string="Actual End")
     duration = fields.Float(
@@ -249,7 +249,7 @@ class FSMOrder(models.Model):
         if vals.get("request_early", False) and not vals.get("scheduled_date_start"):
             req_date = fields.Datetime.from_string(vals["request_early"])
             # Round scheduled date start
-            req_date = req_date.replace(minute=0, second=0)
+            req_date = req_date.replace(minute=0, second=0, microsecond=0)
             vals.update(
                 {"scheduled_date_start": str(req_date), "request_early": str(req_date)}
             )
@@ -377,6 +377,8 @@ class FSMOrder(models.Model):
     @api.onchange("scheduled_duration")
     def onchange_scheduled_duration(self):
         if self.scheduled_duration and self.scheduled_date_start:
+            if self.scheduled_duration < 0:
+                raise ValidationError(_("Scheduled Duration Should be Postive Value"))
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_start
             ) + timedelta(hours=self.scheduled_duration)
