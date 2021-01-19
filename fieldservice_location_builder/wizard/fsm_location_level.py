@@ -8,7 +8,7 @@ class FSMLocationLevel(models.TransientModel):
     _description = 'Level in the FSM location tree structure'
 
     sequence = fields.Integer("Sequence")
-    name = fields.Char("Name")
+    name = fields.Char("Name", required=True)
     spacer = fields.Char("Spacer")
     start_number = fields.Integer("Start Number")
     end_number = fields.Integer("End Number")
@@ -20,10 +20,9 @@ class FSMLocationLevel(models.TransientModel):
     @api.depends('start_number', 'end_number')
     def _compute_total_number(self):
         for level_id in self:
+            level_id.total_number = 0
             if (level_id.start_number is not None and
-                    level_id.end_number is not None
-                    and level_id.start_number < level_id.end_number):
+                    level_id.end_number is not None and
+                    level_id.start_number < level_id.end_number):
                 level_id.total_number = (level_id.end_number -
                                          level_id.start_number + 1)
-            else:
-                level_id.total_number = 0

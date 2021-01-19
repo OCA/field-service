@@ -1,6 +1,6 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FSMLocationBuilderWizard(models.TransientModel):
@@ -9,7 +9,7 @@ class FSMLocationBuilderWizard(models.TransientModel):
     level_ids = fields.One2many('fsm.location.level',
                                 'wizard_id', string="Level ID's")
 
-    @api.multi
+
     def create_sub_locations(self):
         levels = len(self.level_ids) - 1
         location = self.env['fsm.location'].\
@@ -32,14 +32,12 @@ class FSMLocationBuilderWizard(models.TransientModel):
     def prepare_fsm_location_values(self, location, parent,
                                     spacer, lev_id, num):
         tags = self.level_ids[num].tag_ids.ids
-        vals = {'name': self.level_ids[num].
-                name + spacer + str(lev_id),
+        vals = {'name': self.level_ids[num].name + spacer + str(lev_id),
                 'owner_id': location.owner_id.id,
                 'customer_id': location.customer_id.id,
                 'fsm_parent_id': parent.id,
                 'street': location.street,
-                'street2':  self.level_ids[num].
-                name + spacer + str(lev_id),
+                'street2': self.level_ids[num].name + spacer + str(lev_id),
                 'city': location.city,
                 'zip': location.zip,
                 }
