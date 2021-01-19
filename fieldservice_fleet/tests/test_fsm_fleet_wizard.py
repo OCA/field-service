@@ -2,7 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, new_test_user
+
+from odoo.addons.fieldservice_fleet import hooks
 
 
 class TestFSMFleetWizard(TransactionCase):
@@ -10,6 +12,8 @@ class TestFSMFleetWizard(TransactionCase):
         super(TestFSMFleetWizard, self).setUp()
         self.Wizard = self.env["fsm.fleet.wizard"]
         self.fleet_vehicle_1 = self.env.ref("fleet.vehicle_1")
+        self.person_1 = self.env.ref("fieldservice.person_1")
+        self.driver_1 = self.env.ref("base.res_partner_address_25")
 
     def test_convert_vehicle(self):
         # Convert a Fleet vehicle to FSM vehicle and link it
@@ -46,11 +50,51 @@ class TestFSMFleetWizard(TransactionCase):
 
         # Attempt to convert the Fleet vehicle again, but expect UserError
         # because we already converted it
-        with self.assertRaises(UserError) as e:
+        with self.assertRaises(UserError):
             self.Wizard.action_convert_vehicle(self.fleet_vehicle_1)
-        self.assertEqual(
-            e.exception.name,
-            "A Field Service Vehicle related to that" " Fleet Vehicle already exists.",
-            """FSM Fleet Wizard: UserError not thrown when converting
-               Fleet vehicle already linked to FSM Vehicle.""",
+
+    def test_fsm_vehicle(self):
+        self.fleet_vehicle_2 = self.env["fsm.vehicle"].create(
+            {
+                "name": "Vehicle 2",
+                "person_id": self.person_1.id,
+                "fleet_vehicle_id": self.fleet_vehicle_1.id,
+            }
         )
+        self.fleet_vehicle_1.is_fsm_vehicle = True
+        self.fleet_vehicle_2.write({"driver_id": self.driver_1.id})
+        manager = new_test_user(
+            self.env,
+            "test fleet manager",
+            groups="fleet.fleet_group_manager,base.group_partner_manager",
+        )
+        user = new_test_user(self.env, "test base user", groups="base.group_user")
+        brand = self.env["fleet.vehicle.model.brand"].create(
+            {
+                "name": "Audi",
+            }
+        )
+        model = self.env["fleet.vehicle.model"].create(
+            {
+                "brand_id": brand.id,
+                "name": "A3",
+            }
+        )
+        hooks.pre_init_hook(self.env.cr)
+        self.fleet_vehicle_3 = (
+            self.env["fleet.vehicle"]
+            .with_user(manager)
+            .create(
+                {
+                    "model_id": model.id,
+                    "driver_id": user.partner_id.id,
+                    "plan_to_change_car": False,
+                }
+            )
+        )
+        self.context = {
+            "active_model": "fleet.vehicle",
+            "active_ids": [self.fleet_vehicle_3.id],
+            "active_id": self.fleet_vehicle_3.id,
+        }
+        self.Wizard.with_context(self.context).action_convert()
