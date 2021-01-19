@@ -63,10 +63,22 @@ class TestFSMOrder(TransactionCase):
                 }
             )
         )
+        brand = self.env["fleet.vehicle.model.brand"].create(
+            {
+                "name": "Audi",
+            }
+        )
+        model = self.env["fleet.vehicle.model"].create(
+            {
+                "brand_id": brand.id,
+                "name": "A3",
+            }
+        )
         self.vehicle = self.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 1",
                 "inventory_location_id": self.test_location.id,
+                "model_id": model.id,
             }
         )
 

@@ -10,14 +10,9 @@ def pre_init_hook(cr):
     vehicles = []
     vehicles = cr.dictfetchall()
     if vehicles:
-        # Add new columns to hold values
-        cr.execute("ALTER TABLE fsm_vehicle ADD fleet_vehicle_id INT;")
-        cr.execute("ALTER TABLE fleet_vehicle ADD is_fsm_vehicle BOOLEAN;")
-
         # Get a fleet vehicle model to set on the new Fleet vehicle(s)
         env = api.Environment(cr, SUPERUSER_ID, {})
         model_id = env["fleet.vehicle.model"].search([], limit=1).id
-
         # Create a new Fleet vehicle for each FSM vehicle
         for veh in vehicles:
             # Get the FSM worker to set as the Fleet driver
@@ -25,7 +20,6 @@ def pre_init_hook(cr):
             driver_id = False
             if fsm_person_id:
                 driver_id = env["fsm.person"].browse(fsm_person_id).partner_id.id
-
             cr.execute(
                 """
                         INSERT INTO fleet_vehicle (
@@ -44,7 +38,6 @@ def pre_init_hook(cr):
                             True);""",
                 (veh.get("name"), model_id, driver_id),
             )
-
             # Set this new Fleet vehicle on the existing FSM vehicle
             cr.execute(
                 """
@@ -55,7 +48,6 @@ def pre_init_hook(cr):
                        """
             )
             fleet = cr.dictfetchone()
-
             cr.execute(
                 """
                         UPDATE fsm_vehicle

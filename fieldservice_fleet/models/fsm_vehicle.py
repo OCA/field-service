@@ -10,7 +10,10 @@ class FSMVehicle(models.Model):
     _inherits = {"fleet.vehicle": "fleet_vehicle_id"}
 
     fleet_vehicle_id = fields.Many2one(
-        "fleet.vehicle", string="Vehicle Details", required=True, ondelete="restrict",
+        "fleet.vehicle",
+        string="Vehicle Details",
+        required=True,
+        ondelete="restrict",
     )
 
     _sql_constraints = [
@@ -21,21 +24,22 @@ class FSMVehicle(models.Model):
         )
     ]
 
-    @api.model
-    def create(self, vals):
-        fleet_id = vals.get("fleet_vehicle_id")
-        if fleet_id:
-            if vals.get("person_id", False):
-                vals["driver_id"] = vals.get("person_id")
-            vals["is_fsm_vehicle"] = True
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            fleet_id = vals.get("fleet_vehicle_id")
+            if fleet_id:
+                if vals.get("person_id", False):
+                    vals["driver_id"] = vals.get("person_id")
+                vals["is_fsm_vehicle"] = True
+        return super(FSMVehicle, self).create(vals_list)
 
     def write(self, vals):
         # update fsm.vehicle worker based on the fleet.vehicle driver
         if "driver_id" in vals:
             for vehicle in self:
                 if vehicle.is_fsm_vehicle:
-                    vehicle.set_fsm_driver()
+                    vehicle.fleet_vehicle_id.set_fsm_driver()
         # update fleet.vehicle driver based on the fsm.vehicle worker
         fsm_worker_id = vals.get("person_id", False)
         if fsm_worker_id:
