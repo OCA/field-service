@@ -28,16 +28,29 @@ class TestStockPicking(TransactionCase):
         self.picking_type_id = self.env.ref(
             "fieldservice_vehicle_stock.picking_type_output_to_vehicle"
         )
+        brand = self.env["fleet.vehicle.model.brand"].create(
+            {
+                "name": "Audi",
+            }
+        )
+        model = self.env["fleet.vehicle.model"].create(
+            {
+                "brand_id": brand.id,
+                "name": "A3",
+            }
+        )
         self.fsm_vehicle_id = self.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 1",
                 "inventory_location_id": self.stock_location.id,
+                "model_id": model.id,
             }
         )
         self.fsm_vehicle2_id = self.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 2",
                 "inventory_location_id": self.stock_location.id,
+                "model_id": model.id,
             }
         )
         self.picking_out = self.env["stock.picking"].create(
