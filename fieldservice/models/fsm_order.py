@@ -1,10 +1,14 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import pytz
+
 from datetime import datetime, timedelta
 from odoo import api, fields, models, _
 from . import fsm_stage
 from odoo.exceptions import ValidationError, UserError
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.addons.resource.models.resource import float_to_time
 
 
 class FSMOrder(models.Model):
@@ -268,14 +272,14 @@ class FSMOrder(models.Model):
                     "You cannot delete this order."))
 
     def _calc_scheduled_dates(self, vals):
-        """Calculate scheduled dates and duration"""
+        """Calculate scheduled dates and duration."""
+        if (vals.get('scheduled_duration') or
+                vals.get('scheduled_date_start') or
+                vals.get('scheduled_date_end')):
 
-        if (vals.get('scheduled_duration')
-            or vals.get('scheduled_date_start')
-                or vals.get('scheduled_date_end')):
-
-            if (vals.get('scheduled_date_start')
-                    and vals.get('scheduled_date_end')):
+            assigned_id = vals.get('person_id', False) or self.person_id
+            if (vals.get('scheduled_date_start') and
+                    vals.get('scheduled_date_end')):
                 new_date_start = fields.Datetime.from_string(vals.get(
                     'scheduled_date_start', False))
                 new_date_end = fields.Datetime.from_string(
@@ -293,16 +297,125 @@ class FSMOrder(models.Model):
                 ) - timedelta(hours=hrs)
                 vals['scheduled_date_start'] = str(date_to_with_delta)
 
-            elif (vals.get('scheduled_duration', False)
-                  or (vals.get('scheduled_date_start', False)
-                      and (self.scheduled_date_start != vals.get(
-                          'scheduled_date_start', False)))):
-                hours = vals.get('scheduled_duration', False)
+            elif (vals.get('scheduled_duration', False) or
+                    (vals.get('scheduled_date_start', False) and
+                        (self.scheduled_date_start != vals.get(
+                            'scheduled_date_start', False)))):
+                hours = vals.get('scheduled_duration',
+                                 False) or self.scheduled_duration or 0
                 start_date_val = vals.get('scheduled_date_start',
                                           self.scheduled_date_start)
                 start_date = fields.Datetime.from_string(start_date_val)
                 date_to_with_delta = start_date + timedelta(hours=hours)
+                if isinstance(assigned_id, int):
+                    assigned_id = self.env['fsm.person'].search([
+                        ('id', '=', assigned_id)])
+                if assigned_id and assigned_id.calendar_id:
+                    m_day_st = False
+                    m_day_end = False
+                    a_day_st = False
+                    a_day_end = False
+
+                    assign_tz = assigned_id.calendar_id.tz or pytz.utc
+                    local = pytz.timezone(assign_tz)
+                    display_date_result = datetime.strftime(pytz.utc.localize(
+                        datetime.strptime(
+                            str(start_date_val),
+                            DEFAULT_SERVER_DATETIME_FORMAT)).astimezone(local),
+                        '%Y-%m-%d %H:%M:%S')
+                    d_st = datetime.strptime(
+                        display_date_result, '%Y-%m-%d %H:%M:%S')
+
+                    for att in assigned_id.calendar_id.attendance_ids.filtered(
+                            lambda t: int(t.dayofweek) == d_st.weekday()):
+                        if att.day_period == 'morning':
+                            m_day_st = att.hour_from
+                            m_day_end = att.hour_to
+                        else:
+                            a_day_st = att.hour_from
+                            a_day_end = att.hour_to
+
+                    st_t = float(str(d_st.hour) + '.' + str(d_st.minute))
+
+                    if (m_day_st > st_t or
+                            a_day_end < st_t) or m_day_end < st_t < a_day_st:
+                        raise ValidationError(_(
+                            "Must add the Scheduled Start time base on\
+                             Working Schedule. \n Morning: " + str(
+                                m_day_st) + " To" + str(m_day_end) + "\n \
+                            Afternoon:" + str(
+                                a_day_st) + " To" + str(a_day_end)))
+
+                    if st_t >= m_day_st and st_t <= m_day_end:
+                        h_diff = m_day_end - st_t
+                        new_h = hours - h_diff
+                        if new_h <= 0:
+                            # Same day Morning
+                            date_to_with_delta = start_date + timedelta(
+                                hours=hours)
+                        else:
+                            total_h = a_day_end - a_day_st
+                            if total_h >= new_h:
+                                # Same day After noon
+                                date_to_with_delta = self.cal_hours(
+                                    start_date, assigned_id, a_day_st, new_h)
+                            else:
+                                # next day morning
+                                new_h = new_h - total_h
+                                start_date = start_date + timedelta(days=1)
+                                # find first attendance coming after first_day
+                                date_to_with_delta = self.cal_working_schedule(
+                                    new_h, assigned_id, start_date)
+
+                    elif st_t >= a_day_st and st_t <= a_day_end:
+                        h_diff = a_day_end - st_t
+                        new_h = hours - h_diff
+                        if new_h <= 0:
+                            # Same day After noon
+                            date_to_with_delta = start_date + timedelta(
+                                hours=hours)
+                        else:
+                            start_date = start_date + timedelta(days=1)
+                            date_to_with_delta = self.cal_working_schedule(
+                                new_h, assigned_id, start_date)
+
                 vals['scheduled_date_end'] = str(date_to_with_delta)
+
+    def cal_working_schedule(self, new_h, assigned_id, start_date):
+        """Get the Working time."""
+        while new_h > 0:
+            flag = False
+            for att in assigned_id.calendar_id.attendance_ids:
+                flag = True
+                if (int(att.dayofweek) == start_date.weekday()):
+                    flag = False
+                    h_diff = att.hour_to - att.hour_from
+                    if h_diff >= new_h:
+                        date_to_with_delta = self.cal_hours(
+                            start_date, assigned_id, att.hour_from, new_h)
+                        new_h = 0
+                        return date_to_with_delta
+                    else:
+                        new_h = new_h - h_diff
+                        if att.day_period != 'morning':
+                            start_date = start_date + timedelta(days=1)
+
+            if flag:
+                start_date = start_date + timedelta(days=1)
+
+    def cal_hours(self, start_date, assigned_id, day_st, new_h):
+        """Get the Scheduled End Datetime."""
+        hour_from = float_to_time(abs(day_st))
+        tz = assigned_id.calendar_id.tz or pytz.utc
+        start_date = pytz.timezone(tz).localize(
+            datetime.combine(
+                start_date.date(),
+                hour_from)).astimezone(
+                    pytz.UTC).replace(tzinfo=None)
+        date_to_with_delta = start_date + timedelta(
+            hours=new_h)
+        return date_to_with_delta
+
 
     def action_complete(self):
         return self.write({'stage_id': self.env.ref(
