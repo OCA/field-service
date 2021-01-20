@@ -416,7 +416,6 @@ class FSMOrder(models.Model):
             hours=new_h)
         return date_to_with_delta
 
-
     def action_complete(self):
         return self.write({'stage_id': self.env.ref(
             'fieldservice.fsm_stage_completed').id, 'is_button': True})
