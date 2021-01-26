@@ -27,6 +27,12 @@ class StockMove(models.Model):
                     and rec.product_tmpl_id.create_fsm_equipment):
                 for line in rec.move_line_ids:
                     vals = self.prepare_equipment_values(line)
-                    line.lot_id.fsm_equipment_id = \
-                        rec.env['fsm.equipment'].create(vals)
+                    equipment_id = self.env['fsm.equipment'].search(
+                        [('name', '=', line.lot_id.name)]
+                    )
+                    if equipment_id:
+                        line.lot_id.fsm_equipment_id = equipment_id.id
+                    else:
+                        line.lot_id.fsm_equipment_id = \
+                            rec.env['fsm.equipment'].create(vals)
         return res
