@@ -13,16 +13,7 @@ class StockPicking(models.Model):
     def action_assign(self):
         res = {}
         for rec in self:
-            if rec.picking_type_id in (
-                # Vehicle Loading
-                self.env.ref(
-                    'fieldservice_vehicle_stock.'
-                    'picking_type_output_to_vehicle'),
-                # Location Pickup
-                self.env.ref(
-                    'fieldservice_vehicle_stock.'
-                    'picking_type_location_to_vehicle')
-            ):
+            if rec.picking_type_id.require_vehicle_id:
                 if rec.fsm_vehicle_id:
                     picking = \
                         rec.with_context(vehicle_id=rec.fsm_vehicle_id.id)
@@ -30,15 +21,29 @@ class StockPicking(models.Model):
                 else:
                     raise UserError(_(
                         "You must provide the vehicle for this picking type."))
-            res = super(StockPicking, rec).action_assign()
+            else:
+                res = super(StockPicking, rec).action_assign()
         return res
 
     def prepare_fsm_values(self, fsm_order):
         res = {}
         if fsm_order:
-            res.update({
-                'fsm_vehicle_id': fsm_order.vehicle_id.id or False,
-            })
+            if fsm_order.vehicle_id and self.picking_type_id == self.env.ref(
+                    'fieldservice_vehicle_stock.'
+                    'picking_type_output_to_vehicle'):
+                batch = self.env['stock.picking.batch'].search([
+                    ('state', '=', 'draft'),
+                    ('vehicle_id', '=', fsm_order.vehicle_id.id),
+                    ('date', '=', self.scheduled_date.date()),
+                ])
+                if not batch:
+                    # TODO: Use the user timezone to set the correct date
+                    batch = self.env['stock.picking.batch'].create({
+                        'vehicle_id': fsm_order.vehicle_id.id,
+                        'date': self.scheduled_date.date(),
+                    })
+                res.update({'batch_id': batch.id})
+            res.update({'fsm_vehicle_id': fsm_order.vehicle_id.id or False})
         return res
 
     @api.multi

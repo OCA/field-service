@@ -40,6 +40,7 @@
                    ref="stock.stock_location_stock"/>
             <field name="default_location_dest_id"
                    ref="stock_location_vehicle"/>
+            <field name="require_vehicle_id" eval="True"/>
         </record>
 
         <!-- Vehicle to Location operations -->
@@ -59,6 +60,7 @@
             <field name="warehouse_id" eval="False"/>
             <field name="default_location_src_id"
                    ref="stock_location_vehicle"/>
+            <field name="require_vehicle_id" eval="True"/>
         </record>
 
         <!-- Route: Stock to Vehicle to Location -->
@@ -120,6 +122,7 @@
                    ref="stock_location_vehicle"/>
             <field name="return_picking_type_id"
                    ref="picking_type_vehicle_to_location"/>
+            <field name="require_vehicle_id" eval="True"/>
         </record>
 
         <record id="procurement_rule_location_to_vehicle"
@@ -153,6 +156,7 @@
                    ref="stock.stock_location_stock"/>
             <field name="return_picking_type_id"
                    ref="picking_type_output_to_vehicle"/>
+            <field name="require_vehicle_id" eval="True"/>
         </record>
 
         <record id="stock_rule_vehicle_to_input"

@@ -1,0 +1,65 @@
+<!-- Copyright (C) 2020 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_stock_picking_batch_vehicle_tree" model="ir.ui.view">
+        <field name="name">stock.picking.batch.vehicle.tree</field>
+        <field name="inherit_id"
+               ref="stock_picking_batch.stock_picking_batch_tree"/>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="date"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_batch_vehicle_search" model="ir.ui.view">
+        <field name="name">stock.picking.batch.vehicle.search</field>
+        <field name="inherit_id"
+               ref="stock_picking_batch.stock_picking_batch_filter"/>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <filter name="in_progress" position="before">
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]" help="Batch Pickings in draft"/>
+            </filter>
+            <field name="user_id" position="before">
+                <field name="date"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="vehicle_id"/>
+            </field>
+            <filter name="user" position="before">
+                <filter string="Date" name="date" domain="[]" context="{'group_by': 'date'}"/>
+            </filter>
+            <filter name="user" position="after">
+                <filter string="Vehicle" name="vehicle" domain="[]" context="{'group_by': 'vehicle_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_batch_vehicle_form" model="ir.ui.view">
+        <field name="name">stock.picking.batch.vehicle.form</field>
+        <field name="inherit_id"
+               ref="stock_picking_batch.stock_picking_batch_form"/>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <group>
+                    <field name="vehicle_id"/>
+                </group>
+            </xpath>
+            <field name="user_id" position="after">
+                <field name="date"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_picking_batch.stock_picking_batch_action" model="ir.actions.act_window">
+        <field name="context">{"search_default_draft": True, "search_default_in_progress": True}</field>
+    </record>
+
+</odoo>
