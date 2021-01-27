@@ -1,12 +1,12 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2021 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models, _
 from odoo.exceptions import ValidationError
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     @api.model
     def create(self, vals):
@@ -18,4 +18,4 @@ class AccountInvoiceLine(models.Model):
             else:
                 raise ValidationError(_("No analytic account "
                                         "set on the order's Location."))
-        return super(AccountInvoiceLine, self).create(vals)
+        return super(AccountMoveLine, self).create(vals)
