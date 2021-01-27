@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Clément Mombereau (Akretion)
+# Copyright (C) 2021 Clément Mombereau (Akretion)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 from odoo.tests.common import TransactionCase
 

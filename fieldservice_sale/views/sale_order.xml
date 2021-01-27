@@ -8,7 +8,7 @@
                 <button type="object"
                         name="action_view_fsm_order"
                         class="oe_stat_button"
-                        icon="fa-tasks"
+                        icon="fa-map"
                         attrs="{'invisible': [('fsm_order_count', '=', 0)]}"
                         groups="fieldservice.group_fsm_user">
                     <field name="fsm_order_count" widget="statinfo" string="FSM Orders"/>
@@ -16,11 +16,6 @@
             </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
                 <field name="fsm_location_id"/>
-            </xpath>
-            <xpath expr="//group[@name='technical']" position="after">
-                <group string="Field Service Information" name="sale_fsm">
-                    <field name="date_fsm_request"/>
-                </group>
             </xpath>
         </field>
     </record>
