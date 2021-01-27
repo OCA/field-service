@@ -1,10 +1,10 @@
-# Copyright (C) 2019 - Akretion
+# Copyright (C) 2021 - Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Field Service - Flow for ISP',
     'summary': 'Field Service workflow for Internet Service Providers',
-    'version': '12.0.1.1.1',
+    'version': '14.0.1.1.1',
     'category': 'Field Service',
     'author':
         'Open Source Integrators, '
