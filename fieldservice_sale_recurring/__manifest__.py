@@ -1,9 +1,9 @@
-# Copyright (C) 2018 Open Source Integrators
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Field Service - Sales - Recurring',
-    'version': '12.0.1.1.0',
+    'version': '14.0.1.0.0',
     'summary': 'Sell recurring field services.',
     'category': 'Field Service',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',

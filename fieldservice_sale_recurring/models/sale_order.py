@@ -1,5 +1,5 @@
-# Copyright (C) 2019 Brian McMaster
-# Copyright (C) 2019 Open Source Integrators
+# Copyright (C) 2021 Brian McMaster
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -14,7 +14,6 @@ class SaleOrder(models.Model):
     fsm_recurring_count = fields.Float(
         string='FSM Recurring Orders', compute='_compute_fsm_recurring_ids')
 
-    @api.multi
     @api.depends('order_line.product_id')
     def _compute_fsm_recurring_ids(self):
         for order in self:
@@ -22,7 +21,6 @@ class SaleOrder(models.Model):
                 ('sale_line_id', 'in', order.order_line.ids)])
             order.fsm_recurring_count = len(order.fsm_recurring_ids)
 
-    @api.multi
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.mapped('fsm_recurring_ids')
         action = self.env.ref(
