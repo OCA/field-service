@@ -1,4 +1,4 @@
-# Copyright (C) 2019 - TODAY, Patrick Wilson
+# Copyright (C) 2021 - TODAY, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -12,11 +12,10 @@ class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
     project_id = fields.Many2one('project.project', string='Project',
-                                 track_visibility='onchange')
+                                 tracking=True)
     project_task_id = fields.Many2one('project.task', string='Project Task',
-                                      track_visibility='onchange')
+                                      tracking=True)
 
-    @api.multi
     def action_view_order(self):
         '''
         This function returns an action that displays a full FSM Order

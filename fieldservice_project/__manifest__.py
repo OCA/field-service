@@ -1,5 +1,4 @@
-
-# Copyright (C) 2019 - TODAY, Patrick Wilson
+# Copyright (C) 2021 - TODAY, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Field Service - Project',

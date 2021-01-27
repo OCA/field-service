@@ -1,7 +1,7 @@
-# Copyright (C) 2019 - TODAY, Patrick Wilson
+# Copyright (C) 2021 - TODAY, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FSMLocation(models.Model):
@@ -12,13 +12,11 @@ class FSMLocation(models.Model):
         string='# Projects'
     )
 
-    @api.multi
     def _compute_project_count(self):
         for location in self:
             location.project_count = self.env['project.project'].search_count(
                 [('fsm_location_id', '=', location.id)])
 
-    @api.multi
     def action_view_project(self):
         for location in self:
             project_ids = self.env['project.project'].search(
