@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_skill
+# 	* fieldservice_skill
 #
 msgid ""
 msgstr ""
@@ -17,9 +17,14 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_skill
-#: model_terms:ir.actions.act_window,help:fieldservice_skill.action_fsm_person_skill
-msgid "Create a worker skill."
-msgstr "Crie uma habilidade de trabalhador."
+#: model:ir.model.fields,help:fieldservice_skill.field_fsm_order__skill_worker_ids
+msgid "Available workers based on skill requirements"
+msgstr ""
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_hr_skill__color
+msgid "Color Index"
+msgstr ""
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__create_uid
@@ -37,35 +42,30 @@ msgid "Display Name"
 msgstr "Nome Exibido"
 
 #. module: fieldservice_skill
-#: selection:fsm.person.skill,level:0
-msgid "Expert"
-msgstr "Especialista"
-
-#. module: fieldservice_skill
 #: model:ir.model,name:fieldservice_skill.model_fsm_order
 msgid "Field Service Order"
-msgstr "Ordem de Serviço de Campo"
+msgstr "Ordem de Servi??o de Campo"
 
 #. module: fieldservice_skill
 #: model:ir.model,name:fieldservice_skill.model_fsm_template
 msgid "Field Service Order Template"
-msgstr "Modelo de Ordem de Serviço de Campo"
+msgstr "Modelo de Ordem de Servi??o de Campo"
 
 #. module: fieldservice_skill
 #: model:ir.model,name:fieldservice_skill.model_fsm_person
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__person_id
 msgid "Field Service Worker"
-msgstr "Trabalhador do Serviço de Campo"
+msgstr "Trabalhador do Servi??o de Campo"
 
 #. module: fieldservice_skill
 #: model:ir.model,name:fieldservice_skill.model_fsm_category
 msgid "Field Service Worker Category"
-msgstr "Categoria de Trabalhadores de Serviço de Campo"
+msgstr "Categoria de Trabalhadores de Servi??o de Campo"
 
 #. module: fieldservice_skill
 #: model:ir.model,name:fieldservice_skill.model_fsm_person_skill
 msgid "Field Service Worker Skill"
-msgstr "Habilidade do Trabalhador de Serviço de Campo"
+msgstr "Habilidade do Trabalhador de Servi??o de Campo"
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__id
@@ -73,51 +73,57 @@ msgid "ID"
 msgstr "ID"
 
 #. module: fieldservice_skill
-#: selection:fsm.person.skill,level:0
-msgid "Intermediate"
-msgstr "Intermediário"
-
-#. module: fieldservice_skill
-#: selection:fsm.person.skill,level:0
-msgid "Junior"
-msgstr "Júnior"
-
-#. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill____last_update
 msgid "Last Modified on"
-msgstr "Última Modificação Feita em"
+msgstr "??ltima Modifica????o Feita em"
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__write_uid
 msgid "Last Updated by"
-msgstr "Última Atualização por"
+msgstr "??ltima Atualiza????o por"
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__write_date
 msgid "Last Updated on"
-msgstr "Última Atualização em"
+msgstr "??ltima Atualiza????o em"
 
 #. module: fieldservice_skill
-#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__level
-msgid "Level"
-msgstr "Nível"
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__level_progress
+msgid "Progress"
+msgstr ""
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,help:fieldservice_skill.field_fsm_person_skill__level_progress
+msgid "Progress from zero knowledge (0%) to fully mastered (100%)."
+msgstr ""
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_category__skill_ids
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_order__skill_ids
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_template__skill_ids
 msgid "Required Skills"
-msgstr "Habilidades Necessárias"
+msgstr "Habilidades Necess??rias"
 
 #. module: fieldservice_skill
-#: selection:fsm.person.skill,level:0
-msgid "Senior"
-msgstr "Sênior"
-
-#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_hr_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_id
 msgid "Skill"
 msgstr "Habilidade"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_level_id
+msgid "Skill Level"
+msgstr ""
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_type_id
+msgid "Skill Type"
+msgstr ""
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_order__skill_worker_ids
+msgid "Skill Worker"
+msgstr ""
 
 #. module: fieldservice_skill
 #: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person__skill_ids
@@ -128,21 +134,26 @@ msgid "Skills"
 msgstr "Habilidades"
 
 #. module: fieldservice_skill
-#: sql_constraint:fsm.person.skill:0
+#: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
+#, python-format
+msgid "The skill %s and skill type %s doesn't match"
+msgstr ""
+
+#. module: fieldservice_skill
+#: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
+#, python-format
+msgid "The skill level %s is not valid for skill type: %s "
+msgstr ""
+
+#. module: fieldservice_skill
+#: model:ir.model.constraint,message:fieldservice_skill.constraint_fsm_person_skill_person_skill_uniq
 msgid "This person already has that skill!"
-msgstr "Essa pessoa já tem essa habilidade!"
+msgstr "Essa pessoa j?? tem essa habilidade!"
 
 #. module: fieldservice_skill
-#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_person_skill_form
-msgid "Worker Skill"
-msgstr "Habilidade do Trabalhador"
-
-#. module: fieldservice_skill
-#: model:ir.actions.act_window,name:fieldservice_skill.action_fsm_person_skill
 #: model:ir.actions.act_window,name:fieldservice_skill.action_fsm_person_skill_report
-#: model:ir.ui.menu,name:fieldservice_skill.menu_fsm_person_skill
 #: model:ir.ui.menu,name:fieldservice_skill.menu_fsm_person_skill_reporting
-#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_person_skill_tree
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_person_skill_form
 #: model_terms:ir.ui.view,arch_db:fieldservice_skill.view_fsm_person_skill_graph
 #: model_terms:ir.ui.view,arch_db:fieldservice_skill.view_fsm_person_skill_pivot
 msgid "Worker Skills"
@@ -151,4 +162,25 @@ msgstr "Habilidades do Trabalhador"
 #. module: fieldservice_skill
 #: model_terms:ir.actions.act_window,help:fieldservice_skill.action_fsm_person_skill_report
 msgid "Worker Skills Report"
-msgstr "Relatório de Habilidades do Trabalhador"
+msgstr "Relat??rio de Habilidades do Trabalhador"
+
+#~ msgid "Create a worker skill."
+#~ msgstr "Crie uma habilidade de trabalhador."
+
+#~ msgid "Expert"
+#~ msgstr "Especialista"
+
+#~ msgid "Intermediate"
+#~ msgstr "Intermedi??rio"
+
+#~ msgid "Junior"
+#~ msgstr "J??nior"
+
+#~ msgid "Level"
+#~ msgstr "N??vel"
+
+#~ msgid "Senior"
+#~ msgstr "S??nior"
+
+#~ msgid "Worker Skill"
+#~ msgstr "Habilidade do Trabalhador"
