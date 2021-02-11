@@ -7,8 +7,8 @@ def migrate(env, version):
         return
 
     env.execute("""INSERT INTO
-    fsm_order_account_invoice_rel(fsm_order_id, invoice_id)
-    SELECT DISTINCT l.fsm_order_id, l.invoice_id
-    FROM account_invoice_line AS l
-    WHERE l.fsm_order_id IS NOT NULL AND l.invoice_id IS NOT NULL;
+    fsm_order_account_invoice_rel(fsm_order_id, move_id)
+    SELECT DISTINCT l.fsm_order_id, l.move_id
+    FROM account_move_line AS l
+    WHERE l.fsm_order_id IS NOT NULL AND l.move_id IS NOT NULL;
     """)
