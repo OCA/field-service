@@ -67,10 +67,6 @@ procurement rule for that route:
 
 If you are in a multi-warehouse situation:
 
-* Go to Field Service > Configuration > Territories
-* Create or select a territory
-* Set the warehouse that will serve this territory
-
 Products can be automatically converted into FSM Equipments.
 This is only available only for products tracked by serial number.
 This needs to be enabled both on Operation Types and Products.
@@ -134,6 +130,7 @@ Contributors
 * Brian McMaster <brian@mcmpest.com>
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Marcel Savegnago <marcel.savegnago@escodoo.com.br>
 
 Other credits
 ~~~~~~~~~~~~~

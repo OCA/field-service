@@ -1,8 +1,7 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2021 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import (
-    fsm_territory,
     fsm_location,
     fsm_order,
     stock_move_line,
