@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-base_territory',
         'odoo13-addon-fieldservice',
+        'odoo13-addon-fieldservice_account',
         'odoo13-addon-fieldservice_activity',
         'odoo13-addon-fieldservice_crm',
         'odoo13-addon-fieldservice_fleet',
