@@ -1,19 +1,19 @@
-# Copyright (C) 2019 Open Source Integrators
-# Copyright (C) 2019 Serpent consulting Services
+# Copyright (C) 2021 Open Source Integrators
+# Copyright (C) 2021 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models
 
 
 class FSMRoute(models.Model):
-    _name = 'fsm.route'
-    _description = 'Field Service Route'
+    _name = "fsm.route"
+    _description = "Field Service Route"
 
-    name = fields.Char('Name', required=True)
-    territory_id = fields.Many2one('fsm.territory', string='Territory')
-    fsm_person_id = fields.Many2one('fsm.person', string='Person')
-    day_ids = fields.Many2many('fsm.route.day', string='Days')
-    max_order = fields.Integer('Maximum Orders', default=0,
-                               help="Maximum number of orders per day route.")
+    name = fields.Char("Name", required=True)
+    fsm_person_id = fields.Many2one("fsm.person", string="Person")
+    day_ids = fields.Many2many("fsm.route.day", string="Days")
+    max_order = fields.Integer(
+        "Maximum Orders", default=0, help="Maximum number of orders per day route."
+    )
 
     def run_on(self, date):
         """
@@ -22,6 +22,5 @@ class FSMRoute(models.Model):
         """
         if date:
             day_index = date.weekday()
-            day = self.env.ref(
-                'fieldservice_route.fsm_route_day_' + str(day_index))
+            day = self.env.ref("fieldservice_route.fsm_route_day_" + str(day_index))
             return day in self.day_ids

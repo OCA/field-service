@@ -5,7 +5,7 @@
         <field name="model">fsm.route.day</field>
         <field name="arch" type="xml">
             <tree string="Route Day">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -17,7 +17,7 @@
             <form string="Route Day">
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="name" />
                     </group>
                 </sheet>
             </form>
@@ -27,7 +27,6 @@
     <record id="action_fsm_route_day" model="ir.actions.act_window">
         <field name="name">Route Day</field>
         <field name="res_model">fsm.route.day</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

@@ -6,6 +6,8 @@ from odoo import fields, models
 
 
 class FSMStage(models.Model):
-    _inherit = 'fsm.stage'
+    _inherit = "fsm.stage"
 
-    stage_type = fields.Selection(selection_add=[('route', 'Route')])
+    stage_type = fields.Selection(
+        selection_add=[("route", "Route")], ondelete={"route": "cascade"}
+    )
