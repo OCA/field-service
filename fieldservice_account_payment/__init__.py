@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Open Source Integrators
-# Copyright (C) 2019 Serpent Consulting Services
+# Copyright (C) 2021 Open Source Integrators
+# Copyright (C) 2021 Serpent Consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from . import models
