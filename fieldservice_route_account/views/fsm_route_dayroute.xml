@@ -2,30 +2,33 @@
 
     <record id="fsm_route_dayroute_inherit_dayroute" model="ir.ui.view">
         <field name="model">fsm.route.dayroute</field>
-        <field name="inherit_id"
-               ref="fieldservice_route.fsm_route_dayroute_form"/>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_dayroute_form" />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
-                <button name="action_view_invoices"
-                        type="object"
-                        class="oe_stat_button"
-                        icon="fa-pencil-square-o"
-                        attrs="{'invisible': [('invoice_count', '=', 0)]}"
-                        groups="account.group_account_invoice">
-                    <field name="invoice_count"
-                           widget="statinfo"
-                           string="Invoices/Bills"/>
+                <button
+                    name="action_view_invoices"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('invoice_count', '=', 0)]}"
+                    groups="account.group_account_invoice"
+                >
+                    <field
+                        name="invoice_count"
+                        widget="statinfo"
+                        string="Invoices/Bills"
+                    />
                 </button>
             </div>
             <xpath expr="//sheet/notebook/page[2]" position="after">
                 <page string="Accounting" name="accounting">
                     <field name="dayroute_payment_ids">
                         <tree string="Accounting" editable="bottom">
-                            <field name="journal_id"/>
-                            <field name="amount_collected"/>
-                            <field name="amount_counted"/>
-                            <field name="difference"/>
-                            <field name="move_id"/>
+                            <field name="journal_id" />
+                            <field name="amount_collected" />
+                            <field name="amount_counted" />
+                            <field name="difference" />
+                            <field name="move_id" />
                         </tree>
                     </field>
                 </page>
