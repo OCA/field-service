@@ -3,15 +3,14 @@
     <record id="fsm_route_form_inherit" model="ir.ui.view">
         <field name="name">fsm.route.form</field>
         <field name="model">fsm.route</field>
-        <field name="inherit_id"
-               ref="fieldservice_route.fsm_route_form"/>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
         <field name="arch" type="xml">
            <field name="fsm_person_id" position="after">
-               <field name="fsm_vehicle_id"/>
+               <field name="fsm_vehicle_id" />
            </field>
             <xpath expr="//notebook" position="inside">
                 <page id="vehicles" string="Vehicles">
-                    <field name="fsm_vehicle_ids"/>
+                    <field name="fsm_vehicle_ids" />
                 </page>
             </xpath>
         </field>
