@@ -16,10 +16,10 @@ class FSMEquipment(TransactionCase):
         self.current_location = self.env.ref("fieldservice.location_1")
 
     def test_fsm_equipment(self):
-        """ Test createing new equipment
-            - Default stage
-            - Onchange location
-            - Change stage
+        """Test createing new equipment
+        - Default stage
+        - Onchange location
+        - Change stage
         """
         # Create an equipment
         view_id = "fieldservice.fsm_equipment_form_view"
