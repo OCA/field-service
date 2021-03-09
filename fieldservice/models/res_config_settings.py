@@ -92,7 +92,7 @@ class ResConfigSettings(models.TransientModel):
     @api.onchange("group_fsm_equipment")
     def _onchange_group_fsm_equipment(self):
         if not self.group_fsm_equipment:
-            self.auto_populate_the_equipments = False
+            self.auto_populate_equipments_on_order = False
 
     @api.onchange("module_fieldservice_repair")
     def _onchange_module_fieldservice_repair(self):
