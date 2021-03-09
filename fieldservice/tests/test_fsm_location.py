@@ -21,11 +21,11 @@ class FSMLocation(TransactionCase):
         self.location_partner_3 = self.env.ref("fieldservice.location_partner_3")
 
     def test_fsm_location(self):
-        """ Test createing new location
-            - Onchange parent, will get all parent info
-            - Default stage
-            - Change stage
-            - Create fsm.location.person if auto_populate_persons_on_location
+        """Test createing new location
+        - Onchange parent, will get all parent info
+        - Default stage
+        - Change stage
+        - Create fsm.location.person if auto_populate_persons_on_location
         """
         # Create an equipment
         view_id = "fieldservice.fsm_location_form_view"
@@ -81,9 +81,9 @@ class FSMLocation(TransactionCase):
         self.assertEqual(len(location.person_ids), 3)
 
     def test_fsm_multi_sublocation(self):
-        """ Test create location with many sub locations
-            - Test recursion exceptoin
-            - Test count all equipments, contacts, sublocations
+        """Test create location with many sub locations
+        - Test recursion exceptoin
+        - Test count all equipments, contacts, sublocations
         """
         # Test Location > Location 1 > Location 2 > Location 3
         self.location_3.fsm_parent_id = self.location_2

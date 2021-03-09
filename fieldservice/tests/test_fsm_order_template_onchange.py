@@ -16,9 +16,9 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
         self.fsm_team_a = self.env["fsm.team"].create({"name": "FSM Team A"})
 
     def test_fsm_order_onchange_template(self):
-        """ Test the onchange function for FSM Template
-            - Category IDs, Scheduled Duration,and Type should update
-            - The copy_notes() method should be called and instructions copied
+        """Test the onchange function for FSM Template
+        - Category IDs, Scheduled Duration,and Type should update
+        - The copy_notes() method should be called and instructions copied
         """
         categories = []
         categories.append(self.fsm_category_a.id)
