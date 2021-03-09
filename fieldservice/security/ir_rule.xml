@@ -7,7 +7,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_template_comp_rule" model="ir.rule">
         <field name="name">FSM Templates Entry</field>
@@ -15,7 +15,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_team_comp_rule" model="ir.rule">
         <field name="name">FSM Teams Entry</field>
@@ -23,7 +23,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_tag_comp_rule" model="ir.rule">
         <field name="name">FSM Tags Entry</field>
@@ -31,7 +31,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_category_comp_rule" model="ir.rule">
         <field name="name">FSM Categories Entry</field>
@@ -39,7 +39,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_equipment_comp_rule" model="ir.rule">
         <field name="name">FSM Equipments Entry</field>
@@ -47,7 +47,7 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
     <record id="fsm_stage_comp_rule" model="ir.rule">
         <field name="name">FSM Stage Entry</field>
@@ -55,6 +55,6 @@
         <field name="global" eval="True" />
         <field
             name="domain_force"
-        >['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
     </record>
 </odoo>

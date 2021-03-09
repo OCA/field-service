@@ -68,7 +68,7 @@ class FSMOrder(models.Model):
     stage_id = fields.Many2one(
         "fsm.stage",
         string="Stage",
-        track_visibility="onchange",
+        tracking=True,
         index=True,
         copy=False,
         group_expand="_read_group_stage_ids",
@@ -95,7 +95,7 @@ class FSMOrder(models.Model):
         default=lambda self: self._default_team_id(),
         index=True,
         required=True,
-        track_visibility="onchange",
+        tracking=True,
     )
 
     # Request
@@ -171,7 +171,7 @@ class FSMOrder(models.Model):
     todo = fields.Text(string="Instructions")
 
     # Execution
-    resolution = fields.Text(string="Resolution", placeholder="Resolution of the order")
+    resolution = fields.Text(string="Resolution")
     date_start = fields.Datetime(string="Actual Start")
     date_end = fields.Datetime(string="Actual End")
     duration = fields.Float(
@@ -204,12 +204,8 @@ class FSMOrder(models.Model):
     street2 = fields.Char(related="location_id.street2")
     zip = fields.Char(related="location_id.zip")
     city = fields.Char(related="location_id.city", string="City")
-    state_name = fields.Char(
-        related="location_id.state_id.name", string="State", ondelete="restrict"
-    )
-    country_name = fields.Char(
-        related="location_id.country_id.name", string="Country", ondelete="restrict"
-    )
+    state_name = fields.Char(related="location_id.state_id.name", string="State")
+    country_name = fields.Char(related="location_id.country_id.name", string="Country")
     phone = fields.Char(related="location_id.phone", string="Location Phone")
     mobile = fields.Char(related="location_id.mobile")
 
@@ -249,7 +245,7 @@ class FSMOrder(models.Model):
         if vals.get("request_early", False) and not vals.get("scheduled_date_start"):
             req_date = fields.Datetime.from_string(vals["request_early"])
             # Round scheduled date start
-            req_date = req_date.replace(minute=0, second=0)
+            req_date = req_date.replace(minute=0, second=0, microsecond=0)
             vals.update(
                 {"scheduled_date_start": str(req_date), "request_early": str(req_date)}
             )
