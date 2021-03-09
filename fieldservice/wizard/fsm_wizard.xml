@@ -1,14 +1,11 @@
 <odoo>
     <!-- Res Partner Action -->
-    <act_window
-        id="partner_fsm_action"
-        name="Convert to FSM Record"
-        res_model="fsm.wizard"
-        binding_model="res.partner"
-        view_mode="form"
-        target="new"
-        groups="group_fsm_dispatcher"
-    />
+    <record id="partner_fsm_action" model="ir.actions.act_window">
+        <field name="name">Convert to FSM Record</field>
+        <field name="res_model">fsm.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
     <!-- wizard view -->
     <record id="partner_wizard_view" model="ir.ui.view">
         <field name="name">Convert to a FSM Worker or Location</field>
