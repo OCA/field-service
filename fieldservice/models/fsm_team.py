@@ -42,8 +42,8 @@ class FSMTeam(models.Model):
         for team in self:
             team.order_need_schedule_count = result.get(team.id, 0)
 
-    name = fields.Char(required=True, translation=True)
-    description = fields.Text(translation=True)
+    name = fields.Char(required=True, translate=True)
+    description = fields.Text(translate=True)
     color = fields.Integer("Color Index")
     stage_ids = fields.Many2many(
         "fsm.stage",
