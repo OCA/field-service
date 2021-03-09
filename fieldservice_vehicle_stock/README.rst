@@ -26,22 +26,13 @@ Field Service Vehicles - Stock
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module is an add-on for the Field Service application in Odoo.
-It provides inventory and stock operations.
+It allows you to establish stock locations for field service vehicles
+and process stock moves with field service vehicles.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Installation
-============
-
-You will first need to install:
-
-* fieldservice
-
-Then go to Field Service > Configuration > Settings
-Enable the 'Use Odoo Stock Logistics' option under Integrations
 
 Configuration
 =============
@@ -50,17 +41,6 @@ To configure this module, you need to:
 
 * Set Inventory Locations for FSM Locations and FSM Vehicles
 * Verify procurement routes
-
-Usage
-=====
-
-To use this module, you need to:
-
-* Create a new field service order
-* Under the Materials tab, add products with quantity
-* Confirm an order to create stock moves
-* Validate stock moves in the Inventory app
-* Quantities Delivered on FSM Order Line will be updated based on move
 
 Known issues / Roadmap
 ======================
