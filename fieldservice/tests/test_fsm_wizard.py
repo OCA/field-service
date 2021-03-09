@@ -6,13 +6,13 @@ from odoo.tests.common import TransactionCase
 
 class FSMWizard(TransactionCase):
     """
-        Test used to check that the base functionalities of Field Service.
-        - test_convert_location: tests that a res.partner can be converted
-        into a fsm.location.
-        - test_convert_person: tests that a res.partner can be converted into
-        a fsm.person.
-        - test_convert_sublocation: tests that the sub-contacts on a
-        res.partner are converted into Other Addresses.
+    Test used to check that the base functionalities of Field Service.
+    - test_convert_location: tests that a res.partner can be converted
+    into a fsm.location.
+    - test_convert_person: tests that a res.partner can be converted into
+    a fsm.person.
+    - test_convert_sublocation: tests that the sub-contacts on a
+    res.partner are converted into Other Addresses.
     """
 
     def setUp(self):
