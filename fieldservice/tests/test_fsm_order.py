@@ -14,11 +14,11 @@ class TestFSMOrder(TransactionCase):
         self.test_location = self.env.ref("fieldservice.test_location")
 
     def test_fsm_order(self):
-        """ Test creating new workorders, and test following functions,
-            - _compute_duration() in hrs
-            - _compute_request_late()
-            - Set scheduled_date_start using request_early w/o time
-            - scheduled_date_end = scheduled_date_start + duration (hrs)
+        """Test creating new workorders, and test following functions,
+        - _compute_duration() in hrs
+        - _compute_request_late()
+        - Set scheduled_date_start using request_early w/o time
+        - scheduled_date_end = scheduled_date_start + duration (hrs)
         """
         # Create an Orders
         view_id = "fieldservice.fsm_order_form"

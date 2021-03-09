@@ -7,8 +7,8 @@ from odoo.exceptions import UserError
 
 class FSMWizard(models.TransientModel):
     """
-        A wizard to convert a res.partner record to a fsm.person or
-         fsm.location
+    A wizard to convert a res.partner record to a fsm.person or
+     fsm.location
     """
 
     _name = "fsm.wizard"

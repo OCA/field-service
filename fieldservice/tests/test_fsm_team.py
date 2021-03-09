@@ -13,10 +13,10 @@ class FSMTeam(TransactionCase):
         self.test_team = self.Team.create({"name": "Test Team"})
 
     def test_fsm_order(self):
-        """ Test creating new workorders
-            - Active orders
-            - Unassigned orders
-            - Unscheduled orders
+        """Test creating new workorders
+        - Active orders
+        - Unassigned orders
+        - Unscheduled orders
         """
         # Create 5 Orders, which are,
         #   - 2 assigned (3 unassigned)
