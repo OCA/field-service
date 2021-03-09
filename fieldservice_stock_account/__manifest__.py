@@ -3,7 +3,7 @@
 
 {
     'name': 'Field Service - Stock Account',
-    'version': '12.0.1.0.1',
+    'version': '12.0.2.0.0',
     'category': 'Field Service',
     'summary': 'Invoice inventory items delivered with Field Service orders',
     'author': 'Open Source Integrators, '
