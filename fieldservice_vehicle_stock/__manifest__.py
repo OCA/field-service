@@ -4,7 +4,7 @@
 {
     'name': 'Field Service Vehicles - Stock',
     'summary': 'Track inventory of Field Service vehicles',
-    'version': '12.0.2.0.0',
+    'version': '12.0.2.0.1',
     'category': 'Field Service',
     'author': "Open Source Integrators, "
               "Brian McMaster, "
@@ -20,7 +20,6 @@
         'security/ir.model.access.csv',
         'data/fsm_stock_data.xml',
         'views/fsm_vehicle.xml',
-        'views/fsm_order.xml',
         'views/stock_picking.xml',
     ],
     'installable': True,
