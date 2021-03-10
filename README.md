@@ -63,7 +63,7 @@ addon | version | summary
 [fieldservice_stock_request](fieldservice_stock_request/) | 12.0.2.0.0 | Integrate Stock Requests with Field Service Orders
 [fieldservice_substatus](fieldservice_substatus/) | 12.0.1.2.0 | Add sub-statuses to Field Service orders
 [fieldservice_vehicle](fieldservice_vehicle/) | 12.0.2.2.0 | Manage Field Service vehicles and assign drivers
-[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.2.0.0 | Track inventory of Field Service vehicles
+[fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 12.0.2.0.1 | Track inventory of Field Service vehicles
 [fieldservice_vehicle_stock_request](fieldservice_vehicle_stock_request/) | 12.0.2.0.0 | Link Stock Requests with Field Service Vehicle Inventory
 
 [//]: # (end addons)
