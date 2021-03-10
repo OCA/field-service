@@ -20,7 +20,6 @@
         'security/ir.model.access.csv',
         'data/fsm_stock_data.xml',
         'views/fsm_vehicle.xml',
-        'views/fsm_order.xml',
         'views/stock_picking.xml',
     ],
     'installable': True,
