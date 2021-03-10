@@ -77,14 +77,6 @@ msgid "Operations"
 msgstr "Operações"
 
 #. module: fieldservice_stock
-#: code:addons/fieldservice_stock/models/fsm_order.py:60
-#: code:addons/fieldservice_stock/models/fsm_order.py:73
-#: code:addons/fieldservice_stock/models/fsm_order.py:86
-#, python-format
-msgid "Please create a stock request."
-msgstr "Por gentileza, crie uma requisição de estoque."
-
-#. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_procurement_group
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__procurement_group_id
 msgid "Procurement Group"
@@ -136,19 +128,6 @@ msgid "Territory"
 msgstr "Território"
 
 #. module: fieldservice_stock
-#: code:addons/fieldservice_stock/models/stock_request.py:58
-#, python-format
-msgid ""
-"There is already a Stock Request Order                                   "
-"with the same Field Service Order and                                   "
-"Warehouse that is in Draft state. Please                                   "
-"add this Stock Request there.                                   (%s)"
-msgstr ""
-"Já existe um Pedido de Solicitação de Estoque com o mesmo Pedido de Serviço "
-"de Campo e Armazém que está no estado Rascunho. Adicione essa solicitação de "
-"estoque lá. (%s)"
-
-#. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_picking
 msgid "Transfer"
 msgstr "Transferência"
@@ -173,6 +152,20 @@ msgstr "Armazém"
 #: model:ir.model.fields,help:fieldservice_stock.field_fsm_order__warehouse_id
 msgid "Warehouse used to ship the materials"
 msgstr "Armazém utilizado para embarque dos materiais"
+
+#~ msgid "Please create a stock request."
+#~ msgstr "Por gentileza, crie uma requisição de estoque."
+
+#~ msgid ""
+#~ "There is already a Stock Request Order                                   "
+#~ "with the same Field Service Order and                                   "
+#~ "Warehouse that is in Draft state. "
+#~ "Please                                   add this Stock Request "
+#~ "there.                                   (%s)"
+#~ msgstr ""
+#~ "Já existe um Pedido de Solicitação de Estoque com o mesmo Pedido de "
+#~ "Serviço de Campo e Armazém que está no estado Rascunho. Adicione essa "
+#~ "solicitação de estoque lá. (%s)"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"
