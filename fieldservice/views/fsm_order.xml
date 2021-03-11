@@ -486,6 +486,6 @@
         <field name="report_name">fieldservice.report_fsm_order</field>
         <field name="report_file">fieldservice.report_fsm_order</field>
         <field name="print_report_name">'Service Order - %s' % (object.name)</field>
-        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="model_fsm_order" />
     </record>
 </odoo>
