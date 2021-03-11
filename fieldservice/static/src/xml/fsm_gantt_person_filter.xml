@@ -2,7 +2,7 @@
 
     <t t-extend="TimelineView">
         <t t-jquery=".btn-group" t-operation="after">
-            Person Filter
+            <span id="person_filter"> Person Filter </span>
             <ul id="user_filer" style="display: inline-block;"></ul>
             <button class="btn btn-default oe_timeline_button_apply">Apply
             </button>

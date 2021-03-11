@@ -16,7 +16,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
          * @param {Object} state
          * @param {Array} params
          */
-        init : function (parent, state, params) {
+        init: function (parent, state, params) {
             var self = this;
             this._super.apply(this, arguments);
             this.modelName = params.model;
@@ -36,25 +36,31 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             self.res_users_ids = [];
 
             // Find their matches
-            this._rpc({
-                model: 'fsm.person',
-                method: 'get_person_information',
-                args: [[session.uid], {}],
-            }).then(function (result) {
-                self.res_users.push(result);
-                for (var r in result) {
-                    self.res_users_ids.push(result[r].id);
-                }
-            });
-            // Find custom color if mentioned
-            if (params.arch.attrs.custom_color === "true") {
+            if (this.modelClass.modelName == 'fsm.order'){
                 this._rpc({
-                    model: 'fsm.stage',
-                    method: 'get_color_information',
-                    args: [[], {}],
+                    model: 'fsm.person',
+                    method: 'get_person_information',
+                    args: [
+                        [session.uid], {}
+                    ],
                 }).then(function (result) {
-                    self.colors = result;
+                    self.res_users.push(result);
+                    for (var r in result) {
+                        self.res_users_ids.push(result[r].id);
+                    }
                 });
+                // Find custom color if mentioned
+                if (params.arch.attrs.custom_color === "true") {
+                    this._rpc({
+                        model: 'fsm.stage',
+                        method: 'get_color_information',
+                        args: [
+                            [], {}
+                        ],
+                    }).then(function (result) {
+                        self.colors = result;
+                    });
+                }
             }
         },
 
@@ -65,80 +71,91 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
          * @param {Array} group_bys
          * @param {Object} adjust_window
          */
-        on_data_loaded_2 : function (events, group_bys, adjust_window) {
+        on_data_loaded_2: function (events, group_bys, adjust_window) {
             var self = this;
             // Make the user filter clear
-            self.$el.find(
-                '#user_filer .o_searchview_extended_prop_field').val('');
-            self.$el.find(
-                '#user_filer .o_searchview_extended_prop_field').change();
-            self.$el.find(
-                '#user_filer .o_searchview_extended_prop_field').val(
-                'category_id');
-            self.$el.find(
-                '#user_filer .o_searchview_extended_prop_field').change();
-            // Make the user filter clear
-            var data = [];
-            var groups = [];
-            this.grouped_by = group_bys;
-            _.each(events, function (event) {
-                if (event[self.date_start]) {
-                    data.push(self.event_data_transform(event));
-                }
-            });
-            groups = self.split_groups(events, group_bys);
-            if (group_bys[0] === 'person_id') {
-                var groups_user_ids = [];
-                for (var g in groups) {
-                    groups_user_ids.push(groups[g].id);
-                }
-                // Find their matches
-                self._rpc({
-                    model: 'fsm.person',
-                    method: 'get_person_information',
-                    args: [[session.uid], {}],
-                }).then(function (result) {
-                    self.res_users.push(result);
-                    for (var r in result) {
-                        self.res_users_ids.push(result[r].id);
-                    }
-                    for (var u in self.res_users_ids) {
-                        if (!(self.res_users_ids[u] in groups_user_ids) ||
-                                self.res_users_ids[u] !== -1) {
-
-                            // Get User Name
-                            var user_name = '-';
-                            for (var n in self.res_users[0]) {
-                                if (self.res_users[0][n].id ===
-                                    self.res_users_ids[u]) {
-                                    user_name = self.res_users[0][n].name;
-                                }
-                            }
-                            var is_available = false;
-                            for (var i in groups) {
-                                if (groups[i].id === self.res_users_ids[u]) {
-                                    is_available = true;
-                                }
-                            }
-                            if (!is_available) {
-                                groups.push({
-                                    id:self.res_users_ids[u],
-                                    content: _t(user_name),
-                                });
-                            }
-                        }
-                    }
-                    self.timeline.setGroups(groups);
-                    self.timeline.setItems(data);
-                    var mode = !self.mode || self.mode === 'fit';
-                    var adjust = _.isUndefined(adjust_window) || adjust_window;
-                    self.timeline.setOptions({
-                        orientation: 'top',
-                    });
-                    if (mode && adjust) {
-                        self.timeline.fit();
+            if (this.modelClass.modelName == 'fsm.order'){
+                self.$el.find(
+                    '#user_filer .o_searchview_extended_prop_field').val('');
+                self.$el.find(
+                    '#user_filer .o_searchview_extended_prop_field').change();
+                self.$el.find(
+                    '#user_filer .o_searchview_extended_prop_field').val(
+                    'category_id');
+                self.$el.find(
+                    '#user_filer .o_searchview_extended_prop_field').change();
+                // Make the user filter clear
+                var data = [];
+                var groups = [];
+                this.grouped_by = group_bys;
+                _.each(events, function (event) {
+                    if (event[self.date_start]) {
+                        data.push(self.event_data_transform(event));
                     }
                 });
+                groups = self.split_groups(events, group_bys);
+                if (group_bys[0] === 'person_id') {
+                    var groups_user_ids = [];
+                    for (var g in groups) {
+                        groups_user_ids.push(groups[g].id);
+                    }
+                    // Find their matches
+                    self._rpc({
+                        model: 'fsm.person',
+                        method: 'get_person_information',
+                        args: [
+                            [session.uid], {}
+                        ],
+                    }).then(function (result) {
+                        self.res_users.push(result);
+                        for (var r in result) {
+                            self.res_users_ids.push(result[r].id);
+                        }
+                        for (var u in self.res_users_ids) {
+                            if (!(self.res_users_ids[u] in groups_user_ids) ||
+                                self.res_users_ids[u] !== -1) {
+
+                                // Get User Name
+                                var user_name = '-';
+                                for (var n in self.res_users[0]) {
+                                    if (self.res_users[0][n].id ===
+                                        self.res_users_ids[u]) {
+                                        user_name = self.res_users[0][n].name;
+                                    }
+                                }
+                                var is_available = false;
+                                for (var i in groups) {
+                                    if (groups[i].id === self.res_users_ids[u]) {
+                                        is_available = true;
+                                    }
+                                }
+                                if (!is_available) {
+                                    groups.push({
+                                        id: self.res_users_ids[u],
+                                        content: _t(user_name),
+                                    });
+                                }
+                            }
+                        }
+                        self.timeline.setGroups(groups);
+                        self.timeline.setItems(data);
+                        var mode = !self.mode || self.mode === 'fit';
+                        var adjust = _.isUndefined(adjust_window) || adjust_window;
+                        self.timeline.setOptions({
+                            orientation: 'top',
+                        });
+                        if (mode && adjust) {
+                            self.timeline.fit();
+                        }
+                    });
+                }
+            }else{
+                self.$el.find('#user_filer').addClass('o_hidden')
+                self.$el.find('.oe_timeline_button_apply').addClass('o_hidden')
+                self.$el.find('.oe_timeline_button_clear').addClass('o_hidden')
+                self.$el.find('.oe_timeline_button_synch').addClass('o_hidden')
+                self.$el.find('#person_filter').addClass('o_hidden')
+                this._super.apply(this, arguments);
             }
         },
 
@@ -148,7 +165,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
          * @param {Array} evt
          * @returns r
          */
-        event_data_transform : function (evt) {
+        event_data_transform: function (evt) {
             var self = this;
             var date_start = new moment();
             var date_stop = null;
@@ -161,14 +178,14 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 if (this.no_period) {
                     date_stop = date_start;
                 } else {
-                    date_stop = this.date_stop
-                        ? time.auto_str_to_date(
+                    date_stop = this.date_stop ?
+                        time.auto_str_to_date(
                             evt[this.date_stop].split(' ')[0], 'stop') : null;
                 }
             } else {
                 date_start = time.auto_str_to_date(evt[this.date_start]);
-                date_stop = this.date_stop
-                    ? time.auto_str_to_date(evt[this.date_stop]) : null;
+                date_stop = this.date_stop ?
+                    time.auto_str_to_date(evt[this.date_stop]) : null;
             }
 
             if (!date_stop && date_delay) {
@@ -192,8 +209,8 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
                 }
             });
 
-            var content = _.isUndefined(evt.__name)
-                ? evt.display_name : evt.__name;
+            var content = _.isUndefined(evt.__name) ?
+                evt.display_name : evt.__name;
             if (this.arch.children.length) {
                 content = this.render_timeline_item(evt);
             }
