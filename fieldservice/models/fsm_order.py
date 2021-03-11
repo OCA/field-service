@@ -427,7 +427,7 @@ class FSMOrder(models.Model):
     def _onchange_template_id(self):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
-            self.scheduled_duration = self.template_id.hours
+            self.scheduled_duration = self.template_id.duration
             self.copy_notes()
             if self.template_id.type_id:
                 self.type = self.template_id.type_id
