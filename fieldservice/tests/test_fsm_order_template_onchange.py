@@ -28,7 +28,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
                 "name": "Test FSM Template #1",
                 "instructions": "These are the instructions for Template #1",
                 "category_ids": [(6, 0, categories)],
-                "hours": 2.25,
+                "duration": 2.25,
                 "type_id": self.fsm_type_a.id,
                 "team_id": self.fsm_team_a.id,
             }
@@ -44,7 +44,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
         self.assertEqual(
             self.fso.category_ids.ids, self.fsm_template_1.category_ids.ids
         )
-        self.assertEqual(self.fso.scheduled_duration, self.fsm_template_1.hours)
+        self.assertEqual(self.fso.scheduled_duration, self.fsm_template_1.duration)
         self.assertEqual(self.fso.type.id, self.fsm_template_1.type_id.id)
         self.assertEqual(self.fso.todo, self.fsm_template_1.instructions)
         self.assertEqual(self.fso.team_id.id, self.fsm_team_a.id)
