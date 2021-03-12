@@ -260,12 +260,10 @@ class FSMOrder(models.Model):
 
     @api.multi
     def unlink(self):
-        for order in self:
-            if order.can_unlink():
-                return super(FSMOrder, order).unlink()
-            else:
-                raise ValidationError(_(
-                    "You cannot delete this order."))
+        if all(order.can_unlink() for order in self):
+            return super(FSMOrder, self).unlink()
+        else:
+            raise ValidationError(_("You cannot delete this order."))
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
