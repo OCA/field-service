@@ -5,7 +5,7 @@
 {
     'name': 'Field Service Route',
     'summary': 'Organize the routes of each day.',
-    'version': '12.0.2.4.0',
+    'version': '12.0.2.5.0',
     'category': 'Field Service',
     'license': 'AGPL-3',
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
@@ -23,6 +23,7 @@
         'views/fsm_location.xml',
         'views/fsm_route_dayroute.xml',
         'views/fsm_order.xml',
+        'views/res_partner_views.xml',
         'views/menu.xml',
     ],
     'development_status': 'Beta',
