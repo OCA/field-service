@@ -20,7 +20,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[fieldservice](fieldservice/) | 12.0.2.18.1 | Manage Field Service Locations, Workers and Orders
+[fieldservice](fieldservice/) | 12.0.2.18.2 | Manage Field Service Locations, Workers and Orders
 [fieldservice_account](fieldservice_account/) | 12.0.3.1.1 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 12.0.3.3.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 12.0.1.2.0 | Allow workers to collect payments from the order.
