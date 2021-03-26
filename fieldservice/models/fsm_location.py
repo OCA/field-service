@@ -11,7 +11,6 @@ class FSMLocation(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Field Service Location"
 
-    ref = fields.Char(string="Internal Reference", copy=False)
     direction = fields.Char(string="Directions")
     partner_id = fields.Many2one(
         "res.partner",
@@ -115,14 +114,6 @@ class FSMLocation(models.Model):
         if not recs and not self.env.user.company_id.search_on_complete_name:
             recs = self.search([("name", operator, name)] + args, limit=limit)
         return recs.name_get()
-
-    _sql_constraints = [
-        (
-            "fsm_location_ref_uniq",
-            "unique (ref)",
-            "This internal reference already exists!",
-        )
-    ]
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
