@@ -1,4 +1,4 @@
-odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
+odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
     "use strict";
 
     var core = require("web.core");
@@ -15,7 +15,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
          * @param {Object} state
          * @param {Array} params
          */
-        init: function(parent, state, params) {
+        init: function (parent, state, params) {
             var self = this;
             this._super.apply(this, arguments);
             this.modelName = params.model;
@@ -39,7 +39,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
                 model: "fsm.person",
                 method: "get_person_information",
                 args: [[session.uid], {}],
-            }).then(function(result) {
+            }).then(function (result) {
                 self.res_users.push(result);
                 for (var r in result) {
                     self.res_users_ids.push(result[r].id);
@@ -51,7 +51,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
                     model: "fsm.stage",
                     method: "get_color_information",
                     args: [[]],
-                }).then(function(result) {
+                }).then(function (result) {
                     self.colors = result;
                 });
             }
@@ -64,7 +64,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
          * @param {Array} group_bys
          * @param {Object} adjust_window
          */
-        on_data_loaded_2: function(events, group_bys, adjust_window) {
+        on_data_loaded_2: function (events, group_bys, adjust_window) {
             var self = this;
             // Make the user filter clear
             self.$el.find("#user_filer .o_searchview_extended_prop_field").val("");
@@ -77,7 +77,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
             var data = [];
             var groups = [];
             this.grouped_by = group_bys;
-            _.each(events, function(event) {
+            _.each(events, function (event) {
                 if (event[self.date_start]) {
                     data.push(self.event_data_transform(event));
                 }
@@ -93,7 +93,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
                     model: "fsm.person",
                     method: "get_person_information",
                     args: [[session.uid], {}],
-                }).then(function(result) {
+                }).then(function (result) {
                     self.res_users.push(result);
                     for (var r in result) {
                         self.res_users_ids.push(result[r].id);
@@ -144,7 +144,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
          * @param {Array} evt
          * @returns r
          */
-        event_data_transform: function(evt) {
+        event_data_transform: function (evt) {
             var self = this;
             var date_start = new moment();
             var date_stop = null;
@@ -174,9 +174,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
             }
 
             if (!date_stop && date_delay) {
-                date_stop = moment(date_start)
-                    .add(date_delay, "hours")
-                    .toDate();
+                date_stop = moment(date_start).add(date_delay, "hours").toDate();
             }
 
             var group = evt[self.last_group_bys[0]];
@@ -185,7 +183,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function(require) {
             } else {
                 group = -1;
             }
-            _.each(self.colors, function(color) {
+            _.each(self.colors, function (color) {
                 if (
                     eval(
                         "'" +
