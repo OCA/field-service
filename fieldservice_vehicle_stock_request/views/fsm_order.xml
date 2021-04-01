@@ -4,7 +4,7 @@
         <field name="name">fsm.order.stock.vehicle</field>
         <field name="model">fsm.order</field>
         <field name="inherit_id"
-               ref="fieldservice_stock.view_fsm_order_form_inherit_stock"/>
+               ref="fieldservice_stock_request.view_fsm_order_form_inherit_stock_request"/>
         <field name="arch" type="xml">
             <field name="qty_done" position="before">
                  <button name="action_assign"
