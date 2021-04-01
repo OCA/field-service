@@ -1,11 +1,11 @@
-# Copyright (C) 2020 Open Source Integrators
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service Web Timeline",
     "summary": "This module is a display timeline view of the Field Service"
     " order in Odoo.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
