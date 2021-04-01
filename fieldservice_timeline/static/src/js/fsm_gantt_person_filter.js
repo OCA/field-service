@@ -1,4 +1,4 @@
-odoo.define("fsm_gantt.person_filter", function(require) {
+odoo.define("fsm_gantt.person_filter", function (require) {
     "use strict";
 
     var TimelineRenderer = require("web_timeline.TimelineRenderer");
@@ -11,7 +11,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
         /**
          * Init
          */
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
 
             // Initilaize propositions
@@ -26,7 +26,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * @param {Array} group_bys
          * @returns Array
          */
-        do_search: function(domains, contexts, group_bys) {
+        do_search: function (domains, contexts, group_bys) {
             var self = this;
             self.last_domains = domains;
             self.last_contexts = contexts;
@@ -44,7 +44,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
             /* Gather the fields to get
              */
             var fields = _.compact(
-                _.map(["date_start", "date_delay", "date_stop", "progress"], function(
+                _.map(["date_start", "date_delay", "date_stop", "progress"], function (
                     key
                 ) {
                     return self.arch.attrs[key] || "";
@@ -59,7 +59,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
                 fields: fields,
                 args: [domains],
                 kwargs: {context: contexts},
-            }).then(function(r) {
+            }).then(function (r) {
                 return self.on_data_loaded(r, n_group_bys, true);
             });
         },
@@ -73,7 +73,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * @param {Array} user_ids
          * @returns Array
          */
-        do_search_related_user_filter: function(
+        do_search_related_user_filter: function (
             domains,
             contexts,
             group_bys,
@@ -94,7 +94,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
             /* Gather the fields to get
              */
             var fields = _.compact(
-                _.map(["date_start", "date_delay", "date_stop", "progress"], function(
+                _.map(["date_start", "date_delay", "date_stop", "progress"], function (
                     key
                 ) {
                     return self.arch.attrs[key] || "";
@@ -109,7 +109,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
                 fields: fields,
                 args: [domains],
                 kwargs: {context: contexts},
-            }).then(function(r) {
+            }).then(function (r) {
                 return self.on_user_data_loaded(r, n_group_bys, true, user_ids);
             });
         },
@@ -123,7 +123,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * @param {Array} user_ids
          * @returns Object
          */
-        on_user_data_loaded: function(events, group_bys, adjust_window, user_ids) {
+        on_user_data_loaded: function (events, group_bys, adjust_window, user_ids) {
             var self = this;
             var ids = _.pluck(events, "id");
             return this._rpc({
@@ -131,11 +131,11 @@ odoo.define("fsm_gantt.person_filter", function(require) {
                 method: "name_get",
                 args: [ids],
                 context: this.getSession().user_context,
-            }).then(function(names) {
-                var nevents = _.map(events, function(event) {
+            }).then(function (names) {
+                var nevents = _.map(events, function (event) {
                     return _.extend(
                         {
-                            __name: _.detect(names, function(name) {
+                            __name: _.detect(names, function (name) {
                                 return name[0] === event.id;
                             })[1],
                         },
@@ -159,12 +159,12 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * @param {Object} adjust_window
          * @param {Array} user_ids
          */
-        on_user_data_loaded_2: function(events, group_bys, adjust_window, user_ids) {
+        on_user_data_loaded_2: function (events, group_bys, adjust_window, user_ids) {
             var self = this;
             var data = [];
             var groups = [];
             this.grouped_by = group_bys;
-            _.each(events, function(event) {
+            _.each(events, function (event) {
                 if (event[self.date_start]) {
                     data.push(self.event_data_transform(event));
                 }
@@ -177,16 +177,16 @@ odoo.define("fsm_gantt.person_filter", function(require) {
              * @param {Array} group_bys
              * @returns events
              */
-            var split_groups = function(events, group_bys) {
+            var split_groups = function (events, group_bys) {
                 if (group_bys.length === 0) {
                     return events;
                 }
                 groups = [];
                 groups.push({id: -1, content: _t("-")});
-                _.each(events, function(event) {
+                _.each(events, function (event) {
                     var group_name = event[_.first(group_bys)];
                     if (group_name) {
-                        var group = _.find(groups, function(group) {
+                        var group = _.find(groups, function (group) {
                             return _.isEqual(group.id, group_name[0]);
                         });
                         if (group === undefined) {
@@ -198,8 +198,8 @@ odoo.define("fsm_gantt.person_filter", function(require) {
                 return groups;
             };
             groups = split_groups(events, group_bys);
-            _.each(user_ids, function(user) {
-                var group = _.find(groups, function(group) {
+            _.each(user_ids, function (user) {
+                var group = _.find(groups, function (group) {
                     return _.isEqual(group.id, user.id);
                 });
                 if (group === undefined) {
@@ -221,7 +221,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * Apply/clear User Filter
          * @param {Object} clear
          */
-        apply_clear_user_filter: function(clear) {
+        apply_clear_user_filter: function (clear) {
             var self = this;
             if (clear) {
                 self.user_domains = false;
@@ -250,9 +250,9 @@ odoo.define("fsm_gantt.person_filter", function(require) {
                         method: "search",
                         args: [domain],
                         kwargs: {context: session.user_context},
-                    }).then(function(user_ids) {
+                    }).then(function (user_ids) {
                         var list_user_ids = [];
-                        $.each(user_ids, function(index, value) {
+                        $.each(user_ids, function (index, value) {
                             var id = value;
                             var name = "";
                             for (var i in self.res_users[0]) {
@@ -285,7 +285,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
          * On start
          * @returns this._super()
          */
-        start: function() {
+        start: function () {
             var self = this;
 
             /* Bind User Filter Apply/Clear Click Event */
@@ -300,7 +300,7 @@ odoo.define("fsm_gantt.person_filter", function(require) {
             self._rpc({
                 model: "fsm.person",
                 method: "fields_get",
-            }).then(function(fields) {
+            }).then(function (fields) {
                 self.user_filter = true;
                 var prop = new search_filters.ExtendedSearchProposition(self, fields);
                 self.propositions.push(prop);
@@ -314,14 +314,14 @@ odoo.define("fsm_gantt.person_filter", function(require) {
         /**
          * Call apply User Filter
          */
-        on_apply_clicked: function() {
+        on_apply_clicked: function () {
             this.apply_clear_user_filter(false);
         },
 
         /**
          * Call Clear User Filter
          */
-        on_clear_clicked: function() {
+        on_clear_clicked: function () {
             this.apply_clear_user_filter(true);
         },
     });
