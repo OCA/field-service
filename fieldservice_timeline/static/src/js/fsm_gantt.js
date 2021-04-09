@@ -1,11 +1,10 @@
 odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
     "use strict";
 
-    var core = require("web.core");
-    var time = require("web.time");
-    var session = require("web.session");
-    var TimelineRenderer = require("web_timeline.TimelineRenderer");
-    var _t = core._t;
+    const core = require("web.core");
+    const time = require("web.time");
+    const TimelineRenderer = require("web_timeline.TimelineRenderer");
+    const _t = core._t;
 
     TimelineRenderer.include({
         /**
@@ -35,25 +34,28 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
             self.res_users_ids = [];
 
             // Find their matches
-            this._rpc({
-                model: "fsm.person",
-                method: "get_person_information",
-                args: [[session.uid], {}],
-            }).then(function (result) {
-                self.res_users.push(result);
-                for (var r in result) {
-                    self.res_users_ids.push(result[r].id);
-                }
-            });
-            // Find custom color if mentioned
-            if (params.arch.attrs.custom_color === "true") {
+            if (this.modelName == "fsm.order") {
+                var args = [[], ["id", "name"]];
                 this._rpc({
-                    model: "fsm.stage",
-                    method: "get_color_information",
-                    args: [[]],
+                    model: "fsm.person",
+                    method: "search_read",
+                    args: args,
                 }).then(function (result) {
-                    self.colors = result;
+                    self.res_users.push(result);
+                    for (var r in result) {
+                        self.res_users_ids.push(result[r].id);
+                    }
                 });
+                // Find custom color if mentioned
+                if (params.arch.attrs.custom_color === "true") {
+                    this._rpc({
+                        model: "fsm.stage",
+                        method: "get_color_information",
+                        args: [[]],
+                    }).then(function (result) {
+                        self.colors = result;
+                    });
+                }
             }
         },
 
@@ -66,75 +68,76 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
          */
         on_data_loaded_2: function (events, group_bys, adjust_window) {
             var self = this;
-            // Make the user filter clear
-            self.$el.find("#user_filer .o_searchview_extended_prop_field").val("");
-            self.$el.find("#user_filer .o_searchview_extended_prop_field").change();
-            self.$el
-                .find("#user_filer .o_searchview_extended_prop_field")
-                .val("category_id");
-            self.$el.find("#user_filer .o_searchview_extended_prop_field").change();
-            // Make the user filter clear
-            var data = [];
-            var groups = [];
-            this.grouped_by = group_bys;
-            _.each(events, function (event) {
-                if (event[self.date_start]) {
-                    data.push(self.event_data_transform(event));
-                }
-            });
-            groups = self.split_groups(events, group_bys);
-            if (group_bys[0] === "person_id") {
-                var groups_user_ids = [];
-                for (var g in groups) {
-                    groups_user_ids.push(groups[g].id);
-                }
-                // Find their matches
-                self._rpc({
-                    model: "fsm.person",
-                    method: "get_person_information",
-                    args: [[session.uid], {}],
-                }).then(function (result) {
-                    self.res_users.push(result);
-                    for (var r in result) {
-                        self.res_users_ids.push(result[r].id);
-                    }
-                    for (var u in self.res_users_ids) {
-                        if (
-                            !(self.res_users_ids[u] in groups_user_ids) ||
-                            self.res_users_ids[u] !== -1
-                        ) {
-                            // Get User Name
-                            var user_name = "-";
-                            for (var n in self.res_users[0]) {
-                                if (self.res_users[0][n].id === self.res_users_ids[u]) {
-                                    user_name = self.res_users[0][n].name;
-                                }
-                            }
-                            var is_available = false;
-                            for (var i in groups) {
-                                if (groups[i].id === self.res_users_ids[u]) {
-                                    is_available = true;
-                                }
-                            }
-                            if (!is_available) {
-                                groups.push({
-                                    id: self.res_users_ids[u],
-                                    content: _t(user_name),
-                                });
-                            }
-                        }
-                    }
-                    self.timeline.setGroups(groups);
-                    self.timeline.setItems(data);
-                    var mode = !self.mode || self.mode === "fit";
-                    var adjust = _.isUndefined(adjust_window) || adjust_window;
-                    self.timeline.setOptions({
-                        orientation: "top",
-                    });
-                    if (mode && adjust) {
-                        self.timeline.fit();
+            if (this.modelName == "fsm.order") {
+                var data = [];
+                var groups = [];
+                this.grouped_by = group_bys;
+                _.each(events, function (event) {
+                    if (event[self.date_start]) {
+                        data.push(self.event_data_transform(event));
                     }
                 });
+                groups = self.split_groups(events, group_bys);
+                if (group_bys[0] === "person_id") {
+                    var groups_user_ids = [];
+                    for (var g in groups) {
+                        groups_user_ids.push(groups[g].id);
+                    }
+                    // Find their matches
+                    self._rpc({
+                        model: "fsm.person",
+                        method: "search_read",
+                        args: [[], ["id", "name"]],
+                    }).then(function (result) {
+                        self.res_users.push(result);
+                        for (var r in result) {
+                            self.res_users_ids.push(result[r].id);
+                        }
+                        for (var u in self.res_users_ids) {
+                            if (
+                                !(self.res_users_ids[u] in groups_user_ids) ||
+                                self.res_users_ids[u] !== -1
+                            ) {
+                                // Get User Name
+                                var user_name = "-";
+                                for (var n in self.res_users[0]) {
+                                    if (
+                                        self.res_users[0][n].id ===
+                                        self.res_users_ids[u]
+                                    ) {
+                                        user_name = self.res_users[0][n].name;
+                                    }
+                                }
+                                var is_available = false;
+                                for (var i in groups) {
+                                    if (groups[i].id === self.res_users_ids[u]) {
+                                        is_available = true;
+                                    }
+                                }
+                                if (!is_available) {
+                                    groups.push({
+                                        id: self.res_users_ids[u],
+                                        content: _t(user_name),
+                                    });
+                                }
+                            }
+                        }
+                        self.timeline.setGroups(groups);
+                        self.timeline.setItems(data);
+                        var mode = !self.mode || self.mode === "fit";
+                        var adjust = _.isUndefined(adjust_window) || adjust_window;
+                        self.timeline.setOptions({
+                            orientation: "top",
+                        });
+                        if (mode && adjust) {
+                            self.timeline.fit();
+                        }
+                    });
+                } else {
+                    this._super.apply(this, arguments);
+                }
+            } else {
+                this._super.apply(this, arguments);
             }
         },
 
@@ -145,95 +148,100 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
          * @returns r
          */
         event_data_transform: function (evt) {
-            var self = this;
-            var date_start = new moment();
-            var date_stop = null;
-            var date_delay = evt[this.date_delay] || false,
-                all_day = this.all_day ? evt[this.all_day] : false;
+            if (this.modelName == "fsm.order") {
+                var self = this;
+                var date_start = new moment();
+                var date_stop = null;
+                var date_delay = evt[this.date_delay] || false,
+                    all_day = this.all_day ? evt[this.all_day] : false;
 
-            if (all_day) {
-                date_start = time.auto_str_to_date(
-                    evt[this.date_start].split(" ")[0],
-                    "start"
-                );
-                if (this.no_period) {
-                    date_stop = date_start;
+                if (all_day) {
+                    date_start = time.auto_str_to_date(
+                        evt[this.date_start].split(" ")[0],
+                        "start"
+                    );
+                    if (this.no_period) {
+                        date_stop = date_start;
+                    } else {
+                        date_stop = this.date_stop
+                            ? time.auto_str_to_date(
+                                  evt[this.date_stop].split(" ")[0],
+                                  "stop"
+                              )
+                            : null;
+                    }
                 } else {
+                    date_start = time.auto_str_to_date(evt[this.date_start]);
                     date_stop = this.date_stop
-                        ? time.auto_str_to_date(
-                              evt[this.date_stop].split(" ")[0],
-                              "stop"
-                          )
+                        ? time.auto_str_to_date(evt[this.date_stop])
                         : null;
                 }
-            } else {
-                date_start = time.auto_str_to_date(evt[this.date_start]);
-                date_stop = this.date_stop
-                    ? time.auto_str_to_date(evt[this.date_stop])
-                    : null;
-            }
 
-            if (!date_stop && date_delay) {
-                date_stop = moment(date_start).add(date_delay, "hours").toDate();
-            }
-
-            var group = evt[self.last_group_bys[0]];
-            if (group && group instanceof Array) {
-                group = _.first(group);
-            } else {
-                group = -1;
-            }
-            _.each(self.colors, function (color) {
-                if (
-                    eval(
-                        "'" +
-                            evt[color.field] +
-                            "' " +
-                            color.opt +
-                            " '" +
-                            color.value +
-                            "'"
-                    )
-                ) {
-                    self.color = color.color;
-                } else if (
-                    eval(
-                        "'" +
-                            evt[color.field][1] +
-                            "' " +
-                            color.opt +
-                            " '" +
-                            color.value +
-                            "'"
-                    )
-                ) {
-                    self.color = color.color;
+                if (!date_stop && date_delay) {
+                    date_stop = moment(date_start).add(date_delay, "hours").toDate();
                 }
-            });
 
-            var content = _.isUndefined(evt.__name) ? evt.display_name : evt.__name;
-            if (this.arch.children.length) {
-                content = this.render_timeline_item(evt);
+                var group = evt[self.last_group_bys[0]];
+                if (group && group instanceof Array) {
+                    group = _.first(group);
+                } else {
+                    group = -1;
+                }
+                /* eslint-disable */
+                _.each(self.colors, function (color) {
+                    if (
+                        eval(
+                            "'" +
+                                evt[color.field] +
+                                "' " +
+                                color.opt +
+                                " '" +
+                                color.value +
+                                "'"
+                        )
+                    ) {
+                        self.color = color.color;
+                    } else if (
+                        eval(
+                            "'" +
+                                evt[color.field][1] +
+                                "' " +
+                                color.opt +
+                                " '" +
+                                color.value +
+                                "'"
+                        )
+                    ) {
+                        self.color = color.color;
+                    }
+                });
+                /* eslint-disable */
+
+                var content = _.isUndefined(evt.__name) ? evt.display_name : evt.__name;
+                if (this.arch.children.length) {
+                    content = this.render_timeline_item(evt);
+                }
+
+                var r = {
+                    start: date_start,
+                    content: content,
+                    id: evt.id,
+                    group: group,
+                    evt: evt,
+                    style: "background-color: " + self.color + ";",
+                };
+
+                /**
+                 * Check if the event is instantaneous,
+                 * if so, display it with a point on the timeline (no 'end')
+                 */
+                if (date_stop && !moment(date_start).isSame(date_stop)) {
+                    r.end = date_stop;
+                }
+                self.color = null;
+                return r;
             }
-
-            var r = {
-                start: date_start,
-                content: content,
-                id: evt.id,
-                group: group,
-                evt: evt,
-                style: "background-color: " + self.color + ";",
-            };
-
-            /**
-             * Check if the event is instantaneous,
-             * if so, display it with a point on the timeline (no 'end')
-             */
-            if (date_stop && !moment(date_start).isSame(date_stop)) {
-                r.end = date_stop;
-            }
-            self.color = null;
-            return r;
+            return this._super.apply(this, arguments);
         },
     });
 });
