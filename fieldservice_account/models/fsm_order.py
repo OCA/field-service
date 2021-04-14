@@ -34,7 +34,7 @@ class FSMOrder(models.Model):
     def _compute_get_invoiced(self):
         for order in self:
             invoices = order.invoice_lines.mapped("move_id").filtered(
-                lambda r: r.type in ("out_invoice", "out_refund")
+                lambda r: r.move_type in ("out_invoice", "out_refund")
             )
             order.invoice_ids = invoices
             order.invoice_count = len(invoices)
