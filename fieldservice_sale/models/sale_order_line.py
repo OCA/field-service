@@ -8,7 +8,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     qty_delivered_method = fields.Selection(
-        selection_add=[("field_service", "Field Service Order")]
+        selection_add=[("field_service", "Field Service Order")],
+        ondelete={"field_service": "cascade"},
     )
     fsm_order_id = fields.Many2one(
         "fsm.order",
@@ -64,7 +65,7 @@ class SaleOrderLine(models.Model):
             "template_id": self.product_id.fsm_order_template_id.id,
             "todo": self.product_id.fsm_order_template_id.instructions,
             "category_ids": [(6, 0, categories.ids)],
-            "scheduled_duration": self.product_id.fsm_order_template_id.hours,
+            "scheduled_duration": self.product_id.fsm_order_template_id.duration,
             "sale_id": self.order_id.id,
             "sale_line_id": self.id,
             "company_id": self.company_id.id,
@@ -139,7 +140,12 @@ class SaleOrderLine(models.Model):
             if rec.product_id.field_service_tracking == "line":
                 rec._field_find_fsm_order()
 
-    def _prepare_invoice_line(self, qty):
-        res = super()._prepare_invoice_line(qty)
-        res.update({"fsm_order_id": self.fsm_order_id.id})
+    def _prepare_invoice_line(self, **optional_values):
+        res = super()._prepare_invoice_line(**optional_values)
+        if self.fsm_order_id:
+            res.update(
+                {
+                    "fsm_order_ids": [(4, self.fsm_order_id.id)],
+                }
+            )
         return res
