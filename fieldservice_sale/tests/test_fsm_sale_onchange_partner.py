@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Cl??ment Mombereau (Akretion)
+# Copyright (C) 2019 Clément Mombereau (Akretion)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 from odoo.tests.common import TransactionCase
 
@@ -16,11 +16,17 @@ class FSMSale(TransactionCase):
         super(FSMSale, self).setUp()
         # create a parent company
         self.commercial_partner = self.env["res.partner"].create(
-            {"name": "Company Commercial Partner", "is_company": True}
+            {
+                "name": "Company Commercial Partner",
+                "is_company": True,
+            }
         )
         # create a child partner
         self.partner = self.env["res.partner"].create(
-            {"name": "Child Partner", "parent_id": self.commercial_partner.id}
+            {
+                "name": "Child Partner",
+                "parent_id": self.commercial_partner.id,
+            }
         )
         # create a child partner shipping address
         self.shipping_partner = self.env["res.partner"].create(

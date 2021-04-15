@@ -1,13 +1,19 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    service_type = fields.Selection(selection_add=[("field", "Field Service Orders")])
+    service_type = fields.Selection(
+        selection_add=[
+            ("field", "Field Service Orders"),
+        ],
+        ondelete={"field": "cascade"},
+    )
     field_service_tracking = fields.Selection(
         [
             ("no", "Don't create FSM order"),
