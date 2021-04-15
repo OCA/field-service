@@ -15,7 +15,11 @@ class FSMOrder(models.Model):
         default="location",
     )
     customer_id = fields.Many2one(
-        "res.partner", string="Contact", change_default=True, index=True, tracking=True,
+        "res.partner",
+        string="Contact",
+        change_default=True,
+        index=True,
+        tracking=True,
     )
 
     def _compute_total_cost(self):
