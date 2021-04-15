@@ -34,7 +34,7 @@ class FSMSale(TransactionCase):
         self.location = self.env.ref("fieldservice.location_1")
 
     def test_1_autofill_so_fsm_location(self):
-        """ First case :
+        """First case :
         - commercial_partner IS NOT a fsm_location
         - partner IS a fsm_location
         - shipping_partner IS NOT a fsm_location
@@ -49,7 +49,7 @@ class FSMSale(TransactionCase):
         self.assertEqual(self.so.fsm_location_id.id, self.location.id)
 
     def test_2_autofill_so_fsm_location(self):
-        """ Second case :
+        """Second case :
         - commercial_partner IS NOT a fsm_location
         - partner IS NOT a fsm_location
         - shipping_partner IS a fsm_location
@@ -64,7 +64,7 @@ class FSMSale(TransactionCase):
         self.assertEqual(self.so.fsm_location_id.id, self.location.id)
 
     def test_3_autofill_so_fsm_location(self):
-        """ Third case :
+        """Third case :
         - commercial_partner IS a fsm_location
         - partner IS NOT a fsm_location
         - shipping_partner IS NOT a fsm_location
