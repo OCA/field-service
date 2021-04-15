@@ -5,23 +5,26 @@ from odoo import api, fields, models
 
 
 class FSMLocation(models.Model):
-    _inherit = 'fsm.location'
+    _inherit = "fsm.location"
 
-    is_a_distribution = fields.Boolean(string='Is a Distribution')
-    dist_parent_id = fields.Many2one('fsm.location',
-                                     string='Distribution Parent')
+    is_a_distribution = fields.Boolean(string="Is a Distribution")
+    dist_parent_id = fields.Many2one("fsm.location", string="Distribution Parent")
 
     distrib_count = fields.Integer(
-        compute='_compute_distrib_sublocation_ids',
-        string='# of distributed sub-locations')
+        compute="_compute_distrib_sublocation_ids",
+        string="# of distributed sub-locations",
+    )
 
     @api.multi
     def _compute_distrib_sublocation_ids(self):
         for location in self:
-            location.distrib_count = self.env['fsm.location'].search_count(
-                [('dist_parent_id', '=', location.id), (
-                    'id', '!=', location.id), (
-                    'is_a_distribution', '=', True)])
+            location.distrib_count = self.env["fsm.location"].search_count(
+                [
+                    ("dist_parent_id", "=", location.id),
+                    ("id", "!=", location.id),
+                    ("is_a_distribution", "=", True),
+                ]
+            )
 
     @api.multi
     def action_view_distrib_sublocation(self):
@@ -32,19 +35,25 @@ class FSMLocation(models.Model):
         sub-location to show.
         """
         for location in self:
-            action = self.env.ref('fieldservice.action_fsm_location').read()[0]
+            action = self.env.ref("fieldservice.action_fsm_location").read()[0]
             sublocation = self.env["fsm.location"].search(
-                [('dist_parent_id', '=', location.id),
-                 ('id', '!=', location.id),
-                 ('is_a_distribution', '=', True)]
+                [
+                    ("dist_parent_id", "=", location.id),
+                    ("id", "!=", location.id),
+                    ("is_a_distribution", "=", True),
+                ]
             )
             if len(sublocation) == 1:
-                action['views'] = [(self.env.
-                                    ref('fieldservice.' +
-                                        'fsm_location_form_view').id,
-                                    'form')]
-                action['res_id'] = sublocation.id
+                action["views"] = [
+                    (
+                        self.env.ref("fieldservice." + "fsm_location_form_view").id,
+                        "form",
+                    )
+                ]
+                action["res_id"] = sublocation.id
             else:
-                action['domain'] = [('id', 'in', sublocation.ids),
-                                    ('is_a_distribution', '=', True)]
+                action["domain"] = [
+                    ("id", "in", sublocation.ids),
+                    ("is_a_distribution", "=", True),
+                ]
             return action
