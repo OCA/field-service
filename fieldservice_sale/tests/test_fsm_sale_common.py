@@ -1,9 +1,10 @@
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.addons.sale.tests.test_sale_common import TestCommonSaleNoChart
+
+from odoo.addons.sale.tests.common import TestSaleCommonBase
 
 
-class TestFSMSale(TestCommonSaleNoChart):
+class TestFSMSale(TestSaleCommonBase):
     @classmethod
     def setUpClass(cls):
         super(TestFSMSale, cls).setUpClass()
@@ -18,7 +19,7 @@ class TestFSMSale(TestCommonSaleNoChart):
             {
                 "name": "Test FSM Template #1",
                 "instructions": "These are the instructions for Template #1",
-                "hours": 2.25,
+                "duration": 2.25,
             }
         )
         # Template 2
@@ -26,7 +27,7 @@ class TestFSMSale(TestCommonSaleNoChart):
             {
                 "name": "Test FSM Template #2",
                 "instructions": "Template #2 requires a lot of work",
-                "hours": 4.5,
+                "duration": 4.5,
             }
         )
         # Template 3
@@ -34,7 +35,7 @@ class TestFSMSale(TestCommonSaleNoChart):
             {
                 "name": "Test FSM Template #3",
                 "instructions": "Complete the steps outlined for Template #3",
-                "hours": 0.75,
+                "duration": 0.75,
             }
         )
         # Template 4
@@ -42,7 +43,7 @@ class TestFSMSale(TestCommonSaleNoChart):
             {
                 "name": "Test FSM Template #4",
                 "instructions": "These notes apply to Template #4",
-                "hours": 0.75,
+                "duration": 0.75,
             }
         )
 
