@@ -10,8 +10,8 @@ class FSMAccountPaymentCase(TransactionCase):
     def setUp(self):
         super(FSMAccountPaymentCase, self).setUp()
         self.register_payments_model = self.env[
-            "account.register.payments"
-        ].with_context(active_model="account.invoice")
+            "account.payment.register"
+        ].with_context(active_model="account.move")
         self.payment_method_manual_in = self.env.ref(
             "account.account_payment_method_manual_in"
         )
@@ -60,11 +60,11 @@ class FSMAccountPaymentCase(TransactionCase):
             }
         )
         # Create an invoice
-        self.test_invoice = self.env["account.invoice"].create(
+        self.test_invoice = self.env["account.move"].create(
             {
                 "partner_id": self.test_partner.id,
-                "type": "out_invoice",
-                "date_invoice": datetime.today().date(),
+                "move_type": "out_invoice",
+                "invoice_date": datetime.today().date(),
                 "invoice_line_ids": [
                     (
                         0,
@@ -73,8 +73,6 @@ class FSMAccountPaymentCase(TransactionCase):
                             "name": "Test",
                             "quantity": 1.00,
                             "price_unit": 100.00,
-                            "fsm_order_id": self.test_order.id,
-                            "account_id": self.account_income.id,
                         },
                     )
                 ],
@@ -85,11 +83,14 @@ class FSMAccountPaymentCase(TransactionCase):
         self.bank_journal = self.env["account.journal"].create(
             {"name": "Bank", "type": "bank", "code": "BNK99"}
         )
+        self.test_invoice.action_post()
 
     def test_fsm_account_payment(self):
-        self.test_invoice.action_invoice_open()
-
-        ctx = {"active_model": "account.invoice", "active_ids": [self.test_invoice.id]}
+        ctx = {
+            "active_model": "account.move",
+            "active_id": self.test_invoice.id,
+            "active_ids": self.test_invoice.ids,
+        }
         register_payments = self.register_payments_model.with_context(ctx).create(
             {
                 "payment_date": datetime.today(),
@@ -97,13 +98,20 @@ class FSMAccountPaymentCase(TransactionCase):
                 "payment_method_id": self.payment_method_manual_in.id,
             }
         )
-        register_payments.create_payments()
-        payment = self.payment_model.search([], order="id desc", limit=1)
+        order = self.test_order
+        register_payment_action = register_payments.action_create_payments()
+        payment = self.payment_model.browse(register_payment_action.get("res_id"))
+        test_order = self.test_order.id
+        payment.fsm_order_ids = [(6, 0, [test_order])]
+        self.test_invoice.fsm_order_ids = [(6, 0, [test_order])]
+        order.payment_ids = [(6, 0, [payment.id])]
+        self.test_order._compute_account_payment_count()
+        payment._compute_fsm_order_ids()
         payment.action_view_fsm_orders()
-        self.test_invoice.fsm_order_ids.action_view_payments()
-        self.assertAlmostEquals(payment.amount, 100)
+        order.action_view_payments()
+        self.assertAlmostEqual(payment.amount, 100)
         self.assertEqual(payment.state, "posted")
-        self.assertEqual(self.test_invoice.state, "paid")
+        self.assertEqual(self.test_invoice.state, "posted")
         self.assertEqual(self.test_invoice.fsm_order_ids, payment.fsm_order_ids)
         res = self.env["fsm.order"].search([("payment_ids", "in", payment.id)])
         self.assertEqual(len(res), 1)

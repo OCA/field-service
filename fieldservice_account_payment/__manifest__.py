@@ -4,11 +4,13 @@
 {
     "name": "Field Service - Accounting Payment",
     "summary": "Allow workers to collect payments from the order.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": ["fieldservice_account"],
+    "depends": [
+        "fieldservice_account",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "views/fsm_order.xml",
