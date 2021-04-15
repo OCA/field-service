@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FSMLocation(models.Model):
@@ -15,7 +15,6 @@ class FSMLocation(models.Model):
         string="# of distributed sub-locations",
     )
 
-    @api.multi
     def _compute_distrib_sublocation_ids(self):
         for location in self:
             location.distrib_count = self.env["fsm.location"].search_count(
@@ -26,7 +25,6 @@ class FSMLocation(models.Model):
                 ]
             )
 
-    @api.multi
     def action_view_distrib_sublocation(self):
         """
         This function returns an action that display existing
