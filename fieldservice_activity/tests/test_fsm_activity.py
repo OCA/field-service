@@ -15,10 +15,10 @@ class TestFSMActivity(TransactionCase):
         self.template_obj = self.env["fsm.template"]
 
     def test_fsm_activity(self):
-        """ Test creating new activites, and moving them along thier stages,
-            - Don't move FSM Order to complete if Required Activity in 'To Do'
-            - Check completed_by is saved
-            - Check completed_on is saved
+        """Test creating new activites, and moving them along thier stages,
+        - Don't move FSM Order to complete if Required Activity in 'To Do'
+        - Check completed_by is saved
+        - Check completed_on is saved
         """
         # Create an Orders
         view_id = "fieldservice.fsm_order_form"
