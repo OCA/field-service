@@ -34,6 +34,7 @@ class FSMOrder(models.Model):
                 rec.order_activity_ids = activity_list
         return res
 
+    @api.model
     def create(self, vals):
         """Update Activities for FSM orders that are generate from SO"""
         order = super(FSMOrder, self).create(vals)
