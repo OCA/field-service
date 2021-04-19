@@ -5,31 +5,31 @@ from odoo import api, fields, models
 
 
 class FSMPerson(models.Model):
-    _inherit = 'fsm.person'
+    _inherit = "fsm.person"
 
     pricelist_count = fields.Integer(
-        compute='_compute_pricelist_count',
-        string='# Pricelists'
+        compute="_compute_pricelist_count", string="# Pricelists"
     )
 
     @api.multi
     def _compute_pricelist_count(self):
         for worker in self:
-            worker.pricelist_count = self.env['product.supplierinfo'].\
-                search_count([('name', '=', worker.partner_id.id)])
+            worker.pricelist_count = self.env["product.supplierinfo"].search_count(
+                [("name", "=", worker.partner_id.id)]
+            )
 
     @api.multi
     def action_view_pricelists(self):
         for worker in self:
-            pricelist = self.env['product.supplierinfo'].search(
-                [('name', '=', worker.partner_id.id)])
-            action = self.env.ref(
-                'product.product_supplierinfo_type_action').read()[0]
+            pricelist = self.env["product.supplierinfo"].search(
+                [("name", "=", worker.partner_id.id)]
+            )
+            action = self.env.ref("product.product_supplierinfo_type_action").read()[0]
             if len(pricelist) == 1:
-                action['views'] = [(
-                    self.env.ref('product.product_supplierinfo_form_view').id,
-                    'form')]
-                action['res_id'] = pricelist.ids[0]
+                action["views"] = [
+                    (self.env.ref("product.product_supplierinfo_form_view").id, "form")
+                ]
+                action["res_id"] = pricelist.ids[0]
             else:
-                action['domain'] = [('id', 'in', pricelist.ids)]
+                action["domain"] = [("id", "in", pricelist.ids)]
             return action
