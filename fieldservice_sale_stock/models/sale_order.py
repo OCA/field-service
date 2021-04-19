@@ -1,6 +1,6 @@
 # Copyright (C) 2019 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
@@ -16,7 +16,6 @@ class SaleOrder(models.Model):
             "fsm_order_id": fsm_order.id,
         }
 
-    @api.multi
     def _link_pickings_to_fsm(self):
         for rec in self:
             # TODO: We may want to split the picking to have one picking
@@ -34,7 +33,6 @@ class SaleOrder(models.Model):
                 for move in picking.move_lines:
                     move.write(rec.prepare_fsm_values_for_stock_move(fsm_order))
 
-    @api.multi
     def _action_confirm(self):
         """On SO confirmation, link the fsm order on the pickings
         created by the sale order"""
