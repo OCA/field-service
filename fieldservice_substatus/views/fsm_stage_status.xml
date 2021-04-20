@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!-- Field Service Stage Status -->
@@ -7,7 +7,7 @@
         <field name="model">fsm.stage.status</field>
         <field name="arch" type="xml">
             <tree string="substatus">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -20,7 +20,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" />
                         </group>
                         <group>
                         </group>
@@ -33,8 +33,7 @@
     <record id="action_fsm_stage_status" model="ir.actions.act_window">
         <field name="name">Order Sub-Status</field>
         <field name="res_model">fsm.stage.status</field>
-        <field name="view_id" ref="fsm_stage_status_tree_view"/>
-        <field name="view_type">form</field>
+        <field name="view_id" ref="fsm_stage_status_tree_view" />
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -43,10 +42,12 @@
         </field>
     </record>
 
-    <menuitem id="menu_fsm_stage_status"
-              name="Sub-Status"
-              action="action_fsm_stage_status"
-              parent="fieldservice.menu_fsm_config_order"
-              sequence="21"/>
+    <menuitem
+        id="menu_fsm_stage_status"
+        name="Sub-Status"
+        action="action_fsm_stage_status"
+        parent="fieldservice.menu_fsm_config_order"
+        sequence="21"
+    />
 
 </odoo>
