@@ -5,21 +5,27 @@ from odoo import api, fields, models
 
 
 class FSMStageStatus(models.Model):
-    _name = 'fsm.stage.status'
-    _description = 'Order Sub-Status'
+    _name = "fsm.stage.status"
+    _description = "Order Sub-Status"
 
-    name = fields.Char(string='Name', required=True)
+    name = fields.Char(string="Name", required=True)
 
     @api.model
-    def _search(self, args, offset=0, limit=None, order=None, count=False,
-                access_rights_uid=None):
+    def _search(
+        self,
+        args,
+        offset=0,
+        limit=None,
+        order=None,
+        count=False,
+        access_rights_uid=None,
+    ):
         context = self._context or {}
-        if context.get('fsm_order_stage_id'):
-            stage_id = self.env['fsm.stage'].browse(context.get(
-                'fsm_order_stage_id'))
+        if context.get("fsm_order_stage_id"):
+            stage_id = self.env["fsm.stage"].browse(context.get("fsm_order_stage_id"))
             sub_stage_ids = stage_id.sub_stage_id + stage_id.sub_stage_ids
             if sub_stage_ids:
-                args = [('id', 'in', sub_stage_ids.ids)]
+                args = [("id", "in", sub_stage_ids.ids)]
         return super(FSMStageStatus, self)._search(
-            args, offset, limit, order, count=count,
-            access_rights_uid=access_rights_uid)
+            args, offset, limit, order, count=count, access_rights_uid=access_rights_uid
+        )
