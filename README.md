@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [base_territory](base_territory/) | 14.0.1.0.0 | This module allows you to define territories, branches, districts and regions to be used for Field Service operations or Sales.
 [fieldservice](fieldservice/) | 14.0.1.0.1 | Manage Field Service Locations, Workers and Orders
+[fieldservice_timeline](fieldservice_timeline/) | 14.0.1.0.0 | This module is a display timeline view of the Field Service order in Odoo.
 
 [//]: # (end addons)
 
