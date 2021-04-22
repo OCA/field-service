@@ -1,7 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FSMPerson(models.Model):
@@ -11,14 +11,12 @@ class FSMPerson(models.Model):
         compute="_compute_pricelist_count", string="# Pricelists"
     )
 
-    @api.multi
     def _compute_pricelist_count(self):
         for worker in self:
             worker.pricelist_count = self.env["product.supplierinfo"].search_count(
                 [("name", "=", worker.partner_id.id)]
             )
 
-    @api.multi
     def action_view_pricelists(self):
         for worker in self:
             pricelist = self.env["product.supplierinfo"].search(
