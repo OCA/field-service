@@ -1,0 +1,12 @@
+<odoo>
+    <record id="fsm_order_parent_completed" model="ir.actions.server">
+        <field name="name">FSM Order Completed Parent</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">multi</field>
+    </record>
+    <record id="fsm_order_parent_canceled" model="ir.actions.server">
+        <field name="name">FSM Order Canceled Parent</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">multi</field>
+    </record>
+</odoo>
