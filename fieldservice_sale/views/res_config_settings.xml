@@ -1,0 +1,11 @@
+<odoo>
+
+    <record model="res.config.settings" id="res_config_settings_fsm_template">
+        <field name="group_fsm_template" eval="1" />
+    </record>
+
+    <function model="res.config.settings" name="execute">
+            <value eval="[ref('fieldservice_sale.res_config_settings_fsm_template')]" />
+    </function>
+
+</odoo>
