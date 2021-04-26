@@ -23,7 +23,7 @@ Field Service - Purchase
     :target: https://runbot.odoo-community.org/runbot/264/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows you to link the Field Service App to the Purchases App.
 
@@ -99,7 +99,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osi-scampbell|
+|maintainer-osi-scampbell| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/13.0/fieldservice_purchase>`_ project on GitHub.
 
