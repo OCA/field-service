@@ -1,7 +1,7 @@
 # Copyright (C) 2019 - TODAY, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class Project(models.Model):
@@ -10,7 +10,6 @@ class Project(models.Model):
     fsm_order_ids = fields.One2many("fsm.order", "project_id", string="Service Orders")
     fsm_location_id = fields.Many2one("fsm.location", string="FSM Location")
 
-    @api.multi
     def action_create_order(self):
         """
         This function returns an action that displays a full FSM Order
