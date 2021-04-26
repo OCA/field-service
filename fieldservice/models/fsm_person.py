@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class FSMPerson(models.Model):
     _name = "fsm.person"
     _inherits = {"res.partner": "partner_id"}
+    _inherit = "mail.thread"
     _description = "Field Service Worker"
 
     partner_id = fields.Many2one(
