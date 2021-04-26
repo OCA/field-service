@@ -231,8 +231,8 @@ msgstr "Toutes les commandes"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 "Tous les courriels et documents envoyés à ce contact seront traduits dans "
 "cette langue."
@@ -305,8 +305,7 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 "Ajout automatique des équipements sur la commande en fonction du contenu de "
 "l'emplacement"
@@ -1351,8 +1350,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
+"If the sanitized phone number is on the blacklist, the contact won't receive "
+"mass mailing sms anymore, from any list"
 msgstr ""
 "Si le numéro de téléphone enregistré figure sur la liste noire, le contact "
 "ne recevra plus de sms de publipostage de masse, quelle que soit la liste"
@@ -1427,11 +1426,6 @@ msgid "Instructions"
 msgstr "Instructions"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref
-msgid "Internal Reference"
-msgstr "Référence interne"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
 msgid "Internal Type"
@@ -1441,8 +1435,8 @@ msgstr "Type interne"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 msgid ""
-"Invoice & Delivery addresses are used in sales orders. Private addresses are"
-" only visible by authorized users."
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
 msgstr ""
 "Les adresses de facturation et de livraison sont utilisées dans les "
 "commandes de vente. Les adresses privées ne sont visibles que par les "
@@ -1852,7 +1846,8 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage different teams of Field Service workers"
-msgstr "Gérer les équipes différentes des agents de terrain du service sur site"
+msgstr ""
+"Gérer les équipes différentes des agents de terrain du service sur site"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1863,7 +1858,8 @@ msgstr "Gérer les équipements sur le lieu d'intervention"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Manage inventory and stock operations.\n"
-"                                    Automatically activate Lots &amp; Serial Numbers."
+"                                    Automatically activate Lots &amp; Serial "
+"Numbers."
 msgstr ""
 "Gérer l'inventaire et les opérations de stock.\n"
 "                                    Activez automatiquement les lots et les "
@@ -2005,9 +2001,6 @@ msgid "Need Scheduled"
 msgstr "Besoin programmé"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -2382,6 +2375,7 @@ msgid "Record Type"
 msgstr "Type d'enregistrement"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref
 msgid "Reference"
 msgstr "Référence"
@@ -2831,16 +2825,11 @@ msgstr "Le technicien est déjà lié à ce lieu."
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 "Ce champ est utilisé pour effectuer une recherche sur l'adresse e-mail, car "
 "le champ e-mail primaire peut contenir plus qu'une simple adresse e-mail."
-
-#. module: fieldservice
-#: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_fsm_location_ref_uniq
-msgid "This internal reference already exists!"
-msgstr "Cette référence interne existe déjà !"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
@@ -3024,9 +3013,11 @@ msgstr "Lien vers le site web"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Lors de l'impression de documents et de l'exportation/importation de "
 "données, les valeurs horaires sont calculées en fonction de ce fuseau "
@@ -3133,3 +3124,9 @@ msgstr "Modèle"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
 msgid "templates"
 msgstr "Modèles"
+
+#~ msgid "Internal Reference"
+#~ msgstr "Référence interne"
+
+#~ msgid "This internal reference already exists!"
+#~ msgstr "Cette référence interne existe déjà !"
