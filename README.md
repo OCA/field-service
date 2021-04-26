@@ -19,6 +19,7 @@ addon | version | summary
 [fieldservice_fleet](fieldservice_fleet/) | 13.0.1.0.0 | Link Field Service vehicles with Odoo Fleet
 [fieldservice_geoengine](fieldservice_geoengine/) | 13.0.1.0.0 | Display Field Service locations on a map with Open Street Map
 [fieldservice_partner_fax](fieldservice_partner_fax/) | 13.0.1.1.0 | This module allows you to manage a partner's fax number from the field service location screen.
+[fieldservice_purchase](fieldservice_purchase/) | 13.0.1.0.0 | Manage FSM Purchases
 [fieldservice_recurring](fieldservice_recurring/) | 13.0.1.0.1 | Manage recurring Field Service orders
 [fieldservice_skill](fieldservice_skill/) | 13.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 13.0.1.0.0 | Execute server actions when reaching a Field Service stage
