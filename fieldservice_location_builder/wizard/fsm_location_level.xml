@@ -1,0 +1,41 @@
+<odoo>
+
+    <!-- Location Level Tree View -->
+    <record id="fsm_location_level_tree_view" model="ir.ui.view">
+        <field name="name">fsm.location.level.tree</field>
+        <field name="model">fsm.location.level</field>
+        <field name="arch" type="xml">
+            <tree string="Location Level">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="spacer" />
+                <field name="start_number" />
+                <field name="end_number" />
+                <field name="total_number" />
+                <field name="tag_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Location Level Form View -->
+    <record id="fsm_location_level_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.level.form</field>
+        <field name="model">fsm.location.level</field>
+        <field name="arch" type="xml">
+            <form string="Location Level">
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1> <field name="name" /></h1>
+                    <group>
+                        <field name="spacer" />
+                        <field name="start_number" />
+                        <field name="end_number" />
+                        <field name="total_number" />
+                        <field name="tag_ids" widget="many2many_tags" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
