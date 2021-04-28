@@ -17,7 +17,7 @@ class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
     contractor_cost_ids = fields.One2many(
-        "account.invoice.line", "fsm_order_id", string="Contractor Costs"
+        "fsm.order.cost", "fsm_order_id", string="Contractor Costs"
     )
     employee_timesheet_ids = fields.One2many(
         "account.analytic.line", "fsm_order_id", string="Employee Timesheets"
@@ -38,6 +38,8 @@ class FSMOrder(models.Model):
         for order in self:
             if user.employee_ids:
                 order.employee = True
+            else:
+                order.employee = False
 
     @api.depends("employee_timesheet_ids", "contractor_cost_ids")
     def _compute_total_cost(self):
@@ -68,11 +70,11 @@ class FSMOrder(models.Model):
     def action_complete(self):
         for order in self:
             order.account_stage = "review"
-        if self.person_id.supplier and not self.contractor_cost_ids:
+        if self.person_id.supplier_rank and not self.contractor_cost_ids:
             raise ValidationError(
                 _("Cannot move to Complete " + "until 'Contractor Costs' is filled in")
             )
-        if not self.person_id.supplier and not self.employee_timesheet_ids:
+        if not self.person_id.supplier_rank and not self.employee_timesheet_ids:
             raise ValidationError(
                 _(
                     "Cannot move to Complete until "
@@ -84,29 +86,51 @@ class FSMOrder(models.Model):
     def create_bills(self):
         jrnl = self.env["account.journal"].search(
             [
-                ("company_id", "=", self.env.user.company_id.id),
+                ("company_id", "=", self.env.company.id),
                 ("type", "=", "purchase"),
                 ("active", "=", True),
             ],
             limit=1,
         )
-        fpos = self.customer_id.property_account_position_id
+        fpos = self.person_id.partner_id.property_account_position_id
+        invoice_line_vals = []
+        for cost in self.contractor_cost_ids:
+            template = cost.product_id.product_tmpl_id
+            accounts = template.get_product_accounts()
+            account = accounts["expense"]
+            taxes = template.supplier_taxes_id
+            tax_ids = fpos.map_tax(taxes)
+            invoice_line_vals.append(
+                (
+                    0,
+                    0,
+                    {
+                        "analytic_account_id": self.location_id.analytic_account_id.id,
+                        "product_id": cost.product_id.id,
+                        "quantity": cost.quantity,
+                        "name": cost.product_id.display_name,
+                        "price_unit": cost.price_unit,
+                        "account_id": account.id,
+                        "fsm_order_ids": [(4, self.id)],
+                        "tax_ids": [(6, 0, tax_ids.ids)],
+                    },
+                )
+            )
         vals = {
             "partner_id": self.person_id.partner_id.id,
             "type": "in_invoice",
             "journal_id": jrnl.id or False,
             "fiscal_position_id": fpos.id or False,
             "fsm_order_ids": [(4, self.id)],
-            "company_id": self.env.user.company_id.id,
+            "company_id": self.env.company.id,
+            "invoice_line_ids": invoice_line_vals,
         }
-        bill = self.env["account.invoice"].sudo().create(vals)
-        for line in self.contractor_cost_ids:
-            line.invoice_id = bill
-        bill.compute_taxes()
+        bill = self.env["account.move"].sudo().create(vals)
+        bill._recompute_tax_lines()
 
     def account_confirm(self):
         for order in self:
-            contractor = order.person_id.partner_id.supplier
+            contractor = order.person_id.partner_id.supplier_rank
             if order.contractor_cost_ids:
                 if contractor:
                     order.create_bills()
@@ -121,7 +145,7 @@ class FSMOrder(models.Model):
     def account_create_invoice(self):
         jrnl = self.env["account.journal"].search(
             [
-                ("company_id", "=", self.env.user.company_id.id),
+                ("company_id", "=", self.env.company.id),
                 ("type", "=", "sale"),
                 ("active", "=", True),
             ],
@@ -131,76 +155,91 @@ class FSMOrder(models.Model):
             if not self.customer_id:
                 raise ValidationError(_("Contact empty"))
             fpos = self.customer_id.property_account_position_id
-            vals = {
+            invoice_vals = {
                 "partner_id": self.customer_id.id,
                 "type": "out_invoice",
                 "journal_id": jrnl.id or False,
                 "fiscal_position_id": fpos.id or False,
                 "fsm_order_ids": [(4, self.id)],
             }
-            invoice = self.env["account.invoice"].sudo().create(vals)
-            price_list = invoice.partner_id.property_product_pricelist
+            price_list = self.customer_id.property_product_pricelist
+
         else:
             fpos = self.location_id.customer_id.property_account_position_id
-            vals = {
+            invoice_vals = {
                 "partner_id": self.location_id.customer_id.id,
                 "type": "out_invoice",
                 "journal_id": jrnl.id or False,
                 "fiscal_position_id": fpos.id or False,
                 "fsm_order_ids": [(4, self.id)],
-                "company_id": self.env.user.company_id.id,
+                "company_id": self.env.company.id,
             }
-            invoice = self.env["account.invoice"].sudo().create(vals)
-            price_list = invoice.partner_id.property_product_pricelist
+            price_list = self.location_id.customer_id.property_product_pricelist
+
+        invoice_line_vals = []
         for cost in self.contractor_cost_ids:
             price = price_list.get_product_price(
                 product=cost.product_id,
                 quantity=cost.quantity,
-                partner=invoice.partner_id,
+                partner=invoice_vals.get("partner_id"),
                 date=False,
                 uom_id=False,
             )
             template = cost.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts["income"]
-            vals = {
-                "product_id": cost.product_id.id,
-                "account_analytic_id": cost.account_analytic_id.id,
-                "quantity": cost.quantity,
-                "name": cost.name,
-                "price_unit": price,
-                "account_id": account.id,
-                "invoice_id": invoice.id,
-                "fsm_order_id": self.id,
-            }
-            con_cost = self.env["account.invoice.line"].create(vals)
             taxes = template.taxes_id
-            con_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
+            tax_ids = fpos.map_tax(taxes)
+            invoice_line_vals.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": cost.product_id.id,
+                        "analytic_account_id": self.location_id.analytic_account_id.id,
+                        "quantity": cost.quantity,
+                        "name": cost.product_id.display_name,
+                        "price_unit": price,
+                        "account_id": account.id,
+                        "fsm_order_ids": [(4, self.id)],
+                        "tax_ids": [(6, 0, tax_ids.ids)],
+                    },
+                )
+            )
         for line in self.employee_timesheet_ids:
             price = price_list.get_product_price(
                 product=line.product_id,
                 quantity=line.unit_amount,
-                partner=invoice.partner_id,
+                partner=invoice_vals.get("partner_id"),
                 date=False,
                 uom_id=False,
             )
             template = line.product_id.product_tmpl_id
             accounts = template.get_product_accounts()
             account = accounts["income"]
-            vals = {
-                "product_id": line.product_id.id,
-                "account_analytic_id": line.account_id.id,
-                "quantity": line.unit_amount,
-                "name": line.name,
-                "price_unit": price,
-                "account_id": account.id,
-                "invoice_id": invoice.id,
-                "fsm_order_id": self.id,
-            }
-            time_cost = self.env["account.invoice.line"].create(vals)
             taxes = template.taxes_id
-            time_cost.invoice_line_tax_ids = fpos.map_tax(taxes)
-        invoice.compute_taxes()
+            tax_ids = fpos.map_tax(taxes)
+            invoice_line_vals.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": line.product_id.id,
+                        "analytic_account_id": line.account_id.id,
+                        "quantity": line.unit_amount,
+                        "name": line.name,
+                        "price_unit": price,
+                        "account_id": account.id,
+                        "fsm_order_ids": [(4, self.id)],
+                        "tax_ids": [(6, 0, tax_ids.ids)],
+                    },
+                )
+            )
+
+        invoice_vals.update({"invoice_line_ids": invoice_line_vals})
+        invoice = self.env["account.move"].sudo().create(invoice_vals)
+
+        invoice._recompute_tax_lines()
         self.account_stage = "invoiced"
         return invoice
 
