@@ -3,7 +3,6 @@
     <record id="action_account_fsm_order" model="ir.actions.act_window">
         <field name="name">Service Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="domain" eval="[('account_stage', '=', 'confirmed')]" />
         <field name="help" type="html">

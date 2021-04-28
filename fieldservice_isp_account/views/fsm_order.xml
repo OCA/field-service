@@ -42,20 +42,9 @@
                 <group string="Contractor Costs">
                     <field name="contractor_cost_ids" nolabel="1">
                         <tree editable="bottom">
-                            <field name="product_id" required="1" />
-                            <field name="name" />
-                            <field name="quantity" required="1" />
-                            <field name="account_id" required="1" invisible="1" />
-                            <field name="account_analytic_id" invisible="1" />
-                            <field
-                                name="invoice_line_tax_ids"
-                                widget="many2many_tags"
-                                invisible="1"
-                            />
-                            <field
-                                name="price_unit"
-                                groups="fieldservice.group_fsm_manager"
-                            />
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="price_unit" />
                         </tree>
                     </field>
                 </group>
@@ -90,6 +79,11 @@
                             />
                             <field name="project_id" invisible="1" />
                             <field name="task_id" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                invisible="1"
+                            />
                         </tree>
                     </field>
                 </group>
