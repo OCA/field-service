@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.model.access" id="fsm_order_cost_access_base_user">
+        <field name="name">fsm.order.cost access base user</field>
+        <field name="model_id" ref="model_fsm_order_cost" />
+        <field name="group_id" ref="base.group_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record model="ir.model.access" id="fsm_order_cost_access_fieldservice_user">
+        <field name="name">fsm.order.cost access fieldservice user</field>
+        <field name="model_id" ref="model_fsm_order_cost" />
+        <field name="group_id" ref="fieldservice.group_fsm_user" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+</odoo>
