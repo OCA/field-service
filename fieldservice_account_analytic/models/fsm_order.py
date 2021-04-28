@@ -20,7 +20,7 @@ class FSMOrder(models.Model):
         domain=[("customer", "=", True)],
         change_default=True,
         index=True,
-        track_visibility="always",
+        tracking=True,
     )
 
     def _compute_total_cost(self):
@@ -56,7 +56,6 @@ class FSMOrder(models.Model):
         if self.customer_id:
             self.location_id = self.customer_id.service_location_id
 
-    @api.multi
     def write(self, vals):
         res = super(FSMOrder, self).write(vals)
         for order in self:
