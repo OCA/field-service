@@ -1,0 +1,165 @@
+<odoo>
+    <record id="change_log_view_list" model="ir.ui.view">
+        <field name="name">Change Logs</field>
+        <field name="model">change.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="type_id" />
+                <field name="impact_id" />
+                <field name="description" />
+                <field name="tag_ids" widget="many2many_tags" />
+                <field name="stage_id" />
+                <field name="user_id" />
+                <field name="implemented_on" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="change_log_view_form" model="ir.ui.view">
+        <field name="name">Change Logs</field>
+        <field name="model">change.log</field>
+        <field name="arch" type="xml">
+            <form string="Change Log Form">
+                <header>
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        clickable="True"
+                        options="{'fold_field': 'fold'}"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                        >
+                            <field
+                                name="active"
+                                widget="boolean_button"
+                                options='{"terminology": "archive"}'
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Name" />
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group name="general_info">
+                        <group>
+                            <field name="location_id" required="1" />
+                            <field name="user_id" />
+                            <field name="implemented_on" />
+                        </group>
+                        <group>
+                            <field name="type_id" />
+                            <field name="impact_id" />
+                            <field
+                                name="tag_ids"
+                                widget="many2many_tags"
+                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}"
+                            />
+                        </group>
+                    </group>
+                    <group name="description">
+                        <field name="description" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field
+                        name="message_ids"
+                        widget="mail_thread"
+                        options="{'post_refresh': 'recipients'}"
+                    />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="change_log_view_search" model="ir.ui.view">
+        <field name="name">Change Logs</field>
+        <field name="model">change.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="description" />
+                <field name="location_id" />
+                <field name="user_id" />
+                <field name="tag_ids" />
+                <filter
+                    string="My Change Logs"
+                    domain="[('user_id','=',uid)]"
+                    name="my_change_logs"
+                />
+                <separator />
+                <filter
+                    string="Archived"
+                    domain="[('active','=',False)]"
+                    name="archive"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Changed By"
+                        name="user_id"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        string="Location"
+                        name="location_id"
+                        context="{'group_by':'location_id'}"
+                    />
+                    <filter
+                        string="Stage"
+                        name="stage_id"
+                        context="{'group_by':'stage_id'}"
+                    />
+                    <filter
+                        string="Type"
+                        name="type_id"
+                        context="{'group_by':'type_id'}"
+                    />
+                    <filter
+                        string="Impact"
+                        name="type_id"
+                        context="{'group_by':'impact_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="change_log_action" model="ir.actions.act_window">
+        <field name="name">Change Logs</field>
+        <field name="res_model">change.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Change Logs"
+        id="change_log_root_menu"
+        web_icon="fieldservice_change_management,static/description/icon.png"
+        sequence="51"
+        groups="fieldservice_change_management.change_log_group_manager"
+    />
+
+    <menuitem
+        name="Change Logs"
+        id="change_log_menu"
+        parent="change_log_root_menu"
+        sequence="10"
+        action="change_log_action"
+    />
+
+    <menuitem
+        name="Configuration"
+        id="change_log_configuration_menu"
+        sequence="20"
+        parent="change_log_root_menu"
+    />
+</odoo>
