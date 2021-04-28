@@ -2,31 +2,27 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Field Service - ISP Accounting',
-    'summary': """Invoice Field Service orders based on employee time
+    "name": "Field Service - ISP Accounting",
+    "summary": """Invoice Field Service orders based on employee time
                   or contractor costs""",
-    'version': '12.0.2.3.2',
-    'category': 'Field Service',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/field-service',
-    'depends': [
-        'fieldservice_account_analytic',
-        'fieldservice_project',
-        'hr_timesheet',
+    "version": "12.0.2.3.2",
+    "category": "Field Service",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/field-service",
+    "depends": [
+        "fieldservice_account_analytic",
+        "fieldservice_project",
+        "hr_timesheet",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/time_products.xml',
-        'views/account.xml',
-        'views/fsm_order.xml',
-        'views/fsm_person.xml',
-        'views/hr_timesheet.xml',
+    "data": [
+        "security/ir.model.access.csv",
+        "data/time_products.xml",
+        "views/account.xml",
+        "views/fsm_order.xml",
+        "views/fsm_person.xml",
+        "views/hr_timesheet.xml",
     ],
-    'license': 'AGPL-3',
-    'development_status': 'Beta',
-    'maintainers': [
-        'osimallen',
-        'brian10048',
-        'bodedra',
-    ],
+    "license": "AGPL-3",
+    "development_status": "Beta",
+    "maintainers": ["osimallen", "brian10048", "bodedra"],
 }
