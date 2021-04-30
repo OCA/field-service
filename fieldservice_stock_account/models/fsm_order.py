@@ -18,23 +18,23 @@ class FSMOrder(models.Model):
             "price_unit": 0,
             "show_in_report": False,
             "account_id": account.id,
-            "invoice_id": invoice.id,
+            "move_id": invoice.id,
         }
         return vals
 
     def _create_inv_line_for_stock_requests(self, invoice=False):
         for stock_request in self.stock_request_ids:
             vals = self._prepare_inv_line_for_stock_request(stock_request, invoice)
-            self.env["account.invoice.line"].create(vals)
+            self.env["account.move.line"].create(vals)
 
     def account_create_invoice(self):
-        invoice = super().account_create_invoice()
+        invoice = super(FSMOrder, self).account_create_invoice()
         if self.location_id.inventory_location_id.usage == "customer":
             self._create_inv_line_for_stock_requests(invoice)
         return invoice
 
     def account_no_invoice(self):
-        res = super().account_no_invoice()
+        res = super(FSMOrder, self).account_no_invoice()
         if (
             self.stock_request_ids
             and self.location_id.inventory_location_id.usage == "customer"
@@ -56,9 +56,9 @@ class FSMOrder(models.Model):
                     "type": "out_invoice",
                     "journal_id": jrnl.id or False,
                     "fiscal_position_id": fpos.id or False,
-                    "fsm_order_id": self.id,
+                    "fsm_order_ids": [(4, self.id)],
                 }
-                invoice = self.env["account.invoice"].sudo().create(vals)
+                invoice = self.env["account.move"].sudo().create(vals)
             else:
                 fpos = self.location_id.customer_id.property_account_position_id
                 vals = {
@@ -66,10 +66,8 @@ class FSMOrder(models.Model):
                     "type": "out_invoice",
                     "journal_id": jrnl.id or False,
                     "fiscal_position_id": fpos.id or False,
-                    "fsm_order_id": self.id,
+                    "fsm_order_ids": [(4, self.id)],
                 }
-                invoice = self.env["account.invoice"].sudo().create(vals)
+                invoice = self.env["account.move"].sudo().create(vals)
             self._create_inv_line_for_stock_requests(invoice)
-            # Validate and paid invoice
-            invoice.action_invoice_open()
         return res
