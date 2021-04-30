@@ -31,5 +31,5 @@ class FSMOrder(models.Model):
 
     @api.onchange("team_id")
     def onchange_team_id(self):
-        if self.team_id:
+        if self.team_id and self.team_id.project_id:
             self.project_id = self.team_id.project_id
