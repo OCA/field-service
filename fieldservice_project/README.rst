@@ -72,6 +72,8 @@ Contributors
 
   * Patrick Wilson <pwilson@pavlovmedia.com>
 
+* Bhavesh Odedra <bodedra@opensourceintegrators.com>
+
 Other credits
 ~~~~~~~~~~~~~
 
