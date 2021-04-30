@@ -16,6 +16,8 @@ setuptools.setup(
         'odoo13-addon-fieldservice_fleet',
         'odoo13-addon-fieldservice_geoengine',
         'odoo13-addon-fieldservice_partner_fax',
+        'odoo13-addon-fieldservice_project',
+        'odoo13-addon-fieldservice_purchase',
         'odoo13-addon-fieldservice_recurring',
         'odoo13-addon-fieldservice_skill',
         'odoo13-addon-fieldservice_stage_server_action',

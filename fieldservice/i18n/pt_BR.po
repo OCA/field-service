@@ -28,6 +28,18 @@ msgid "# Opportunities"
 msgstr "# Oportunidades"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
+msgid "# Tasks"
+msgstr "# Tarefas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# Contas de Fornecedores"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1993,6 +2005,12 @@ msgid "Message for Invoice"
 msgstr "Mensagem para Fatura"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
+msgid "Message for Purchase Order"
+msgstr "Mensagem para Ordem de Compra"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2457,6 +2475,18 @@ msgid "Projects and Tasks"
 msgstr "Projetos e Tarefas"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
+msgid "Purchase Order"
+msgstr "Ordem de Compra"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
+msgid "Purchase Order Count"
+msgstr "Contagem de Ordens de Compra"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
 msgid "Record Type"
 msgstr "Tipo de Registro"
@@ -2633,7 +2663,9 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__purchase_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
@@ -2827,6 +2859,12 @@ msgid "Sub-Locations"
 msgstr "Sub-Locais"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "Supplier Currency"
+msgstr "Moeda do Fornecedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
 msgid "Supplier Rank"
@@ -2845,6 +2883,12 @@ msgstr "Nome do marcador já existe!"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_tag
 msgid "Tags"
 msgstr "Marcadores"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_ids
+msgid "Tasks"
+msgstr "Tarefas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
@@ -2964,6 +3008,14 @@ msgstr ""
 msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for purchases from "
+"the current partner"
 msgstr ""
 
 #. module: fieldservice
@@ -3347,12 +3399,6 @@ msgstr "modelo"
 msgid "templates"
 msgstr "modelos"
 
-#~ msgid "# Tasks"
-#~ msgstr "# Tarefas"
-
-#~ msgid "# Vendor Bills"
-#~ msgstr "# Contas de Fornecedores"
-
 #~ msgid "Agreements"
 #~ msgstr "Contratos"
 
@@ -3430,9 +3476,6 @@ msgstr "modelos"
 #~ msgid "Medium-sized image"
 #~ msgstr "Imagem de tamanho médio"
 
-#~ msgid "Message for Purchase Order"
-#~ msgstr "Mensagem para Ordem de Compra"
-
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensagem para Pedido de Vendas"
 
@@ -3447,12 +3490,6 @@ msgstr "modelos"
 
 #~ msgid "Planned"
 #~ msgstr "Planejado"
-
-#~ msgid "Purchase Order"
-#~ msgstr "Ordem de Compra"
-
-#~ msgid "Purchase Order Count"
-#~ msgstr "Contagem de Ordens de Compra"
 
 #~ msgid "Regions"
 #~ msgstr "Regiões"
@@ -3486,12 +3523,6 @@ msgstr "modelos"
 
 #~ msgid "Stock Picking"
 #~ msgstr "Separação de Estoque"
-
-#~ msgid "Supplier Currency"
-#~ msgstr "Moeda do Fornecedor"
-
-#~ msgid "Tasks"
-#~ msgstr "Tarefas"
 
 #~ msgid ""
 #~ "The stock location used as destination when sending goods to this contact."
