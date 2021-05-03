@@ -229,6 +229,7 @@ Contributors
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Brian McMaster <brian@mcmpest.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
+* Ammar Officewala <aofficewala@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~

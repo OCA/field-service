@@ -69,7 +69,7 @@
                         <group id="main-left">
                             <field name="id" invisible="1"/>
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]"/>
-                            <field name="partner_id" groups="base.group_no_one" readonly="1" />
+                            <field name="partner_id" groups="base.group_no_one" readonly="1" required="False" />
                             <field name="owner_id"/>
                             <field name="contact_id" context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"/>
                             <field name="phone" widget="phone"/>
