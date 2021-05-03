@@ -39,6 +39,35 @@ env:
     - VERSION="13.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
 
 install:
+  #  FIXME 1: when PR671 is merged
+  - git clone --branch 13.0-mig-fsm-stock https://github.com/ursais/field-service.git
+    PR671
+  - rm -rf fieldservice_stock && cp -ar PR671/fieldservice_stock .
+  #  FIXME 2: when PR180 is merged
+  - git clone --branch 13.0-mig-account_invoice_report_hide_line
+    https://github.com/QubiQ/account-invoice-reporting.git PR180
+  - rm -rf account_invoice_report_hide_line && cp -ar
+    PR180/account_invoice_report_hide_line .
+  #  FIXME 3: when PR773 is merged
+  - git clone --branch 13.0-mig-fieldservice_account_analytic
+    https://github.com/acsone/field-service.git PR773
+  - rm -rf fieldservice_account_analytic && cp -ar PR773/fieldservice_account_analytic .
+  #  FIXME 4: when PR778 is merged
+  - git clone --branch 13.0-mig-fieldservice_stock_account
+    https://github.com/acsone/field-service.git PR778
+  - rm -rf fieldservice_stock_account && cp -ar PR778/fieldservice_stock_account .
+  # FIXME 5: before merge
+  - git clone --branch 13.0 https://github.com/oca/stock-logistics-warehouse.git
+    stock_logistic_warehouse
+  - rm -rf stock_request && cp -ar stock_logistic_warehouse/stock_request .
+  - rm -rf stock_request_direction && cp -ar
+    stock_logistic_warehouse/stock_request_direction .
+  - rm -rf stock_request_picking_type && cp -ar
+    stock_logistic_warehouse/stock_request_picking_type .
+  - rm -rf stock_request_analytic && cp -ar
+    stock_logistic_warehouse/stock_request_analytic .
+  - git clone --branch 13.0 https://github.com/oca/account-analytic.git account_analytic
+  - rm -rf stock_analytic && cp -ar account_analytic/stock_analytic .
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git
     ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
