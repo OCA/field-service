@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <tree string="Routes">
                 <field name="name" />
-                <field name="territory_id" />
                 <field name="fsm_person_id" />
                 <field name="day_ids" />
             </tree>
@@ -53,7 +52,6 @@
     <record id="action_fsm_route" model="ir.actions.act_window">
         <field name="name">Routes</field>
         <field name="res_model">fsm.route</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
