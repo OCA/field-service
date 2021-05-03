@@ -6,16 +6,18 @@ from odoo import fields, models
 
 
 class FSMRouteDay(models.Model):
-    _name = 'fsm.route.day'
-    _description = 'Route Day'
+    _name = "fsm.route.day"
+    _description = "Route Day"
 
-    name = fields.Selection([
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday')],
-        string='Name'
+    name = fields.Selection(
+        [
+            ("Monday", "Monday"),
+            ("Tuesday", "Tuesday"),
+            ("Wednesday", "Wednesday"),
+            ("Thursday", "Thursday"),
+            ("Friday", "Friday"),
+            ("Saturday", "Saturday"),
+            ("Sunday", "Sunday"),
+        ],
+        string="Name",
     )

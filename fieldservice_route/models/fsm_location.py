@@ -6,6 +6,6 @@ from odoo import fields, models
 
 
 class FSMLocation(models.Model):
-    _inherit = 'fsm.location'
+    _inherit = "fsm.location"
 
-    fsm_route_id = fields.Many2one('fsm.route', string='Route')
+    fsm_route_id = fields.Many2one("fsm.route", string="Route")
