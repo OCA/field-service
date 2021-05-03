@@ -5,10 +5,10 @@
         <field name="model">fsm.route</field>
         <field name="arch" type="xml">
             <tree string="Routes">
-                <field name="name"/>
-                <field name="territory_id"/>
-                <field name="fsm_person_id"/>
-                <field name="day_ids"/>
+                <field name="name" />
+                <field name="territory_id" />
+                <field name="fsm_person_id" />
+                <field name="day_ids" />
             </tree>
         </field>
     </record>
@@ -21,27 +21,27 @@
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="name"/>
+                            <field name="name" />
                         </h1>
                     </div>
                     <group id="main">
                         <group id="left">
-                            <field name="fsm_person_id"/>
+                            <field name="fsm_person_id" />
                         </group>
                         <group id="right">
-                            <field name="day_ids" widget="many2many_tags"/>
+                            <field name="day_ids" widget="many2many_tags" />
                         </group>
                     </group>
                     <notebook>
                         <page id="capacity" string="Capacity">
                             <group id="capacity">
                                 <group id="capacity-left">
-                                    <label for="max_order" string="Maximum"/>
+                                    <label for="max_order" string="Maximum" />
                                     <div>
-                                        <field name="max_order"/> orders per day route
+                                        <field name="max_order" /> orders per day route
                                     </div>
                                 </group>
-                                <group id="capacity-right"/>
+                                <group id="capacity-right" />
                             </group>
                         </page>
                     </notebook>
