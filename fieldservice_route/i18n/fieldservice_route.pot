@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_route
+# 	* fieldservice_route
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,20 +103,17 @@ msgid "Days"
 msgstr ""
 
 #. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__display_name
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__end_location_id
 msgid "End Location"
-msgstr ""
-
-#. module: fieldservice_route
-#: selection:fsm.stage,stage_type:0
-msgid "Equipment"
 msgstr ""
 
 #. module: fieldservice_route
@@ -145,14 +142,17 @@ msgid "Field Service Stage"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__friday
 msgid "Friday"
 msgstr ""
 
 #. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location__id
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__id
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage__id
 msgid "ID"
 msgstr ""
 
@@ -162,9 +162,12 @@ msgid "Last Location"
 msgstr ""
 
 #. module: fieldservice_route
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location____last_update
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute____last_update
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -185,11 +188,6 @@ msgstr ""
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__latitude
 msgid "Latitude"
-msgstr ""
-
-#. module: fieldservice_route
-#: selection:fsm.stage,stage_type:0
-msgid "Location"
 msgstr ""
 
 #. module: fieldservice_route
@@ -228,7 +226,7 @@ msgid "Maximum numbers of orders that can be added to this day route."
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__monday
 msgid "Monday"
 msgstr ""
 
@@ -240,9 +238,10 @@ msgid "Name"
 msgstr ""
 
 #. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:32
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:83
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:85
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "New"
 msgstr ""
@@ -253,7 +252,7 @@ msgid "Number of Orders"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.stage,stage_type:0
+#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__display_name
 msgid "Order"
 msgstr ""
 
@@ -285,10 +284,10 @@ msgid "Positioning"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.stage,stage_type:0
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location__fsm_route_id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__fsm_route_id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__route_id
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_stage__stage_type__route
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "Route"
 msgstr ""
@@ -314,7 +313,7 @@ msgid "Routes"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__saturday
 msgid "Saturday"
 msgstr ""
 
@@ -329,7 +328,7 @@ msgid "Start Location"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__sunday
 msgid "Sunday"
 msgstr ""
 
@@ -339,25 +338,19 @@ msgid "Team"
 msgstr ""
 
 #. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__territory_id
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__territory_id
-msgid "Territory"
-msgstr ""
-
-#. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:116
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "The day route is exceeding the maximum number of orders of the route."
 msgstr ""
 
 #. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:110
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "The route %s does not run on %s!"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
 msgid "Thursday"
 msgstr ""
 
@@ -372,7 +365,7 @@ msgid "Timing"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__tuesday
 msgid "Tuesday"
 msgstr ""
 
@@ -382,17 +375,12 @@ msgid "Type"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.route.day,name:0
+#: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__wednesday
 msgid "Wednesday"
 msgstr ""
 
 #. module: fieldservice_route
-#: selection:fsm.stage,stage_type:0
-msgid "Worker"
-msgstr ""
-
-#. module: fieldservice_route
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:22
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "You must create a FSM team first."
 msgstr ""
@@ -401,4 +389,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "orders per day route"
 msgstr ""
-
