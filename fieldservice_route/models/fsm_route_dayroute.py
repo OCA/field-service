@@ -46,9 +46,6 @@ class FSMRouteDayRoute(models.Model):
         copy=False,
         default=lambda self: self._default_stage_id(),
     )
-    territory_id = fields.Many2one(
-        "fsm.territory", related="route_id.territory_id", string="Territory"
-    )
     longitude = fields.Float("Longitude")
     latitude = fields.Float("Latitude")
     last_location_id = fields.Many2one("fsm.location", string="Last Location")

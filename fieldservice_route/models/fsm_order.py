@@ -82,9 +82,8 @@ class FSMOrder(models.Model):
             vals.update({"person_id": location.fsm_route_id.fsm_person_id.id})
         if vals.get("person_id") and vals.get("scheduled_date_start"):
             vals = self._manage_fsm_route(vals)
-        return super().create(vals)
+        return super(FSMOrder, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         for rec in self:
             if vals.get("route_id", False):
