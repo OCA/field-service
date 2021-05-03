@@ -7,10 +7,19 @@ def migrate(env, version):
         return
 
     index = 0
-    for day in ('monday', 'tuesday', 'wednesday', 'thursday', 'friday',
-                'saturday', 'sunday'):
-        env.execute("""UPDATE ir_model_data
+    for day in (
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ):
+        env.execute(
+            """UPDATE ir_model_data
         SET name='fsm_route_day_%s'
-        WHERE name='fsm_route_day_%s' AND module='fieldservice_route';""" %
-                    (index, day))
+        WHERE name='fsm_route_day_%s' AND module='fieldservice_route';"""
+            % (index, day)
+        )
         index += 1
