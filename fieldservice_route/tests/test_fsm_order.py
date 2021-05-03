@@ -15,7 +15,8 @@ class FSMOrderRouteCase(TransactionCase):
         self.fsm_route_obj = self.env["fsm.route"]
         self.test_person = self.env.ref("fieldservice.test_person")
         self.test_location = self.env.ref("fieldservice.test_location")
-        self.date = datetime.now()
+        date = datetime.now()
+        self.date = date.replace(microsecond=0)
         self.days = [
             self.env.ref("fieldservice_route.fsm_route_day_0").id,
             self.env.ref("fieldservice_route.fsm_route_day_1").id,
@@ -45,5 +46,6 @@ class FSMOrderRouteCase(TransactionCase):
         )
         self.assertEqual(order.fsm_route_id, self.test_location.fsm_route_id)
         self.assertEqual(order.dayroute_id.person_id, order.person_id)
-        self.assertEqual(order.dayroute_id.date, order.scheduled_date_start.date())
+        self.assertEqual(order.dayroute_id.date,
+                         order.scheduled_date_start.date())
         self.assertEqual(order.dayroute_id.route_id, order.fsm_route_id)
