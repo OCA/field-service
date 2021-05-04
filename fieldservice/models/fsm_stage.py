@@ -45,8 +45,7 @@ class FSMStage(models.Model):
     stage_type = fields.Selection([('order', 'Order'),
                                    ('equipment', 'Equipment'),
                                    ('location', 'Location'),
-                                   ('worker', 'Worker')], 'Type',
-                                  required=True)
+                                   ('worker', 'Worker')], 'Type', require=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id.id)
@@ -73,8 +72,8 @@ class FSMStage(models.Model):
     def create(self, vals):
         stages = self.env['fsm.stage'].search([])
         for stage in stages:
-            if stage.stage_type == vals['stage_type'] and \
-               stage.sequence == vals['sequence']:
+            if stage.stage_type == vals.get('stage_type') and \
+               stage.sequence == vals.get('sequence'):
                 raise ValidationError(_("Cannot create FSM Stage because "
                                         "it has the same Type and Sequence "
                                         "of an existing FSM Stage."))
