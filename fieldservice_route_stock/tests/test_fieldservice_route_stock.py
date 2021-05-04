@@ -103,4 +103,4 @@ class TestFieldserviceRouteStock(TransactionCase):
 
         inventory_id.action_validate()
         route_id.stage_id = self.closed_stage.id
-        self.assertTrue(inventory_id.adjustment_move_id.id)
+        self.assertTrue(route_id.adjustment_invoice_id.id)

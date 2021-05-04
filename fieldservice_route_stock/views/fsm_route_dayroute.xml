@@ -5,10 +5,22 @@
         <field name="inherit_id"
                ref="fieldservice_route.fsm_route_dayroute_form"/>
         <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button type="object"
+                        name="action_view_picking"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        attrs="{'invisible': [('picking_count', '=', 0)]}" groups="base.group_user">
+                    <field name="picking_count" widget="statinfo" string="Transfers"/>
+                </button>
+            </div>
+            <field name="territory_id" position="after">
+                <field name="batch_picking_id" readonly="1"/>
+            </field>
             <xpath expr="//sheet/notebook/page[2]" position="after">
                 <page string="Inventory" name="inventory">
                     <group id="inventory">
-                        <group id="inventory-left">
+                        <group id="inventory-left" string="Capacity">
                             <field name="is_limited" invisible="1"/>
                             <field name="max_product_id"/>
                             <field name="max_product_qty" readonly="1"
@@ -16,8 +28,12 @@
                             <field name="product_qty" readonly="1"/>
                             <field name="product_qty_remaining" readonly="1"/>
                         </group>
-                        <group id="inventory-right">
-                            <field name="final_inventory_id" context="{'dayroute_id': id}"/>
+                        <group id="inventory-right" string="Control">
+                            <field name="inventory_location_id" invisible="1" />
+                            <field name="final_inventory_id" domain="[('location_id', '=', inventory_location_id)]" context="{'dayroute_id': id}"/>
+                            <field name="adjustment_invoice_id"
+                                   readonly="1"
+                                   attrs="{'invisible': [('adjustment_invoice_id', '=', False)]}" />
                         </group>
                     </group>
                 </page>

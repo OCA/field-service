@@ -15,7 +15,12 @@ class FSMRouteDayRoute(models.Model):
             if rec.order_ids and rec.max_product_id:
                 for order in rec.order_ids:
                     for move in order.move_ids:
-                        if move.product_id == rec.max_product_id:
+                        # If the product is the product used for the capacity
+                        # or one of his equivalents, count it
+                        equiv_ids = rec.max_product_id.product_tmpl_id.\
+                            equivalent_product_ids.ids
+                        equiv_ids.append(rec.max_product_id.product_tmpl_id.id)
+                        if move.product_id.product_tmpl_id.id in equiv_ids:
                             product_qty += move.product_uom_qty
             rec.product_qty = product_qty
             rec.product_qty_remaining = rec.max_product_qty - product_qty
@@ -39,6 +44,10 @@ class FSMRouteDayRoute(models.Model):
 
     final_inventory_id = fields.Many2one(
         'stock.inventory', string='Final Inventory')
+    inventory_location_id = fields.Many2one(
+        related='fsm_vehicle_id.inventory_location_id')
+    adjustment_invoice_id = fields.Many2one(
+        'account.invoice', string='Adjustment Invoice')
     product_qty = fields.Float(
         compute=_compute_product_qty, string="Product Quantity", store=True)
     product_qty_remaining = fields.Float(
@@ -52,6 +61,10 @@ class FSMRouteDayRoute(models.Model):
         compute='_compute_vehicle_capacity',
         string="Maximum Stock Capacity",
         help="Maximum quantity of product that the vehicle can carry.")
+    picking_count = fields.Integer(
+        compute='_compute_picking_count', string='Transfers')
+    batch_picking_id = fields.Many2one(
+        "stock.picking.batch", string="Batch Picking")
 
     @api.multi
     @api.constrains('is_limited', 'product_qty_remaining')
@@ -65,50 +78,65 @@ class FSMRouteDayRoute(models.Model):
 
     @api.multi
     def write(self, vals):
-        stage_obj = self.env['fsm.stage']
-        accout_move_obj = self.env['account.move']
-        # default inventory of all products so used all category
-        product_categ = self.env.ref('product.product_category_all')
+        Stage = self.env['fsm.stage']
+        Invoice = self.env['account.invoice']
         for rec in self:
-            journal_id = False
-            amount = 0
             if vals.get('stage_id', False):
-                account = (rec.fsm_vehicle_id.person_id.
-                           property_account_receivable_id)
-                partner = rec.fsm_vehicle_id.person_id.partner_id
-                stage = stage_obj.browse(vals.get('stage_id'))
+                stage = Stage.browse(vals.get('stage_id'))
                 if (stage.is_closed and stage.stage_type == 'route' and
                         rec.final_inventory_id.state == 'done'):
-                    inventory_account = (
-                        product_categ and
-                        product_categ.property_stock_account_output_categ_id)
-                    for move in rec.final_inventory_id.move_ids:
-                        for acc_move in move.account_move_ids:
-                            journal_id = acc_move.journal_id.id
-                            for move_line in acc_move.line_ids:
-                                amount += move_line.debit
-                    if not journal_id:
-                        journal_id = self.env['account.journal'].search(
-                            [('type', '=', 'general'), ('code', '=', 'STJ')],
-                            limit=1).id
-                    move_line_debit_vals = {
-                        'account_id': account.id,
-                        'name': 'Inventory Adjustment',
-                        'partner_id': partner.id,
-                        'debit': amount,
-                        'credit': 0,
-                    }
-                    move_line_credit_vals = {
-                        'account_id': inventory_account.id,
-                        'name': 'Inventory Adjustment',
-                        'debit': 0,
-                        'credit': amount,
-                    }
-                    move_vals = {
-                        'journal_id': journal_id,
-                        'line_ids': [(0, 0, move_line_debit_vals),
-                                     (0, 0, move_line_credit_vals)]
-                    }
-                    move_id = accout_move_obj.create(move_vals)
-                    rec.final_inventory_id.adjustment_move_id = move_id.id
+                    partner = rec.person_id.partner_id.commercial_partner_id
+                    lines = []
+                    moves = rec.final_inventory_id.move_ids.filtered(
+                        lambda x:
+                        x.location_id.id == rec.inventory_location_id.id)
+                    if moves:
+                        for move in moves:
+                            account = \
+                                move.product_id.property_account_income_id or \
+                                move.product_id.categ_id.\
+                                property_account_income_categ_id
+                            lines.append((0, 0, {
+                                'name': move.product_id.name,
+                                'product_id': move.product_id.id,
+                                'account_id': account.id,
+                                'quantity': move.product_uom_qty,
+                                'uom_id': move.product_uom.id,
+                                'price_unit': move.product_id.list_price
+                            }))
+                        invoice_vals = {
+                            'name': rec.name,
+                            'partner_id': partner.id,
+                            'date_invoice': rec.date,
+                            'type': 'out_invoice',
+                            'journal_id':
+                                self.env['account.journal'].search([
+                                    ('type', '=', 'sale'),
+                                ], limit=1).id,
+                            'invoice_line_ids': lines,
+                        }
+                        invoice = Invoice.create(invoice_vals)
+                        vals.update({'adjustment_invoice_id': invoice.id})
         return super().write(vals)
+
+    @api.depends('order_ids')
+    def _compute_picking_count(self):
+        for dayroute in self:
+            for order in dayroute.order_ids:
+                dayroute.picking_count += len(order.picking_ids)
+
+    @api.multi
+    def action_view_picking(self):
+        action = self.env.ref(
+            'stock.action_picking_tree_all').read()[0]
+        picking_ids = []
+        for order in self.order_ids:
+            for picking in order.picking_ids:
+                picking_ids.append(picking.id)
+        if self.picking_count > 1:
+            action['domain'] = [('id', 'in', picking_ids)]
+        elif self.picking_count == 1:
+            action['views'] = \
+                [(self.env.ref('stock.view_picking_form').id, 'form')]
+            action['res_id'] = picking_ids[0]
+        return action
