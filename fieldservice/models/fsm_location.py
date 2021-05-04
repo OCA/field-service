@@ -186,38 +186,39 @@ class FSMLocation(models.Model):
     def _onchange_region_id(self):
         self.region_manager_id = self.region_id.partner_id or False
 
-    def comp_count(self, contact, equipment, loc):
-        if equipment:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                equip = self.env['fsm.equipment'].\
-                    search_count([('location_id', '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    equip += loc.comp_count(0, 1, loc)
-            return equip
-        elif contact:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                con = self.env['res.partner'].\
-                    search_count([('service_location_id',
-                                   '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    con += loc.comp_count(1, 0, loc)
-            return con
-        else:
-            for child in loc:
-                child_locs = self.env['fsm.location'].\
-                    search([('fsm_parent_id', '=', child.id)])
-                subloc = self.env['fsm.location'].\
-                    search_count([('fsm_parent_id', '=', child.id)])
-            if child_locs:
-                for loc in child_locs:
-                    subloc += loc.comp_count(0, 0, loc)
-            return subloc
+    def comp_equipment(self, loc):
+        for child in loc:
+            child_locs = self.env['fsm.location'].\
+                search([('fsm_parent_id', '=', child.id)])
+            equip = self.env['fsm.equipment'].\
+                search_count([('location_id', '=', child.id)])
+        if child_locs:
+            for loc in child_locs:
+                equip += loc.comp_equipment(loc)
+        return equip
+
+    def comp_contact(self, loc):
+        for child in loc:
+            child_locs = self.env['fsm.location'].\
+                search([('fsm_parent_id', '=', child.id)])
+            con = self.env['res.partner'].\
+                search_count([('service_location_id',
+                               '=', child.id)])
+        if child_locs:
+            for loc in child_locs:
+                con += loc.comp_contact(loc)
+        return con
+
+    def comp_location(self, loc):
+        for child in loc:
+            child_locs = self.env['fsm.location'].\
+                search([('fsm_parent_id', '=', child.id)])
+            subloc = self.env['fsm.location'].\
+                search_count([('fsm_parent_id', '=', child.id)])
+        if child_locs:
+            for loc in child_locs:
+                subloc += loc.comp_location(loc)
+        return subloc
 
     def get_action_views(self, contact, equipment, loc):
         if equipment:
@@ -278,7 +279,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_contact_ids(self):
         for loc in self:
-            contacts = self.comp_count(1, 0, loc)
+            contacts = self.comp_contact(loc)
             loc.contact_count = contacts
 
     @api.multi
@@ -308,7 +309,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_sublocation_ids(self):
         for loc in self:
-            sublocation = self.comp_count(0, 0, loc)
+            sublocation = self.comp_location(loc)
             loc.sublocation_count = sublocation
 
     @api.multi
@@ -341,7 +342,7 @@ class FSMLocation(models.Model):
     @api.multi
     def _compute_equipment_ids(self):
         for loc in self:
-            equipment = self.comp_count(0, 1, loc)
+            equipment = self.comp_equipment(loc)
             loc.equipment_count = equipment
 
     @api.constrains('fsm_parent_id')
