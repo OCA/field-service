@@ -31,7 +31,7 @@ class FSMWizard(models.TransientModel):
     def _prepare_fsm_location(self, partner):
         return {
             'partner_id': partner.id,
-            'owner_id': partner.id,
+            'owner_id': partner.commercial_partner_id.id
         }
 
     def action_convert_location(self, partner):
