@@ -12,6 +12,56 @@ class FSMOrder(models.Model):
     invoice_count = fields.Integer(
         string='Invoice Count',
         compute='_compute_account_invoice_count', readonly=True)
+    customer_id = fields.Many2one(
+        'res.partner', string='Customer',
+        domain=[('customer', '=', True)],
+        change_default=True,
+        index=True,
+        track_visibility='always')
+
+    @api.multi
+    @api.onchange('location_id')
+    def onchange_location(self):
+        for rec in self:
+            if rec.location_id:
+                rec.customer_id = rec.location_id.customer_id.id or False
+                if self.env.user.company_id.fsm_filter_customer_by_location:
+                    return {'domain': {'customer_id':
+                                           [('service_location_id', '=',
+                                             rec.location_id.id)]}}
+
+    @api.multi
+    @api.onchange('customer_id')
+    def onchange_customer(self):
+        for rec in self:
+            if rec.customer_id and \
+                    self.env.user.company_id.fsm_filter_location_by_customer:
+                return {'domain': {'location_id': [('customer_id', 'child_of',
+                                                    rec.customer_id.id)]}}
+
+    @api.model
+    def create(self, vals):
+        if 'customer_id' not in vals:
+            location = self.env['fsm.location'].browse(vals.get('location_id'))
+            vals.update({
+                'customer_id':
+                    location and location.customer_id and
+                    location.customer_id.id or False})
+        return super().create(vals)
+
+    @api.multi
+    def write(self, vals):
+        for order in self:
+            if 'customer_id' not in vals and order.customer_id is False:
+                vals.update({'customer_id': order.location_id.customer_id.id})
+            res = super(FSMOrder, self).write(vals)
+            if vals.get('scheduled_date_start', False):
+                for invoice in order.invoice_ids.filtered(
+                        lambda x: x.state == 'draft'):
+                    invoice.date_invoice = \
+                        fields.Date.context_today(
+                            order, order.scheduled_date_start)
+        return res
 
     @api.depends('invoice_ids')
     def _compute_account_invoice_count(self):
@@ -21,7 +71,7 @@ class FSMOrder(models.Model):
     @api.multi
     def action_view_invoices(self):
         action = self.env.ref(
-            'account.action_invoice_tree').read()[0]
+            'account.action_invoice_tree1').read()[0]
         if self.invoice_count > 1:
             action['domain'] = [('id', 'in', self.invoice_ids.ids)]
         elif self.invoice_ids:

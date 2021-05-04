@@ -1,0 +1,38 @@
+<odoo>
+
+    <record id="res_config_settings_view_form_filter" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.fsm.filter</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="orders" position="inside">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="fsm_filter_location_by_customer"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="fsm_filter_location_by_customer"
+                                string="Filter Location with Customer"/>
+                        <div class="text-muted">
+                            Pick the customer first and then select the location.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="fsm_filter_customer_by_location"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="fsm_filter_customer_by_location"
+                                string="Filter Customer with Location"/>
+                        <div class="text-muted">
+                            Pick the location first and then select the customer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

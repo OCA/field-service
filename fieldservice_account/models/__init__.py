@@ -3,5 +3,8 @@
 from . import (
     account_invoice,
     account_invoice_line,
+    fsm_location,
     fsm_order,
+    res_company,
+    res_config_settings,
 )
