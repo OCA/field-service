@@ -23,6 +23,7 @@
         'views/fsm_location.xml',
         'views/fsm_route_dayroute.xml',
         'views/fsm_order.xml',
+        'views/res_partner_views.xml',
         'views/menu.xml',
     ],
     'development_status': 'Beta',
