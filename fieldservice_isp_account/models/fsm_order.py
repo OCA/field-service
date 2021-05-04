@@ -153,7 +153,7 @@ class FSMOrder(models.Model):
                 'price_unit': price,
                 'account_id': account.id,
                 'invoice_id': invoice.id,
-                'fsm_order_id': self.id,
+                # 'fsm_order_id': self.id,
             }
             con_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
@@ -175,7 +175,7 @@ class FSMOrder(models.Model):
                 'price_unit': price,
                 'account_id': account.id,
                 'invoice_id': invoice.id,
-                'fsm_order_id': self.id,
+                # 'fsm_order_id': self.id,
             }
             time_cost = self.env['account.invoice.line'].create(vals)
             taxes = template.taxes_id
