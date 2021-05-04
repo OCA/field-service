@@ -1,0 +1,24 @@
+<odoo>
+    <record id="analytic_account_fsm_manager" model="ir.rule">
+        <field name="name">account.analytic.line.fsm.manager</field>
+        <field name="model_id" ref="model_account_analytic_line" />
+        <field name="global" eval="False" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('fieldservice.group_fsm_manager'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="analytic_account_fsm_dispatcher" model="ir.rule">
+        <field name="name">account.analytic.line.fsm.dispatcher</field>
+        <field name="model_id" ref="model_account_analytic_line" />
+        <field name="global" eval="False" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('fieldservice.group_fsm_dispatcher'))]" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+</odoo>

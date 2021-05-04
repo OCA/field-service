@@ -1,0 +1,16 @@
+<odoo>
+    <!-- fsm.location -->
+    <record id="fieldservice.test_location" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.test_loc_partner')" />
+    </record>
+    <!-- Other locations -->
+    <record id="fieldservice.location_1" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_1')" />
+    </record>
+    <record id="fieldservice.location_2" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_2')" />
+    </record>
+    <record id="fieldservice.location_3" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_3')" />
+    </record>
+</odoo>
