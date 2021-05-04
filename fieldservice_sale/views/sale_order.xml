@@ -19,4 +19,15 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_order_search_inherit_sale_fieldservice" model="ir.ui.view">
+        <field name="name">sale.order.search.sale.fieldservice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="fsm_location_id"/>
+            </field>
+        </field>
+    </record>
 </odoo>
