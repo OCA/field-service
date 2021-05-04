@@ -1,0 +1,76 @@
+<odoo>
+
+    <!--  Action -->
+    <act_window id="optimize_orders_wizard_action"
+                name="Geo Optimize Orders"
+                res_model="fsm.geo.route.orders.wizard"
+                src_model="fsm.order"
+                view_type="form"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                groups="fieldservice.group_fsm_dispatcher"/>
+
+    <!-- wizard view -->
+    <record id="optimize_orders_wizard_view" model="ir.ui.view">
+        <field name="name">Geo Optimize Orders</field>
+        <field name="model">fsm.geo.route.orders.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Geo Optimize FSM Orders">
+                <sheet>
+                    <field name="wizard_stage" attrs="{'invisible': 1}"/>
+                    <div attrs="{'invisible': [('wizard_stage', '!=', ('new'))]}">
+                        <p class="oe_grey">
+                            Choose a depot location that will serve as the start
+                            and end point for which the following FSM orders will
+                            be optimized for driving.
+                        </p>
+                        <group>
+                            <field name="depot_partner_id"/>
+                            <field name="fsm_order_ids">
+                                <tree string="Orders">
+                                    <field name="name"/>
+                                    <field name="location_id"/>
+                                    <field name="person_id"/>
+                                    <field name="scheduled_date_start"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </div>
+                    <div attrs="{'invisible': [('wizard_stage', '!=', ('sorted'))]}">
+                        <p class="oe_grey">
+                            The following orders have been sorted for driving optimization.
+                        </p>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="order_wizard_line_ids">
+                                <tree string="Sorted Order Lines" 
+                                      editable="false" create="false" delete="false">
+                                    <field name="sequence" attrs="{'readonly': 1}"/>
+                                    <field name="fsm_order_id"/>
+                                    <field name="fsm_order_location"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </div>
+                </sheet>
+                <footer>
+                    <button string="Optimize" name="action_optimize"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('wizard_stage', '!=', ('new'))]}"/>
+                    <button string="Create Schedule" name="action_schedule"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('wizard_stage', '!=', ('sorted'))]}"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
