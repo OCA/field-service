@@ -48,6 +48,9 @@ class FSMOrder(TransactionCase):
             "agreement_id": agreement.id,
         }
         order1 = self.Order.create(vals)
+        agreement._compute_service_order_count()
+        self.assertEqual(agreement.service_order_count, 1)
+        self.assertEqual(order1.id, agreement.action_view_service_order()["res_id"])
         vals = {
             "name": "Order2",
             "location_id": self.test_location.id,
@@ -67,6 +70,9 @@ class FSMOrder(TransactionCase):
             "agreement_id": agreement.id,
         }
         equipment1 = self.Equipment.create(vals)
+        agreement._compute_service_order_count()
+        self.assertEqual(agreement.equipment_count, 1)
+        self.assertEqual(equipment1.id, agreement.action_view_fsm_equipment()["res_id"])
         equipment2 = equipment1.copy({"name": "EQ2"})
         equipment3 = equipment1.copy({"name": "EQ3"})
         agreement._compute_equipment_count()
