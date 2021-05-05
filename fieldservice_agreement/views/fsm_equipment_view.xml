@@ -12,10 +12,12 @@
                         <group id="agreement-left">
                             <field
                                 name="agreement_id"
-                                domain="[('fsm_location_id', '=', location_id)]" />
+                                domain="[('fsm_location_id', '=', location_id)]"
+                            />
                             <field
                                 name="serviceprofile_id"
-                                domain="[('agreement_id', '=', agreement_id)]" />
+                                domain="[('agreement_id', '=', agreement_id)]"
+                            />
                         </group>
                         <group id="agreement-right" />
                     </group>
@@ -35,7 +37,8 @@
                     name="serviceprofile_id"
                     string="Service Profile"
                     domain="[]"
-                    context="{'group_by': 'serviceprofile_id'}" />
+                    context="{'group_by': 'serviceprofile_id'}"
+                />
             </xpath>
         </field>
     </record>

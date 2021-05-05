@@ -9,10 +9,12 @@
             <field name="location_id" position="after">
                 <field
                     name="agreement_id"
-                    domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]" />
+                    domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]"
+                />
                 <field
                     name="serviceprofile_id"
-                    domain="[('agreement_id', '=', agreement_id)]" />
+                    domain="[('agreement_id', '=', agreement_id)]"
+                />
             </field>
         </field>
     </record>
@@ -28,7 +30,8 @@
                     name="serviceprofile_id"
                     string="Service Profile"
                     domain="[]"
-                    context="{'group_by': 'serviceprofile_id'}" />
+                    context="{'group_by': 'serviceprofile_id'}"
+                />
             </xpath>
         </field>
     </record>

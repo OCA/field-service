@@ -11,11 +11,13 @@
                     name="action_view_service_order"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-map">
+                    icon="fa-map"
+                >
                     <field
                         name="service_order_count"
                         widget="statinfo"
-                        string="Service Orders" />
+                        string="Service Orders"
+                    />
                 </button>
                 <button
                     name="action_view_fsm_equipment"
@@ -23,13 +25,15 @@
                     class="oe_stat_button"
                     icon="fa-laptop"
                     context="{'default_agreement_id': active_id}"
-                    groups="fieldservice.group_fsm_equipment">
+                    groups="fieldservice.group_fsm_equipment"
+                >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">
                             <field
                                 name="equipment_count"
                                 widget="statinfo"
-                                nolabel="1" />
+                                nolabel="1"
+                            />
                         </span>
                         <span class="o_stat_text">Equipments</span>
                     </div>
@@ -71,28 +75,32 @@
                     name="recital_ids"
                     default_order="sequence"
                     nolabel="1"
-                    context="{'default_agreement_id': active_id}" />
+                    context="{'default_agreement_id': active_id}"
+                />
             </field>
             <field name="clauses_ids" position="replace">
                 <field
                     name="clauses_ids"
                     default_order="sequence"
                     nolabel="1"
-                    context="{'default_agreement_id': active_id}" />
+                    context="{'default_agreement_id': active_id}"
+                />
             </field>
             <field name="sections_ids" position="replace">
                 <field
                     name="sections_ids"
                     default_order="sequence"
                     nolabel="1"
-                    context="{'default_agreement_id': active_id}" />
+                    context="{'default_agreement_id': active_id}"
+                />
             </field>
             <field name="appendix_ids" position="replace">
                 <field
                     name="appendix_ids"
                     default_order="sequence"
                     nolabel="1"
-                    context="{'default_agreement_id': active_id}" />
+                    context="{'default_agreement_id': active_id}"
+                />
             </field>
         </field>
     </record>
