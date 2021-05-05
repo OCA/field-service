@@ -1,0 +1,46 @@
+<odoo>
+
+    <!-- Fields Service equipment Form View -->
+    <record id="fsm_equipment_form_view_agreement" model="ir.ui.view">
+        <field name="name">fsm.equipment.agreement.form</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Agreement">
+                    <group>
+                        <group id="agreement-left">
+                            <field
+                                name="agreement_id"
+                                domain="[('fsm_location_id', '=', location_id)]"
+                            />
+                            <field
+                                name="serviceprofile_id"
+                                domain="[('agreement_id', '=', agreement_id)]"
+                            />
+                        </group>
+                        <group id="agreement-right" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Inherit fsm.equipment search view-->
+    <record id="fsm_equipment_search_view_agreement" model="ir.ui.view">
+        <field name="name">fsm.equipment.select.agreement</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter
+                    name="serviceprofile_id"
+                    string="Service Profile"
+                    domain="[]"
+                    context="{'group_by': 'serviceprofile_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,108 @@
+<odoo>
+
+    <!-- Agreement Form View -->
+    <record id="agreement_fsm_order_form_view" model="ir.ui.view">
+        <field name="name">agreement.form.fsm.order.view</field>
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_form_view" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button
+                    name="action_view_service_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-map"
+                >
+                    <field
+                        name="service_order_count"
+                        widget="statinfo"
+                        string="Service Orders"
+                    />
+                </button>
+                <button
+                    name="action_view_fsm_equipment"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-laptop"
+                    context="{'default_agreement_id': active_id}"
+                    groups="fieldservice.group_fsm_equipment"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field
+                                name="equipment_count"
+                                widget="statinfo"
+                                nolabel="1"
+                            />
+                        </span>
+                        <span class="o_stat_text">Equipments</span>
+                    </div>
+                </button>
+            </div>
+            <notebook position="inside">
+                <page string="Field Service">
+                    <group id="fsm">
+                        <group id="fsm-left">
+                            <field name="fsm_location_id" />
+                        </group>
+                        <group id="fsm-right" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="agreement_search_fields" model="ir.ui.view">
+        <field name="name">agreement.search.fields</field>
+        <field name="model">agreement</field>
+        <field name="type">search</field>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="/search/filter[1]" position="before">
+                <field name="fsm_location_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="agreement_form_context_fix" model="ir.ui.view">
+        <field name="name">agreement.form.context.fix</field>
+        <field name="model">agreement</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="agreement_legal.partner_agreement_form_view" />
+        <field name="arch" type="xml">
+            <field name="recital_ids" position="replace">
+                <field
+                    name="recital_ids"
+                    default_order="sequence"
+                    nolabel="1"
+                    context="{'default_agreement_id': active_id}"
+                />
+            </field>
+            <field name="clauses_ids" position="replace">
+                <field
+                    name="clauses_ids"
+                    default_order="sequence"
+                    nolabel="1"
+                    context="{'default_agreement_id': active_id}"
+                />
+            </field>
+            <field name="sections_ids" position="replace">
+                <field
+                    name="sections_ids"
+                    default_order="sequence"
+                    nolabel="1"
+                    context="{'default_agreement_id': active_id}"
+                />
+            </field>
+            <field name="appendix_ids" position="replace">
+                <field
+                    name="appendix_ids"
+                    default_order="sequence"
+                    nolabel="1"
+                    context="{'default_agreement_id': active_id}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
