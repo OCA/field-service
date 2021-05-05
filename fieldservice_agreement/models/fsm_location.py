@@ -5,21 +5,24 @@ from odoo import api, fields, models
 
 
 class FSMLocation(models.Model):
-    _inherit = 'fsm.location'
+    _inherit = "fsm.location"
 
-    serviceprofile_ids = fields.Many2many('agreement.serviceprofile',
-                                          string="Service Profiles",
-                                          compute='_compute_service_ids')
+    serviceprofile_ids = fields.Many2many(
+        "agreement.serviceprofile",
+        string="Service Profiles",
+        compute="_compute_service_ids",
+    )
 
-    @api.multi
     def _compute_service_ids(self):
         for loc in self:
-            agreements = self.env['agreement'].\
-                search([('fsm_location_id', '=', loc.id)])
+            agreements = self.env["agreement"].search(
+                [("fsm_location_id", "=", loc.id)]
+            )
             ids = []
             for agree in agreements:
-                servpros = self.env['agreement.serviceprofile'].\
-                    search([('agreement_id', '=', agree.id)])
+                servpros = self.env["agreement.serviceprofile"].search(
+                    [("agreement_id", "=", agree.id)]
+                )
                 for ser in servpros:
                     if ser.id not in ids:
                         ids.append(ser.id)
