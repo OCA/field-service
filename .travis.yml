@@ -39,6 +39,10 @@ env:
     - VERSION="13.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
 
 install:
+  #  FIXME: 2 lines to remove when PR773 is merged
+  - git clone --branch 13.0-mig-fieldservice_account_analytic
+    https://github.com/acsone/field-service.git PR773
+  - rm -rf fieldservice_account_analytic && cp -ar PR773/fieldservice_account_analytic .
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git
     ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
