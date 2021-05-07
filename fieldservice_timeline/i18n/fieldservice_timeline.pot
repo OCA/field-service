@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_needaction
-msgid "Action Needed"
-msgstr ""
-
-#. module: fieldservice_timeline
 #: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_ids
 msgid "Activities"
 msgstr ""
@@ -53,26 +48,6 @@ msgid "Apply"
 msgstr ""
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_attachment_count
-msgid "Attachment Count"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__is_blacklisted
-msgid "Blacklist"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_bounce
-msgid "Bounce"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_bounce
-msgid "Counter of the number of bounced emails for this contact"
-msgstr ""
-
-#. module: fieldservice_timeline
 #. openerp-web
 #: code:addons/fieldservice_timeline/static/src/xml/fsm_gantt_person_filter.xml:0
 #: code:addons/fieldservice_timeline/static/src/xml/fsm_gantt_person_filter.xml:0
@@ -88,21 +63,6 @@ msgstr ""
 #. module: fieldservice_timeline
 #: model:ir.model,name:fieldservice_timeline.model_fsm_person
 msgid "Field Service Worker"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_follower_ids
-msgid "Followers"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_partner_ids
-msgid "Followers (Partners)"
 msgstr ""
 
 #. module: fieldservice_timeline
@@ -126,47 +86,8 @@ msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_needaction
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_unread
-msgid "If checked, new messages require your attention."
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_has_error
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_has_sms_error
-msgid "If checked, some messages have a delivery error."
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__is_blacklisted
-msgid ""
-"If the email address is on the blacklist, the contact won't receive mass "
-"mailing anymore, from any list"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_is_follower
-msgid "Is Follower"
-msgstr ""
-
-#. module: fieldservice_timeline
 #: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person____last_update
 msgid "Last Modified on"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_has_error
-msgid "Message Delivery error"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_ids
-msgid "Messages"
 msgstr ""
 
 #. module: fieldservice_timeline
@@ -182,36 +103,6 @@ msgstr ""
 #. module: fieldservice_timeline
 #: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__email_normalized
-msgid "Normalized Email"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_needaction_counter
-msgid "Number of Actions"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_has_error_counter
-msgid "Number of errors"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_has_error_counter
-msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: fieldservice_timeline
@@ -232,11 +123,6 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: fieldservice_timeline
 #: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_state
 msgid ""
 "Status based on activities\n"
@@ -246,25 +132,8 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__email_normalized
-msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
-msgstr ""
-
-#. module: fieldservice_timeline
 #: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: fieldservice_timeline
