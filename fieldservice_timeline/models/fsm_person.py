@@ -6,4 +6,4 @@ from odoo import models
 
 class FSMPerson(models.Model):
     _name = "fsm.person"
-    _inherit = ["fsm.person", "mail.activity.mixin", "mail.thread.blacklist"]
+    _inherit = ["fsm.person", "mail.activity.mixin"]
