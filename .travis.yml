@@ -12,7 +12,6 @@ addons:
   apt:
     packages:
       - expect-dev # provides unbuffer utility
-      - postgis postgresql-9.6-postgis-2.3
       - postgresql-9.6-postgis-2.3-scripts
 
 stages:
@@ -24,6 +23,9 @@ jobs:
     - stage: linting
       name: "pre-commit"
       before_install:
+        - sudo add-apt-repository -y "deb https://apt-archive.postgresql.org/pub/repos/apt trusty-pgdg-archive main"
+        - sudo apt-get -q update
+        - sudo apt-get -y install -t trusty-pgdg-archive postgis postgresql-9.6-postgis-2.3
       install: pip install pre-commit
       script: pre-commit run --all --show-diff-on-failure --verbose --color always
       after_success:
