@@ -61,6 +61,13 @@ class FSMLocation(models.Model):
                                group_expand='_read_group_stage_ids',
                                default=lambda self: self._default_stage_id())
 
+    @api.model
+    def create(self, vals):
+        rec = super(FSMLocation, self).create(vals)
+        if vals.get('territory_id'):
+            rec._onchange_territory_id()
+        return rec
+
     @api.depends('partner_id.name', 'fsm_parent_id.complete_name', 'ref')
     def _compute_complete_name(self):
         for loc in self:
@@ -162,10 +169,14 @@ class FSMLocation(models.Model):
     def _onchange_territory_id(self):
         self.territory_manager_id = self.territory_id.person_id or False
         self.branch_id = self.territory_id.branch_id or False
-        if self.env.user.company_id.auto_populate_persons_on_location:
+        location_id = self.id
+        if not isinstance(location_id, int):
+            location_id = self._origin.id
+        if self.env.user.company_id.auto_populate_persons_on_location \
+                and location_id:
             for person in self.territory_id.person_ids:
                 self.env['fsm.location.person'].create({
-                    'location_id': self.id,
+                    'location_id': location_id,
                     'person_id': person.id,
                     'sequence': 10,
                 })
