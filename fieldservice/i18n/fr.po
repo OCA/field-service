@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-26 16:47+0000\n"
+"PO-Revision-Date: 2021-05-14 17:47+0000\n"
 "Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -73,7 +73,7 @@ msgstr "<strong>Assigné à:</strong>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "<strong>Date Completed:</strong>"
-msgstr ""
+msgstr "<strong>Date d'achèvement:</strong>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
@@ -148,7 +148,7 @@ msgstr "État de l'activité"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_type_icon
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icône de type d'activité"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_end
@@ -336,7 +336,7 @@ msgstr "Banques"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__barcode
 msgid "Barcode"
-msgstr ""
+msgstr "Code Barre"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_blacklisted
@@ -348,13 +348,13 @@ msgstr "Liste noire"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__mobile_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile_blacklisted
 msgid "Blacklisted Phone Is Mobile"
-msgstr ""
+msgstr "Le téléphone sur la liste noire est mobile"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_blacklisted
 msgid "Blacklisted Phone is Phone"
-msgstr ""
+msgstr "Le téléphone sur la liste noire est Téléphone"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_bounce
@@ -808,12 +808,12 @@ msgstr "Date"
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
 msgid "Default Team"
-msgstr ""
+msgstr "Equipe par défaut"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
 msgid "Default duration in hours"
-msgstr ""
+msgstr "Durée par défaut en heures"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_kanban_view
@@ -907,7 +907,7 @@ msgstr "Échéance à 7 jours"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__duration
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_early
@@ -1350,6 +1350,8 @@ msgid ""
 "If the sanitized phone number is on the blacklist, the contact won't receive "
 "mass mailing sms anymore, from any list"
 msgstr ""
+"Si le numéro de téléphone assaini figure sur la liste noire, le contact ne "
+"recevra plus de SMS de publipostage de masse, quelle que soit la liste"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1920
@@ -1389,6 +1391,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
+"Indique si un numéro de téléphone assaini sur liste noire est un numéro de "
+"mobile. Permet de distinguer quel numéro est sur liste noire             "
+"lorsqu'il y a à la fois un champ mobile et un champ téléphone dans un modèle."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
@@ -1398,6 +1403,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
+"Indique si un numéro de téléphone assaini sur liste noire est un numéro de "
+"téléphone. Permet de distinguer quel numéro est sur liste noire             "
+"lorsqu'il y a à la fois un champ mobile et un champ téléphone dans un modèle."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__industry_id
@@ -1867,7 +1875,7 @@ msgstr "Gérer les trajets"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage routes of your workers"
-msgstr ""
+msgstr "Gérez l'itinéraire de vos agents"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
@@ -2309,7 +2317,6 @@ msgstr "Agenda"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
-#, fuzzy
 msgid "Preferred Workers"
 msgstr "Techniciens favoris"
 
@@ -2425,7 +2432,7 @@ msgstr "Résolution"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "Resolution Notes"
-msgstr ""
+msgstr "Notes de résolution"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_user_id
@@ -2503,7 +2510,7 @@ msgstr "Recherche de techniciens du service de terrain"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__search_on_complete_name
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Location By Hierarchy"
-msgstr ""
+msgstr "Recherche d'emplacement par hiérarchie"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
@@ -2513,7 +2520,7 @@ msgstr "Recherche de l'emplacement du technicien"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Locations based on their full hierarchy name"
-msgstr ""
+msgstr "Recherche de lieux sur la base de leur nom hiérarchique complet"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2598,25 +2605,25 @@ msgstr "Expiration de la souscription"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_token
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_token
 msgid "Signup Token"
-msgstr ""
+msgstr "Jeton de signature"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
 msgid "Signup Token Type"
-msgstr ""
+msgstr "Type de jeton de signature"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_valid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_valid
 msgid "Signup Token is Valid"
-msgstr ""
+msgstr "Le jeton de signature est valide"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_url
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_url
 msgid "Signup URL"
-msgstr ""
+msgstr "URL de signature"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
@@ -2960,7 +2967,7 @@ msgstr "Utiliser le module Odoo Stock Logistics"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact."
-msgstr ""
+msgstr "Utiliser un code barre pour identifier ce contact."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_default
