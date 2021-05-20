@@ -12,11 +12,17 @@
                     attrs="{'invisible': [('invoice_count', '=', 0)]}"
                     groups="account.group_account_invoice"
                 >
-                    <field
-                        name="invoice_count"
-                        widget="statinfo"
-                        string="Invoices/Bills"
-                    />
+                    <field name="invoice_count" widget="statinfo" string="Invoices" />
+                </button>
+                <button
+                    name="action_view_bills"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('bill_count', '=', 0)]}"
+                    groups="account.group_account_invoice"
+                >
+                    <field name="bill_count" widget="statinfo" string="Bills" />
                 </button>
             </div>
         </field>
