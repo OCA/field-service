@@ -1,7 +1,7 @@
 <template>
     <t t-extend="TimelineView">
         <t t-jquery=".btn-group" t-operation="after">
-            Person Filter
+            <span id="person_filter" class="o_hidden">Person Filter</span>
             <div id="user_filer" style="display: inline-block;width: 30%;" />
         </t>
     </t>
