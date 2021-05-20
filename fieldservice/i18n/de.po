@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
+msgid "# Tasks"
+msgstr "# Aufgaben"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -2682,6 +2688,12 @@ msgid "Tags"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_ids
+msgid "Tasks"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__vat
 msgid "Tax ID"
@@ -2948,6 +2960,24 @@ msgid "Website Link"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
@@ -3077,9 +3107,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Opportunity"
 #~ msgstr "# Verkaufschancen"
-
-#~ msgid "# Tasks"
-#~ msgstr "# Aufgaben"
 
 #~ msgid "# Vendor Bills"
 #~ msgstr "# Eingangsrechnungen"
