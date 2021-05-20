@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
+msgid "# Tasks"
+msgstr "# Tareas"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -2722,6 +2728,12 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_ids
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__vat
 msgid "Tax ID"
@@ -2991,6 +3003,24 @@ msgstr "Vehículos"
 #, fuzzy
 msgid "Website Link"
 msgstr "Página Web"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes de la Página Web"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
@@ -3286,15 +3316,6 @@ msgstr "plantillas"
 #~ msgid "Vendor Payment Terms"
 #~ msgstr "Condiciones de Pago del Proveedor"
 
-#~ msgid "Website Messages"
-#~ msgstr "Mensajes de la Página Web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Historial de comunicación del sitio web"
-
-#~ msgid "# Tasks"
-#~ msgstr "# Tareas"
-
 #~ msgid "# Vendor Bills"
 #~ msgstr "# Facturas de Proveedor"
 
@@ -3450,9 +3471,6 @@ msgstr "plantillas"
 
 #~ msgid "Supplier Currency"
 #~ msgstr "Moneda de Proveedor"
-
-#~ msgid "Tasks"
-#~ msgstr "Tareas"
 
 #~ msgid ""
 #~ "The partner's timezone, used to output proper date and time values inside "
