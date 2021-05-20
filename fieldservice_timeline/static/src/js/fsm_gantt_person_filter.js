@@ -24,9 +24,11 @@ odoo.define("fsm_gantt.person_filter", function (require) {
                     self.view.config.controlPanel,
                     props
                 );
+
                 _searchPanelWrapper.mount(self.$el.find("#user_filer")[0], {
                     position: "first-child",
                 });
+                self.$el.find("#person_filter").removeClass("o_hidden");
                 self.user_filter = true;
             }
             return this._super.apply(this, arguments);
