@@ -11,9 +11,13 @@ class FSMOrder(models.Model):
     def _prepare_inv_line_for_stock_request(self, stock_request, invoice=False):
         accounts = stock_request.product_id.product_tmpl_id.get_product_accounts()
         account = accounts["income"]
+        if stock_request.direction == "inbound":
+            quantity = -stock_request.qty_done
+        else:
+            quantity = stock_request.qty_done
         vals = {
             "product_id": stock_request.product_id.id,
-            "quantity": stock_request.qty_done,
+            "quantity": quantity,
             "name": stock_request.product_id.name,
             "price_unit": 0,
             "show_in_report": False,
