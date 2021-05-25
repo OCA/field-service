@@ -35,7 +35,6 @@ class FSMEquipment(models.Model):
             vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
         return super().create(vals)
 
-    @api.multi
     def unlink(self):
         equipments = self.mapped("maintenance_equipment_id")
         res = super(FSMEquipment, self).unlink()
