@@ -51,7 +51,7 @@
                     <h1><field name="name" required="True"/></h1>
                     <group>
                         <group>
-                            <field name="partner_id" groups="base.group_no_one" readonly="1" />
+                            <field name="partner_id" groups="base.group_no_one" readonly="1"  required="False" />
                             <field name="category_ids"
                                    widget="many2many_tags"
                                    options="{'color_field': 'color'}"/>
