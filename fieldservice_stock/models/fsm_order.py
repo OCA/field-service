@@ -61,7 +61,6 @@ class FSMOrder(models.Model):
                 ]
             )
 
-    @api.multi
     def action_view_delivery(self):
         """
         This function returns an action that display existing delivery orders
@@ -82,7 +81,6 @@ class FSMOrder(models.Model):
             action["res_id"] = delivery_ids[0]
         return action
 
-    @api.multi
     def action_view_returns(self):
         """
         This function returns an action that display existing return orders
