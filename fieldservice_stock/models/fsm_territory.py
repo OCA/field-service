@@ -4,6 +4,6 @@ from odoo import fields, models
 
 
 class FSMTerritory(models.Model):
-    _inherit = 'fsm.territory'
+    _inherit = "fsm.territory"
 
-    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse')
+    warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse")
