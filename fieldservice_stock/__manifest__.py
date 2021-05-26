@@ -1,10 +1,10 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2018 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service - Stock",
     "summary": "Integrate the logistics operations with Field Service",
-    "version": "12.0.3.0.0",
+    "version": "13.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
@@ -14,7 +14,7 @@
     "data": [
         "security/ir.model.access.csv",
         "data/fsm_stock_data.xml",
-        "views/fsm_territory.xml",
+        "views/res_territory.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",
         "views/stock.xml",
