@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo13-addon-fieldservice_skill',
         'odoo13-addon-fieldservice_stage_server_action',
         'odoo13-addon-fieldservice_stage_validation',
+        'odoo13-addon-fieldservice_stock',
         'odoo13-addon-fieldservice_vehicle',
     ],
     classifiers=[
