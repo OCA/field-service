@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-base_territory',
         'odoo14-addon-fieldservice',
+        'odoo14-addon-fieldservice_account',
         'odoo14-addon-fieldservice_project',
         'odoo14-addon-fieldservice_skill',
         'odoo14-addon-fieldservice_timeline',
