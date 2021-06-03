@@ -175,10 +175,12 @@ class FSMLocation(models.Model):
         self.territory_manager_id = self.territory_id.person_id or False
         self.branch_id = self.territory_id.branch_id or False
         if self.env.user.company_id.auto_populate_persons_on_location:
+            person_vals_list = []
             for person in self.territory_id.person_ids:
-                self.env["fsm.location.person"].create(
-                    {"location_id": self.id, "person_id": person.id, "sequence": 10}
+                person_vals_list.append(
+                    (0, 0, {"person_id": person.id, "sequence": 10})
                 )
+            self.person_ids = self.territory_id and person_vals_list or False
 
     @api.onchange("branch_id")
     def _onchange_branch_id(self):
