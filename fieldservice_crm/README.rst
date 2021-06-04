@@ -84,6 +84,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Patrick Wilson <patrickraymondwilson@gmail.com>
+* Chanakya Soni <csoni@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
