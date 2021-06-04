@@ -7,6 +7,4 @@ from odoo import fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    opportunity_id = fields.Many2one(
-        "crm.lead", string="Opportunity", track_visibility="onchange"
-    )
+    opportunity_id = fields.Many2one("crm.lead", string="Opportunity", tracking=True)
