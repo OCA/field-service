@@ -19,23 +19,21 @@ class FSMEquipment(models.Model):
 
     @api.model
     def create(self, vals):
-        lot_id = vals.get('lot_id', False)
-        if not vals.get('maintenance_equipment_id', False):
-            maintenance_equipment_id = \
-                self.env['maintenance.equipment'].create({
-                    'name': vals.get('name'),
-                    'is_fsm_equipment': True,
-                    'note': vals.get('notes', False),
-                    'serial_no':
-                        lot_id and
-                        self.env['stock.production.lot'].browse(lot_id).name,
-                    'maintenance_team_id':
-                        vals.get('maintenance_team_id', False) or
-                        self.env.ref('maintenance.equipment_team_maintenance').
-                        id})
+        lot_id = vals.get("lot_id", False)
+        if not vals.get("maintenance_equipment_id", False):
+            maintenance_equipment_id = self.env["maintenance.equipment"].create(
+                {
+                    "name": vals.get("name"),
+                    "is_fsm_equipment": True,
+                    "note": vals.get("notes", False),
+                    "serial_no": lot_id
+                    and self.env["stock.production.lot"].browse(lot_id).name,
+                    "maintenance_team_id": vals.get("maintenance_team_id", False)
+                    or self.env.ref("maintenance.equipment_team_maintenance").id,
+                }
+            )
             if maintenance_equipment_id:
-                vals.update({
-                    'maintenance_equipment_id': maintenance_equipment_id.id})
+                vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
         return super().create(vals)
 
     def unlink(self):
