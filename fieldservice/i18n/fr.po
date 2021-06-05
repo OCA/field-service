@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Réunions"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "# Opportunités"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
 msgid "# Tasks"
@@ -1407,6 +1418,14 @@ msgstr ""
 "destinataire."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
 msgid ""
@@ -1652,6 +1671,12 @@ msgstr "Dernière modification par"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Dernière notification marquée comme lue depuis la base Calendrier"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
@@ -2055,6 +2080,12 @@ msgid "Me"
 msgstr "Moi"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Réunions"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2227,6 +2258,17 @@ msgstr "Heures de bureau"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Opérations"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr "Opportunités"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr "Opportunité"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2612,6 +2654,12 @@ msgstr "Itinéraires"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Erreur d'envoi de SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr "Equipe des ventes"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -3432,12 +3480,6 @@ msgstr "Modèle"
 msgid "templates"
 msgstr "Modèles"
 
-#~ msgid "# Meetings"
-#~ msgstr "# Réunions"
-
-#~ msgid "# Opportunities"
-#~ msgstr "# Opportunités"
-
 #~ msgid "Fax"
 #~ msgstr "Fax"
 
@@ -3454,29 +3496,14 @@ msgstr "Modèles"
 #~ msgid "Internal Reference"
 #~ msgstr "Référence interne"
 
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Dernière notification marquée comme lue depuis la base Calendrier"
-
 #~ msgid "Manage routes of yoru workers"
 #~ msgstr "Gérez les itinéraires de vos techniciens"
-
-#~ msgid "Meetings"
-#~ msgstr "Réunions"
-
-#~ msgid "Opportunities"
-#~ msgstr "Opportunités"
 
 #~ msgid "Opportunities Count"
 #~ msgstr "Nombre d'opportunités"
 
-#~ msgid "Opportunity"
-#~ msgstr "Opportunité"
-
 #~ msgid "Plan To Change Car"
 #~ msgstr "Plan pour changer de voiture"
-
-#~ msgid "Sales Team"
-#~ msgstr "Equipe des ventes"
 
 #~ msgid "Technical field used for stat button"
 #~ msgstr "Champ technique utilisé pour le bouton stat"
