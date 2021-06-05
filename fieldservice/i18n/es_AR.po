@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-30 04:48+0000\n"
+"PO-Revision-Date: 2021-06-05 04:48+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -15,6 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.3.2\n"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Reuniones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "# Oportunidades"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
@@ -1402,6 +1413,14 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
 msgid ""
@@ -1646,6 +1665,12 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización en"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Última notificación marcada como leída del Calendario base"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
@@ -2041,6 +2066,12 @@ msgid "Me"
 msgstr "Yo"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Reuniones"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2213,6 +2244,17 @@ msgstr "Horas de Oficina"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Operaciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr "Oportunidades"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr "Oportunidad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2416,7 +2458,7 @@ msgstr "Límite a Pagar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
 msgid "Payment Method"
-msgstr ""
+msgstr "Método de Pago"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
@@ -2455,6 +2497,10 @@ msgid ""
 "vendor bills by preferred payment method to register payments in mass. Use "
 "cases: create bank files for batch wires, check runs."
 msgstr ""
+"Método de pago preferido al pagar a este proveedor. Se utiliza para filtrar "
+"las facturas de los proveedores por el método de pago preferido para "
+"registrar pagos en masa. Casos de uso: crear archivos bancarios para "
+"transferencias de lotes, verificar ejecuciones."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2598,6 +2644,12 @@ msgstr "Rutas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Error de entrega de SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr "Equipo de Ventas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -3416,12 +3468,6 @@ msgstr "plantilla"
 msgid "templates"
 msgstr "plantillas"
 
-#~ msgid "# Meetings"
-#~ msgstr "# Reuniones"
-
-#~ msgid "# Opportunities"
-#~ msgstr "# Oportunidades"
-
 #~ msgid "Fax"
 #~ msgstr "Fax"
 
@@ -3438,29 +3484,14 @@ msgstr "plantillas"
 #~ msgid "Internal Reference"
 #~ msgstr "Referencia Interna"
 
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Última notificación marcada como leída del Calendario base"
-
 #~ msgid "Manage routes of yoru workers"
 #~ msgstr "Gestionar las rutas de tus trabajadores"
-
-#~ msgid "Meetings"
-#~ msgstr "Reuniones"
-
-#~ msgid "Opportunities"
-#~ msgstr "Oportunidades"
 
 #~ msgid "Opportunities Count"
 #~ msgstr "Cuenta de Oportunidades"
 
-#~ msgid "Opportunity"
-#~ msgstr "Oportunidad"
-
 #~ msgid "Plan To Change Car"
 #~ msgstr "Plan Para Cambiar de Coche"
-
-#~ msgid "Sales Team"
-#~ msgstr "Equipo de Ventas"
 
 #~ msgid "Technical field used for stat button"
 #~ msgstr "Campo técnico utilizado para el botón de estadísticas"
