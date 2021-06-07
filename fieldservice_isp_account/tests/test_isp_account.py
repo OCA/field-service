@@ -80,7 +80,7 @@ class FSMISPAccountCase(SavepointCase):
         self.assertEqual(len(bill), 1)
         self.assertEqual(len(order.contractor_cost_ids), len(bill.invoice_line_ids))
         # Customer invoice created from order's contractor and timehsheet
-        if order.bill_to == "contact" and not order.customer_id:
+        if order.bill_to == "customer" and not order.customer_id:
             with self.assertRaises(ValidationError):
                 order.account_create_invoice()
             order.customer_id = self.test_loc_partner  # Assign some partner
@@ -196,7 +196,7 @@ class FSMISPAccountCase(SavepointCase):
             },
         ]
         order = self._create_workorder(
-            bill_to="contact", contractors=contractors, timesheets=timesheets
+            bill_to="customer", contractors=contractors, timesheets=timesheets
         )
         order._compute_contractor_cost()
         order._compute_employee_hours()
