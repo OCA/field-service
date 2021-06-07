@@ -9,14 +9,14 @@ class FSMOrder(models.Model):
 
     total_cost = fields.Float(compute="_compute_total_cost", string="Total Cost")
     bill_to = fields.Selection(
-        [("location", "Bill Location"), ("contact", "Bill Contact")],
+        [("location", "Bill Location"), ("customer", "Bill Customer")],
         string="Bill to",
         required=True,
         default="location",
     )
     customer_id = fields.Many2one(
         "res.partner",
-        string="Contact",
+        string="Customer",
         change_default=True,
         index=True,
         tracking=True,
