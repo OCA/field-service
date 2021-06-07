@@ -151,9 +151,9 @@ class FSMOrder(models.Model):
             ],
             limit=1,
         )
-        if self.bill_to == "contact":
+        if self.bill_to == "customer":
             if not self.customer_id:
-                raise ValidationError(_("Contact empty"))
+                raise ValidationError(_("Customer empty"))
             fpos = self.customer_id.property_account_position_id
             invoice_vals = {
                 "partner_id": self.customer_id.id,
