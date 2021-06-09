@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_isp_account
+# 	* fieldservice_isp_account
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +19,13 @@ msgid "Accounting Stage"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: code:addons/fieldservice_isp_account/models/fsm_order.py:68
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Contractor Costs' is filled in"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: code:addons/fieldservice_isp_account/models/fsm_order.py:71
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Employee Timesheets' is filled in"
 msgstr ""
@@ -36,14 +36,8 @@ msgid "Confirm"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: selection:fsm.order,account_stage:0
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__confirmed
 msgid "Confirmed"
-msgstr ""
-
-#. module: fieldservice_isp_account
-#: code:addons/fieldservice_isp_account/models/fsm_order.py:116
-#, python-format
-msgid "Contact empty"
 msgstr ""
 
 #. module: fieldservice_isp_account
@@ -63,7 +57,29 @@ msgid "Create Invoice"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: selection:fsm.order,account_stage:0
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
+#, python-format
+msgid "Customer empty"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__display_name
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_person__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__draft
 msgid "Draft"
 msgstr ""
 
@@ -109,7 +125,17 @@ msgid "Field Service Worker"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: selection:fsm.order,account_stage:0
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__fsm_order_id
+msgid "Fsm Order"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model,name:fieldservice_isp_account.model_fsm_order_cost
+msgid "Fsm Order Cost"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__invoiced
 msgid "Fully Invoiced"
 msgstr ""
 
@@ -117,16 +143,35 @@ msgstr ""
 #: model:product.template,uom_name:fieldservice_isp_account.field_service_overtime
 #: model:product.template,uom_name:fieldservice_isp_account.field_service_regular_time
 #: model:product.template,uom_name:fieldservice_isp_account.field_service_travel_time
-msgid "Hour(s)"
+msgid "Hours"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: model:ir.model,name:fieldservice_isp_account.model_account_move_line
-msgid "Invoice Line"
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__id
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_person__id
+msgid "ID"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: selection:fsm.order,account_stage:0
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost____last_update
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_person____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__review
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_search_view
 msgid "Needs Review"
 msgstr ""
@@ -142,7 +187,7 @@ msgid "No Invoice"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: selection:fsm.order,account_stage:0
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__no
 msgid "Nothing Invoiced"
 msgstr ""
 
@@ -152,20 +197,31 @@ msgid "Operations"
 msgstr ""
 
 #. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_isp_account
 #: model:product.template,description_sale:fieldservice_isp_account.field_service_overtime
-msgid "Overtime for Field Service Employees\n"
+msgid ""
+"Overtime for Field Service Employees\n"
 "        "
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: code:addons/fieldservice_isp_account/models/account_move_line.py:19
-#, python-format
-msgid "Please set the field service worker."
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__product_id
+msgid "Product"
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__quantity
+msgid "Quantity"
 msgstr ""
 
 #. module: fieldservice_isp_account
 #: model:product.template,description_sale:fieldservice_isp_account.field_service_regular_time
-msgid "Regular time for Field Service\n"
+msgid ""
+"Regular time for Field Service\n"
 "            Employees\n"
 "        "
 msgstr ""
@@ -177,7 +233,7 @@ msgid "Service Orders"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: code:addons/fieldservice_isp_account/models/fsm_order.py:103
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "The worker assigned to this order is not a supplier"
 msgstr ""
@@ -194,9 +250,15 @@ msgstr ""
 
 #. module: fieldservice_isp_account
 #: model:product.template,description_sale:fieldservice_isp_account.field_service_travel_time
-msgid "Travel time for Field Service\n"
+msgid ""
+"Travel time for Field Service\n"
 "            Employees\n"
 "        "
+msgstr ""
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__price_unit
+msgid "Unit Price"
 msgstr ""
 
 #. module: fieldservice_isp_account
@@ -204,11 +266,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_person_form_isp_account
 msgid "Vendor Bills"
 msgstr ""
-
-#. module: fieldservice_isp_account
-#: model:product.template,weight_uom_name:fieldservice_isp_account.field_service_overtime
-#: model:product.template,weight_uom_name:fieldservice_isp_account.field_service_regular_time
-#: model:product.template,weight_uom_name:fieldservice_isp_account.field_service_travel_time
-msgid "kg"
-msgstr ""
-
