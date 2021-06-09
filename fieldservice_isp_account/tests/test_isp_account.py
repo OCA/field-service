@@ -49,11 +49,25 @@ class FSMISPAccountCase(SavepointCase):
                 "employee_timesheet_ids": [(6, 0, timesheets.ids)],
             }
         )
+        order2 = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "bill_to": bill_to,
+                "person_id": self.test_person.id,
+            }
+        )
+        order._compute_employee()
+        self.test_person._compute_vendor_bills()
+        self.test_person.action_view_bills()
+        with self.assertRaises(ValidationError):
+            order2.action_complete()
         for contractor in contractors:
             contractor.update({"fsm_order_id": order.id})
         contractors = self.env["fsm.order.cost"].create(contractors)
+        contractors.onchange_product_id()
         order.write({"contractor_cost_ids": [(6, 0, contractors.ids)]})
         order.person_ids += self.test_person
+        order.account_no_invoice()
         return order
 
     def _process_order_to_invoices(self, order):
@@ -66,21 +80,18 @@ class FSMISPAccountCase(SavepointCase):
         # Create vendor bill
         # Vendor bill created from order's contractor
         if not order.person_id.partner_id.supplier_rank:
-            with self.assertRaises(ValidationError) as e:
+            with self.assertRaises(ValidationError):
                 order.account_confirm()
-            self.assertEqual(
-                e.exception.name, "The worker assigned to this order is not a supplier"
-            )
             order.person_id.partner_id.supplier_rank = True
         order.account_confirm()
         self.assertEqual(order.account_stage, "confirmed")
         bill = self.AccountMoveLine.search(
             [("fsm_order_ids", "in", order.id)]
-        ).move_id.filtered(lambda i: i.type == "in_invoice")
+        ).move_id.filtered(lambda i: i.move_type == "in_invoice")
         self.assertEqual(len(bill), 1)
         self.assertEqual(len(order.contractor_cost_ids), len(bill.invoice_line_ids))
         # Customer invoice created from order's contractor and timehsheet
-        if order.bill_to == "customer" and not order.customer_id:
+        if order.bill_to == "contact" and not order.customer_id:
             with self.assertRaises(ValidationError):
                 order.account_create_invoice()
             order.customer_id = self.test_loc_partner  # Assign some partner
@@ -88,7 +99,7 @@ class FSMISPAccountCase(SavepointCase):
         self.assertEqual(order.account_stage, "invoiced")
         invoice = self.AccountMoveLine.search(
             [("fsm_order_ids", "in", order.id)]
-        ).move_id.filtered(lambda i: i.type == "out_invoice")
+        ).move_id.filtered(lambda i: i.move_type == "out_invoice")
         self.assertEqual(len(invoice), 1)
         self.assertEqual(
             len(order.contractor_cost_ids) + len(order.employee_timesheet_ids),
@@ -116,12 +127,8 @@ class FSMISPAccountCase(SavepointCase):
         order.date_start = fields.Datetime.today()
         order.date_end = fields.Datetime.today()
         order.resolution = "Done something!"
-        with self.assertRaises(ValidationError) as e:
+        with self.assertRaises(ValidationError):
             order.action_complete()
-        self.assertEqual(
-            e.exception.name,
-            "Cannot move to Complete until " "'Employee Timesheets' is filled in",
-        )
 
     def test_fsm_order_bill_to_location(self):
         """Bill To Location,
@@ -159,9 +166,9 @@ class FSMISPAccountCase(SavepointCase):
         order._compute_contractor_cost()
         order._compute_employee_hours()
         order._compute_total_cost()
-        self.assertEqual(order.contractor_total, 400)
+        self.assertEqual(order.contractor_total, 800.0)
         self.assertEqual(order.employee_time_total, 10)  # Hrs
-        self.assertEqual(order.total_cost, 1400)
+        self.assertEqual(order.total_cost, 1800.0)
         bill, invoice = self._process_order_to_invoices(order)
         self.assertEqual(bill.partner_id, order.person_id.partner_id)
         self.assertEqual(invoice.partner_id, order.location_id.customer_id)
@@ -196,15 +203,11 @@ class FSMISPAccountCase(SavepointCase):
             },
         ]
         order = self._create_workorder(
-            bill_to="customer", contractors=contractors, timesheets=timesheets
+            bill_to="contact", contractors=contractors, timesheets=timesheets
         )
         order._compute_contractor_cost()
         order._compute_employee_hours()
         order._compute_total_cost()
-        self.assertEqual(order.contractor_total, 500)
+        self.assertEqual(order.contractor_total, 1200.0)
         self.assertEqual(order.employee_time_total, 10)  # Hrs
-        self.assertEqual(order.total_cost, 700)
-        # Testing not working "Need to Configure Chart of Accounts"
-        # bill, invoice = self._process_order_to_invoices(order)
-        # self.assertEqual(bill.partner_id, order.person_id.partner_id)
-        # self.assertEqual(invoice.partner_id, order.customer_id)
+        self.assertEqual(order.total_cost, 1400.0)

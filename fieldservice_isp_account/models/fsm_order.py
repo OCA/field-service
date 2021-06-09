@@ -118,7 +118,7 @@ class FSMOrder(models.Model):
             )
         vals = {
             "partner_id": self.person_id.partner_id.id,
-            "type": "in_invoice",
+            "move_type": "in_invoice",
             "journal_id": jrnl.id or False,
             "fiscal_position_id": fpos.id or False,
             "fsm_order_ids": [(4, self.id)],
@@ -151,13 +151,13 @@ class FSMOrder(models.Model):
             ],
             limit=1,
         )
-        if self.bill_to == "customer":
+        if self.bill_to == "contact":
             if not self.customer_id:
                 raise ValidationError(_("Customer empty"))
             fpos = self.customer_id.property_account_position_id
             invoice_vals = {
                 "partner_id": self.customer_id.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "journal_id": jrnl.id or False,
                 "fiscal_position_id": fpos.id or False,
                 "fsm_order_ids": [(4, self.id)],
@@ -168,7 +168,7 @@ class FSMOrder(models.Model):
             fpos = self.location_id.customer_id.property_account_position_id
             invoice_vals = {
                 "partner_id": self.location_id.customer_id.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "journal_id": jrnl.id or False,
                 "fiscal_position_id": fpos.id or False,
                 "fsm_order_ids": [(4, self.id)],
