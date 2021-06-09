@@ -9,11 +9,23 @@ class FsmOrderCost(models.Model):
     _name = "fsm.order.cost"
     _description = "Fsm Order Cost"
 
-    fsm_order_id = fields.Many2one(comodel_name="fsm.order", required=True,)
-    price_unit = fields.Float(string="Unit Price", required=True,)
-    quantity = fields.Float(string="Quantity", required=True, default=1,)
+    fsm_order_id = fields.Many2one(
+        comodel_name="fsm.order",
+        required=True,
+    )
+    price_unit = fields.Float(
+        string="Unit Price",
+        required=True,
+    )
+    quantity = fields.Float(
+        string="Quantity",
+        required=True,
+        default=1,
+    )
     product_id = fields.Many2one(
-        comodel_name="product.product", string="Product", required=True,
+        comodel_name="product.product",
+        string="Product",
+        required=True,
     )
 
     @api.onchange("product_id")
