@@ -15,13 +15,15 @@ class AccountAnalyticLine(models.Model):
     def create(self, vals):
         order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
         if order:
-            if order.location_id.analytic_account_id:
-                vals["account_id"] = order.location_id.analytic_account_id.id
-            else:
-                raise ValidationError(
-                    _("No analytic account set " "on the order's Location.")
-                )
+            self._update_vals_with_account_id(order, vals)
         return super(AccountAnalyticLine, self).create(vals)
+
+    def _update_vals_with_account_id(self, order, vals):
+        analytic_account = order.location_id.analytic_account_id
+        if analytic_account:
+            vals["account_id"] = analytic_account.id
+        else:
+            raise ValidationError(_("No analytic account set on the order's Location."))
 
     @api.onchange("product_id")
     def onchange_product_id(self):
