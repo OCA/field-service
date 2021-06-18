@@ -261,25 +261,22 @@ class FSMOrder(models.Model):
         )
         self._calc_scheduled_dates(vals)
         if not vals.get("request_late"):
-            if vals.get("priority") == "0":
-                if vals.get("request_early"):
-                    vals["request_late"] = fields.Datetime.from_string(
-                        vals.get("request_early")
-                    ) + timedelta(days=3)
-                else:
-                    vals["request_late"] = datetime.now() + timedelta(days=3)
-            elif vals.get("priority") == "1":
+            priority = vals.get("priority")
+            days_number = 0
+            if priority == "0":
+                days_number = 3
+            elif priority == "1":
+                days_number = 2
+            elif priority == "2":
+                days_number = 1
+            elif priority == "3":
+                days_number = 8
+            if vals.get("request_early"):
                 vals["request_late"] = fields.Datetime.from_string(
                     vals.get("request_early")
-                ) + timedelta(days=2)
-            elif vals.get("priority") == "2":
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(days=1)
-            elif vals.get("priority") == "3":
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(hours=8)
+                ) + timedelta(days=days_number)
+            else:
+                vals["request_late"] = datetime.now() + timedelta(days=days_number)
         return super(FSMOrder, self).create(vals)
 
     is_button = fields.Boolean(default=False)
