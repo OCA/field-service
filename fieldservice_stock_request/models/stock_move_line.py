@@ -17,8 +17,9 @@ class StockMoveLine(models.Model):
                 move_id = None
             if move_id:
                 for request in rec.move_id.allocation_ids:
-                    if (request.stock_request_id.state == 'done'
-                            and request.stock_request_id.fsm_order_id):
-                        request.stock_request_id.\
-                            fsm_order_id.request_stage = 'done'
+                    if (
+                        request.stock_request_id.state == "done"
+                        and request.stock_request_id.fsm_order_id
+                    ):
+                        request.stock_request_id.fsm_order_id.request_stage = "done"
         return res
