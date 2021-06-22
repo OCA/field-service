@@ -16,6 +16,7 @@ class TestFSMStockRequest(TestFSMStockCommon):
         # Setup for Stock Request
         cls.StockRequest = cls.env["stock.request"]
         cls.StockRequestOrder = cls.env["stock.request.order"]
+        cls.StockPickingType = cls.env["stock.picking.type"]
 
         cls.product_1 = cls.Product.create(
             {
@@ -34,7 +35,17 @@ class TestFSMStockRequest(TestFSMStockCommon):
 
     def test_fsm_order_stock_request(self):
         # Create a new FS Order and add to it some SR
-        FSO = self.FSMOrder.create({"location_id": self.fsm_location_1.id,})
+        FSO = self.FSMOrder.create({"location_id": self.fsm_location_1.id})
+
+        self.StockPickingType.create(
+            {
+                "name": "Stock Request wh",
+                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
+                "code": "stock_request_order",
+                "sequence_code": "SRO",
+                "warehouse_id": FSO.warehouse_id.id,
+            }
+        )
 
         SR_1 = self.StockRequest.create(
             {
