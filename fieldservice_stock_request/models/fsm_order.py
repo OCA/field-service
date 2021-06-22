@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 REQUEST_STATES = [
@@ -27,7 +27,6 @@ class FSMOrder(models.Model):
         store=True,
     )
 
-    @api.multi
     def action_request_submit(self):
         for rec in self:
             if not rec.stock_request_ids:
@@ -40,7 +39,6 @@ class FSMOrder(models.Model):
                         line.action_submit()
             rec.request_stage = "submitted"
 
-    @api.multi
     def action_request_cancel(self):
         for rec in self:
             if not rec.stock_request_ids:
@@ -53,7 +51,6 @@ class FSMOrder(models.Model):
                         line.action_cancel()
             rec.request_stage = "cancel"
 
-    @api.multi
     def action_request_draft(self):
         for rec in self:
             if not rec.stock_request_ids:

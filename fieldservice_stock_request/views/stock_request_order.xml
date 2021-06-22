@@ -39,13 +39,13 @@
         <field name="model">stock.request.order</field>
         <field
             name="inherit_id"
-            ref="stock_request_picking_type.view_stock_request_order_filter"
+            ref="stock_request_picking_type.stock_request_order_search"
         />
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="fsm_order_id" />
             </field>
-            <filter name="state" position="before">
+            <filter name="picking_type_id" position="before">
                 <filter
                     string="FSM Order"
                     name="fsm_order_id"
