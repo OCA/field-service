@@ -38,7 +38,6 @@ class StockRequestOrder(models.Model):
         else:
             return {}
 
-    @api.multi
     def action_confirm(self):
         if self.fsm_order_id:
             fsm_order = self.env["fsm.order"].browse(self.fsm_order_id.id)

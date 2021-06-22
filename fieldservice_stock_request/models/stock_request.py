@@ -107,7 +107,6 @@ class StockRequest(models.Model):
         else:
             return {}
 
-    @api.multi
     def _action_confirm(self):
         for req in self:
             if (not req.procurement_group_id) and req.fsm_order_id:
