@@ -25,7 +25,7 @@ class TestFSMStockCommon(SavepointCase):
             {
                 "name": "FSM Location 1",
                 "owner_id": cls.partner_1.id,
-                "customer_id": cls.partner_1.id,
+                "partner_id": cls.partner_1.id,
                 "inventory_location_id": cls.stock_cust_loc,
             }
         )
