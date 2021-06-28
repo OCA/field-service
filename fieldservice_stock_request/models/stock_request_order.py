@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Open Source Integrators
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -33,16 +33,17 @@ class StockRequestOrder(models.Model):
 
     def _prepare_procurement_group_values(self):
         if self.fsm_order_id:
-            order = self.env["fsm.order"].browse(self.fsm_order_id.id)
-            return {"name": order.name, "fsm_order_id": order.id, "move_type": "direct"}
-        else:
-            return {}
+            return {
+                "name": self.fsm_order_id.display_name,
+                "fsm_order_id": self.fsm_order_id.id,
+                "move_type": "direct",
+            }
+        return {}
 
     def action_confirm(self):
         if self.fsm_order_id:
-            fsm_order = self.env["fsm.order"].browse(self.fsm_order_id.id)
             group = self.env["procurement.group"].search(
-                [("fsm_order_id", "=", fsm_order.id)]
+                [("fsm_order_id", "=", self.fsm_order_id.id)]
             )
             if not group:
                 values = self._prepare_procurement_group_values()

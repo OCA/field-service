@@ -9,7 +9,7 @@ from odoo.addons.fieldservice_stock.tests.common import TestFSMStockCommon
 class TestFSMStockRequest(TestFSMStockCommon):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(TestFSMStockRequest, cls).setUpClass()
         # disable tracking in test
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
@@ -88,9 +88,9 @@ class TestFSMStockRequest(TestFSMStockCommon):
         # Submit the SRs from FSO. Confirm FSO request, SR & SRO are submitted
         FSO.action_request_submit()
         self.assertEqual(FSO.request_stage, "submitted")
-        self.assertEqual(SR_1.state, "submitted")
-        self.assertEqual(SR_2.state, "submitted")
-        self.assertEqual(SRO.state, "submitted")
+        self.assertEqual(SR_1.state, "open")
+        self.assertEqual(SR_2.state, "open")
+        self.assertEqual(SRO.state, "open")
 
         # Cancel the SRs from FSO. Confirm SR are cancelled
         FSO.action_request_cancel()

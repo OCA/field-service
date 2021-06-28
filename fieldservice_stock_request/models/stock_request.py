@@ -1,5 +1,6 @@
-# Copyright (C) 2019 Open Source Integrators
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -49,6 +50,14 @@ class StockRequest(models.Model):
                 ],
                 limit=1,
             )
+            if not picking_type_id:
+                raise UserError(
+                    _(
+                        "There is no any inventory Operations Type:"
+                        "stock_request_order record for %s Warehouse."
+                    )
+                    % fsm_order.warehouse_id.display_name
+                )
             order = self.env["stock.request.order"].search(
                 [
                     ("fsm_order_id", "=", vals["fsm_order_id"]),
@@ -102,17 +111,18 @@ class StockRequest(models.Model):
 
     def _prepare_procurement_group_values(self):
         if self.fsm_order_id:
-            order = self.env["fsm.order"].browse(self.fsm_order_id.id)
-            return {"name": order.name, "fsm_order_id": order.id, "move_type": "direct"}
-        else:
-            return {}
+            return {
+                "name": self.fsm_order_id.display_name,
+                "fsm_order_id": self.fsm_order_id.id,
+                "move_type": "direct",
+            }
+        return {}
 
     def _action_confirm(self):
         for req in self:
             if (not req.procurement_group_id) and req.fsm_order_id:
-                fsm_order = self.env["fsm.order"].browse(req.fsm_order_id.id)
                 group = self.env["procurement.group"].search(
-                    [("fsm_order_id", "=", fsm_order.id)]
+                    [("fsm_order_id", "=", req.fsm_order_id.id)]
                 )
                 if not group:
                     values = req._prepare_procurement_group_values()
@@ -121,7 +131,7 @@ class StockRequest(models.Model):
                     req.order_id.procurement_group_id = group.id
                 req.procurement_group_id = group.id
                 res = super(StockRequest, req)._action_confirm()
-                fsm_order.request_stage = "open"
+                req.fsm_order_id.request_stage = "open"
             else:
                 res = super(StockRequest, req)._action_confirm()
         return res
