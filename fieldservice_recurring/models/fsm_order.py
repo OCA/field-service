@@ -12,15 +12,19 @@ class FSMOrder(models.Model):
     fsm_recurring_id = fields.Many2one(
         'fsm.recurring', 'Recurring Order', readonly=True)
 
-    def _compute_request_late(self):
-        for rec in self:
-            if not rec.fsm_recurring_id:
-                return super(FSMOrder, self)._compute_request_late()
-            else:
-                days_late = rec.fsm_recurring_id.fsm_frequency_set_id.\
-                    buffer_late
-                rec.request_late = rec.scheduled_date_start + timedelta(
-                    days=days_late)
+    def _compute_request_late(self, vals):
+        if not vals.get("fsm_recurring_id", False):
+            return super(FSMOrder, self)._compute_request_late(vals)
+        elif vals.get("scheduled_date_start", False):
+            days_late = (
+                self.env["fsm.recurring"]
+                .browse(vals["fsm_recurring_id"])
+                .fsm_frequency_set_id.buffer_late
+            )
+            vals["request_late"] = vals["scheduled_date_start"] + timedelta(
+                days=days_late
+            )
+        return vals
 
     @api.multi
     def action_view_fsm_recurring(self):
