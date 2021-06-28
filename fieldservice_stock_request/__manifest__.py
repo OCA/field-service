@@ -1,10 +1,10 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2021 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service - Stock Request",
     "summary": "Integrate Stock Requests with Field Service Orders",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
