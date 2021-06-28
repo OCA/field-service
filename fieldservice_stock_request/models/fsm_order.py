@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Brian McMaster
+# Copyright (C) 2021 - TODAY, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, fields, models
@@ -24,41 +24,45 @@ class FSMOrder(models.Model):
         string="Request State",
         default="draft",
         readonly=True,
-        store=True,
     )
 
     def action_request_submit(self):
         for rec in self:
             if not rec.stock_request_ids:
                 raise UserError(_("Please create a stock request."))
-            for line in rec.stock_request_ids:
-                if line.state == "draft":
+            for line in rec.stock_request_ids.filtered(lambda l: l.state == "draft"):
+                if ("submitted", "Submitted") in line._get_request_states():
                     if line.order_id:
                         line.order_id.action_submit()
                     else:
                         line.action_submit()
+                else:
+                    if line.order_id:
+                        line.order_id.action_confirm()
+                    else:
+                        line.action_confirm()
             rec.request_stage = "submitted"
 
     def action_request_cancel(self):
         for rec in self:
             if not rec.stock_request_ids:
                 raise UserError(_("Please create a stock request."))
-            for line in rec.stock_request_ids:
-                if line.state in ("draft", "submitted"):
-                    if line.order_id:
-                        line.order_id.action_cancel()
-                    else:
-                        line.action_cancel()
+            for line in rec.stock_request_ids.filtered(
+                lambda l: l.state in ("draft", "open")
+            ):
+                if line.order_id:
+                    line.order_id.action_cancel()
+                else:
+                    line.action_cancel()
             rec.request_stage = "cancel"
 
     def action_request_draft(self):
         for rec in self:
             if not rec.stock_request_ids:
                 raise UserError(_("Please create a stock request."))
-            for line in rec.stock_request_ids:
-                if line.state == "cancel":
-                    if line.order_id:
-                        line.order_id.action_draft()
-                    else:
-                        line.action_draft()
+            for line in rec.stock_request_ids.filtered(lambda l: l.state == "cancel"):
+                if line.order_id:
+                    line.order_id.action_draft()
+                else:
+                    line.action_draft()
             rec.request_stage = "draft"
