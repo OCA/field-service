@@ -161,6 +161,40 @@
                     </div>
                     <h2>Orders</h2>
                     <div class="row mt16 o_settings_container" id="orders">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">
+                                    Priority-based rules
+                                </span>
+                                <div class="text-muted">Automatically calculate the "Latest Request Date" based on an order's priority</div>
+                                <div class="content-group" modifiers="{}">
+                                    <div class="row mt16" modifiers="{}">
+                                        <label string="Priority 0" for="order_prio0_request_late" class="col-lg-3 o_light_label"/>
+                                        <field name="order_prio0_request_late"/><span class="ml-2">hours</span>
+                                    </div>
+                                    <div class="row mt16" modifiers="{}">
+                                        <label string="Priority 1" for="order_prio1_request_late" class="col-lg-3 o_light_label"/>
+                                        <field name="order_prio1_request_late"/><span class="ml-2">hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <div class="content-group" modifiers="{}">
+                                    <div class="row mt16" modifiers="{}">
+                                        <label string="Priority 2" for="order_prio2_request_late" class="col-lg-3 o_light_label"/>
+                                        <field name="order_prio2_request_late"/><span class="ml-2">hours</span>
+                                    </div>
+                                    <div class="row mt16" modifiers="{}">
+                                        <label string="Priority 3" for="order_prio3_request_late" class="col-lg-3 o_light_label"/>
+                                        <field name="order_prio3_request_late"/><span class="ml-2">hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-xs-12 col-md-6 o_setting_box"
                              attrs="{'invisible': [('group_fsm_equipment', '=', False)]}">
                             <div class="o_setting_left_pane">

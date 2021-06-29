@@ -14,3 +14,20 @@ class ResCompany(models.Model):
     search_on_complete_name = fields.Boolean(
         string='Search Location By Hierarchy'
     )
+
+    order_prio0_request_late = fields.Float(
+        string="Hours of Buffer for Lowest Priority FS Orders",
+        default=72,
+    )
+    order_prio1_request_late = fields.Float(
+        string="Hours of Buffer for Low Priority FS Orders",
+        default=48,
+    )
+    order_prio2_request_late = fields.Float(
+        string="Hours of Buffer for Medium Priority FS Orders",
+        default=24,
+    )
+    order_prio3_request_late = fields.Float(
+        string="Hours of Buffer for High Priority FS Orders",
+        default=8
+    )

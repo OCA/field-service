@@ -103,13 +103,21 @@ class FSMOrder(models.Model):
             early = datetime.now()
 
         if vals.get("priority") == "0":
-            vals["request_late"] = early + timedelta(days=3)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.user.company_id.order_prio0_request_late
+            )
         elif vals.get("priority") == "1":
-            vals["request_late"] = early + timedelta(days=2)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.user.company_id.order_prio1_request_late
+            )
         elif vals.get("priority") == "2":
-            vals["request_late"] = early + timedelta(days=1)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.user.company_id.order_prio2_request_late
+            )
         elif vals.get("priority") == "3":
-            vals["request_late"] = early + timedelta(hours=8)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.user.company_id.order_prio3_request_late
+            )
         return vals
 
     request_late = fields.Datetime(string='Latest Request Date')
