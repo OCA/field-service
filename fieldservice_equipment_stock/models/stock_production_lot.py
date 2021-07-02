@@ -5,7 +5,8 @@ from odoo import fields, models
 
 
 class StockProductionLot(models.Model):
-    _inherit = 'stock.production.lot'
+    _inherit = "stock.production.lot"
 
-    fsm_equipment_id = fields.Many2one('fsm.equipment',
-                                       string='Equipment', readonly=True)
+    fsm_equipment_id = fields.Many2one(
+        "fsm.equipment", string="Equipment", readonly=True
+    )
