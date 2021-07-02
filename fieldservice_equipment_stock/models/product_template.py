@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
-    create_fsm_equipment = fields.Boolean(string='Creates a FSM Equipment')
+    create_fsm_equipment = fields.Boolean(string="Creates a FSM Equipment")
