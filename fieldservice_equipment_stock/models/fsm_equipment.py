@@ -29,7 +29,7 @@ class FSMEquipment(models.Model):
     @api.onchange("product_id")
     def _onchange_product(self):
         for equipment in self:
-            self.current_stock_location_id = False
+            equipment.current_stock_location_id = False
 
     @api.model
     def create(self, vals):
@@ -38,7 +38,6 @@ class FSMEquipment(models.Model):
             res.lot_id.fsm_equipment_id = res.id
         return res
 
-    @api.multi
     def write(self, vals):
         for equipment in self:
             prev_lot = equipment.lot_id
