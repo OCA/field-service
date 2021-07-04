@@ -17,26 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_ids
-msgid "Activities"
-msgstr "Atividades"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_exception_decoration
-msgid "Activity Exception Decoration"
-msgstr "Decoração de Exceção de Atividade"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_state
-msgid "Activity State"
-msgstr "Estado da Atividade"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_type_icon
-msgid "Activity Type Icon"
-msgstr "Ícone de Tipo de Atividade"
-
-#. module: fieldservice_timeline
 #. openerp-web
 #: code:addons/fieldservice_timeline/static/src/xml/fsm_gantt_person_filter.xml:0
 #, python-format
@@ -58,61 +38,6 @@ msgid "Delete"
 msgstr "Excluir"
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__display_name
-msgid "Display Name"
-msgstr "Nome de Exibição"
-
-#. module: fieldservice_timeline
-#: model:ir.model,name:fieldservice_timeline.model_fsm_person
-msgid "Field Service Worker"
-msgstr "Trabalhador de Serviço de Campo"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Ícone Font Awesome ex: fa-tasks"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__id
-msgid "ID"
-msgstr "ID"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_exception_icon
-msgid "Icon"
-msgstr "Ícone"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_exception_icon
-msgid "Icon to indicate an exception activity."
-msgstr "Ícone para indicar uma atividade de exceção."
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__my_activity_date_deadline
-msgid "My Activity Deadline"
-msgstr ""
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_date_deadline
-msgid "Next Activity Deadline"
-msgstr "Prazo da Próxima Atividade"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_summary
-msgid "Next Activity Summary"
-msgstr "Resumo da Próxima Atividade"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_type_id
-msgid "Next Activity Type"
-msgstr "Tipo da Próxima Atividade"
-
-#. module: fieldservice_timeline
 #: model_terms:ir.ui.view,arch_db:fieldservice_timeline.fsm_order_timeline_view
 msgid "Orders"
 msgstr "Ordens"
@@ -125,31 +50,67 @@ msgid "Person Filter"
 msgstr "Filtro de Pessoa"
 
 #. module: fieldservice_timeline
-#: model:ir.model.fields,field_description:fieldservice_timeline.field_fsm_person__activity_user_id
-msgid "Responsible User"
-msgstr "Usuário Responsável"
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_state
-msgid ""
-"Status based on activities\n"
-"Overdue: Due date is already passed\n"
-"Today: Activity date is today\n"
-"Planned: Future activities."
-msgstr ""
-"Situação baseada em atividades\n"
-"Atrasada: A data de vencimento já passou\n"
-"Hoje: Data da atividade é hoje\n"
-"Planejada: Atividades futuras."
-
-#. module: fieldservice_timeline
-#: model:ir.model.fields,help:fieldservice_timeline.field_fsm_person__activity_exception_decoration
-msgid "Type of the exception activity on record."
-msgstr "Tipo de atividade de exceção no registro."
-
-#. module: fieldservice_timeline
 #. openerp-web
 #: code:addons/fieldservice_timeline/static/src/xml/fsm_gantt_person_filter.xml:0
 #, python-format
 msgid "or"
 msgstr "ou"
+
+#~ msgid "Activities"
+#~ msgstr "Atividades"
+
+#~ msgid "Activity Exception Decoration"
+#~ msgstr "Decoração de Exceção de Atividade"
+
+#~ msgid "Activity State"
+#~ msgstr "Estado da Atividade"
+
+#~ msgid "Activity Type Icon"
+#~ msgstr "Ícone de Tipo de Atividade"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome de Exibição"
+
+#~ msgid "Field Service Worker"
+#~ msgstr "Trabalhador de Serviço de Campo"
+
+#~ msgid "Font awesome icon e.g. fa-tasks"
+#~ msgstr "Ícone Font Awesome ex: fa-tasks"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Icon"
+#~ msgstr "Ícone"
+
+#~ msgid "Icon to indicate an exception activity."
+#~ msgstr "Ícone para indicar uma atividade de exceção."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
+
+#~ msgid "Next Activity Deadline"
+#~ msgstr "Prazo da Próxima Atividade"
+
+#~ msgid "Next Activity Summary"
+#~ msgstr "Resumo da Próxima Atividade"
+
+#~ msgid "Next Activity Type"
+#~ msgstr "Tipo da Próxima Atividade"
+
+#~ msgid "Responsible User"
+#~ msgstr "Usuário Responsável"
+
+#~ msgid ""
+#~ "Status based on activities\n"
+#~ "Overdue: Due date is already passed\n"
+#~ "Today: Activity date is today\n"
+#~ "Planned: Future activities."
+#~ msgstr ""
+#~ "Situação baseada em atividades\n"
+#~ "Atrasada: A data de vencimento já passou\n"
+#~ "Hoje: Data da atividade é hoje\n"
+#~ "Planejada: Atividades futuras."
+
+#~ msgid "Type of the exception activity on record."
+#~ msgstr "Tipo de atividade de exceção no registro."
