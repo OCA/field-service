@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     @api.multi
     def get_partner_type(self):
@@ -17,5 +17,5 @@ class ResPartner(models.Model):
         """
         self.ensure_one()
         if self.fsm_location:
-            return 'fsm-location'
+            return "fsm-location"
         return super(ResPartner, self).get_partner_type()
