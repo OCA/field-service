@@ -6,7 +6,7 @@
     "version": "14.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/partner-contact",
+    "website": "https://github.com/OCA/field-service",
     "complexity": "normal",
     "license": "AGPL-3",
     "depends": ["partner_multi_relation", "fieldservice"],
