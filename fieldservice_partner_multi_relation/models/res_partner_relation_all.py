@@ -22,10 +22,6 @@ class ResPartnerRelationAll(models.AbstractModel):
             ):
                 if not self.type_selection_id:
                     return self.set_domain_type()
-            elif not self.this_partner_id:
-                if not self.other_partner_id:
-                    return {"domain": {"type_selection_id": ""}}
-
             else:
                 super(ResPartnerRelationAll, self).onchange_partner_id()
         else:
@@ -46,10 +42,6 @@ class ResPartnerRelationAll(models.AbstractModel):
             ):
                 if not type_id:
                     return self.set_domain_type()
-                elif not self.other_partner_id:
-                    if not self.this_partner_id:
-                        return {"domain": {"type_selection_id": ""}}
-
             else:
                 super(ResPartnerRelationAll, self).onchange_partner_id()
         else:
@@ -80,12 +72,10 @@ class ResPartnerRelationAll(models.AbstractModel):
                 self.try_type()
             elif self.this_partner_id:
                 # Set domain Right
-                res = self.set_domain_right()
-                return res
+                return self.set_domain_right()
             elif self.other_partner_id:
                 # Set domain Left
-                res = self.set_domain_left()
-                return res
+                return self.set_domain_left()
             else:
                 res = self.set_domain_left()
                 res2 = self.set_domain_right()
