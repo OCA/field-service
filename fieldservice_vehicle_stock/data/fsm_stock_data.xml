@@ -9,15 +9,15 @@
     <record id="stock_location_vehicle" model="stock.location">
         <field name="name">Vehicles</field>
         <field name="usage">view</field>
-        <field name="company_id"></field>
+        <field name="company_id" />
     </record>
 
     <record id="stock_location_vehicle_storage" model="stock.location">
         <field name="name">Storage</field>
         <field name="usage">internal</field>
-        <field name="location_id" ref="stock_location_vehicle"/>
-        <field name="company_id" ref="base.main_company"/>
-        <field name="putaway_strategy_id" ref="putaway_vehicle"/>
+        <field name="location_id" ref="stock_location_vehicle" />
+        <field name="company_id" ref="base.main_company" />
+        <field name="putaway_strategy_id" ref="putaway_vehicle" />
     </record>
 
     <data noupdate="1">
@@ -27,19 +27,16 @@
             <field name="name">Vehicle Loading</field>
             <field name="prefix">VL</field>
             <field name="padding">5</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
         <record id="picking_type_output_to_vehicle" model="stock.picking.type">
             <field name="name">Vehicle Loading</field>
-            <field name="sequence_id"
-                   ref="seq_picking_type_output_to_vehicle"/>
+            <field name="sequence_id" ref="seq_picking_type_output_to_vehicle" />
             <field name="code">internal</field>
-            <field name="warehouse_id" eval="False"/>
-            <field name="default_location_src_id"
-                   ref="stock.stock_location_stock"/>
-            <field name="default_location_dest_id"
-                   ref="stock_location_vehicle"/>
+            <field name="warehouse_id" eval="False" />
+            <field name="default_location_src_id" ref="stock.stock_location_stock" />
+            <field name="default_location_dest_id" ref="stock_location_vehicle" />
         </record>
 
         <!-- Vehicle to Location operations -->
@@ -47,58 +44,49 @@
             <field name="name">Location Delivery</field>
             <field name="prefix">LD</field>
             <field name="padding">5</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
-        <record id="picking_type_vehicle_to_location"
-                model="stock.picking.type">
+        <record id="picking_type_vehicle_to_location" model="stock.picking.type">
             <field name="name">Location Delivery</field>
-            <field name="sequence_id"
-                   ref="seq_picking_type_vehicle_to_location"/>
+            <field name="sequence_id" ref="seq_picking_type_vehicle_to_location" />
             <field name="code">outgoing</field>
-            <field name="warehouse_id" eval="False"/>
-            <field name="default_location_src_id"
-                   ref="stock_location_vehicle"/>
+            <field name="warehouse_id" eval="False" />
+            <field name="default_location_src_id" ref="stock_location_vehicle" />
         </record>
 
         <!-- Route: Stock to Vehicle to Location -->
-        <record id="route_stock_to_vehicle_to_location"
-                model='stock.location.route'>
+        <record id="route_stock_to_vehicle_to_location" model='stock.location.route'>
             <field name="name">Stock to Vehicle to Location</field>
             <field name="sequence">3</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
-        <record id="procurement_rule_vehicle_to_location"
-                model="stock.rule">
+        <record id="procurement_rule_vehicle_to_location" model="stock.rule">
             <field name="name">Vehicle → Location</field>
             <field name="action">pull</field>
-            <field name="location_id" ref="stock.stock_location_customers"/>
-            <field name="location_src_id"
-                   ref="stock_location_vehicle_storage"/>
+            <field name="location_id" ref="stock.stock_location_customers" />
+            <field name="location_src_id" ref="stock_location_vehicle_storage" />
             <field name="procure_method">make_to_order</field>
-            <field name="route_id" ref="route_stock_to_vehicle_to_location"/>
-            <field name="picking_type_id"
-                   ref="picking_type_vehicle_to_location"/>
+            <field name="route_id" ref="route_stock_to_vehicle_to_location" />
+            <field name="picking_type_id" ref="picking_type_vehicle_to_location" />
         </record>
 
-        <record id="procurement_rule_output_to_vehicle"
-                model="stock.rule">
+        <record id="procurement_rule_output_to_vehicle" model="stock.rule">
             <field name="name">Warehouse → Vehicle</field>
             <field name="action">pull</field>
-            <field name="location_id" ref="stock_location_vehicle_storage"/>
-            <field name="location_src_id" ref="stock.stock_location_stock"/>
+            <field name="location_id" ref="stock_location_vehicle_storage" />
+            <field name="location_src_id" ref="stock.stock_location_stock" />
             <field name="procure_method">make_to_stock</field>
-            <field name="route_id" ref="route_stock_to_vehicle_to_location"/>
-            <field name="picking_type_id"
-                   ref="picking_type_output_to_vehicle"/>
+            <field name="route_id" ref="route_stock_to_vehicle_to_location" />
+            <field name="picking_type_id" ref="picking_type_output_to_vehicle" />
         </record>
 
         <!-- Route: Location Return Operations -->
         <record id="route_location_return" model='stock.location.route'>
             <field name="name">Location Return</field>
             <field name="sequence">3</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
         <!-- Location Pickup operations -->
@@ -106,32 +94,29 @@
             <field name="name">Location Pickup</field>
             <field name="prefix">LP</field>
             <field name="padding">5</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
-        <record id="picking_type_location_to_vehicle"
-                model="stock.picking.type">
+        <record id="picking_type_location_to_vehicle" model="stock.picking.type">
             <field name="name">Location Pickup</field>
-            <field name="sequence_id"
-                   ref="seq_picking_type_location_to_vehicle"/>
+            <field name="sequence_id" ref="seq_picking_type_location_to_vehicle" />
             <field name="code">incoming</field>
-            <field name="warehouse_id" eval="False"/>
-            <field name="default_location_dest_id"
-                   ref="stock_location_vehicle"/>
-            <field name="return_picking_type_id"
-                   ref="picking_type_vehicle_to_location"/>
+            <field name="warehouse_id" eval="False" />
+            <field name="default_location_dest_id" ref="stock_location_vehicle" />
+            <field
+                name="return_picking_type_id"
+                ref="picking_type_vehicle_to_location"
+            />
         </record>
 
-        <record id="procurement_rule_location_to_vehicle"
-                model="stock.rule">
+        <record id="procurement_rule_location_to_vehicle" model="stock.rule">
             <field name="name">Warehouse → Vehicle</field>
             <field name="action">pull</field>
-            <field name="location_id" ref="stock_location_vehicle"/>
-            <field name="location_src_id" ref="stock.stock_location_stock"/>
+            <field name="location_id" ref="stock_location_vehicle" />
+            <field name="location_src_id" ref="stock.stock_location_stock" />
             <field name="procure_method">make_to_stock</field>
-            <field name="route_id" ref="route_location_return"/>
-            <field name="picking_type_id"
-                   ref="picking_type_location_to_vehicle"/>
+            <field name="route_id" ref="route_location_return" />
+            <field name="picking_type_id" ref="picking_type_location_to_vehicle" />
         </record>
 
         <!-- Vehicle to Input -->
@@ -139,42 +124,39 @@
             <field name="name">Vehicle Returns</field>
             <field name="prefix">VR</field>
             <field name="padding">5</field>
-            <field name="company_id"></field>
+            <field name="company_id" />
         </record>
 
         <record id="picking_type_vehicle_to_input" model="stock.picking.type">
             <field name="name">Vehicle Returns</field>
-            <field name="sequence_id" ref="seq_picking_type_vehicle_to_input"/>
+            <field name="sequence_id" ref="seq_picking_type_vehicle_to_input" />
             <field name="code">internal</field>
-            <field name="warehouse_id" eval="False"/>
-            <field name="default_location_src_id"
-                   ref="stock_location_vehicle"/>
-            <field name="default_location_dest_id"
-                   ref="stock.stock_location_stock"/>
-            <field name="return_picking_type_id"
-                   ref="picking_type_output_to_vehicle"/>
+            <field name="warehouse_id" eval="False" />
+            <field name="default_location_src_id" ref="stock_location_vehicle" />
+            <field name="default_location_dest_id" ref="stock.stock_location_stock" />
+            <field name="return_picking_type_id" ref="picking_type_output_to_vehicle" />
         </record>
 
-        <record id="stock_rule_vehicle_to_input"
-                model="stock.rule">
+        <record id="stock_rule_vehicle_to_input" model="stock.rule">
             <field name="name">Vehicle → Warehouse</field>
             <field name="action">push</field>
-            <field name="location_src_id" ref="stock_location_vehicle"/>
-            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="location_src_id" ref="stock_location_vehicle" />
+            <field name="location_id" ref="stock.stock_location_stock" />
             <field name="auto">manual</field>
-            <field name="picking_type_id" ref="picking_type_vehicle_to_input"/>
-            <field name="route_id" ref="route_location_return"/>
+            <field name="picking_type_id" ref="picking_type_vehicle_to_input" />
+            <field name="route_id" ref="route_location_return" />
         </record>
 
         <!-- Picking Types: set the return type -->
         <record id="picking_type_output_to_vehicle" model="stock.picking.type">
-            <field name="return_picking_type_id"
-                   ref="picking_type_vehicle_to_input"/>
+            <field name="return_picking_type_id" ref="picking_type_vehicle_to_input" />
         </record>
 
         <record id="picking_type_vehicle_to_location" model="stock.picking.type">
-            <field name="return_picking_type_id"
-                   ref="picking_type_location_to_vehicle"/>
+            <field
+                name="return_picking_type_id"
+                ref="picking_type_location_to_vehicle"
+            />
         </record>
 
     </data>
