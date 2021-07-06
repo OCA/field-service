@@ -4,19 +4,19 @@ from odoo import api, models
 
 
 class FSMOrder(models.Model):
-    _inherit = 'fsm.order'
+    _inherit = "fsm.order"
 
     @api.multi
     def assign_vehicle_to_pickings(self):
         for rec in self:
             for picking in rec.picking_ids:
-                if picking.state in ('waiting', 'confirmed', 'assigned'):
+                if picking.state in ("waiting", "confirmed", "assigned"):
                     picking.fsm_vehicle_id = self.vehicle_id.id or False
 
     @api.multi
     def write(self, vals):
         res = super().write(vals)
         for rec in self:
-            if vals.get('vehicle_id', False):
+            if vals.get("vehicle_id", False):
                 rec.assign_vehicle_to_pickings()
         return res
