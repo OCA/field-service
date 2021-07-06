@@ -5,8 +5,8 @@ from odoo import fields, models
 
 
 class FSMVehicle(models.Model):
-    _inherit = 'fsm.vehicle'
+    _inherit = "fsm.vehicle"
 
-    inventory_location_id = fields.Many2one('stock.location',
-                                            string='Inventory Location',
-                                            required=True)
+    inventory_location_id = fields.Many2one(
+        "stock.location", string="Inventory Location", required=True
+    )
