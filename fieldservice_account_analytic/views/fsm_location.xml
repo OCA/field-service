@@ -1,0 +1,52 @@
+<odoo>
+    <!-- Field Service Location Tree View-->
+    <record id="fsm_location_tree_view_analytic" model="ir.ui.view">
+        <field name="name">fsm.location.tree.accounting</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_tree_view" />
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field name="customer_id" />
+            </field>
+        </field>
+    </record>
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view_analytic" model="ir.ui.view">
+        <field name="name">fsm.location.form.accounting</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <page id="others-page" position="before">
+                <page name="accounting" string="Accounting">
+                    <group>
+                        <group>
+                            <field name="analytic_account_id" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+            <field name="owner_id" position="after">
+                <field name="customer_id" />
+            </field>
+        </field>
+    </record>
+    <!-- Field Service Location Search View-->
+    <record id="fsm_location_search_view_analytic" model="ir.ui.view">
+        <field name="name">fsm.location.search</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_search_view" />
+        <field name="arch" type="xml">
+            <field name="owner_id" position="after">
+                <field name="customer_id" />
+            </field>
+            <filter name="owner_id" position="after">
+                <filter
+                    name="customer_id"
+                    string="Customer"
+                    domain="[]"
+                    context="{'group_by':'customer_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
