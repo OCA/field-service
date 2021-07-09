@@ -27,6 +27,7 @@ addon | version | summary
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
 [fieldservice_route](fieldservice_route/) | 14.0.1.0.0 | Organize the routes of each day.
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
+[fieldservice_stock](fieldservice_stock/) | 14.0.1.0.0 | Integrate the logistics operations with Field Service
 [fieldservice_timeline](fieldservice_timeline/) | 14.0.1.1.1 | This module is a display timeline view of the Field Service order in Odoo.
 
 [//]: # (end addons)
