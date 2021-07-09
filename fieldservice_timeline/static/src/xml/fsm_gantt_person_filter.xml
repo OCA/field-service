@@ -1,0 +1,156 @@
+<template>
+    <t t-extend="TimelineView">
+        <t t-jquery=".btn-group" t-operation="after">
+            <span id="person_filter" class="o_hidden">Person Filter</span>
+            <div id="user_filer" style="display: inline-block;width: 30%;" />
+        </t>
+    </t>
+    <t t-extend="SearchView.extended_search.proposition">
+        <t t-jquery=".o_searchview_extended_prop_field" t-operation="prepend">
+            <t t-if="widget.__parentedParent and widget.__parentedParent.user_filter">
+                <option />
+                <t t-foreach="widget.attrs.fields" t-as="field">
+                    <option
+                        t-att="{'selected': field.name == 'category_id' ? 'selected' : null}"
+                        t-att-value="field.name"
+                    >
+                        <t t-esc="field.string" />
+                    </option>
+                </t>
+            </t>
+        </t>
+    </t>
+    <t t-name="fieldservice_timeline.CustomFilterItem" owl="1">
+        <div class="o_generator_menu">
+            <div
+                t-foreach="state.conditions"
+                t-as="condition"
+                t-key="condition_index"
+                class=" o_filter_condition dropdown-item-text"
+            >
+                <t t-set="fieldType" t-value="fields[condition.field].type" />
+                <t
+                    t-set="selectedOperator"
+                    t-value="OPERATORS[FIELD_TYPES[fieldType]][condition.operator]"
+                />
+                <span t-if="!condition_first" class="o_or_filter">or</span>
+                <select
+                    class="o_input o_generator_menu_field"
+                    t-on-change="_onFieldSelect(condition)"
+                >
+                    <option
+                        t-foreach="fields"
+                        t-as="field"
+                        t-key="field_index"
+                        t-att-value="field.name"
+                        t-att-selected="field_index === condition.field"
+                        t-esc="field.string"
+                    />
+                </select>
+                <select
+                    class="o_input o_generator_menu_operator"
+                    t-on-change="_onOperatorSelect(condition)"
+                >
+                    <option
+                        t-foreach="OPERATORS[FIELD_TYPES[fieldType]]"
+                        t-as="operator"
+                        t-key="operator_index"
+                        t-att-value="operator.symbol"
+                        t-att-selected="operator_index === condition.operator"
+                        t-esc="operator.description"
+                    />
+                </select>
+                <span
+                    t-if="!('value' in selectedOperator)"
+                    class="o_generator_menu_value"
+                >
+                    <t t-if="fieldType === 'date'">
+                        <DatePicker
+                            date="condition.value[0]"
+                            t-on-datetime-changed="_onDateChanged(condition, 0)"
+                        />
+                        <DatePicker
+                            t-if="selectedOperator.symbol === 'between'"
+                            date="condition.value[1]"
+                            t-on-datetime-changed="_onDateChanged(condition, 1)"
+                        />
+                    </t>
+                    <t t-elif="fieldType === 'datetime'">
+                        <DateTimePicker
+                            date="condition.value[0]"
+                            t-on-datetime-changed="_onDateChanged(condition, 0)"
+                        />
+                        <DateTimePicker
+                            t-if="selectedOperator.symbol === 'between'"
+                            date="condition.value[1]"
+                            t-on-datetime-changed="_onDateChanged(condition, 1)"
+                        />
+                    </t>
+                    <select
+                        t-elif="fieldType === 'selection'"
+                        class="o_input"
+                        t-on-change="_onValueInput(condition)"
+                    >
+                        <option
+                            t-foreach="fields[condition.field].selection"
+                            t-as="option"
+                            t-key="option_index"
+                            t-att-value="option[0]"
+                            t-esc="option[1]"
+                        />
+                    </select>
+                    <input
+                        t-elif="fieldType === 'float'"
+                        class="o_input"
+                        step="0.01"
+                        t-att-type="DECIMAL_POINT === '.' ? 'number' : 'text'"
+                        t-attf-title="Number using {{ DECIMAL_POINT }} as decimal separator."
+                        t-attf-pattern="[0-9]+([\\{{ DECIMAL_POINT }}][0-9]+)?"
+                        t-att-value="condition.displayedValue"
+                        t-on-input="_onValueInput(condition)"
+                    />
+                    <input
+                        t-elif="['integer', 'id'].includes(fieldType)"
+                        class="o_input"
+                        step="1"
+                        type="number"
+                        t-att-value="condition.displayedValue"
+                        t-on-input="_onValueInput(condition)"
+                    />
+                    <input
+                        t-else=""
+                        type="text"
+                        class="o_input"
+                        t-att-value="condition.displayedValue"
+                        t-on-input="_onValueInput(condition)"
+                    />
+                </span>
+                <i
+                    t-if="state.conditions.length gt 1"
+                    class="fa fa-trash-o o_generator_menu_delete"
+                    role="image"
+                    aria-label="Delete"
+                    title="Delete"
+                    t-on-click="_onRemoveCondition(condition_index)"
+                />
+            </div>
+            <div class="o_add_filter_menu dropdown-item-text">
+                <button
+                    type="button"
+                    class="btn btn-primary o_apply_filter"
+                    t-on-click="_onApply"
+                >
+                    <t>Apply</t>
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary o_add_condition"
+                    t-on-click="_addDefaultCondition"
+                >
+                    <i class="fa fa-plus-circle" />
+                    <t>Add a condition</t>
+                </button>
+            </div>
+        </div>
+    </t>
+</template>
