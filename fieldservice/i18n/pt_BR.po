@@ -247,6 +247,12 @@ msgstr ""
 "Cantão"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
+msgid "Agreements"
+msgstr "Contratos"
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "All"
 msgstr "Tudo"
@@ -255,6 +261,12 @@ msgstr "Tudo"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_operation_order
 msgid "All Orders"
 msgstr "Todos os Ordens"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_all_ids
+msgid "All relations with current partner"
+msgstr "Todas as relações com o parceiro atual"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
@@ -836,6 +848,12 @@ msgid "Current Location"
 msgstr "Localização Atual"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Local do Cliente"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
 msgid "Customer Payment Terms"
@@ -1320,6 +1338,24 @@ msgstr "Agrupar Por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
 msgid "Has Unreconciled Entries"
 msgstr "Tem Entradas não Reconciliadas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_type_id
+msgid "Has relation of type"
+msgstr "Tem Relação do Tipo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_id
+msgid "Has relation with"
+msgstr "Tem Relação Com"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_category_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_category_id
+msgid "Has relation with a partner in category"
+msgstr "Tem relação com um parceiro na categoria"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -2083,6 +2119,18 @@ msgid "Message for Invoice"
 msgstr "Mensagem para Fatura"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
+msgid "Message for Sales Order"
+msgstr "Mensagem para Pedido de Vendas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Mensagem para Separação de Estoque"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2602,6 +2650,18 @@ msgid "Related Partner"
 msgstr "Parceiro Relacionado"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
+msgid "Relation Count"
+msgstr "Contagem de Relações"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
+msgid "Relation valid"
+msgstr "Relação válida"
+
+#. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
 msgstr "Relatórios"
@@ -2651,10 +2711,28 @@ msgid "SMS Delivery error"
 msgstr "Erro de entrega de SMS"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
+msgid "Sale Order Count"
+msgstr "Contagem de Pedidos de Venda"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
+msgid "Sales Order"
+msgstr "Pedidos de Venda"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
 msgid "Sales Team"
 msgstr "Equipe de Vendas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
+msgid "Sales Warnings"
+msgstr "Avisos de Vendas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2737,7 +2815,11 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
@@ -2893,6 +2975,12 @@ msgstr ""
 "Atrasado: Data definida já passou\n"
 "Hoje: Data de atividade é hoje\n"
 "Planejado: Atividades futuras."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr "Separação de Estoque"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -3052,6 +3140,23 @@ msgid ""
 msgstr ""
 "O parceiro tem pelo menos um débito e um crédito não reconciliados desde a "
 "última vez em que a conciliação de faturas e pagamentos foi realizada."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"O local de estoque usado como destino ao enviar mercadorias para este "
+"contato."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"O local de estoque usado como fonte ao receber mercadorias deste contato."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3327,6 +3432,12 @@ msgid "Vehicles"
 msgstr "Veículos"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Localização de Fornecedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
@@ -3496,12 +3607,6 @@ msgstr "modelos"
 #~ msgid "# Vendor Bills"
 #~ msgstr "# Contas de Fornecedores"
 
-#~ msgid "Agreements"
-#~ msgstr "Contratos"
-
-#~ msgid "All relations with current partner"
-#~ msgstr "Todas as relações com o parceiro atual"
-
 #~ msgid "Apply"
 #~ msgstr "Aplicar"
 
@@ -3537,9 +3642,6 @@ msgstr "modelos"
 #~ msgid "Create a schedule."
 #~ msgstr "Crie um cronograma."
 
-#~ msgid "Customer Location"
-#~ msgstr "Local do Cliente"
-
 #~ msgid "Definition"
 #~ msgstr "Definição"
 
@@ -3548,15 +3650,6 @@ msgstr "modelos"
 
 #~ msgid "Districts"
 #~ msgstr "Cidades"
-
-#~ msgid "Has relation of type"
-#~ msgstr "Tem Relação do Tipo"
-
-#~ msgid "Has relation with"
-#~ msgstr "Tem Relação Com"
-
-#~ msgid "Has relation with a partner in category"
-#~ msgstr "Tem relação com um parceiro na categoria"
 
 #~ msgid "If checked new messages require your attention."
 #~ msgstr "Se marcado, novas mensagens solicitarão sua atenção."
@@ -3572,12 +3665,6 @@ msgstr "modelos"
 
 #~ msgid "Message for Purchase Order"
 #~ msgstr "Mensagem para Ordem de Compra"
-
-#~ msgid "Message for Sales Order"
-#~ msgstr "Mensagem para Pedido de Vendas"
-
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Mensagem para Separação de Estoque"
 
 #~ msgid "Overdue"
 #~ msgstr "Vencido"
@@ -3597,23 +3684,8 @@ msgstr "modelos"
 #~ msgid "Regions"
 #~ msgstr "Regiões"
 
-#~ msgid "Relation Count"
-#~ msgstr "Contagem de Relações"
-
-#~ msgid "Relation valid"
-#~ msgstr "Relação válida"
-
 #~ msgid "Route"
 #~ msgstr "Rota"
-
-#~ msgid "Sale Order Count"
-#~ msgstr "Contagem de Pedidos de Venda"
-
-#~ msgid "Sales Order"
-#~ msgstr "Pedidos de Venda"
-
-#~ msgid "Sales Warnings"
-#~ msgstr "Avisos de Vendas"
 
 #~ msgid "Schedules"
 #~ msgstr "Horários"
@@ -3624,22 +3696,8 @@ msgstr "modelos"
 #~ msgid "State Names"
 #~ msgstr "Nomes do Estado"
 
-#~ msgid "Stock Picking"
-#~ msgstr "Separação de Estoque"
-
 #~ msgid "Supplier Currency"
 #~ msgstr "Moeda do Fornecedor"
-
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como destino ao enviar mercadorias para este "
-#~ "contato."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como fonte ao receber mercadorias deste contato."
 
 #~ msgid ""
 #~ "This field holds the image used as avatar for this contact, limited to "
@@ -3662,9 +3720,6 @@ msgstr "modelos"
 #~ msgstr ""
 #~ "Usado pelos aplicativos de vendas e compras para selecionar o endereço "
 #~ "relevante, dependendo do contexto."
-
-#~ msgid "Vendor Location"
-#~ msgstr "Localização de Fornecedor"
 
 #~ msgid "ZIP Codes"
 #~ msgstr "CEPs"
