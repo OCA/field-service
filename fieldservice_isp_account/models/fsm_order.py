@@ -139,10 +139,7 @@ class FSMOrder(models.Model):
             if order.employee_timesheet_ids:
                 order.account_stage = "confirmed"
 
-    def account_create_invoice(self):
-        fpos = self._get_fpos()
-        invoice_vals = self._get_invoice_vals(fpos)
-        price_list = self._get_pricelist()
+    def _get_invoice_line_vals(self, fpos, price_list, invoice_vals):
         invoice_line_vals = []
         for cost in self.contractor_cost_ids:
             invoice_line_vals.append(
@@ -164,10 +161,15 @@ class FSMOrder(models.Model):
                     ),
                 )
             )
+        return invoice_line_vals
 
+    def account_create_invoice(self):
+        fpos = self._get_fpos()
+        invoice_vals = self._get_invoice_vals(fpos)
+        price_list = self._get_pricelist()
+        invoice_line_vals = self._get_invoice_line_vals(fpos, price_list, invoice_vals)
         invoice_vals.update({"invoice_line_ids": invoice_line_vals})
         invoice = self.env["account.move"].sudo().create(invoice_vals)
-
         invoice._recompute_tax_lines()
         self.account_stage = "invoiced"
         return invoice
