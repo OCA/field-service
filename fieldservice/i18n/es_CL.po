@@ -841,6 +841,12 @@ msgid "Current Location"
 msgstr "Ubicación Actual"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Ubicación del Cliente"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
 msgid "Customer Payment Terms"
@@ -2081,6 +2087,12 @@ msgid "Message for Invoice"
 msgstr "Mensaje para factura"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Mensaje para Despacho"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2736,7 +2748,9 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
@@ -2893,6 +2907,12 @@ msgstr ""
 "Atrasado: la fecha de vencimiento ya pasó\n"
 "Hoy: la fecha de actividad es hoy\n"
 "Planificado: Actividades futuras."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr "Despacho"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -3053,6 +3073,24 @@ msgid ""
 msgstr ""
 "El socio tiene al menos un débito y crédito no conciliado desde la última "
 "vez que se realizó la conciliación de facturas y pagos."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"La ubicación de stock utilizada como destino al enviar mercancías a este "
+"contacto."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"La ubicación de stock utilizada como fuente al recibir productos de este "
+"contacto."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3326,6 +3364,12 @@ msgid "Vehicles"
 msgstr "Vehículos"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Ubicación de Proveedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
@@ -3528,9 +3572,6 @@ msgstr "plantillas"
 #~ msgid "Create a schedule."
 #~ msgstr "Crea un horario."
 
-#~ msgid "Customer Location"
-#~ msgstr "Ubicación del Cliente"
-
 #~ msgid "Definition"
 #~ msgstr "Definición"
 
@@ -3575,9 +3616,6 @@ msgstr "plantillas"
 
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensaje para Pedido de Venta"
-
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Mensaje para Despacho"
 
 #~ msgid "Overdue"
 #~ msgstr "Atrasado"
@@ -3634,9 +3672,6 @@ msgstr "plantillas"
 #~ msgid "State Names"
 #~ msgstr "Nombre de Estado"
 
-#~ msgid "Stock Picking"
-#~ msgstr "Despacho"
-
 #~ msgid "Supplier Currency"
 #~ msgstr "Moneda de Proveedor"
 
@@ -3651,18 +3686,6 @@ msgstr "plantillas"
 #~ "valor para este campo. Debe usar la misma zona horaria que de otro modo "
 #~ "se usa para elegir y representar valores de fecha y hora: la zona horaria "
 #~ "de su computadora."
-
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "La ubicación de stock utilizada como destino al enviar mercancías a este "
-#~ "contacto."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "La ubicación de stock utilizada como fuente al recibir productos de este "
-#~ "contacto."
 
 #~ msgid ""
 #~ "This currency will be used, instead of the default one, for purchases "
@@ -3695,9 +3718,6 @@ msgstr "plantillas"
 #~ msgstr ""
 #~ "Utilizado por las aplicaciones de ventas y compras para seleccionar la "
 #~ "dirección relevante según el contexto."
-
-#~ msgid "Vendor Location"
-#~ msgstr "Ubicación de Proveedor"
 
 #~ msgid "ZIP Codes"
 #~ msgstr "Código Postal"
