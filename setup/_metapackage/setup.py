@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_project',
         'odoo14-addon-fieldservice_route',
         'odoo14-addon-fieldservice_skill',
+        'odoo14-addon-fieldservice_stock',
         'odoo14-addon-fieldservice_timeline',
     ],
     classifiers=[
