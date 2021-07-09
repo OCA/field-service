@@ -8,34 +8,49 @@ from odoo.exceptions import ValidationError
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    def _prepare_inv_line_for_stock_request(self, stock_request, invoice=False):
-        accounts = stock_request.product_id.product_tmpl_id.get_product_accounts()
+    def _get_stock_request_invoice_line_vals(
+        self, stock_request, fpos, price_list, invoice_vals
+    ):
+        price = price_list.get_product_price(
+            product=stock_request.product_id,
+            quantity=stock_request.product_uom_qty,
+            partner=invoice_vals.get("partner_id"),
+            date=False,
+            uom_id=stock_request.product_uom_id.id,
+        )
+        template = stock_request.product_id.product_tmpl_id
+        accounts = template.get_product_accounts()
         account = accounts["income"]
+        taxes = template.taxes_id
+        tax_ids = fpos.map_tax(taxes)
         if stock_request.direction == "inbound":
             quantity = -stock_request.qty_done
         else:
             quantity = stock_request.qty_done
-        vals = {
+        return {
             "product_id": stock_request.product_id.id,
             "quantity": quantity,
             "name": stock_request.product_id.name,
-            "price_unit": 0,
+            "price_unit": price,
             "show_in_report": False,
             "account_id": account.id,
-            "move_id": invoice.id,
+            "tax_ids": [(6, 0, tax_ids.ids)],
         }
-        return vals
 
-    def _create_inv_line_for_stock_requests(self, invoice=False):
-        for stock_request in self.stock_request_ids:
-            vals = self._prepare_inv_line_for_stock_request(stock_request, invoice)
-            self.env["account.move.line"].create(vals)
-
-    def account_create_invoice(self):
-        invoice = super(FSMOrder, self).account_create_invoice()
+    def _get_invoice_line_vals(self, fpos, price_list, invoice_vals):
+        res = super()._get_invoice_line_vals(fpos, price_list, invoice_vals)
         if self.location_id.inventory_location_id.usage == "customer":
-            self._create_inv_line_for_stock_requests(invoice)
-        return invoice
+            for stock_request in self.stock_request_ids:
+                res.append(
+                    (
+                        0,
+                        0,
+                        self._get_stock_request_invoice_line_vals(
+                            stock_request, fpos, price_list, invoice_vals
+                        ),
+                    )
+                )
+        return res
 
     def account_no_invoice(self):
         res = super(FSMOrder, self).account_no_invoice()
@@ -75,3 +90,26 @@ class FSMOrder(models.Model):
                 invoice = self.env["account.move"].sudo().create(vals)
             self._create_inv_line_for_stock_requests(invoice)
         return res
+
+    def _create_inv_line_for_stock_requests(self, invoice=False):
+        for stock_request in self.stock_request_ids:
+            vals = self._prepare_inv_line_for_stock_request(stock_request, invoice)
+            self.env["account.move.line"].create(vals)
+
+    def _prepare_inv_line_for_stock_request(self, stock_request, invoice=False):
+        accounts = stock_request.product_id.product_tmpl_id.get_product_accounts()
+        account = accounts["income"]
+        if stock_request.direction == "inbound":
+            quantity = -stock_request.qty_done
+        else:
+            quantity = stock_request.qty_done
+        vals = {
+            "product_id": stock_request.product_id.id,
+            "quantity": quantity,
+            "name": stock_request.product_id.name,
+            "price_unit": 0,
+            "show_in_report": False,
+            "account_id": account.id,
+            "move_id": invoice.id,
+        }
+        return vals
