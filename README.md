@@ -26,6 +26,7 @@ addon | version | summary
 [fieldservice_crm](fieldservice_crm/) | 14.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_distribution](fieldservice_distribution/) | 14.0.1.0.0 | Manage your distribution structure
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 14.0.1.0.0 | Field Service workflow for Internet Service Providers
+[fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 14.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
 [fieldservice_route](fieldservice_route/) | 14.0.1.0.0 | Organize the routes of each day.
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
