@@ -258,6 +258,12 @@ msgid "All Orders"
 msgstr "Todas las Órdenes"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_all_ids
+msgid "All relations with current partner"
+msgstr "Todas las relaciones con el socio actual"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
@@ -1330,6 +1336,24 @@ msgstr "Agrupar Por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
 msgid "Has Unreconciled Entries"
 msgstr "Tiene Entradas no Reconciliada"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_type_id
+msgid "Has relation of type"
+msgstr "Tiene relación de tipo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_id
+msgid "Has relation with"
+msgstr "Tiene relación con"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_category_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_category_id
+msgid "Has relation with a partner in category"
+msgstr "Tiene relación con un compañero en la categoría"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -2612,6 +2636,18 @@ msgid "Related Partner"
 msgstr "Contacto Relacionado"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
+msgid "Relation Count"
+msgstr "Recuento de Relaciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
+msgid "Relation valid"
+msgstr "Relación Válida"
+
+#. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
 msgstr "Informes"
@@ -3534,9 +3570,6 @@ msgstr "plantillas"
 #~ msgid "Agreements"
 #~ msgstr "Acuerdos"
 
-#~ msgid "All relations with current partner"
-#~ msgstr "Todas las relaciones con el socio actual"
-
 #~ msgid "Apply"
 #~ msgstr "Aplicar"
 
@@ -3580,15 +3613,6 @@ msgstr "plantillas"
 
 #~ msgid "Districts"
 #~ msgstr "Distritos"
-
-#~ msgid "Has relation of type"
-#~ msgstr "Tiene relación de tipo"
-
-#~ msgid "Has relation with"
-#~ msgstr "Tiene relación con"
-
-#~ msgid "Has relation with a partner in category"
-#~ msgstr "Tiene relación con un compañero en la categoría"
 
 #~ msgid "If checked new messages require your attention."
 #~ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
@@ -3634,12 +3658,6 @@ msgstr "plantillas"
 
 #~ msgid "Regions"
 #~ msgstr "Regiones"
-
-#~ msgid "Relation Count"
-#~ msgstr "Recuento de Relaciones"
-
-#~ msgid "Relation valid"
-#~ msgstr "Relación Válida"
 
 #~ msgid "Route"
 #~ msgstr "Ruta"
