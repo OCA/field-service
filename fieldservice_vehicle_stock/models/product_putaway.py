@@ -3,19 +3,14 @@
 from odoo import api, models
 
 
-class PutAwayStrategy(models.Model):
-    _inherit = "product.putaway"
+class StockPutawayRule(models.Model):
+    _inherit = "stock.putaway.rule"
 
     @api.model
     def _get_putaway_options(self):
         res = super()._get_putaway_options()
         res.append(("vehicle", "Location of the vehicle"))
         return res
-
-    def putaway_apply(self, product):
-        if self.method == "vehicle":
-            return self.get_vehicle_location()
-        return super().putaway_apply(product)
 
     @api.model
     def get_vehicle_location(self):
