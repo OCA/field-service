@@ -1,11 +1,5 @@
 <odoo>
 
-    <!-- Putaway Strategy -->
-    <record id="putaway_vehicle" model="product.putaway">
-        <field name="name">Vehicle Assignment</field>
-        <field name="method">vehicle</field>
-    </record>
-
     <record id="stock_location_vehicle" model="stock.location">
         <field name="name">Vehicles</field>
         <field name="usage">view</field>
@@ -17,7 +11,6 @@
         <field name="usage">internal</field>
         <field name="location_id" ref="stock_location_vehicle" />
         <field name="company_id" ref="base.main_company" />
-        <field name="putaway_strategy_id" ref="putaway_vehicle" />
     </record>
 
     <data noupdate="1">
@@ -34,7 +27,8 @@
             <field name="name">Vehicle Loading</field>
             <field name="sequence_id" ref="seq_picking_type_output_to_vehicle" />
             <field name="code">internal</field>
-            <field name="warehouse_id" eval="False" />
+            <field name="sequence_code">PICK</field>
+            <!-- <field name="warehouse_id" eval="False" /> -->
             <field name="default_location_src_id" ref="stock.stock_location_stock" />
             <field name="default_location_dest_id" ref="stock_location_vehicle" />
         </record>
@@ -51,6 +45,7 @@
             <field name="name">Location Delivery</field>
             <field name="sequence_id" ref="seq_picking_type_vehicle_to_location" />
             <field name="code">outgoing</field>
+            <field name="sequence_code">OUT</field>
             <field name="warehouse_id" eval="False" />
             <field name="default_location_src_id" ref="stock_location_vehicle" />
         </record>
@@ -101,7 +96,8 @@
             <field name="name">Location Pickup</field>
             <field name="sequence_id" ref="seq_picking_type_location_to_vehicle" />
             <field name="code">incoming</field>
-            <field name="warehouse_id" eval="False" />
+            <field name="sequence_code">IN</field>
+            <!-- <field name="warehouse_id" eval="False" /> -->
             <field name="default_location_dest_id" ref="stock_location_vehicle" />
             <field
                 name="return_picking_type_id"
@@ -131,7 +127,8 @@
             <field name="name">Vehicle Returns</field>
             <field name="sequence_id" ref="seq_picking_type_vehicle_to_input" />
             <field name="code">internal</field>
-            <field name="warehouse_id" eval="False" />
+            <field name="sequence_code">PICK</field>
+            <!-- <field name="warehouse_id" eval="False" /> -->
             <field name="default_location_src_id" ref="stock_location_vehicle" />
             <field name="default_location_dest_id" ref="stock.stock_location_stock" />
             <field name="return_picking_type_id" ref="picking_type_output_to_vehicle" />
@@ -146,18 +143,5 @@
             <field name="picking_type_id" ref="picking_type_vehicle_to_input" />
             <field name="route_id" ref="route_location_return" />
         </record>
-
-        <!-- Picking Types: set the return type -->
-        <record id="picking_type_output_to_vehicle" model="stock.picking.type">
-            <field name="return_picking_type_id" ref="picking_type_vehicle_to_input" />
-        </record>
-
-        <record id="picking_type_vehicle_to_location" model="stock.picking.type">
-            <field
-                name="return_picking_type_id"
-                ref="picking_type_location_to_vehicle"
-            />
-        </record>
-
     </data>
 </odoo>
