@@ -24,6 +24,7 @@ addon | version | summary
 [fieldservice_account](fieldservice_account/) | 14.0.1.0.0 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 14.0.1.0.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_agreement](fieldservice_agreement/) | 14.0.1.0.0 | Manage Field Service agreements and contracts
+[fieldservice_calendar](fieldservice_calendar/) | 14.0.1.0.0 | Add calendar to FSM Orders
 [fieldservice_crm](fieldservice_crm/) | 14.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_distribution](fieldservice_distribution/) | 14.0.1.0.0 | Manage your distribution structure
 [fieldservice_isp_account](fieldservice_isp_account/) | 14.0.1.0.0 | Invoice Field Service orders based on employee time or contractor costs
