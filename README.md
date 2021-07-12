@@ -25,6 +25,7 @@ addon | version | summary
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 14.0.1.0.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_crm](fieldservice_crm/) | 14.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_distribution](fieldservice_distribution/) | 14.0.1.0.0 | Manage your distribution structure
+[fieldservice_isp_account](fieldservice_isp_account/) | 14.0.1.0.0 | Invoice Field Service orders based on employee time or contractor costs
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 14.0.1.0.0 | Field Service workflow for Internet Service Providers
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 14.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
