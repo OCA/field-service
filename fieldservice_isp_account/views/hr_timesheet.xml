@@ -1,0 +1,39 @@
+<odoo>
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="name">My Timesheets</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="context">{
+                "search_default_week":1,
+            }</field>
+        <field name="search_view_id" ref="hr_timesheet.hr_timesheet_line_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Record a new activity
+              </p>
+            <p>
+                You can register and track your workings hours by project every
+                day. Every time spent on a project will become a cost and can be re-invoiced to
+                customers if required.
+              </p>
+        </field>
+    </record>
+    <!-- Overwrite User Record Rule-->
+    <record id="hr_timesheet.timesheet_line_rule_user" model="ir.rule">
+        <field name="name">account.analytic.line.timesheet.user</field>
+        <field name="active" eval="0" />
+        <field name="model_id" ref="analytic.model_account_analytic_line" />
+        <field
+            name="domain_force"
+        >[('user_id', '=', user.id), ('project_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('hr_timesheet.group_hr_timesheet_user'))]"
+        />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+        <field name="perm_read" eval="0" />
+    </record>
+</odoo>
