@@ -1,6 +1,6 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
@@ -9,7 +9,6 @@ class StockPicking(models.Model):
 
     fsm_vehicle_id = fields.Many2one("fsm.vehicle", string="Vehicle")
 
-    @api.multi
     def action_assign(self):
         res = {}
         for rec in self:
@@ -43,7 +42,6 @@ class StockPicking(models.Model):
             )
         return res
 
-    @api.multi
     def write(self, vals):
         if vals.get("fsm_order_id", False):
             fsm_order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
