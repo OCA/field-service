@@ -1,0 +1,48 @@
+<odoo>
+    <template
+        id="assets_backend"
+        name="web_timeline_custom assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/fieldservice_timeline/static/src/js/custom_fillter.js"
+            />
+            <script
+                type="text/javascript"
+                src="/fieldservice_timeline/static/src/js/fsm_gantt.js"
+            />
+            <link
+                rel="stylesheet"
+                type="text/less"
+                href="/fieldservice_timeline/static/src/scss/fsm_gantt_person_filter.scss"
+            />
+            <script
+                type="text/javascript"
+                src="/fieldservice_timeline/static/src/js/fsm_gantt_person_filter.js"
+            />
+
+        </xpath>
+    </template>
+    <record id="fsm_order_timeline_view" model="ir.ui.view">
+        <field name="name">fsm.order.timeline</field>
+        <field name="model">fsm.order</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline
+                date_start="scheduled_date_start"
+                date_stop="scheduled_date_end"
+                string="Orders"
+                default_group_by="person_id"
+                event_open_popup="true"
+                colors="#ffffff:stage_id=='New';"
+                custom_color="true"
+            >
+            </timeline>
+        </field>
+    </record>
+    <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="view_mode">kanban,timeline,tree,form,calendar</field>
+    </record>
+</odoo>

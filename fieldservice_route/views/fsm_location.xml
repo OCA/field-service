@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="fsm_location_form_view_route_inherit" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="fsm_route_id" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

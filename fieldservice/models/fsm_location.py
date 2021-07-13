@@ -11,7 +11,6 @@ class FSMLocation(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Field Service Location"
 
-    ref = fields.Char(string="Internal Reference", copy=False)
     direction = fields.Char(string="Directions")
     partner_id = fields.Many2one(
         "res.partner",
@@ -116,14 +115,6 @@ class FSMLocation(models.Model):
             recs = self.search([("name", operator, name)] + args, limit=limit)
         return recs.name_get()
 
-    _sql_constraints = [
-        (
-            "fsm_location_ref_uniq",
-            "unique (ref)",
-            "This internal reference already exists!",
-        )
-    ]
-
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         stage_ids = self.env["fsm.stage"].search([("stage_type", "=", "location")])
@@ -184,10 +175,12 @@ class FSMLocation(models.Model):
         self.territory_manager_id = self.territory_id.person_id or False
         self.branch_id = self.territory_id.branch_id or False
         if self.env.user.company_id.auto_populate_persons_on_location:
+            person_vals_list = []
             for person in self.territory_id.person_ids:
-                self.env["fsm.location.person"].create(
-                    {"location_id": self.id, "person_id": person.id, "sequence": 10}
+                person_vals_list.append(
+                    (0, 0, {"person_id": person.id, "sequence": 10})
                 )
+            self.person_ids = self.territory_id and person_vals_list or False
 
     @api.onchange("branch_id")
     def _onchange_branch_id(self):
