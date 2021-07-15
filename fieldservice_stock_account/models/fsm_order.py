@@ -25,7 +25,7 @@ class FSMOrder(models.Model):
     def _create_inv_line_for_stock_requests(self, invoice=False):
         for stock_request in self.stock_request_ids:
             vals = self._prepare_inv_line_for_stock_request(stock_request, invoice)
-            self.env["account.invoice.line"].create(vals)
+            self.env["account.move.line"].create(vals)
 
     def account_create_invoice(self):
         invoice = super().account_create_invoice()
@@ -58,7 +58,7 @@ class FSMOrder(models.Model):
                     "fiscal_position_id": fpos.id or False,
                     "fsm_order_id": self.id,
                 }
-                invoice = self.env["account.invoice"].sudo().create(vals)
+                invoice = self.env["account.move"].sudo().create(vals)
             else:
                 fpos = self.location_id.customer_id.property_account_position_id
                 vals = {
@@ -68,8 +68,6 @@ class FSMOrder(models.Model):
                     "fiscal_position_id": fpos.id or False,
                     "fsm_order_id": self.id,
                 }
-                invoice = self.env["account.invoice"].sudo().create(vals)
+                invoice = self.env["account.move"].sudo().create(vals)
             self._create_inv_line_for_stock_requests(invoice)
-            # Validate and paid invoice
-            invoice.action_invoice_open()
         return res
