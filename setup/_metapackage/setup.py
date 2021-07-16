@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_calendar',
         'odoo14-addon-fieldservice_crm',
         'odoo14-addon-fieldservice_distribution',
+        'odoo14-addon-fieldservice_equipment_stock',
         'odoo14-addon-fieldservice_isp_account',
         'odoo14-addon-fieldservice_isp_flow',
         'odoo14-addon-fieldservice_partner_multi_relation',
