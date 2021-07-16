@@ -27,6 +27,7 @@ addon | version | summary
 [fieldservice_calendar](fieldservice_calendar/) | 14.0.1.0.0 | Add calendar to FSM Orders
 [fieldservice_crm](fieldservice_crm/) | 14.0.1.0.0 | Create Field Service orders from the CRM
 [fieldservice_distribution](fieldservice_distribution/) | 14.0.1.0.0 | Manage your distribution structure
+[fieldservice_equipment_stock](fieldservice_equipment_stock/) | 14.0.1.0.0 | Integrate stock operations with your field service equipments
 [fieldservice_isp_account](fieldservice_isp_account/) | 14.0.1.0.0 | Invoice Field Service orders based on employee time or contractor costs
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 14.0.1.0.0 | Field Service workflow for Internet Service Providers
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 14.0.1.0.0 | Manage relations between contacts, companies and locations
