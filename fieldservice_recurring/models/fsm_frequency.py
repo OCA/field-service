@@ -57,9 +57,7 @@ class FSMFrequency(models.Model):
         help="""Checking this box will make this an exclusive rule. Exclusive
             rules prevent the configured days from being a schedule option""",
     )
-    company_id = fields.Many2one(
-        "res.company", "Company", default=lambda self: self.env.user.company_id
-    )
+    company_id = fields.Many2one("res.company", "Company")
     use_bymonthday = fields.Boolean(
         string="Use Day of Month",
         help="""When selected you will be able to specify which calendar day
