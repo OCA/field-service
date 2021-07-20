@@ -8,7 +8,7 @@
                 <field name="field_service_tracking" widget="radio" />
                 <field
                     name="fsm_order_template_id"
-                    attrs="{'invisible': [('field_service_tracking', '=', 'no')], 'required': [('field_service_tracking', '!=', 'no')]}"
+                    attrs="{'invisible': [('field_service_tracking', '=', 'no')]}"
                 />
             </xpath>
         </field>
