@@ -108,4 +108,4 @@ class ResConfigSettings(models.TransientModel):
     @api.onchange("module_fieldservice_purchase")
     def _onchange_module_fieldservice_purchase(self):
         if self.module_fieldservice_purchase:
-            self.group_manage_vendor_price = True
+            self.group_product_variant = True
