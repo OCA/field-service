@@ -32,6 +32,7 @@ addon | version | summary
 [fieldservice_isp_flow](fieldservice_isp_flow/) | 14.0.1.0.0 | Field Service workflow for Internet Service Providers
 [fieldservice_partner_multi_relation](fieldservice_partner_multi_relation/) | 14.0.1.0.0 | Manage relations between contacts, companies and locations
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
+[fieldservice_purchase](fieldservice_purchase/) | 14.0.1.0.0 | Manage FSM Purchases
 [fieldservice_route](fieldservice_route/) | 14.0.1.0.0 | Organize the routes of each day.
 [fieldservice_sale](fieldservice_sale/) | 14.0.1.0.0 | Sell field services.
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
