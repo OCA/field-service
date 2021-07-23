@@ -29,6 +29,8 @@ class TestFSMOrder(TransactionCase):
             f.date_end = f.date_start + timedelta(hours=hours_diff)
             f.request_early = fields.Datetime.today()
         order = f.save()
+        order._get_stage_color()
+        self.assertEqual(order.custom_color, order.stage_id.custom_color)
         # Test _compute_duration
         self.assertEqual(order.duration, hours_diff)
         # Test _compute_request_late()
