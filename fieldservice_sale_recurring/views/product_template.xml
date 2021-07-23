@@ -7,18 +7,10 @@
             ref="fieldservice_sale.view_product_fieldservice_form"
         />
         <field name="arch" type="xml">
-            <field name="fsm_order_template_id" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required': [('field_service_tracking', 'in', ['sale','line'])],
-                                         'invisible':[('field_service_tracking', 'in', ['no','recurring'])]}
-                </attribute>
-            </field>
             <field name="fsm_order_template_id" position="after">
                 <field
                     name="fsm_recurring_template_id"
-                    attrs="{'invisible':[('field_service_tracking', 'not in', ['recurring'])],
-                               'required': [('field_service_tracking', '=', 'recurring')]}"
+                    attrs="{'invisible':[('field_service_tracking', 'not in', ['recurring'])]}"
                 />
             </field>
         </field>

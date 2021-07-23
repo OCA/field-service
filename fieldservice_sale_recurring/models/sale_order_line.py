@@ -18,19 +18,19 @@ class SaleOrderLine(models.Model):
     def _field_create_fsm_recurring_prepare_values(self):
         self.ensure_one()
         template = self.product_id.fsm_recurring_template_id
+        product = self.product_id
         note = self.name
         if template.description:
             note += "\n " + template.description
         return {
-            "customer_id": self.order_id.partner_id.id,
             "location_id": self.order_id.fsm_location_id.id,
             "start_date": self.order_id.expected_date,
             "fsm_recurring_template_id": template.id,
             "description": note,
             "max_orders": template.max_orders,
             "fsm_frequency_set_id": template.fsm_frequency_set_id.id,
-            "fsm_order_template_id": template.fsm_order_template_id.id,
-            "sale_id": self.order_id.id,
+            "fsm_order_template_id": product.fsm_order_template_id.id
+            or template.fsm_order_template_id.id,
             "sale_line_id": self.id,
             "company_id": self.company_id.id,
         }
