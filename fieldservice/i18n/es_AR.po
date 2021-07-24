@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-18 19:49+0000\n"
+"PO-Revision-Date: 2021-07-24 18:49+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -37,7 +37,7 @@ msgstr "# Tareas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
 msgid "# Vendor Bills"
-msgstr ""
+msgstr "# Facturas de Proveedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
@@ -376,6 +376,9 @@ msgid ""
 "Automatically send a confirmation email to the vendor X days before the "
 "expected receipt date, asking him to confirm the exact date."
 msgstr ""
+"Envíe automáticamente un correo electrónico de confirmación al proveedor X "
+"días antes de la fecha de recepción esperada, pidiéndole que confirme la "
+"fecha exacta."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
@@ -906,7 +909,7 @@ msgstr "Fecha"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Days Before Receipt"
-msgstr ""
+msgstr "Días Antes de la Recepción"
 
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
@@ -2148,7 +2151,7 @@ msgstr "Mensaje para Factura"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
 msgid "Message for Purchase Order"
-msgstr ""
+msgstr "Mensaje para la Orden de Compras"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
@@ -2289,6 +2292,8 @@ msgstr "Número de Acciones"
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Number of days to send reminder email before the promised receipt date"
 msgstr ""
+"Número de días para enviar un correo electrónico de recordatorio antes de la "
+"fecha de recepción prometida"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
@@ -2335,7 +2340,7 @@ msgstr "Horas de Oficina"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
 msgid "On-Time Delivery Rate"
-msgstr ""
+msgstr "Tasa de Entrega A Tiempo"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2506,6 +2511,8 @@ msgid ""
 "Over the past 12 months; the number of products received on time divided by "
 "the number of ordered products."
 msgstr ""
+"Durante los últimos 12 meses; el número de productos recibidos a tiempo "
+"dividido por el número de productos pedidos."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
@@ -2663,25 +2670,25 @@ msgstr "Proyectos y Tareas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
 msgid "Purchase Lines"
-msgstr ""
+msgstr "Líneas de Compra"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
 msgid "Purchase Order"
-msgstr ""
+msgstr "Orden de Compra"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
 msgid "Purchase Order Count"
-msgstr ""
+msgstr "Cuenta de Orden de Compra"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
 msgid "Receipt Reminder"
-msgstr ""
+msgstr "Recordatorio de Recepción"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -3101,7 +3108,7 @@ msgstr "Sub-ubicaciones"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
 msgid "Supplier Currency"
-msgstr ""
+msgstr "Moneda del Proveedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
@@ -3276,6 +3283,8 @@ msgid ""
 "This currency will be used, instead of the default one, for purchases from "
 "the current partner"
 msgstr ""
+"Esta moneda se utilizará, en lugar de la predeterminada, para las compras "
+"del contacto actual"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
