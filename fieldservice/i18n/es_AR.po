@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-09 21:48+0000\n"
+"PO-Revision-Date: 2021-07-24 18:49+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -32,6 +32,12 @@ msgstr "# Oportunidades"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
 msgid "# Tasks"
 msgstr "# Tareas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# Facturas de Proveedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
@@ -251,7 +257,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
 msgid "Agreements"
-msgstr ""
+msgstr "Acuerdos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -267,7 +273,7 @@ msgstr "Todas las Órdenes"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_all_ids
 msgid "All relations with current partner"
-msgstr ""
+msgstr "Todas las relaciones con el contacto actual"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
@@ -362,6 +368,17 @@ msgid ""
 "Automatically creates a day route when an order is assigned and scheduled"
 msgstr ""
 "Crea automáticamente una ruta de día cuando se asigna y programa un pedido"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__receipt_reminder_email
+msgid ""
+"Automatically send a confirmation email to the vendor X days before the "
+"expected receipt date, asking him to confirm the exact date."
+msgstr ""
+"Envíe automáticamente un correo electrónico de confirmación al proveedor X "
+"días antes de la fecha de recepción esperada, pidiéndole que confirme la "
+"fecha exacta."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
@@ -857,7 +874,7 @@ msgstr "Ubicación Actual"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
 msgid "Customer Location"
-msgstr ""
+msgstr "Ubicación del Cliente"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
@@ -887,6 +904,12 @@ msgstr "Tablero"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__date
 msgid "Date"
 msgstr "Fecha"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Days Before Receipt"
+msgstr "Días Antes de la Recepción"
 
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
@@ -1349,19 +1372,19 @@ msgstr "Tiene Entradas no Reconciliadas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_type_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_type_id
 msgid "Has relation of type"
-msgstr ""
+msgstr "Tiene relación de tipo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_id
 msgid "Has relation with"
-msgstr ""
+msgstr "Tiene relación con"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_category_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_category_id
 msgid "Has relation with a partner in category"
-msgstr ""
+msgstr "Tiene relación con un contacto en la categoría"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -2125,16 +2148,22 @@ msgid "Message for Invoice"
 msgstr "Mensaje para Factura"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
+msgid "Message for Purchase Order"
+msgstr "Mensaje para la Orden de Compras"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
 msgid "Message for Sales Order"
-msgstr ""
+msgstr "Mensaje para los Pedidos de Venta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
 msgid "Message for Stock Picking"
-msgstr ""
+msgstr "Mensaje para los Movimientos de Inventario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
@@ -2259,6 +2288,14 @@ msgid "Number of Actions"
 msgstr "Número de Acciones"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Number of days to send reminder email before the promised receipt date"
+msgstr ""
+"Número de días para enviar un correo electrónico de recordatorio antes de la "
+"fecha de recepción prometida"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error_counter
@@ -2298,6 +2335,12 @@ msgstr "Número de mensajes sin leer"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_id
 msgid "Office Hours"
 msgstr "Horas de Oficina"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
+msgid "On-Time Delivery Rate"
+msgstr "Tasa de Entrega A Tiempo"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2462,6 +2505,16 @@ msgid "Others"
 msgstr "Otros"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__on_time_rate
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__on_time_rate
+msgid ""
+"Over the past 12 months; the number of products received on time divided by "
+"the number of ordered products."
+msgstr ""
+"Durante los últimos 12 meses; el número de productos recibidos a tiempo "
+"dividido por el número de productos pedidos."
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
 msgid "Owned By"
 msgstr "Propiedad de"
@@ -2614,6 +2667,30 @@ msgid "Projects and Tasks"
 msgstr "Proyectos y Tareas"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
+msgid "Purchase Lines"
+msgstr "Líneas de Compra"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
+msgid "Purchase Order Count"
+msgstr "Cuenta de Orden de Compra"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
+msgid "Receipt Reminder"
+msgstr "Recordatorio de Recepción"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
 msgid "Record Type"
 msgstr "Tipo de Registro"
@@ -2659,13 +2736,13 @@ msgstr "Socio Relacionado"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
 msgid "Relation Count"
-msgstr ""
+msgstr "Cuenta de Relación"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
 msgid "Relation valid"
-msgstr ""
+msgstr "Relación válida"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
@@ -2720,13 +2797,13 @@ msgstr "Error de entrega de SMS"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
-msgstr ""
+msgstr "Cuenta del Pedido de Venta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedidos de Venta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
@@ -2738,7 +2815,7 @@ msgstr "Equipo de Ventas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
 msgid "Sales Warnings"
-msgstr ""
+msgstr "Advertencias de Ventas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2822,9 +2899,11 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__purchase_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
@@ -2987,7 +3066,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
 msgid "Stock Picking"
-msgstr ""
+msgstr "Movimiento de Inventario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -3024,6 +3103,12 @@ msgstr "Sub Ubicaciones"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Sub-Locations"
 msgstr "Sub-ubicaciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "Supplier Currency"
+msgstr "Moneda del Proveedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
@@ -3154,6 +3239,8 @@ msgstr ""
 msgid ""
 "The stock location used as destination when sending goods to this contact."
 msgstr ""
+"La ubicación de inventario utilizada como destino al enviar mercancías a "
+"este contacto."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
@@ -3161,6 +3248,8 @@ msgstr ""
 msgid ""
 "The stock location used as source when receiving goods from this contact."
 msgstr ""
+"La ubicación de inventario utilizada como fuente al recibir mercancías de "
+"este contacto."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3186,6 +3275,16 @@ msgid ""
 msgstr ""
 "Esta cuenta se utilizará en lugar de la predeterminada como la cuenta por "
 "cobrar del socio actual"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for purchases from "
+"the current partner"
+msgstr ""
+"Esta moneda se utilizará, en lugar de la predeterminada, para las compras "
+"del contacto actual"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
@@ -3440,7 +3539,7 @@ msgstr "Vehículos"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
 msgid "Vendor Location"
-msgstr ""
+msgstr "Ubicación del Vendedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
