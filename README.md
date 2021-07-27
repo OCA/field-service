@@ -39,6 +39,7 @@ addon | version | summary
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 14.0.1.0.0 | Execute server actions when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 14.0.1.0.0 | Integrate the logistics operations with Field Service
+[fieldservice_substatus](fieldservice_substatus/) | 14.0.1.0.0 | Add sub-statuses to Field Service orders
 [fieldservice_timeline](fieldservice_timeline/) | 14.0.1.1.1 | This module is a display timeline view of the Field Service order in Odoo.
 
 [//]: # (end addons)
