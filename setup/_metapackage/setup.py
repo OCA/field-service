@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice',
         'odoo14-addon-fieldservice_account',
         'odoo14-addon-fieldservice_account_analytic',
+        'odoo14-addon-fieldservice_account_payment',
         'odoo14-addon-fieldservice_activity',
         'odoo14-addon-fieldservice_agreement',
         'odoo14-addon-fieldservice_calendar',
