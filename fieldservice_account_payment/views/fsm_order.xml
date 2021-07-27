@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_fsm_order_form_inherit_acct_payment" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_account.view_fsm_order_form_inherit_account"
+        />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_payments"
+                    type="object"
+                    icon="fa-bars"
+                    attrs="{'invisible': [('payment_count', '=', 0)]}"
+                >
+                    <field name="payment_count" widget="statinfo" string="Payments" />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
