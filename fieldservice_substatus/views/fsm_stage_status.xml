@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Field Service Stage Status -->
+    <record id="fsm_stage_status_tree_view" model="ir.ui.view">
+        <field name="name">Order Sub-Status</field>
+        <field name="model">fsm.stage.status</field>
+        <field name="arch" type="xml">
+            <tree string="substatus">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_stage_status_form_view" model="ir.ui.view">
+        <field name="name">Order Sub-Status</field>
+        <field name="model">fsm.stage.status</field>
+        <field name="arch" type="xml">
+            <form string="substatus">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_stage_status" model="ir.actions.act_window">
+        <field name="name">Order Sub-Status</field>
+        <field name="res_model">fsm.stage.status</field>
+        <field name="view_id" ref="fsm_stage_status_tree_view" />
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an order sub-status.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_fsm_stage_status"
+        name="Sub-Status"
+        action="action_fsm_stage_status"
+        parent="fieldservice.menu_fsm_config_order"
+        sequence="21"
+    />
+
+</odoo>
