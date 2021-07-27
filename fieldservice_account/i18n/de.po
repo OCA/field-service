@@ -17,8 +17,22 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move__display_name
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_count
+#, fuzzy
+msgid "FSM Order Count"
+msgstr "Field-Service-Auftrag"
+
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_bank_statement_line__fsm_order_count
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move__fsm_order_count
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line__fsm_order_ids
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.account_invoice_form
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.invoice_search_view_fso
 #, fuzzy
@@ -37,8 +51,16 @@ msgid "Field Service Orders"
 msgstr "Field-Service-Auftrag"
 
 #. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_bank_statement_line__fsm_order_ids
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move__fsm_order_ids
 msgid "Field Service orders associated to this invoice"
+msgstr ""
+
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move__id
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line__id
+#: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order__id
+msgid "ID"
 msgstr ""
 
 #. module: fieldservice_account
@@ -63,7 +85,7 @@ msgstr ""
 
 #. module: fieldservice_account
 #: model:ir.model,name:fieldservice_account.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: fieldservice_account
@@ -71,12 +93,19 @@ msgstr ""
 msgid "Journal Item"
 msgstr ""
 
-#~ msgid "FSM Order"
-#~ msgstr "Field-Service-Auftrag"
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move____last_update
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
-#, fuzzy
-#~| msgid "FSM Order"
-#~ msgid "FSM Order Count"
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#~ msgid "FSM Order"
 #~ msgstr "Field-Service-Auftrag"
 
 #~ msgid "Analytic Account"
