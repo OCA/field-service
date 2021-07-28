@@ -21,7 +21,7 @@ addon | version | summary
 --- | --- | ---
 [base_territory](base_territory/) | 14.0.1.0.0 | This module allows you to define territories, branches, districts and regions to be used for Field Service operations or Sales.
 [fieldservice](fieldservice/) | 14.0.1.3.0 | Manage Field Service Locations, Workers and Orders
-[fieldservice_account](fieldservice_account/) | 14.0.1.0.0 | Track invoices linked to Field Service orders
+[fieldservice_account](fieldservice_account/) | 14.0.1.1.0 | Track invoices linked to Field Service orders
 [fieldservice_account_analytic](fieldservice_account_analytic/) | 14.0.1.0.0 | Track analytic accounts on Field Service locations and orders
 [fieldservice_account_payment](fieldservice_account_payment/) | 14.0.1.0.0 | Allow workers to collect payments from the order.
 [fieldservice_activity](fieldservice_activity/) | 14.0.1.0.0 | Field Service Activities are a set of actions that need to be performed on a service order
@@ -36,7 +36,7 @@ addon | version | summary
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 14.0.1.0.0 | Manage FSM Purchases
 [fieldservice_route](fieldservice_route/) | 14.0.1.0.0 | Organize the routes of each day.
-[fieldservice_sale](fieldservice_sale/) | 14.0.1.0.0 | Sell field services.
+[fieldservice_sale](fieldservice_sale/) | 14.0.1.1.0 | Sell field services.
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 14.0.1.0.0 | Execute server actions when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 14.0.1.0.0 | Integrate the logistics operations with Field Service
