@@ -36,7 +36,7 @@ addon | version | summary
 [fieldservice_project](fieldservice_project/) | 14.0.1.0.0 | Create field service orders from a project or project task
 [fieldservice_purchase](fieldservice_purchase/) | 14.0.1.0.0 | Manage FSM Purchases
 [fieldservice_route](fieldservice_route/) | 14.0.1.0.0 | Organize the routes of each day.
-[fieldservice_sale](fieldservice_sale/) | 14.0.1.1.0 | Sell field services.
+[fieldservice_sale](fieldservice_sale/) | 14.0.1.2.0 | Sell field services.
 [fieldservice_skill](fieldservice_skill/) | 14.0.1.0.0 | Manage your Field Service workers skills
 [fieldservice_stage_server_action](fieldservice_stage_server_action/) | 14.0.1.0.0 | Execute server actions when reaching a Field Service stage
 [fieldservice_stock](fieldservice_stock/) | 14.0.1.0.0 | Integrate the logistics operations with Field Service
