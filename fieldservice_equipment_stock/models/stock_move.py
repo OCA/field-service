@@ -17,8 +17,8 @@ class StockMove(models.Model):
             "current_stock_location_id": move_line.location_dest_id.id,
         }
 
-    def _action_done(self):
-        res = super()._action_done()
+    def _action_done(self, cancel_backorder=False):
+        res = super()._action_done(cancel_backorder)
         for rec in self:
             if (
                 rec.state == "done"
