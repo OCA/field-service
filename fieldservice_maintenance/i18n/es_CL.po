@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_maintenance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-01-16 22:38+0000\n"
+"Last-Translator: Nelson Ramírez Sánchez <info@konos.cl>\n"
+"Language-Team: none\n"
+"Language: es_CL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
+msgid "FSM"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_fsm_equipment
+msgid "Field Service Equipment"
+msgstr "Equipo de Servicio de Campo"
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_fsm_order
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_request__fsm_order_id
+msgid "Field Service Order"
+msgstr "Orden de servicio de campo"
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_fsm_order_type
+#, fuzzy
+msgid "Field Service Order Type"
+msgstr "Orden de servicio de campo"
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__internal_type
+msgid "Internal Type"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__is_fsm_equipment
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__is_fsm_equipment
+msgid "Is a FSM Equipment"
+msgstr "Es un equipo FSM"
+
+#. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.fsm_equipment_form_view_maintenance
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_maintenance_equipment
+msgid "Maintenance Equipment"
+msgstr "Equipo de mantenimiento"
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_maintenance_request
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__request_id
+msgid "Maintenance Request"
+msgstr "Peticion de mantenimiento"
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/models/maintenance_request.py:28
+#, python-format
+msgid "Missing current location on FSM equipment %s"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.hr_equipment_view_form
+msgid "Others"
+msgstr "Otros"
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__maintenance_equipment_id
+msgid "Related Maintenance Equipment"
+msgstr "Equipos de mantenimiento relacionados"
+
+#. module: fieldservice_maintenance
+#: selection:fsm.order.type,internal_type:0
+msgid "Repair"
+msgstr ""
