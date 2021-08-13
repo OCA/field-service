@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_equipment_stock',
         'odoo14-addon-fieldservice_isp_account',
         'odoo14-addon-fieldservice_isp_flow',
+        'odoo14-addon-fieldservice_maintenance',
         'odoo14-addon-fieldservice_partner_multi_relation',
         'odoo14-addon-fieldservice_project',
         'odoo14-addon-fieldservice_purchase',
