@@ -10,9 +10,7 @@
     "Brian McMaster, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": [
-        "fieldservice_stock",
-    ],
+    "depends": ["fieldservice_stock", "fieldservice_stock_request"],
     "data": [
         "security/ir.model.access.csv",
         "views/fsm_equipment.xml",
