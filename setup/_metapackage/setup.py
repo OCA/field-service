@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_substatus',
         'odoo14-addon-fieldservice_timeline',
         'odoo14-addon-fieldservice_vehicle',
+        'odoo14-addon-fieldservice_vehicle_stock',
     ],
     classifiers=[
         'Programming Language :: Python',
