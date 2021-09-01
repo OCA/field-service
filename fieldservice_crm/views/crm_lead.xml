@@ -26,9 +26,18 @@
                     />
                 </button>
             </xpath>
-            <field name="partner_id" position="after">
+            <xpath
+                expr="//group[@name='lead_partner']/field[@name='partner_id']"
+                position="after"
+            >
                 <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
-            </field>
+            </xpath>
+            <xpath
+                expr="//group[@name='opportunity_partner']/field[@name='partner_id']"
+                position="after"
+            >
+                <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
+            </xpath>
         </field>
     </record>
     <record id="fieldservice_crm_list_view" model="ir.ui.view">
