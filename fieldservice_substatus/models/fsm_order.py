@@ -27,5 +27,5 @@ class FSMOrder(models.Model):
     def _track_subtype(self, init_values):
         self.ensure_one()
         if "sub_stage_id" in init_values:
-            return "fieldservice_substatus.fso_substatus_changed"
+            return self.env.ref("fieldservice_substatus.fso_substatus_changed")
         return super()._track_subtype(init_values)
