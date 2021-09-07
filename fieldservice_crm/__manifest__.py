@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - CRM",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "summary": "Create Field Service orders from the CRM",
     "category": "Field Service",
     "author": "Patrick Wilson, Odoo Community Association (OCA)",
