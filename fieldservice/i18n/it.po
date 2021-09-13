@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-12 21:33+0000\n"
+"PO-Revision-Date: 2021-09-13 11:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "<span> ;  Long:  </span>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "<span>Reporting</span>"
-msgstr "Resoconto"
+msgstr "<span>Resoconto</span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -74,13 +74,14 @@ msgstr "<strong>ETA:</strong>"
 #: code:addons/fieldservice/wizard/fsm_wizard.py:46
 #, python-format
 msgid "A Field Service Location related to that partner already exists."
-msgstr "Un luogo di intervento collegato con questo cliente esiste già."
+msgstr ""
+"Un luogo di assistenza sul campo collegato con questo cliente esiste già."
 
 #. module: fieldservice
 #: code:addons/fieldservice/wizard/fsm_wizard.py:56
 #, python-format
 msgid "A Field Service Worker related to that partner already exists."
-msgstr "Operatore del servizio sul campo, collegato al partner, già esistente."
+msgstr "Operatore di assistenza sul campo collegato al partner già esistente."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
@@ -119,38 +120,38 @@ msgstr "Stato Attività"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_end
 msgid "Actual End"
-msgstr "Fine Effettiva"
+msgstr "Fine attuale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_start
 msgid "Actual Start"
-msgstr "Inizio Effettivo"
+msgstr "Inizio attuale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__duration
 msgid "Actual duration"
-msgstr "Durata Effettiva"
+msgstr "Durata attuale"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__duration
 msgid "Actual duration in hours"
-msgstr "Durata effettiva in ore"
+msgstr "Durata attuale in ore"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_person
 msgid "Add Field Service Workers here."
-msgstr "Aggiungi gli operatori di servizio sul campo."
+msgstr "Aggiungi gli operatori di assistenza sul campo."
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_dash_equipment
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_equipment
 msgid "Add a Field Service Equipment here."
-msgstr "Aggiungi un macchinario qui."
+msgstr "Aggiungi qui un'attrezzatura di assistenza sul campo."
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_category
 msgid "Add a Field Service Worker Category here."
-msgstr "Aggiungi una categoria operatore di servizio sul campo."
+msgstr "Aggiungi una categoria operatore di assistenza sul campo."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
@@ -211,7 +212,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_google_map
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Google Map"
-msgstr "Autorizza Google Map su Field Service"
+msgstr "Autorizza Google Map su Assistenza sul campo"
 
 #. module: fieldservice
 #. openerp-web
@@ -471,7 +472,7 @@ msgstr "Seleziona questa casella se questo contatto è un dipendente."
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 msgid "Children"
-msgstr "Bambini"
+msgstr "Subordinati"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
@@ -656,7 +657,7 @@ msgstr "Converti in record FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
 msgid "Convert to a Field Service Worker or Location"
-msgstr "Converti in un addetto all'assistenza sul campo o in una posizione"
+msgstr "Converti in un addetto o in una posizione di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_bounce
@@ -703,7 +704,7 @@ msgstr "Crea un cliente."
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location
 msgid "Create a Service Location"
-msgstr "Crea una posizione del servizio"
+msgstr "Crea una posizione di assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_stage
@@ -736,8 +737,7 @@ msgstr "Crea un modello ordine"
 msgid "Create multiple FSM Locations at once using Location Builder Wizard"
 msgstr ""
 "Crea più posizioni FSM contemporaneamente utilizzando la procedura guidata "
-"del generatore di posizioni\n"
-"Italiano"
+"del generatore di posizioni"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location_person
@@ -751,7 +751,7 @@ msgid ""
 "                                    Track costs and revenues."
 msgstr ""
 "Crea fatture fornitore e fatture cliente durante il completamento degli "
-"ordini di servizio.\n"
+"ordini di assistenza.\n"
 "Tieni traccia di costi e ricavi."
 
 #. module: fieldservice
@@ -1086,34 +1086,34 @@ msgstr "Fax"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Field Service"
-msgstr "Field Service"
+msgstr "Assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_category
 msgid "Field Service Category"
-msgstr "Categoria Field Service"
+msgstr "Categoria di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_dash_equipment
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_equipment
 #: model:ir.model,name:fieldservice.model_fsm_equipment
 msgid "Field Service Equipment"
-msgstr "Attrezzatura Field Service"
+msgstr "Attrezzatura di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_location
 msgid "Field Service Location"
-msgstr "Location Field Service"
+msgstr "Località di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_location_person
 msgid "Field Service Location Person Info"
-msgstr "Informazioni sulla posizione della persona Field Service"
+msgstr "Informazioni sulla posizione di assistenza sul campo della persona"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_order
 msgid "Field Service Order"
-msgstr "Ordine Field Service"
+msgstr "Ordine di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_template
@@ -1128,7 +1128,7 @@ msgstr "Tipo di ordine di assistenza sul campo"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_stage
 msgid "Field Service Stage"
-msgstr "Fase dell'assistenza sul campo"
+msgstr "Fase di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_tag
@@ -1393,7 +1393,7 @@ msgstr "Fattura i tuoi ordini FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Invoice your Service Orders"
-msgstr "Fattura i tuoi ordini di servizio"
+msgstr "Fattura i tuoi ordini di assistenza"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
@@ -1720,7 +1720,7 @@ msgstr "Gestisci attrezzatura di assistenza sul campo"
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_template
 msgid "Manage Field Service Order Templates"
-msgstr "Gestisci modelli di ordini di assistenza sul campo"
+msgstr "Gestisci modelli ordini di assistenza sul campo"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_tag
@@ -1816,7 +1816,7 @@ msgstr "Gestisci accordi e contratti"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage different categories of Field Service workers"
-msgstr "Gestisci diverse categorie di lavoratori dell'assistenza sul campo"
+msgstr "Gestisci diverse categorie di lavoratori di assistenza sul campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1826,7 +1826,7 @@ msgstr "Gestisci diverse squadre di lavoratori di assistenza sul campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage equipments at the service location"
-msgstr "Gestisci apparecchiature presso la sede del servizio"
+msgstr "Gestisci apparecchiature presso la località di assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1877,7 +1877,7 @@ msgstr "Gestisci i subappaltatori con listini prezzi"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage tags on service orders"
-msgstr "Gestisci i tag sugli ordini di servizio"
+msgstr "Gestisci le etichette sugli ordini di assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2354,7 +2354,7 @@ msgstr "Contatto primario"
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__service_location_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__service_location_id
 msgid "Primary Service Location"
-msgstr "Ubicazione servizio primario"
+msgstr "Località assistenza primaria"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__priority
@@ -2547,7 +2547,7 @@ msgstr "Ricerca ubicazioni basate sul nome completo della gerarchia"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Select field services on sale orders."
-msgstr "Seleziona i servizi sul campo sugli ordini di vendita."
+msgstr "Seleziona di assistenza sul campo sugli ordini di vendita."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
@@ -2556,7 +2556,7 @@ msgid ""
 "                    Service Worker or Location."
 msgstr ""
 "Seleziona se desideri convertire questo record in un campo\n"
-"...................Addetto all'assistenza o posizione."
+"Addetto all'assistenza o posizione."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
@@ -2572,7 +2572,7 @@ msgstr "Vendere ordini FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell Service Orders"
-msgstr "Vendere ordini di servizi"
+msgstr "Vendere ordini di assistenza"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__sequence
@@ -2585,23 +2585,23 @@ msgstr "Sequenza"
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location
 msgid "Service Locations"
-msgstr "Ubicazioni servizio"
+msgstr "Località assistenza"
 
 #. module: fieldservice
 #: model:ir.actions.report,name:fieldservice.action_report_fsm_order
 msgid "Service Order"
-msgstr "Ordine servizio"
+msgstr "Ordine assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
 msgid "Service Orders"
-msgstr "Ordini servizi"
+msgstr "Ordini assistenza"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_closed
 msgid "Services in this stage are considered as closed."
-msgstr "I servizi in questa fase sono considerati chiusi."
+msgstr "Le assistenze in questa fase sono considerate chiuse."
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
