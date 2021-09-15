@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-13 11:33+0000\n"
+"PO-Revision-Date: 2021-09-15 10:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -38,12 +38,12 @@ msgstr "<span class=\"oe_inline\"> ( il  </span>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "<span> : Lat : </span>"
-msgstr "<span> : Lat : </span>"
+msgstr "<span> : Lat: </span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "<span> ;  Long:  </span>"
-msgstr "<span> ;  Long:  </span>"
+msgstr "<span> ;  Lon:  </span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -115,7 +115,7 @@ msgstr "Attività"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_state
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_state
 msgid "Activity State"
-msgstr "Stato Attività"
+msgstr "Stato attività"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_end
@@ -224,7 +224,7 @@ msgstr "Applica"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__location_id
 msgid "Assigned Location"
-msgstr "Ubicazione assegnata"
+msgstr "Località assegnata"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__person_id
@@ -253,36 +253,35 @@ msgstr "Autocompleta i macchinari negli ordini"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Auto-fill the workers on the location"
-msgstr "Autocompleta gli operatori nelle posizioni"
+msgstr "Autocompleta gli operatori nella località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_equipments_on_order
 msgid "Auto-populate Equipments on Order based on Location"
-msgstr "Autocompleta i macchinari nell'ordine in base alla posizione"
+msgstr "Autocompleta i macchinari nell'ordine in base alla località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_persons_on_location
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__auto_populate_persons_on_location
 msgid "Auto-populate Workers on Location based on Territory"
-msgstr "Autocompleta gli operatori sulla posizione un base al territorio"
+msgstr "Autocompleta gli operatori nella località in base al territorio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__auto_populate_equipments_on_order
 msgid "Auto-populate equipments on Order based on the Location"
-msgstr "Autocompleta i macchinari negli ordini in base alla posizione"
+msgstr "Autocompleta le attrezzature negli ordini in base alla località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
-"Autocompleta i macchinari negli ordini in base al contenuto della posizione"
+"Autocompleta le attrezzature negli ordini in base al contenuto della località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Auto-populate the preferred workers of a location based on the territory"
-msgstr ""
-"Autocompleta l'operatore preferito nella posizione in base al territorio"
+msgstr "Autocompleta l'operatore preferito nella località in base al territorio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -472,7 +471,7 @@ msgstr "Seleziona questa casella se questo contatto è un dipendente."
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 msgid "Children"
-msgstr "Subordinati"
+msgstr "Secondarie"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
@@ -657,7 +656,7 @@ msgstr "Converti in record FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
 msgid "Convert to a Field Service Worker or Location"
-msgstr "Converti in un addetto o in una posizione di assistenza sul campo"
+msgstr "Converti in un addetto o in una località di assistenza sul campo"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_bounce
@@ -689,7 +688,7 @@ msgstr "Stato nazione"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create Change Logs on FSM Locations."
-msgstr "Crea registri delle modifiche nelle posizioni FSM."
+msgstr "Crea registri delle modifiche nelle località FSM."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -704,7 +703,7 @@ msgstr "Crea un cliente."
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location
 msgid "Create a Service Location"
-msgstr "Crea una posizione di assistenza"
+msgstr "Crea una loclaità di assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_stage
@@ -736,13 +735,13 @@ msgstr "Crea un modello ordine"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create multiple FSM Locations at once using Location Builder Wizard"
 msgstr ""
-"Crea più posizioni FSM contemporaneamente utilizzando la procedura guidata "
-"del generatore di posizioni"
+"Crea più località FSM contemporaneamente utilizzando la procedura guidata "
+"del generatore di località"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location_person
 msgid "Create the linked locations of a worker."
-msgstr "Crea le posizioni collegate di un lavoratore."
+msgstr "Crea le località collegate di un lavoratore."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -810,7 +809,7 @@ msgstr "Data corrente"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__current_location_id
 msgid "Current Location"
-msgstr "Ubicazione corrente"
+msgstr "Località corrente"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
@@ -889,7 +888,7 @@ msgstr "Nome visualizzato"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Display locations and orders on a map with OpenStreetMap"
-msgstr "Visualizza posizioni e ordini su una mappa con OpenStreetMap"
+msgstr "Visualizza località e ordini su una mappa con OpenStreetMap"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_district
@@ -1041,13 +1040,13 @@ msgstr "Nome apparecchiatura FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "FSM Location Builder"
-msgstr "Generatore di posizioni FSM"
+msgstr "Generatore di località FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_pivot_view
 msgid "FSM Locations"
-msgstr "Sedi FSM"
+msgstr "Località FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
@@ -1108,7 +1107,7 @@ msgstr "Località di assistenza sul campo"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_location_person
 msgid "Field Service Location Person Info"
-msgstr "Informazioni sulla posizione di assistenza sul campo della persona"
+msgstr "Informazioni sulla località di assistenza sul campo della persona"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_order
@@ -1202,7 +1201,7 @@ msgstr "Formattazione indirizzo emal \"Nome <email@domain>\""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email_formatted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__email_formatted
 msgid "Formatted Email"
-msgstr "Formattazione email"
+msgstr "Email formattata"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__full_name
@@ -1224,18 +1223,18 @@ msgstr "Note generali"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_latitude
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_latitude
 msgid "Geo Latitude"
-msgstr "Geo Latitudine"
+msgstr "Latitudine geografica"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Geo Location"
-msgstr "Geolocalizzazione"
+msgstr "Località geografica"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_longitude
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_longitude
 msgid "Geo Longitude"
-msgstr "Geo Longitudine"
+msgstr "Longitudine geografica"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -1398,7 +1397,7 @@ msgstr "Fattura i tuoi ordini di assistenza"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
 msgid "Is Button"
-msgstr "E' un pulsante"
+msgstr "È un pulsante"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
@@ -1427,7 +1426,7 @@ msgstr "È un cliente"
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__fsm_location
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__fsm_location
 msgid "Is a FS Location"
-msgstr "È una posizione FS"
+msgstr "È una località FS"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_person
@@ -1588,7 +1587,7 @@ msgstr "Collega i tuoi ordini FSM alle richieste di manutenzione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__location_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Linked Locations"
-msgstr "Ubicazioni collegate"
+msgstr "Località collegate"
 
 #. module: fieldservice
 #: selection:fsm.stage,stage_type:0 selection:fsm.wizard,fsm_record_type:0
@@ -1599,44 +1598,44 @@ msgstr "Ubicazioni collegate"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
 msgid "Location"
-msgstr "Ubicazione"
+msgstr "Località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__location_directions
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Location Directions"
-msgstr "Indicazioni sull'ubicazione"
+msgstr "Indicazioni sulla località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__notes
 msgid "Location Notes"
-msgstr "Note ubicazione"
+msgstr "Note località"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location_person
 msgid "Location Persons"
-msgstr "Ubicazione delle persone"
+msgstr "Persone della località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__phone
 msgid "Location Phone"
-msgstr "Telefono ubicazione"
+msgstr "Telefono località"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_location
 msgid "Location Reports."
-msgstr "Rapporti sull'ubicazione."
+msgstr "Rapporti località."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_form_view
 msgid "Location Worker"
-msgstr "Ubicazione del lavoratore"
+msgstr "Lavoratore località"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_location_person
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_tree_view
 msgid "Location Workers"
-msgstr "Ubicazione lavoratori"
+msgstr "Lavoratori località"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_location
@@ -1646,7 +1645,7 @@ msgstr "Ubicazione lavoratori"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_tree_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Locations"
-msgstr "Ubicazioni"
+msgstr "Località"
 
 #. module: fieldservice
 #: selection:fsm.order,priority:0
@@ -1835,8 +1834,8 @@ msgid ""
 "                                    Automatically activate Lots &amp; Serial "
 "Numbers."
 msgstr ""
-"Gestisci l'inventario e e le operazioni di magazzino.\n"
-"Attiva automaticamente lotti &amp; Numeri di serie."
+"Gestisci l'inventario e le operazioni di magazzino.\n"
+"Attiva automaticamente lotti &amp; numeri di serie."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1857,7 +1856,7 @@ msgstr "Gestisci rotte dei tuoi lavoratori"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sizes for orders and locations"
-msgstr "Gestisci dimensioni per ordini e ubicazioni"
+msgstr "Gestisci dimensioni per ordini e località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2271,7 +2270,7 @@ msgstr "Posseduto da"
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__owned_location_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
 msgid "Owned Locations"
-msgstr "Luoghi di proprietà"
+msgstr "Località di proprietà"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__owner_id
@@ -2285,13 +2284,13 @@ msgstr "Proprietario"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__parent_id
 msgid "Parent"
-msgstr "Genitore"
+msgstr "Primaria"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_name
 msgid "Parent name"
-msgstr "Nome genitore"
+msgstr "Nome primaria"
 
 #. module: fieldservice
 #. openerp-web
@@ -2494,17 +2493,17 @@ msgstr "Dettaglio pianificazione"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_end
 msgid "Scheduled End"
-msgstr "Fine pianificazione"
+msgstr "Fine pianificata"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_start
 msgid "Scheduled Start (ETA)"
-msgstr "Inizio pianificazione (ETA)"
+msgstr "Inizio pianificato (ETA)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
 msgid "Scheduled duration"
-msgstr "Durata pianificazione"
+msgstr "Durata pianificata"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__scheduled_duration
@@ -2519,7 +2518,7 @@ msgstr "Programmi"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
 msgid "Search FSM Location"
-msgstr "Ricerca ubicazione FSM"
+msgstr "Ricerca località FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_search_view
@@ -2532,17 +2531,17 @@ msgstr "Ricerca lavoratori FSM"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__search_on_complete_name
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Location By Hierarchy"
-msgstr "Cerca posizione per gerarchia"
+msgstr "Cerca località per gerarchia"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
 msgid "Search Location Worker"
-msgstr "Ricerca ubicazione lavoratore"
+msgstr "Cerca lavoratore località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Search Locations based on their full hierarchy name"
-msgstr "Ricerca ubicazioni basate sul nome completo della gerarchia"
+msgstr "Cerca località basate sul nome completo della gerarchia"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2556,7 +2555,7 @@ msgid ""
 "                    Service Worker or Location."
 msgstr ""
 "Seleziona se desideri convertire questo record in un campo\n"
-"Addetto all'assistenza o posizione."
+"addetto all'assistenza o località."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
@@ -2758,12 +2757,12 @@ msgstr "Indirizzo2"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sublocation_count
 msgid "Sub Locations"
-msgstr "Posizioni secondarie"
+msgstr "Località secondarie"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Sub-Locations"
-msgstr "Posizioni secondarie"
+msgstr "Località secondarie"
 
 #. module: fieldservice
 #. openerp-web
@@ -2889,7 +2888,7 @@ msgstr ""
 #. module: fieldservice
 #: sql_constraint:fsm.location.person:0
 msgid "The worker is already linked to this location."
-msgstr "Il lavoratore è già collegato a questa posizione."
+msgstr "Il lavoratore è già collegato a questa località."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__image
@@ -3017,7 +3016,7 @@ msgstr "Urgente"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_location_builder
 msgid "Use FSM Location Builder"
-msgstr "Usa costruttore di ubicazione FSM"
+msgstr "Usa costruttore di località FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_geoengine
@@ -3172,7 +3171,7 @@ msgstr ""
 #: code:addons/fieldservice/models/fsm_location.py:361
 #, python-format
 msgid "You cannot create recursive location."
-msgstr "Impossibile creare una ubicazione ricorsiva."
+msgstr "Impossibile creare una località ricorsiva."
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_order.py:266
