@@ -102,7 +102,10 @@
                                 </group>
                                 <group id="schedule" string="Schedule Details">
                                     <field name="scheduled_date_start" />
-                                    <field name="scheduled_duration" />
+                                    <field
+                                        name="scheduled_duration"
+                                        widget="float_time"
+                                    />
                                     <field name="scheduled_date_end" readonly="1" />
                                 </group>
                             </group>
@@ -146,7 +149,11 @@
                                 <group id="execution-left">
                                     <field name="date_start" />
                                     <field name="date_end" />
-                                    <field name="duration" readonly="1" />
+                                    <field
+                                        name="duration"
+                                        widget="float_time"
+                                        readonly="1"
+                                    />
                                 </group>
                                 <group id="execution-right" />
                             </group>
