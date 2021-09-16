@@ -171,6 +171,7 @@ odoo.define("fieldservice_timeline.CustomFilterItem", function (require) {
     TimelineviewCustomfillter.components = {DatePicker, DateTimePicker};
     TimelineviewCustomfillter.props = {
         fields: Object,
+        action: Object,
     };
     TimelineviewCustomfillter.template = "fieldservice_timeline.CustomFilterItem";
 

@@ -5,7 +5,7 @@
     "name": "Field Service Web Timeline",
     "summary": "This module is a display timeline view of the Field Service"
     " order in Odoo.",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.2.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
