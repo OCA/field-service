@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-19 21:34+0000\n"
+"PO-Revision-Date: 2021-09-20 19:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -248,7 +248,7 @@ msgstr "Numero allegati"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Auto-fill the equipments on the order"
-msgstr "Autocompleta i macchinari negli ordini"
+msgstr "Autocompleta le attrezzature negli ordini"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -258,7 +258,7 @@ msgstr "Autocompleta gli operatori nella località"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_equipments_on_order
 msgid "Auto-populate Equipments on Order based on Location"
-msgstr "Autocompleta i macchinari nell'ordine in base alla località"
+msgstr "Autocompleta le attrezzature nell'ordine in base alla località"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_persons_on_location
@@ -330,7 +330,7 @@ msgstr "Ramo"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_branch__partner_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__branch_manager_id
 msgid "Branch Manager"
-msgstr "Ramo Manager"
+msgstr "Responsabile ramo"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_branch
@@ -1006,7 +1006,7 @@ msgstr "Attrezzature"
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_equipment
 msgid "Equipments Report"
-msgstr "Rapporto sulle attrezzature"
+msgstr "Rapporto attrezzature"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -1035,7 +1035,7 @@ msgstr "FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 msgid "FSM Equipment Name"
-msgstr "Nome apparecchiatura FSM"
+msgstr "Nome attrezzatura FSM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1195,7 +1195,7 @@ msgstr "Chi sta seguendo (partner)"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_formatted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_formatted
 msgid "Format email address \"Name <email@domain>\""
-msgstr "Formattazione indirizzo emal \"Nome <email@domain>\""
+msgstr "Formattazione indirizzo email \"Nome <email@domain>\""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email_formatted
@@ -1576,7 +1576,7 @@ msgstr "Collega i tuoi ordini FSM agli ordini di riparazione MRP"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to Projects and Project Tasks"
-msgstr "Collega i tuoi ordini FSM a progetti e attività di progetto"
+msgstr "Collega i tuoi ordini FSM a progetti e lavori del progetto"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1682,7 +1682,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_agreement
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Agreements"
-msgstr "Gestisci accordi"
+msgstr "Gestisci contratti"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
@@ -1739,7 +1739,7 @@ msgstr "Gestisci le categorie di lavoratori di assistenza sul campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Order Activities"
-msgstr "Gestisci ordini di attività"
+msgstr "Gestisci attività ordine"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_mgmtsystem_nonconformity
@@ -1825,7 +1825,7 @@ msgstr "Gestisci diverse squadre di lavoratori di assistenza sul campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage equipments at the service location"
-msgstr "Gestisci apparecchiature presso la località di assistenza"
+msgstr "Gestisci attrezzature presso la località di assistenza"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2340,7 +2340,7 @@ msgstr "Listino prezzi"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_territory__person_id
 msgid "Primary Assignment"
-msgstr "Assegnamento primario"
+msgstr "Incarico principale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_id
@@ -2397,7 +2397,7 @@ msgstr "Regione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__region_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_region__partner_id
 msgid "Region Manager"
-msgstr "Manager regione"
+msgstr "Responsabile regione"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_region
