@@ -53,9 +53,9 @@ class ContractLine(models.Model):
         domain=[("is_abstract", "=", True)],
     )
 
-    def _prepare_invoice_line(self, invoice_id):
+    def _prepare_invoice_line(self, move_form):
         # add link fsm orders to invoice line
-        res = super(ContractLine, self)._prepare_invoice_line(invoice_id)
+        res = super(ContractLine, self)._prepare_invoice_line(move_form)
         dates = self._get_period_to_invoice(
             self.last_date_invoiced, self.recurring_next_date
         )
