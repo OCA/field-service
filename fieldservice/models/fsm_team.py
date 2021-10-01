@@ -72,7 +72,7 @@ class FSMTeam(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        required=True,
+        required=False,
         index=True,
         default=lambda self: self.env.user.company_id,
         help="Company related to this team",
