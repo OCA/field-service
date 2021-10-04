@@ -79,6 +79,7 @@ class FSMLocation(TransactionCase):
         self.assertEqual(len(location.person_ids), 0)
         location._onchange_territory_id()
         self.assertEqual(len(location.person_ids), 3)
+        location.owner_id.action_open_owned_locations()
 
     def test_fsm_multi_sublocation(self):
         """Test create location with many sub locations
