@@ -43,13 +43,12 @@ class TestFSMOrder(TransactionCase):
             vals = order._compute_request_late(vals)
             self.assertEqual(vals['request_late'],
                              order.request_early + timedelta(days=late_days))
-        # Test set scheduled_date_start using request_early w/o time
-        self.assertEqual(order.scheduled_date_start,
-                         order.request_early.replace(minute=0, second=0))
+        # Test scheduled_date_start is not automatically set
+        self.assertEqual(order.scheduled_date_start, False)
         # Test scheduled_date_end = scheduled_date_start + duration (hrs)
         # Set date start
         order.scheduled_date_start = \
-            order.scheduled_date_start.replace(hour=0, minute=0, second=0)
+            fields.Datetime.now().replace(hour=0, minute=0, second=0)
         # Set duration
         duration = 10
         order.scheduled_duration = duration

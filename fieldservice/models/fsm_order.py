@@ -89,7 +89,8 @@ class FSMOrder(models.Model):
                                   index=True, required=True)
     location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
-                                    default=fields.Datetime.now)
+                                    default=lambda _: fields.Datetime.now().
+                                    replace(second=0))
     color = fields.Integer('Color Index')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, index=True,
@@ -210,13 +211,6 @@ class FSMOrder(models.Model):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('fsm.order') \
                 or _('New')
-        if vals.get('request_early', False) and not vals.get(
-                'scheduled_date_start'):
-            req_date = fields.Datetime.from_string(vals['request_early'])
-            # Round scheduled date start
-            req_date = req_date.replace(minute=0, second=0)
-            vals.update({'scheduled_date_start': str(req_date),
-                         'request_early': str(req_date)})
         self._calc_scheduled_dates(vals)
         if not vals.get('request_late'):
             if vals.get('priority') == '0':
