@@ -34,7 +34,9 @@ class ResPartner(models.Model):
             owned_location_ids = self.env["fsm.location"].search(
                 [("owner_id", "child_of", partner.id)]
             )
-            action = self.env.ref("fieldservice.action_fsm_location").read()[0]
+            action = self.env["ir.actions.actions"]._for_xml_id(
+                "fieldservice.action_fsm_location"
+            )
             action["context"] = {}
             if len(owned_location_ids) > 1:
                 action["domain"] = [("id", "in", owned_location_ids.ids)]
