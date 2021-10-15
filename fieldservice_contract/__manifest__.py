@@ -22,6 +22,7 @@
         "views/contract_line.xml",
         "views/fsm_recurring.xml",
         "views/fsm_order.xml",
+        "views/sale_view.xml",
     ],
     "installable": True,
     "development_status": "Beta",

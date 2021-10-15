@@ -53,6 +53,10 @@ class ContractLine(models.Model):
         domain=[("is_abstract", "=", True)],
     )
 
+    def _get_price_order_realised(self):
+        self.ensure_one()
+
+
     def _prepare_invoice_line(self, move_form):
         # add link fsm orders to invoice line
         res = super(ContractLine, self)._prepare_invoice_line(move_form)
