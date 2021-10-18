@@ -9,6 +9,7 @@
             <group name="recurrence_info" position="inside">
                 <group name="fsm">
                     <field name="fsm_recurring_id" />
+                    <field name="invoice_policy" />
                     <field name="fsm_direct_order_id" />
                     <field name="fsm_location_id" />
                     <field name="fsm_frequency_set_id" />
@@ -23,6 +24,7 @@
         <field name="arch" type="xml">
             <field name="uom_id" position="after">
                 <field name="fsm_frequency_set_id" />
+                <field name="invoice_policy" optional="hide"/>
             </field>
             <field name="product_id" position="before">
                <field name="fsm_location_id" />

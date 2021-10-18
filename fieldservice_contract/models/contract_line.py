@@ -59,7 +59,7 @@ class ContractLine(models.Model):
         "Realised  fsm Order: Invoice quantities of fsm order realised.",
         default="order",
     )
-    avg_price_unit_fsm_order = fields.float(
+    avg_price_unit_fsm_order = fields.Float(
         "Avg price for a fsm order", compute="_compute_avg_price_unit_fsm_order"
     )
 
