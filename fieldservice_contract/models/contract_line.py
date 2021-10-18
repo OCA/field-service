@@ -52,21 +52,25 @@ class ContractLine(models.Model):
         help="Frequency of the service",
         domain=[("is_abstract", "=", True)],
     )
-    invoice_policy = fields.Selection([
-        ('order', 'Ordered fsm Order'),
-        ('delivery', 'Realised  fsm Order')], string='Invoicing Policy',
-        help='Ordered fsm Order: Invoice quantities ordered by the customer.\n'
-             'Realised  fsm Order: Invoice quantities of fsm order realised.',
-        default='order')
-    avg_price_unit_fsm_order = fields.float("Avg price for a fsm order",
-        compute="_compute_avg_price_unit_fsm_order")
+    invoice_policy = fields.Selection(
+        [("order", "Ordered fsm Order"), ("delivery", "Realised  fsm Order")],
+        string="Invoicing Policy",
+        help="Ordered fsm Order: Invoice quantities ordered by the customer.\n"
+        "Realised  fsm Order: Invoice quantities of fsm order realised.",
+        default="order",
+    )
+    avg_price_unit_fsm_order = fields.float(
+        "Avg price for a fsm order", compute="_compute_avg_price_unit_fsm_order"
+    )
 
     @api.depends("price_unit", "fsm_recurring_id.fsm_order_by_month_count")
     def _compute_avg_price_unit_fsm_order(self):
         for contract_line in self:
             avg_order_by_month = self.fsm_recurring_id.fsm_order_by_month_count
             if avg_order_by_month:
-                contract_line.avg_price_unit_fsm_order = self.price_unit /avg_order_by_month
+                contract_line.avg_price_unit_fsm_order = (
+                    self.price_unit / avg_order_by_month
+                )
 
     def _get_price_order_realised(self):
         """
@@ -116,8 +120,9 @@ class ContractLine(models.Model):
             dom.append(["stage_id", "in", invoiceable_stage_ids.ids])
         return self.env["fsm.order"].search(dom)
 
-
-    def _not_realised_fsm_order(self, period_first_date, period_last_date, invoice_date):
+    def _not_realised_fsm_order(
+        self, period_first_date, period_last_date, invoice_date
+    ):
         """
         :param period_first_date:
         :param period_last_date:

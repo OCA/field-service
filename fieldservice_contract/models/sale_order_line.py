@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
         copy=True,
         default=lambda x: x.order_id.fsm_location_id,
         domain="[('company_id', 'in', (False, company_id)),"
-                "('commercial_partner_id', '=', commercial_partner_id)]"
+        "('commercial_partner_id', '=', commercial_partner_id)]",
     )
 
     def _prepare_contract_line_values(
@@ -32,7 +32,9 @@ class SaleOrderLine(models.Model):
             contract, predecessor_contract_line_id
         )
         res["fsm_frequency_set_id"] = self.fsm_frequency_set_id.id
-        res["fsm_location_id"] = self.fsm_location_id.id or self.order_id.fsm_location_id.id
+        res["fsm_location_id"] = (
+            self.fsm_location_id.id or self.order_id.fsm_location_id.id
+        )
         return res
 
     def _field_create_fsm_recurring(self):
