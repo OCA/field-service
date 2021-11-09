@@ -4,10 +4,8 @@ from odoo import fields, models
 
 
 class FSMLocation(models.Model):
-    _inherit = 'fsm.location'
+    _inherit = "fsm.location"
 
     location_size_ids = fields.One2many(
-        'fsm.location.size',
-        'location_id',
-        string='Location Sizes'
+        "fsm.location.size", "location_id", string="Location Sizes"
     )
