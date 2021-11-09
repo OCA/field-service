@@ -89,7 +89,7 @@ class FSMOrder(models.Model):
                                   index=True, required=True)
     location_directions = fields.Char(string='Location Directions')
     request_early = fields.Datetime(string='Earliest Request Date',
-                                    default=datetime.now())
+                                    default=fields.Datetime.now)
     color = fields.Integer('Color Index')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, index=True,
