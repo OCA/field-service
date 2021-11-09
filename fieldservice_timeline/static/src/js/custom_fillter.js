@@ -174,7 +174,7 @@ odoo.define("fieldservice_timeline.CustomFilterItem", function (require) {
         action: Object,
         breadcrumbs: false,
         searchMenuTypes: Object,
-        view: False,
+        view: false,
         views: [],
     };
     TimelineviewCustomfillter.template = "fieldservice_timeline.CustomFilterItem";
