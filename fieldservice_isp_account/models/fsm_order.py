@@ -117,6 +117,7 @@ class FSMOrder(models.Model):
         return {
             "analytic_account_id": self.location_id.analytic_account_id.id,
             "product_id": cost.product_id.id,
+            "product_uom_id": cost.product_id.uom_id.id,
             "quantity": cost.quantity,
             "name": cost.product_id.display_name,
             "price_unit": cost.price_unit,
@@ -233,6 +234,7 @@ class FSMOrder(models.Model):
         tax_ids = fpos.map_tax(taxes)
         return {
             "product_id": cost.product_id.id,
+            "product_uom_id": cost.product_id.uom_id.id,
             "analytic_account_id": self.location_id.analytic_account_id.id,
             "quantity": cost.quantity,
             "name": cost.product_id.display_name,
@@ -259,6 +261,7 @@ class FSMOrder(models.Model):
         tax_ids = fpos.map_tax(taxes)
         return {
             "product_id": line.product_id.id,
+            "product_uom_id": line.product_id.uom_id.id,
             "analytic_account_id": line.account_id.id,
             "quantity": line.unit_amount,
             "name": line.name,
