@@ -29,6 +29,7 @@ class FSMOrder(models.Model):
             quantity = stock_request.qty_done
         return {
             "product_id": stock_request.product_id.id,
+            "product_uom_id": stock_request.product_uom_id.id,
             "quantity": quantity,
             "name": stock_request.product_id.name,
             "price_unit": price,
@@ -106,6 +107,7 @@ class FSMOrder(models.Model):
         vals = {
             "product_id": stock_request.product_id.id,
             "quantity": quantity,
+            "product_uom_id": stock_request.product_uom_id.id,
             "name": stock_request.product_id.name,
             "price_unit": 0,
             "show_in_report": False,
