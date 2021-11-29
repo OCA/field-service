@@ -31,6 +31,16 @@ class FSMPerson(models.Model):
     hide = fields.Boolean(default=False)
     mobile = fields.Char(string="Mobile")
     territory_ids = fields.Many2many("res.territory", string="Territories")
+    active = fields.Boolean(default=True)
+    active_partner = fields.Boolean(
+        related="partner_id.active", readonly=True, string="Partner is Active"
+    )
+
+    def toggle_active(self):
+        for person in self:
+            if not person.active and not person.partner_id.active:
+                person.partner_id.toggle_active()
+        super(FSMPerson, self).toggle_active()
 
     @api.model
     def _search(

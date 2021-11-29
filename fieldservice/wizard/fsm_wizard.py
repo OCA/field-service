@@ -43,7 +43,8 @@ class FSMWizard(models.TransientModel):
             )
 
     def action_convert_person(self, partner):
-        res = self.env["fsm.person"].search_count([("partner_id", "=", partner.id)])
+        Person = self.env["fsm.person"].with_context(active_test=False)
+        res = Person.search_count([("partner_id", "=", partner.id)])
         if res == 0:
             self.env["fsm.person"].create({"partner_id": partner.id})
             partner.write({"fsm_person": True})
