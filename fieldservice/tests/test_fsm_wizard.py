@@ -1,6 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -47,6 +48,13 @@ class FSMWizard(TransactionCase):
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_person.phone, self.wiz_person.phone)
         self.assertEqual(self.test_person.email, self.wiz_person.email)
+
+        # archive the the new FSM Person
+        self.wiz_person.toggle_active()
+
+        # check that a person is not created when there is an archived person
+        with self.assertRaises(UserError):
+            self.Wizard.action_convert_person(self.test_partner)
 
     def test_convert_sublocation(self):
         # convert Parent Partner to FSM Location
