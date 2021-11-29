@@ -9,13 +9,14 @@ class FSMPerson(TransactionCase):
         super(FSMPerson, self).setUp()
         self.Worker = self.env["fsm.person"]
 
-    def test_fsm_location(self):
-        """Test createing new person
+    def test_fsm_person(self):
+        """Test creating new person
         - Default stage
         - Change stage
         - _search
+        - archive the person
         """
-        # Create an equipment
+        # Create a person
         view_id = "fieldservice.fsm_person_form"
         with Form(self.Worker, view=view_id) as f:
             f.name = "Worker A"
@@ -30,5 +31,9 @@ class FSMPerson(TransactionCase):
         self.assertTrue(worker.hide)  # hide as max stage
         worker.previous_stage()
         self.assertEqual(worker.stage_id, self.env.ref("fieldservice.worker_stage_2"))
-
+        # Test search
         # TODO: https://github.com/OCA/field-service/issues/265
+        # Test archive
+        worker.toggle_active()
+        self.assertEqual(worker.active, False)
+        self.assertEqual(worker.active_partner, True)
