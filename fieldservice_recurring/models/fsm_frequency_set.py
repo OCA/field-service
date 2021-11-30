@@ -14,24 +14,24 @@ class FSMFrequencySet(models.Model):
     name = fields.Char("Name", required=True)
     active = fields.Boolean(default=True)
     fsm_frequency_ids = fields.Many2many(
-        "fsm.frequency", track_visibility="onchange", string="Frequency Rules"
+        "fsm.frequency", tracking=True, string="Frequency Rules"
     )
     schedule_days = fields.Integer(
         string="Days Ahead to Schedule",
         default="30",
         help="""The number of days from today that the scheduler will generate
             orders for this rule""",
-        track_visibility="onchange",
+        tracking=True,
     )
     buffer_early = fields.Integer(
         string="Early Buffer",
-        track_visibility="onchange",
+        tracking=True,
         help="""The allowed number of days before the computed schedule date
             that an event can be done""",
     )
     buffer_late = fields.Integer(
         string="Late Buffer",
-        track_visibility="onchange",
+        tracking=True,
         help="""The allowed number of days after the computed schedule date
            that an event can be done""",
     )
