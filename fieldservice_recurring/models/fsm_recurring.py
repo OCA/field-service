@@ -34,7 +34,7 @@ class FSMRecurringOrder(models.Model):
         ],
         readonly=True,
         default="draft",
-        track_visibility="onchange",
+        tracking=True,
     )
     fsm_recurring_template_id = fields.Many2one(
         "fsm.recurring.template",
@@ -49,7 +49,7 @@ class FSMRecurringOrder(models.Model):
     fsm_frequency_set_id = fields.Many2one(
         "fsm.frequency.set", "Frequency Set", required=True
     )
-    start_date = fields.Datetime(String="Start Date")
+    start_date = fields.Datetime(string="Start Date")
     end_date = fields.Datetime(
         string="End Date", help="Recurring orders will not be made after this date"
     )
@@ -74,10 +74,10 @@ class FSMRecurringOrder(models.Model):
         default=lambda self: self._default_team_id(),
         index=True,
         required=True,
-        track_visibility="onchange",
+        tracking=True,
     )
     person_id = fields.Many2one(
-        "fsm.person", string="Assigned To", index=True, track_visibility="onchange"
+        "fsm.person", string="Assigned To", index=True, tracking=True
     )
 
     @api.depends("fsm_order_ids")
@@ -184,7 +184,7 @@ class FSMRecurringOrder(models.Model):
             "request_early": str(earliest_date),
             "description": self.description,
             "template_id": self.fsm_order_template_id.id,
-            "scheduled_duration": self.fsm_order_template_id.hours,
+            "scheduled_duration": self.fsm_order_template_id.duration,
             "category_ids": [(6, False, self.fsm_order_template_id.category_ids.ids)],
             "company_id": self.company_id.id,
             "person_id": self.person_id.id,
