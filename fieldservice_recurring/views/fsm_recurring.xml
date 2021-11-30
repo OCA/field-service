@@ -115,10 +115,87 @@
             </form>
         </field>
     </record>
+    <!-- Search for fsm.recurring-->
+    <record id="fsm_recurring_search_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.search</field>
+        <field name="model">fsm.recurring</field>
+        <field name="arch" type="xml">
+            <search string="Recurring Orders">
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    string="FSM Recurring Order Name"
+                />
+                <field name="person_id" />
+                <field name="location_id" />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
+                <separator />
+                <filter
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                    name="draft"
+                />
+                <filter
+                    string="In Progress"
+                    domain="[('state', '=', 'progress')]"
+                    name="progress"
+                />
+                <filter
+                    string="To Renew"
+                    domain="[('state', '=', 'pending')]"
+                    name="renew"
+                />
+                <filter
+                    string="Closed"
+                    domain="[('state', '=', 'close')]"
+                    name="closed"
+                />
+                <filter
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancel')]"
+                    name="cancelled"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="fsm_recurring_template_id"
+                        string="Recurring Template"
+                        domain=""
+                        context="{'group_by':'fsm_recurring_template_id'}"
+                    />
+                    <filter
+                        name="fsm_order_template_id"
+                        string="Order Template"
+                        domain=""
+                        context="{'group_by':'fsm_order_template_id'}"
+                    />
+                    <filter
+                        name="location_id"
+                        string="Location"
+                        domain=""
+                        context="{'group_by':'location_id'}"
+                    />
+                    <filter
+                        name="person_id"
+                        string="Assigned To"
+                        domain=""
+                        context="{'group_by':'person_id'}"
+                    />
+                   <filter
+                        name="state"
+                        string="State"
+                        domain=""
+                        context="{'group_by':'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
     <record id="action_fsm_recurring" model="ir.actions.act_window">
         <field name="name">Field Service Recurring Orders</field>
         <field name="res_model">fsm.recurring</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="fsm_recurring_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add a Field Service Recurring Orders here.
