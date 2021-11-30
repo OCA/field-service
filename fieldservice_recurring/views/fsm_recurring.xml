@@ -87,12 +87,12 @@
                     </group>
                     <group string="Orders">
                         <field name="fsm_order_ids" widget="many2many" nolabel="1">
-                            <tree>
+                            <tree create="0" delete="0">
                                 <field name="name" />
                                 <field name="stage_id" />
                                 <field name="scheduled_date_start" />
-                                <field name="date_start" />
                                 <field name="scheduled_date_end" />
+                                <field name="date_start" />
                                 <field name="date_end" />
                                 <field name="person_id" />
                             </tree>
