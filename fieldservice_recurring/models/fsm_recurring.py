@@ -65,7 +65,7 @@ class FSMRecurringOrder(models.Model):
         "res.company", "Company", default=lambda self: self.env.user.company_id
     )
     fsm_order_ids = fields.One2many(
-        "fsm.order", "fsm_recurring_id", string="Orders", copy=False, readonly=True
+        "fsm.order", "fsm_recurring_id", string="Orders", copy=False
     )
     fsm_order_count = fields.Integer("Orders Count", compute="_compute_order_count")
     team_id = fields.Many2one(
