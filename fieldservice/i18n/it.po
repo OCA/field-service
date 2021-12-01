@@ -104,6 +104,11 @@ msgid "<strong>ETA:</strong>"
 msgstr "<strong>ETA:</strong>"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "<strong>The contact linked to this user is still active</strong>"
+msgstr ""
+
+#. module: fieldservice
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 #, python-format
 msgid "A Field Service Location related to that partner already exists."
@@ -277,8 +282,8 @@ msgstr "Tutte le relazioni il partner corrente"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 "Tutte le email e i documenti inviati a questo contatto verranno tradotti in "
 "questa lingua."
@@ -347,8 +352,7 @@ msgstr "Autocompleta le attrezzature negli ordini in base alla località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 "Autocompleta le attrezzature negli ordini in base al contenuto della località"
 
@@ -356,7 +360,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Auto-populate the preferred workers of a location based on the territory"
-msgstr "Autocompleta l'operatore preferito nella località in base al territorio"
+msgstr ""
+"Autocompleta l'operatore preferito nella località in base al territorio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1499,8 +1504,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
+"If the sanitized phone number is on the blacklist, the contact won't receive "
+"mass mailing sms anymore, from any list"
 msgstr ""
 "Se il numero di telefono ripulito è nella blacklist, il contatto non "
 "riceverà più SMS di massa, da qualsiasi lista"
@@ -1590,8 +1595,8 @@ msgstr "Fattura"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 msgid ""
-"Invoice & Delivery addresses are used in sales orders. Private addresses are"
-" only visible by authorized users."
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
 msgstr ""
 "Fattura e indirizzo di consegna vengono utilizzati negli ordini di vendita. "
 "Gli indirizzi privati sono visibili solo a utenti autorizzati."
@@ -2042,7 +2047,8 @@ msgstr "Gestisci attrezzature presso la località di assistenza"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Manage inventory and stock operations.\n"
-"                                    Automatically activate Lots &amp; Serial Numbers."
+"                                    Automatically activate Lots &amp; Serial "
+"Numbers."
 msgstr ""
 "Gestisci l'inventario e le operazioni di magazzino.\n"
 "Attiva automaticamente lotti &amp; numeri di serie."
@@ -2222,9 +2228,6 @@ msgid "Need Scheduled"
 msgstr "Necessita programmazione"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -2557,6 +2560,11 @@ msgstr "Nome primaria"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
 msgid "Partner Contracts"
 msgstr "Contratti fornitori"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
+msgid "Partner is Active"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
@@ -3294,8 +3302,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 "Questo campo viene utilizzato per la ricerca degli indirizzi email, come "
 "campo principale dell'email può contenere più indirizzi."
@@ -3578,9 +3586,11 @@ msgstr "Cronologia comunicazioni sito web"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Quando si stampano documenti e si esportano/importano dati, le date vengono "
 "calcolate in base alla fuso orario.\n"
@@ -3624,6 +3634,11 @@ msgid ""
 msgstr ""
 "Puoi aggiungere una descrizione per aiutare i tuoi colleghi a comprendere il "
 "significato e lo scopo della fase."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "You can archive the contact"
+msgstr ""
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:0
