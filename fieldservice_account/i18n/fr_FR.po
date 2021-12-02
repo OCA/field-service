@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order__bill_count
+msgid "Bill Count"
+msgstr ""
+
+#. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order__bill_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice_account.view_fsm_order_form_inherit_account
+msgid "Bills"
+msgstr ""
+
+#. module: fieldservice_account
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move__fsm_order_count
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line__fsm_order_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.account_invoice_form
@@ -51,12 +62,8 @@ msgstr "Lignes de facture"
 
 #. module: fieldservice_account
 #: model:ir.model.fields,field_description:fieldservice_account.field_fsm_order__invoice_ids
-msgid "Invoices"
-msgstr "Factures"
-
-#. module: fieldservice_account
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.view_fsm_order_form_inherit_account
-msgid "Invoices/Bills"
+msgid "Invoices"
 msgstr "Factures"
 
 #. module: fieldservice_account
@@ -68,3 +75,6 @@ msgstr "Pièces comptables"
 #: model:ir.model,name:fieldservice_account.model_account_move_line
 msgid "Journal Item"
 msgstr "Ecritures comptables"
+
+#~ msgid "Invoices/Bills"
+#~ msgstr "Factures"
