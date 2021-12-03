@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_route',
         'odoo14-addon-fieldservice_sale',
         'odoo14-addon-fieldservice_sale_stock',
+        'odoo14-addon-fieldservice_size',
         'odoo14-addon-fieldservice_skill',
         'odoo14-addon-fieldservice_stage_server_action',
         'odoo14-addon-fieldservice_stock',
