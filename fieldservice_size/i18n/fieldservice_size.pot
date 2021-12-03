@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_size
+# 	* fieldservice_size
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__display_name
 msgid "Display Name"
@@ -57,7 +58,9 @@ msgid "Field Service Sizes"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__id
 msgid "ID"
 msgstr ""
@@ -68,7 +71,9 @@ msgid "Is the Order Size?"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size____last_update
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -101,14 +106,19 @@ msgid "Name"
 msgstr ""
 
 #. module: fieldservice_size
-#: code:addons/fieldservice_size/models/fsm_size.py:30
+#: code:addons/fieldservice_size/models/fsm_size.py:0
 #, python-format
 msgid "Only one default order size per type is allowed."
 msgstr ""
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.location.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_location_size_one_size_per_location
 msgid "Only one size of same type allowed per location"
+msgstr ""
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__display_name
+msgid "Order"
 msgstr ""
 
 #. module: fieldservice_size
@@ -145,7 +155,7 @@ msgid "Size for FSM Location"
 msgstr ""
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_size_name_uniq
 msgid "Size name already exists!"
 msgstr ""
 
@@ -167,4 +177,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
 msgid "Unit of Measure"
 msgstr ""
-
