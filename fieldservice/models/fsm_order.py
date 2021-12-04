@@ -217,9 +217,6 @@ class FSMOrder(models.Model):
             req_date = req_date.replace(minute=0, second=0)
             vals.update({'scheduled_date_start': str(req_date),
                          'request_early': str(req_date)})
-        vals.update(
-            {'scheduled_date_end': self._context.get(
-                'default_scheduled_date_end') or False})
         self._calc_scheduled_dates(vals)
         if not vals.get('request_late'):
             if vals.get('priority') == '0':
