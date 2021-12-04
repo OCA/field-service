@@ -95,6 +95,7 @@ Contributors
 * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+* Chanakya Soni <csoni@opensourceintegrators.com>
 
 Other credits
 ~~~~~~~~~~~~~
