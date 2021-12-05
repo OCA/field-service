@@ -25,6 +25,7 @@ msgid "# of Owned Locations"
 msgstr "# de Locais Próprios"
 
 #. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:405
 #: code:addons/fieldservice/models/fsm_order.py:408
 #, python-format
 msgid "%s is a holiday (%s)."
@@ -367,6 +368,7 @@ msgstr ""
 "de um Estágio FSM existente."
 
 #. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:249
 #: code:addons/fieldservice/models/fsm_order.py:252
 #, python-format
 msgid "Cannot move to completed from Kanban"
@@ -3048,7 +3050,8 @@ msgstr "Usar Logística de Armazém Odoo"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact from the Point of Sale."
-msgstr "Usar códigos de barras para identificar este contacto no Ponto de Venda"
+msgstr ""
+"Usar códigos de barras para identificar este contacto no Ponto de Venda"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_default
@@ -3168,6 +3171,7 @@ msgid "You cannot create recursive location."
 msgstr "Não pode criar um local recursivo."
 
 #. module: fieldservice
+#: code:addons/fieldservice/models/fsm_order.py:263
 #: code:addons/fieldservice/models/fsm_order.py:266
 #, python-format
 msgid "You cannot delete this order."
