@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-08 21:48+0000\n"
-"Last-Translator: Eder Brito <britoederr@gmail.com>\n"
+"PO-Revision-Date: 2021-12-08 22:39+0000\n"
+"Last-Translator: marcos-mendez <mendez.foto@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "<strong>ETA:</strong>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "<strong>The contact linked to this user is still active</strong>"
-msgstr ""
+msgstr "<strong>Contato vinculado ao usuário ainda esta ativo</strong>"
 
 #. module: fieldservice
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
@@ -267,7 +267,7 @@ msgstr "Contratos"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreements_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreements_count
 msgid "Agreements Count"
-msgstr ""
+msgstr "Contagem de acordos"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -385,6 +385,8 @@ msgid ""
 "Automatically send a confirmation email to the vendor X days before the "
 "expected receipt date, asking him to confirm the exact date."
 msgstr ""
+"Enviar automaticamente um e-mail de confirmação ao fornecedor X dias antes "
+"da data prevista de recebimento, solicitando a confirmação da data exata."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
@@ -911,7 +913,7 @@ msgstr "Data"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Days Before Receipt"
-msgstr ""
+msgstr "Dias antes do recebimento"
 
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
@@ -922,7 +924,7 @@ msgstr "Equipe Padrão"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_delivery_carrier_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__property_delivery_carrier_id
 msgid "Default delivery method used in sales orders."
-msgstr ""
+msgstr "Método de entrega padão usado nos pedidos de venda."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
@@ -2202,7 +2204,7 @@ msgstr "Celular"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__my_activity_date_deadline
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Prazo das minhas atividades"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
@@ -2306,6 +2308,8 @@ msgstr "Número de ações"
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Number of days to send reminder email before the promised receipt date"
 msgstr ""
+"Número de dias para enviar e-mail de lembrete com data de compromisso de "
+"recebimento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
@@ -2352,7 +2356,7 @@ msgstr "Horário de Atendimento"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
 msgid "On-Time Delivery Rate"
-msgstr ""
+msgstr "Taxa de entrega no prazo"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2523,6 +2527,8 @@ msgid ""
 "Over the past 12 months; the number of products received on time divided by "
 "the number of ordered products."
 msgstr ""
+"Nos últimos 12 meses; o número de produtos recebidos dentro do prazo "
+"dividido pelo número de produtos pedidos."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
@@ -2567,7 +2573,7 @@ msgstr "Contratos de Parceiros"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
 msgid "Partner is Active"
-msgstr ""
+msgstr "Parceiro esta ativo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
@@ -2685,7 +2691,7 @@ msgstr "Projetos e Tarefas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
 msgid "Purchase Lines"
-msgstr ""
+msgstr "Linhas do pedido"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
@@ -2703,7 +2709,7 @@ msgstr "Contagem de Ordens de Compra"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
 msgid "Receipt Reminder"
-msgstr ""
+msgstr "Lembrete de recebimento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -3296,6 +3302,8 @@ msgid ""
 "This currency will be used, instead of the default one, for purchases from "
 "the current partner"
 msgstr ""
+"Esta moeda será utilizada ao envés da moeda padrão para compras neste "
+"fornecedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
@@ -3637,7 +3645,7 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "You can archive the contact"
-msgstr ""
+msgstr "Você pode arquivar o contato"
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_location.py:0
