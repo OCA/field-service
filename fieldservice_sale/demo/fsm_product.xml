@@ -1,0 +1,52 @@
+<odoo>
+
+    <!-- TODO: move fsm.template to fieldservice mian module? -->
+    <record id="fsm_product_install" model="product.product">
+        <field name="name">Furniture Installation</field>
+        <field name="type">service</field>
+        <field name="list_price">45</field>
+    </record>
+
+    <record id="fsm_product_install_template" model="fsm.template">
+        <field name="name">Furniture Installation</field>
+        <field name="duration">4</field>
+    </record>
+    <record id="fsm_product_install_product_template" model="product.template">
+        <field name="field_service_tracking">sale</field>
+        <field name="fsm_order_template_id" ref="fsm_product_install_template" />
+    </record>
+
+    <record id="fsm_product_repair_template" model="fsm.template">
+        <field name="name">Furniture Repair</field>
+        <field name="duration">2</field>
+    </record>
+
+    <record id="fsm_product_repair" model="product.product">
+        <field name="name">Furniture Repair</field>
+        <field name="type">service</field>
+        <field name="list_price">40</field>
+    </record>
+    <record id="fsm_product_repair_product_template" model="product.template">
+        <field name="field_service_tracking">line</field>
+        <field name="fsm_order_template_id" ref="fsm_product_repair_template" />
+    </record>
+
+    <!-- Add Installation to "4 Person Desk" Sales Template -->
+    <record id="sale_order_template_line_install" model="sale.order.template.line">
+        <field name="sale_order_template_id" ref="sale_management.sale_order_template_1"/>
+        <field name="name">Installation by qualified personnel</field>
+        <field name="product_id" ref="fsm_product_install"/>
+        <field name="product_uom_qty">4</field>
+        <field name="product_uom_id" ref="uom.product_uom_hour"/>
+    </record>
+
+    <record id="res_partner_address_15_loc" model="fsm.location">
+        <field name="name">Brandon Freeman's Office</field>
+        <field name="partner_id" ref="base.res_partner_address_15" />
+        <field name="owner_id" ref="base.res_partner_address_15" />
+        <field name="territory_id" ref="base_territory.test_territory" />
+        <field name="branch_id" ref="base_territory.test_branch" />
+        <field name="direction">16th floor</field>
+        <field name="street">4557 De Silva Street</field>
+    </record>
+</odoo>

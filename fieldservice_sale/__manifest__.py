@@ -20,6 +20,9 @@
         "views/sale_order.xml",
         "views/res_config_settings.xml",
     ],
+    "demo": [
+        "demo/fsm_product.xml",
+    ],
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": [
