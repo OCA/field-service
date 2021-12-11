@@ -1,20 +1,21 @@
 <odoo>
     <!-- Location states -->
     <record id="location_stage_1" model="fsm.stage">
-        <field name="name">Location-1</field>
+        <field name="name">Draft</field>
         <field name="sequence">1</field>
         <field name="stage_type">location</field>
     </record>
     <record id="location_stage_2" model="fsm.stage">
-        <field name="name">Location-2</field>
+        <field name="name">Active</field>
         <field name="sequence">2</field>
         <field name="stage_type">location</field>
     </record>
     <record id="location_stage_3" model="fsm.stage">
-        <field name="name">Location-3</field>
+        <field name="name">Obsolete</field>
         <field name="sequence">3</field>
         <field name="stage_type">location</field>
     </record>
+
     <!-- fsm.location -->
     <record id="test_location" model="fsm.location">
         <field name="name">Test Location</field>
