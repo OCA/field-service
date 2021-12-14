@@ -243,6 +243,8 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__type
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__type
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__type
 msgid "Address Type"
 msgstr ""
 
@@ -1563,6 +1565,8 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
+#: model:ir.model.fields,help:fieldservice.field_res_partner__type
+#: model:ir.model.fields,help:fieldservice.field_res_users__type
 msgid ""
 "Invoice & Delivery addresses are used in sales orders. Private addresses are"
 " only visible by authorized users."
@@ -1780,6 +1784,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__location_id
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__location
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_wizard__fsm_record_type__location
+#: model:ir.model.fields.selection,name:fieldservice.selection__res_partner__type__fsm_location
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
@@ -2687,6 +2692,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_id
 msgid "Related Company"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fsm_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__fsm_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__fsm_location_id
+msgid "Related FS Location"
 msgstr ""
 
 #. module: fieldservice
