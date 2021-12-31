@@ -102,6 +102,11 @@
                         <group id="main-left">
                             <field name="id" invisible="1" />
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]" />
+                            <field
+                                name="partner_id"
+                                groups="base.group_no_one"
+                                readonly="1"
+                            />
                             <field name="owner_id" />
                             <field
                                 name="contact_id"
