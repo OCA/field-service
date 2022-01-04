@@ -20,9 +20,18 @@ odoo.define("fsm_gantt.person_filter", function (require) {
                     data[i].name = i;
                 });
                 props.fields = data;
+                var custom_props = {
+                    action: props.action,
+                    fields: props.fields,
+                    breadcrumbs: props.breadcrumbs,
+                    searchMenuTypes: props.searchMenuTypes,
+                    view: props.view,
+                    searchModel: props.searchModel,
+                    views: props.views,
+                };
                 const _searchPanelWrapper = new components.FieldCustomFilterItem(
                     self.view.config.controlPanel,
-                    props
+                    custom_props
                 );
 
                 _searchPanelWrapper.mount(self.$el.find("#user_filer")[0], {
