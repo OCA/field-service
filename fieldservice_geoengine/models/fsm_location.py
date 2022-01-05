@@ -46,7 +46,7 @@ class FSMLocation(models.Model):
     @api.multi
     def write(self, vals):
         res = super(FSMLocation, self).write(vals)
-        if ('partner_latitude' in vals) and ('partner_longitude' in vals):
+        if ('partner_latitude' in vals) or ('partner_longitude' in vals):
             self.shape = fields.GeoPoint.from_latlon(
                 cr=self.env.cr,
                 latitude=vals['partner_latitude'],
