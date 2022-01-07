@@ -8,16 +8,6 @@ def pre_init_hook(cr):
     equipments = []
     equipments = cr.dictfetchall()
     if equipments:
-        # Add new columns to hold values
-        cr.execute(
-            """ALTER TABLE fsm_equipment
-        ADD maintenance_equipment_id INT;"""
-        )
-        cr.execute(
-            """ALTER TABLE maintenance_equipment
-        ADD is_fsm_equipment BOOLEAN;"""
-        )
-
         # Create a new Maintenance equipment for each FSM equipment
         for equipment in equipments:
             cr.execute(

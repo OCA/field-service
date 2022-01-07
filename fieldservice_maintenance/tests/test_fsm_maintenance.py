@@ -4,6 +4,8 @@
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.fieldservice_maintenance import hooks
+
 
 class TestFSMMaintenance(TransactionCase):
     def test_fsm_maintenance(self):
@@ -87,3 +89,20 @@ class TestFSMMaintenance(TransactionCase):
         fsm_equip_01.unlink()
         # Verfiy the maintenance equipment is no longer a FSM equipment
         self.assertFalse(maint_equip_01.is_fsm_equipment)
+
+    def test_fsm_pre_init(self):
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Partner",
+            }
+        )
+        fsm_loc = self.env["fsm.location"].create(
+            {"name": "Test Maintenance Location", "owner_id": partner.id}
+        )
+        self.env["fsm.equipment"].create(
+            {
+                "name": "Test FSM Equipment 01",
+                "current_location_id": fsm_loc.id,
+            }
+        )
+        hooks.pre_init_hook(self.env.cr)
