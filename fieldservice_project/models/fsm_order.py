@@ -23,13 +23,10 @@ class FSMOrder(models.Model):
         """
         action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
         order = self.env["fsm.order"].search([("id", "=", self.id)])
-        action["views"] = [
-            (self.env.ref("fieldservice." + "fsm_order_form").id, "form")
-        ]
+        action["views"] = [(self.env.ref("fieldservice.fsm_order_form").id, "form")]
         action["res_id"] = order.id
         return action
 
     @api.onchange("team_id")
     def onchange_team_id(self):
-        if self.team_id and self.team_id.project_id:
-            self.project_id = self.team_id.project_id
+        self.project_id = self.team_id.project_id
