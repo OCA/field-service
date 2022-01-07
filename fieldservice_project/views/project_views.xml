@@ -1,16 +1,4 @@
 <odoo>
-    <template
-        id="shrink_tree_column"
-        name="account assets"
-        inherit_id="web.assets_backend"
-    >
-        <xpath expr="." position="inside">
-            <link
-                rel="stylesheet"
-                href="/fieldservice_project/static/src/scss/project_column.scss"
-            />
-        </xpath>
-    </template>
     <record id="fieldservice_project_view_form" model="ir.ui.view">
         <field name="name">project.fieldservice.form</field>
         <field name="model">project.project</field>

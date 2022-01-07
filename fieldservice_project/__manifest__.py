@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Project",
     "summary": "Create field service orders from a project or project task",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": "Pavlov Media, Odoo Community Association (OCA)",
     "category": "Project",
@@ -17,5 +17,10 @@
         "security/ir.model.access.csv",
         "views/fsm_team.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "/fieldservice_project/static/src/scss/project_column.scss",
+        ]
+    },
     "installable": True,
 }
