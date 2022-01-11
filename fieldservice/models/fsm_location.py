@@ -33,7 +33,7 @@ class FSMLocation(models.Model):
         domain="[('is_company', '=', False)," " ('fsm_location', '=', False)]",
         index=True,
     )
-    description = fields.Char(string="Description")
+    description = fields.Char()
     territory_id = fields.Many2one("res.territory", string="Territory")
     branch_id = fields.Many2one("res.branch", string="Branch")
     district_id = fields.Many2one("res.district", string="District")
@@ -64,9 +64,7 @@ class FSMLocation(models.Model):
     sublocation_count = fields.Integer(
         string="Sub Locations", compute="_compute_sublocation_ids"
     )
-    complete_name = fields.Char(
-        string="Complete Name", compute="_compute_complete_name", store=True
-    )
+    complete_name = fields.Char(compute="_compute_complete_name", store=True)
     hide = fields.Boolean(default=False)
 
     stage_id = fields.Many2one(
