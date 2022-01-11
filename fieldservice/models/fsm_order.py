@@ -76,7 +76,6 @@ class FSMOrder(models.Model):
     )
     priority = fields.Selection(
         fsm_stage.AVAILABLE_PRIORITIES,
-        string="Priority",
         index=True,
         default=fsm_stage.AVAILABLE_PRIORITIES[0][0],
     )
@@ -100,7 +99,6 @@ class FSMOrder(models.Model):
 
     # Request
     name = fields.Char(
-        string="Name",
         required=True,
         index=True,
         copy=False,
@@ -110,7 +108,7 @@ class FSMOrder(models.Model):
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
-    location_directions = fields.Char(string="Location Directions")
+    location_directions = fields.Char()
     request_early = fields.Datetime(
         string="Earliest Request Date",
         default=lambda _: fields.Datetime.now().replace(second=0),
@@ -142,7 +140,7 @@ class FSMOrder(models.Model):
         return vals
 
     request_late = fields.Datetime(string="Latest Request Date")
-    description = fields.Text(string="Description")
+    description = fields.Text()
 
     person_ids = fields.Many2many("fsm.person", string="Field Service Workers")
 
@@ -158,15 +156,13 @@ class FSMOrder(models.Model):
     person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
     scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
-    scheduled_duration = fields.Float(
-        string="Scheduled duration", help="Scheduled duration of the work in" " hours"
-    )
+    scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
     scheduled_date_end = fields.Datetime(string="Scheduled End")
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
     todo = fields.Text(string="Instructions")
 
     # Execution
-    resolution = fields.Text(string="Resolution")
+    resolution = fields.Text()
     date_start = fields.Datetime(string="Actual Start")
     date_end = fields.Datetime(string="Actual End")
     duration = fields.Float(
@@ -217,11 +213,9 @@ class FSMOrder(models.Model):
 
     # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many("fsm.equipment", string="Equipments")
-    type = fields.Many2one("fsm.order.type", string="Type")
+    type = fields.Many2one("fsm.order.type")
 
-    internal_type = fields.Selection(
-        string="Internal Type", related="type.internal_type"
-    )
+    internal_type = fields.Selection(related="type.internal_type")
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -422,8 +416,11 @@ class FSMOrder(models.Model):
                 )
                 if holidays:
                     raise ValidationError(
-                        _(
-                            "%s is a holiday (%s)."
-                            % (rec.scheduled_date_start.date(), holidays[0].name)
+                        _("_('%(date)s is a holiday (%(name)s).')")
+                        % _(
+                            {
+                                "date": rec.scheduled_date_start.date(),
+                                "name": holidays[0].name,
+                            }
                         )
                     )
