@@ -4,7 +4,7 @@ from odoo import fields, models
 
 
 class FSMPersonCalendarFilter(models.Model):
-    """ Assigned Worker Calendar Filter """
+    """Assigned Worker Calendar Filter"""
 
     _name = "fsm.person.calendar.filter"
     _description = "FSM Person Calendar Filter"
@@ -13,7 +13,7 @@ class FSMPersonCalendarFilter(models.Model):
         "res.users", "Me", required=True, default=lambda self: self.env.user
     )
     fsm_person_id = fields.Many2one("fsm.person", "FSM Worker", required=True)
-    active = fields.Boolean("Active", default=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         (

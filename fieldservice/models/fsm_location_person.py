@@ -16,7 +16,7 @@ class FSMLocationPerson(models.Model):
     person_id = fields.Many2one(
         "fsm.person", string="Worker", required=True, index=True
     )
-    sequence = fields.Integer(string="Sequence", required=True, default="10")
+    sequence = fields.Integer(required=True, default="10")
     phone = fields.Char(related="person_id.phone", string="Phone")
     email = fields.Char(related="person_id.email", string="Email")
     owner_id = fields.Many2one(related="location_id.owner_id", string="Owner")
