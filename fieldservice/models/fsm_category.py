@@ -8,11 +8,11 @@ class FSMCategory(models.Model):
     _name = "fsm.category"
     _description = "Field Service Worker Category"
 
-    name = fields.Char(string="Name", required="True")
+    name = fields.Char(required="True")
     parent_id = fields.Many2one("fsm.category", string="Parent")
     color = fields.Integer("Color Index", default=10)
-    full_name = fields.Char(string="Full Name", compute="_compute_full_name")
-    description = fields.Char(string="Description")
+    full_name = fields.Char(compute="_compute_full_name")
+    description = fields.Char()
     company_id = fields.Many2one(
         "res.company",
         string="Company",
