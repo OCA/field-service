@@ -9,10 +9,10 @@ class FSMEquipment(models.Model):
     _description = "Field Service Equipment"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
-    name = fields.Char(string="Name", required="True")
+    name = fields.Char(required="True")
     person_id = fields.Many2one("fsm.person", string="Assigned Operator")
     location_id = fields.Many2one("fsm.location", string="Assigned Location")
-    notes = fields.Text(string="Notes")
+    notes = fields.Text()
     territory_id = fields.Many2one("res.territory", string="Territory")
     branch_id = fields.Many2one("res.branch", string="Branch")
     district_id = fields.Many2one("res.district", string="District")

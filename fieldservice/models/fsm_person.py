@@ -29,7 +29,7 @@ class FSMPerson(models.Model):
         default=lambda self: self._default_stage_id(),
     )
     hide = fields.Boolean(default=False)
-    mobile = fields.Char(string="Mobile")
+    mobile = fields.Char()
     territory_ids = fields.Many2many("res.territory", string="Territories")
     active = fields.Boolean(default=True)
     active_partner = fields.Boolean(
@@ -40,7 +40,7 @@ class FSMPerson(models.Model):
         for person in self:
             if not person.active and not person.partner_id.active:
                 person.partner_id.toggle_active()
-        super(FSMPerson, self).toggle_active()
+        return super(FSMPerson, self).toggle_active()
 
     @api.model
     def _search(
