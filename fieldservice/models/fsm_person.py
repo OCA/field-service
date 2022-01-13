@@ -28,19 +28,9 @@ class FSMPerson(models.Model):
         group_expand="_read_group_stage_ids",
         default=lambda self: self._default_stage_id(),
     )
-    hide = fields.Boolean(default=False)
+    hide = fields.Boolean()
     mobile = fields.Char()
     territory_ids = fields.Many2many("res.territory", string="Territories")
-    active = fields.Boolean(default=True)
-    active_partner = fields.Boolean(
-        related="partner_id.active", readonly=True, string="Partner is Active"
-    )
-
-    def toggle_active(self):
-        for person in self:
-            if not person.active and not person.partner_id.active:
-                person.partner_id.toggle_active()
-        return super(FSMPerson, self).toggle_active()
 
     @api.model
     def _search(
@@ -62,7 +52,7 @@ class FSMPerson(models.Model):
         )
         # Check for args first having location_ids as default filter
         for arg in args:
-            if isinstance(arg, (list)):
+            if isinstance(args, (list)):
                 if arg[0] == "location_ids":
                     # If given int search ID, else search name
                     if isinstance(arg[2], int):
@@ -73,12 +63,12 @@ class FSMPerson(models.Model):
                             (arg[2],),
                         )
                     else:
-                        arg[2] = "%" + arg[2] + "%"
+                        arg_2 = "%" + arg[2] + "%"
                         self.env.cr.execute(
                             "SELECT id "
                             "FROM fsm_location "
                             "WHERE complete_name like %s",
-                            (arg[2],),
+                            (arg_2,),
                         )
                         location_ids = self.env.cr.fetchall()
                         if location_ids:
@@ -115,9 +105,10 @@ class FSMPerson(models.Model):
         next_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "worker"), ("sequence", ">", seq)],
             order="sequence asc",
+            limit=1,
         )
         if next_stage:
-            self.stage_id = next_stage[0]
+            self.stage_id = next_stage
             self._onchange_stage_id()
 
     def previous_stage(self):
@@ -125,9 +116,10 @@ class FSMPerson(models.Model):
         prev_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "worker"), ("sequence", "<", seq)],
             order="sequence desc",
+            limit=1,
         )
         if prev_stage:
-            self.stage_id = prev_stage[0]
+            self.stage_id = prev_stage
             self._onchange_stage_id()
 
     @api.onchange("stage_id")
@@ -136,7 +128,4 @@ class FSMPerson(models.Model):
         heighest_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "worker")], order="sequence desc", limit=1
         )
-        if self.stage_id.name == heighest_stage.name:
-            self.hide = True
-        else:
-            self.hide = False
+        self.hide = True if self.stage_id.name == heighest_stage.name else False
