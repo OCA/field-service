@@ -67,7 +67,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
     module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
     module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
-    module_fieldservice_timeline = fields.Boolean(
+    module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
 
@@ -98,13 +98,3 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_repair(self):
         if self.module_fieldservice_repair:
             self.group_fsm_equipment = True
-
-    @api.onchange("module_fieldservice_stock")
-    def _onchange_module_fieldservice_stock(self):
-        if self.module_fieldservice_stock:
-            self.group_stock_production_lot = True
-
-    @api.onchange("module_fieldservice_purchase")
-    def _onchange_module_fieldservice_purchase(self):
-        if self.module_fieldservice_purchase:
-            self.group_product_variant = True

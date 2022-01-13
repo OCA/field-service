@@ -1,17 +1,4 @@
 <odoo>
-    <template
-        id="assets_backend_team"
-        name="fsm_team_assets"
-        inherit_id="web.assets_backend"
-    >
-        <xpath expr="." position="inside">
-            <link
-                rel="stylesheet"
-                type="text/scss"
-                href="/fieldservice/static/src/scss/team_dashboard.scss"
-            />
-        </xpath>
-    </template>
     <record id="fsm_order_action_from_dashboard" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>

@@ -8,7 +8,7 @@ class FSMOrderType(models.Model):
     _name = "fsm.order.type"
     _description = "Field Service Order Type"
 
-    name = fields.Char()
+    name = fields.Char(required=True)
 
     internal_type = fields.Selection(
         selection=[("fsm", "FSM")],

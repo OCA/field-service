@@ -25,9 +25,8 @@ class FSMOrder(models.Model):
             limit=1,
         )
         if stage_ids:
-            return stage_ids[0]
-        else:
-            raise ValidationError(_("You must create an FSM order stage first."))
+            return stage_ids
+        raise ValidationError(_("You must create an FSM order stage first."))
 
     def _default_team_id(self):
         team_ids = self.env["fsm.team"].search(
@@ -37,13 +36,12 @@ class FSMOrder(models.Model):
         )
         if team_ids:
             return team_ids[0]
-        else:
-            raise ValidationError(_("You must create an FSM team first."))
+        raise ValidationError(_("You must create an FSM team first."))
 
     @api.depends("date_start", "date_end")
     def _compute_duration(self):
-        duration = 0.0
         for rec in self:
+            duration = 0.0
             if rec.date_start and rec.date_end:
                 start = fields.Datetime.from_string(rec.date_start)
                 end = fields.Datetime.from_string(rec.date_end)
@@ -61,7 +59,9 @@ class FSMOrder(models.Model):
         if "stage_id" in init_values:
             if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_completed").id:
                 return self.env.ref("fieldservice.mt_order_completed")
-            if self.stage_id.id == self.env.ref("fieldservice.fsm_stage_cancelled").id:
+            elif (
+                self.stage_id.id == self.env.ref("fieldservice.fsm_stage_cancelled").id
+            ):
                 return self.env.ref("fieldservice.mt_order_cancelled")
         return super()._track_subtype(init_values)
 
@@ -110,8 +110,7 @@ class FSMOrder(models.Model):
     )
     location_directions = fields.Char()
     request_early = fields.Datetime(
-        string="Earliest Request Date",
-        default=lambda _: fields.Datetime.now().replace(second=0),
+        string="Earliest Request Date", default=datetime.now()
     )
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
@@ -124,19 +123,25 @@ class FSMOrder(models.Model):
     )
 
     def _compute_request_late(self, vals):
-        if vals.get("request_early", False):
-            early = fields.Datetime.from_string(vals.get("request_early"))
-        else:
-            early = datetime.now()
-
         if vals.get("priority") == "0":
-            vals["request_late"] = early + timedelta(days=3)
-        elif vals.get("priority") == "1":
-            vals["request_late"] = early + timedelta(days=2)
-        elif vals.get("priority") == "2":
-            vals["request_late"] = early + timedelta(days=1)
-        elif vals.get("priority") == "3":
-            vals["request_late"] = early + timedelta(hours=8)
+            if vals.get("request_early"):
+                vals["request_late"] = fields.Datetime.from_string(
+                    vals.get("request_early")
+                ) + timedelta(days=3)
+            else:
+                vals["request_late"] = datetime.now() + timedelta(days=3)
+        elif vals.get("request_early") and vals.get("priority") == "1":
+            vals["request_late"] = fields.Datetime.from_string(
+                vals.get("request_early")
+            ) + timedelta(days=2)
+        elif vals.get("request_early") and vals.get("priority") == "2":
+            vals["request_late"] = fields.Datetime.from_string(
+                vals.get("request_early")
+            ) + timedelta(days=1)
+        elif vals.get("request_early") and vals.get("priority") == "3":
+            vals["request_late"] = fields.Datetime.from_string(
+                vals.get("request_early")
+            ) + timedelta(hours=8)
         return vals
 
     request_late = fields.Datetime(string="Latest Request Date")
@@ -146,6 +151,12 @@ class FSMOrder(models.Model):
 
     @api.onchange("location_id")
     def _onchange_location_id_customer(self):
+        if self.location_id:
+            self.territory_id = self.location_id.territory_id or False
+            self.branch_id = self.location_id.branch_id or False
+            self.district_id = self.location_id.district_id or False
+            self.region_id = self.location_id.region_id or False
+            self.copy_notes()
         if self.company_id.auto_populate_equipments_on_order:
             fsm_equipment_rec = self.env["fsm.equipment"].search(
                 [("current_location_id", "=", self.location_id.id)]
@@ -194,7 +205,7 @@ class FSMOrder(models.Model):
     street = fields.Char(related="location_id.street")
     street2 = fields.Char(related="location_id.street2")
     zip = fields.Char(related="location_id.zip")
-    city = fields.Char(related="location_id.city", string="City")
+    city = fields.Char(related="location_id.city")
     state_name = fields.Char(related="location_id.state_id.name", string="State")
     country_name = fields.Char(related="location_id.country_id.name", string="Country")
     phone = fields.Char(related="location_id.phone", string="Location Phone")
@@ -233,7 +244,25 @@ class FSMOrder(models.Model):
             vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _("New")
         self._calc_scheduled_dates(vals)
         if not vals.get("request_late"):
-            vals = self._compute_request_late(vals)
+            if vals.get("priority") == "0":
+                if vals.get("request_early"):
+                    vals["request_late"] = fields.Datetime.from_string(
+                        vals.get("request_early")
+                    ) + timedelta(days=3)
+                else:
+                    vals["request_late"] = datetime.now() + timedelta(days=3)
+            elif vals.get("request_early") and vals.get("priority") == "1":
+                vals["request_late"] = fields.Datetime.from_string(
+                    vals.get("request_early")
+                ) + timedelta(days=2)
+            elif vals.get("request_early") and vals.get("priority") == "2":
+                vals["request_late"] = fields.Datetime.from_string(
+                    vals.get("request_early")
+                ) + timedelta(days=1)
+            elif vals.get("request_early") and vals.get("priority") == "3":
+                vals["request_late"] = fields.Datetime.from_string(
+                    vals.get("request_early")
+                ) + timedelta(hours=8)
         return super(FSMOrder, self).create(vals)
 
     is_button = fields.Boolean(default=False)
@@ -337,44 +366,27 @@ class FSMOrder(models.Model):
 
     def copy_notes(self):
         old_desc = self.description
-        self.description = ""
         self.location_directions = ""
         if self.type and self.type.name not in ["repair", "maintenance"]:
-            for equipment_id in self.equipment_ids:
-                if equipment_id:
-                    if equipment_id.notes:
-                        if self.description:
-                            self.description = (
-                                self.description + equipment_id.notes + "\n "
-                            )
-                        else:
-                            self.description = equipment_id.notes + "\n "
+            for equipment_id in self.equipment_ids.filtered(lambda eq: eq.notes):
+                if self.description:
+                    self.description = self.description + equipment_id.notes + "\n "
+                else:
+                    self.description = equipment_id.notes + "\n "
         else:
             if self.equipment_id:
-                if self.equipment_id.notes:
-                    if self.description:
-                        self.description = (
-                            self.description + self.equipment_id.notes + "\n "
-                        )
-                    else:
-                        self.description = self.equipment_id.notes + "\n "
+                if self.equipment_id.notes and self.description:
+                    self.description = (
+                        self.description + self.equipment_id.notes + "\n "
+                    )
+                else:
+                    self.description = self.equipment_id.notes + "\n "
         if self.location_id:
             self.location_directions = self._get_location_directions(self.location_id)
         if self.template_id:
             self.todo = self.template_id.instructions
-        if self.description:
-            self.description += "\n" + old_desc
-        else:
+        if old_desc:
             self.description = old_desc
-
-    @api.onchange("location_id")
-    def onchange_location_id(self):
-        if self.location_id:
-            self.territory_id = self.location_id.territory_id or False
-            self.branch_id = self.location_id.branch_id or False
-            self.district_id = self.location_id.district_id or False
-            self.region_id = self.location_id.region_id or False
-            self.copy_notes()
 
     @api.onchange("equipment_ids")
     def onchange_equipment_ids(self):
@@ -411,16 +423,11 @@ class FSMOrder(models.Model):
                 holidays = self.env["resource.calendar.leaves"].search(
                     [
                         ("date_from", ">=", rec.scheduled_date_start),
-                        ("date_to", "<=", rec.scheduled_date_start),
+                        ("date_to", "<=", rec.scheduled_date_end),
                     ]
                 )
                 if holidays:
-                    raise ValidationError(
-                        _("_('%(date)s is a holiday (%(name)s).')")
-                        % _(
-                            {
-                                "date": rec.scheduled_date_start.date(),
-                                "name": holidays[0].name,
-                            }
-                        )
+                    msg = "{} is a holiday {}".format(
+                        rec.scheduled_date_start.date(), holidays[0].name
                     )
+                    raise ValidationError(_(msg))

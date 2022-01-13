@@ -26,6 +26,37 @@ class FSMWizard(TransactionCase):
         self.test_person = self.env.ref("fieldservice.test_person")
 
     def test_convert_location(self):
+        ctx = {
+            "active_model": "res.partner",
+            "active_id": self.test_parent_partner.id,
+            "active_ids": self.test_parent_partner.ids,
+        }
+        ctx1 = {
+            "active_model": "res.partner",
+            "active_id": self.test_loc_partner.id,
+            "active_ids": self.test_loc_partner.ids,
+        }
+
+        wiz_1 = self.Wizard.with_context(**ctx).create(
+            {
+                "fsm_record_type": "person",
+            }
+        )
+        wiz_2 = self.Wizard.with_context(**ctx).create(
+            {
+                "fsm_record_type": "location",
+            }
+        )
+        wiz_3 = self.Wizard.with_context(**ctx1).create(
+            {
+                "fsm_record_type": "location",
+            }
+        )
+
+        wiz_1.action_convert()
+        wiz_2.action_convert()
+        with self.assertRaises(UserError):
+            wiz_3.action_convert()
         # convert test_partner to FSM Location
         self.Wizard.action_convert_location(self.test_partner)
 
@@ -40,21 +71,25 @@ class FSMWizard(TransactionCase):
 
     def test_convert_person(self):
         # convert test_partner to FSM Person
-        self.Wizard.action_convert_person(self.test_partner)
+        ctx2 = {
+            "active_model": "res.partner",
+            "active_id": self.test_partner.id,
+            "active_ids": self.test_partner.ids,
+        }
+        wiz = self.Wizard.with_context(**ctx2).create(
+            {
+                "fsm_record_type": "person",
+            }
+        )
+        wiz.action_convert()
+        with self.assertRaises(UserError):
+            self.Wizard.action_convert_person(self.test_partner)
 
         # check if there is a new FSM Person with name 'Test Partner'
         self.wiz_person = self.env["fsm.person"].search([("name", "=", "Test Partner")])
-
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_person.phone, self.wiz_person.phone)
         self.assertEqual(self.test_person.email, self.wiz_person.email)
-
-        # archive the the new FSM Person
-        self.wiz_person.toggle_active()
-
-        # check that a person is not created when there is an archived person
-        with self.assertRaises(UserError):
-            self.Wizard.action_convert_person(self.test_partner)
 
     def test_convert_sublocation(self):
         # convert Parent Partner to FSM Location
