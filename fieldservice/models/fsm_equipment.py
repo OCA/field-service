@@ -31,7 +31,7 @@ class FSMEquipment(models.Model):
         group_expand="_read_group_stage_ids",
         default=lambda self: self._default_stage_id(),
     )
-    hide = fields.Boolean(default=False)
+    hide = fields.Boolean()
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
         "res.company",
@@ -64,12 +64,11 @@ class FSMEquipment(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env["fsm.stage"].search([("stage_type", "=", "equipment")])
-        return stage_ids
+        return self.env["fsm.stage"].search([("stage_type", "=", "equipment")])
 
     def _default_stage_id(self):
         return self.env["fsm.stage"].search(
-            [("stage_type", "=", "equipment"), ("sequence", "=", "1")]
+            [("stage_type", "=", "equipment"), ("sequence", "=", "1")], limit=1
         )
 
     def next_stage(self):
@@ -77,9 +76,10 @@ class FSMEquipment(models.Model):
         next_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "equipment"), ("sequence", ">", seq)],
             order="sequence asc",
+            limit=1,
         )
         if next_stage:
-            self.stage_id = next_stage[0]
+            self.stage_id = next_stage
             self._onchange_stage_id()
 
     def previous_stage(self):
@@ -87,9 +87,10 @@ class FSMEquipment(models.Model):
         prev_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "equipment"), ("sequence", "<", seq)],
             order="sequence desc",
+            limit=1,
         )
         if prev_stage:
-            self.stage_id = prev_stage[0]
+            self.stage_id = prev_stage
             self._onchange_stage_id()
 
     @api.onchange("stage_id")
@@ -98,7 +99,4 @@ class FSMEquipment(models.Model):
         heighest_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", "equipment")], order="sequence desc", limit=1
         )
-        if self.stage_id.name == heighest_stage.name:
-            self.hide = True
-        else:
-            self.hide = False
+        self.hide = True if self.stage_id.name == heighest_stage.name else False

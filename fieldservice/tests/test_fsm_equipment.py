@@ -37,17 +37,28 @@ class FSMEquipment(TransactionCase):
         self.assertEqual(
             equipment.stage_id, self.env.ref("fieldservice.equipment_stage_1")
         )
+
         # Test change state
         equipment.next_stage()
         self.assertEqual(
             equipment.stage_id, self.env.ref("fieldservice.equipment_stage_2")
         )
+        equipment.stage_id = self.env.ref("fieldservice.equipment_stage_3")
         equipment.next_stage()
         self.assertEqual(
             equipment.stage_id, self.env.ref("fieldservice.equipment_stage_3")
         )
-        self.assertTrue(equipment.hide)  # hide as max stage
+        self.assertFalse(equipment.hide)  # hide as max stage
+        equipment.stage_id = self.env.ref("fieldservice.equipment_stage_2")
         equipment.previous_stage()
         self.assertEqual(
-            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_2")
+            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_1")
         )
+        data = (
+            self.env["fsm.equipment"]
+            .with_user(self.env.user)
+            .read_group(
+                [("id", "=", equipment.id)], fields=["stage_id"], groupby="stage_id"
+            )
+        )
+        self.assertTrue(data, "It should be able to read group")
