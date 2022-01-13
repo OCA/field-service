@@ -8,4 +8,4 @@
 * Brian McMaster <brian@mcmpest.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Ammar Officewala <ammar.o.serpentcs@gmail.com>
-* Yves Goldberg <yves@ygol.com>
+* Freni Patel <fpatel@opensourceintegrators.com>

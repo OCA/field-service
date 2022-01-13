@@ -15,8 +15,9 @@ class FSMTag(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        required=False,
+        required=True,
         index=True,
+        default=lambda self: self.env.user.company_id,
         help="Company related to this tag",
     )
 
