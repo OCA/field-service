@@ -46,4 +46,9 @@
     "application": True,
     "development_status": "Beta",
     "maintainers": ["wolfhall", "max3903"],
+    "assets": {
+        "web.assets_backend": [
+            "fieldservice/static/src/scss/team_dashboard.scss",
+        ]
+    },
 }
