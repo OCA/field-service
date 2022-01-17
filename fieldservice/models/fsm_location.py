@@ -79,6 +79,12 @@ class FSMLocation(models.Model):
         default=lambda self: self._default_stage_id(),
     )
 
+    @api.model
+    def create(self, vals):
+        res = super(FSMLocation, self).create(vals)
+        res.update({"fsm_location": True})
+        return res
+
     @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):
         for loc in self:
