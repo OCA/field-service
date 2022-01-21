@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Delivery",
     "summary": "Select delivery methods and carriers on Field Service orders",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
