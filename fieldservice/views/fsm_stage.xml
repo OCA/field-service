@@ -19,8 +19,15 @@
         <field name="arch" type="xml">
             <form string="Stage">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <group>
                         <group>
+                            <field name="active" invisible="1" />
                             <field name="name" />
                             <field name="sequence" />
                             <field
@@ -73,6 +80,11 @@
         <field name="arch" type="xml">
             <search string="Search FSM Workers">
                 <field name="name" />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
                 <filter
                     name="group_stage_type"
                     string="Type"
