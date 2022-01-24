@@ -59,6 +59,7 @@ class ResPartner(models.Model):
         wiz = self.env["fsm.wizard"]
         partners_with_loc_ids = (
             self.env["fsm.location"]
+            .sudo()
             .search([("active", "in", [False, True]), ("partner_id", "in", self.ids)])
             .mapped("partner_id")
         ).ids
