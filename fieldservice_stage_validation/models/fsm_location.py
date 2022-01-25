@@ -11,12 +11,10 @@ class FSMLocation(models.Model):
     def _validate_stage_fields(self):
         for rec in self:
             stage = rec.stage_id
-            field_ids = stage.validate_field_ids
-            field_names = [x.name for x in field_ids]
-            values = rec.read(field_names)
+            field_names = [x.name for x in stage.validate_field_ids]
 
             for name in field_names:
-                if not values[0][name]:
+                if not rec[name]:
                     raise ValidationError(_('Cannot move to stage "%s" '
                                             'until the "%s" field is set.'
                                             % (stage.name, name)))
