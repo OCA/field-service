@@ -13,6 +13,28 @@ class TestFSMActivity(TransactionCase):
         self.test_location = self.env.ref("fieldservice.test_location")
         self.Activity = self.env["fsm.activity"]
         self.template_obj = self.env["fsm.template"]
+        self.activty_type = self.env["mail.activity.type"].create(
+            {"name": "Meeting", "category": "phonecall"}
+        )
+        self.user_employee = self.env["res.users"].create(
+            {
+                "name": "Ernest Employee",
+                "login": "emp",
+                "email": "e.e@example.com",
+                "signature": "--\nErnest",
+                "notification_type": "inbox",
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        [
+                            self.env.ref("base.group_user").id,
+                            self.env.ref("base.group_partner_manager").id,
+                        ],
+                    )
+                ],
+            }
+        )
 
     def test_fsm_activity(self):
         """Test creating new activites, and moving them along thier stages,
@@ -25,7 +47,25 @@ class TestFSMActivity(TransactionCase):
         with Form(self.Order, view=view_id) as f:
             f.location_id = self.test_location
         order = f.save()
+        order2 = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+            }
+        )
         order_id = order.id
+        activity_id = self.env["mail.activity"].create(
+            {
+                "summary": "Meeting with partner",
+                "activity_type_id": self.activty_type.id,
+                "res_model_id": self.env["ir.model"]._get("fsm.order").id,
+                "res_id": order2.id,
+                "user_id": self.env.user.id,
+            }
+        )
+        order2.activity_ids = [(6, False, activity_id.ids)]
+        self.Activity.create(
+            self.get_activity_vals("Activity Test", False, "Ref 1", order2.id)
+        )
         self.Activity.create(
             self.get_activity_vals("Activity 1", False, "Ref 1", order_id)
         )
@@ -35,6 +75,8 @@ class TestFSMActivity(TransactionCase):
         self.Activity.create(
             self.get_activity_vals("Activity 3", True, "Ref 3", order_id)
         )
+        order2.order_activity_ids.action_done()
+        order2.action_complete()
         # Test action_done()
         order.order_activity_ids[0].action_done()
         self.assertEqual(
@@ -95,6 +137,6 @@ class TestFSMActivity(TransactionCase):
         )
         # Test _onchange_template_id()
         self.fso._onchange_template_id()
-        self.assertNotEquals(
+        self.assertNotEqual(
             self.fso.order_activity_ids.ids, self.fso.template_id.temp_activity_ids.ids
         )

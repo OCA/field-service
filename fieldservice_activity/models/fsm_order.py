@@ -53,5 +53,5 @@ class FSMOrder(models.Model):
                     % activity_id.name
                 )
         for activity_id in self.activity_ids:
-            activity_id.done = True
+            activity_id._action_done()
         return res
