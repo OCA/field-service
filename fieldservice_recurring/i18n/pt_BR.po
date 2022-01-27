@@ -58,6 +58,11 @@ msgid "Activity State"
 msgstr "Estado de Atividade"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_recurring
 msgid "Add a Field Service Recurring Orders here."
 msgstr "Adicione aqui pedidos recorrentes de servi??o de campo."
@@ -74,6 +79,7 @@ msgstr "Abril"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__person_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Assigned To"
 msgstr ""
 
@@ -102,6 +108,7 @@ msgstr "Cancelar"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__cancel
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -116,6 +123,7 @@ msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__close
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Closed"
 msgstr "Encerrado"
 
@@ -196,6 +204,7 @@ msgstr "Nome Exibido"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__draft
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Draft"
 msgstr "Rascunho"
 
@@ -213,6 +222,11 @@ msgstr "Data Final"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__is_exclusive
 msgid "Exclusive Rule?"
 msgstr "Regra Exclusiva?"
+
+#. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "FSM Recurring Order Name"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__feb
@@ -276,6 +290,11 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Parceiros)"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_frequency
 msgid "Frequencies"
 msgstr "Frequ??ncias"
@@ -331,8 +350,14 @@ msgid "Friday"
 msgstr "Sexta"
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__id
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
 msgid "ID"
@@ -374,6 +399,7 @@ msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__progress
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "In Progress"
 msgstr "Em Andamento"
 
@@ -408,6 +434,7 @@ msgstr "Junho"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set____last_update
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template____last_update
 msgid "Last Modified on"
@@ -436,6 +463,7 @@ msgstr "Folga (buffer) Final"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__location_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Location"
 msgstr "Localiza????o"
 
@@ -499,6 +527,11 @@ msgstr "Segunda"
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__monthly
 msgid "Monthly"
 msgstr "Mensal"
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__name
@@ -581,8 +614,14 @@ msgid "October"
 msgstr "Outubro"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_order_template_id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__fsm_order_template_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Order Template"
 msgstr "Modelo de Ordem"
 
@@ -621,12 +660,14 @@ msgstr "Ordem Recorrente"
 
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_tree_view
 msgid "Recurring Orders"
 msgstr "Ordens Recorrentes"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_recurring_template_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_template_form_view
 msgid "Recurring Template"
 msgstr "Modelo de Recorr??ncia"
@@ -672,6 +713,16 @@ msgid "Saturday"
 msgstr "S??bado"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__scheduled_duration
+msgid "Scheduled duration"
+msgstr ""
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__scheduled_duration
+msgid "Scheduled duration of the work in hours"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sep
 msgid "September"
 msgstr "Setembro"
@@ -697,6 +748,7 @@ msgstr "Data de In??cio"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__state
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "State"
 msgstr "Estado"
 
@@ -778,6 +830,7 @@ msgstr "Quinta"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__pending
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "To Renew"
 msgstr "Para Renovar"
 
