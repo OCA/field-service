@@ -91,7 +91,7 @@ class FSMAccountPaymentCase(TransactionCase):
             "active_id": self.test_invoice.id,
             "active_ids": self.test_invoice.ids,
         }
-        register_payments = self.register_payments_model.with_context(ctx).create(
+        register_payments = self.register_payments_model.with_context(**ctx).create(
             {
                 "payment_date": datetime.today(),
                 "journal_id": self.bank_journal.id,
