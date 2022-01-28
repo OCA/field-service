@@ -15,7 +15,7 @@ class FSMOrder(models.Model):
         string="Payments",
     )
     payment_count = fields.Integer(
-        string="Payment Count", compute="_compute_account_payment_count", readonly=True
+        compute="_compute_account_payment_count", readonly=True
     )
 
     @api.depends("payment_ids")
