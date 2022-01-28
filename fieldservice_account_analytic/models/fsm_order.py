@@ -7,10 +7,9 @@ from odoo import api, fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    total_cost = fields.Float(compute="_compute_total_cost", string="Total Cost")
+    total_cost = fields.Float(compute="_compute_total_cost")
     bill_to = fields.Selection(
         [("location", "Bill Location"), ("contact", "Bill Contact")],
-        string="Bill to",
         required=True,
         default="location",
     )
@@ -23,7 +22,7 @@ class FSMOrder(models.Model):
     )
 
     def _compute_total_cost(self):
-        """ To be overridden as needed from other modules """
+        """To be overridden as needed from other modules"""
         for order in self:
             order.total_cost = 0.0
 
