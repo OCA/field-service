@@ -18,7 +18,6 @@ class FsmOrderCost(models.Model):
         required=True,
     )
     quantity = fields.Float(
-        string="Quantity",
         required=True,
         default=1,
     )
