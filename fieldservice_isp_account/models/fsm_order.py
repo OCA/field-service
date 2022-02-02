@@ -43,7 +43,7 @@ class FSMOrder(models.Model):
 
     @api.depends("employee_timesheet_ids", "contractor_cost_ids")
     def _compute_total_cost(self):
-        super()._compute_total_cost()
+        res = super()._compute_total_cost()
         for order in self:
             order.total_cost = 0.0
             rate = 0
@@ -52,6 +52,7 @@ class FSMOrder(models.Model):
                 order.total_cost += line.unit_amount * rate
             for cost in order.contractor_cost_ids:
                 order.total_cost += cost.price_unit * cost.quantity
+        return res
 
     @api.depends("employee_timesheet_ids")
     def _compute_employee_hours(self):
