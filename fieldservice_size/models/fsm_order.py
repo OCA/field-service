@@ -45,10 +45,11 @@ class FSMOrder(models.Model):
 
     @api.onchange("location_id")
     def onchange_location_id(self):
-        super().onchange_location_id()
+        res = super().onchange_location_id()
         self.size_id = self._default_size_id()
         self.size_value = self._default_size_value()
         self.size_uom = self._default_size_uom()
+        return res
 
     @api.onchange("type")
     def onchange_type(self):
