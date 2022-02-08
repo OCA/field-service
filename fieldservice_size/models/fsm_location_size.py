@@ -9,7 +9,7 @@ class FSMLocationSize(models.Model):
 
     size_id = fields.Many2one("fsm.size", required=True, index=True)
     type_id = fields.Many2one("fsm.order.type", index=True, related="size_id.type_id")
-    quantity = fields.Float(string="Quantity", required=True)
+    quantity = fields.Float(required=True)
     uom_id = fields.Many2one("uom.uom", index=True, related="size_id.uom_id")
     location_id = fields.Many2one(
         "fsm.location", string="Location", required=True, index=True
