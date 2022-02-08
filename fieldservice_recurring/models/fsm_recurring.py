@@ -18,7 +18,6 @@ class FSMRecurringOrder(models.Model):
         return self.env.ref("fieldservice.fsm_team_default")
 
     name = fields.Char(
-        string="Name",
         required=True,
         index=True,
         copy=False,
@@ -45,19 +44,15 @@ class FSMRecurringOrder(models.Model):
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
-    description = fields.Text(string="Description")
+    description = fields.Text()
     fsm_frequency_set_id = fields.Many2one(
         "fsm.frequency.set",
         "Frequency Set",
     )
-    scheduled_duration = fields.Float(
-        string="Scheduled duration", help="Scheduled duration of the work in hours"
-    )
+    scheduled_duration = fields.Float(help="Scheduled duration of the work in hours")
 
-    start_date = fields.Datetime(string="Start Date")
-    end_date = fields.Datetime(
-        string="End Date", help="Recurring orders will not be made after this date"
-    )
+    start_date = fields.Datetime()
+    end_date = fields.Datetime(help="Recurring orders will not be made after this date")
     max_orders = fields.Integer(
         string="Maximum Orders", help="Maximium number of orders that will be created"
     )

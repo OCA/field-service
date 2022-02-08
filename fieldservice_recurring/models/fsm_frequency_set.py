@@ -11,7 +11,7 @@ class FSMFrequencySet(models.Model):
     _description = "Frequency Rule Set for Field Service Orders"
     _inherit = ["mail.thread"]
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
     active = fields.Boolean(default=True)
     fsm_frequency_ids = fields.Many2many(
         "fsm.frequency", tracking=True, string="Frequency Rules"
