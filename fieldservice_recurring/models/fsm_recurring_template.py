@@ -9,9 +9,9 @@ class FSMRecurringTemplate(models.Model):
     _description = "Recurring Field Service Order Template"
     _inherit = "mail.thread"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     active = fields.Boolean(default=True)
-    description = fields.Text(string="Description")
+    description = fields.Text()
     fsm_frequency_set_id = fields.Many2one("fsm.frequency.set", "Frequency Set")
     max_orders = fields.Integer(
         string="Maximum Orders", help="Maximium number of orders that will be created"
