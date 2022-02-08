@@ -36,7 +36,7 @@ class FSMFrequency(models.Model):
     _description = "Frequency Rule for Field Service Orders"
     _inherit = ["mail.thread"]
 
-    name = fields.Char("Name", required=True)
+    name = fields.Char(required=True)
     active = fields.Boolean(default=True)
     interval = fields.Integer(
         string="Repeat Every",
@@ -47,7 +47,6 @@ class FSMFrequency(models.Model):
     )
     interval_type = fields.Selection(
         FREQUENCY_SELECT,
-        string="Interval Type",
         required=True,
         tracking=True,
     )
@@ -83,7 +82,7 @@ class FSMFrequency(models.Model):
     feb = fields.Boolean("February", default=False)
     mar = fields.Boolean("March", default=False)
     apr = fields.Boolean("April", default=False)
-    may = fields.Boolean("May", default=False)
+    may = fields.Boolean(default=False)
     jun = fields.Boolean("June", default=False)
     jul = fields.Boolean("July", default=False)
     aug = fields.Boolean("August", default=False)
