@@ -8,7 +8,7 @@ class FSMSize(models.Model):
     _name = "fsm.size"
     _description = "Field Service Size"
 
-    name = fields.Char(string="Name", required="True")
+    name = fields.Char(required="True")
     type_id = fields.Many2one("fsm.order.type", string="Order Type")
     parent_id = fields.Many2one("fsm.size", string="Parent Size", index=True)
     uom_id = fields.Many2one("uom.uom", string="Unit of Measure")
