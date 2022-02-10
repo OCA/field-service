@@ -24,8 +24,18 @@ class TestFSMSDistribution(TransactionCase):
                 "is_a_distribution": True,
             }
         )
+        self.test_location3 = self.location.create(
+            {
+                "name": "Test Location 2",
+                "phone": "123",
+                "email": "tp@email.com",
+                "partner_id": self.test_loc_partner.id,
+                "owner_id": self.test_loc_partner.id,
+            }
+        )
 
     def test_fsm_location(self):
         """Test creating new location, and test following functions."""
         self.test_location._compute_distrib_sublocation_ids()
         self.test_location.action_view_distrib_sublocation()
+        self.test_location3.action_view_distrib_sublocation()
