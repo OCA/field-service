@@ -10,6 +10,7 @@ class TestFSMOrder(TransactionCase):
         super(TestFSMOrder, self).setUp()
         self.Order = self.env["fsm.order"]
         self.test_location = self.env.ref("fieldservice.test_location")
+        self.location_1 = self.env.ref("fieldservice.location_1")
         self.team = self.Order._default_team_id()
         self.team.calendar_user_id = self.env.ref("base.partner_root").id
         self.person_id = self.env.ref("fieldservice.person_2")
@@ -40,10 +41,11 @@ class TestFSMOrder(TransactionCase):
         self.team.calendar_user_id = self.env.ref("base.partner_root").id
 
         # update order
-        new.scheduled_duration = 3
+        new.write({"scheduled_duration": 3})
+        new.write({"location_id": self.location_1.id})
         evt = new.calendar_event_id
         self.assertTrue(evt.exists())
-
+        evt.with_context(recurse_order_calendar=False).write({"duration": 5})
         # ensure deletion
         new.scheduled_date_start = False
         evt = new.calendar_event_id
@@ -78,13 +80,13 @@ class TestFSMOrder(TransactionCase):
             }
         )
         evt = new.calendar_event_id
-
         self.assertTrue(
             len(evt.partner_ids) == 1,
             "There should be no other attendees" " because there is no one assigned",
         )
         # organiser is attendee
         new.person_id = self.person_id
+        evt.with_context(recurse_order_calendar=False).write({"partner_ids": []})
         self.assertTrue(self.person_id.partner_id in evt.partner_ids)
         new.person_id = self.person_id3
         self.assertTrue(self.person_id3.partner_id in evt.partner_ids)
