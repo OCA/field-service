@@ -12,8 +12,12 @@ class FSMAccountPaymentCase(TransactionCase):
         self.register_payments_model = self.env[
             "account.payment.register"
         ].with_context(active_model="account.move")
-        self.payment_method_manual_in = self.env.ref(
-            "account.account_payment_method_manual_in"
+        self.company = self.env.user.company_id
+        self.default_journal_bank = self.env["account.journal"].search(
+            [("company_id", "=", self.company.id), ("type", "=", "bank")], limit=1
+        )
+        self.inbound_payment_method_line = (
+            self.default_journal_bank.inbound_payment_method_line_ids[0]
         )
         self.payment_model = self.env["account.payment"]
         self.test_analytic = self.env.ref("analytic.analytic_administratif")
@@ -36,8 +40,7 @@ class FSMAccountPaymentCase(TransactionCase):
                 "email": "tp@email.com",
                 "partner_id": self.test_loc_partner.id,
                 "owner_id": self.test_loc_partner.id,
-                "customer_id": self.test_loc_partner.id,
-                "analytic_account_id": self.test_analytic.id,
+                "customer_id": self.test_partner.id,
             }
         )
         self.account_income = self.env["account.account"].create(
@@ -52,6 +55,14 @@ class FSMAccountPaymentCase(TransactionCase):
 
         # Create a FSM order
         self.test_order = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "date_start": datetime.today(),
+                "date_end": datetime.today() + timedelta(hours=2),
+                "request_early": datetime.today(),
+            }
+        )
+        self.test_order2 = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
                 "date_start": datetime.today(),
@@ -95,7 +106,7 @@ class FSMAccountPaymentCase(TransactionCase):
             {
                 "payment_date": datetime.today(),
                 "journal_id": self.bank_journal.id,
-                "payment_method_id": self.payment_method_manual_in.id,
+                "payment_method_line_id": self.inbound_payment_method_line.id,
             }
         )
         order = self.test_order
@@ -115,3 +126,9 @@ class FSMAccountPaymentCase(TransactionCase):
         self.assertEqual(self.test_invoice.fsm_order_ids, payment.fsm_order_ids)
         res = self.env["fsm.order"].search([("payment_ids", "in", payment.id)])
         self.assertEqual(len(res), 1)
+        payment.fsm_order_ids = [(6, 0, [test_order, self.test_order2.id])]
+        payment.action_view_fsm_orders()
+        register_payment_action2 = register_payments.action_create_payments()
+        payment2 = self.payment_model.browse(register_payment_action2.get("res_id"))
+        order.payment_ids = [(6, 0, [payment.id, payment2.id])]
+        order.action_view_payments()
