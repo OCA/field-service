@@ -16,7 +16,10 @@
                 </page>
             </notebook>
             <field name="region_id" position="after">
-                <field name="customer_id" />
+                <field name="customer_id" context="{'location_id': location_id}" />
+            </field>
+            <field name="location_id" position="attributes">
+                <attribute name="context">{"customer_id": customer_id}</attribute>
             </field>
         </field>
     </record>
