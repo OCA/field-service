@@ -20,7 +20,7 @@ class FSMOrder(models.Model):
         return res
 
     def _create_calendar_event(self):
-        """Create entry in calendar of the team"""
+        """Create entry in calendar of the team."""
         for order in self._should_have_calendar_event():
             order.calendar_event_id = (
                 self.env["calendar.event"]
