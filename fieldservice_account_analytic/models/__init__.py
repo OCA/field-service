@@ -7,4 +7,5 @@ from . import (
     fsm_order,
     res_company,
     res_config_settings,
+    res_partner,
 )
