@@ -25,7 +25,9 @@ class AccountPayment(models.Model):
     @api.depends("fsm_order_ids")
     def _compute_fsm_order_count(self):
         for payment in self:
-            payment.fsm_order_count = len(payment.fsm_order_ids)
+            payment.fsm_order_count = (
+                len(payment.fsm_order_ids) if payment.fsm_order_ids else 0
+            )
 
     def action_view_fsm_orders(self):
         action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
