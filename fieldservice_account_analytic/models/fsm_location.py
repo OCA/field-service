@@ -30,3 +30,31 @@ class FSMLocation(models.Model):
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id_account(self):
         self.customer_id = self.fsm_parent_id.customer_id or False
+
+    @api.model
+    def _search(
+        self,
+        args,
+        offset=0,
+        limit=None,
+        order=None,
+        count=False,
+        access_rights_uid=None,
+    ):
+        args = args or []
+        context = dict(self._context) or {}
+        if context.get("customer_id"):
+            partner = self.env["res.partner"].browse(context.get("customer_id"))
+            args.extend(
+                [
+                    ("partner_id", "=", partner.id),
+                ]
+            )
+        return super(FSMLocation, self)._search(
+            args,
+            offset=offset,
+            limit=limit,
+            order=order,
+            count=count,
+            access_rights_uid=access_rights_uid,
+        )
