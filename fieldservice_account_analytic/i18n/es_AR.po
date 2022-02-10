@@ -44,8 +44,8 @@ msgstr "Ubicación de Factura"
 
 #. module: fieldservice_account_analytic
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order__bill_to
-msgid "Bill to"
-msgstr "Facturar a"
+msgid "Bill To"
+msgstr ""
 
 #. module: fieldservice_account_analytic
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_location__customer_id
@@ -63,6 +63,7 @@ msgid "Config Settings"
 msgstr "Configurar Ajustes"
 
 #. module: fieldservice_account_analytic
+#: model:ir.model,name:fieldservice_account_analytic.model_res_partner
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order__customer_id
 msgid "Contact"
 msgstr "Contacto"
@@ -71,16 +72,6 @@ msgstr "Contacto"
 #: model_terms:ir.ui.view,arch_db:fieldservice_account_analytic.fsm_location_search_view_analytic
 msgid "Customer"
 msgstr "Cliente"
-
-#. module: fieldservice_account_analytic
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_location__display_name
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_wizard__display_name
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_company__display_name
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
 
 #. module: fieldservice_account_analytic
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_analytic_line__fsm_order_id
@@ -115,31 +106,9 @@ msgid "Filter the Location on an FSM Order by the Contact"
 msgstr "Filtrar la Ubicación por Contacto en un Pedido FSM"
 
 #. module: fieldservice_account_analytic
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_move_line__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_location__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_wizard__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_company__id
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_config_settings__id
-msgid "ID"
-msgstr "ID"
-
-#. module: fieldservice_account_analytic
 #: model:ir.model,name:fieldservice_account_analytic.model_account_move_line
 msgid "Journal Item"
 msgstr "Apunte Contable"
-
-#. module: fieldservice_account_analytic
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_location____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_wizard____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_company____last_update
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: fieldservice_account_analytic
 #: code:addons/fieldservice_account_analytic/models/account_move.py:0
@@ -147,11 +116,6 @@ msgstr "Última Modificación el"
 #, python-format
 msgid "No analytic account set on the order's Location."
 msgstr "No hay una cuenta analítica establecida en la Ubicación del pedido."
-
-#. module: fieldservice_account_analytic
-#: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
 
 #. module: fieldservice_account_analytic
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_account_analytic_line__product_id
@@ -162,6 +126,21 @@ msgstr "Tipo de Tiempo"
 #: model:ir.model.fields,field_description:fieldservice_account_analytic.field_fsm_order__total_cost
 msgid "Total Cost"
 msgstr "Costo Total"
+
+#~ msgid "Bill to"
+#~ msgstr "Facturar a"
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
 
 #~ msgid "Invoice Line"
 #~ msgstr "Línea de Factura"
