@@ -19,7 +19,7 @@ class FSMActivity(models.Model):
         states={"todo": [("readonly", False)]},
     )
     sequence = fields.Integer()
-    completed = fields.Boolean(default=False)
+    completed = fields.Boolean()
     completed_on = fields.Datetime(readonly=True)
     completed_by = fields.Many2one("res.users", readonly=True)
     ref = fields.Char(
