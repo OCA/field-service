@@ -25,5 +25,4 @@ class AccountAnalyticLine(models.Model):
 
     @api.onchange("product_id")
     def onchange_product_id(self):
-        if self.product_id:
-            self.name = self.product_id.name
+        self.name = self.product_id.name if self.product_id else False
