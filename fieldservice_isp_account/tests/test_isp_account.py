@@ -3,15 +3,18 @@
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class FSMISPAccountCase(SavepointCase):
+class FSMISPAccountCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(FSMISPAccountCase, cls).setUpClass()
         cls.AccountMoveLine = cls.env["account.move.line"]
         cls.test_person = cls.env["fsm.person"].create({"name": "Worker-1"})
+        cls.test_person2 = cls.env["fsm.person"].create(
+            {"name": "Worker-1", "supplier_rank": 1}
+        )
         cls.test_analytic = cls.env.ref("analytic.analytic_administratif")
         cls.account_id = cls.env["account.account"].create(
             {
@@ -56,11 +59,20 @@ class FSMISPAccountCase(SavepointCase):
                 "person_id": self.test_person.id,
             }
         )
+        order3 = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "bill_to": bill_to,
+                "person_id": self.test_person2.id,
+            }
+        )
         order._compute_employee()
         self.test_person._compute_vendor_bills()
         self.test_person.action_view_bills()
         with self.assertRaises(ValidationError):
             order2.action_complete()
+        with self.assertRaises(ValidationError):
+            order3.action_complete()
         for contractor in contractors:
             contractor.update({"fsm_order_id": order.id})
         contractors = self.env["fsm.order.cost"].create(contractors)
@@ -76,6 +88,14 @@ class FSMISPAccountCase(SavepointCase):
         order.date_end = fields.Datetime.today()
         order.resolution = "Done something!"
         order.action_complete()
+        order3 = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "bill_to": "contact",
+                "person_id": self.test_person2.id,
+                "customer_id": self.test_loc_partner.id,
+            }
+        )
         self.assertEqual(order.account_stage, "review")
         # Create vendor bill
         # Vendor bill created from order's contractor
@@ -88,13 +108,10 @@ class FSMISPAccountCase(SavepointCase):
         bill = self.AccountMoveLine.search(
             [("fsm_order_ids", "in", order.id)]
         ).move_id.filtered(lambda i: i.move_type == "in_invoice")
+        self.test_person.action_view_bills()
         self.assertEqual(len(bill), 1)
         self.assertEqual(len(order.contractor_cost_ids), len(bill.invoice_line_ids))
-        # Customer invoice created from order's contractor and timehsheet
-        if order.bill_to == "contact" and not order.customer_id:
-            with self.assertRaises(ValidationError):
-                order.account_create_invoice()
-            order.customer_id = self.test_loc_partner  # Assign some partner
+        order3.account_create_invoice()
         order.account_create_invoice()
         self.assertEqual(order.account_stage, "invoiced")
         invoice = self.AccountMoveLine.search(

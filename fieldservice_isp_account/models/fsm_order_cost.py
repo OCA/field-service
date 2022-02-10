@@ -10,7 +10,7 @@ class FsmOrderCost(models.Model):
     _description = "Fsm Order Cost"
 
     fsm_order_id = fields.Many2one(
-        comodel_name="fsm.order",
+        "fsm.order",
         required=True,
     )
     price_unit = fields.Float(
@@ -22,7 +22,7 @@ class FsmOrderCost(models.Model):
         default=1,
     )
     product_id = fields.Many2one(
-        comodel_name="product.product",
+        "product.product",
         string="Product",
         required=True,
     )
@@ -30,6 +30,4 @@ class FsmOrderCost(models.Model):
     @api.onchange("product_id")
     def onchange_product_id(self):
         for cost in self:
-            if not cost.product_id:
-                continue
             cost.price_unit = cost.product_id.standard_price
