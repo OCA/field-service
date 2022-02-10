@@ -100,13 +100,12 @@ class FSMRecurringOrder(models.Model):
     def onchange_recurring_template_id(self):
         if not self.fsm_recurring_template_id:
             return
-        values = self.populate_from_template()
-        self.update(values)
+        self.update(self.populate_from_template())
 
     def populate_from_template(self, template=False):
         if not template:
             template = self.fsm_recurring_template_id
-        vals = {
+        return {
             "fsm_frequency_set_id": template.fsm_frequency_set_id,
             "max_orders": template.max_orders,
             "description": template.description,
@@ -114,7 +113,6 @@ class FSMRecurringOrder(models.Model):
             "scheduled_duration": template.fsm_order_template_id.duration,
             "company_id": template.company_id,
         }
-        return vals
 
     @api.model
     def create(self, vals):
@@ -209,14 +207,13 @@ class FSMRecurringOrder(models.Model):
         """
         orders = self.env["fsm.order"]
         for rec in self:
-            schedule_dates = rec._get_rruleset()
             order_dates = []
             for order in rec.fsm_order_ids:
                 if order.scheduled_date_start:
                     order_dates.append(order.scheduled_date_start.date())
             max_orders = rec.max_orders if rec.max_orders > 0 else False
             order_count = rec.fsm_order_count
-            for date in schedule_dates:
+            for date in rec._get_rruleset():
                 if date.date() in order_dates:
                     continue
                 if max_orders > order_count or not max_orders:
