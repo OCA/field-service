@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -13,10 +13,11 @@ class FSMOrder(models.Model):
         "fsm.recurring", "Recurring Order", readonly=True
     )
 
-    def _compute_request_late(self, vals):
-        if not vals.get("fsm_recurring_id", False):
-            return super(FSMOrder, self)._compute_request_late(vals)
-        elif vals.get("scheduled_date_start", False):
+    @api.model
+    def create(self, vals):
+        if vals.get("fsm_recurring_id", False) and vals.get(
+            "scheduled_date_start", False
+        ):
             days_late = (
                 self.env["fsm.recurring"]
                 .browse(vals["fsm_recurring_id"])
@@ -25,7 +26,7 @@ class FSMOrder(models.Model):
             vals["request_late"] = vals["scheduled_date_start"] + timedelta(
                 days=days_late
             )
-        return vals
+        return super().create(vals)
 
     def action_view_fsm_recurring(self):
         action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]

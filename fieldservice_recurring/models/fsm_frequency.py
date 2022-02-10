@@ -52,7 +52,6 @@ class FSMFrequency(models.Model):
     )
     is_exclusive = fields.Boolean(
         string="Exclusive Rule?",
-        default=False,
         help="""Checking this box will make this an exclusive rule. Exclusive
             rules prevent the configured days from being a schedule option""",
     )
@@ -69,27 +68,27 @@ class FSMFrequency(models.Model):
         help="""When selected you will be able to choose which days of the
             week the scheduler will include (or exclude if Exclusive rule)""",
     )
-    mo = fields.Boolean("Monday", default=False)
-    tu = fields.Boolean("Tuesday", default=False)
-    we = fields.Boolean("Wednesday", default=False)
-    th = fields.Boolean("Thursday", default=False)
-    fr = fields.Boolean("Friday", default=False)
-    sa = fields.Boolean("Saturday", default=False)
-    su = fields.Boolean("Sunday", default=False)
+    mo = fields.Boolean("Monday")
+    tu = fields.Boolean("Tuesday")
+    we = fields.Boolean("Wednesday")
+    th = fields.Boolean("Thursday")
+    fr = fields.Boolean("Friday")
+    sa = fields.Boolean("Saturday")
+    su = fields.Boolean("Sunday")
 
     use_bymonth = fields.Boolean(string="Use Months")
-    jan = fields.Boolean("January", default=False)
-    feb = fields.Boolean("February", default=False)
-    mar = fields.Boolean("March", default=False)
-    apr = fields.Boolean("April", default=False)
-    may = fields.Boolean(default=False)
-    jun = fields.Boolean("June", default=False)
-    jul = fields.Boolean("July", default=False)
-    aug = fields.Boolean("August", default=False)
-    sep = fields.Boolean("September", default=False)
-    oct = fields.Boolean("October", default=False)
-    nov = fields.Boolean("November", default=False)
-    dec = fields.Boolean("December", default=False)
+    jan = fields.Boolean("January")
+    feb = fields.Boolean("February")
+    mar = fields.Boolean("March")
+    apr = fields.Boolean("April")
+    may = fields.Boolean()
+    jun = fields.Boolean("June")
+    jul = fields.Boolean("July")
+    aug = fields.Boolean("August")
+    sep = fields.Boolean("September")
+    oct = fields.Boolean("October")
+    nov = fields.Boolean("November")
+    dec = fields.Boolean("December")
 
     use_setpos = fields.Boolean(string="Use Position")
     set_pos = fields.Integer(
@@ -163,8 +162,7 @@ class FSMFrequency(models.Model):
             "nov",
             "dec",
         ]
-        bymonth = [months.index(field) + 1 for field in months if self[field]]
-        return bymonth
+        return [months.index(field) + 1 for field in months if self[field]]
 
     def _bymonthday(self):
         self.ensure_one()
