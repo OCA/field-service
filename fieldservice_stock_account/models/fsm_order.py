@@ -18,7 +18,7 @@ class FSMOrder(models.Model):
             "price_unit": 0,
             "show_in_report": False,
             "account_id": account.id,
-            "invoice_id": invoice.id,
+            "move_id": invoice.id,
         }
         return vals
 
@@ -53,20 +53,20 @@ class FSMOrder(models.Model):
                 fpos = self.customer_id.property_account_position_id
                 vals = {
                     "partner_id": self.customer_id.id,
-                    "type": "out_invoice",
+                    "move_type": "out_invoice",
                     "journal_id": jrnl.id or False,
                     "fiscal_position_id": fpos.id or False,
-                    "fsm_order_id": self.id,
+                    "fsm_order_ids": self.ids,
                 }
                 invoice = self.env["account.move"].sudo().create(vals)
             else:
                 fpos = self.location_id.customer_id.property_account_position_id
                 vals = {
                     "partner_id": self.location_id.customer_id.id,
-                    "type": "out_invoice",
+                    "move_type": "out_invoice",
                     "journal_id": jrnl.id or False,
                     "fiscal_position_id": fpos.id or False,
-                    "fsm_order_id": self.id,
+                    "fsm_order_ids": self.ids,
                 }
                 invoice = self.env["account.move"].sudo().create(vals)
             self._create_inv_line_for_stock_requests(invoice)
