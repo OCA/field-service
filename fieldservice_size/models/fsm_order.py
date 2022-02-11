@@ -7,22 +7,20 @@ class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
     def _default_size_id(self):
-        type_id = self.type.id
         size = False
-        if type_id:
+        if self.type:
             size = self.env["fsm.size"].search(
-                [("type_id", "=", type_id), ("is_order_size", "=", True)], limit=1
+                [("type_id", "=", self.type.id), ("is_order_size", "=", True)], limit=1
             )
         return size
 
     def _default_size_value(self):
-        size_id = self.size_id
         size_value = 0
-        if size_id:
+        if self.size_id:
             size = self.env["fsm.location.size"].search(
                 [
                     ("location_id", "=", self.location_id.id),
-                    ("size_id", "=", size_id.id),
+                    ("size_id", "=", self.size_id.id),
                 ],
                 limit=1,
             )
@@ -31,11 +29,7 @@ class FSMOrder(models.Model):
         return size_value
 
     def _default_size_uom(self):
-        uom = False
-        size = self.size_id
-        if size:
-            uom = size.uom_id
-        return uom
+        return self.size_id.uom_id if self.size_id else False
 
     size_id = fields.Many2one("fsm.size", default=_default_size_id)
     size_value = fields.Float(string="Order Size", default=_default_size_value)
@@ -44,8 +38,8 @@ class FSMOrder(models.Model):
     )
 
     @api.onchange("location_id")
-    def onchange_location_id(self):
-        res = super().onchange_location_id()
+    def _onchange_location_id_customer(self):
+        res = super()._onchange_location_id_customer()
         self.size_id = self._default_size_id()
         self.size_value = self._default_size_value()
         self.size_uom = self._default_size_uom()
