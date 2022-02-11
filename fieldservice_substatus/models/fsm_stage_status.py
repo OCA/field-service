@@ -8,7 +8,7 @@ class FSMStageStatus(models.Model):
     _name = "fsm.stage.status"
     _description = "Order Sub-Status"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
     @api.model
     def _search(
