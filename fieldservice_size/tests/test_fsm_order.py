@@ -12,7 +12,6 @@ class TestFSMSize(TransactionCase):
         self.Type = self.env["fsm.order.type"]
         self.Order = self.env["fsm.order"]
         self.UOM = self.env.ref("uom.product_uom_unit")
-
         self.type_a = self.Type.create({"name": "Type A"})
         self.size_a = self.Size.create(
             {
@@ -35,7 +34,7 @@ class TestFSMSize(TransactionCase):
                 }
             )
         self.assertEqual(
-            e.exception.name, "Only one default order size per type allowed"
+            e.exception.args[0], "Only one default order size per type is allowed."
         )
 
     def test_order_onchange_location(self):
@@ -49,10 +48,12 @@ class TestFSMSize(TransactionCase):
         order = self.Order.create(
             {
                 "type": self.type_a.id,
-                "location_id": self.test_location,
+                "location_id": self.test_location.id,
             }
         )
-        order.onchange_location_id()
-        self.assertTrue(order.size_id == self.size_a.id)
-        self.assertTrue(order.size_value == 24.5)
-        self.assertTrue(order.size_uom == self.size_a.uom_id)
+        order._onchange_location_id_customer()
+        order.onchange_type()
+        order.onchange_size_id()
+        self.assertTrue(order.size_id, self.size_a.id)
+        self.assertTrue(order.size_value, 24.5)
+        self.assertTrue(order.size_uom, self.size_a.uom_id)
