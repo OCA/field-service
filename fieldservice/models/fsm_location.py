@@ -109,9 +109,9 @@ class FSMLocation(models.Model):
         recs = self.browse()
         if name:
             recs = self.search([("ref", "ilike", name)] + args, limit=limit)
-        if not recs and self.env.user.company_id.search_on_complete_name:
+        if not recs and self.env.company.search_on_complete_name:
             recs = self.search([("complete_name", operator, name)] + args, limit=limit)
-        if not recs and not self.env.user.company_id.search_on_complete_name:
+        if not recs and not self.env.company.search_on_complete_name:
             recs = self.search([("name", operator, name)] + args, limit=limit)
         return recs.name_get()
 
@@ -174,7 +174,7 @@ class FSMLocation(models.Model):
     def _onchange_territory_id(self):
         self.territory_manager_id = self.territory_id.person_id or False
         self.branch_id = self.territory_id.branch_id or False
-        if self.env.user.company_id.auto_populate_persons_on_location:
+        if self.env.company.auto_populate_persons_on_location:
             person_vals_list = []
             for person in self.territory_id.person_ids:
                 person_vals_list.append(
