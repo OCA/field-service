@@ -9,8 +9,7 @@ class FSMStage(models.Model):
 
     @api.model
     def _default_sub_stage(self):
-        ret = self.env["fsm.stage.status"].search([("name", "=", "Default")])
-        return ret
+        return self.env["fsm.stage.status"].search([("name", "=", "Default")])
 
     sub_stage_id = fields.Many2one(
         "fsm.stage.status",
