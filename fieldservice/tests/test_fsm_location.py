@@ -68,7 +68,7 @@ class FSMLocation(TransactionCase):
             location.stage_id, self.env.ref("fieldservice.location_stage_2")
         )
         # Test create fsm.location.person, when has if territory has person_ids
-        self.env.user.company_id.auto_populate_persons_on_location = True
+        self.env.company.auto_populate_persons_on_location = True
         person_ids = [
             self.env.ref("fieldservice.person_1").id,
             self.env.ref("fieldservice.person_2").id,

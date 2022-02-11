@@ -19,7 +19,7 @@ class FSMOrder(models.Model):
             [
                 ("stage_type", "=", "order"),
                 ("is_default", "=", True),
-                ("company_id", "in", (self.env.user.company_id.id, False)),
+                ("company_id", "in", (self.env.company.id, False)),
             ],
             order="sequence asc",
             limit=1,
@@ -31,7 +31,7 @@ class FSMOrder(models.Model):
 
     def _default_team_id(self):
         team_ids = self.env["fsm.team"].search(
-            [("company_id", "in", (self.env.user.company_id.id, False))],
+            [("company_id", "in", (self.env.company.id, False))],
             order="sequence asc",
             limit=1,
         )
@@ -120,7 +120,7 @@ class FSMOrder(models.Model):
         string="Company",
         required=True,
         index=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
         help="Company related to this order",
     )
 
