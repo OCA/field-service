@@ -74,7 +74,7 @@ class FSMTeam(models.Model):
         string="Company",
         required=False,
         index=True,
-        default=lambda self: self.env.user.company_id,
+        default=lambda self: self.env.company,
         help="Company related to this team",
     )
 
