@@ -10,6 +10,11 @@ class FSMLocation(models.Model):
     _inherits = {"res.partner": "partner_id"}
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Field Service Location"
+    _parent_name = "fsm_parent_id"
+    _parent_store = True
+    _order = "complete_name, id"
+    _rec_name = "complete_name"
+    _check_company_auto = True
 
     direction = fields.Char(string="Directions")
     partner_id = fields.Many2one(
@@ -65,7 +70,7 @@ class FSMLocation(models.Model):
         string="Sub Locations", compute="_compute_sublocation_ids"
     )
     complete_name = fields.Char(
-        string="Complete Name", compute="_compute_complete_name", store=True
+        "Complete Name", compute="_compute_complete_name", store=True
     )
     hide = fields.Boolean(default=False)
 
@@ -78,6 +83,7 @@ class FSMLocation(models.Model):
         group_expand="_read_group_stage_ids",
         default=lambda self: self._default_stage_id(),
     )
+    parent_path = fields.Char(index=True)
 
     @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):
@@ -197,78 +203,34 @@ class FSMLocation(models.Model):
         self.region_manager_id = self.region_id.partner_id or False
 
     def comp_count(self, contact, equipment, loc):
+        child_locs = self.env["fsm.location"].search([("id", "child_of", loc.ids)])
         if equipment:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                equip = self.env["fsm.equipment"].search_count(
-                    [("location_id", "=", child.id)]
-                )
-            if child_locs:
-                for loc in child_locs:
-                    equip += loc.comp_count(0, 1, loc)
+            equip = self.env["fsm.equipment"].search_count(
+                [("location_id", "in", child_locs.ids)]
+            )
             return equip
         elif contact:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                con = self.env["res.partner"].search_count(
-                    [("service_location_id", "=", child.id)]
-                )
-            if child_locs:
-                for loc in child_locs:
-                    con += loc.comp_count(1, 0, loc)
-            return con
+            contacts = self.env["res.partner"].search_count(
+                [("service_location_id", "in", child_locs.ids)]
+            )
+            return contacts
         else:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                subloc = self.env["fsm.location"].search_count(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-            if child_locs:
-                for loc in child_locs:
-                    subloc += loc.comp_count(0, 0, loc)
-            return subloc
+            return len(child_locs - loc)
 
     def get_action_views(self, contact, equipment, loc):
+        child_locs = self.env["fsm.location"].search([("id", "child_of", loc.ids)])
         if equipment:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                equip = self.env["fsm.equipment"].search(
-                    [("location_id", "=", child.id)]
-                )
-            if child_locs:
-                for loc in child_locs:
-                    equip += loc.get_action_views(0, 1, loc)
+            equip = self.env["fsm.equipment"].search(
+                [("location_id", "in", child_locs.ids)]
+            )
             return equip
         elif contact:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                con = self.env["res.partner"].search(
-                    [("service_location_id", "=", child.id)]
-                )
-            if child_locs:
-                for loc in child_locs:
-                    con += loc.get_action_views(1, 0, loc)
-            return con
+            contacts = self.env["res.partner"].search(
+                [("service_location_id", "in", child_locs.ids)]
+            )
+            return contacts
         else:
-            for child in loc:
-                child_locs = self.env["fsm.location"].search(
-                    [("fsm_parent_id", "=", child.id)]
-                )
-                subloc = child_locs
-            if child_locs:
-                for loc in child_locs:
-                    subloc += loc.get_action_views(0, 0, loc)
-            return subloc
+            return child_locs
 
     def action_view_contacts(self):
         """
