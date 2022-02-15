@@ -11,11 +11,15 @@ class AccountMove(models.Model):
     fsm_order_ids = fields.Many2many(
         "fsm.order",
         compute="_compute_fsm_order_ids",
-        string="Field Service orders associated to this invoice",
+        search="_search_fsm_orders",
+        string="FSM Orders",
     )
     fsm_order_count = fields.Integer(
         string="FSM Orders", compute="_compute_fsm_order_ids"
     )
+
+    def _search_fsm_orders(self, operator, value):
+        return [("line_ids.fsm_order_ids", operator, value)]
 
     @api.depends("line_ids")
     def _compute_fsm_order_ids(self):
