@@ -1,6 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests.common import Form, TransactionCase
 
 
@@ -33,14 +34,14 @@ class FSMTeam(TransactionCase):
             order.person_id = (
                 i in todo["assigned"] and self.env.ref("fieldservice.person_1") or False
             )
-            # TODO: after this https://github.com/OCA/field-service/issues/266
-            # assert should then be (5, 3, 1)
-            # order.scheduled_date_start = False
+            order.scheduled_date_start = (
+                i in todo["scheduled"] and fields.Datetime.now() or False
+            )
         self.assertEqual(
             (
                 self.test_team.order_count,
                 self.test_team.order_need_assign_count,
                 self.test_team.order_need_schedule_count,
             ),
-            (5, 3, 0),
+            (5, 3, 1),
         )
