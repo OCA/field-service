@@ -13,6 +13,15 @@ class TestFSMSaleRecurring(TestFSMSale):
 
         # Setup products that when sold will create some FSM orders
         cls.setUpFSMProducts()
+        cls.partner_customer_usd = cls.env["res.partner"].create(
+            {
+                "name": "partner_a",
+                "company_id": False,
+            }
+        )
+        cls.pricelist_usd = cls.env["product.pricelist"].search(
+            [("currency_id.name", "=", "USD")], limit=1
+        )
 
         SaleOrder = cls.env["sale.order"].with_context(tracking_disable=True)
 
