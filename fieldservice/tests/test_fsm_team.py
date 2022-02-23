@@ -35,7 +35,7 @@ class FSMTeam(TransactionCase):
                 i in todo["assigned"] and self.env.ref("fieldservice.person_1") or False
             )
             order.scheduled_date_start = (
-                i in todo["scheduled"] and fields.datetime.now() or False
+                i in todo["scheduled"] and fields.Datetime.now() or False
             )
         self.assertEqual(
             (
