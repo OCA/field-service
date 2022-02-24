@@ -3,31 +3,27 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Field Service Route',
-    'summary': 'Organize the routes of each day.',
-    'version': '12.0.2.5.0',
-    'category': 'Field Service',
-    'license': 'AGPL-3',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/field-service',
-    'depends': [
-        'fieldservice'
+    "name": "Field Service Route",
+    "summary": "Organize the routes of each day.",
+    "version": "12.0.2.5.0",
+    "category": "Field Service",
+    "license": "AGPL-3",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/field-service",
+    "depends": ["fieldservice"],
+    "data": [
+        "data/ir_sequence.xml",
+        "data/fsm_route_day_data.xml",
+        "data/fsm_stage_data.xml",
+        "security/ir.model.access.csv",
+        "views/fsm_route_day.xml",
+        "views/fsm_route.xml",
+        "views/fsm_location.xml",
+        "views/fsm_route_dayroute.xml",
+        "views/fsm_order.xml",
+        "views/res_partner_views.xml",
+        "views/menu.xml",
     ],
-    'data': [
-        'data/ir_sequence.xml',
-        'data/fsm_route_day_data.xml',
-        'data/fsm_stage_data.xml',
-        'security/ir.model.access.csv',
-        'views/fsm_route_day.xml',
-        'views/fsm_route.xml',
-        'views/fsm_location.xml',
-        'views/fsm_route_dayroute.xml',
-        'views/fsm_order.xml',
-        'views/res_partner_views.xml',
-        'views/menu.xml',
-    ],
-    'development_status': 'Beta',
-    'maintainers': [
-        'max3903'
-    ],
+    "development_status": "Beta",
+    "maintainers": ["max3903"],
 }
