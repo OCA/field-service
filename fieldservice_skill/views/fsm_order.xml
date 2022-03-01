@@ -14,11 +14,6 @@
                 />
                 <field name="skill_worker_ids" invisible="1" />
             </field>
-            <field name="person_id" position="attributes">
-                <attribute name="domain">
-                    [("id", "in", skill_worker_ids)]
-                </attribute>
-            </field>
         </field>
     </record>
 </odoo>
