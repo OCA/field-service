@@ -12,6 +12,27 @@ class StockRequest(models.Model):
         "fsm.order", string="FSM Order", ondelete="cascade", index=True, copy=False
     )
 
+    def _update_stock_request_order_data(self):
+        if self.order_id and self.direction and self.state == "draft":
+            picking_type_id = self.env["stock.picking.type"].search(
+                [
+                    ("code", "=", "stock_request_order"),
+                    ("warehouse_id", "=", self.warehouse_id.id),
+                ],
+                limit=1,
+            )
+            order = self.env["stock.request.order"].search(
+                [
+                    ("fsm_order_id", "=", self.fsm_order_id.id),
+                    ("warehouse_id", "=", self.warehouse_id.id),
+                    ("picking_type_id", "=", picking_type_id.id),
+                    ("direction", "=", self.direction),
+                    ("state", "=", "draft"),
+                ],
+                order="id asc",
+            )
+            self.order_id = order.id
+
     @api.onchange("direction", "fsm_order_id")
     def _onchange_location_id(self):
         super()._onchange_location_id()
@@ -22,8 +43,18 @@ class StockRequest(models.Model):
                     self.fsm_order_id.location_id.inventory_location_id.id
                 )
             else:
-                # Otherwise the stock location of the warehouse
                 self.location_id = self.fsm_order_id.warehouse_id.lot_stock_id.id
+            self._update_stock_request_order_data()
+
+    def prepare_stock_request_order_values(self):
+        res = {
+            "expected_date": self.expected_date,
+            "picking_policy": self.picking_policy,
+            "warehouse_id": self.warehouse_id.id,
+            "direction": self.direction,
+            "location_id": self.location_id.id,
+        }
+        return res
 
     def prepare_order_values(self, vals):
         res = {
@@ -96,6 +127,62 @@ class StockRequest(models.Model):
                 vals["expected_date"] = order.expected_date
                 vals["order_id"] = order.id
         return super().create(vals)
+
+    def write(self, vals):
+        for stock_req in self:
+            if "direction" in vals:
+                picking_type_id = self.env["stock.picking.type"].search(
+                    [
+                        ("code", "=", "stock_request_order"),
+                        ("warehouse_id", "=", stock_req.warehouse_id.id),
+                    ],
+                    limit=1,
+                )
+                order = self.env["stock.request.order"].search(
+                    [
+                        ("fsm_order_id", "=", stock_req.fsm_order_id.id),
+                        ("warehouse_id", "=", stock_req.warehouse_id.id),
+                        ("picking_type_id", "=", picking_type_id.id),
+                        ("direction", "=", vals["direction"]),
+                        ("state", "=", "draft"),
+                    ],
+                    order="id asc",
+                )
+                # User created a new SRO Manually
+                if len(order) > 1:
+                    raise UserError(
+                        _(
+                            "There is already a Stock Request Order \
+                                      with the same Field Service Order and \
+                                      Warehouse that is in Draft state. Please \
+                                      add this Stock Request there. \
+                                      (%s)"
+                        )
+                        % order[0].name
+                    )
+                # FSO: Update Values into it.
+                elif order:
+                    values = stock_req.prepare_stock_request_order_values()
+                    values.update(
+                        {
+                            "direction": vals["direction"],
+                            "location_id": vals["location_id"],
+                        }
+                    )
+                    order.write(values)
+                    vals["order_id"] = order.id
+                # Create SRO If not found then.
+                elif not order:
+                    values = stock_req.prepare_stock_request_order_values()
+                    values.update(
+                        {
+                            "direction": vals["direction"],
+                            "location_id": vals["location_id"],
+                        }
+                    )
+                    vals["order_id"] = self.env["stock.request.order"].create(values).id
+
+        return super().write(vals)
 
     def _prepare_procurement_values(self, group_id=False):
         res = super()._prepare_procurement_values(group_id=group_id)
