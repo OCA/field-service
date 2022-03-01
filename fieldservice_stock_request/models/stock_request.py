@@ -121,6 +121,8 @@ class StockRequest(models.Model):
                         "warehouse_id": vals["warehouse_id"],
                     }
                 )
+                if values["direction"] == "inbound":
+                    values.update({"location_id": self.env["stock.warehouse"].browse(vals["warehouse_id"]).lot_stock_id.id})
                 vals["order_id"] = self.env["stock.request.order"].create(values).id
             # There is an SRO made from FSO, assign here
             elif len(order) == 1 and vals.get("fsm_order_id"):
