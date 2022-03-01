@@ -176,14 +176,14 @@ class StockRequest(models.Model):
                 # Create SRO If not found then.
                 elif not order:
                     values = stock_req.prepare_stock_request_order_values()
-                    values.update(
-                        {
-                            "direction": vals["direction"],
-                            "location_id": vals["location_id"],
-                        }
-                    )
-                    vals["order_id"] = self.env["stock.request.order"].create(values).id
-
+                    if vals.get("direction", False) and vals.get("location_id", False):
+                        values.update(
+                            {
+                                "direction": vals["direction"],
+                                "location_id": vals["location_id"],
+                            }
+                        )
+                        vals["order_id"] = self.env["stock.request.order"].create(values).id
         return super().write(vals)
 
     def _prepare_procurement_values(self, group_id=False):
