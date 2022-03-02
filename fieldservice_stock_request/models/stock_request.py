@@ -122,7 +122,13 @@ class StockRequest(models.Model):
                     }
                 )
                 if values["direction"] == "inbound":
-                    values.update({"location_id": self.env["stock.warehouse"].browse(vals["warehouse_id"]).lot_stock_id.id})
+                    values.update(
+                        {
+                            "location_id": self.env["stock.warehouse"]
+                            .browse(vals["warehouse_id"])
+                            .lot_stock_id.id
+                        }
+                    )
                 vals["order_id"] = self.env["stock.request.order"].create(values).id
             # There is an SRO made from FSO, assign here
             elif len(order) == 1 and vals.get("fsm_order_id"):
@@ -132,7 +138,10 @@ class StockRequest(models.Model):
 
     def write(self, vals):
         for stock_req in self:
-            if "direction" in vals:
+            if "direction" in vals or "expected_date" in vals:
+                direction = vals.get("direction")
+                if "direction" not in vals:
+                    direction = stock_req.direction
                 picking_type_id = self.env["stock.picking.type"].search(
                     [
                         ("code", "=", "stock_request_order"),
@@ -140,12 +149,26 @@ class StockRequest(models.Model):
                     ],
                     limit=1,
                 )
+                if stock_req.fsm_order_id:
+                    order = self.env["stock.request.order"].search(
+                        [
+                            ("fsm_order_id", "=", stock_req.fsm_order_id.id),
+                            ("warehouse_id", "=", stock_req.warehouse_id.id),
+                            ("picking_type_id", "=", picking_type_id.id),
+                            ("direction", "=", direction),
+                            ("state", "=", "draft"),
+                        ],
+                        order="id asc",
+                    )
+                else:
+                    order = stock_req.order_id
+
                 order = self.env["stock.request.order"].search(
                     [
                         ("fsm_order_id", "=", stock_req.fsm_order_id.id),
                         ("warehouse_id", "=", stock_req.warehouse_id.id),
                         ("picking_type_id", "=", picking_type_id.id),
-                        ("direction", "=", vals["direction"]),
+                        ("direction", "=", direction),
                         ("state", "=", "draft"),
                     ],
                     order="id asc",
@@ -167,8 +190,11 @@ class StockRequest(models.Model):
                     values = stock_req.prepare_stock_request_order_values()
                     values.update(
                         {
-                            "direction": vals["direction"],
-                            "location_id": vals["location_id"],
+                            "direction": vals.get("direction") or stock_req.direction,
+                            "location_id": vals.get("location_id")
+                            or stock_req.location_id.id,
+                            "expected_date": vals.get("expected_date")
+                            or stock_req.expected_date,
                         }
                     )
                     order.write(values)
@@ -179,11 +205,24 @@ class StockRequest(models.Model):
                     if vals.get("direction", False) and vals.get("location_id", False):
                         values.update(
                             {
-                                "direction": vals["direction"],
-                                "location_id": vals["location_id"],
+                                "direction": vals.get("direction")
+                                or stock_req.direction,
+                                "location_id": vals.get("location_id")
+                                or stock_req.location_id.id,
+                                "expected_date": vals.get("expected_date")
+                                or stock_req.expected_date,
                             }
                         )
-                        vals["order_id"] = self.env["stock.request.order"].create(values).id
+                    elif vals.get("expected_date", False):
+                        values.update(
+                            {
+                                "expected_date": vals.get("expected_date")
+                                or stock_req.expected_date,
+                            }
+                        )
+
+                    vals["order_id"] = self.env["stock.request.order"].create(values).id
+
         return super().write(vals)
 
     def _prepare_procurement_values(self, group_id=False):
