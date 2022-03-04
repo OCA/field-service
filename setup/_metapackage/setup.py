@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo13-addon-fieldservice_project',
         'odoo13-addon-fieldservice_purchase',
         'odoo13-addon-fieldservice_recurring',
+        'odoo13-addon-fieldservice_route',
         'odoo13-addon-fieldservice_skill',
         'odoo13-addon-fieldservice_stage_server_action',
         'odoo13-addon-fieldservice_stage_validation',
