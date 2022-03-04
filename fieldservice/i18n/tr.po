@@ -250,9 +250,10 @@ msgstr "Bütün Siparişler"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
-msgstr "Bu kişiye gönderilen tüm e-postalar ve belgeler bu dilde çevrilecektir."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
+msgstr ""
+"Bu kişiye gönderilen tüm e-postalar ve belgeler bu dilde çevrilecektir."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_google_map
@@ -318,8 +319,7 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 
 #. module: fieldservice
@@ -1434,8 +1434,8 @@ msgstr "Fatura"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 msgid ""
-"Invoice & Delivery addresses are used in sales orders. Private addresses are"
-" only visible by authorized users."
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
 msgstr ""
 "Müşteri siparişlerinde fatura ve teslimat adresleri kullanılır. Özel "
 "adresler yalnızca yetkili kullanıcılar tarafından görülebilir."
@@ -1878,7 +1878,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Manage inventory and stock operations.\n"
-"                                    Automatically activate Lots &amp; Serial Numbers."
+"                                    Automatically activate Lots &amp; Serial "
+"Numbers."
 msgstr ""
 
 #. module: fieldservice
@@ -2041,8 +2042,6 @@ msgid "Need Scheduled"
 msgstr ""
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -3026,8 +3025,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 
 #. module: fieldservice
@@ -3243,6 +3242,11 @@ msgid "User"
 msgstr "Kullanıcı"
 
 #. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_user_own
+msgid "User (only own documents)"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_ids
 msgid "Users"
@@ -3299,9 +3303,11 @@ msgstr "Web Sitesi iletişim geçmişi"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Belgeleri yazdırırken ve verileri dışa / içe aktarırken, zaman değerleri bu "
 "zaman dilimine göre hesaplanır.\n"
