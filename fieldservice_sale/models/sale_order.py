@@ -139,7 +139,8 @@ class SaleOrder(models.Model):
         """ On SO confirmation, some lines generate field service orders. """
         result = super(SaleOrder, self)._action_confirm()
         if any(
-            sol.product_id.field_service_tracking != "no" for sol in self.order_line
+            sol.product_id.field_service_tracking != "no" and not sol.display_type
+            for sol in self.order_line
         ):
             if not self.fsm_location_id:
                 raise ValidationError(_("FSM Location must be set"))
