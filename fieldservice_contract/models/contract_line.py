@@ -93,6 +93,10 @@ class ContractLine(models.Model):
         date_end = fields.datetime.today()
         date_end = date_end.replace(**{"day": 31, "month": 12})
         for contract_line in self:
+            contract_line.fsm_order_by_year_count = 0
+            contract_line.fsm_order_by_month_count = 0
+            if not contract_line.fsm_frequency_set_id:
+                continue
             rrules = contract_line.fsm_frequency_set_id._get_rruleset(
                 dtstart=date_start, until=date_end
             )
