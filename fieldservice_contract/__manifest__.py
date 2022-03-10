@@ -16,6 +16,7 @@
         "fieldservice_recurring",
         "fieldservice_sale_recurring",
         "fieldservice_sale_frequency",
+        "fieldservice_recurring_quick_edit",
     ],
     "data": [
         "views/contract.xml",

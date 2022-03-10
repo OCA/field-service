@@ -53,74 +53,129 @@ class ContractLine(models.Model):
         domain=[("is_abstract", "=", True)],
     )
     invoice_policy = fields.Selection(
-        [("order", "Ordered fsm Order"), ("delivery", "Realised  fsm Order")],
+        [("order_smoothing_bill", "Planned fsm order smoothing bill"),
+         ("order_not_smoothing_bill", "Planned fsm order not smoothing bill"),
+         ("delivery_not_smoothing", "Realised fsm order not smoothing bill"),
+         # Ce dernier cas n'est pas gere
+         #("delivery_smoothing", "Realised fsm order smoothing bill"),
+         ],
         string="Invoicing Policy",
-        help="Ordered fsm Order: Invoice quantities ordered by the customer.\n"
-        "Realised  fsm Order: Invoice quantities of fsm order realised.",
-        default="order",
+        help="Planned fsm order smoothing bill: This means that the amount of invoice don't depends on the number of fsm order planned in the invoiced period.\n"
+            "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
+            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n"
+            "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
+        default="order_smoothing_bill",
+    )
+    fsm_order_by_year_count = fields.Integer(
+        "Theoric Yearly order count",
+        compute="_compute_tehoric_order_count",
+        help="We need the theorical count of order by year"
+        " To compute a avarage price for each order if the invoice is based on the number of realised order."
+        " In deed, for some frequencies, the numbre of orders is depending on month. Some month we have "
+        " 5 monday and 4 for others. The price payed each month is the same for each month "
+        "despite the difference in the theoric number of orders.",
+        store=True,
+    )
+    fsm_order_by_month_count = fields.Integer(
+        "Theoric Yearly order count", compute="_compute_tehoric_order_count", store=True
     )
     avg_price_unit_fsm_order = fields.Float(
-        "Avg price for a fsm order", compute="_compute_avg_price_unit_fsm_order"
+        "Avg price for a fsm order", compute="_compute_avg_price_unit_fsm_order",
+        store=True
     )
 
-    @api.depends("price_unit", "fsm_recurring_id.fsm_order_by_month_count")
+
+    @api.depends("fsm_frequency_set_id",
+                 "fsm_frequency_set_id.fsm_frequency_ids",)
+    def _compute_tehoric_order_count(self):
+        date_start = fields.datetime.today()
+        date_start = date_start.replace(**{"day": 1, "month": 1})
+        date_end = fields.datetime.today()
+        date_end = date_end.replace(**{"day": 31, "month": 12})
+        for contract_line in self:
+            rrules = contract_line.fsm_frequency_set_id._get_rruleset(
+                dtstart=date_start, until=date_end
+            )
+            contract_line.fsm_order_by_year_count = len([date for date in rrules])
+            contract_line.fsm_order_by_month_count = (
+                contract_line.fsm_order_by_year_count / 12.0
+            )  # number of month a year
+
+    @api.depends("price_unit", "fsm_order_by_month_count")
     def _compute_avg_price_unit_fsm_order(self):
         for contract_line in self:
-            avg_order_by_month = self.fsm_recurring_id.fsm_order_by_month_count
+            avg_order_by_month = contract_line.fsm_order_by_month_count
+            contract_line.avg_price_unit_fsm_order = 0
             if avg_order_by_month:
                 contract_line.avg_price_unit_fsm_order = (
-                    self.price_unit / avg_order_by_month
+                    contract_line.price_unit / avg_order_by_month
                 )
-
-    def _get_price_order_realised(self):
-        """
-        Contract can be conclued for a recurring order (ex 1 order by week
-         on monday for example).
-        depending on month we can have 4 or 5 orders.
-        the price_unit is monthly price calculed for an avarage of order
-        52 weeks /12 = 4.33 orders by month
-        adjust the price: we consider that orders are released in the most case.
-        Otherwise, we deduct the price of not realised order to get the just price
-        :return:
-        """
-        self.ensure_one()
-        price_unit = self.price_unit
-        if self.invoice_policy == "delivery":
-            dates = self._get_period_to_invoice(
-                self.last_date_invoiced, self.recurring_next_date
-            )
-            not_realised_orders = self._not_realised_fsm_order(*dates)
-            not_realised_price = 0
-            if not_realised_orders:
-                not_realised_price = not_realised_orders * self.avg_price_unit_fsm_order
-            price_unit = self.price_unit - not_realised_price
-        return price_unit
 
     def _prepare_invoice_line(self, move_form):
         # add link fsm orders to invoice line
-        res = super(ContractLine, self)._prepare_invoice_line(move_form)
+        res = super()._prepare_invoice_line(move_form)
         dates = self._get_period_to_invoice(
             self.last_date_invoiced, self.recurring_next_date
         )
         fsm_orders = self._invoiceable_fsm_order(*dates)
         if fsm_orders:
             res.update({"fsm_order_ids": [(6, 0, fsm_orders.ids)]})
-        res.update({"price_unit": self._get_price_order_realised()})
+            if self.invoice_policy == "delivery_not_smoothing":
+                res.update({"name": self._insert_order_markers(dates[0], dates[1], invoiced_orders=fsm_orders)})
+        price_unit = self.price_unit
+        if self.invoice_policy in("order_not_smoothing_bill", "delivery_not_smoothing"):
+            price_unit =  self.avg_price_unit_fsm_order
+        res.update({"price_unit": price_unit})
         return res
+
+    def _insert_order_markers(self, first_date_invoiced, last_date_invoiced,
+                        invoiced_orders=None):
+        self.ensure_one()
+        lang_obj = self.env["res.lang"]
+        lang = lang_obj.search([("code", "=", self.contract_id.partner_id.lang)])
+        date_format = lang.date_format or "%m/%d/%Y"
+        name = self._insert_markers(first_date_invoiced, last_date_invoiced)
+        if invoiced_orders:
+            name+= "\n"
+            for order in invoiced_orders:
+                name += "# " + order.name + " : " + order.scheduled_date_start.strftime(date_format)
+        return name
+
+    def _get_quantity_to_invoice(
+        self, period_first_date, period_last_date, invoice_date
+    ):
+        # here we do not have link yet between invoice.line
+        # and fsm orders
+        self.ensure_one()
+        quantity = 0
+        if self.fsm_direct_order_id or self.fsm_recurring_id:
+            if self.invoice_policy == "order_not_smoothing_bill":
+                quantity = self.fsm_frequency_set_id._get_theoretical_order_count_by_period(period_first_date, period_last_date)
+            elif self.invoice_policy == "delivery_not_smoothing":
+                quantity = len(
+                    self._invoiceable_fsm_order(
+                        period_first_date, period_last_date, invoice_date
+                    )
+                )
+            else:
+                quantity = self.quantity
+        else:
+            quantity = super()._get_quantity_to_invoice(
+                period_first_date, period_last_date, invoice_date
+            )
+        return quantity
 
     def _invoiceable_fsm_order(self, period_first_date, period_last_date, invoice_date):
         invoiceable_stage_ids = self._get_invoiceable_stage()
         dom = [
             ("scheduled_date_start", ">=", period_first_date),
             ("scheduled_date_start", "<=", period_last_date),
-            ("contract_line_id", "=", self.id),
-            ("invoice_lines", "=", False),
-        ]
+        ] + self._get_realised_order_domain()
         if invoiceable_stage_ids:
             dom.append(["stage_id", "in", invoiceable_stage_ids.ids])
         return self.env["fsm.order"].search(dom)
 
-    def _not_realised_fsm_order(
+    def _get_realised_fsm_order(
         self, period_first_date, period_last_date, invoice_date
     ):
         """
@@ -130,15 +185,14 @@ class ContractLine(models.Model):
         :return:
         fsm order plannified in the period and not realised
         """
-        not_realised_ids = self._get_not_realised_stage()
+        realised_ids = self._get_realised_stage()
+
         dom = [
             ("scheduled_date_start", ">=", period_first_date),
             ("scheduled_date_start", "<=", period_last_date),
-            ("contract_line_id", "=", self.id),
-            ("invoice_lines", "=", False),
         ]
-        if not_realised_ids:
-            dom.append(["stage_id", "in", not_realised_ids.ids])
+        if realised_ids:
+            dom.append(["stage_id", "in", realised_ids.ids])
         return self.env["fsm.order"].search(dom)
 
     def _get_invoiceable_stage(self):
@@ -148,12 +202,23 @@ class ContractLine(models.Model):
         """
         return self.contract_id.invoiceable_stage_ids
 
-    def _get_not_realised_stage(self):
+    def _get_realised_stage(self):
         """
         overide this method to define invoiceable stage
         :return:
         """
-        return self.ref("fieldservice.fsm_stage_assigned")
+        return self.ref("fieldservice.fsm_stage_completed")
+
+    def _get_realised_order_domain(self):
+        """
+        overide this method to define more search cretaria for invoiceable
+        fsm order
+        :return:
+        """
+        return [    ("contract_line_id", "=", self.id),
+            ("invoice_lines", "=", False),
+        ]
+
 
     @api.model
     def create(self, values):

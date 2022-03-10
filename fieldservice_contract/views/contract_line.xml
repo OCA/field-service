@@ -6,13 +6,17 @@
         <field name="model">contract.line</field>
         <field name="inherit_id" ref="contract.contract_line_form_view" />
         <field name="arch" type="xml">
+            <xpath expr="//form//field[@name='recurring_invoicing_type']" position="after">
+               <field name="invoice_policy" />
+            </xpath>
             <group name="recurrence_info" position="inside">
                 <group name="fsm">
                     <field name="fsm_recurring_id" />
-                    <field name="invoice_policy" />
                     <field name="fsm_direct_order_id" />
                     <field name="fsm_location_id" />
                     <field name="fsm_frequency_set_id" />
+                    <field name="fsm_order_by_year_count" />
+                    <field name="avg_price_unit_fsm_order" />
                 </group>
             </group>
         </field>

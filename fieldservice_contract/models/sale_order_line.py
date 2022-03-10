@@ -22,6 +22,19 @@ class SaleOrderLine(models.Model):
         domain="[('company_id', 'in', (False, company_id)),"
         "('commercial_partner_id', '=', commercial_partner_id)]",
     )
+    invoice_policy = fields.Selection(
+        [("order_smoothing_bill", "Planned fsm order smoothing bill"),
+         ("order_not_smoothing_bill", "Planned fsm order not smoothing bill"),
+         ("delivery_not_smoothing", "Realised fsm order not smoothing bill"),
+         #("delivery_smoothing", "Realised fsm order smoothing bill"),
+         ],
+        string="Invoicing Policy",
+        help="Planned fsm order smoothing bill: This means that the amount of invoice don't depends on the number of fsm order planned in the invoiced period.\n"
+            "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
+            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n"
+            "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
+        default="order_smoothing_bill",
+    )
 
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False
