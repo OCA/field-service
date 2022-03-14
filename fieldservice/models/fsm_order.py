@@ -53,7 +53,7 @@ class FSMOrder(models.Model):
 
     @api.depends("stage_id")
     def _get_stage_color(self):
-        """ Get stage color"""
+        """Get stage color"""
         self.custom_color = self.stage_id.custom_color or "#FFFFFF"
 
     def _track_subtype(self, init_values):
