@@ -284,7 +284,9 @@ class FSMLocation(models.Model):
         contact to show.
         """
         for location in self:
-            action = self.env.ref("contacts.action_contacts").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "contacts.action_contacts"
+            )
             contacts = self.get_action_views(1, 0, location)
             action["context"] = self.env.context.copy()
             action["context"].update({"group_by": ""})
@@ -310,7 +312,9 @@ class FSMLocation(models.Model):
         a list or in a form view, if there is only one equipment to show.
         """
         for location in self:
-            action = self.env.ref("fieldservice.action_fsm_equipment").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_equipment"
+            )
             equipment = self.get_action_views(0, 1, location)
             action["context"] = self.env.context.copy()
             action["context"].update({"group_by": ""})
@@ -339,7 +343,9 @@ class FSMLocation(models.Model):
         a list or in a form view, if there is only one sub-location to show.
         """
         for location in self:
-            action = self.env.ref("fieldservice.action_fsm_location").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_location"
+            )
             sublocation = self.get_action_views(0, 0, location)
             action["context"] = self.env.context.copy()
             action["context"].update({"group_by": ""})
