@@ -4,7 +4,7 @@ from odoo import fields, models
 
 
 class FSMPersonCalendarFilter(models.Model):
-    """ Assigned Worker Calendar Filter """
+    """Assigned Worker Calendar Filter"""
 
     _name = "fsm.person.calendar.filter"
     _description = "FSM Person Calendar Filter"
