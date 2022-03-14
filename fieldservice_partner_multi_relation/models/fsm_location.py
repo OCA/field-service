@@ -24,8 +24,8 @@ class FSMLocation(models.Model):
             relations = self.env["res.partner.relation.all"].search(
                 [("this_partner_id", "=", location.name)]
             )
-            action = self.env.ref(
+            action = self.env["ir.actions.act_window"]._for_xml_id(
                 "partner_multi_relation.action_res_partner_relation_all"
-            ).read()[0]
+            )
             action["domain"] = [("id", "in", relations.ids)]
             return action
