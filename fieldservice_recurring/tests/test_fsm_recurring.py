@@ -98,7 +98,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
             }
         )
         test_recurring = self.Recurring.create(
@@ -176,7 +176,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "end_date": expire_date1,
             }
         )
@@ -184,7 +184,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -192,7 +192,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -209,7 +209,7 @@ class FSMRecurringCase(TransactionCase):
         x = False
         for d in all_dates:
             if x:
-                diff_days = (d - x).days
+                diff_days = (d.date() - x.date()).days
                 self.assertEqual(diff_days, 21)
             x = d
 
@@ -251,7 +251,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
             }
         )
         recurring.action_start()
