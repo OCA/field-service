@@ -22,9 +22,9 @@ class FSMLocation(models.Model):
             project_ids = self.env["project.project"].search(
                 [("fsm_location_id", "=", location.id)]
             )
-            action = self.env.ref(
+            action = self.env["ir.actions.act_window"]._for_xml_id(
                 "fieldservice_project.action_fsm_location_project"
-            ).read()[0]
+            )
             action["context"] = {}
             if len(project_ids) == 1:
                 action["views"] = [(self.env.ref("project.edit_project").id, "form")]
