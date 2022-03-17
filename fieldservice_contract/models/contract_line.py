@@ -66,7 +66,7 @@ class ContractLine(models.Model):
             "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
         default="order_smoothing_bill",
     )
-    fsm_order_by_year_count = fields.Integer(
+    fsm_order_by_year_count = fields.Float(
         "Theoric Yearly order count",
         compute="_compute_tehoric_order_count",
         help="We need the theorical count of order by year"
@@ -76,7 +76,7 @@ class ContractLine(models.Model):
         "despite the difference in the theoric number of orders.",
         store=True,
     )
-    fsm_order_by_month_count = fields.Integer(
+    fsm_order_by_month_count = fields.Float(
         "Theoric Yearly order count", compute="_compute_tehoric_order_count", store=True
     )
     avg_price_unit_fsm_order = fields.Float(
