@@ -77,6 +77,6 @@ class TestStockPutawayRule(TransactionCase):
         self.assertEqual(res, self.env["stock.location"])
 
         res = self.stock_putaway_rule.with_context(
-            {"vehicle_id": self.vehicle_id.id}
+            vehicle_id=self.vehicle_id.id
         ).get_vehicle_location()
         self.assertEqual(res, self.vehicle_location)
