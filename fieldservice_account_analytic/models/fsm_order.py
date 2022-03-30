@@ -23,7 +23,7 @@ class FSMOrder(models.Model):
     )
 
     def _compute_total_cost(self):
-        """ To be overridden as needed from other modules """
+        """To be overridden as needed from other modules"""
         for order in self:
             order.total_cost = 0.0
 
