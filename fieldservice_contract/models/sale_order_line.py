@@ -31,8 +31,8 @@ class SaleOrderLine(models.Model):
         string="Invoicing Policy",
         help="Planned fsm order smoothing bill: This means that the amount of invoice don't depends on the number of fsm order planned in the invoiced period.\n"
             "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
-            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n"
-            "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
+            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n",
+            #"Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
         default="order_smoothing_bill",
     )
 
