@@ -368,7 +368,19 @@ class ContractLine(models.Model):
         """For service lines, create the field service order. If it already
         exists, it simply links the existing one to the line.
         """
-        for line in self:
+        for line in self.filtered(
+            lambda sol: sol.product_id.field_service_tracking
+            == "based_on_sale_line_frequency"
+        ):
+            # create recurring order
+            if line.fsm_frequency_set_id:
+                line._field_find_fsm_recurring()
+            else:
+                line._field_find_fsm_order()
+        for line in self.filtered(
+            lambda sol: sol.product_id.field_service_tracking
+            != "based_on_sale_line_frequency"
+        ):
             # create order
             if line.product_id.field_service_tracking == "line":
                 line._field_find_fsm_order()
