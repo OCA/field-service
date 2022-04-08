@@ -114,7 +114,6 @@ class FSMRecurringCase(TransactionCase):
         )
         recurring.action_start()
         test_recurring.action_start()
-        test_recurring.action_renew()
         # Run schedule job now, to compute the future work orders
         recurring._cron_scheduled_task()
         recurring.onchange_recurring_template_id()
@@ -295,4 +294,3 @@ class FSMRecurringCase(TransactionCase):
         fsm_order = self.env["fsm.order"].create(order_vals)
         self.env["fsm.order"].create(order_vals2)
         fsm_order.action_view_fsm_recurring()
-        recurring.action_cancel()
