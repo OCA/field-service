@@ -18,7 +18,7 @@ class Project(models.Model):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "fieldservice.action_fsm_operation_order"
         )
-        result = action.read()[0]
+        result = action
         # override the context to get rid of the default filtering
         result["context"] = {
             "default_project_id": self.id,
