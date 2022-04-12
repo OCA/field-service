@@ -15,7 +15,6 @@ class ResPartner(models.Model):
         string="Related FS Location",
         inverse_name="partner_id",
         readonly=1,
-        limit=1,
     )
     service_location_id = fields.Many2one(
         "fsm.location", string="Primary Service Location"
