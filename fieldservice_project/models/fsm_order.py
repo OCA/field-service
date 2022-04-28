@@ -21,7 +21,9 @@ class FSMOrder(models.Model):
         This function returns an action that displays a full FSM Order
         form when viewing an FSM Order from a project.
         """
-        action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
+        )
         order = self.env["fsm.order"].search([("id", "=", self.id)])
         action["views"] = [
             (self.env.ref("fieldservice." + "fsm_order_form").id, "form")
