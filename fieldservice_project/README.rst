@@ -74,6 +74,7 @@ Contributors
 
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Freni Patel <fpatel@opensourceintegrators.com>
+* Yves Goldberg <yves@ygol.com>
 
 Other credits
 ~~~~~~~~~~~~~
