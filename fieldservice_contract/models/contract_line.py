@@ -279,7 +279,7 @@ class ContractLine(models.Model):
         res["fsm_recurring_template_id"] = template.id
         res["description"] = note
         res["max_orders"] = template.max_orders
-        res["fsm_frequency_set_id"] = frequency_set.id
+        res["fsm_abstract_frequency_set_id"] = frequency_set.id
         res["fsm_order_template_id"] = template.fsm_order_template_id.id
         return res
 
