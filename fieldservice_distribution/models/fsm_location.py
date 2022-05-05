@@ -33,7 +33,9 @@ class FSMLocation(models.Model):
         sub-location to show.
         """
         for location in self:
-            action = self.env.ref("fieldservice.action_fsm_location").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_location"
+            )
             sublocation = self.env["fsm.location"].search(
                 [
                     ("dist_parent_id", "=", location.id),
