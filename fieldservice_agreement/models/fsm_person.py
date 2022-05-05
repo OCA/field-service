@@ -18,9 +18,9 @@ class FSMPerson(models.Model):
 
     def action_view_agreements(self):
         for person in self:
-            action = self.env.ref(
+            action = self.env["ir.actions.act_window"]._for_xml_id(
                 "agreement_legal.agreement_operations_agreement"
-            ).read()[0]
+            )
             agreements = self.env["agreement"].search(
                 [("partner_id", "=", person.partner_id.id)]
             )
