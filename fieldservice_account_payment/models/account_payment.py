@@ -28,7 +28,9 @@ class AccountPayment(models.Model):
             payment.fsm_order_count = len(payment.fsm_order_ids)
 
     def action_view_fsm_orders(self):
-        action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
+        )
         if self.fsm_order_count > 1:
             action["domain"] = [("id", "in", self.fsm_order_ids)]
         elif self.fsm_order_ids:
