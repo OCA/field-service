@@ -24,7 +24,9 @@ class Agreement(models.Model):
             fsm_order_ids = self.env["fsm.order"].search(
                 [("agreement_id", "=", agreement.id)]
             )
-            action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_operation_order"
+            )
             if len(fsm_order_ids) == 1:
                 action["views"] = [
                     (self.env.ref("fieldservice.fsm_order_form").id, "form")
@@ -45,7 +47,9 @@ class Agreement(models.Model):
             equipment_ids = self.env["fsm.equipment"].search(
                 [("agreement_id", "=", agreement.id)]
             )
-            action = self.env.ref("fieldservice.action_fsm_equipment").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_equipment"
+            )
             if len(equipment_ids) == 1:
                 action["views"] = [
                     (self.env.ref("fieldservice.fsm_equipment_form_view").id, "form")
