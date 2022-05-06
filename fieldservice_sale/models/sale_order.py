@@ -148,7 +148,9 @@ class SaleOrder(models.Model):
 
     def action_view_fsm_order(self):
         fsm_orders = self.mapped("fsm_order_ids")
-        action = self.env.ref("fieldservice.action_fsm_dash_order").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice.action_fsm_dash_order"
+        )
         if len(fsm_orders) > 1:
             action["domain"] = [("id", "in", fsm_orders.ids)]
         elif len(fsm_orders) == 1:
