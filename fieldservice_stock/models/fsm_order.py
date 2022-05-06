@@ -67,7 +67,9 @@ class FSMOrder(models.Model):
         of given fsm order ids. It can either be a in a list or in a form
         view, if there is only one delivery order to show.
         """
-        action = self.env.ref("stock.action_picking_tree_all").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
         pickings = self.mapped("picking_ids")
         delivery_ids = [
             picking.id
@@ -87,7 +89,9 @@ class FSMOrder(models.Model):
         of given fsm order ids. It can either be a in a list or in a form
         view, if there is only one return order to show.
         """
-        action = self.env.ref("stock.action_picking_tree_all").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
         pickings = self.mapped("picking_ids")
         return_ids = [
             picking.id
