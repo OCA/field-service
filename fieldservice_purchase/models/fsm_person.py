@@ -22,7 +22,9 @@ class FSMPerson(models.Model):
             pricelist = self.env["product.supplierinfo"].search(
                 [("name", "=", worker.partner_id.id)]
             )
-            action = self.env.ref("product.product_supplierinfo_type_action").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "product.product_supplierinfo_type_action"
+            )
             if len(pricelist) == 1:
                 action["views"] = [
                     (self.env.ref("product.product_supplierinfo_form_view").id, "form")
