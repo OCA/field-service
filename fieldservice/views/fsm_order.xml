@@ -346,12 +346,12 @@
                 />
                 <filter
                     string="Unassigned"
-                    domain="[('person_id', '=', False)]"
+                    domain="[('person_id', '=', False), ('stage_id.is_closed', '=', False)]"
                     name="unassigned"
                 />
                 <filter
                     string="Unscheduled"
-                    domain="[('scheduled_date_start', '=', False)]"
+                    domain="[('scheduled_date_start', '=', False), ('stage_id.is_closed', '=', False)]"
                     name="unscheduled"
                 />
                 <filter
