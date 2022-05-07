@@ -123,7 +123,10 @@
                                             </button>
                                         </div>
                                         <div class="col-6 o_kanban_primary_right">
-                                            <div class="row">
+                                            <div
+                                                class="row"
+                                                t-if="record.order_need_assign_count.value > 0"
+                                            >
                                                 <div class="col-9">
                                                     <a
                                                         name="%(fieldservice.fsm_order_action_from_dashboard)d"
@@ -139,7 +142,10 @@
                                                     />
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div
+                                                class="row"
+                                                t-if="record.order_need_schedule_count.value > 0"
+                                            >
                                                 <div class="col-9">
                                                     <a
                                                         name="%(fieldservice.fsm_order_action_from_dashboard)d"
