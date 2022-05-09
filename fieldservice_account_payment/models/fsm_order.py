@@ -24,7 +24,9 @@ class FSMOrder(models.Model):
             order.payment_count = len(order.payment_ids)
 
     def action_view_payments(self):
-        action = self.env.ref("account.action_account_payments").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "account.action_account_payments"
+        )
         if self.payment_count > 1:
             action["domain"] = [("id", "in", self.payment_ids.ids)]
         elif self.payment_ids:

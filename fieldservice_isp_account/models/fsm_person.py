@@ -16,7 +16,9 @@ class FSMPerson(models.Model):
 
     def action_view_bills(self):
         for bill in self:
-            action = self.env.ref("account.action_move_out_invoice_type").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "account.action_move_out_invoice_type"
+            )
             vendor_bills = self.env["account.move"].search(
                 [("partner_id", "=", bill.partner_id.id)]
             )
