@@ -2,7 +2,8 @@
 # Copyright 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
+import pytz
+from datetime import datetime, time
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.translate import _
@@ -274,8 +275,15 @@ class ContractLine(models.Model):
             note += "\n " + template.description
         frequency_set = self.fsm_frequency_set_id or template.fsm_frequency_set_id
         res = self._fsm_create_fsm_common_prepare_values()
-        res["start_date"] = self.date_start
-        res["end_date"] = self.date_end
+
+        def to_locale_datetime(date):
+            tz = pytz.timezone(self._context.get("tz", self.env.user.tz or "UTC"))
+            return tz.localize(
+                datetime.combine(self.date_start, time())
+            ).astimezone(pytz.UTC).replace(tzinfo=None)
+        
+        res["start_date"] = to_locale_datetime(self.date_start)
+        res["end_date"] = to_locale_datetime(self.date_end)
         res["fsm_recurring_template_id"] = template.id
         res["description"] = note
         res["max_orders"] = template.max_orders
