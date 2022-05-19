@@ -276,10 +276,10 @@ class ContractLine(models.Model):
         frequency_set = self.fsm_frequency_set_id or template.fsm_frequency_set_id
         res = self._fsm_create_fsm_common_prepare_values()
 
-        def to_locale_datetime(date):
+        def to_locale_datetime(some_date):
             tz = pytz.timezone(self._context.get("tz", self.env.user.tz or "UTC"))
             return tz.localize(
-                datetime.combine(self.date_start, time())
+                datetime.combine(some_date, time())
             ).astimezone(pytz.UTC).replace(tzinfo=None)
         
         res["start_date"] = to_locale_datetime(self.date_start)
