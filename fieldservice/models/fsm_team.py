@@ -24,7 +24,11 @@ class FSMTeam(models.Model):
 
     def _compute_order_need_assign_count(self):
         order_data = self.env["fsm.order"].read_group(
-            [("team_id", "in", self.ids), ("person_id", "=", False)],
+            [
+                ("team_id", "in", self.ids),
+                ("person_id", "=", False),
+                ("stage_id.is_closed", "=", False),
+            ],
             ["team_id"],
             ["team_id"],
         )
@@ -34,7 +38,11 @@ class FSMTeam(models.Model):
 
     def _compute_order_need_schedule_count(self):
         order_data = self.env["fsm.order"].read_group(
-            [("team_id", "in", self.ids), ("scheduled_date_start", "=", False)],
+            [
+                ("team_id", "in", self.ids),
+                ("scheduled_date_start", "=", False),
+                ("stage_id.is_closed", "=", False),
+            ],
             ["team_id"],
             ["team_id"],
         )
