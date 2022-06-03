@@ -27,7 +27,7 @@ class FSMOrder(models.Model):
         "procurement.group", "Procurement Group", copy=False
     )
     inventory_location_id = fields.Many2one(
-        related="location_id.inventory_location_id", readonly=True
+        related="location_id.inventory_location_id",
     )
     warehouse_id = fields.Many2one(
         "stock.warehouse",
@@ -46,20 +46,14 @@ class FSMOrder(models.Model):
     @api.depends("picking_ids")
     def _compute_picking_ids(self):
         for order in self:
-            order.delivery_count = len(
-                [
-                    picking
-                    for picking in order.picking_ids
-                    if picking.picking_type_id.code == "outgoing"
-                ]
+            outgoing_pickings = order.picking_ids.filtered(
+                lambda p: p.picking_type_id.code == "outgoing"
             )
-            order.return_count = len(
-                [
-                    picking
-                    for picking in order.picking_ids
-                    if picking.picking_type_id.code == "incoming"
-                ]
+            order.delivery_count = len(outgoing_pickings.ids)
+            incoming_pickings = order.picking_ids.filtered(
+                lambda p: p.picking_type_id.code == "incoming"
             )
+            order.return_count = len(incoming_pickings.ids)
 
     def action_view_delivery(self):
         """
@@ -71,11 +65,9 @@ class FSMOrder(models.Model):
             "stock.action_picking_tree_all"
         )
         pickings = self.mapped("picking_ids")
-        delivery_ids = [
-            picking.id
-            for picking in pickings
-            if picking.picking_type_id.code == "outgoing"
-        ]
+        delivery_ids = self.picking_ids.filtered(
+            lambda p: p.picking_type_id.code == "outgoing"
+        ).ids
         if len(delivery_ids) > 1:
             action["domain"] = [("id", "in", delivery_ids)]
         elif pickings:
@@ -93,11 +85,9 @@ class FSMOrder(models.Model):
             "stock.action_picking_tree_all"
         )
         pickings = self.mapped("picking_ids")
-        return_ids = [
-            picking.id
-            for picking in pickings
-            if picking.picking_type_id.code == "incoming"
-        ]
+        return_ids = self.picking_ids.filtered(
+            lambda p: p.picking_type_id.code == "incoming"
+        ).ids
         if len(return_ids) > 1:
             action["domain"] = [("id", "in", return_ids)]
         elif pickings:
