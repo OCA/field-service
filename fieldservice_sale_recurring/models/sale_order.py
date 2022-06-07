@@ -25,6 +25,15 @@ class SaleOrder(models.Model):
             )
             order.fsm_recurring_count = len(order.fsm_recurring_ids)
 
+    def _action_confirm(self):
+        """On SO confirmation, some lines generate field service recurrings."""
+        result = super(SaleOrder, self)._action_confirm()
+        self.order_line.filtered(
+            lambda l: l.product_id.field_service_tracking == "recurring"
+            and not l.fsm_recurring_id
+        )._field_create_fsm_recurring()
+        return result
+
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.mapped("fsm_recurring_ids")
         action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]
