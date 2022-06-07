@@ -11,11 +11,9 @@
                     name="action_view_sales"
                     class="oe_stat_button"
                     icon="fa-usd"
-                    attrs="{'invisible': [('sale_line_id', '=', False), ('sale_id', '=', False)]}"
+                    attrs="{'invisible': [('sale_count', '=', 0)]}"
                 >
-                    <span class="o_stat_text">Sale Order</span>
-                    <field name="sale_id" attrs="{'invisible': 1}" />
-                    <field name="sale_line_id" attrs="{'invisible': 1}" />
+                    <field name="sale_count" widget="statinfo" string="Sale Orders" />
                 </button>
             </xpath>
         </field>
