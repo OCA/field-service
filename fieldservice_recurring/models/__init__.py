@@ -7,4 +7,5 @@ from . import (
     fsm_frequency,
     fsm_recurring_template,
     fsm_recurring,
+    fsm_team,
 )
