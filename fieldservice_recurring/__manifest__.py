@@ -21,6 +21,7 @@
         "views/fsm_order.xml",
         "views/fsm_recurring_template.xml",
         "views/fsm_recurring.xml",
+        "views/fsm_team.xml",
         "data/recurring_cron.xml",
     ],
     "demo": [
