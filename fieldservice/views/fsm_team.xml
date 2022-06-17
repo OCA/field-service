@@ -250,9 +250,14 @@
                                                 role="menu"
                                             />
                                         </div>
-                                        <div role="menuitem" class="col-4 text-center">
-                                            <a type="edit">Settings</a>
+                                        <div role="menuitem" class="col-4">
+                                            <a
+                                                class="dropdown-item"
+                                                role="menuitem"
+                                                type="edit"
+                                            >Configuration</a>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +270,7 @@
     <record id="action_team_dashboard" model="ir.actions.act_window">
         <field name="name">Teams</field>
         <field name="res_model">fsm.team</field>
-        <field name="view_mode">kanban</field>
+        <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="view_team_kanban" />
     </record>
     <record id="action_team_settings" model="ir.actions.act_window">
