@@ -30,7 +30,9 @@ class FSMOrder(models.Model):
         return super().create(vals_list)
 
     def action_view_fsm_recurring(self):
-        action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice_recurring.action_fsm_recurring"
+        )
         action["views"] = [
             (self.env.ref("fieldservice_recurring.fsm_recurring_form_view").id, "form")
         ]
