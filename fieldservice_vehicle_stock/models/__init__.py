@@ -5,4 +5,5 @@ from . import (
     fsm_vehicle,
     fsm_order,
     stock_picking,
+    stock_picking_type,
 )

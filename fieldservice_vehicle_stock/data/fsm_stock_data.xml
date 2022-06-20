@@ -31,6 +31,7 @@
             <!-- <field name="warehouse_id" eval="False" /> -->
             <field name="default_location_src_id" ref="stock.stock_location_stock" />
             <field name="default_location_dest_id" ref="stock_location_vehicle" />
+            <field name="fsm_vehicle_in" eval="True" />
         </record>
 
         <!-- Vehicle to Location operations -->
@@ -103,6 +104,7 @@
                 name="return_picking_type_id"
                 ref="picking_type_vehicle_to_location"
             />
+            <field name="fsm_vehicle_in" eval="True" />
         </record>
 
         <record id="procurement_rule_location_to_vehicle" model="stock.rule">
