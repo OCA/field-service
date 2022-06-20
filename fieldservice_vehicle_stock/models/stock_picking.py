@@ -12,16 +12,7 @@ class StockPicking(models.Model):
     def action_assign(self):
         res = {}
         for rec in self:
-            if rec.picking_type_id in (
-                # Vehicle Loading
-                self.env.ref(
-                    "fieldservice_vehicle_stock." "picking_type_output_to_vehicle"
-                ),
-                # Location Pickup
-                self.env.ref(
-                    "fieldservice_vehicle_stock." "picking_type_location_to_vehicle"
-                ),
-            ):
+            if rec.picking_type_id.fsm_vehicle_in:
                 if rec.fsm_vehicle_id:
                     picking = rec.with_context(vehicle_id=rec.fsm_vehicle_id.id)
                     res = super(StockPicking, picking).action_assign()

@@ -19,6 +19,7 @@
         "data/fsm_stock_data.xml",
         "views/fsm_vehicle.xml",
         "views/stock_picking.xml",
+        "views/stock_picking_type.xml",
     ],
     "installable": True,
     "auto_install": True,
