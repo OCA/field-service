@@ -9,18 +9,21 @@ class StockPicking(models.Model):
 
     fsm_vehicle_id = fields.Many2one("fsm.vehicle", string="Vehicle")
 
-    def action_assign(self):
+    def _action_done(self):
+        """Verify that any pickings with an operation type which requires
+        loading onto a FSM Vehicle have a vehicle assigned
+        """
         res = {}
         for rec in self:
             if rec.picking_type_id.fsm_vehicle_in:
                 if rec.fsm_vehicle_id:
                     picking = rec.with_context(vehicle_id=rec.fsm_vehicle_id.id)
-                    res = super(StockPicking, picking).action_assign()
+                    res = super(StockPicking, picking)._action_done()
                 else:
                     raise UserError(
                         _("You must provide the vehicle for this picking type.")
                     )
-            res = super(StockPicking, rec).action_assign()
+            res = super(StockPicking, rec)._action_done()
         return res
 
     def prepare_fsm_values(self, fsm_order):
