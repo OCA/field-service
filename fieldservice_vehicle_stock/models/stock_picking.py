@@ -40,4 +40,31 @@ class StockPicking(models.Model):
         if vals.get("fsm_order_id", False):
             fsm_order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
             vals.update(self.prepare_fsm_values(fsm_order))
-        return super().write(vals)
+        res = super().write(vals)
+        if vals.get("fsm_vehicle_id", False):
+            self.update_vehicle_storage()
+        return res
+
+    def update_vehicle_storage(self):
+        """Update the destination location to the FSM Vehicle's storage location"""
+        for picking in self.filtered(
+            lambda x: x.picking_type_id.fsm_vehicle_in
+            and x.state not in ["done", "cancel"]
+        ):
+            vehicle_location = (
+                picking.fsm_vehicle_id.inventory_location_id or picking.location_dest_id
+            )
+            if vehicle_location == picking.location_dest_id:
+                continue
+            allowed_destinations = self.env["stock.location"].search(
+                [("id", "child_of", picking.location_dest_id.id)]
+            )
+            if vehicle_location not in allowed_destinations:
+                raise UserError(
+                    _(
+                        "The inventory location of the FSM vehicle must be a "
+                        "descendant of the tranfer's intended destination."
+                    )
+                )
+            else:
+                picking.move_line_ids.write({"location_dest_id": vehicle_location.id})
