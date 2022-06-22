@@ -6,7 +6,10 @@
         <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_form" />
         <field name="arch" type="xml">
             <field name="fsm_order_id" position="after">
-                <field name="fsm_vehicle_id" />
+                <field
+                    name="fsm_vehicle_id"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                />
             </field>
         </field>
     </record>
