@@ -15,6 +15,7 @@
                 <field name="person_id" />
                 <field name="end_date" />
                 <field name="state" />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
             </tree>
         </field>
     </record>
@@ -187,6 +188,12 @@
                         string="State"
                         domain=""
                         context="{'group_by':'state'}"
+                    />
+                    <filter
+                        name="team_id"
+                        string="Team"
+                        groups="fieldservice.group_fsm_team"
+                        context="{'group_by':'team_id'}"
                     />
                 </group>
             </search>
