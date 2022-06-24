@@ -106,3 +106,21 @@ class SaleOrderLine(models.Model):
         ):
             so_line._field_find_fsm_recurring()
         return result
+
+    def _get_invoiceable_order_domain(self):
+        """
+        add  fsm_recurring_id to domain
+        :return:
+        """
+        dom = super()._get_invoiceable_order_domain()
+        if self.fsm_recurring_id:
+            dom.append(("fsm_recurring_id", "=", self.fsm_recurring_id.id))
+        return dom
+
+    def _prepare_invoice_line(self, **optional_values):
+        res = super()._prepare_invoice_line(**optional_values)
+        if self.fsm_recurring_id:
+            fsm_orders = self._get_invoiceable_fsm_order()
+            if fsm_orders:
+                res.update({"fsm_order_ids": [(6, 0, fsm_orders.ids)]})
+        return res
