@@ -13,7 +13,6 @@
     "depends": [
         "fieldservice_vehicle",
         "fieldservice_stock",
-        "stock_putaway_method",
     ],
     "data": [
         "security/ir.model.access.csv",
