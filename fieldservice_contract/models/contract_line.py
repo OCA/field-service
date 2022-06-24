@@ -175,7 +175,7 @@ class ContractLine(models.Model):
         dom = [
             ("scheduled_date_start", ">=", period_first_date),
             ("scheduled_date_start", "<=", period_last_date),
-        ] + self._get_realised_order_domain()
+        ] + self._get_invoiceable_order_domain()
         if invoiceable_stage_ids:
             dom.append(["stage_id", "in", invoiceable_stage_ids.ids])
         return self.env["fsm.order"].search(dom)
@@ -205,7 +205,7 @@ class ContractLine(models.Model):
         overide this method to define invoiceable stage
         :return:
         """
-        return self.contract_id.invoiceable_stage_ids
+        return self.env["fsm.stage"]._get_invoiceable_stage()
 
     def _get_realised_stage(self):
         """
@@ -214,7 +214,7 @@ class ContractLine(models.Model):
         """
         return self.ref("fieldservice.fsm_stage_completed")
 
-    def _get_realised_order_domain(self):
+    def _get_invoiceable_order_domain(self):
         """
         overide this method to define more search cretaria for invoiceable
         fsm order
@@ -281,7 +281,7 @@ class ContractLine(models.Model):
             return tz.localize(
                 datetime.combine(some_date, time())
             ).astimezone(pytz.UTC).replace(tzinfo=None)
-        
+
         res["start_date"] = to_locale_datetime(self.date_start)
         res["end_date"] = to_locale_datetime(self.date_end)
         res["fsm_recurring_template_id"] = template.id
