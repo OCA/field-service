@@ -140,12 +140,29 @@ class SaleOrderLine(models.Model):
             if rec.product_id.field_service_tracking == "line":
                 rec._field_find_fsm_order()
 
+    def _get_invoiceable_order_domain(self):
+        """
+        overide this method to define more search cretaria for invoiceable
+        fsm order
+        :return:
+        """
+        invoiceable_stage_ids = self.env["fsm.stage"]._get_invoiceable_stage()
+        dom = [
+            ("sale_line_id", "=", self.id),
+            ("invoice_lines", "=", False),
+        ]
+        if invoiceable_stage_ids:
+            dom.append(("stage_id", "in", invoiceable_stage_ids.ids))
+        return dom
+
+    def _get_invoiceable_fsm_order(self):
+        dom = self._get_invoiceable_order_domain()
+        return self.env["fsm.order"].search(dom)
+
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
         if self.fsm_order_id:
-            res.update(
-                {
-                    "fsm_order_ids": [(4, self.fsm_order_id.id)],
-                }
-            )
+            fsm_orders = self._get_invoiceable_fsm_order()
+            if fsm_orders:
+                res.update({"fsm_order_ids": [(6, 0, fsm_orders.ids)]})
         return res
