@@ -1,6 +1,7 @@
 # Copyright 2020, Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase
 
@@ -8,8 +9,8 @@ from odoo.tests import SavepointCase
 class TestFSMStageValidation(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMStageValidation, cls).setUpClass()
-
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.stage = cls.env["fsm.stage"]
         cls.fsm_order = cls.env["fsm.order"]
         cls.fsm_person = cls.env["fsm.person"]
@@ -133,6 +134,14 @@ class TestFSMStageValidation(SavepointCase):
         # Create an Order
         cls.order_01 = cls.fsm_order.create({"location_id": cls.location_01.id})
 
+    def get_validate_message(self, stage):
+        stage_name = stage.name
+        field_name = fields.first(stage.validate_field_ids).name
+        return 'Cannot move to stage "%s" until the "%s" field is set.' % (
+            stage_name,
+            field_name,
+        )
+
     def test_fsm_stage_validation(self):
 
         # Validate the stage computes the correct model type
@@ -141,9 +150,9 @@ class TestFSMStageValidation(SavepointCase):
             self.env["ir.model"].search([("model", "=", "fsm.order")]),
             "FSM Stage model is not computed correctly",
         )
-
+        validate_message = self.get_validate_message(self.stage_equipment)
         # Validate the Equipment cannot move to next stage
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(ValidationError, validate_message):
             self.equipment_01.next_stage()
 
         # Update the Equipment notes field and validate it goes to next stage
@@ -154,9 +163,9 @@ class TestFSMStageValidation(SavepointCase):
             self.stage_equipment,
             "FSM Equipment did not progress to correct stage",
         )
-
+        validate_message = self.get_validate_message(self.stage_location)
         # Validate the Location cannot move to next stage
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(ValidationError, validate_message):
             self.location_01.next_stage()
 
         # Update the Location directions field and validate it goes to next stage
@@ -167,9 +176,9 @@ class TestFSMStageValidation(SavepointCase):
             self.stage_location,
             "FSM Location did not progress to correct stage",
         )
-
+        validate_message = self.get_validate_message(self.stage_person)
         # Validate the Person cannot move to next stage
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(ValidationError, validate_message):
             self.person_01.next_stage()
 
         # Update the Person mobile field and validate it goes to next stage
@@ -180,9 +189,9 @@ class TestFSMStageValidation(SavepointCase):
             self.stage_person,
             "FSM Person did not progress to correct stage",
         )
-
+        validate_message = self.get_validate_message(self.stage_order)
         # Validate the Order cannot move to stage which requires validation
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(ValidationError, validate_message):
             self.order_01.write({"stage_id": self.stage_order.id})
 
         # Update the Order description field and validate it goes to next stage
