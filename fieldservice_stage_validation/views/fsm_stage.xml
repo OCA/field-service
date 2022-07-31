@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_stage_form_view_inherit_validation" model="ir.ui.view">
+        <field name="name">fsm.stage.validation.form</field>
+        <field name="model">fsm.stage</field>
+        <field name="inherit_id" ref="fieldservice.fsm_stage_form_view" />
+        <field name="arch" type="xml">
+            <field name="stage_type" position="after">
+                <field name="stage_type_model_id" invisible="True" />
+                <field
+                    name="validate_field_ids"
+                    widget="many2many_tags"
+                    domain="[('model_id', '=', stage_type_model_id)]"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
