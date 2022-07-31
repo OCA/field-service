@@ -14,12 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_stage_validation
-#: code:addons/fieldservice_stage_validation/models/fsm_equipment.py:0
-#: code:addons/fieldservice_stage_validation/models/fsm_location.py:0
-#: code:addons/fieldservice_stage_validation/models/fsm_order.py:0
-#: code:addons/fieldservice_stage_validation/models/fsm_person.py:0
+#: code:addons/fieldservice_stage_validation/models/validate_utils.py:0
 #, python-format
 msgid "Cannot move to stage \"%s\" until the \"%s\" field is set."
+msgstr ""
+
+#. module: fieldservice_stage_validation
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_equipment__display_name
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_location__display_name
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_person__display_name
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_stage__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: fieldservice_stage_validation
@@ -53,8 +58,31 @@ msgid "Fields to Validate"
 msgstr ""
 
 #. module: fieldservice_stage_validation
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_equipment__id
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_location__id
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_person__id
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_stage__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_stage_validation
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_equipment____last_update
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_location____last_update
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_person____last_update
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_stage____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fieldservice_stage_validation
 #: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_stage__stage_type_model_id
 msgid "Model for Stage"
+msgstr ""
+
+#. module: fieldservice_stage_validation
+#: model:ir.model.fields,field_description:fieldservice_stage_validation.field_fsm_order__display_name
+msgid "Order"
 msgstr ""
 
 #. module: fieldservice_stage_validation
