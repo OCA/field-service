@@ -17,7 +17,7 @@ class FSMWizard(TransactionCase):
     """
 
     def setUp(self):
-        super(FSMWizard, self).setUp()
+        super().setUp()
         self.Wizard = self.env["fsm.wizard"]
         self.test_partner = self.env.ref("fieldservice.test_partner")
         self.test_parent_partner = self.env.ref("fieldservice.test_parent_partner")

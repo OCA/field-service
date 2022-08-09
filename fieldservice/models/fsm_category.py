@@ -16,9 +16,8 @@ class FSMCategory(models.Model):
     company_id = fields.Many2one(
         "res.company",
         string="Company",
-        required=True,
+        required=False,
         index=True,
-        default=lambda self: self.env.user.company_id,
         help="Company related to this category",
     )
 
@@ -26,7 +25,8 @@ class FSMCategory(models.Model):
 
     def _compute_full_name(self):
         for record in self:
-            if record.parent_id:
-                record.full_name = record.parent_id.full_name + "/" + record.name
-            else:
-                record.full_name = record.name
+            record.full_name = (
+                record.parent_id.full_name + "/" + record.name
+                if record.parent_id
+                else record.name
+            )
