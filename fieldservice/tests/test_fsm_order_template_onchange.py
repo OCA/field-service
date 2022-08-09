@@ -7,7 +7,7 @@ from . import test_fsm_order
 
 class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
     def setUp(self):
-        super(TestTemplateOnchange, self).setUp()
+        super().setUp()
         self.fsm_category_a = self.env["fsm.category"].create({"name": "Category A"})
         self.fsm_category_b = self.env["fsm.category"].create({"name": "Category B"})
         self.fsm_type_a = self.env["fsm.order.type"].create(

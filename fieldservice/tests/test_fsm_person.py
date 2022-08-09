@@ -6,7 +6,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class FSMPerson(TransactionCase):
     def setUp(self):
-        super(FSMPerson, self).setUp()
+        super().setUp()
         self.Worker = self.env["fsm.person"]
 
     def test_fsm_person(self):

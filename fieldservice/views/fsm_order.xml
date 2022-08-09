@@ -29,7 +29,7 @@
                         widget="statusbar"
                         options="{'fold_field': 'fold'}"
                         domain="[('stage_type', '=', 'order'),
-                                    ('team_ids', 'in', (team_id, False))]"
+                                    '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
                     />
                 </header>
                 <sheet>
