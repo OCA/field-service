@@ -25,7 +25,8 @@ class FSMTag(models.Model):
 
     def _compute_full_name(self):
         for record in self:
-            if record.parent_id:
-                record.full_name = record.parent_id.name + "/" + record.name
-            else:
-                record.full_name = record.name
+            record.full_name = (
+                record.parent_id.name + "/" + record.name
+                if record.parent_id
+                else record.name
+            )
