@@ -10,7 +10,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestFSMOrder(TransactionCase):
     def setUp(self):
-        super(TestFSMOrder, self).setUp()
+        super().setUp()
         self.Order = self.env["fsm.order"]
         self.test_location = self.env.ref("fieldservice.test_location")
         self.stage1 = self.env.ref("fieldservice.fsm_stage_completed")
@@ -75,6 +75,9 @@ class TestFSMOrder(TransactionCase):
                 "request_early": fields.Datetime.today(),
                 "location_id": self.test_location.id,
                 "priority": priority,
+                "scheduled_date_start": fields.Datetime.today().replace(
+                    hour=0, minute=0, second=0
+                ),
             }
             order_vals = {
                 "request_early": fields.Datetime.today(),
@@ -105,6 +108,13 @@ class TestFSMOrder(TransactionCase):
                         + timedelta(hours=100),
                     }
                 )
+            # report
+            res = (
+                self.env["ir.actions.report"]
+                ._get_report_from_name("fieldservice.report_fsm_order")
+                ._render_qweb_text(order.ids, False)
+            )
+            self.assertRegex(str(res[0]), order.name)
 
     def test_fsm_order(self):
         """Test creating new workorders, and test following functions,
@@ -167,17 +177,18 @@ class TestFSMOrder(TransactionCase):
         self.assertEqual(order.custom_color, order.stage_id.custom_color)
         # Test _compute_duration
         self.assertEqual(order.duration, hours_diff)
-        # Test _compute_request_late()
+        # Test request_late
         priority_vs_late_days = {"0": 3, "1": 2, "2": 1, "3": 1 / 3}
         for priority, late_days in priority_vs_late_days.items():
-            order.priority = priority
-            order.request_late = False
-            vals = {"request_early": fields.Datetime.today(), "priority": priority}
-            vals = order._compute_request_late(vals)
-            vals2 = {"priority": priority}
-            order._compute_request_late(vals2)
+            order_test = self.Order.create(
+                {
+                    "location_id": self.test_location.id,
+                    "request_early": fields.Datetime.today(),
+                    "priority": priority,
+                }
+            )
             self.assertEqual(
-                vals["request_late"], order.request_early + timedelta(days=late_days)
+                order_test.request_late, order.request_early + timedelta(days=late_days)
             )
         # Test scheduled_date_start is not automatically set
         self.assertEqual(order.scheduled_date_start, False)

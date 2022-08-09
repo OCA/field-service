@@ -7,7 +7,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class FSMTeam(TransactionCase):
     def setUp(self):
-        super(FSMTeam, self).setUp()
+        super().setUp()
         self.Order = self.env["fsm.order"]
         self.Team = self.env["fsm.team"]
         self.test_location = self.env.ref("fieldservice.test_location")

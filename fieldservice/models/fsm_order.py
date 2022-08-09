@@ -15,7 +15,7 @@ class FSMOrder(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     def _default_stage_id(self):
-        stage_ids = self.env["fsm.stage"].search(
+        stage = self.env["fsm.stage"].search(
             [
                 ("stage_type", "=", "order"),
                 ("is_default", "=", True),
@@ -24,18 +24,18 @@ class FSMOrder(models.Model):
             order="sequence asc",
             limit=1,
         )
-        if stage_ids:
-            return stage_ids
+        if stage:
+            return stage
         raise ValidationError(_("You must create an FSM order stage first."))
 
     def _default_team_id(self):
-        team_ids = self.env["fsm.team"].search(
+        team = self.env["fsm.team"].search(
             [("company_id", "in", (self.env.company.id, False))],
             order="sequence asc",
             limit=1,
         )
-        if team_ids:
-            return team_ids[0]
+        if team:
+            return team
         raise ValidationError(_("You must create an FSM team first."))
 
     @api.depends("date_start", "date_end")
@@ -121,29 +121,6 @@ class FSMOrder(models.Model):
         default=lambda self: self.env.company,
         help="Company related to this order",
     )
-
-    def _compute_request_late(self, vals):
-        if vals.get("priority") == "0":
-            if vals.get("request_early"):
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(days=3)
-            else:
-                vals["request_late"] = datetime.now() + timedelta(days=3)
-        elif vals.get("request_early") and vals.get("priority") == "1":
-            vals["request_late"] = fields.Datetime.from_string(
-                vals.get("request_early")
-            ) + timedelta(days=2)
-        elif vals.get("request_early") and vals.get("priority") == "2":
-            vals["request_late"] = fields.Datetime.from_string(
-                vals.get("request_early")
-            ) + timedelta(days=1)
-        elif vals.get("request_early") and vals.get("priority") == "3":
-            vals["request_late"] = fields.Datetime.from_string(
-                vals.get("request_early")
-            ) + timedelta(hours=8)
-        return vals
-
     request_late = fields.Datetime(string="Latest Request Date")
     description = fields.Text()
 
@@ -181,7 +158,7 @@ class FSMOrder(models.Model):
         compute=_compute_duration,
         help="Actual duration in hours",
     )
-    current_date = fields.Datetime(default=fields.datetime.now(), store=True)
+    current_date = fields.Datetime(default=fields.Datetime.now, store=True)
 
     # Location
     territory_id = fields.Many2one(
@@ -263,7 +240,7 @@ class FSMOrder(models.Model):
                 vals["request_late"] = fields.Datetime.from_string(
                     vals.get("request_early")
                 ) + timedelta(hours=8)
-        return super(FSMOrder, self).create(vals)
+        return super().create(vals)
 
     is_button = fields.Boolean(default=False)
 
@@ -275,7 +252,7 @@ class FSMOrder(models.Model):
             if stage_id == self.env.ref("fieldservice.fsm_stage_completed"):
                 raise UserError(_("Cannot move to completed from Kanban"))
         self._calc_scheduled_dates(vals)
-        res = super(FSMOrder, self).write(vals)
+        res = super().write(vals)
         return res
 
     def can_unlink(self):
@@ -284,9 +261,8 @@ class FSMOrder(models.Model):
 
     def unlink(self):
         if all(order.can_unlink() for order in self):
-            return super(FSMOrder, self).unlink()
-        else:
-            raise ValidationError(_("You cannot delete this order."))
+            return super().unlink()
+        raise ValidationError(_("You cannot delete this order."))
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
@@ -369,18 +345,12 @@ class FSMOrder(models.Model):
         self.location_directions = ""
         if self.type and self.type.name not in ["repair", "maintenance"]:
             for equipment_id in self.equipment_ids.filtered(lambda eq: eq.notes):
-                if self.description:
-                    self.description = self.description + equipment_id.notes + "\n "
-                else:
-                    self.description = equipment_id.notes + "\n "
+                desc = self.description if self.description else ""
+                self.description = desc + equipment_id.notes + "\n "
         else:
-            if self.equipment_id:
-                if self.equipment_id.notes and self.description:
-                    self.description = (
-                        self.description + self.equipment_id.notes + "\n "
-                    )
-                else:
-                    self.description = self.equipment_id.notes + "\n "
+            if self.equipment_id.notes:
+                desc = self.description if self.description else ""
+                self.description = desc + self.equipment_id.notes + "\n "
         if self.location_id:
             self.location_directions = self._get_location_directions(self.location_id)
         if self.template_id:
