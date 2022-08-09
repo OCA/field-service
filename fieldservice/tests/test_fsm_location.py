@@ -7,7 +7,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class FSMLocation(TransactionCase):
     def setUp(self):
-        super(FSMLocation, self).setUp()
+        super().setUp()
         self.Location = self.env["fsm.location"]
         self.Equipment = self.env["fsm.equipment"]
         self.test_location = self.env.ref("fieldservice.test_location")
@@ -81,6 +81,8 @@ class FSMLocation(TransactionCase):
         self.assertEqual(len(location.person_ids), 0)
         location._onchange_territory_id()
         self.assertEqual(len(location.person_ids), 3)
+        res = location.owner_id.action_open_owned_locations()
+        self.assertIn(location.id, res["domain"][0][2])
         self.location_1.fsm_parent_id = self.test_location
         self.location_1.ref = "Test Ref"
         self.location_3.ref = "Test Ref3"
@@ -205,4 +207,70 @@ class FSMLocation(TransactionCase):
         self.assertEqual(
             (len(cont_ids), len(cont_1_ids), len(cont_2_ids), len(cont_3_ids)),
             (4, 3, 2, 1),
+        )
+
+    def test_convert_partner_to_fsm_location(self):
+        """
+        FSM Location can be created from the res.partner form
+        like invoice addresses or delivery addresses.
+        child of partner with type = fsm_location
+        """
+        self.test_partner = self.env.ref("fieldservice.test_partner")
+        # ensure no regression on classic types
+        contact = self.env["res.partner"].create(
+            {
+                "parent_id": self.test_partner.id,
+                "name": "A contact",
+                "type": "contact",
+            }
+        )
+        self.assertFalse(contact.fsm_location)
+        no_type = self.env["res.partner"].create(
+            {
+                "parent_id": self.test_partner.id,
+                "name": "A contact",
+            }
+        )
+        self.assertFalse(no_type.fsm_location)
+
+        # test with type = fsm_location
+        vals = {
+            "parent_id": self.test_partner.id,
+            "name": "A location",
+            "type": "fsm_location",
+        }
+        child_loc = self.env["res.partner"].create(vals)
+
+        self.assertTrue(child_loc.fsm_location, "fsm_location Flag should be set")
+        self.assertTrue(
+            child_loc.fsm_location_id.exists(), "fsm.location should exists"
+        )
+        self.assertEqual(
+            child_loc.fsm_location_id.partner_id,
+            child_loc,
+            "ensure circular references",
+        )
+
+    def test_convert_partner_to_fsm_location_multi(self):
+        """
+        Ensure behavior in create_multi
+        """
+        self.test_partner = self.env.ref("fieldservice.test_partner")
+        vals = [
+            {"parent_id": self.test_partner.id, "type": "invoice", "name": "contact"},
+            {
+                "parent_id": self.test_partner.id,
+                "type": "fsm_location",
+                "name": "location",
+            },
+        ]
+        children_loc = self.env["res.partner"].create(vals)
+        self.assertEqual(len(children_loc.filtered("fsm_location")), 1)
+
+        # ensure archive is still possible
+        children_loc.action_archive()
+        self.assertTrue(
+            self.env["res.partner"].search(
+                [("active", "=", False), ("id", "in", children_loc.ids)]
+            )
         )

@@ -31,6 +31,16 @@ class FSMPerson(models.Model):
     hide = fields.Boolean()
     mobile = fields.Char()
     territory_ids = fields.Many2many("res.territory", string="Territories")
+    active = fields.Boolean(default=True)
+    active_partner = fields.Boolean(
+        related="partner_id.active", readonly=True, string="Partner is Active"
+    )
+
+    def toggle_active(self):
+        for person in self:
+            if not person.active and not person.partner_id.active:
+                person.partner_id.toggle_active()
+        return super().toggle_active()
 
     @api.model
     def _search(
@@ -42,7 +52,7 @@ class FSMPerson(models.Model):
         count=False,
         access_rights_uid=None,
     ):
-        res = super(FSMPerson, self)._search(
+        res = super()._search(
             args=args,
             offset=offset,
             limit=limit,
@@ -88,7 +98,7 @@ class FSMPerson(models.Model):
     @api.model
     def create(self, vals):
         vals.update({"fsm_person": True})
-        return super(FSMPerson, self).create(vals)
+        return super().create(vals)
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

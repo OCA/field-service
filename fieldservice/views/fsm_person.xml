@@ -59,9 +59,40 @@
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field
+                        name="active_partner"
+                        required="0"
+                        readonly="1"
+                        invisible="1"
+                    />
+                    <div
+                        class="alert alert-info text-center o_form_header"
+                        attrs="{'invisible': [
+                            '|', '|',
+                            '&amp;', ('active', '=', True), ('active_partner', '=', True),
+                            '&amp;', ('active', '=', False), ('active_partner', '=', False),
+                            '&amp;', ('active', '=', True), ('active_partner', '=', False),
+                        ]}"
+                        role="alert"
+                    >
+                        <a class="close" data-dismiss="alert" href="#">x</a>
+                        <div>
+                        <strong>The contact linked to this user is still active</strong>
+                        </div>
+                        <div>You can archive the contact
+                        <field name="partner_id" required="0" readonly="1" />
+                        </div>
+                    </div>
                     <label for="name" class="oe_edit_only" />
                     <h1>
                         <field name="name" required="True" />
+                        <field name="active" invisible="1" />
                     </h1>
                     <group>
                         <group>
