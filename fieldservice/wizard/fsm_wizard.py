@@ -31,8 +31,9 @@ class FSMWizard(models.TransientModel):
         return {"partner_id": partner.id, "owner_id": partner.id}
 
     def action_convert_location(self, partner):
-        if not self.env["fsm.location"].search_count([("partner_id", "=", partner.id)]):
-            self.env["fsm.location"].create(self._prepare_fsm_location(partner))
+        fl_model = self.env["fsm.location"]
+        if fl_model.search_count([("partner_id", "=", partner.id)]) == 0:
+            fl_model.create(self._prepare_fsm_location(partner))
             partner.write({"fsm_location": True})
             self.action_other_address(partner)
         else:
@@ -41,8 +42,9 @@ class FSMWizard(models.TransientModel):
             )
 
     def action_convert_person(self, partner):
-        if not self.env["fsm.person"].search_count([("partner_id", "=", partner.id)]):
-            self.env["fsm.person"].create({"partner_id": partner.id})
+        fp_model = self.env["fsm.person"]
+        if fp_model.search_count([("partner_id", "=", partner.id)]) == 0:
+            fp_model.create({"partner_id": partner.id})
             partner.write({"fsm_person": True})
         else:
             raise UserError(
