@@ -95,3 +95,13 @@ class TestFSMSale(TestCommonSaleNoChart):
             'field_service_tracking': 'line',
             'fsm_order_template_id': cls.fsm_template_4.id,
         })
+        cls.standard_service_1 = cls.env['product.product'].create({
+            'name': 'Standard service #1',
+            'categ_id': cls.env.ref('product.product_category_3').id,
+            'standard_price': 25.0,
+            'list_price': 50.0,
+            'type': 'service',
+            'uom_id': cls.env.ref('uom.product_uom_unit').id,
+            'uom_po_id': cls.env.ref('uom.product_uom_unit').id,
+            'invoice_policy': 'delivery',
+        })

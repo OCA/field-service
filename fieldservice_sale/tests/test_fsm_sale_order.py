@@ -117,6 +117,24 @@ class TestFSMSaleOrder(TestFSMSale):
             'order_id': cls.sale_order_4.id,
             'tax_id': False,
         })
+        cls.sale_order_5 = SaleOrder.create({
+            'partner_id': cls.partner_customer_usd.id,
+            'pricelist_id': cls.pricelist_usd.id,
+        })
+        cls.sol_service_standard_line_1 = cls.env['sale.order.line'].create({
+            'order_id': cls.sale_order_5.id,
+            'name': cls.standard_service_1.name,
+            'product_id': cls.standard_service_1.id,
+            'product_uom_qty': 1,
+            'product_uom': cls.standard_service_1.uom_id.id,
+            'price_unit': cls.standard_service_1.list_price,
+            'tax_id': False,
+        })
+        cls.sol_section_line_1 = cls.env['sale.order.line'].create({
+            'name': cls.fsm_per_line_1.name,
+            'display_type': 'line_note',
+            'order_id': cls.sale_order_5.id,
+        })
 
     def _isp_account_installed(self):
         """ Checks if module is installed which will require more
@@ -384,3 +402,14 @@ class TestFSMSaleOrder(TestFSMSale):
         self.assertEqual(
             len(inv_fsm_orders.ids), 3,
             'FSM Sale: There should be 3 orders for 3 invoices')
+
+    def test_sale_order_5(self):
+        """ Test sale order 5 flow from quotation to sale.
+            - Check no FSM sale flow.
+        """
+        self.sale_order_5.action_confirm()
+        inv_id = self.sale_order_5.action_invoice_create()
+        invoices = self.env['account.invoice'].browse(inv_id)
+        self.assertEqual(
+            len(invoices.ids), 1,
+            'Sale Order 5 should create 1 invoice')
