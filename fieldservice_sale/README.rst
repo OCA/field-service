@@ -124,9 +124,6 @@ Contributors
 * Brian McMaster <brian@mcmpest.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Clément Mombereau <clement.mombereau@akretion.com>
-* Trey <https://www.trey.es>
-
-  * Miguel Poyatos <miguel@trey.es>
 
 Maintainers
 ~~~~~~~~~~~
