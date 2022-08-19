@@ -10,7 +10,10 @@ class FSMVehicle(models.Model):
     _inherits = {"fleet.vehicle": "fleet_vehicle_id"}
 
     fleet_vehicle_id = fields.Many2one(
-        "fleet.vehicle", string="Vehicle Details", required=True, ondelete="restrict",
+        "fleet.vehicle",
+        string="Vehicle Details",
+        required=True,
+        ondelete="restrict",
     )
 
     _sql_constraints = [

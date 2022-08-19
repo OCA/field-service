@@ -6,7 +6,7 @@ from openupgradelib import openupgrade
 
 
 def update_fsm_order_in_aml(cr):
-    """ Update fsm_order_id in account.move.line to use in post migration """
+    """Update fsm_order_id in account.move.line to use in post migration"""
     openupgrade.logged_query(
         cr,
         """

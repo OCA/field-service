@@ -35,7 +35,10 @@ class FSMOrder(models.Model):
         copy=False,
     )
     bill_count = fields.Integer(
-        string="Bill Count", compute="_compute_get_billed", readonly=True, copy=False,
+        string="Bill Count",
+        compute="_compute_get_billed",
+        readonly=True,
+        copy=False,
     )
 
     @api.depends("invoice_lines")

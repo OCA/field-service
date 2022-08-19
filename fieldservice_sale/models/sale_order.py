@@ -136,7 +136,7 @@ class SaleOrder(models.Model):
         return result
 
     def _action_confirm(self):
-        """ On SO confirmation, some lines generate field service orders. """
+        """On SO confirmation, some lines generate field service orders."""
         result = super(SaleOrder, self)._action_confirm()
         if any(
             sol.product_id.field_service_tracking != "no" and not sol.display_type

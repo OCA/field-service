@@ -27,7 +27,8 @@ class ResPartner(models.Model):
             if not partner.service_location_id and partner.fsm_route_id:
                 self.env["fsm.wizard"].action_convert_location(partner)
                 location = self.env["fsm.location"].search(
-                    [("partner_id", "=", partner.id)], limit=1,
+                    [("partner_id", "=", partner.id)],
+                    limit=1,
                 )
                 location.fsm_route_id = partner.fsm_route_id
                 partner.service_location_id = location

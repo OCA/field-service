@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 class FSMFleetWizard(models.TransientModel):
     """
-        A wizard to convert a fleet.vehicle record to a fsm.vehicle
+    A wizard to convert a fleet.vehicle record to a fsm.vehicle
     """
 
     _name = "fsm.fleet.wizard"
