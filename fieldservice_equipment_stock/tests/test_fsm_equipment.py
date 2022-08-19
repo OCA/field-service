@@ -20,6 +20,7 @@ class TestFSMEquipment(TransactionCase):
             {
                 "name": "serial1",
                 "product_id": product1.id,
+                "company_id": self.env.company.id,
             }
         )
         self.env["stock.quant"].create(

@@ -38,7 +38,6 @@ class FSMEquipment(models.Model):
             res.lot_id.fsm_equipment_id = res.id
         return res
 
-    @api.multi
     def write(self, vals):
         for equipment in self:
             prev_lot = equipment.lot_id
