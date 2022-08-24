@@ -45,7 +45,9 @@ class StockRequest(models.Model):
             picking_type_id = self.env["stock.picking.type"].search(
                 [
                     ("code", "=", "stock_request_order"),
+                    "|",
                     ("warehouse_id", "=", vals["warehouse_id"]),
+                    ("warehouse_id", "=", False),
                 ],
                 limit=1,
             )
