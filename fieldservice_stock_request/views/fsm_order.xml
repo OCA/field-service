@@ -7,7 +7,7 @@
             ref="fieldservice_stock.view_fsm_order_form_inherit_stock"
         />
         <field name="arch" type="xml">
-            <xpath expr="//notebook/page[@id='stock']" position="inside">
+            <xpath expr="//notebook/page[@id='stock']/group[@groups='stock.group_stock_user']" position="before">
                 <header>
                     <button
                         name="action_request_submit"
