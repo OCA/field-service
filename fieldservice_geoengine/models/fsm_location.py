@@ -49,7 +49,8 @@ class FSMLocation(models.Model):
         if ('partner_latitude' in vals) or ('partner_longitude' in vals):
             self.shape = fields.GeoPoint.from_latlon(
                 cr=self.env.cr,
-                latitude=vals['partner_latitude'],
-                longitude=vals['partner_longitude'])
+                latitude=self.partner_latitude,
+                longitude=self.partner_longitude
+            )
             self._update_order_geometries()
         return res
