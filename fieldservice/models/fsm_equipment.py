@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class FSMEquipment(models.Model):
@@ -102,3 +102,9 @@ class FSMEquipment(models.Model):
             self.hide = True
         else:
             self.hide = False
+
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        default["name"] = self.name + _(" (copy)")
+        return super(FSMEquipment, self).copy(default=default)
