@@ -51,3 +51,10 @@ class FSMEquipment(TransactionCase):
         self.assertEqual(
             equipment.stage_id, self.env.ref("fieldservice.equipment_stage_2")
         )
+
+    def test_fsm_equipment_copy(self):
+        equipment = self.Equipment.create({"name": "Equipment"})
+        equipment_copy = equipment.copy()
+        self.assertEqual(equipment_copy.name, "Equipment (copy)")
+        equipment_copy = equipment.copy({"name": "Test"})
+        self.assertEqual(equipment_copy.name, "Test")
