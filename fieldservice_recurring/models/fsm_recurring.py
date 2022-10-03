@@ -67,7 +67,7 @@ class FSMRecurringOrder(models.Model):
         help="This is the order template that will be recurring",
     )
     company_id = fields.Many2one(
-        "res.company", "Company", default=lambda self: self.env.user.company_id
+        "res.company", "Company", default=lambda self: self.env.company
     )
     fsm_order_ids = fields.One2many(
         "fsm.order", "fsm_recurring_id", string="Orders", copy=False
