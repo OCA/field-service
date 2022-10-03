@@ -337,6 +337,7 @@
                 <field name="district_id" />
                 <field name="region_id" />
                 <field name="team_id" groups="fieldservice.group_fsm_team" />
+                <field name="person_id" />
                 <field name="person_ids" />
                 <separator />
                 <filter
@@ -414,6 +415,11 @@
                         string="Region"
                         domain=""
                         context="{'group_by':'region_id'}"
+                    />
+                    <filter
+                        name="fsm_person_id"
+                        domain=""
+                        context="{'group_by':'person_id'}"
                     />
                 </group>
             </search>
