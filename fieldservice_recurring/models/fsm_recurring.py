@@ -173,7 +173,7 @@ class FSMRecurringOrder(models.Model):
             thru_date = request_thru_date
         # use variables to calulate and return the rruleset object
         ruleset = self.fsm_frequency_set_id._get_rruleset(
-            dtstart=next_date, until=thru_date
+            dtstart=next_date, until=thru_date, tz=self.location_id.tz
         )
         return ruleset
 
@@ -272,7 +272,7 @@ class FSMRecurringOrder(models.Model):
             if rec.max_orders > 0:
                 orders_in_30 = rec.fsm_order_count
                 orders_in_30 += rec.fsm_frequency_set_id._get_rruleset(
-                    until=expire_date
+                    until=expire_date, tz=rec.location_id.tz
                 ).count()
                 if orders_in_30 >= rec.max_orders:
                     to_renew += rec
