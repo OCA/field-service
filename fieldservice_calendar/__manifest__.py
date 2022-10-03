@@ -7,7 +7,7 @@
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
     "license": "AGPL-3",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "depends": [
         "calendar",
         "fieldservice",
