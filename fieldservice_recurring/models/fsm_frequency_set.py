@@ -36,12 +36,12 @@ class FSMFrequencySet(models.Model):
            that an event can be done""",
     )
 
-    def _get_rruleset(self, dtstart=None, until=None):
+    def _get_rruleset(self, dtstart=None, until=None, tz=None):
         self.ensure_one()
         rset = rruleset()
         for rule in self.fsm_frequency_ids:
             if not rule.is_exclusive:
-                rset.rrule(rule._get_rrule(dtstart, until))
+                rset.rrule(rule._get_rrule(dtstart, until, tz))
             else:
-                rset.exrule(rule._get_rrule(dtstart))
+                rset.exrule(rule._get_rrule(dtstart, tz=tz))
         return rset
