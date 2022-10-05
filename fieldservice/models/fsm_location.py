@@ -8,8 +8,9 @@ from odoo.exceptions import ValidationError
 class FSMLocation(models.Model):
     _name = "fsm.location"
     _inherits = {"res.partner": "partner_id"}
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _description = "Field Service Location"
+    _stage_type = "location"
 
     direction = fields.Char()
     partner_id = fields.Many2one(
@@ -67,17 +68,6 @@ class FSMLocation(models.Model):
     complete_name = fields.Char(
         compute="_compute_complete_name", recursive=True, store=True
     )
-    hide = fields.Boolean()
-
-    stage_id = fields.Many2one(
-        "fsm.stage",
-        string="Stage",
-        tracking=True,
-        index=True,
-        copy=False,
-        group_expand="_read_group_stage_ids",
-        default=lambda self: self._default_stage_id(),
-    )
 
     @api.model
     def create(self, vals):
@@ -120,46 +110,6 @@ class FSMLocation(models.Model):
         if not recs and not self.env.company.search_on_complete_name:
             recs = self.search([("name", operator, name)] + args, limit=limit)
         return recs.name_get()
-
-    @api.model
-    def _read_group_stage_ids(self, stages, domain, order):
-        stage_ids = self.env["fsm.stage"].search([("stage_type", "=", "location")])
-        return stage_ids
-
-    def _default_stage_id(self):
-        return self.env["fsm.stage"].search(
-            [("stage_type", "=", "location"), ("sequence", "=", "1")], limit=1
-        )
-
-    def next_stage(self):
-        seq = self.stage_id.sequence
-        next_stage = self.env["fsm.stage"].search(
-            [("stage_type", "=", "location"), ("sequence", ">", seq)],
-            order="sequence asc",
-            limit=1,
-        )
-        if next_stage:
-            self.stage_id = next_stage
-            self._onchange_stage_id()
-
-    def previous_stage(self):
-        seq = self.stage_id.sequence
-        prev_stage = self.env["fsm.stage"].search(
-            [("stage_type", "=", "location"), ("sequence", "<", seq)],
-            order="sequence desc",
-            limit=1,
-        )
-        if prev_stage:
-            self.stage_id = prev_stage
-            self._onchange_stage_id()
-
-    @api.onchange("stage_id")
-    def _onchange_stage_id(self):
-        # get last stage
-        heighest_stage = self.env["fsm.stage"].search(
-            [("stage_type", "=", "location")], order="sequence desc", limit=1
-        )
-        self.hide = True if self.stage_id.name == heighest_stage.name else False
 
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id(self):
