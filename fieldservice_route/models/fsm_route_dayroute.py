@@ -12,56 +12,47 @@ class FSMRouteDayRoute(models.Model):
     _name = "fsm.route.dayroute"
     _description = "Field Service Route Dayroute"
 
-    def _default_team_id(self):
-        team_ids = self.env["fsm.team"].search(
-            [("company_id", "in", (self.env.user.company_id.id, False))],
-            order="sequence asc",
-            limit=1,
-        )
-        if team_ids:
-            return team_ids[0]
-        else:
-            raise ValidationError(_("You must create a FSM team first."))
-
-    @api.depends("route_id", "order_ids")
-    def _compute_order_count(self):
-        for rec in self:
-            rec.order_count = len(rec.order_ids)
-            rec.order_remaining = rec.max_order - rec.order_count
-
-    name = fields.Char(
-        string="Name", required=True, copy=False, default=lambda self: _("New")
-    )
-    person_id = fields.Many2one("fsm.person", string="Person")
-    route_id = fields.Many2one("fsm.route", string="Route")
-    date = fields.Date(string="Date", required=True)
+    name = fields.Char(required=True, copy=False, default=lambda self: _("New"))
+    person_id = fields.Many2one(comodel_name="fsm.person", string="Person")
+    route_id = fields.Many2one(comodel_name="fsm.route", string="Route")
+    date = fields.Date(required=True)
     team_id = fields.Many2one(
-        "fsm.team", string="Team", default=lambda self: self._default_team_id()
+        comodel_name="fsm.team",
+        string="Team",
+        default=lambda self: self._default_team_id(),
     )
     stage_id = fields.Many2one(
-        "fsm.stage",
+        comodel_name="fsm.stage",
         string="Stage",
         domain="[('stage_type', '=', 'route')]",
         index=True,
         copy=False,
         default=lambda self: self._default_stage_id(),
     )
-    longitude = fields.Float("Longitude")
-    latitude = fields.Float("Latitude")
-    last_location_id = fields.Many2one("fsm.location", string="Last Location")
+    longitude = fields.Float()
+    latitude = fields.Float()
+    last_location_id = fields.Many2one(
+        comodel_name="fsm.location", string="Last Location"
+    )
     date_start_planned = fields.Datetime(string="Planned Start Time")
-    start_location_id = fields.Many2one("fsm.location", string="Start Location")
-    end_location_id = fields.Many2one("fsm.location", string="End Location")
+    start_location_id = fields.Many2one(
+        comodel_name="fsm.location", string="Start Location"
+    )
+    end_location_id = fields.Many2one(
+        comodel_name="fsm.location", string="End Location"
+    )
     work_time = fields.Float(string="Time before overtime (in hours)", default=8.0)
     max_allow_time = fields.Float(
         string="Maximal Allowable Time (in hours)", default=10.0
     )
-    order_ids = fields.One2many("fsm.order", "dayroute_id", string="Orders")
+    order_ids = fields.One2many(
+        comodel_name="fsm.order", inverse_name="dayroute_id", string="Orders"
+    )
     order_count = fields.Integer(
-        compute=_compute_order_count, string="Number of Orders", store=True
+        compute="_compute_order_count", string="Number of Orders", store=True
     )
     order_remaining = fields.Integer(
-        compute=_compute_order_count, string="Available Capacity", store=True
+        compute="_compute_order_count", string="Available Capacity", store=True
     )
     max_order = fields.Integer(
         related="route_id.max_order",
@@ -70,10 +61,27 @@ class FSMRouteDayRoute(models.Model):
         help="Maximum numbers of orders that can be added to this day route.",
     )
 
+    def _default_team_id(self):
+        teams = self.env["fsm.team"].search(
+            [("company_id", "in", (self.env.user.company_id.id, False))],
+            order="sequence asc",
+            limit=1,
+        )
+        if teams:
+            return teams
+        else:
+            raise ValidationError(_("You must create a FSM team first."))
+
     def _default_stage_id(self):
         return self.env["fsm.stage"].search(
             [("stage_type", "=", "route"), ("is_default", "=", True)], limit=1
         )
+
+    @api.depends("route_id", "order_ids")
+    def _compute_order_count(self):
+        for rec in self:
+            rec.order_count = len(rec.order_ids)
+            rec.order_remaining = rec.max_order - rec.order_count
 
     @api.onchange("route_id")
     def _onchange_person(self):
@@ -118,10 +126,8 @@ class FSMRouteDayRoute(models.Model):
                 day = self.env.ref("fieldservice_route.fsm_route_day_" + str(day_index))
                 if day.id not in rec.route_id.day_ids.ids:
                     raise ValidationError(
-                        _(
-                            "The route %s does not run on %s!"
-                            % (rec.route_id.name, day.name)
-                        )
+                        _("The route %(route_name)s does not run on %(name)s!")
+                        % {"route_name": rec.route_id.name, "name": day.name}
                     )
 
     @api.constrains("route_id", "max_order", "order_count")
