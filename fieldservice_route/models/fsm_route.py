@@ -8,11 +8,13 @@ class FSMRoute(models.Model):
     _name = "fsm.route"
     _description = "Field Service Route"
 
-    name = fields.Char("Name", required=True)
-    fsm_person_id = fields.Many2one("fsm.person", string="Person")
-    day_ids = fields.Many2many("fsm.route.day", string="Days")
+    name = fields.Char(required=True)
+    fsm_person_id = fields.Many2one(comodel_name="fsm.person", string="Person")
+    day_ids = fields.Many2many(comodel_name="fsm.route.day", string="Days")
     max_order = fields.Integer(
-        "Maximum Orders", default=0, help="Maximum number of orders per day route."
+        string="Maximum Orders",
+        default=0,
+        help="Maximum number of orders per day route.",
     )
 
     def run_on(self, date):
