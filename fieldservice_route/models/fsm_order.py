@@ -10,16 +10,24 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    @api.model
-    def _get_default_person(self):
-        return self.fsm_route_id.fsm_person_id.id or False
-
-    dayroute_id = fields.Many2one("fsm.route.dayroute", string="Day Route", index=True)
+    dayroute_id = fields.Many2one(
+        comodel_name="fsm.route.dayroute", string="Day Route", index=True
+    )
     fsm_route_id = fields.Many2one(related="location_id.fsm_route_id", string="Route")
 
     person_id = fields.Many2one(
-        "fsm.person", string="Assigned To", index=True, default=_get_default_person
+        comodel_name="fsm.person",
+        string="Assigned To",
+        index=True,
+        compute="_compute_person_id",
+        store=True,
+        readonly=False,
     )
+
+    @api.depends("fsm_route_id")
+    def _compute_person_id(self):
+        for item in self.filtered("fsm_route_id"):
+            item.person_id = item.fsm_route_id.fsm_person_id
 
     def prepare_dayroute_values(self, values):
         return {
@@ -46,12 +54,11 @@ class FSMOrder(models.Model):
         }
 
     def _get_dayroute_domain(self, values):
-        domain = [
+        return [
             ("person_id", "=", values["person_id"]),
             ("date", "=", values["date"]),
             ("order_remaining", ">", 0),
         ]
-        return domain
 
     def _can_create_dayroute(self, values):
         return values["person_id"] and values["date"]
@@ -78,11 +85,9 @@ class FSMOrder(models.Model):
         location = self.env["fsm.location"].browse(vals.get("location_id"))
         if not vals.get("fsm_route_id"):
             vals.update({"fsm_route_id": location.fsm_route_id.id})
-        if not vals.get("person_id"):
-            vals.update({"person_id": location.fsm_route_id.fsm_person_id.id})
         if vals.get("person_id") and vals.get("scheduled_date_start"):
             vals = self._manage_fsm_route(vals)
-        return super(FSMOrder, self).create(vals)
+        return super().create(vals)
 
     def write(self, vals):
         for rec in self:
@@ -90,7 +95,6 @@ class FSMOrder(models.Model):
                 route = self.env["fsm.route"].browse(vals.get("route_id"))
                 vals.update(
                     {
-                        "person_id": route.person_id.id,
                         "scheduled_date_start": route.date,
                     }
                 )

@@ -10,7 +10,7 @@ class FSMRouteDay(models.Model):
     _description = "Route Day"
 
     name = fields.Selection(
-        [
+        selection=[
             ("Monday", "Monday"),
             ("Tuesday", "Tuesday"),
             ("Wednesday", "Wednesday"),
@@ -19,5 +19,4 @@ class FSMRouteDay(models.Model):
             ("Saturday", "Saturday"),
             ("Sunday", "Sunday"),
         ],
-        string="Name",
     )
