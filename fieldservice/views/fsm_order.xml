@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <form string="Order">
                 <header>
+                    <field name="is_button" invisible="1" />
+                    <field name="team_id" invisible="1" />
                     <button
                         id="action_complete"
                         name="action_complete"
@@ -15,7 +17,6 @@
                         groups="fieldservice.group_fsm_user"
                         attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
                     />
-                    <field name="is_button" invisible="1" />
                     <button
                         id="action_cancel"
                         name="action_cancel"
@@ -28,8 +29,7 @@
                         name="stage_id"
                         widget="statusbar"
                         options="{'fold_field': 'fold'}"
-                        domain="[('stage_type', '=', 'order'),
-                                    '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
+                        domain="[('stage_type', '=', 'order'), '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
                     />
                 </header>
                 <sheet>
@@ -58,7 +58,11 @@
                         </group>
                         <group>
                             <field name="location_id" />
-                            <field name="territory_id" invisible='1' />
+                            <field
+                                name="territory_id"
+                                invisible='1'
+                                groups="fieldservice.group_fsm_territory"
+                            />
                             <field name="branch_id" invisible='1' />
                             <field name="district_id" invisible='1' />
                             <field name="region_id" invisible='1' />
@@ -390,24 +394,28 @@
                         string="Territory"
                         domain=""
                         context="{'group_by':'territory_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="branch_id"
                         string="Branch"
                         domain=""
                         context="{'group_by':'branch_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="district_id"
                         string="District"
                         domain=""
                         context="{'group_by':'district_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="region_id"
                         string="Region"
                         domain=""
                         context="{'group_by':'region_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="fsm_person_id"

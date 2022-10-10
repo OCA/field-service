@@ -69,11 +69,11 @@ class FSMLocation(models.Model):
         compute="_compute_complete_name", recursive=True, store=True
     )
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        res.update({"fsm_location": True})
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals.update({"fsm_location": True})
+        return super().create(vals_list)
 
     @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):

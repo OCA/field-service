@@ -79,22 +79,22 @@ class FSMStage(models.Model):
             )
         return color_information_dict
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         stages = self.search([])
-        for stage in stages:
-            if (
-                stage.stage_type == vals["stage_type"]
-                and stage.sequence == vals["sequence"]
-            ):
-                raise ValidationError(
-                    _(
-                        "Cannot create FSM Stage because "
-                        "it has the same Type and Sequence "
-                        "of an existing FSM Stage."
+        for vals in vals_list:
+            for stage in stages:
+                if (
+                    stage.stage_type == vals["stage_type"]
+                    and stage.sequence == vals["sequence"]
+                ):
+                    raise ValidationError(
+                        _(
+                            "Cannot create FSM Stage because it has the same Type "
+                            "and Sequence of an existing FSM Stage."
+                        )
                     )
-                )
-        return super().create(vals)
+        return super().create(vals_list)
 
     @api.constrains("custom_color")
     def _check_custom_color_hex_code(self):
