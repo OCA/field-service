@@ -37,7 +37,7 @@ class FSMPerson(models.Model):
     @api.model
     def _search(
         self,
-        args,
+        domain,
         offset=0,
         limit=None,
         order=None,
@@ -45,7 +45,7 @@ class FSMPerson(models.Model):
         access_rights_uid=None,
     ):
         res = super()._search(
-            args=args,
+            domain,
             offset=offset,
             limit=limit,
             order=order,
@@ -53,8 +53,8 @@ class FSMPerson(models.Model):
             access_rights_uid=access_rights_uid,
         )
         # Check for args first having location_ids as default filter
-        for arg in args:
-            if isinstance(args, (list)):
+        for arg in domain:
+            if isinstance(domain, (list)):
                 if arg[0] == "location_ids":
                     # If given int search ID, else search name
                     if isinstance(arg[2], int):
@@ -87,7 +87,8 @@ class FSMPerson(models.Model):
                         return preferred_workers_list
         return res
 
-    @api.model
-    def create(self, vals):
-        vals.update({"fsm_person": True})
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals.update({"fsm_person": True})
+        return super().create(vals_list)

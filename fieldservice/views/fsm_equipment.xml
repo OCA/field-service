@@ -24,24 +24,28 @@
                         string="Territory"
                         domain=""
                         context="{'group_by':'territory_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="branch_id"
                         string="Branch"
                         domain=""
                         context="{'group_by':'branch_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="district_id"
                         string="District"
                         domain=""
                         context="{'group_by':'district_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                     <filter
                         name="region_id"
                         string="Region"
                         domain=""
                         context="{'group_by':'region_id'}"
+                        groups="fieldservice.group_fsm_territory"
                     />
                 </group>
             </search>
