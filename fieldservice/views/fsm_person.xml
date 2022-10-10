@@ -24,7 +24,7 @@
             <search string="Search FSM Workers">
                 <field name="name" />
                 <field name="category_ids" />
-                <field name="territory_ids" />
+                <field name="territory_ids" groups="fieldservice.group_fsm_territory" />
                 <field name="location_ids" />
             </search>
         </field>
@@ -148,7 +148,10 @@
                     <notebook>
                         <page name="contact" invisible="1">
                         </page>
-                        <page string="Territories">
+                        <page
+                            string="Territories"
+                            groups="fieldservice.group_fsm_territory"
+                        >
                             <field
                                 name="territory_ids"
                                 nolabel="1"
