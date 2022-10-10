@@ -215,32 +215,35 @@ class FSMOrder(models.Model):
             ] + search_domain
         return stages.search(search_domain, order=order)
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("New")) == _("New"):
-            vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _("New")
-        self._calc_scheduled_dates(vals)
-        if not vals.get("request_late"):
-            if vals.get("priority") == "0":
-                if vals.get("request_early"):
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _(
+                    "New"
+                )
+            self._calc_scheduled_dates(vals)
+            if not vals.get("request_late"):
+                if vals.get("priority") == "0":
+                    if vals.get("request_early"):
+                        vals["request_late"] = fields.Datetime.from_string(
+                            vals.get("request_early")
+                        ) + timedelta(days=3)
+                    else:
+                        vals["request_late"] = datetime.now() + timedelta(days=3)
+                elif vals.get("request_early") and vals.get("priority") == "1":
                     vals["request_late"] = fields.Datetime.from_string(
                         vals.get("request_early")
-                    ) + timedelta(days=3)
-                else:
-                    vals["request_late"] = datetime.now() + timedelta(days=3)
-            elif vals.get("request_early") and vals.get("priority") == "1":
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(days=2)
-            elif vals.get("request_early") and vals.get("priority") == "2":
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(days=1)
-            elif vals.get("request_early") and vals.get("priority") == "3":
-                vals["request_late"] = fields.Datetime.from_string(
-                    vals.get("request_early")
-                ) + timedelta(hours=8)
-        return super().create(vals)
+                    ) + timedelta(days=2)
+                elif vals.get("request_early") and vals.get("priority") == "2":
+                    vals["request_late"] = fields.Datetime.from_string(
+                        vals.get("request_early")
+                    ) + timedelta(days=1)
+                elif vals.get("request_early") and vals.get("priority") == "3":
+                    vals["request_late"] = fields.Datetime.from_string(
+                        vals.get("request_early")
+                    ) + timedelta(hours=8)
+        return super().create(vals_list)
 
     is_button = fields.Boolean(default=False)
 

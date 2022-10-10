@@ -18,7 +18,7 @@
                 <field name="city" />
                 <field name="state_id" />
                 <field name="zip" />
-                <field name="territory_id" />
+                <field name="territory_id" groups="fieldservice.group_fsm_territory" />
                 <field name="owner_id" />
             </tree>
         </field>
@@ -165,7 +165,10 @@
                         <page string="Directions">
                             <field name="direction" nolabel="1" widget="html" />
                         </page>
-                        <page string="Territory">
+                        <page
+                            string="Territory"
+                            groups="fieldservice.group_fsm_territory"
+                        >
                             <group id="territory">
                                 <group id="territory-left">
                                     <field name="territory_id" />
@@ -259,7 +262,7 @@
                 <field name="owner_id" />
                 <field name="partner_latitude" />
                 <field name="partner_longitude" />
-                <field name="territory_id" />
+                <field name="territory_id" groups="fieldservice.group_fsm_territory" />
                 <field name="branch_id" />
                 <field name="district_id" />
                 <field name="region_id" />
