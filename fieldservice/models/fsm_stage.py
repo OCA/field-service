@@ -84,14 +84,14 @@ class FSMStage(models.Model):
         stages = self.search([])
         for vals in vals_list:
             for stage in stages:
-                if (
-                    stage.stage_type == vals["stage_type"]
-                    and stage.sequence == vals["sequence"]
-                ):
+                if stage.stage_type == vals.get(
+                    "stage_type"
+                ) and stage.sequence == vals.get("sequence"):
                     raise ValidationError(
                         _(
-                            "Cannot create FSM Stage because it has the same Type "
-                            "and Sequence of an existing FSM Stage."
+                            "Cannot create FSM Stage because "
+                            "it has the same Type and Sequence "
+                            "of an existing FSM Stage."
                         )
                     )
         return super().create(vals_list)

@@ -70,10 +70,10 @@ class FSMLocation(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            vals.update({"fsm_location": True})
-        return super().create(vals_list)
+    def create(self, vals):
+        res = super().create(vals)
+        res.write({"fsm_location": True})
+        return res
 
     @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):
@@ -94,10 +94,7 @@ class FSMLocation(models.Model):
                     loc.complete_name = loc.partner_id.name
 
     def name_get(self):
-        results = []
-        for rec in self:
-            results.append((rec.id, rec.complete_name))
-        return results
+        return [(rec.id, rec.complete_name) for rec in self]
 
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):

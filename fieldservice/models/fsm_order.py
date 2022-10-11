@@ -243,6 +243,7 @@ class FSMOrder(models.Model):
                     vals["request_late"] = fields.Datetime.from_string(
                         vals.get("request_early")
                     ) + timedelta(hours=8)
+
         return super().create(vals_list)
 
     is_button = fields.Boolean(default=False)
@@ -348,7 +349,7 @@ class FSMOrder(models.Model):
         self.location_directions = ""
         if self.type and self.type.name not in ["repair", "maintenance"]:
             for equipment_id in self.equipment_ids.filtered(lambda eq: eq.notes):
-                desc = self.description if self.description else ""
+                desc = self.description or ""
                 self.description = desc + equipment_id.notes + "\n "
         else:
             if self.equipment_id.notes:
@@ -392,15 +393,17 @@ class FSMOrder(models.Model):
     @api.constrains("scheduled_date_start")
     def check_day(self):
         for rec in self:
-            if rec.scheduled_date_start:
-                holidays = self.env["resource.calendar.leaves"].search(
-                    [
-                        ("date_from", ">=", rec.scheduled_date_start),
-                        ("date_to", "<=", rec.scheduled_date_end),
-                    ]
+            if not rec.scheduled_date_start:
+                continue
+
+            holidays = self.env["resource.calendar.leaves"].search(
+                [
+                    ("date_from", ">=", rec.scheduled_date_start),
+                    ("date_to", "<=", rec.scheduled_date_end),
+                ]
+            )
+            if holidays:
+                msg = "{} is a holiday {}".format(
+                    rec.scheduled_date_start.date(), holidays[0].name
                 )
-                if holidays:
-                    msg = "{} is a holiday {}".format(
-                        rec.scheduled_date_start.date(), holidays[0].name
-                    )
-                    raise ValidationError(_(msg))
+                raise ValidationError(_(msg))
