@@ -31,10 +31,9 @@ class FSMOrder(models.Model):
                     ).id
                 }
             )
-        else:
-            raise ValidationError(
-                _("Cannot move to Assigned " + "until 'Assigned To' is filled in")
-            )
+        raise ValidationError(
+            _("Cannot move to Assigned " + "until 'Assigned To' is filled in")
+        )
 
     def action_schedule(self):
         if self.scheduled_date_start and self.person_id:
@@ -45,14 +44,13 @@ class FSMOrder(models.Model):
                     ).id
                 }
             )
-        else:
-            raise ValidationError(
-                _(
-                    "Cannot move to Scheduled "
-                    + "until both 'Assigned To' and "
-                    + "'Scheduled Start Date' are filled in"
-                )
+        raise ValidationError(
+            _(
+                "Cannot move to Scheduled "
+                + "until both 'Assigned To' and "
+                + "'Scheduled Start Date' are filled in"
             )
+        )
 
     def action_enroute(self):
         return self.write(
