@@ -28,6 +28,7 @@ class FSMLocation(TransactionCase):
         - Create fsm.location.person if auto_populate_persons_on_location
         """
         # Create an equipment
+        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_territory")
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.Location, view=view_id) as f:
             f.name = "Child Location"
