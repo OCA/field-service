@@ -24,6 +24,7 @@ class FSMTeam(TransactionCase):
         #   - 4 scheduled (1 unscheduled)
         todo = {"orders": 5, "assigned": [3, 4], "scheduled": [0, 1, 2, 3]}
         view_id = "fieldservice.fsm_order_form"
+        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_team")
         orders = self.Order
         for i in range(todo["orders"]):
             with Form(self.Order, view=view_id) as f:

@@ -37,7 +37,7 @@ class FSMPerson(models.Model):
     @api.model
     def _search(
         self,
-        domain,
+        args,
         offset=0,
         limit=None,
         order=None,
@@ -45,7 +45,7 @@ class FSMPerson(models.Model):
         access_rights_uid=None,
     ):
         res = super()._search(
-            domain,
+            args,
             offset=offset,
             limit=limit,
             order=order,
@@ -53,8 +53,8 @@ class FSMPerson(models.Model):
             access_rights_uid=access_rights_uid,
         )
         # Check for args first having location_ids as default filter
-        for arg in domain:
-            if isinstance(domain, (list)):
+        for arg in args:
+            if isinstance(args, (list)):
                 if arg[0] == "location_ids":
                     # If given int search ID, else search name
                     if isinstance(arg[2], int):

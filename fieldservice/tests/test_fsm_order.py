@@ -109,10 +109,8 @@ class TestFSMOrder(TransactionCase):
                     }
                 )
             # report
-            res = (
-                self.env["ir.actions.report"]
-                ._get_report_from_name("fieldservice.report_fsm_order")
-                ._render_qweb_text(order.ids, False)
+            res = self.env["ir.actions.report"]._render_qweb_text(
+                "fieldservice.report_fsm_order", order.ids
             )
             self.assertRegex(str(res[0]), order.name)
 
