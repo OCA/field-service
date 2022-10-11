@@ -41,7 +41,7 @@
                 </div>
                 <div t-if="doc.todo" id="instruction">
                     <h3>Instructions</h3>
-                    <p t-raw="doc.todo" />
+                    <p t-out="doc.todo" />
                 </div>
                 <div t-if="doc.resolution" id="resolution">
                     <h3>Resolution Notes</h3>

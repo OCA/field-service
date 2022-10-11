@@ -53,4 +53,4 @@ class FsmModelMixin(models.AbstractModel):
         heighest_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", self._stage_type)], order="sequence desc", limit=1
         )
-        self.hide = True if self.stage_id.name == heighest_stage.name else False
+        self.hide = self.stage_id.name == heighest_stage.name
