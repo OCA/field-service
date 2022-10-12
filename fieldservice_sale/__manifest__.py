@@ -18,7 +18,7 @@
         "views/fsm_order.xml",
         "views/product_template.xml",
         "views/sale_order.xml",
-        # "views/res_config_settings.xml",
+        "data/fsm_template_group.xml",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
