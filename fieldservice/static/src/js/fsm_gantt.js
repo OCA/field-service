@@ -76,9 +76,7 @@ odoo.define('fieldservice.fsm_gantt', function (require) {
             // Make the user filter clear
             if (this.modelClass.modelName == 'fsm.order'){
                 self.$el.find(
-                    '#user_filer .o_searchview_extended_prop_field').val('');
-                self.$el.find(
-                    '#user_filer .o_searchview_extended_prop_field').change();
+                    '#user_filer .o_searchview_extended_prop_value input').val('');
                 self.$el.find(
                     '#user_filer .o_searchview_extended_prop_field').val(
                     'category_id');

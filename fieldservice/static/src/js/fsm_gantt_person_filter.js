@@ -212,9 +212,7 @@ odoo.define('fsm_gantt.person_filter', function (require) {
             if (clear) {
                 self.user_domains = false;
                 self.$el.find(
-                    '#user_filer .o_searchview_extended_prop_field').val('');
-                self.$el.find(
-                    '#user_filer .o_searchview_extended_prop_field').change();
+                    '#user_filer .o_searchview_extended_prop_value input').val('');
                 self.$el.find(
                     '#user_filer .o_searchview_extended_prop_field').val(
                     'category_id');
