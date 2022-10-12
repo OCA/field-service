@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Field Service - Sales",
-    "version": "14.0.1.3.1",
+    "version": "14.0.1.4.0",
     "summary": "Sell field services.",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
