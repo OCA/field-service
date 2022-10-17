@@ -50,8 +50,10 @@ class FSMSubstatusCase(TransactionCase):
             }
         )
         order._track_subtype(self.init_values)
+        order._track_subtype({})
         self.stage.onchange_sub_stage_id()
         stage_status_id = self.StageStatus.with_context(
             fsm_order_stage_id=self.stage_id.id
         ).create({"name": "Test"})
         stage_status_id.search([])
+        order.stage_id = self.stage.id
