@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-base_territory>=16.0dev,<16.1dev',
+        'odoo-addon-fieldservice>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
