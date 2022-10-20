@@ -102,17 +102,6 @@ msgid "By Position"
 msgstr "Por Posición"
 
 #. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__cancel
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-msgid "Cancelled"
-msgstr "Cancelado"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__is_exclusive
 msgid ""
 "Checking this box will make this an exclusive rule. Exclusive\n"
@@ -134,11 +123,6 @@ msgstr "Cerrado"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__company_id
 msgid "Company"
 msgstr "Compañía"
-
-#. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Confirm"
-msgstr "Confirmar"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__create_uid
@@ -200,6 +184,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__display_name
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -208,6 +193,11 @@ msgstr "Mostrar Nombre"
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Draft"
 msgstr "Borrador"
+
+#. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
+msgid "Draft Recurring"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__buffer_early
@@ -258,6 +248,11 @@ msgstr "Pedidos Recurrentes de Servicio de Campo"
 #: model:ir.actions.act_window,name:fieldservice_recurring.action_fsm_recurring_template
 msgid "Field Service Recurring Templates"
 msgstr "Plantillas de Servicio de Campo Recurrente"
+
+#. module: fieldservice_recurring
+#: model:ir.model,name:fieldservice_recurring.model_fsm_team
+msgid "Field Service Team"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.actions.server,name:fieldservice_recurring.recurring_orders_cron_ir_actions_server
@@ -361,6 +356,7 @@ msgstr "Agrupar por"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__id
 msgid "ID"
 msgstr "ID"
 
@@ -438,6 +434,7 @@ msgstr "Junio"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template____last_update
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
 
@@ -659,9 +656,11 @@ msgid "Recurring Order"
 msgstr "Pedido Recurrente"
 
 #. module: fieldservice_recurring
+#: model:ir.actions.act_window,name:fieldservice_recurring.action_recurring_tree
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_tree_view
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
 msgid "Recurring Orders"
 msgstr "Pedidos Recurrentes"
 
@@ -679,14 +678,14 @@ msgid "Recurring Templates"
 msgstr "Plantillas Recurrentes"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__recurring_draft_count
+msgid "Recurring in draft"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__end_date
 msgid "Recurring orders will not be made after this date"
 msgstr "Los pedidos recurrentes no se harán despues de este fecha"
-
-#. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Renew"
-msgstr "Renovar"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__interval
@@ -743,6 +742,11 @@ msgstr ""
 "             resultará en el último día laborable de cada mes."
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
+msgid "Start"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__start_date
 msgid "Start Date"
 msgstr "Fecha de Inicio"
@@ -770,6 +774,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__su
 msgid "Sunday"
 msgstr "Domingo"
+
+#. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
+msgid "Suspend"
+msgstr ""
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__suspend
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "Suspended"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__team_id
@@ -829,12 +844,6 @@ msgstr "Esta es la plantilla del pedido que será recurrente"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__th
 msgid "Thursday"
 msgstr "Jueves"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__pending
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-msgid "To Renew"
-msgstr "Para Renovar"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__tu
@@ -931,3 +940,18 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Anual"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancelado"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
+
+#~ msgid "Renew"
+#~ msgstr "Renovar"
+
+#~ msgid "To Renew"
+#~ msgstr "Para Renovar"
