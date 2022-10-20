@@ -17,12 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice
-#: code:addons/fieldservice/models/fsm_equipment.py:0
-#, python-format
-msgid " (copy)"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
 msgid "# Meetings"
@@ -34,30 +28,12 @@ msgid "# Opportunities"
 msgstr "# Fırsatalar"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
-msgid "# Tasks"
-msgstr "# Görevler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
-msgid "# Vendor Bills"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__owned_location_count
 msgid "# of Owned Locations"
 msgstr "# Sahip Olunan Konumlar"
-
-#. module: fieldservice
-#: code:addons/fieldservice/models/fsm_order.py:0
-#, python-format
-msgid "%s is a holiday (%s)."
-msgstr "%s tatil mi (%s)."
 
 #. module: fieldservice
 #: model:ir.actions.report,print_report_name:fieldservice.action_report_fsm_order
@@ -82,6 +58,11 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "<span> ;  Long:  </span>"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "<span>) </span>"
 msgstr ""
 
 #. module: fieldservice
@@ -125,18 +106,6 @@ msgstr "Bu iş ortağıyla ilgili bir Saha Servis Lokasyon zaten var."
 #, python-format
 msgid "A Field Service Worker related to that partner already exists."
 msgstr "Bu iş ortağıyla ilgili bir Saha Servis Çalışanı zaten var."
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_payable_id
-msgid "Account Payable"
-msgstr "Borç Hesabı"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_receivable_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_receivable_id
-msgid "Account Receivable"
-msgstr "Alacak Hesabı"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
@@ -265,18 +234,6 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
-msgid "Agreements"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreements_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreements_count
-msgid "Agreements Count"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "All"
 msgstr "Hepsi"
@@ -285,12 +242,6 @@ msgstr "Hepsi"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_operation_order
 msgid "All Orders"
 msgstr "Bütün Siparişler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_all_ids
-msgid "All relations with current partner"
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
@@ -307,12 +258,13 @@ msgid "Allow Field Service Google Map"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_timeline
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Web Timeline View"
 msgstr ""
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
 msgid "Archived"
@@ -386,18 +338,34 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__receipt_reminder_email
-msgid ""
-"Automatically send a confirmation email to the vendor X days before the "
-"expected receipt date, asking him to confirm the exact date."
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1920
+msgid "Avatar"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
-msgid "Bank"
-msgstr "Banak"
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1024
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1024
+msgid "Avatar 1024"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_128
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_128
+msgid "Avatar 128"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_256
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_256
+msgid "Avatar 256"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_512
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_512
+msgid "Avatar 512"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
@@ -484,7 +452,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__category_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__category_ids
 #: model:ir.ui.menu,name:fieldservice.menu_hr_skill
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_category_tree_view
 msgid "Categories"
 msgstr "Kategoriler"
 
@@ -604,12 +571,6 @@ msgstr ""
 #: model:ir.model,name:fieldservice.model_res_company
 msgid "Companies"
 msgstr "Şirketler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref_company_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref_company_ids
-msgid "Companies that refers to partner"
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__company_id
@@ -739,12 +700,6 @@ msgid "Convert to a Field Service Worker or Location"
 msgstr "Saha Servisi Personeline veya Konumuna Dönüştür"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
-msgid "Count Payment Token"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_bounce
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_bounce
 msgid "Counter of the number of bounced emails for this contact"
@@ -758,6 +713,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Country"
 msgstr "Ülke"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_code
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_code
+msgid "Country Code"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -858,12 +819,6 @@ msgid "Credit Limit"
 msgstr "Kredi Limiti"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__currency_id
-msgid "Currency"
-msgstr "Para Birimi"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__current_date
 msgid "Current Date"
 msgstr "Şimdiki Tarih"
@@ -872,24 +827,6 @@ msgstr "Şimdiki Tarih"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__current_location_id
 msgid "Current Location"
 msgstr "Geçerli Konum"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
-msgid "Customer Location"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
-msgid "Customer Payment Terms"
-msgstr "Müşteri Ödeme Koşulları"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__customer_rank
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
-msgid "Customer Rank"
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
@@ -909,21 +846,9 @@ msgid "Date"
 msgstr "Tarih"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
-msgid "Days Before Receipt"
-msgstr ""
-
-#. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
 msgid "Default Team"
 msgstr "Varsayılan Takım"
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_delivery_carrier_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_delivery_carrier_id
-msgid "Default delivery method used in sales orders."
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
@@ -931,22 +856,10 @@ msgid "Default duration in hours"
 msgstr "Saat cinsinden varsayılan süre"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
-msgid "Degree of trust you have in this debtor"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_kanban_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_kanban_view
 msgid "Delete"
 msgstr "Sil"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_delivery_carrier_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_delivery_carrier_id
-msgid "Delivery Method"
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
@@ -961,6 +874,10 @@ msgstr "Açıklama"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__direction
+msgid "Direction"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Directions"
 msgstr ""
@@ -983,10 +900,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__display_name
-#: model:ir.model.fields,field_description:fieldservice.field_res_company__display_name
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:fieldservice.field_res_partner__display_name
-#: model:ir.model.fields,field_description:fieldservice.field_res_territory__display_name
 msgid "Display Name"
 msgstr "Görünüm Adı"
 
@@ -1077,7 +990,6 @@ msgstr "Personel"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__equipment_id
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__equipment
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_tree_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Equipment"
 msgstr "Ekipman"
@@ -1244,7 +1156,6 @@ msgstr "Saha Servis Çalışanı Kategorisi"
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_person
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_ids
 #: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_ids
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_tree
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_territory_form_view_inherit
 msgid "Field Service Workers"
 msgstr "Saha Servis Çalışanları"
@@ -1260,12 +1171,6 @@ msgstr ""
 "karşılaştırmaları hızlandırmaya yardımcı olur."
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
-msgid "Fiscal Position"
-msgstr "Mali Pozisyon"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__fold
 msgid "Folded in Kanban"
 msgstr "Kanban'da katlanmış"
@@ -1278,15 +1183,6 @@ msgstr "Kanban'da katlanmış"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_follower_ids
 msgid "Followers"
 msgstr "Takipçiler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Takipçiler (Kanallar)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_partner_ids
@@ -1317,6 +1213,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__email_formatted
 msgid "Formatted Email"
 msgstr "Biçimlendirilmiş E-posta"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_model_mixin
+msgid "Fsm Model Mixin"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__full_name
@@ -1376,32 +1277,18 @@ msgid "Group By"
 msgstr "Grupla"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__has_unreconciled_entries
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
-msgid "Has Unreconciled Entries"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_type_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_type_id
-msgid "Has relation of type"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_id
-msgid "Has relation with"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_category_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_category_id
-msgid "Has relation with a partner in category"
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__hide
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__hide
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__hide
 msgid "Hide"
 msgstr "Gizle"
@@ -1425,10 +1312,6 @@ msgstr "Yüksek"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__id
-#: model:ir.model.fields,field_description:fieldservice.field_res_company__id
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__id
-#: model:ir.model.fields,field_description:fieldservice.field_res_partner__id
-#: model:ir.model.fields,field_description:fieldservice.field_res_territory__id
 msgid "ID"
 msgstr ""
 
@@ -1578,12 +1461,6 @@ msgid "Internal Type"
 msgstr "İç Tip"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn
-msgid "Invoice"
-msgstr "Fatura"
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 #: model:ir.model.fields,help:fieldservice.field_res_partner__type
@@ -1604,12 +1481,6 @@ msgstr "FSM siparişlerinizi faturalandırın"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Invoice your Service Orders"
 msgstr "Servis Siparişlerinizi Faturalandırın"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
-msgid "Invoices"
-msgstr "Faturalar"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
@@ -1664,12 +1535,6 @@ msgid "Job Position"
 msgstr "İş Pozisyonu"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__journal_item_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__journal_item_count
-msgid "Journal Items"
-msgstr "Yevmiye Öğeleri"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__lang
 msgid "Language"
@@ -1689,10 +1554,6 @@ msgstr "Dil"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template____last_update
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard____last_update
-#: model:ir.model.fields,field_description:fieldservice.field_res_company____last_update
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:fieldservice.field_res_partner____last_update
-#: model:ir.model.fields,field_description:fieldservice.field_res_territory____last_update
 msgid "Last Modified on"
 msgstr "Son Düzenlenme"
 
@@ -1734,21 +1595,6 @@ msgstr "Son Güncellenme"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
 msgid "Last notification marked as read from base Calendar"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__last_time_entries_checked
-msgid ""
-"Last time the invoices & payments matching was performed for this partner. "
-"It is set either if there's not at least an unreconciled debit and an "
-"unreconciled credit or if you click the \"Done\" button."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_time_entries_checked
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_time_entries_checked
-msgid "Latest Invoices & Payments Matching Date"
 msgstr ""
 
 #. module: fieldservice
@@ -1848,7 +1694,6 @@ msgstr "Konum Çalışanı"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_location_person
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_tree_view
 msgid "Location Workers"
 msgstr "Konum Çalışanları"
 
@@ -1857,7 +1702,6 @@ msgstr "Konum Çalışanları"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_location
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_tree_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Locations"
 msgstr "Konumlar"
@@ -2139,30 +1983,6 @@ msgid "Message Delivery error"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn_msg
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn_msg
-msgid "Message for Invoice"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
-msgid "Message for Purchase Order"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
-msgid "Message for Sales Order"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
-msgid "Message for Stock Picking"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2221,6 +2041,15 @@ msgstr ""
 #, python-format
 msgid "New"
 msgstr "Yeni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -2285,12 +2114,6 @@ msgid "Number of Actions"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
-msgid "Number of days to send reminder email before the promised receipt date"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error_counter
@@ -2329,12 +2152,6 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_id
 msgid "Office Hours"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
-msgid "On-Time Delivery Rate"
 msgstr ""
 
 #. module: fieldservice
@@ -2402,7 +2219,6 @@ msgstr "Sipariş Başladı"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
-#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_tree
 msgid "Order Team"
 msgstr "Sipariş Ekibi"
 
@@ -2414,7 +2230,6 @@ msgstr "Sipariş Şablonları"
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_order_type
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_order_type
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_type_tree_view
 msgid "Order Types"
 msgstr "Sipariş Türleri"
 
@@ -2468,7 +2283,6 @@ msgstr "Sipariş Başladı"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_order
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_tree_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
@@ -2498,14 +2312,6 @@ msgstr "Planlanacak Siparişler"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Others"
 msgstr "Diğer"
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__on_time_rate
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__on_time_rate
-msgid ""
-"Over the past 12 months; the number of products received on time divided by "
-"the number of ordered products."
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
@@ -2542,12 +2348,6 @@ msgid "Parent name"
 msgstr "Üst Adı"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
-msgid "Partner Contracts"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
 msgid "Partner is Active"
 msgstr ""
@@ -2556,24 +2356,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_vat_partner_id
 msgid "Partner with same Tax ID"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit_limit
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit_limit
-msgid "Payable Limit"
-msgstr "Borç Limit"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
-msgid "Payment Method"
-msgstr "Ödeme Şekli"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
-msgid "Payment Tokens"
 msgstr ""
 
 #. module: fieldservice
@@ -2590,6 +2372,12 @@ msgid "Phone Blacklisted"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
+msgid "Phone/Mobile"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Planning"
 msgstr "Planlama"
@@ -2600,26 +2388,11 @@ msgid "Preferred Workers"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_method_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_method_id
-msgid ""
-"Preferred payment method when paying this vendor. This is used to filter "
-"vendor bills by preferred payment method to register payments in mass. Use "
-"cases: create bank files for batch wires, check runs."
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Previous Stage"
 msgstr "Önceki Aşama"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
-msgid "Pricelist"
-msgstr "Fiyat Listesi"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
@@ -2658,30 +2431,6 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_project
 msgid "Projects and Tasks"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
-msgid "Purchase Lines"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
-msgid "Purchase Order"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
-msgid "Purchase Order Count"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
-msgid "Receipt Reminder"
 msgstr ""
 
 #. module: fieldservice
@@ -2735,18 +2484,6 @@ msgid "Related Partner"
 msgstr "İlişkili İş Ortağı"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
-msgid "Relation Count"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
-msgid "Relation valid"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
 msgstr "Raporlama"
@@ -2796,28 +2533,10 @@ msgid "SMS Delivery error"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
-msgid "Sale Order Count"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
-msgid "Sales Order"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
 msgid "Sales Team"
 msgstr "Satış Ekibi"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
-msgid "Sales Warnings"
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2837,6 +2556,11 @@ msgid "Schedule Details"
 msgstr "Planma Ayrıntıları"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
+msgid "Scheduled Duration"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_end
 msgid "Scheduled End"
 msgstr "Planlanan Bitiş"
@@ -2845,11 +2569,6 @@ msgstr "Planlanan Bitiş"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_start
 msgid "Scheduled Start (ETA)"
 msgstr "Planlanan Başlama (ETA)"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
-msgid "Scheduled duration"
-msgstr "Planlanan Süre"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__scheduled_duration
@@ -2897,21 +2616,6 @@ msgid ""
 msgstr ""
 "Bu kaydı bir Saha Servisine dönüştürmek isteyip istemediğinizi seçin\n"
 "                    Çalışan veya Konum."
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__purchase_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__purchase_warn
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
-msgid ""
-"Selecting the \"Warning\" option will notify user with the message, "
-"Selecting \"Blocking Message\" will throw an exception with the message and "
-"block the flow. The Message has to be written in the next field."
-msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
@@ -3003,6 +2707,7 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__stage_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__stage_id
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_tree_view
@@ -3029,7 +2734,6 @@ msgstr "Aşama Adı"
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_stage
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__stage_ids
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_stage
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_tree_view
 msgid "Stages"
 msgstr "Aşamalar"
 
@@ -3053,12 +2757,6 @@ msgid ""
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
-msgid "Stock Picking"
 msgstr ""
 
 #. module: fieldservice
@@ -3098,18 +2796,6 @@ msgid "Sub-Locations"
 msgstr "Alt-Konumlar"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
-msgid "Supplier Currency"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
-msgid "Supplier Rank"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr "Etiket adı zaten var!"
@@ -3122,12 +2808,6 @@ msgstr "Etiket adı zaten var!"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_tag
 msgid "Tags"
 msgstr "Etiketler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_ids
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_ids
-msgid "Tasks"
-msgstr "Görevler"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
@@ -3188,18 +2868,19 @@ msgid "Territory"
 msgstr "Saha"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__country_code
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__vat
 msgid ""
 "The Tax Identification Number. Complete it if the contact is subjected to "
 "government taxes. Used in some legal statements."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_position_id
-msgid ""
-"The fiscal position determines the taxes/accounts used for this contact."
 msgstr ""
 
 #. module: fieldservice
@@ -3214,54 +2895,8 @@ msgid "The internal user in charge of this contact."
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__has_unreconciled_entries
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__has_unreconciled_entries
-msgid ""
-"The partner has at least one unreconciled debit and credit since last time "
-"the invoices & payments matching was performed."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
-msgid ""
-"The stock location used as destination when sending goods to this contact."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
-msgid ""
-"The stock location used as source when receiving goods from this contact."
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
 msgid "The worker is already linked to this location."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_payable_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_payable_id
-msgid ""
-"This account will be used instead of the default one as the payable account "
-"for the current partner"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_receivable_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_receivable_id
-msgid ""
-"This account will be used instead of the default one as the receivable "
-"account for the current partner"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
-msgid ""
-"This currency will be used, instead of the default one, for purchases from "
-"the current partner"
 msgstr ""
 
 #. module: fieldservice
@@ -3270,30 +2905,6 @@ msgstr ""
 msgid ""
 "This field is used to search on email address as the primary email field can "
 "contain more than strictly an email address."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_supplier_payment_term_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_supplier_payment_term_id
-msgid ""
-"This payment term will be used instead of the default one for purchase "
-"orders and vendor bills"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_term_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_term_id
-msgid ""
-"This payment term will be used instead of the default one for sales orders "
-"and customer invoices"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
-msgid ""
-"This pricelist will be used, instead of the default one, for sales to the "
-"current partner"
 msgstr ""
 
 #. module: fieldservice
@@ -3341,36 +2952,6 @@ msgstr "Planlama"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Today Orders"
 msgstr "Bugün Siparişler"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
-msgid "Total Invoiced"
-msgstr "Toplam Faturalanan"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
-msgid "Total Payable"
-msgstr "Toplam Borç"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
-msgid "Total Receivable"
-msgstr "Toplam Alacak"
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
-msgid "Total amount this customer owes you."
-msgstr "Bu müşterinin size borçlu olduğu toplam tutar."
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
-msgid "Total amount you have to pay to this vendor."
-msgstr "Bu tedarikçi ödemeniz gereken toplam tutar."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
@@ -3486,38 +3067,15 @@ msgid "User"
 msgstr "Kullanıcı"
 
 #. module: fieldservice
-#: model:res.groups,name:fieldservice.group_fsm_user_own
-msgid "User (only own documents)"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_ids
 msgid "Users"
 msgstr "Kullanıcılar"
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__currency_id
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__currency_id
-msgid "Utility field to express amount currency"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Araçlar"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
-msgid "Vendor Location"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
-msgid "Vendor Payment Terms"
-msgstr "Tedarikçi Ödeme Koşulları"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3641,16 +3199,82 @@ msgid "tag"
 msgstr "etiket"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_tree_view
-msgid "tags"
-msgstr "etiketler"
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
 msgid "template"
 msgstr "şablon"
 
-#. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_tree_view
-msgid "templates"
-msgstr "şablonlar"
+#~ msgid "# Tasks"
+#~ msgstr "# Görevler"
+
+#, python-format
+#~ msgid "%s is a holiday (%s)."
+#~ msgstr "%s tatil mi (%s)."
+
+#~ msgid "Account Payable"
+#~ msgstr "Borç Hesabı"
+
+#~ msgid "Account Receivable"
+#~ msgstr "Alacak Hesabı"
+
+#~ msgid "Bank"
+#~ msgstr "Banak"
+
+#~ msgid "Currency"
+#~ msgstr "Para Birimi"
+
+#~ msgid "Customer Payment Terms"
+#~ msgstr "Müşteri Ödeme Koşulları"
+
+#~ msgid "Fiscal Position"
+#~ msgstr "Mali Pozisyon"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Takipçiler (Kanallar)"
+
+#~ msgid "Invoice"
+#~ msgstr "Fatura"
+
+#~ msgid "Invoices"
+#~ msgstr "Faturalar"
+
+#~ msgid "Journal Items"
+#~ msgstr "Yevmiye Öğeleri"
+
+#~ msgid "Payable Limit"
+#~ msgstr "Borç Limit"
+
+#~ msgid "Payment Method"
+#~ msgstr "Ödeme Şekli"
+
+#~ msgid "Pricelist"
+#~ msgstr "Fiyat Listesi"
+
+#~ msgid "Scheduled duration"
+#~ msgstr "Planlanan Süre"
+
+#~ msgid "Tasks"
+#~ msgstr "Görevler"
+
+#~ msgid "Total Invoiced"
+#~ msgstr "Toplam Faturalanan"
+
+#~ msgid "Total Payable"
+#~ msgstr "Toplam Borç"
+
+#~ msgid "Total Receivable"
+#~ msgstr "Toplam Alacak"
+
+#~ msgid "Total amount this customer owes you."
+#~ msgstr "Bu müşterinin size borçlu olduğu toplam tutar."
+
+#~ msgid "Total amount you have to pay to this vendor."
+#~ msgstr "Bu tedarikçi ödemeniz gereken toplam tutar."
+
+#~ msgid "Vendor Payment Terms"
+#~ msgstr "Tedarikçi Ödeme Koşulları"
+
+#~ msgid "tags"
+#~ msgstr "etiketler"
+
+#~ msgid "templates"
+#~ msgstr "şablonlar"
