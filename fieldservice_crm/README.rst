@@ -17,7 +17,7 @@ Field Service - CRM
     :target: https://github.com/OCA/field-service/tree/15.0/fieldservice_crm
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-14-0/field-service-14-0-fieldservice_crm
+    :target: https://translation.odoo-community.org/projects/field-service-15-0/field-service-15-0-fieldservice_crm
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/264/15.0
