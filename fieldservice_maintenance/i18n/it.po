@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_maintenance
+# 	* fieldservice_maintenance
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,41 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.3.2\n"
+
+#. module: fieldservice_maintenance
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.maintenance_fsm_wizard_view
+msgid "Cancel"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.maintenance_fsm_wizard_view
+msgid "Convert"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.actions.act_window,name:fieldservice_maintenance.maintenance_fsm_action
+msgid "Convert to FSM Equipment"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.maintenance_fsm_wizard_view
+msgid "Convert to a Field Service Equipment"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: selection:fsm.order.type,internal_type:0
@@ -38,6 +73,11 @@ msgid "Field Service Order Type"
 msgstr "Tipo ordine assistenza sul campo"
 
 #. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__internal_type
 msgid "Internal Type"
 msgstr "Tipo interno"
@@ -47,6 +87,26 @@ msgstr "Tipo interno"
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__is_fsm_equipment
 msgid "Is a FSM Equipment"
 msgstr "È un'attrezzatura FSM"
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model,name:fieldservice_maintenance.model_maintenance_equipment_wizard
+msgid "Mainenance Equipment Wizard"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: selection:fsm.order.type,internal_type:0
@@ -77,6 +137,12 @@ msgid "Others"
 msgstr "Altre"
 
 #. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__product_id
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__product_id
+msgid "Product"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__maintenance_equipment_id
 msgid "Related Maintenance Equipment"
 msgstr "Attrezzatura manutenzione collegata"
@@ -85,3 +151,19 @@ msgstr "Attrezzatura manutenzione collegata"
 #: selection:fsm.order.type,internal_type:0
 msgid "Repair"
 msgstr "Riparare"
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/wizard/maintenance_equipment_wizard.py:17
+#, python-format
+msgid ""
+"To convert maintenance equipment %s                                    to an "
+"FSM Equipment,                                    you must assign a Product "
+"and                                    a Serial No"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.maintenance_fsm_wizard_view
+msgid ""
+"Would you like to convert the following Maintenance Equipment into FSM "
+"Equipment?"
+msgstr ""
