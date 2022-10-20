@@ -93,6 +93,26 @@ class ResConfigSettings(models.TransientModel):
         string='Search Location By Hierarchy',
         related='company_id.search_on_complete_name',
         readonly=False)
+    order_prio0_request_late = fields.Float(
+        string="Hours of Buffer for Lowest Priority FS Orders",
+        related='company_id.order_prio0_request_late',
+        readonly=False,
+    )
+    order_prio1_request_late = fields.Float(
+        string="Hours of Buffer for Low Priority FS Orders",
+        related='company_id.order_prio1_request_late',
+        readonly=False,
+    )
+    order_prio2_request_late = fields.Float(
+        string="Hours of Buffer for Medium Priority FS Orders",
+        related='company_id.order_prio2_request_late',
+        readonly=False,
+    )
+    order_prio3_request_late = fields.Float(
+        string="Hours of Buffer for High Priority FS Orders",
+        related='company_id.order_prio3_request_late',
+        readonly=False,
+    )
 
     # Dependencies
     @api.onchange('group_fsm_equipment')
