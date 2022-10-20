@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-fieldservice>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_activity>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_crm>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_substatus>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
