@@ -17,6 +17,6 @@
         'views/account_payment.xml',
     ],
     'license': 'AGPL-3',
-    'development_status': 'Production/Stable',
+    'development_status': 'Beta',
     'maintainers': ['max3903'],
 }

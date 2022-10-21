@@ -1,13 +1,13 @@
 # Copyright (C) 2020 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import _, api, models
 from odoo.exceptions import UserError
 
 
 class MainenanceEquipmentWizard(models.TransientModel):
     _name = 'maintenance.equipment.wizard'
-    _description = 'Mainenance Equipment Wizard'
+    _description = 'Maintenance Equipment Wizard'
+
     @api.multi
     def convert_maintenance_equipment_fsm(self):
         maintenance_equpment_ids = self.env['maintenance.equipment'].\
