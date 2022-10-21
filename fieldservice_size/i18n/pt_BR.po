@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_size
+# 	* fieldservice_size
 #
 msgid ""
 msgstr ""
@@ -104,13 +104,13 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: fieldservice_size
-#: code:addons/fieldservice_size/models/fsm_size.py:30
+#: code:addons/fieldservice_size/models/fsm_size.py:0
 #, python-format
 msgid "Only one default order size per type is allowed."
 msgstr "É permitido apenas um tamanho de pedido padrão por tipo."
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.location.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_location_size_one_size_per_location
 msgid "Only one size of same type allowed per location"
 msgstr "É permitido apenas um tamanho do mesmo tipo por local"
 
@@ -148,14 +148,13 @@ msgid "Size for FSM Location"
 msgstr "Tamanho para Localização FSM (Field Service Management)"
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_size_name_uniq
 msgid "Size name already exists!"
 msgstr "Nome do tamanho já existe!"
 
 #. module: fieldservice_size
 #: model:ir.ui.menu,name:fieldservice_size.menu_fsm_size
 #: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_location_form_view_inherit_size
-#: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_size_tree_view
 msgid "Sizes"
 msgstr "Tamanhos"
 
