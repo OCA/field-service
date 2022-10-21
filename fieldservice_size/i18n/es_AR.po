@@ -34,7 +34,6 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__display_name
 msgid "Display Name"
@@ -61,9 +60,7 @@ msgid "Field Service Sizes"
 msgstr "Tamaños de Servicio de Campo"
 
 #. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__id
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__id
 msgid "ID"
 msgstr "ID"
@@ -74,9 +71,7 @@ msgid "Is the Order Size?"
 msgstr "¿Es el Tamaño del Pedido?"
 
 #. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size____last_update
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
@@ -120,11 +115,6 @@ msgid "Only one size of same type allowed per location"
 msgstr "Solo se permite un tamaño del mismo tipo por ubicación"
 
 #. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
-
-#. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_value
 msgid "Order Size"
 msgstr "Tamaño del Pedido"
@@ -165,7 +155,6 @@ msgstr "¡El Nombre del Tamaño ya existe!"
 #. module: fieldservice_size
 #: model:ir.ui.menu,name:fieldservice_size.menu_fsm_size
 #: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_location_form_view_inherit_size
-#: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_size_tree_view
 msgid "Sizes"
 msgstr "Tamaños"
 
@@ -180,3 +169,6 @@ msgstr "El tamaño predeterminado para pedidos de este tipo"
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
 msgid "Unit of Measure"
 msgstr "Unidad de Medida"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
