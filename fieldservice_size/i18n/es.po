@@ -104,13 +104,13 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: fieldservice_size
-#: code:addons/fieldservice_size/models/fsm_size.py:30
+#: code:addons/fieldservice_size/models/fsm_size.py:0
 #, python-format
 msgid "Only one default order size per type is allowed."
 msgstr ""
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.location.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_location_size_one_size_per_location
 msgid "Only one size of same type allowed per location"
 msgstr "Solo se permite un tamaño del mismo tipo por ubicación"
 
@@ -148,14 +148,13 @@ msgid "Size for FSM Location"
 msgstr "Tamaño Para la Ubicación FSM"
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_size_name_uniq
 msgid "Size name already exists!"
 msgstr "¡El nombre del tamaño ya existe!"
 
 #. module: fieldservice_size
 #: model:ir.ui.menu,name:fieldservice_size.menu_fsm_size
 #: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_location_form_view_inherit_size
-#: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_size_tree_view
 msgid "Sizes"
 msgstr "Tamaños"
 
