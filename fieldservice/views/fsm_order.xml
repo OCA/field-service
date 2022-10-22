@@ -87,10 +87,20 @@
                         </group>
                     </group>
                     <group string="Description" name="description_grp">
-                        <field name="description" nolabel="1" />
+                        <field
+                            name="description"
+                            nolabel="1"
+                            colspan="2"
+                            placeholder="Add a description for the order..."
+                        />
                     </group>
                     <group string="Resolution" name="resolution_grp">
-                        <field name="resolution" nolabel="1" />
+                        <field
+                            name="resolution"
+                            nolabel="1"
+                            colspan="2"
+                            placeholder="Enter the resolution for the order..."
+                        />
                     </group>
                     <notebook>
                         <page string="Planning" name="planning_page">
@@ -115,6 +125,7 @@
                                     name="person_ids"
                                     widget="many2many"
                                     nolabel="1"
+                                    colspan="2"
                                     context="{'search_default_location_ids': location_id}"
                                 >
                                     <tree>
@@ -132,7 +143,12 @@
                         </page>
                         <page string="Instructions" name="instructions_page">
                             <group string="Instructions" name="instructions_grp">
-                                <field name="todo" nolabel="1" widget="html" />
+                                <field
+                                    name="todo"
+                                    nolabel="1"
+                                    colspan="2"
+                                    widget="html"
+                                />
                             </group>
                             <group
                                 string="Location Directions"
@@ -141,6 +157,7 @@
                                 <field
                                     name="location_directions"
                                     nolabel="1"
+                                    colspan="2"
                                     widget="html"
                                 />
                             </group>
