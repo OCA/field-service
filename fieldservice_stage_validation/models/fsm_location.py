@@ -13,6 +13,8 @@ class FSMLocation(models.Model):
             stage = rec.stage_id
             field_ids = stage.validate_field_ids
             field_names = [x.name for x in field_ids]
+            if not field_names:
+                continue
             values = rec.read(field_names)
 
             for name in field_names:
