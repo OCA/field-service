@@ -116,6 +116,18 @@ msgstr ""
 "Ya existe un Trabajador de Servicio de Campo relacionado con ese contacto."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_payable_id
+msgid "Account Payable"
+msgstr "Cuenta por Pagar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_receivable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_receivable_id
+msgid "Account Receivable"
+msgstr "Cuenta por Cobrar"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_needaction
@@ -384,6 +396,12 @@ msgid "Avatar 512"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
+msgid "Bank"
+msgstr "Banco"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_ids
 msgid "Banks"
@@ -592,6 +610,12 @@ msgstr "Entidad Comercial"
 #: model:ir.model,name:fieldservice.model_res_company
 msgid "Companies"
 msgstr "Compañías"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref_company_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref_company_ids
+msgid "Companies that refers to partner"
+msgstr "Compañías referencias al socio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__company_id
@@ -846,6 +870,12 @@ msgid "Credit Limit"
 msgstr "Límite de Crédito"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__current_date
 msgid "Current Date"
 msgstr "Fecha Actual"
@@ -860,6 +890,18 @@ msgstr "Ubicación Actual"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
 msgid "Customer Location"
 msgstr "Ubicación del Cliente"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
+msgid "Customer Payment Terms"
+msgstr "Términos de Pago del Cliente"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__customer_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
+msgid "Customer Rank"
+msgstr "Rango del Cliente"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
@@ -887,6 +929,12 @@ msgstr "Equipo Predeterminado"
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
 msgid "Default duration in hours"
 msgstr "Duración predeterminada en horas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
+msgid "Degree of trust you have in this debtor"
+msgstr "Grado de confianza en este deudor"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_kanban_view
@@ -1206,6 +1254,12 @@ msgstr ""
 "búsquedas y las comparaciones."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
+msgid "Fiscal Position"
+msgstr "Posición Fiscal"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__fold
 msgid "Folded in Kanban"
 msgstr "Plegado en Kanban"
@@ -1319,6 +1373,12 @@ msgstr "Agrupar por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__has_message
 msgid "Has Message"
 msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__has_unreconciled_entries
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
+msgid "Has Unreconciled Entries"
+msgstr "Tiene Entradas no Reconciliadas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -1508,6 +1568,12 @@ msgid "Internal Type"
 msgstr "Tipo Interno"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__type
 #: model:ir.model.fields,help:fieldservice.field_res_partner__type
@@ -1528,6 +1594,12 @@ msgstr "Facturar tus pedidos FSM"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Invoice your Service Orders"
 msgstr "Facturar tus Pedidos de Servicio"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
+msgid "Invoices"
+msgstr "Facturas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_button
@@ -1580,6 +1652,12 @@ msgstr "Es una etapa predeterminada"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__function
 msgid "Job Position"
 msgstr "Puesto de Trabajo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__journal_item_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__journal_item_count
+msgid "Journal Items"
+msgstr "Apuntes Contables"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__lang
@@ -1643,6 +1721,24 @@ msgstr "Última Actualización en"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
 msgid "Last notification marked as read from base Calendar"
 msgstr "Última notificación marcada como leída del Calendario base"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__last_time_entries_checked
+msgid ""
+"Last time the invoices & payments matching was performed for this partner. "
+"It is set either if there's not at least an unreconciled debit and an "
+"unreconciled credit or if you click the \"Done\" button."
+msgstr ""
+"La última vez que se realizó la conciliación de facturas y pagos para este "
+"socio. Se establece si no hay al menos un débito no conciliado y un crédito "
+"no conciliado o si hace clic en el botón \"Listo\"."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_time_entries_checked
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_time_entries_checked
+msgid "Latest Invoices & Payments Matching Date"
+msgstr "Última Fecha de Coincidencia de Facturas y Pagos"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
@@ -2034,6 +2130,12 @@ msgid "Message Delivery error"
 msgstr "Error de Mensaje de Entrega"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn_msg
+msgid "Message for Invoice"
+msgstr "Mensaje para Factura"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
 msgid "Message for Stock Picking"
@@ -2405,6 +2507,12 @@ msgid "Parent name"
 msgstr "Nombre del Padre"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
+msgid "Partner Contracts"
+msgstr "Contratos de Socios"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
 msgid "Partner is Active"
 msgstr "Contacto está Activo"
@@ -2414,6 +2522,30 @@ msgstr "Contacto está Activo"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_vat_partner_id
 msgid "Partner with same Tax ID"
 msgstr "Socio con el mismo ID de Impuestos"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit_limit
+msgid "Payable Limit"
+msgstr "Límite a Pagar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
+msgid "Payment Method"
+msgstr "Método de Pago"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
+msgid "Payment Token Count"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
+msgid "Payment Tokens"
+msgstr "Tokens de Pago"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone
@@ -2443,6 +2575,19 @@ msgstr "Planificación"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Preferred Workers"
 msgstr "Trabajadores Preferidos"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_method_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_method_id
+msgid ""
+"Preferred payment method when paying this vendor. This is used to filter "
+"vendor bills by preferred payment method to register payments in mass. Use "
+"cases: create bank files for batch wires, check runs."
+msgstr ""
+"Método de pago preferido al pagar a este proveedor. Se utiliza para filtrar "
+"las facturas de los proveedores por el método de pago preferido para "
+"registrar pagos en masa. Casos de uso: crear archivos bancarios para "
+"transferencias de lotes, verificar ejecuciones."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2681,7 +2826,9 @@ msgstr ""
 "                    Trabajador de Servicio de Campo o en una Ubicación."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
@@ -2882,6 +3029,12 @@ msgid "Sub-Locations"
 msgstr "Sub-ubicaciones"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
+msgid "Supplier Rank"
+msgstr "Rango de Proveedor"
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr "¡El nombre de la Etiqueta ya existe!"
@@ -2978,6 +3131,14 @@ msgstr ""
 "a impuestos gubernamentales. Utilizado en algunas declaraciones legales."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_position_id
+msgid ""
+"The fiscal position determines the taxes/accounts used for this contact."
+msgstr ""
+"La posición fiscal determina los impuestos/cuentas usados para este contrato."
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__country_name
 msgid "The full name of the country."
 msgstr "Nombre completo de el país."
@@ -2987,6 +3148,16 @@ msgstr "Nombre completo de el país."
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__user_id
 msgid "The internal user in charge of this contact."
 msgstr "El usuario interno a cargo de este contacto."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__has_unreconciled_entries
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__has_unreconciled_entries
+msgid ""
+"The partner has at least one unreconciled debit and credit since last time "
+"the invoices & payments matching was performed."
+msgstr ""
+"El socio tiene al menos un débito y crédito no conciliados desde la última "
+"vez que se realizó la conciliación de facturas y pagos."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
@@ -3012,6 +3183,26 @@ msgid "The worker is already linked to this location."
 msgstr "El trabajador ya está vinculado a esta ubicación."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_payable_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_payable_id
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr ""
+"Esta cuenta se utilizará en lugar de la predeterminada como la cuenta a "
+"pagar del socio actual"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_receivable_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_receivable_id
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr ""
+"Esta cuenta se utilizará en lugar de la predeterminada como la cuenta por "
+"cobrar del socio actual"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
@@ -3021,6 +3212,26 @@ msgstr ""
 "Este campo se utiliza para buscar en la dirección de correo electrónico, ya "
 "que el campo de correo electrónico principal puede contener, estrictamente, "
 "más de una dirección de correo electrónico."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_supplier_payment_term_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_supplier_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and vendor bills"
+msgstr ""
+"Este plazo de pago se utilizará en lugar del predeterminado para las órdenes "
+"de compra y las facturas de proveedores"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_term_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for sales orders "
+"and customer invoices"
+msgstr ""
+"Este plazo de pago se utilizará en lugar del predeterminado para los pedidos "
+"de venta y las facturas de los clientes"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
@@ -3079,6 +3290,36 @@ msgstr "Para Agendar"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Today Orders"
 msgstr "Pedidos de Hoy"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
+msgid "Total Invoiced"
+msgstr "Total Facturado"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
+msgid "Total Payable"
+msgstr "Total a Pagar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
+msgid "Total Receivable"
+msgstr "Total a Cobrar"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
+msgid "Total amount this customer owes you."
+msgstr "Cantidad total que este cliente le debe."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
+msgid "Total amount you have to pay to this vendor."
+msgstr "Importe total que debe pagar a este proveedor."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
@@ -3200,6 +3441,12 @@ msgid "Users"
 msgstr "Usuarios"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__currency_id
+msgid "Utility field to express amount currency"
+msgstr "Campo de utilidad para expresar la cantidad de moneda"
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Vehículos"
@@ -3209,6 +3456,12 @@ msgstr "Vehículos"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
 msgid "Vendor Location"
 msgstr "Ubicación del Vendedor"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
+msgid "Vendor Payment Terms"
+msgstr "Términos de Pago del Proveedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3351,12 +3604,6 @@ msgstr "plantilla"
 #~ msgid "%s is a holiday (%s)."
 #~ msgstr "%s son vacaciones (%s)."
 
-#~ msgid "Account Payable"
-#~ msgstr "Cuenta por Pagar"
-
-#~ msgid "Account Receivable"
-#~ msgstr "Cuenta por Cobrar"
-
 #~ msgid "Agreements"
 #~ msgstr "Acuerdos"
 
@@ -3374,23 +3621,8 @@ msgstr "plantilla"
 #~ "X días antes de la fecha de recepción esperada, pidiéndole que confirme "
 #~ "la fecha exacta."
 
-#~ msgid "Bank"
-#~ msgstr "Banco"
-
-#~ msgid "Companies that refers to partner"
-#~ msgstr "Compañías referencias al socio"
-
 #~ msgid "Count Payment Token"
 #~ msgstr "Cuenta del Token de Pago"
-
-#~ msgid "Currency"
-#~ msgstr "Moneda"
-
-#~ msgid "Customer Payment Terms"
-#~ msgstr "Términos de Pago del Cliente"
-
-#~ msgid "Customer Rank"
-#~ msgstr "Rango del Cliente"
 
 #~ msgid "Days Before Receipt"
 #~ msgstr "Días Antes de la Recepción"
@@ -3398,20 +3630,11 @@ msgstr "plantilla"
 #~ msgid "Default delivery method used in sales orders."
 #~ msgstr "Método de entrega predeterminado utilizado en pedidos de venta."
 
-#~ msgid "Degree of trust you have in this debtor"
-#~ msgstr "Grado de confianza en este deudor"
-
 #~ msgid "Delivery Method"
 #~ msgstr "Método de Entrega"
 
-#~ msgid "Fiscal Position"
-#~ msgstr "Posición Fiscal"
-
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Has Unreconciled Entries"
-#~ msgstr "Tiene Entradas no Reconciliadas"
 
 #~ msgid "Has relation of type"
 #~ msgstr "Tiene relación de tipo"
@@ -3421,30 +3644,6 @@ msgstr "plantilla"
 
 #~ msgid "Has relation with a partner in category"
 #~ msgstr "Tiene relación con un contacto en la categoría"
-
-#~ msgid "Invoice"
-#~ msgstr "Factura"
-
-#~ msgid "Invoices"
-#~ msgstr "Facturas"
-
-#~ msgid "Journal Items"
-#~ msgstr "Apuntes Contables"
-
-#~ msgid ""
-#~ "Last time the invoices & payments matching was performed for this "
-#~ "partner. It is set either if there's not at least an unreconciled debit "
-#~ "and an unreconciled credit or if you click the \"Done\" button."
-#~ msgstr ""
-#~ "La última vez que se realizó la conciliación de facturas y pagos para "
-#~ "este socio. Se establece si no hay al menos un débito no conciliado y un "
-#~ "crédito no conciliado o si hace clic en el botón \"Listo\"."
-
-#~ msgid "Latest Invoices & Payments Matching Date"
-#~ msgstr "Última Fecha de Coincidencia de Facturas y Pagos"
-
-#~ msgid "Message for Invoice"
-#~ msgstr "Mensaje para Factura"
 
 #~ msgid "Message for Purchase Order"
 #~ msgstr "Mensaje para la Orden de Compras"
@@ -3467,28 +3666,6 @@ msgstr "plantilla"
 #~ msgstr ""
 #~ "Durante los últimos 12 meses; el número de productos recibidos a tiempo "
 #~ "dividido por el número de productos pedidos."
-
-#~ msgid "Partner Contracts"
-#~ msgstr "Contratos de Socios"
-
-#~ msgid "Payable Limit"
-#~ msgstr "Límite a Pagar"
-
-#~ msgid "Payment Method"
-#~ msgstr "Método de Pago"
-
-#~ msgid "Payment Tokens"
-#~ msgstr "Tokens de Pago"
-
-#~ msgid ""
-#~ "Preferred payment method when paying this vendor. This is used to filter "
-#~ "vendor bills by preferred payment method to register payments in mass. "
-#~ "Use cases: create bank files for batch wires, check runs."
-#~ msgstr ""
-#~ "Método de pago preferido al pagar a este proveedor. Se utiliza para "
-#~ "filtrar las facturas de los proveedores por el método de pago preferido "
-#~ "para registrar pagos en masa. Casos de uso: crear archivos bancarios para "
-#~ "transferencias de lotes, verificar ejecuciones."
 
 #~ msgid "Purchase Lines"
 #~ msgstr "Líneas de Compra"
@@ -3523,36 +3700,6 @@ msgstr "plantilla"
 #~ msgid "Supplier Currency"
 #~ msgstr "Moneda del Proveedor"
 
-#~ msgid "Supplier Rank"
-#~ msgstr "Rango de Proveedor"
-
-#~ msgid ""
-#~ "The fiscal position determines the taxes/accounts used for this contact."
-#~ msgstr ""
-#~ "La posición fiscal determina los impuestos/cuentas usados para este "
-#~ "contrato."
-
-#~ msgid ""
-#~ "The partner has at least one unreconciled debit and credit since last "
-#~ "time the invoices & payments matching was performed."
-#~ msgstr ""
-#~ "El socio tiene al menos un débito y crédito no conciliados desde la "
-#~ "última vez que se realizó la conciliación de facturas y pagos."
-
-#~ msgid ""
-#~ "This account will be used instead of the default one as the payable "
-#~ "account for the current partner"
-#~ msgstr ""
-#~ "Esta cuenta se utilizará en lugar de la predeterminada como la cuenta a "
-#~ "pagar del socio actual"
-
-#~ msgid ""
-#~ "This account will be used instead of the default one as the receivable "
-#~ "account for the current partner"
-#~ msgstr ""
-#~ "Esta cuenta se utilizará en lugar de la predeterminada como la cuenta por "
-#~ "cobrar del socio actual"
-
 #~ msgid ""
 #~ "This currency will be used, instead of the default one, for purchases "
 #~ "from the current partner"
@@ -3560,43 +3707,8 @@ msgstr "plantilla"
 #~ "Esta moneda se utilizará, en lugar de la predeterminada, para las compras "
 #~ "del contacto actual"
 
-#~ msgid ""
-#~ "This payment term will be used instead of the default one for purchase "
-#~ "orders and vendor bills"
-#~ msgstr ""
-#~ "Este plazo de pago se utilizará en lugar del predeterminado para las "
-#~ "órdenes de compra y las facturas de proveedores"
-
-#~ msgid ""
-#~ "This payment term will be used instead of the default one for sales "
-#~ "orders and customer invoices"
-#~ msgstr ""
-#~ "Este plazo de pago se utilizará en lugar del predeterminado para los "
-#~ "pedidos de venta y las facturas de los clientes"
-
-#~ msgid "Total Invoiced"
-#~ msgstr "Total Facturado"
-
-#~ msgid "Total Payable"
-#~ msgstr "Total a Pagar"
-
-#~ msgid "Total Receivable"
-#~ msgstr "Total a Cobrar"
-
-#~ msgid "Total amount this customer owes you."
-#~ msgstr "Cantidad total que este cliente le debe."
-
-#~ msgid "Total amount you have to pay to this vendor."
-#~ msgstr "Importe total que debe pagar a este proveedor."
-
 #~ msgid "User (only own documents)"
 #~ msgstr "Usuario (solo documentos propios)"
-
-#~ msgid "Utility field to express amount currency"
-#~ msgstr "Campo de utilidad para expresar la cantidad de moneda"
-
-#~ msgid "Vendor Payment Terms"
-#~ msgstr "Términos de Pago del Proveedor"
 
 #~ msgid "tags"
 #~ msgstr "etiquetas"
