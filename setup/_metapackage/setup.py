@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-base_territory>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_account>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_activity>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_calendar>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_crm>=15.0dev,<15.1dev',
