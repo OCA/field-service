@@ -11,7 +11,6 @@ class FSMOrder(models.Model):
         "fsm_order_account_move_line_rel",
         "fsm_order_id",
         "account_move_line_id",
-        string="Invoice Lines",
         copy=False,
     )
 
@@ -24,7 +23,6 @@ class FSMOrder(models.Model):
     )
 
     invoice_count = fields.Integer(
-        string="Invoice Count",
         compute="_compute_get_invoiced",
         readonly=True,
         copy=False,
