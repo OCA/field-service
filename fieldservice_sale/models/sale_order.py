@@ -60,7 +60,10 @@ class SaleOrder(models.Model):
         self.ensure_one()
         templates = line.product_id.fsm_order_template_id
         vals = self._prepare_fsm_values(
-            so_id=self.id, sol_id=line.id, template_id=templates.id
+            so_id=self.id,
+            sol_id=line.id,
+            template_id=templates.id,
+            location_id=line.fsm_location_id,
         )
         return vals
 
@@ -71,6 +74,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         template_id = kwargs.get("template_id", False)
         template_ids = kwargs.get("template_ids", [template_id])
+        location_id = kwargs.get("location_id") or self.fsm_location_id
         templates = self.env["fsm.template"].search([("id", "in", template_ids)])
         note = ""
         hours = 0.0
@@ -80,8 +84,8 @@ class SaleOrder(models.Model):
             hours += template.duration
             categories |= template.category_ids
         return {
-            "location_id": self.fsm_location_id.id,
-            "location_directions": self.fsm_location_id.direction,
+            "location_id": location_id.id,
+            "location_directions": location_id.direction,
             "request_early": self.expected_date,
             "scheduled_date_start": self.expected_date,
             "todo": note,
@@ -197,18 +201,35 @@ class SaleOrder(models.Model):
         so_msg_body = _("""Field Service Order(s) Created:{}""".format(msg_fsm_links))
         self.message_post(body=so_msg_body[:-1])
 
-    def _action_confirm(self):
+    def _get_invalid_lines(self):
+        """Hook to exclude specific lines which should not have location.
+        ex : In some case a product can be sold alon or as an option in configrble product (a product with options).
+         in the case that product is sold as option within a configurable product, location is mandatory only on this one.
+         We have not to repeat the same location for each option.
+        """
+        lines_without_location = self.order_line.filtered(
+            lambda l: not l.fsm_location_id
+            and l.product_id.field_service_tracking != "no"
+            and l.display_type not in ("line_section", "line_note")
+        )
+        return lines_without_location
+
+    def action_confirm(self):
         """On SO confirmation, some lines generate field service orders."""
-        result = super(SaleOrder, self)._action_confirm()
-        if any(
-            sol.product_id.field_service_tracking != "no"
-            for sol in self.order_line.filtered(
-                lambda x: x.display_type not in ("line_section", "line_note")
-            )
-        ):
-            if not self.fsm_location_id:
-                raise ValidationError(_("FSM Location must be set"))
-            self._field_service_generation()
+        lines_without_location = self._get_invalid_lines()
+        if lines_without_location:
+            lines_without_location_count = len(lines_without_location)
+            if not self.fsm_location_id and lines_without_location_count > 0:
+                raise ValidationError(
+                    _(
+                        "FSM Location must be set on sale order\n"
+                        "or on the line(s) with field service tracking option\n"
+                        "(%s line(s))"
+                    )
+                    % lines_without_location_count
+                )
+        result = super(SaleOrder, self).action_confirm()
+        self._field_service_generation()
         return result
 
     def action_view_fsm_order(self):
