@@ -48,7 +48,7 @@ class SaleOrderLine(models.Model):
         res["fsm_location_id"] = (
             self.fsm_location_id.id or self.order_id.fsm_location_id.id
         )
-        res["name"] = res["name"] + _("\nDates: #START# - #END#")
+        res["name"] = res["name"]
         return res
 
     def _field_create_fsm_recurring(self):
