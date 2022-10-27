@@ -24,18 +24,19 @@ class SaleOrderLine(models.Model):
             if line.product_id.type == "service" and line.state == "sale":
                 line.product_updatable = False
             else:
-                super(SaleOrderLine, line)._compute_product_updatable()
+                return super(SaleOrderLine, line)._compute_product_updatable()
 
     @api.depends("product_id")
     def _compute_qty_delivered_method(self):
-        super(SaleOrderLine, self)._compute_qty_delivered_method()
+        res = super(SaleOrderLine, self)._compute_qty_delivered_method()
         for line in self:
             if not line.is_expense and line.product_id.field_service_tracking == "line":
                 line.qty_delivered_method = "field_service"
+        return res
 
     @api.depends("fsm_order_id.stage_id")
     def _compute_qty_delivered(self):
-        super(SaleOrderLine, self)._compute_qty_delivered()
+        res = super(SaleOrderLine, self)._compute_qty_delivered()
         lines_by_fsm = self.filtered(
             lambda sol: sol.qty_delivered_method == "field_service"
         )
@@ -45,12 +46,14 @@ class SaleOrderLine(models.Model):
             if line.fsm_order_id.stage_id == complete:
                 qty = line.product_uom_qty
                 line.qty_delivered = qty
+        return res
 
-    @api.model
-    def create(self, values):
-        line = super(SaleOrderLine, self).create(values)
-        if line.state == "sale":
-            line._field_service_generation()
+    @api.model_create_multi
+    def create(self, vals_list):
+        lines = super(SaleOrderLine, self).create(vals_list)
+        for line in lines:
+            if line.state == "sale":
+                line._field_service_generation()
         return line
 
     def _field_create_fsm_order_prepare_values(self):
@@ -83,23 +86,19 @@ class SaleOrderLine(models.Model):
             fsm_order = self.env["fsm.order"].sudo().create(values)
             so_line.fsm_order_id = fsm_order.id
             # post message on SO
-            msg_body = (
-                _(
-                    """Field Service Order Created (%s): <a href=
-                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>
+            msg_body = _(
+                """Field Service Order Created ({}): <a href=
+                   # data-oe-model=fsm.order data-oe-id={}>{}</a>
                 """
-                )
-                % (so_line.product_id.name, fsm_order.id, fsm_order.name)
-            )
+            ).format(so_line.product_id.name, fsm_order.id, fsm_order.name)
             so_line.order_id.message_post(body=msg_body)
             # post message on fsm_order
-            fsm_order_msg = (
-                _(
-                    """This order has been created from: <a href=
-                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)
+            fsm_order_msg = _(
+                """This order has been created from: <a href=
+                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})
                 """
-                )
-                % (so_line.order_id.id, so_line.order_id.name, so_line.product_id.name)
+            ).format(
+                so_line.order_id.id, so_line.order_id.name, so_line.product_id.name
             )
             fsm_order.message_post(body=fsm_order_msg)
             result[so_line.id] = fsm_order
