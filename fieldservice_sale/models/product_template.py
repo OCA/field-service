@@ -20,7 +20,6 @@ class ProductTemplate(models.Model):
             ("sale", "Create one FSM order per sale order"),
             ("line", "Create one FSM order per sale order line"),
         ],
-        string="Field Service Tracking",
         default="no",
         help="""Determines what happens upon sale order confirmation:
                 - None: nothing additional, default behavior.

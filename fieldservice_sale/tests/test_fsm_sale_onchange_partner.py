@@ -28,6 +28,12 @@ class FSMSale(TransactionCase):
                 "parent_id": self.commercial_partner.id,
             }
         )
+        self.partner2 = self.env["res.partner"].create(
+            {
+                "name": "Partner 2",
+                "parent_id": self.commercial_partner.id,
+            }
+        )
         # create a child partner shipping address
         self.shipping_partner = self.env["res.partner"].create(
             {
@@ -38,6 +44,21 @@ class FSMSale(TransactionCase):
         )
         # Demo FS location
         self.location = self.env.ref("fieldservice.location_1")
+        self.partner2.fsm_location = self.location.id
+
+    def test_autofill_so_fsm_location(self):
+        """First case :
+        - commercial_partner IS NOT a fsm_location
+        - partner IS a fsm_location
+        - shipping_partner IS NOT a fsm_location
+        Test if the SO's fsm_location_id is autofilled with the expected
+        partner_location.
+        """
+        # Link demo FS location to self.partner
+        self.location.partner_id = self.partner.id
+        # create a Sale Order and run onchange_partner_id
+        self.so = self.env["sale.order"].create({"partner_id": self.partner2.id})
+        self.so.onchange_partner_id()
 
     def test_1_autofill_so_fsm_location(self):
         """First case :
