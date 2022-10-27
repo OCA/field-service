@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
+from odoo.exceptions import ValidationError
 
 from .test_fsm_sale_common import TestFSMSale
 
@@ -27,6 +28,36 @@ class TestFSMSaleOrder(TestFSMSale):
         SaleOrder = cls.env["sale.order"].with_context(tracking_disable=True)
         # create a generic Sale Order with one product
         # set to create FSM service per sale order
+        cls.sale_order = SaleOrder.create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "pricelist_id": cls.pricelist_usd.id,
+            }
+        )
+        cls.sale_order_wo_sol = SaleOrder.create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "pricelist_id": cls.pricelist_usd.id,
+            }
+        )
+        cls.sale_order_sol = SaleOrder.create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "pricelist_id": cls.pricelist_usd.id,
+            }
+        )
+        cls.sol_service_per_order = cls.env["sale.order.line"].create(
+            {
+                "name": cls.fsm_per_order_1.name,
+                "product_id": cls.fsm_per_order_1.id,
+                "product_uom_qty": 1,
+                "product_uom": cls.fsm_per_order_1.uom_id.id,
+                "price_unit": cls.fsm_per_order_1.list_price,
+                "order_id": cls.sale_order.id,
+                "tax_id": False,
+            }
+        )
+        # cls.sol_service_per_order._compute_product_updatable()
         cls.sale_order_1 = SaleOrder.create(
             {
                 "partner_id": cls.partner_customer_usd.id,
@@ -189,6 +220,19 @@ class TestFSMSaleOrder(TestFSMSale):
         )
         return order
 
+    def test_sale_order_0(self):
+        """Test the sales order 0 flow from sale to invoice.
+        - One FSM order linked to the Sale Order should be created.
+        - One Invoice linked to the FSM Order should be created.
+        """
+        # Confirm the sale order
+        sol = self.sol_service_per_order
+        with self.assertRaises(ValidationError), self.cr.savepoint():
+            self.sale_order.action_confirm()
+
+        sol._compute_product_updatable()
+        # 1 FSM order created
+
     def test_sale_order_1(self):
         """Test the sales order 1 flow from sale to invoice.
         - One FSM order linked to the Sale Order should be created.
@@ -196,12 +240,16 @@ class TestFSMSaleOrder(TestFSMSale):
         """
         # Confirm the sale order
         self.sale_order_1.action_confirm()
+        for sol in self.sale_order_1.order_line:
+            sol._compute_product_updatable()
+            sol._field_service_generation()
         # 1 FSM order created
         self.assertEqual(
             len(self.sale_order_1.fsm_order_ids.ids),
             1,
             "FSM Sale: Sale Order 1 should create 1 FSM Order",
         )
+        self.sale_order_1.action_view_fsm_order()
         FSM_Order = self.env["fsm.order"]
         fsm_order = FSM_Order.search(
             [("id", "=", self.sale_order_1.fsm_order_ids[0].id)]
@@ -232,6 +280,36 @@ class TestFSMSaleOrder(TestFSMSale):
             fsm_order in invoice.fsm_order_ids,
             "FSM Sale: Invoice should be linked to FSM Order",
         )
+        self.sale_order_3.action_confirm()
+        for sol in self.sale_order_3.order_line:
+            sol._compute_product_updatable()
+            sol._field_service_generation()
+        self.sale_order_3.action_view_fsm_order()
+        self.sale_order_wo_sol.action_view_fsm_order()
+        self.sale_order_sol.action_confirm()
+        self.fsm_product = self.env["product.product"].create(
+            {
+                "name": "FSM Order per Sale Order #1",
+                "categ_id": self.env.ref("product.product_category_3").id,
+                "standard_price": 85.0,
+                "list_price": 90.0,
+                "type": "service",
+                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_po_id": self.env.ref("uom.product_uom_unit").id,
+                "invoice_policy": "order",
+            }
+        )
+        self.sol_sale_order = self.env["sale.order.line"].create(
+            {
+                "name": self.fsm_per_order_1.name,
+                "product_id": self.fsm_product.id,
+                "product_uom_qty": 1,
+                "product_uom": self.fsm_per_order_1.uom_id.id,
+                "price_unit": self.fsm_per_order_1.list_price,
+                "order_id": self.sale_order_sol.id,
+                "tax_id": False,
+            }
+        )
 
     def test_sale_order_2(self):
         """Test the sales order 2 flow from sale to invoice.
@@ -249,7 +327,9 @@ class TestFSMSaleOrder(TestFSMSale):
             "FSM Sale: Sale Order 2 should create 1 FSM Order",
         )
         FSM_Order = self.env["fsm.order"]
+
         fsm_order = FSM_Order.search([("id", "=", sol.fsm_order_id.id)])
+        fsm_order.action_view_sales()
         # SOL linked to FSM order
         self.assertTrue(
             sol.fsm_order_id.id == fsm_order.id,

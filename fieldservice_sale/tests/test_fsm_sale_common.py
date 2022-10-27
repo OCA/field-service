@@ -65,6 +65,7 @@ class TestFSMSale(TestSaleCommonBase):
                 "fsm_order_template_id": cls.fsm_template_1.id,
             }
         )
+
         # Product 2 that creates one FSM Order per SO
         cls.fsm_per_order_2 = cls.env["product.product"].create(
             {
@@ -110,3 +111,19 @@ class TestFSMSale(TestSaleCommonBase):
                 "fsm_order_template_id": cls.fsm_template_4.id,
             }
         )
+        # Normal Product
+        cls.product_line = cls.env["product.template"].create(
+            {
+                "name": "FSM Order per SO Line #2",
+                "categ_id": cls.env.ref("product.product_category_3").id,
+                "standard_price": 75.0,
+                "list_price": 80.0,
+                "type": "service",
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
+                "invoice_policy": "delivery",
+                "field_service_tracking": "no",
+                "fsm_order_template_id": cls.fsm_template_4.id,
+            }
+        )
+        cls.product_line._onchange_field_service_tracking()
