@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-18 10:05+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2022-10-27 13:44+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
@@ -45,6 +45,17 @@ msgid ""
 "contain sensitive data (employee home addresses, ...).\n"
 "- Other: Other address for the company (e.g. subsidiary, ...)"
 msgstr ""
+"- Contatto: utilizzarlo per organizzare i dettagli dei contatti dei "
+"dipendenti di una data azienda (es. CEO, CFO, ...).\n"
+"- Indirizzo fattura: indirizzo preferito per tutte le fatture. Selezionato "
+"in modo predefinito quando si fattura un ordine che appartiene a questa "
+"azienda.\n"
+"- Indirizzo consegna : indirizzo preferito per tutte le consegne. "
+"Selezionato in modo predefinito quando si consegna un ordine che appartiene "
+"a questa azienda.\n"
+"- Privato: gli indirizzi privati sono visibili solo da utenti autorizzati e "
+"contengono dati sensibili (indirizzo di casa del dipendente, ...).\n"
+"- Altro: altri indirizzi per l'azienda (es. filiali, ...)"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -192,7 +203,7 @@ msgstr "Aggiungi una categoria operatore di assistenza sul campo."
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Add a description for the order..."
-msgstr ""
+msgstr "Aggiungere una descrizione per l'ordine..."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
@@ -339,31 +350,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1920
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1024
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1024
 msgid "Avatar 1024"
-msgstr ""
+msgstr "Avatar 1024"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_128
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_128
 msgid "Avatar 128"
-msgstr ""
+msgstr "Avatar 128"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_256
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_256
 msgid "Avatar 256"
-msgstr ""
+msgstr "Avatar 256"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_512
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_512
 msgid "Avatar 512"
-msgstr ""
+msgstr "Avatar 512"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
@@ -589,7 +600,7 @@ msgstr "Azienda"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_registry
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_registry
 msgid "Company ID"
-msgstr ""
+msgstr "ID azienda"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_name
@@ -664,12 +675,12 @@ msgstr "Nome completo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Compute Localization"
-msgstr ""
+msgstr "Calcola localizzazione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Compute based on address"
-msgstr ""
+msgstr "Calcola in base all'indirizzo"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_res_config_settings
@@ -734,7 +745,7 @@ msgstr "Nazione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_code
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_code
 msgid "Country Code"
-msgstr ""
+msgstr "Codice nazione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -890,7 +901,7 @@ msgstr "Descrizione"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__direction
 msgid "Direction"
-msgstr ""
+msgstr "Direzione"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -1003,7 +1014,7 @@ msgstr "Dipendente"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Enter the resolution for the order..."
-msgstr ""
+msgstr "Inserire la definizione per l'ordine..."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__equipment_count
@@ -1239,7 +1250,7 @@ msgstr "Email formattata"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_model_mixin
 msgid "Fsm Model Mixin"
-msgstr ""
+msgstr "Modello mixin FSM"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__full_name
@@ -1300,7 +1311,7 @@ msgstr "Raggruppa per"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_message
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ha un messaggio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -1502,7 +1513,7 @@ msgstr "Sta seguendo"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_public
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_public
 msgid "Is Public"
-msgstr ""
+msgstr "È pubblico"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_company
@@ -1602,7 +1613,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Lat:"
-msgstr ""
+msgstr "Lat:"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
@@ -1716,7 +1727,7 @@ msgstr "Località"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Long:"
-msgstr ""
+msgstr "Lon:"
 
 #. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__1
@@ -1864,12 +1875,12 @@ msgstr "Gestisci modello"
 #: model:res.groups,name:fieldservice.group_fsm_territory
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Territories"
-msgstr ""
+msgstr "Gestione territori"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_territory
 msgid "Manage Territory"
-msgstr ""
+msgstr "Gestione territorio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_vehicle
@@ -1964,6 +1975,8 @@ msgid ""
 "Manage territories, branches, districts\n"
 "                                    and regions"
 msgstr ""
+"Gestione territori, aree, distretti\n"
+"                                    e regioni"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2354,7 +2367,7 @@ msgstr "Il partner è attivo"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_company_registry_partner_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_company_registry_partner_id
 msgid "Partner with same Company Registry"
-msgstr ""
+msgstr "Partner con lo stesso registro azienda"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
@@ -2379,7 +2392,7 @@ msgstr "Telefoni in lista nera"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
 msgid "Phone/Mobile"
-msgstr ""
+msgstr "Telefono/cellulare"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -2451,12 +2464,12 @@ msgstr "Riferimento"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Refresh"
-msgstr ""
+msgstr "Aggiorna"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Refresh Localization"
-msgstr ""
+msgstr "Aggiorna localizzazione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__region_id
@@ -2566,7 +2579,7 @@ msgstr "Dettaglio pianificazione"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
 msgid "Scheduled Duration"
-msgstr ""
+msgstr "Durata pianificata"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_end
@@ -2886,6 +2899,8 @@ msgid ""
 "The ISO country code in two chars. \n"
 "You can use this field for quick search."
 msgstr ""
+"Il codice nazione ISO in dee caratteri. \n"
+"Si può utilizzare questo campo per ricerche veloci."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
@@ -2910,6 +2925,8 @@ msgid ""
 "The registry number of the company. Use it if it is different from the Tax "
 "ID. It must be unique across all partners of a same country"
 msgstr ""
+"Il numero registro dell'azienda. Utilizzare se è diverso dall'ID fiscale. "
+"Deve essere univoco tra tutti i partner della stessa nazione"
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3005,7 +3022,7 @@ msgstr "Non programmato"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Updated on:"
-msgstr ""
+msgstr "Aggiornato il:"
 
 #. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__3
