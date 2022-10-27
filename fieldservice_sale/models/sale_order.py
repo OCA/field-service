@@ -40,7 +40,7 @@ class SaleOrder(models.Model):
         the partner_shipping_id or the partner_id.commercial_partner_id if
         they are FS locations.
         """
-        super(SaleOrder, self).onchange_partner_id()
+        res = super(SaleOrder, self).onchange_partner_id()
         domain = [
             "|",
             "|",
@@ -52,6 +52,7 @@ class SaleOrder(models.Model):
             domain = [("partner_id", "=", self.partner_id.id)]
         location_ids = self.env["fsm.location"].search(domain)
         self.fsm_location_id = location_ids and location_ids[0] or False
+        return res
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
@@ -89,24 +90,18 @@ class SaleOrder(models.Model):
             values = so._field_create_fsm_order_prepare_values()
             fsm_order = self.env["fsm.order"].sudo().create(values)
             # post message on SO
-            msg_body = (
-                _(
-                    """Field Service Order Created: <a href=
-                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>
+            msg_body = _(
+                """Field Service Order Created: <a href=
+                   # data-oe-model=fsm.order data-oe-id={}>{}</a>
                 """
-                )
-                % (fsm_order.id, fsm_order.name)
-            )
+            ).format(fsm_order.id, fsm_order.name)
             so.message_post(body=msg_body)
             # post message on fsm_order
-            fsm_order_msg = (
-                _(
-                    """This order has been created from: <a href=
-                   # data-oe-model=sale.order data-oe-id=%d>%s</a>
+            fsm_order_msg = _(
+                """This order has been created from: <a href=
+                   # data-oe-model=sale.order data-oe-id={}>{}</a>
                 """
-                )
-                % (so.id, so.name)
-            )
+            ).format(so.id, so.name)
             fsm_order.message_post(body=fsm_order_msg)
             result[so.id] = fsm_order
         return result
