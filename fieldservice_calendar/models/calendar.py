@@ -8,7 +8,7 @@ class Meeting(models.Model):
     _inherit = "calendar.event"
 
     fsm_order_id = fields.One2many(
-        string="Order id",
+        string="FSM Order",
         comodel_name="fsm.order",
         inverse_name="calendar_event_id",
     )
@@ -18,9 +18,10 @@ class Meeting(models.Model):
         if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
-        to_apply = {}
-        to_apply["scheduled_date_start"] = self.start
-        to_apply["scheduled_duration"] = self.duration
+        to_apply = {
+            "scheduled_date_start": self.start,
+            "scheduled_duration": self.duration,
+        }
         self.fsm_order_id.with_context(recurse_order_calendar=True).write(to_apply)
 
     def _update_fsm_assigned(self):
@@ -44,9 +45,14 @@ class Meeting(models.Model):
 
     def write(self, values):
         res = super().write(values)
-        if self.fsm_order_id:
+
+        for record in self:
+            if not record.fsm_order_id:
+                continue
+
             if "start" in values or "duration" in values:
-                self._update_fsm_order_date()
+                record._update_fsm_order_date()
             if "partner_ids" in values:
-                self._update_fsm_assigned()
+                record._update_fsm_assigned()
+
         return res

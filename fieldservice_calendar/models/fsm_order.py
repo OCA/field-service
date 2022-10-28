@@ -20,7 +20,7 @@ class FSMOrder(models.Model):
         return res
 
     def _create_calendar_event(self):
-        """Create entry in calendar of the team."""
+        """Create entry in calendar of the team"""
         for order in self._should_have_calendar_event():
             order.calendar_event_id = (
                 self.env["calendar.event"]
@@ -34,22 +34,22 @@ class FSMOrder(models.Model):
         )
 
     def _prepare_calendar_event(self):
-        model_id = self.env.ref("fieldservice.model_fsm_order").id
-        vals = {
+        self.ensure_one()
+
+        # we let calendar_user has a partner_ids in order
+        # to have the meeting in the team's calendar
+        return {
             "name": self.name,
             "description": self.description,
             "start": self.scheduled_date_start,
             "stop": self.scheduled_date_end,
             "allday": False,
-            "res_model_id": model_id,  # link back with "Document" button
-            "res_id": self.id,  # link back with "Document" button
+            "res_model_id": self.env.ref("fieldservice.model_fsm_order").id,
+            "res_id": self.id,
             "location": self._serialize_location(),
             "user_id": self.team_id.calendar_user_id.id,
+            "partner_ids": [(4, self.team_id.calendar_user_id.partner_id.id, False)],
         }
-        vals["partner_ids"] = [(4, self.team_id.calendar_user_id.partner_id.id, False)]
-        # we let calendar_user has a partner_ids in order
-        # to have the meeting in the team's calendar
-        return vals
 
     def write(self, vals):
         old_persons = {}
@@ -86,9 +86,11 @@ class FSMOrder(models.Model):
         if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
-        to_apply = {}
-        to_apply["start"] = self.scheduled_date_start
-        to_apply["stop"] = self.scheduled_date_end
+        to_apply = {
+            "start": self.scheduled_date_start,
+            "stop": self.scheduled_date_end,
+        }
+
         # always write start and stop in order to calc duration
         self.mapped("calendar_event_id").with_context(
             recurse_order_calendar=True
