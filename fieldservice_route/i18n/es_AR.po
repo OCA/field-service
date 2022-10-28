@@ -91,7 +91,6 @@ msgstr "Ruta del Día"
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_calendar
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_pivot_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_tree
 msgid "Day Routes"
 msgstr "Rutas del Día"
 
@@ -106,11 +105,9 @@ msgid "Days"
 msgstr "Días"
 
 #. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day__display_name
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__display_name
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -150,12 +147,9 @@ msgid "Friday"
 msgstr "Viernes"
 
 #. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location__id
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__id
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage__id
 msgid "ID"
 msgstr "ID"
 
@@ -165,12 +159,9 @@ msgid "Last Location"
 msgstr "Última Ubicación"
 
 #. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_location____last_update
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day____last_update
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute____last_update
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_stage____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
 
@@ -242,9 +233,6 @@ msgstr "Nombre"
 
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
-#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "New"
 msgstr "Nuevo"
@@ -253,11 +241,6 @@ msgstr "Nuevo"
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__order_count
 msgid "Number of Orders"
 msgstr "Número de Pedidos"
-
-#. module: fieldservice_route
-#: model:ir.model.fields,field_description:fieldservice_route.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__order_ids
@@ -299,7 +282,6 @@ msgstr "Ruta"
 #: model:ir.actions.act_window,name:fieldservice_route.action_fsm_route_day
 #: model:ir.model,name:fieldservice_route.model_fsm_route_day
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_day_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_day_tree_view
 msgid "Route Day"
 msgstr "Ruta del Día"
 
@@ -311,7 +293,6 @@ msgstr "Días de Ruta"
 #. module: fieldservice_route
 #: model:ir.actions.act_window,name:fieldservice_route.action_fsm_route
 #: model:ir.ui.menu,name:fieldservice_route.menu_fsm_route
-#: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_tree
 msgid "Routes"
 msgstr "Rutas"
 
@@ -344,13 +325,14 @@ msgstr "Equipo"
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "The day route is exceeding the maximum number of orders of the route."
-msgstr "La ruta del día está excediendo el número máximo de pedidos de la ruta."
+msgstr ""
+"La ruta del día está excediendo el número máximo de pedidos de la ruta."
 
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
-msgid "The route %s does not run on %s!"
-msgstr "¡La ruta %s no se realiza el %s!"
+msgid "The route %(route_name)s does not run on %(name)s!"
+msgstr ""
 
 #. module: fieldservice_route
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
@@ -392,3 +374,10 @@ msgstr "Debe crear un Equipo FSM primero."
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "orders per day route"
 msgstr "pedidos por ruta del día"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
+
+#, python-format
+#~ msgid "The route %s does not run on %s!"
+#~ msgstr "¡La ruta %s no se realiza el %s!"
