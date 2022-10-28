@@ -1,8 +1,6 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
-
 from odoo import fields, models
 
 
@@ -19,7 +17,7 @@ class FSMActivity(models.Model):
         states={"todo": [("readonly", False)]},
     )
     sequence = fields.Integer()
-    completed = fields.Boolean()
+    completed = fields.Boolean(default=False)
     completed_on = fields.Datetime(readonly=True)
     completed_by = fields.Many2one("res.users", readonly=True)
     ref = fields.Char(
@@ -34,10 +32,14 @@ class FSMActivity(models.Model):
     )
 
     def action_done(self):
-        self.completed = True
-        self.completed_on = datetime.now()
-        self.completed_by = self.env.user
-        self.state = "done"
+        self.write(
+            {
+                "completed": True,
+                "completed_on": fields.Datetime.now(),
+                "completed_by": self.env.user.id,
+                "state": "done",
+            }
+        )
 
     def action_cancel(self):
         self.state = "cancel"
