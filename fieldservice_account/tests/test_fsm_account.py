@@ -50,17 +50,20 @@ class FSMAccountCase(TransactionCase):
                 "request_early": datetime.today(),
             }
         )
+        company = self.env.user.company_id
         self.default_account_revenue = self.env["account.account"].search(
             [
-                ("company_id", "=", self.env.user.company_id.id),
+                ("company_id", "=", company.id),
+                ("account_type", "=", "income"),
                 (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_revenue").id,
+                    "id",
+                    "!=",
+                    company.account_journal_early_pay_discount_gain_account_id.id,
                 ),
             ],
             limit=1,
         )
+
         self.test_invoice = self.env["account.move"].create(
             {
                 "partner_id": self.test_partner.id,
