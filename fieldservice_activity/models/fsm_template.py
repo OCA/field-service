@@ -7,4 +7,4 @@ from odoo import fields, models
 class FSMTemplate(models.Model):
     _inherit = "fsm.template"
 
-    temp_activity_ids = fields.One2many("fsm.activity", "fsm_template_id", "Activites")
+    temp_activity_ids = fields.One2many("fsm.activity", "fsm_template_id", "Activities")
