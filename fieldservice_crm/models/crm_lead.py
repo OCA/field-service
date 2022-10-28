@@ -16,7 +16,5 @@ class Lead(models.Model):
     )
 
     def _compute_fsm_order_count(self):
-        for opportunity in self:
-            opportunity.fsm_order_count = self.env["fsm.order"].search_count(
-                [("opportunity_id", "=", opportunity.id)]
-            )
+        for rec in self:
+            rec.fsm_order_count = len(rec.fsm_order_ids)
