@@ -38,7 +38,10 @@ class FSMOrder(models.Model):
             order.invoice_count = len(invoices)
 
     def action_view_invoices(self):
-        action = self.env.ref("account.action_move_out_invoice_type").read()[0]
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "account.action_move_out_invoice_type"
+        )
         invoices = self.mapped("invoice_ids")
         if len(invoices) > 1:
             action["domain"] = [("id", "in", invoices.ids)]
