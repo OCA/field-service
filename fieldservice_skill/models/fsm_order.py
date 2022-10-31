@@ -36,7 +36,6 @@ class FSMOrder(models.Model):
         return res
 
     @api.depends("skill_ids")
-    @api.onchange("skill_ids")
     def _compute_skill_workers(self):
         worker_ids = []
         req_skills = self.skill_ids.ids
