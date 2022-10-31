@@ -32,8 +32,12 @@ class FSMPersonSkill(models.Model):
         for record in self:
             if record.skill_id not in record.skill_type_id.skill_ids:
                 raise ValidationError(
-                    _("The skill %s and skill type %s doesn't match")
-                    % (record.skill_id.name, record.skill_type_id.name)
+                    _(
+                        "The skill '%(skill)s' \
+                        and skill type '%(skilltype)s' doesn't match",
+                        skill=record.skill_id.name,
+                        skilltype=record.skill_type_id.name,
+                    )
                 )
 
     @api.constrains("skill_type_id", "skill_level_id")
@@ -41,6 +45,10 @@ class FSMPersonSkill(models.Model):
         for record in self:
             if record.skill_level_id not in record.skill_type_id.skill_level_ids:
                 raise ValidationError(
-                    _("The skill level %s is not valid for skill type: %s ")
-                    % (record.skill_level_id.name, record.skill_type_id.name)
+                    _(
+                        "The skill level '%(skilllevel)s' \
+                        is not valid for skill type: '%(skilltype)s' ",
+                        skilllevel=record.skill_level_id.name,
+                        skilltype=record.skill_type_id.name,
+                    )
                 )
