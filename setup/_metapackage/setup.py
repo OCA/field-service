@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo-addon-fieldservice_activity>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_calendar>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_crm>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_distribution>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_isp_account>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_isp_flow>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_project>=15.0dev,<15.1dev',
