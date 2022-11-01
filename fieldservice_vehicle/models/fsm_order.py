@@ -16,7 +16,16 @@ class FSMOrder(models.Model):
 
     @api.model
     def create(self, vals):
+        res = super(FSMOrder, self).create(vals)
         if not vals.get("vehicle_id") and vals.get("person_id"):
-            person = self.env["fsm.person"].browse(vals.get("person_id"))
-            vals.update({"vehicle_id": person.vehicle_id.id})
-        return super().create(vals)
+            self._onchange_person_id()
+        return res
+
+    @api.onchange("person_id")
+    def _onchange_person_id(self):
+        self.vehicle_id = (
+            self.person_id
+            and self.person_id.vehicle_id
+            and self.person_id.vehicle_id.id
+            or False
+        )
