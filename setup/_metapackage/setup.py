@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo-addon-fieldservice_isp_flow>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_project>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_purchase>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_recurring>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_route>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_sale>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_size>=15.0dev,<15.1dev',
