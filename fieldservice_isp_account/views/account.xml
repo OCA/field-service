@@ -1,0 +1,27 @@
+<odoo>
+    <!-- Show confirmed FSM Orders in Accounting -->
+    <record id="action_account_fsm_order" model="ir.actions.act_window">
+        <field name="name">Service Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain" eval="[('account_stage', '=', 'confirmed')]" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No Field Service Orders to review.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_account_operations"
+        name="Operations"
+        parent="account.menu_finance_receivables"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_account_fsm_order"
+        name="Service Orders"
+        action="action_account_fsm_order"
+        parent="menu_account_operations"
+        sequence="10"
+    />
+</odoo>
