@@ -1,0 +1,19 @@
+<odoo>
+    <record id="hr_skill_form_inherit_fsm" model="ir.ui.view">
+        <field name="name">hr.skill.fsm.form</field>
+        <field name="model">hr.skill</field>
+        <field name="inherit_id" ref="hr_skills.hr_skill_view_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="color" />
+            </field>
+        </field>
+    </record>
+    <menuitem
+        id="menu_hr_skill"
+        name="Skills"
+        action="hr_skills.hr_skill_type_action"
+        parent="fieldservice.menu_fsm_config_person"
+        sequence="80"
+    />
+</odoo>
