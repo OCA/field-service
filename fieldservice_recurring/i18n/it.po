@@ -275,14 +275,6 @@ msgid "Followers"
 msgstr "Follower"
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_channel_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Follower (Canali)"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_partner_ids
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_partner_ids
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_partner_ids
@@ -302,7 +294,6 @@ msgstr "Frequenze"
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_tree_view
 msgid "Frequency"
 msgstr "Frequenza"
 
@@ -314,7 +305,6 @@ msgstr "Nome frequenza"
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_frequency_set
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_tree_view
 msgid "Frequency Rule Set"
 msgstr "Insieme regole frequenze"
 
@@ -356,9 +346,16 @@ msgid "Group By"
 msgstr ""
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__has_message
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__has_message
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__has_message
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
 msgid "ID"
@@ -435,7 +432,6 @@ msgstr "Giugno"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set____last_update
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring____last_update
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template____last_update
 msgid "Last Modified on"
@@ -549,6 +545,11 @@ msgid "New"
 msgstr "Nuovo"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Scadenza attività successiva"
@@ -614,11 +615,6 @@ msgid "October"
 msgstr "Ottobre"
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__display_name
-msgid "Order"
-msgstr ""
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_order_template_id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__fsm_order_template_id
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
@@ -661,7 +657,6 @@ msgstr "Ordine ricorrente"
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_tree_view
 msgid "Recurring Orders"
 msgstr "Ordini ricorrenti"
 
@@ -674,7 +669,6 @@ msgstr "Modello ricorrente"
 
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring_templates
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_template_tree_view
 msgid "Recurring Templates"
 msgstr "Modelli ricorrenti"
 
@@ -713,7 +707,7 @@ msgstr "Sabato"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__scheduled_duration
-msgid "Scheduled duration"
+msgid "Scheduled Duration"
 msgstr ""
 
 #. module: fieldservice_recurring
@@ -929,3 +923,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Annuale"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Follower (Canali)"
