@@ -1,0 +1,39 @@
+<odoo>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button
+                    name="action_view_distrib_sublocation"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-sitemap"
+                    attrs="{'invisible': [('is_a_distribution', '!=', True)]}"
+                    context="{'default_fsm_parent_id': fsm_parent_id,
+                                  'default_dist_parent_id': active_id,
+                                  'default_is_a_distribution': True}"
+                >
+                    <field
+                        name="distrib_count"
+                        widget="statinfo"
+                        string="Distributed To"
+                    />
+                </button>
+            </div>
+            <xpath expr="//page/group/group[@id='others-left']" position="inside">
+                <field name="is_a_distribution" />
+            </xpath>
+            <field name="ref" position="after">
+                <field
+                    name="dist_parent_id"
+                    domain="[('is_a_distribution', '=', True)]"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
