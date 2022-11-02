@@ -942,6 +942,12 @@ msgid "Default Team"
 msgstr "Equipe Padrão"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_delivery_carrier_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_delivery_carrier_id
+msgid "Default delivery method used in sales orders."
+msgstr "Método de entrega padão usado nos pedidos de venda."
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
 msgid "Default duration in hours"
 msgstr "Duração padrão em horas"
@@ -957,6 +963,12 @@ msgstr "Grau de confiança que você tem neste devedor"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_kanban_view
 msgid "Delete"
 msgstr "Excluir"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_delivery_carrier_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_delivery_carrier_id
+msgid "Delivery Method"
+msgstr "Método de Envio"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
@@ -3741,12 +3753,6 @@ msgstr "modelo"
 
 #~ msgid "Count Payment Token"
 #~ msgstr "Contagem de Token de Pagamento"
-
-#~ msgid "Default delivery method used in sales orders."
-#~ msgstr "Método de entrega padão usado nos pedidos de venda."
-
-#~ msgid "Delivery Method"
-#~ msgstr "Método de Envio"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canais)"

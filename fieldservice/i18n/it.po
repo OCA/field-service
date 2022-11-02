@@ -941,6 +941,12 @@ msgid "Default Team"
 msgstr "Squadra predefinita"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_delivery_carrier_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_delivery_carrier_id
+msgid "Default delivery method used in sales orders."
+msgstr "Metodo di consegna predefinito utilizzato negli ordini di vendita."
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
 msgid "Default duration in hours"
 msgstr "Durata predefinita in ore"
@@ -956,6 +962,12 @@ msgstr "Grado di affidabilità che ha questo debitore"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_kanban_view
 msgid "Delete"
 msgstr "Elimina"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_delivery_carrier_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_delivery_carrier_id
+msgid "Delivery Method"
+msgstr "Metodo di consegna"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
@@ -3742,12 +3754,6 @@ msgstr "modello"
 
 #~ msgid "Count Payment Token"
 #~ msgstr "Conteggio token pagamento"
-
-#~ msgid "Default delivery method used in sales orders."
-#~ msgstr "Metodo di consegna predefinito utilizzato negli ordini di vendita."
-
-#~ msgid "Delivery Method"
-#~ msgstr "Metodo di consegna"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Chi sta seguendo (canali)"
