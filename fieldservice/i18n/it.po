@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "N. appuntamenti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "N. opportunità"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1391,6 +1402,16 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Se spuntati, alcuni messaggi hanno un errore di consegna."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+"Se impostato, questa squadra vendite verrà utilizzata per le vendite e le "
+"assegnazioni relative a questo partner"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
 msgid ""
@@ -1609,6 +1630,12 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Ultima notifica contrassegnata come letta dal calendario di base"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -2014,6 +2041,12 @@ msgid "Me"
 msgstr "Me stesso"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Riunioni"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2081,6 +2114,15 @@ msgstr "Necessita programmazione"
 #, python-format
 msgid "New"
 msgstr "Nuovo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -2180,6 +2222,17 @@ msgstr "Orario di ufficio"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Operazioni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr "Opportunità"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr "Opportunità"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2558,6 +2611,12 @@ msgstr "Rotte"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Errore consegna SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr "Team di vendita"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -3109,6 +3168,24 @@ msgid "Website Link"
 msgstr "Link al sito web"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
@@ -3218,12 +3295,6 @@ msgstr "etichetta"
 msgid "template"
 msgstr "modello"
 
-#~ msgid "# Meetings"
-#~ msgstr "N. appuntamenti"
-
-#~ msgid "# Opportunities"
-#~ msgstr "N. opportunità"
-
 #~ msgid "# Tasks"
 #~ msgstr "N. lavori"
 
@@ -3322,13 +3393,6 @@ msgstr "modello"
 #~ msgid "Has relation with a partner in category"
 #~ msgstr "Ha relazione con un partner in categoria"
 
-#~ msgid ""
-#~ "If set, this Sales Team will be used for sales and assignments related to "
-#~ "this partner"
-#~ msgstr ""
-#~ "Se impostato, questa squadra vendite verrà utilizzata per le vendite e le "
-#~ "assegnazioni relative a questo partner"
-
 #~ msgid "Invoice"
 #~ msgstr "Fattura"
 
@@ -3345,9 +3409,6 @@ msgstr "modello"
 #~ msgid "Journal Items"
 #~ msgstr "Movimenti contabili"
 
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Ultima notifica contrassegnata come letta dal calendario di base"
-
 #~ msgid ""
 #~ "Last time the invoices & payments matching was performed for this "
 #~ "partner. It is set either if there's not at least an unreconciled debit "
@@ -3359,9 +3420,6 @@ msgstr "modello"
 
 #~ msgid "Latest Invoices & Payments Matching Date"
 #~ msgstr "Data ultima associazione fatture e pagamenti"
-
-#~ msgid "Meetings"
-#~ msgstr "Riunioni"
 
 #~ msgid "Message for Invoice"
 #~ msgstr "Messaggio per fattura"
@@ -3386,12 +3444,6 @@ msgstr "modello"
 
 #~ msgid "On-Time Delivery Rate"
 #~ msgstr "Tasso puntualità consegna"
-
-#~ msgid "Opportunities"
-#~ msgstr "Opportunità"
-
-#~ msgid "Opportunity"
-#~ msgstr "Opportunità"
 
 #~ msgid ""
 #~ "Over the past 12 months; the number of products received on time divided "
@@ -3448,9 +3500,6 @@ msgstr "modello"
 
 #~ msgid "Sales Order"
 #~ msgstr "Ordine di vendita"
-
-#~ msgid "Sales Team"
-#~ msgstr "Team di vendita"
 
 #~ msgid "Sales Warnings"
 #~ msgstr "Allerte vendite"
@@ -3582,12 +3631,6 @@ msgstr "modello"
 
 #~ msgid "Vendor Payment Terms"
 #~ msgstr "Termini pagamento fornitore"
-
-#~ msgid "Website Messages"
-#~ msgstr "Messaggi sito web"
-
-#~ msgid "Website communication history"
-#~ msgstr "Cronologia comunicazioni sito web"
 
 #~ msgid "tags"
 #~ msgstr "etichette"
