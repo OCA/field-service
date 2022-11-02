@@ -17,12 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice_activity
-#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_template__temp_activity_ids
-msgid "Activites"
-msgstr "Attività"
-
-#. module: fieldservice_activity
 #: model_terms:ir.ui.view,arch_db:fieldservice_activity.view_fsm_order_form_add_activity
 #: model_terms:ir.ui.view,arch_db:fieldservice_activity.view_fsm_template_form_add_activity
 msgid "Activities"
@@ -127,6 +122,11 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: fieldservice_activity
+#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
+msgid "Order Activities"
+msgstr ""
+
+#. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__ref
 msgid "Reference"
 msgstr "Riferimento"
@@ -158,6 +158,9 @@ msgid ""
 "You must complete activity '%s' before                     completing this "
 "order."
 msgstr "Devi completare l'attività '%s' prima di completare questo ordine."
+
+#~ msgid "Activites"
+#~ msgstr "Attività"
 
 #~ msgid "Order"
 #~ msgstr "Ordine"
