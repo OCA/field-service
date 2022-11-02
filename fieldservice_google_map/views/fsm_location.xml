@@ -4,7 +4,7 @@
         <field name="name">ir.ui.view.fsm.location.map</field>
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
-            <map
+            <google_map
                 class="o_res_partner_map"
                 library="geometry"
                 string="Map"
@@ -63,12 +63,12 @@
                         </div>
                     </t>
                 </templates>
-            </map>
+            </google_map>
         </field>
     </record>
 
     <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
-        <field name="view_mode">tree,form,map</field>
+        <field name="view_mode">tree,form,google_map</field>
     </record>
 
 </odoo>
