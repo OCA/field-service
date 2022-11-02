@@ -4,12 +4,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-12 04:46+0000\n"
-"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
+"PO-Revision-Date: 2023-01-18 11:48+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
-"Language: es_AR\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,38 +19,34 @@ msgstr ""
 #. module: fieldservice_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_fsm_order_form_inherit_sale
 msgid "<span class=\"o_stat_text\">Sale Order</span>"
-msgstr "<span class=\"o_stat_text\">Pedido de Venta</span>"
+msgstr "<span class=\"o_stat_text\">Ordine di vendita</span>"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__qty_delivered_method
 msgid ""
-"According to product configuration, the delivered quantity can be "
-"automatically computed by mechanism :\n"
+"According to product configuration, the delivered quantity can be automatically computed by mechanism :\n"
 "  - Manual: the quantity is set manually on the line\n"
-"  - Analytic From expenses: the quantity is the quantity sum from posted "
-"expenses\n"
-"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
-"this sale line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
-"Según la configuración del producto, la cantidad entregada se puede calcular "
-"automáticamente mediante un mecanismo:\n"
-"   - Manual: la cantidad se establece manualmente en la línea\n"
-"   - Analítica de gastos: la cantidad es la suma de la cantidad de los "
-"gastos contabilizados.\n"
-"   - Hoja de horas: la cantidad es la suma de horas registradas en tareas "
-"vinculadas a esta línea de venta\n"
-"   - Stock Moves: la cantidad proviene de pickings confirmados\n"
+"In accordo con la configurazione prodotto, la quantità consegnata può essere "
+"calcolata automaticamente dal metodo :\n"
+"  - Manuale: la quantità è impostata manualmente sulla riga\n"
+"  - Analitica dalle spese: è la somma delle quantità delle spese inserite\n"
+"  - Foglio ore: la quantità è la somma delle ore registrate sulle attività "
+"collegate a questa riga di vendita\n"
+"  - Movimenti di magazzino: la quantità deriva dai prelievi confermati\n"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__sale
 msgid "Create one FSM order per sale order"
-msgstr "Crea un pedido FSM por pedido de venta"
+msgstr "Crea un ordine FSM per ogni ordine di vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__line
 msgid "Create one FSM order per sale order line"
-msgstr "Crea un pedido FSM por línea de pedido de venta"
+msgstr "Crea un ordine FSM per ogni riga ordine di vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
@@ -58,42 +54,40 @@ msgstr "Crea un pedido FSM por línea de pedido de venta"
 msgid ""
 "Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the "
-"sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order "
-"line\n"
+"                - Per Sale Order: One FSM Order will be created for the sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order line\n"
 "                will be created."
 msgstr ""
-"Determina qué sucede tras la confirmación del pedido de venta:\n"
-"                 - Ninguno: nada adicional, comportamiento predeterminado.\n"
-"                 - Por orden de venta: se creará un pedido de FSM para la "
-"venta.\n"
-"                 - Por línea de orden de venta: un pedido de FSM para cada "
-"línea de pedido de venta\n"
-"                 se creará."
+"Determina cosa succede alla conferma di un ordine di vendita:\n"
+"                - Niente: niente in aggiunta, comportamento predefinito.\n"
+"                - Per ordine di vendita: verrà creato un ordine FSM per la "
+"vendita.\n"
+"                - Per riga ordine di vendita: verrà creato un ordine FSM per "
+"ogni\n"
+"                riga ordine di vendita."
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__no
 msgid "Don't create FSM order"
-msgstr "No crea pedido FSM"
+msgstr "Non creare ordine FSM"
 
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order.py:0
 #, python-format
 msgid "FSM Location must be set"
-msgstr "Ubicación FSM debe estar configurada"
+msgstr "La località FSM deve essere impostata"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_order_count
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_order_form_inherit_sale_fieldservice
 msgid "FSM Orders"
-msgstr "Pedidos FSM"
+msgstr "Ordini FSM"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_fsm_order
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__sale_order_line__qty_delivered_method__field_service
 msgid "Field Service Order"
-msgstr "Pedido de Servicio de Campo"
+msgstr "Ordini assistenza sul campo"
 
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order_line.py:0
@@ -103,7 +97,7 @@ msgid ""
 "                   # data-oe-model=fsm.order data-oe-id={}>{}</a>\n"
 "                "
 msgstr ""
-"Pedido de Servicio de Campo Creado ({}): <a href=\n"
+"Creato ordine assistenza sul campo ({}): <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id={}>{}</a>\n"
 "                "
 
@@ -115,7 +109,7 @@ msgid ""
 "                   # data-oe-model=fsm.order data-oe-id={}>{}</a>\n"
 "                "
 msgstr ""
-"Pedido de Servicio de Campo Creado: <a href=\n"
+"Creato ordine assistenza sul campo: <a href=\n"
 "                   # data-oe-model=fsm.order data-oe-id={}>{}</a>\n"
 "                "
 
@@ -123,112 +117,105 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_product__fsm_order_template_id
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_template__fsm_order_template_id
 msgid "Field Service Order Template"
-msgstr "Plantilla del Pedido de Servicio de Campo"
+msgstr "Modello ordine assistenza sul campo"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order_line__fsm_order_id
 msgid "Field Service Order generated by the sales order item"
-msgstr ""
-"Pedido de Servicio de Campo generado por el artículo de Pedido de Ventas"
+msgstr "Ordine assistenza sul campo generato da un elemento ordine di vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__service_type__field
 msgid "Field Service Orders"
-msgstr "Pedidos de Servicio de Campo"
+msgstr "Ordini assistenza sul campo"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_product__field_service_tracking
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_template__field_service_tracking
 msgid "Field Service Tracking"
-msgstr "Rastreo de Servicio de Campo"
+msgstr "Tracciamento assistenza sul campo"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_order_ids
 msgid "Field Service orders associated to this sale"
-msgstr "Pedidos de servicio de campo asociados a esta venta"
+msgstr "Ordini assistenza sul campo associati a questa vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__service_type
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__service_type
 msgid ""
-"Manually set quantities on order: Invoice based on the manually entered "
-"quantity, without creating an analytic account.\n"
-"Timesheets on contract: Invoice based on the tracked hours on the related "
-"timesheet.\n"
-"Create a task and track hours: Create a task on the sales order validation "
-"and track the work hours."
+"Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
+"Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
+"Create a task and track hours: Create a task on the sales order validation and track the work hours."
 msgstr ""
-"Cantidad establecida manualmente en el pedido: Factura basada en la cantidad "
-"ingresada manualmente, sin crear una cuenta analítica.\n"
-"Hojas de tiempo en el contrato: Factura basada en las horas registradas en "
-"la hoja de tiempo relacionada.\n"
-"Crea una tarea y realiza un seguimiento de las horas: Crea una tarea en la "
-"validación de la orden de venta y realiza un seguimiento de las horas de "
-"trabajo."
+"Imposta manualmente le quantità dell'ordine: fattura basata sulle quantità "
+"inserite manualmente, senza creare un conto analitico.\n"
+"Foglio ore a contratto: fattura basata sulle ore tracciate nel relativo "
+"foglio ore.\n"
+"Crea una attività e traccia le ore: crea una attività sulla validazione "
+"dell'ordine di vendita e traccia le ore lavorate."
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__qty_delivered_method
 msgid "Method to update delivered qty"
-msgstr "Método para actualizar las cantidades entregadas"
+msgstr "Metodo di aggiornamento della quantità consegnata"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__fsm_order_id
 msgid "Order"
-msgstr "Pedido"
+msgstr "Ordine"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_product_template
 msgid "Product Template"
-msgstr "Plantilla del Producto"
+msgstr "Modello prodotto"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order__fsm_location_id
 msgid "SO Lines generating a FSM order will be for this location"
-msgstr ""
-"Las líneas de Pedidos de Venta que generan una orden FSM serán para esta "
-"ubicación"
+msgstr "Righe ordine vendita che generano un ordine FSM per questa località"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_fsm_order__sale_id
 msgid "Sale"
-msgstr "Venta"
+msgstr "Vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_fsm_order__sale_line_id
 msgid "Sale Line"
-msgstr "Línea de Venta"
+msgstr "Riga vendita"
 
 #. module: fieldservice_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.fsm_location_form_view
 msgid "Sales"
-msgstr "Ventas"
+msgstr "Vendite"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de Venta"
+msgstr "Ordine di vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de Pedido de Venta"
+msgstr "Riga ordine vendita"
 
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/fsm_order.py:0
 #, python-format
 msgid "Sales Orders"
-msgstr "Pedidos de Ventas"
+msgstr "Ordini vendita"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__fsm_order_template_id
 #: model:ir.model.fields,help:fieldservice_sale.field_product_template__fsm_order_template_id
 msgid "Select the field service order template to be created"
-msgstr "Seleccione la plantilla de pedido de servicio de campo que se creará"
+msgstr "Selezionare il modello ordine assistenza sul campo da creare"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_location_id
 msgid "Service Location"
-msgstr "Ubicación de Servicio"
+msgstr "Località servizio"
 
 #. module: fieldservice_sale
 #: code:addons/fieldservice_sale/models/sale_order.py:0
@@ -238,7 +225,7 @@ msgid ""
 "                   # data-oe-model=sale.order data-oe-id={}>{}</a>\n"
 "                "
 msgstr ""
-"Este pedido ha sido creado desde: <a href=\n"
+"Questo ordine è stato creato da: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id={}>{}</a>\n"
 "                "
 
@@ -250,7 +237,7 @@ msgid ""
 "                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
 "                "
 msgstr ""
-"Este pedido ha sido creado: <a href=\n"
+"Questo ordine è stato creato da: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
 "                "
 
@@ -258,53 +245,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_product__service_type
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_template__service_type
 msgid "Track Service"
-msgstr "Rastrear Servicio"
-
-#~ msgid "Display Name"
-#~ msgstr "Mostrar Nombre"
-
-#, python-format
-#~ msgid ""
-#~ "Field Service Order Created (%s): <a href=\n"
-#~ "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-#~ msgstr ""
-#~ "Pedido de Servicio de Campo Creado (%s): <a href=\n"
-#~ "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-
-#, python-format
-#~ msgid ""
-#~ "Field Service Order Created: <a href=\n"
-#~ "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-#~ msgstr ""
-#~ "Pedido de Servicio de Campo Creado: <a href=\n"
-#~ "                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última Modificación el"
-
-#, python-format
-#~ msgid ""
-#~ "This order has been created from: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-#~ msgstr ""
-#~ "Este pedido fue creado desde: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a>\n"
-#~ "                "
-
-#, python-format
-#~ msgid ""
-#~ "This order has been created from: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
-#~ "                "
-#~ msgstr ""
-#~ "Este pedido fue creado desde: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
-#~ "                "
+msgstr "Traccia servizio"
