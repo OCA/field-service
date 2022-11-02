@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1394,6 +1405,14 @@ msgstr ""
 "destinataire."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
 msgid ""
@@ -1612,6 +1631,12 @@ msgstr "Dernière modification par"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -2022,6 +2047,12 @@ msgid "Me"
 msgstr "Moi"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2089,6 +2120,15 @@ msgstr "Besoin programmé"
 #, python-format
 msgid "New"
 msgstr "Nouveau"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -2188,6 +2228,17 @@ msgstr "Heures de bureau"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Opérations"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2566,6 +2617,12 @@ msgstr "Itinéraires"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Erreur d'envoi de SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -3112,6 +3169,24 @@ msgstr "Véhicules"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website
 msgid "Website Link"
 msgstr "Lien vers le site web"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
