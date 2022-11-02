@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
     def _link_pickings_to_fsm(self):
         for rec in self:
             # TODO: We may want to split the picking to have one picking
-            #  per FSM order
+            # per FSM order
             fsm_order = self.env["fsm.order"].search(
                 [
                     ("sale_id", "=", rec.id),
