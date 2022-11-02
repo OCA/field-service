@@ -23,9 +23,11 @@ class FSMStage(models.Model):
         "fsm_stage_id",
         "sub_stage_id",
         string="Potential Sub-Statuses",
+        compute="_compute_sub_stage_ids",
     )
 
-    @api.onchange("sub_stage_id")
-    def onchange_sub_stage_id(self):
-        if self.sub_stage_id:
-            self.sub_stage_ids = [(6, 0, [self.sub_stage_id.id])]
+    @api.depends("sub_stage_id")
+    def _compute_sub_stage_ids(self):
+        for record in self:
+            if record.sub_stage_id:
+                record.sub_stage_ids = [(6, 0, [record.sub_stage_id.id])]

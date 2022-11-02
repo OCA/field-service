@@ -10,6 +10,10 @@ class FSMStageStatus(models.Model):
 
     name = fields.Char(required=True)
 
+    _sql_constraints = [
+        ("name_uniq", "unique (name)", "Sub-status name already exists!"),
+    ]
+
     @api.model
     def _search(
         self,
