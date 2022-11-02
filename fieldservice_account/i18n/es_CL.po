@@ -17,10 +17,15 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_account
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_count
+msgid "FSM Order Count"
+msgstr "Cuenta Pedidos FSM"
+
+#. module: fieldservice_account
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_bank_statement_line__fsm_order_count
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move__fsm_order_count
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move_line__fsm_order_ids
-#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_count
+#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.account_invoice_form
 #: model_terms:ir.ui.view,arch_db:fieldservice_account.invoice_search_view_fso
 msgid "FSM Orders"
@@ -39,7 +44,6 @@ msgstr "Pedidos de Servicio de Campo"
 #. module: fieldservice_account
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_bank_statement_line__fsm_order_ids
 #: model:ir.model.fields,field_description:fieldservice_account.field_account_move__fsm_order_ids
-#: model:ir.model.fields,field_description:fieldservice_account.field_account_payment__fsm_order_ids
 msgid "Field Service orders associated to this invoice"
 msgstr ""
 
@@ -72,9 +76,6 @@ msgstr ""
 #: model:ir.model,name:fieldservice_account.model_account_move_line
 msgid "Journal Item"
 msgstr ""
-
-#~ msgid "FSM Order Count"
-#~ msgstr "Cuenta Pedidos FSM"
 
 #~ msgid "FSM Order"
 #~ msgstr "Pedido FSM"
