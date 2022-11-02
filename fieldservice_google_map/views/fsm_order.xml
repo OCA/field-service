@@ -1,0 +1,73 @@
+<odoo>
+
+    <record id="ir_ui_view_fsm_order_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.order.map</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <google_map
+                class="o_res_partner_map"
+                library="geometry"
+                string="Map"
+                lat="location_latitude"
+                lng="location_longitude"
+                color="marker_color"
+            >
+                 <field name="name" select="1" />
+                 <field name="display_name" />
+                 <field name="type" />
+                 <field name="location_id" />
+                 <field name="person_id" />
+                 <field name="priority" />
+                 <field name="country_name" />
+                 <field name='stage_name' />
+                 <field name="location_latitude" />
+                 <field name="location_longitude" />
+                 <field name="stage_id" />
+                 <field name="marker_color" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="oe_kanban_details">
+                                <strong
+                                    class="o_kanban_record_title oe_partner_heading"
+                                >
+                                    <field name="display_name" />
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <b>Location: </b><field name="location_id" />
+                                    </li>
+                                    <li t-if="record.type.raw_value">
+                                        <b>Type: </b><field name="type" />
+                                    </li>
+                                    <li t-if="record.person_id.raw_value">
+                                        <b>Assigned To: </b><field name="person_id" />
+                                    </li>
+                                    <li t-if="record.priority.raw_value">
+                                        <b>Priority: </b><field
+                                            name="priority"
+                                            widget="priority"
+                                        />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </google_map>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">kanban,tree,google_map,calendar,form</field>
+        <field name="search_view_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Order.
+            </p>
+        </field>
+    </record>
+
+</odoo>
