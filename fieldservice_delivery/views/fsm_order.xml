@@ -1,0 +1,18 @@
+<odoo>
+
+    <!-- Field Service / Orders -->
+    <record id="view_fsm_order_form_delivery" model="ir.ui.view">
+        <field name="name">fsm.order.form.stock</field>
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_stock.view_fsm_order_form_inherit_stock"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='stock-right']" position="inside">
+                <field name="carrier_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
