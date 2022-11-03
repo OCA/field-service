@@ -13,7 +13,13 @@ class FSMRouteDayRoute(models.Model):
     _description = "Field Service Route Dayroute"
 
     name = fields.Char(required=True, copy=False, default=lambda self: _("New"))
-    person_id = fields.Many2one(comodel_name="fsm.person", string="Person")
+    person_id = fields.Many2one(
+        comodel_name="fsm.person",
+        string="Person",
+        compute="_compute_person_id",
+        store=True,
+        readonly=False,
+    )
     route_id = fields.Many2one(comodel_name="fsm.route", string="Route")
     date = fields.Date(required=True)
     team_id = fields.Many2one(
@@ -34,7 +40,12 @@ class FSMRouteDayRoute(models.Model):
     last_location_id = fields.Many2one(
         comodel_name="fsm.location", string="Last Location"
     )
-    date_start_planned = fields.Datetime(string="Planned Start Time")
+    date_start_planned = fields.Datetime(
+        string="Planned Start Time",
+        compute="_compute_date_start_planned",
+        store=True,
+        readonly=False,
+    )
     start_location_id = fields.Many2one(
         comodel_name="fsm.location", string="Start Location"
     )
@@ -83,39 +94,49 @@ class FSMRouteDayRoute(models.Model):
             rec.order_count = len(rec.order_ids)
             rec.order_remaining = rec.max_order - rec.order_count
 
-    @api.onchange("route_id")
-    def _onchange_person(self):
-        self.person_id = self.route_id.fsm_person_id.id
+    @api.depends("route_id", "route_id.fsm_person_id")
+    def _compute_person_id(self):
+        for rec in self:
+            if not rec.route_id.fsm_person_id:
+                rec.person_id = None
+                continue
 
-    @api.onchange("date")
-    def _onchange_date(self):
-        if self.date:
+            rec.person_id = rec.route_id.fsm_person_id
+
+    @api.depends("date")
+    def _compute_date_start_planned(self):
+        for rec in self:
+            if not rec.date:
+                rec.date_start_planned = None
+                continue
+
             # TODO: Use the worker timezone and working schedule
-            self.date_start_planned = datetime.combine(
-                self.date, datetime.strptime("8:00:00", "%H:%M:%S").time()
+            rec.date_start_planned = datetime.combine(
+                rec.date, datetime.strptime("8:00:00", "%H:%M:%S").time()
             )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("New")) == _("New"):
-            vals["name"] = self.env["ir.sequence"].next_by_code(
-                "fsm.route.dayroute"
-            ) or _("New")
-        if not vals.get("date_start_planned", False) and vals.get("date", False):
-            # TODO: Use the worker timezone and working schedule
-            date = vals.get("date")
-            if type(vals.get("date")) == str:
-                date = datetime.strptime(
-                    vals.get("date"), DEFAULT_SERVER_DATE_FORMAT
-                ).date()
-            vals.update(
-                {
-                    "date_start_planned": datetime.combine(
-                        date, datetime.strptime("8:00:00", "%H:%M:%S").time()
-                    )
-                }
-            )
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "fsm.route.dayroute"
+                ) or _("New")
+            if not vals.get("date_start_planned", False) and vals.get("date", False):
+                # TODO: Use the worker timezone and working schedule
+                date = vals.get("date")
+                if type(vals.get("date")) == str:
+                    date = datetime.strptime(
+                        vals.get("date"), DEFAULT_SERVER_DATE_FORMAT
+                    ).date()
+                vals.update(
+                    {
+                        "date_start_planned": datetime.combine(
+                            date, datetime.strptime("8:00:00", "%H:%M:%S").time()
+                        )
+                    }
+                )
+        return super().create(vals_list)
 
     @api.constrains("date", "route_id")
     def check_day(self):
