@@ -17,19 +17,18 @@ class FSMEquipment(models.Model):
 
     @api.depends("product_id", "lot_id")
     def _compute_current_stock_loc_id(self):
+        stock_quant_obj = self.env["stock.quant"]
         for equipment in self:
-            quants = self.env["stock.quant"].search(
+            quants = stock_quant_obj.search(
                 [("lot_id", "=", equipment.lot_id.id)], order="id desc", limit=1
             )
-            if quants and quants.location_id:
-                equipment.current_stock_location_id = quants.location_id.id
-            else:
-                equipment.current_stock_location_id = False
+            equipment.current_stock_location_id = (
+                quants.location_id and quants.location_id.id or False
+            )
 
     @api.onchange("product_id")
     def _onchange_product(self):
-        for equipment in self:
-            equipment.current_stock_location_id = False
+        self.current_stock_location_id = False
 
     @api.model
     def create(self, vals):
@@ -39,10 +38,8 @@ class FSMEquipment(models.Model):
         return res
 
     def write(self, vals):
+        res = super(FSMEquipment, self).write(vals)
         for equipment in self:
-            prev_lot = equipment.lot_id
-            res = super(FSMEquipment, equipment).write(vals)
             if "lot_id" in vals:
-                prev_lot.fsm_equipment_id = False
                 equipment.lot_id.fsm_equipment_id = equipment.id
         return res
