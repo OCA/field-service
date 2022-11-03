@@ -6,7 +6,7 @@
     "summary": "This module displays map views on the order and location using"
     " Google Map View module.",
     "license": "AGPL-3",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
