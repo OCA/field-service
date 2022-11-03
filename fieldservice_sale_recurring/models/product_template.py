@@ -22,4 +22,4 @@ class ProductTemplate(models.Model):
         if self.field_service_tracking != "recurring":
             self.fsm_recurring_template_id = False
         else:
-            super()._onchange_field_service_tracking()
+            return super()._onchange_field_service_tracking()

@@ -48,23 +48,19 @@ class SaleOrderLine(models.Model):
             fsm_recurring.action_start()
             so_line.write({"fsm_recurring_id": fsm_recurring.id})
             # post message on SO
-            msg_body = (
-                _(
-                    """Field Service recurring Created (%s): <a href=
-                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>
+            msg_body = _(
+                """Field Service recurring Created ({}): <a href=
+                   # data-oe-model=fsm.recurring data-oe-id={}>{}</a>
                 """
-                )
-                % (so_line.product_id.name, fsm_recurring.id, fsm_recurring.name)
-            )
+            ).format(so_line.product_id.name, fsm_recurring.id, fsm_recurring.name)
             so_line.order_id.message_post(body=msg_body)
             # post message on fsm_recurring
-            fsm_recurring_msg = (
-                _(
-                    """This recurring has been created from: <a href=
-                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)
+            fsm_recurring_msg = _(
+                """This recurring has been created from: <a href=
+                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})
                 """
-                )
-                % (so_line.order_id.id, so_line.order_id.name, so_line.product_id.name)
+            ).format(
+                so_line.order_id.id, so_line.order_id.name, so_line.product_id.name
             )
             fsm_recurring.message_post(body=fsm_recurring_msg)
             result[so_line.id] = fsm_recurring
