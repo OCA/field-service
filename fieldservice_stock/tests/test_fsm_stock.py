@@ -120,7 +120,7 @@ class TestFSMStockCommon(TransactionCase):
             {
                 "name": "Rule Supplier",
                 "route_id": warehouse.reception_route_id.id,
-                "location_id": warehouse.lot_stock_id.id,
+                "location_dest_id": warehouse.lot_stock_id.id,
                 "location_src_id": self.env.ref("stock.stock_location_suppliers").id,
                 "action": "pull",
                 "delay": 9.0,
