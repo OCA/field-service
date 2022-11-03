@@ -10,13 +10,15 @@ class FSMLocation(models.Model):
     inventory_location_id = fields.Many2one(
         "stock.location",
         string="Inventory Location",
+        compute="_compute_inventory_location_id",
+        store=True,
         required=True,
+        recursive=True,
         default=lambda self: self.env.ref("stock.stock_location_customers"),
     )
     shipping_address_id = fields.Many2one("res.partner", string="Shipping Location")
 
-    @api.onchange("fsm_parent_id")
-    def _onchange_fsm_parent_id(self):
-        res = super(FSMLocation, self)._onchange_fsm_parent_id()
-        self.inventory_location_id = self.fsm_parent_id.inventory_location_id.id
-        return res
+    @api.depends("fsm_parent_id", "fsm_parent_id.inventory_location_id")
+    def _compute_inventory_location_id(self):
+        for rec in self:
+            rec.inventory_location_id = rec.fsm_parent_id.inventory_location_id
