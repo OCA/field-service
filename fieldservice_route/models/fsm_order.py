@@ -80,14 +80,16 @@ class FSMOrder(models.Model):
             self.dayroute_id.unlink()
         return vals
 
-    @api.model
-    def create(self, vals):
-        location = self.env["fsm.location"].browse(vals.get("location_id"))
-        if not vals.get("fsm_route_id"):
-            vals.update({"fsm_route_id": location.fsm_route_id.id})
-        if vals.get("person_id") and vals.get("scheduled_date_start"):
-            vals = self._manage_fsm_route(vals)
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("fsm_route_id") and vals.get("location_id"):
+                location = self.env["fsm.location"].browse(vals["location_id"])
+                vals.update({"fsm_route_id": location.fsm_route_id.id})
+
+            if vals.get("person_id") and vals.get("scheduled_date_start"):
+                vals = self._manage_fsm_route(vals)
+        return super().create(vals_list)
 
     def write(self, vals):
         for rec in self:
