@@ -16,7 +16,9 @@ def validate_stage_fields(records):
             if not values[0][name]:
                 raise ValidationError(
                     _(
-                        'Cannot move to stage "%s" '
-                        'until the "%s" field is set.' % (stage.name, name)
+                        'Cannot move to stage "%(stage_name)s" '
+                        'until the "%(name)s" field is set.',
+                        stage_name=stage.name,
+                        name=name,
                     )
                 )
