@@ -101,7 +101,7 @@ class ResPartnerRelationAll(models.AbstractModel):
             if left_to_test.company_type != "person":
                 raise ValidationError(_("Left Partner not type Person"))
         if left_cat == "c":
-            if left_to_test.company_type != "compnay":
+            if left_to_test.company_type != "company":
                 raise ValidationError(_("Left Partner not type Company"))
         if left_cat == "fsm-location":
             if not left_to_test.fsm_location:
@@ -111,7 +111,7 @@ class ResPartnerRelationAll(models.AbstractModel):
             if right_to_test.company_type != "person":
                 raise ValidationError(_("Right Partner not type Person"))
         if right_cat == "c":
-            if right_to_test.company_type != "compnay":
+            if right_to_test.company_type != "company":
                 raise ValidationError(_("Right Partner not type Company"))
         if right_cat == "fsm-location":
             if not right_to_test.fsm_location:
