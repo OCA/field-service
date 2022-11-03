@@ -19,6 +19,7 @@ class StockMove(models.Model):
 
     def _action_done(self, cancel_backorder=False):
         res = super()._action_done(cancel_backorder)
+        fsm_equipment_obj = self.env["fsm.equipment"]
         for rec in self:
             if (
                 rec.state == "done"
@@ -26,6 +27,7 @@ class StockMove(models.Model):
                 and rec.product_tmpl_id.create_fsm_equipment
             ):
                 for line in rec.move_line_ids:
-                    vals = self.prepare_equipment_values(line)
-                    line.lot_id.fsm_equipment_id = rec.env["fsm.equipment"].create(vals)
+                    line.lot_id.fsm_equipment_id = fsm_equipment_obj.create(
+                        self.prepare_equipment_values(line)
+                    )
         return res
