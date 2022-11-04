@@ -862,6 +862,12 @@ msgid "Current Location"
 msgstr "Lieu actuel"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_customer
 msgid "Customers"
@@ -2059,6 +2065,12 @@ msgid "Message Delivery error"
 msgstr "Erreur de livraison du message"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2468,6 +2480,12 @@ msgid "Previous Stage"
 msgstr "Etape précédente"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_id
 msgid "Primary Assignment"
@@ -2702,6 +2720,19 @@ msgstr ""
 "                    Technicien du service de terrain ou Localisation."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+"En sélectionnant l'option \"Warning\" (Avertissement), l'utilisateur sera "
+"averti par le message, en sélectionnant \"Blocking Message\" (Message "
+"bloquant), une exception sera levée avec le message et le flux sera bloqué. "
+"Le message doit être écrit dans le champ suivant."
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__self
 msgid "Self"
@@ -2848,6 +2879,12 @@ msgstr ""
 "Planifié : Activités futures."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street
@@ -2988,6 +3025,20 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
 msgid "The worker is already linked to this location."
 msgstr "Le technicien est déjà lié à ce lieu."
@@ -3001,6 +3052,16 @@ msgid ""
 msgstr ""
 "Ce champ est utilisé pour effectuer une recherche sur l'adresse e-mail, car "
 "le champ e-mail primaire peut contenir plus qu'une simple adresse e-mail."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the "
+"current partner"
+msgstr ""
+"Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les "
+"ventes au partenaire actuel"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
@@ -3160,6 +3221,12 @@ msgstr "Utilisateurs"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Véhicules"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3383,21 +3450,8 @@ msgstr "Modèle"
 #~ msgid "Payable Limit"
 #~ msgstr "Limite de paiement"
 
-#~ msgid "Pricelist"
-#~ msgstr "Liste de prix"
-
 #~ msgid "Scheduled duration"
 #~ msgstr "Durée prévue"
-
-#~ msgid ""
-#~ "Selecting the \"Warning\" option will notify user with the message, "
-#~ "Selecting \"Blocking Message\" will throw an exception with the message "
-#~ "and block the flow. The Message has to be written in the next field."
-#~ msgstr ""
-#~ "En sélectionnant l'option \"Warning\" (Avertissement), l'utilisateur sera "
-#~ "averti par le message, en sélectionnant \"Blocking Message\" (Message "
-#~ "bloquant), une exception sera levée avec le message et le flux sera "
-#~ "bloqué. Le message doit être écrit dans le champ suivant."
 
 #~ msgid "Supplier Rank"
 #~ msgstr "Classement des fournisseurs"
@@ -3445,13 +3499,6 @@ msgstr "Modèle"
 #~ msgstr ""
 #~ "Ce délai de paiement sera utilisé à la place du délai par défaut pour les "
 #~ "commandes de vente et les factures des clients"
-
-#~ msgid ""
-#~ "This pricelist will be used, instead of the default one, for sales to the "
-#~ "current partner"
-#~ msgstr ""
-#~ "Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les "
-#~ "ventes au partenaire actuel"
 
 #~ msgid "Total Invoiced"
 #~ msgstr "Total facturé"
