@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-11-26 17:58+0000\n"
+"PO-Revision-Date: 2022-11-04 14:45+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
@@ -38,7 +38,7 @@ msgstr "# Service-Orte"
 #. module: fieldservice
 #: model:ir.actions.report,print_report_name:fieldservice.action_report_fsm_order
 msgid "'Service Order - %s' % (object.name)"
-msgstr ""
+msgstr "'Service-Auftrag - %s' % (object.name)"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__type
@@ -91,12 +91,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "<strong>The contact linked to this user is still active</strong>"
 msgstr ""
+"<strong>Der Partner, der zu dem Benutzer gehört, ist noch aktiv.</strong>"
 
 #. module: fieldservice
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 #, python-format
 msgid "A Field Service Location related to that partner already exists."
-msgstr ""
+msgstr "Es gibt für diesen Partner bereits einen Field-Service-Lagerort."
 
 #. module: fieldservice
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
@@ -124,9 +125,8 @@ msgstr "Aktiv"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active_lang_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_lang_count
-#, fuzzy
 msgid "Active Lang Count"
-msgstr "Anhangsanzahl"
+msgstr "Anzahl aktiver Sprachen"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_ids
@@ -203,7 +203,7 @@ msgstr "Hier können Kategorien für Service-Mitarbeiter hinzugefügt werden."
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Add a description for the order..."
-msgstr ""
+msgstr "Eine Beschreibung für den Auftrag hinzufügen..."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
@@ -263,16 +263,15 @@ msgstr "Verwendung von Google Maps für Field-Service erlauben"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-#, fuzzy
 msgid "Allow Field Service Web Timeline View"
-msgstr "Verwendung von Google Maps für Field-Service erlauben"
+msgstr "Verwendung der Timeline-View für Field-Service erlauben"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
 msgid "Archived"
-msgstr ""
+msgstr "Archiviert"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__location_id
@@ -375,7 +374,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_ids
 msgid "Banks"
-msgstr ""
+msgstr "Banken"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__barcode
@@ -387,7 +386,7 @@ msgstr "Strichcode"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_blacklisted
 msgid "Blacklist"
-msgstr ""
+msgstr "Blacklist"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__mobile_blacklisted
@@ -699,12 +698,12 @@ msgstr "Kontakt"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakte"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_count
 msgid "Contacts Count"
-msgstr ""
+msgstr "Anzahl der Kontakte"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
@@ -740,7 +739,7 @@ msgstr "Land"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_code
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_code
 msgid "Country Code"
-msgstr ""
+msgstr "Ländercode"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
