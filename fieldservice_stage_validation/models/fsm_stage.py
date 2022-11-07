@@ -21,9 +21,9 @@ class FSMStage(models.Model):
 
     @api.depends("stage_type")
     def _compute_stage_model(self):
-        model_id = False
         Model = self.env["ir.model"]
         for rec in self:
+            model_id = False
             if rec.stage_type:
                 model_string = "fsm." + rec.stage_type
                 model_id = Model.search([("model", "=", model_string)], limit=1).id
