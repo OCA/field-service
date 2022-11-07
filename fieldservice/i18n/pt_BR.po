@@ -856,6 +856,12 @@ msgid "Current Location"
 msgstr "Localização Atual"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Local do Cliente"
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_customer
 msgid "Customers"
@@ -2045,6 +2051,12 @@ msgid "Message Delivery error"
 msgstr "Erro de entrega de Mensagem"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Mensagem para Separação de Estoque"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2454,6 +2466,12 @@ msgid "Previous Stage"
 msgstr "Estágio Anterior"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
+msgstr "Lista de Preço"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_id
 msgid "Primary Assignment"
@@ -2687,6 +2705,18 @@ msgstr ""
 "                    ou Local de Serviço de Campo."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+"Selecionando a opção de \"Aviso\" irá notificar o usuário com a mensagem, "
+"marcar \"Mensagem de Bloqueio\" irá lançar uma exceção com a mensagem e "
+"bloquear o fluxo. A mensagem tem de ser escrita no campo a seguir."
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__self
 msgid "Self"
@@ -2833,6 +2863,12 @@ msgstr ""
 "Planejado: Atividades futuras."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr "Separação de Estoque"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street
@@ -2973,6 +3009,23 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"O local de estoque usado como destino ao enviar mercadorias para este "
+"contato."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"O local de estoque usado como fonte ao receber mercadorias deste contato."
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
 msgid "The worker is already linked to this location."
 msgstr "O trabalhador já está vinculado a este local."
@@ -2986,6 +3039,16 @@ msgid ""
 msgstr ""
 "Este campo é usado para pesquisar um endereço de e-mail, pois o campo de e-"
 "mail principal pode conter mais do que apenas um endereço de e-mail."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the "
+"current partner"
+msgstr ""
+"Esta lista de preços será usada para vendas ao parceiro atual, em vez da "
+"lista atual"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
@@ -3145,6 +3208,12 @@ msgstr "Usuários"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Veículos"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Localização de Fornecedor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3337,9 +3406,6 @@ msgstr "modelo"
 #~ msgid "Currency"
 #~ msgstr "Moeda"
 
-#~ msgid "Customer Location"
-#~ msgstr "Local do Cliente"
-
 #~ msgid "Customer Payment Terms"
 #~ msgstr "Condições de Pagamento do Cliente"
 
@@ -3416,9 +3482,6 @@ msgstr "modelo"
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensagem para Pedido de Vendas"
 
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Mensagem para Separação de Estoque"
-
 #~ msgid ""
 #~ "Number of days to send reminder email before the promised receipt date"
 #~ msgstr ""
@@ -3460,9 +3523,6 @@ msgstr "modelo"
 #~ "preferenciais para registrar pagamentos em massa. Casos de uso: criar "
 #~ "arquivos bancários para transferências em lote, verificar execuções."
 
-#~ msgid "Pricelist"
-#~ msgstr "Lista de Preço"
-
 #~ msgid "Purchase Lines"
 #~ msgstr "Linhas do pedido"
 
@@ -3493,18 +3553,6 @@ msgstr "modelo"
 #~ msgid "Scheduled duration"
 #~ msgstr "Duração programada"
 
-#~ msgid ""
-#~ "Selecting the \"Warning\" option will notify user with the message, "
-#~ "Selecting \"Blocking Message\" will throw an exception with the message "
-#~ "and block the flow. The Message has to be written in the next field."
-#~ msgstr ""
-#~ "Selecionando a opção de \"Aviso\" irá notificar o usuário com a mensagem, "
-#~ "marcar \"Mensagem de Bloqueio\" irá lançar uma exceção com a mensagem e "
-#~ "bloquear o fluxo. A mensagem tem de ser escrita no campo a seguir."
-
-#~ msgid "Stock Picking"
-#~ msgstr "Separação de Estoque"
-
 #~ msgid "Supplier Currency"
 #~ msgstr "Moeda do Fornecedor"
 
@@ -3529,17 +3577,6 @@ msgstr "modelo"
 #~ msgstr ""
 #~ "O parceiro tem pelo menos um débito e um crédito não reconciliados desde "
 #~ "a última vez em que a conciliação de faturas e pagamentos foi realizada."
-
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como destino ao enviar mercadorias para este "
-#~ "contato."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como fonte ao receber mercadorias deste contato."
 
 #~ msgid ""
 #~ "This account will be used instead of the default one as the payable "
@@ -3576,13 +3613,6 @@ msgstr "modelo"
 #~ "A condição de pagamento será usada ao invés da padrão para pedidos de "
 #~ "venda e faturas de cliente"
 
-#~ msgid ""
-#~ "This pricelist will be used, instead of the default one, for sales to the "
-#~ "current partner"
-#~ msgstr ""
-#~ "Esta lista de preços será usada para vendas ao parceiro atual, em vez da "
-#~ "lista atual"
-
 #~ msgid "Total Invoiced"
 #~ msgstr "Total Faturado"
 
@@ -3606,9 +3636,6 @@ msgstr "modelo"
 
 #~ msgid "Utility field to express amount currency"
 #~ msgstr "Campo Utilitário para expressar o valor da moeda"
-
-#~ msgid "Vendor Location"
-#~ msgstr "Localização de Fornecedor"
 
 #~ msgid "Vendor Payment Terms"
 #~ msgstr "Termos de Pagamento do Fornecedor"
