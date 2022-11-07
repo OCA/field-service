@@ -269,6 +269,12 @@ msgid "All Orders"
 msgstr "Tutti gli ordini"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_all_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_all_ids
+msgid "All relations with current partner"
+msgstr "Tutte le relazioni il partner corrente"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
@@ -1418,6 +1424,24 @@ msgstr "Ha un messaggio"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
 msgid "Has Unreconciled Entries"
 msgstr "Ha entrate non riconciliate"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_type_id
+msgid "Has relation of type"
+msgstr "Ha relazione di tipo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_id
+msgid "Has relation with"
+msgstr "Ha relazione con"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_partner_category_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_partner_category_id
+msgid "Has relation with a partner in category"
+msgstr "Ha relazione con un partner in categoria"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
@@ -2795,6 +2819,18 @@ msgid "Related employees based on their private address"
 msgstr "Dipendenti collegati in base al loro indirizzo privato"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__relation_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__relation_count
+msgid "Relation Count"
+msgstr "Conteggio relazione"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__search_relation_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__search_relation_date
+msgid "Relation valid"
+msgstr "Validità relazione"
+
+#. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
 msgstr "Rapporto"
@@ -3749,29 +3785,11 @@ msgstr "modello"
 #~ msgid "Agreements Count"
 #~ msgstr "Numero acordi"
 
-#~ msgid "All relations with current partner"
-#~ msgstr "Tutte le relazioni il partner corrente"
-
 #~ msgid "Count Payment Token"
 #~ msgstr "Conteggio token pagamento"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Chi sta seguendo (canali)"
-
-#~ msgid "Has relation of type"
-#~ msgstr "Ha relazione di tipo"
-
-#~ msgid "Has relation with"
-#~ msgstr "Ha relazione con"
-
-#~ msgid "Has relation with a partner in category"
-#~ msgstr "Ha relazione con un partner in categoria"
-
-#~ msgid "Relation Count"
-#~ msgstr "Conteggio relazione"
-
-#~ msgid "Relation valid"
-#~ msgstr "Validità relazione"
 
 #~ msgid "Scheduled duration"
 #~ msgstr "Durata pianificata"
