@@ -1,0 +1,310 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fieldservice_partner_multi_relation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-06-17 22:19+0000\n"
+"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: fieldservice_partner_multi_relation
+#: model:ir.model,name:fieldservice_partner_multi_relation.model_res_partner_relation_all
+msgid "All (non-inverse + inverse) relations between partners"
+msgstr "Todas as relações (não inversas + inversas) entre parceiros"
+
+#. module: fieldservice_partner_multi_relation
+#: model:ir.model,name:fieldservice_partner_multi_relation.model_res_partner
+msgid "Contact"
+msgstr "Contato"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_type.py:16
+#, python-format
+msgid "FSM Location"
+msgstr "Localização do FSM (Field Service Management)"
+
+#. module: fieldservice_partner_multi_relation
+#: model:ir.model,name:fieldservice_partner_multi_relation.model_fsm_location
+msgid "Field Service Location"
+msgstr "Local do Serviço de Campo"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:102
+#, python-format
+msgid "Left Partner not type Company"
+msgstr "Parceiro à Esquerda, não Tipo Empresa"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:105
+#, python-format
+msgid "Left Partner not type FSM Location"
+msgstr ""
+"Parceiro à Esquerda, não Tipo Localização no FSM (Field Service Management)"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:99
+#, python-format
+msgid "Left Partner not type Person"
+msgstr "Parceiro à Esquerda, não Tipo Pessoa"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_type.py:14
+#, python-format
+msgid "Organisation"
+msgstr "Organização"
+
+#. module: fieldservice_partner_multi_relation
+#: model:ir.model,name:fieldservice_partner_multi_relation.model_res_partner_relation_type
+msgid "Partner Relation Type"
+msgstr "Tipo de Relação do Parceiro"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_type.py:15
+#, python-format
+msgid "Person"
+msgstr "Pessoa"
+
+#. module: fieldservice_partner_multi_relation
+#: model:ir.model.fields,field_description:fieldservice_partner_multi_relation.field_fsm_location__rel_count
+#: model:ir.ui.menu,name:fieldservice_partner_multi_relation.reporting
+#: model_terms:ir.ui.view,arch_db:fieldservice_partner_multi_relation.fsm_location_relations_form_view
+msgid "Relations"
+msgstr "Relações"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:112
+#, python-format
+msgid "Right Partner not type Company"
+msgstr "Parceiro à Direita, não Tipo Empresa"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:116
+#, python-format
+msgid "Right Partner not type FSM Location"
+msgstr ""
+"Parceiro à Direita, não Tipo Localização no FSM (Field Service Management)"
+
+#. module: fieldservice_partner_multi_relation
+#: code:addons/fieldservice_partner_multi_relation/models/res_partner_relation_all.py:109
+#, python-format
+msgid "Right Partner not type Person"
+msgstr "Parceiro à Direita, não Tipo Pessoa"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_tenant_org
+msgid "[C+L] is a tenant of"
+msgstr "[C+L] é um inquilino de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_employee_org
+msgid "[C+L] is an employee at"
+msgstr "[C+L] é um funcionário da"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_primary_contact_org
+msgid "[C+L] is the primary contact of"
+msgstr "[C+L] é o contato primário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_secondary_contact_org
+msgid "[C+L] is the secondary contact of"
+msgstr "[C+L] é o contato secundário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_manages_org
+msgid "[C+L] manages"
+msgstr "[C+L] gerencias"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_owns_org
+msgid "[C+L] owns"
+msgstr "[C+L] donos"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_pays_invoices_org
+msgid "[C+L] pays the invoices for"
+msgstr "[C+L] paga as faturas para"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_org
+msgid "[L+C] employs"
+msgstr "[L + C] emprega"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_org
+msgid "[L+C] gets the invoices paid by"
+msgstr "[L+C] recebe as faturas pagas por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_manages_org
+msgid "[L+C] is managed by"
+msgstr "[L+C] é gerenciado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_tenant_org
+msgid "[L+C] is occupied by"
+msgstr "[L+C] é ocupado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_owns_org
+msgid "[L+C] is owned by"
+msgstr "[L+C] é propriedade de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_org
+msgid "[L+C] whose primary contact"
+msgstr "[L + C] cujo contato principal"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_org
+msgid "[L+C] whose secondary contact"
+msgstr "[L + C] cujo contato secundário"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_loc
+msgid "[L+L] employs"
+msgstr "[L + L] emprega"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_loc
+msgid "[L+L] gets the invoices paid by"
+msgstr "[L+L] recebe as faturas pagas por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_tenant_loc
+msgid "[L+L] is a tenant of"
+msgstr "[L+L] é um inquilino de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_employee_loc
+msgid "[L+L] is an employee at"
+msgstr "[L+L] é um funcionário da"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_manages_loc
+msgid "[L+L] is managed by"
+msgstr "[L+L] é gerenciado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_tenant_loc
+msgid "[L+L] is occupied by"
+msgstr "[L+L] é ocupado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_owns_loc
+msgid "[L+L] is owned by"
+msgstr "[L+L] é propriedade de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_primary_contact_loc
+msgid "[L+L] is the primary contact of"
+msgstr "[L+L] é o contato primário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_secondary_contact_loc
+msgid "[L+L] is the secondary contact of"
+msgstr "[L+L] é o contato secundário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_manages_loc
+msgid "[L+L] manages"
+msgstr "[L+L] gerencias"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_owns_loc
+msgid "[L+L] owns"
+msgstr "[L+L] donos"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_pays_invoices_loc
+msgid "[L+L] pays the invoices for"
+msgstr "[L+L] paga as faturas para"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_loc
+msgid "[L+L] whose primary contact"
+msgstr "[L + L] cujo contato principal"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_loc
+msgid "[L+L] whose secondary contact"
+msgstr "[L + L] cujo contato secundário"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_employee_per
+msgid "[L+P] employs"
+msgstr "[L + P] emprega"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_pays_invoices_per
+msgid "[L+P] gets the invoices paid by"
+msgstr "[L+P] recebe as faturas pagas por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_manages_per
+msgid "[L+P] is managed by"
+msgstr "[L+P] é gerenciado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_tenant_per
+msgid "[L+P] is occupied by"
+msgstr "[L+P] é ocupado por"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_owns_per
+msgid "[L+P] is owned by"
+msgstr "[L+P] é propriedade de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_primary_contact_per
+msgid "[L+P] whose primary contact"
+msgstr "[L + P] cujo contato principal"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name_inverse:fieldservice_partner_multi_relation.rel_type_secondary_contact_per
+msgid "[L+P] whose secondary contact"
+msgstr "[L + P] cujo contato secundário"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_tenant_per
+msgid "[P+L] is a tenant of"
+msgstr "[P+L] é um inquilino de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_employee_per
+msgid "[P+L] is an employee at"
+msgstr "[P+L] é um funcionário da"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_primary_contact_per
+msgid "[P+L] is the primary contact of"
+msgstr "[P+L] é o contato primário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_secondary_contact_per
+msgid "[P+L] is the secondary contact of"
+msgstr "[P+L] é o contato secundário de"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_manages_per
+msgid "[P+L] manages"
+msgstr "[P+L] gerencias"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_owns_per
+msgid "[P+L] owns"
+msgstr "[P+L] donos"
+
+#. module: fieldservice_partner_multi_relation
+#: model:res.partner.relation.type,name:fieldservice_partner_multi_relation.rel_type_pays_invoices_per
+msgid "[P+L] pays the invoices for"
+msgstr "[P+L] paga as faturas para"

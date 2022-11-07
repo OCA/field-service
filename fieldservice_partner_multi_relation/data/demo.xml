@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- owns  -->
+    <record id="rel_type_owns_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] owns</field>
+        <field name="name_inverse">[L+L] is owned by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_owns_per" model="res.partner.relation.type">
+        <field name="name">[P+L] owns</field>
+        <field name="name_inverse">[L+P] is owned by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_owns_org" model="res.partner.relation.type">
+        <field name="name">[C+L] owns</field>
+        <field name="name_inverse">[L+C] is owned by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- manages  -->
+    <record id="rel_type_manages_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] manages</field>
+        <field name="name_inverse">[L+L] is managed by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_manages_org" model="res.partner.relation.type">
+        <field name="name">[C+L] manages</field>
+        <field name="name_inverse">[L+C] is managed by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_manages_per" model="res.partner.relation.type">
+        <field name="name">[P+L] manages</field>
+        <field name="name_inverse">[L+P] is managed by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- pays the invoices for  -->
+    <record id="rel_type_pays_invoices_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] pays the invoices for</field>
+        <field name="name_inverse">[L+L] gets the invoices paid by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_pays_invoices_org" model="res.partner.relation.type">
+        <field name="name">[C+L] pays the invoices for</field>
+        <field name="name_inverse">[L+C] gets the invoices paid by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_pays_invoices_per" model="res.partner.relation.type">
+        <field name="name">[P+L] pays the invoices for</field>
+        <field name="name_inverse">[L+P] gets the invoices paid by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is the primary contact of  -->
+    <record id="rel_type_primary_contact_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] is the primary contact of</field>
+        <field name="name_inverse">[L+L] whose primary contact</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_primary_contact_org" model="res.partner.relation.type">
+        <field name="name">[C+L] is the primary contact of</field>
+        <field name="name_inverse">[L+C] whose primary contact</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_primary_contact_per" model="res.partner.relation.type">
+        <field name="name">[P+L] is the primary contact of</field>
+        <field name="name_inverse">[L+P] whose primary contact</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is the secondary contact of  -->
+    <record id="rel_type_secondary_contact_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] is the secondary contact of</field>
+        <field name="name_inverse">[L+L] whose secondary contact</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_secondary_contact_org" model="res.partner.relation.type">
+        <field name="name">[C+L] is the secondary contact of</field>
+        <field name="name_inverse">[L+C] whose secondary contact</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_secondary_contact_per" model="res.partner.relation.type">
+        <field name="name">[P+L] is the secondary contact of</field>
+        <field name="name_inverse">[L+P] whose secondary contact</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is a tenant of  -->
+    <record id="rel_type_tenant_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] is a tenant of</field>
+        <field name="name_inverse">[L+L] is occupied by</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_tenant_org" model="res.partner.relation.type">
+        <field name="name">[C+L] is a tenant of</field>
+        <field name="name_inverse">[L+C] is occupied by</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_tenant_per" model="res.partner.relation.type">
+        <field name="name">[P+L] is a tenant of</field>
+        <field name="name_inverse">[L+P] is occupied by</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+
+    <!-- is an employee at  -->
+    <record id="rel_type_employee_loc" model="res.partner.relation.type">
+        <field name="name">[L+L] is an employee at</field>
+        <field name="name_inverse">[L+L] employs</field>
+        <field name="contact_type_left">fsm-location</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_employee_org" model="res.partner.relation.type">
+        <field name="name">[C+L] is an employee at</field>
+        <field name="name_inverse">[L+C] employs</field>
+        <field name="contact_type_left">c</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+    <record id="rel_type_employee_per" model="res.partner.relation.type">
+        <field name="name">[P+L] is an employee at</field>
+        <field name="name_inverse">[L+P] employs</field>
+        <field name="contact_type_left">p</field>
+        <field name="contact_type_right">fsm-location</field>
+    </record>
+</odoo>
