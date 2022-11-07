@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo-addon-fieldservice_stage_server_action>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_stock>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_substatus>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_vehicle>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
