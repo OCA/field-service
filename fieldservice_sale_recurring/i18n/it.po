@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_sale_recurring
+# 	* fieldservice_sale_recurring
 #
 msgid ""
 msgstr ""
@@ -22,27 +22,20 @@ msgid "<span class=\"o_stat_text\">Sale Orders</span>"
 msgstr "<span class=\"o_stat_text\">Ordini di vendita</span>"
 
 #. module: fieldservice_sale_recurring
-#: selection:product.template,field_service_tracking:0
+#: model:ir.model.fields.selection,name:fieldservice_sale_recurring.selection__product_template__field_service_tracking__recurring
 msgid "Create a recurring order"
 msgstr "Crea un ordine ricorrente"
 
 #. module: fieldservice_sale_recurring
-#: selection:product.template,field_service_tracking:0
-msgid "Create one FSM order per sale order"
-msgstr "Crea un ordine FSM per ordine di vendita"
-
-#. module: fieldservice_sale_recurring
-#: selection:product.template,field_service_tracking:0
-msgid "Create one FSM order per sale order line"
-msgstr "Crea un ordine FSM per riga ordine di vendita"
-
-#. module: fieldservice_sale_recurring
 #: model:ir.model.fields,help:fieldservice_sale_recurring.field_product_product__field_service_tracking
 #: model:ir.model.fields,help:fieldservice_sale_recurring.field_product_template__field_service_tracking
-msgid "Determines what happens upon sale order confirmation:\n"
+msgid ""
+"Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order line\n"
+"                - Per Sale Order: One FSM Order will be created for the "
+"sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order "
+"line\n"
 "                will be created."
 msgstr ""
 "Definisce cosa accade alla conferma di un ordine di vendita:\n"
@@ -51,11 +44,6 @@ msgstr ""
 "vendita.\n"
 "                - Per riga ordine di vendita: viene generato un ordine FSM "
 "per ogni riga ordine di vendita."
-
-#. module: fieldservice_sale_recurring
-#: selection:product.template,field_service_tracking:0
-msgid "Don't create FSM order"
-msgstr "Non creare ordine FSM"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order__fsm_recurring_count
@@ -87,15 +75,13 @@ msgid "Field Service Tracking"
 msgstr "Tracciamento assistenza sul campo"
 
 #. module: fieldservice_sale_recurring
-#: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:49
+#: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
-msgid "Field Service recurring Created (%s): <a href=\n"
-"                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
+msgid ""
+"Field Service recurring Created ({}): <a href=\n"
+"                   # data-oe-model=fsm.recurring data-oe-id={}>{}</a>\n"
 "                "
 msgstr ""
-"Creata assistenza sul campo ricorrente (%s): <a href=\n"
-"                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
-"                "
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_product_template
@@ -119,8 +105,8 @@ msgstr "Riga di vendita"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
+msgid "Sales Order"
+msgstr ""
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_sale_order_line
@@ -128,7 +114,7 @@ msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
 
 #. module: fieldservice_sale_recurring
-#: code:addons/fieldservice_sale_recurring/models/fsm_recurring.py:21
+#: code:addons/fieldservice_sale_recurring/models/fsm_recurring.py:0
 #, python-format
 msgid "Sales Orders"
 msgstr "Ordini di vendita"
@@ -140,12 +126,42 @@ msgid "Select a field service recurring order template to be created"
 msgstr "Seleziona un modello ordine assistenza sul camp ricorrente da creare"
 
 #. module: fieldservice_sale_recurring
-#: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:57
+#: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
-msgid "This recurring has been created from: <a href=\n"
-"                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
+msgid ""
+"This recurring has been created from: <a href=\n"
+"                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
 "                "
 msgstr ""
-"Questo ordine ricorrente è stato creato da: <a href=\n"
-"                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
-"                "
+
+#~ msgid "Create one FSM order per sale order"
+#~ msgstr "Crea un ordine FSM per ordine di vendita"
+
+#~ msgid "Create one FSM order per sale order line"
+#~ msgstr "Crea un ordine FSM per riga ordine di vendita"
+
+#~ msgid "Don't create FSM order"
+#~ msgstr "Non creare ordine FSM"
+
+#, python-format
+#~ msgid ""
+#~ "Field Service recurring Created (%s): <a href=\n"
+#~ "                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
+#~ "                "
+#~ msgstr ""
+#~ "Creata assistenza sul campo ricorrente (%s): <a href=\n"
+#~ "                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
+#~ "                "
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"
+
+#, python-format
+#~ msgid ""
+#~ "This recurring has been created from: <a href=\n"
+#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
+#~ "                "
+#~ msgstr ""
+#~ "Questo ordine ricorrente è stato creato da: <a href=\n"
+#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
+#~ "                "
