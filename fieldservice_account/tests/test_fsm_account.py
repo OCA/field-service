@@ -119,15 +119,37 @@ class FSMAccountCase(TransactionCase):
             }
         )
 
-    def test_fsm_account_move(self):
+    def test_fsm_account(self):
+        # Set invoice lines on Test Order 1
         self.test_order.invoice_lines = [(6, 0, self.test_invoice.line_ids.ids)]
-        self.test_invoice.action_view_fsm_orders()
-        self.test_order2.invoice_lines = [(6, 0, self.test_invoice.line_ids.ids)]
-        self.test_invoice._compute_fsm_order_ids()
-        self.test_invoice.action_view_fsm_orders()
+        # Verify invoice is correctly linked to FSM Order
         self.test_order._compute_get_invoiced()
-        self.test_order.action_view_invoices()
-        self.test_order2.invoice_ids = [
-            (6, 0, [self.test_invoice.id, self.test_invoice2.id])
-        ]
-        self.test_order2.action_view_invoices()
+        self.assertEqual(self.test_order.invoice_count, 1)
+        self.assertEqual(self.test_invoice.id, self.test_order.invoice_ids.ids[0])
+        # Verify FSM Order is correctly linked to invoice
+        self.test_invoice._compute_fsm_order_ids()
+        self.assertEqual(self.test_invoice.fsm_order_count, 1)
+        self.assertEqual(self.test_order.id, self.test_invoice.fsm_order_ids.ids[0])
+        # Verify action result to view one invoice from order
+        action_view_inv = self.test_order.action_view_invoices()
+        self.assertEqual(action_view_inv.get("res_id"), self.test_invoice.id)
+        # Verify action result to view one FSM Order from invoice
+        action_view_order = self.test_invoice.action_view_fsm_orders()
+        self.assertEqual(action_view_order.get("res_id"), self.test_order.id)
+        # Set invoice lines on Test Order 2
+        self.test_order2.invoice_lines = [(6, 0, self.test_invoice.line_ids.ids)]
+        # Verify 2 FSM Orders are now linked to the invoice
+        self.test_invoice._compute_fsm_order_ids()
+        self.assertEqual(self.test_invoice.fsm_order_count, 2)
+        # Verify action result to view two orders from invoice
+        view_order_action = self.test_invoice.action_view_fsm_orders()
+        self.assertTrue(view_order_action.get("domain"))
+        # Add a second set of invoice lines to Test Order 1
+        lines = self.test_invoice.line_ids.ids + self.test_invoice2.line_ids.ids
+        self.test_order.invoice_lines = [(6, 0, lines)]
+        # Verify 2 invoices are linked to the FSM Order
+        self.test_order._compute_get_invoiced()
+        self.assertEqual(self.test_order.invoice_count, 2)
+        # Verify action result to view two invoices from order
+        action_view_inv = self.test_order.action_view_invoices()
+        self.assertTrue(action_view_inv.get("domain"))
