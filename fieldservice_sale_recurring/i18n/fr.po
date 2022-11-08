@@ -32,17 +32,11 @@ msgstr ""
 msgid ""
 "Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order line\n"
+"                - Per Sale Order: One FSM Order will be created for the "
+"sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order "
+"line\n"
 "                will be created."
-msgstr ""
-
-#. module: fieldservice_sale_recurring
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_fsm_recurring__display_name
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_product_template__display_name
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order__display_name
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order_line__display_name
-msgid "Display Name"
 msgstr ""
 
 #. module: fieldservice_sale_recurring
@@ -77,25 +71,9 @@ msgstr ""
 #: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
 msgid ""
-"Field Service recurring Created (%s): <a href=\n"
-"                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
+"Field Service recurring Created ({}): <a href=\n"
+"                   # data-oe-model=fsm.recurring data-oe-id={}>{}</a>\n"
 "                "
-msgstr ""
-
-#. module: fieldservice_sale_recurring
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_fsm_recurring__id
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_product_template__id
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order__id
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: fieldservice_sale_recurring
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_fsm_recurring____last_update
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_product_template____last_update
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order____last_update
-#: model:ir.model.fields,field_description:fieldservice_sale_recurring.field_sale_order_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: fieldservice_sale_recurring
@@ -145,6 +123,6 @@ msgstr ""
 #, python-format
 msgid ""
 "This recurring has been created from: <a href=\n"
-"                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
+"                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
 "                "
 msgstr ""
