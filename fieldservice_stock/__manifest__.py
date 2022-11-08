@@ -20,6 +20,7 @@
         "views/stock.xml",
         "views/stock_picking.xml",
     ],
+    "pre_init_hook": "_pre_init_hook",
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["brian10048", "wolfhall", "max3903", "smangukiya"],
