@@ -22,6 +22,6 @@
     "demo": ["demo/base_territory_demo.xml"],
     "application": True,
     "license": "AGPL-3",
-    "development_status": "Beta",
+    "development_status": "Production/Stable",
     "maintainers": ["wolfhall", "max3903"],
 }

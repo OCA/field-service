@@ -44,7 +44,7 @@
         "demo/fsm_person.xml",
     ],
     "application": True,
-    "development_status": "Beta",
+    "development_status": "Production/Stable",
     "maintainers": ["wolfhall", "max3903"],
     "assets": {
         "web.assets_backend": [
