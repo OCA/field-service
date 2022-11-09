@@ -49,10 +49,24 @@ class TestStockPutawayRule(TransactionCase):
                 "company_id": self.company1.id,
             }
         )
+
+        brand = self.env["fleet.vehicle.model.brand"].create(
+            {
+                "name": "Jaguar",
+            }
+        )
+
+        model = self.env["fleet.vehicle.model"].create(
+            {
+                "brand_id": brand.id,
+                "name": "J3",
+            }
+        )
         self.vehicle_id = self.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 1",
                 "inventory_location_id": self.vehicle_location.id,
+                "model_id": model.id,
             }
         )
         self.stock_putaway_rule = self.StockPutawayRule.create(
