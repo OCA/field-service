@@ -17,5 +17,5 @@ class TestFsmCategory(test_fsm_order.TestFSMOrder):
         self.assertEqual(self.fsm_category_a.full_name, self.fsm_category_a.name)
         self.assertEqual(
             self.fsm_category_b.full_name,
-            f"{self.fsm_category_a.name}/{self.fsm_category_b.name}",
+            f"{self.fsm_category_a.name} / {self.fsm_category_b.name}",
         )
