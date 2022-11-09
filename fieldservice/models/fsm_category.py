@@ -7,11 +7,17 @@ from odoo import api, fields, models
 class FSMCategory(models.Model):
     _name = "fsm.category"
     _description = "Field Service Worker Category"
+    _parent_name = "parent_id"
+    _parent_store = True
+    _rec_name = "full_name"
+    _order = "full_name"
 
     name = fields.Char(required="True")
-    parent_id = fields.Many2one("fsm.category", string="Parent")
+    full_name = fields.Char(compute="_compute_full_name", store=True)
+    parent_id = fields.Many2one("fsm.category", string="Parent", index=True)
+    parent_path = fields.Char(index=True)
+    child_id = fields.One2many("fsm.category", "parent_id", "Child Categories")
     color = fields.Integer("Color Index", default=10)
-    full_name = fields.Char(compute="_compute_full_name")
     description = fields.Char()
     company_id = fields.Many2one(
         "res.company",
