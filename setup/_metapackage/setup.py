@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_stage_server_action',
         'odoo14-addon-fieldservice_stage_validation',
         'odoo14-addon-fieldservice_stock',
+        'odoo14-addon-fieldservice_stock_request',
         'odoo14-addon-fieldservice_substatus',
         'odoo14-addon-fieldservice_timeline',
         'odoo14-addon-fieldservice_vehicle',
