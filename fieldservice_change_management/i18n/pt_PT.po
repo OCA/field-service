@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* fieldservice_change_management
+# 	* fieldservice_change_management
 #
 msgid ""
 msgstr ""
@@ -37,9 +37,19 @@ msgid "Activities"
 msgstr "Atividades"
 
 #. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_state
 msgid "Activity State"
 msgstr "Estado da Atividade"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: fieldservice_change_management
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
@@ -99,15 +109,19 @@ msgid "Change Log impact"
 msgstr ""
 
 #. module: fieldservice_change_management
+#: code:addons/fieldservice_change_management/models/fsm_location.py:0
 #: model:ir.actions.act_window,name:fieldservice_change_management.change_log_action
 #: model:ir.actions.report,name:fieldservice_change_management.change_log_document
 #: model:ir.actions.report,name:fieldservice_change_management.location_change_log_document
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.change_log_document
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.location_change_log_document
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__change_log_ids
 #: model:ir.module.category,name:fieldservice_change_management.module_change_log_category
 #: model:ir.ui.menu,name:fieldservice_change_management.change_log_menu
 #: model:ir.ui.menu,name:fieldservice_change_management.change_log_root_menu
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.fsm_location_change_log_form
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#, python-format
 msgid "Change Logs"
 msgstr ""
 
@@ -180,6 +194,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__display_name
 msgid "Display Name"
 msgstr "Nome Apresentado"
 
@@ -219,6 +234,11 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: fieldservice_change_management
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
 msgid "Group By"
 msgstr ""
@@ -229,21 +249,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__id
 msgid "ID"
 msgstr "ID"
 
 #. module: fieldservice_change_management
-#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_needaction
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_has_error
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -275,6 +303,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -332,6 +361,11 @@ msgid "Messages"
 msgstr "Mensagens"
 
 #. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: fieldservice_change_management
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
 msgid "My Change Logs"
 msgstr "Meus Registos de Alteração"
@@ -368,7 +402,7 @@ msgstr "Número de Ações"
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: fieldservice_change_management
@@ -387,18 +421,13 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: fieldservice_change_management
-#: selection:change.log,activity_state:0
-msgid "Overdue"
-msgstr ""
-
-#. module: fieldservice_change_management
-#: selection:change.log,activity_state:0
-msgid "Planned"
-msgstr ""
-
-#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: fieldservice_change_management
@@ -426,14 +455,15 @@ msgstr ""
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
 
 #. module: fieldservice_change_management
-#: sql_constraint:change.log.tag:0
+#: model:ir.model.constraint,message:fieldservice_change_management.constraint_change_log_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr ""
 
@@ -451,17 +481,17 @@ msgid "Title"
 msgstr ""
 
 #. module: fieldservice_change_management
-#: selection:change.log,activity_state:0
-msgid "Today"
-msgstr ""
-
-#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__type_id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__name
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
 msgid "Type"
+msgstr ""
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: fieldservice_change_management
