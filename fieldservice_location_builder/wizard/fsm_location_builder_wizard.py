@@ -34,13 +34,14 @@ class FSMLocationBuilderWizard(models.TransientModel):
         vals = {
             "name": self.level_ids[num].name + spacer + str(lev_id),
             "owner_id": location.owner_id.id,
-            "customer_id": location.customer_id.id,
             "fsm_parent_id": parent.id,
             "street": location.street,
             "street2": self.level_ids[num].name + spacer + str(lev_id),
             "city": location.city,
             "zip": location.zip,
         }
+        if hasattr(location, "customer_id"):
+            vals.update({"customer_id": location.customer_id.id})
         if tags:
             vals.update({"category_id": [(6, 0, tags)]})
 
