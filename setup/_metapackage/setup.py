@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_google_map',
         'odoo14-addon-fieldservice_isp_account',
         'odoo14-addon-fieldservice_isp_flow',
+        'odoo14-addon-fieldservice_location_builder',
         'odoo14-addon-fieldservice_maintenance',
         'odoo14-addon-fieldservice_partner_multi_relation',
         'odoo14-addon-fieldservice_project',
