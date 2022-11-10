@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fieldservice_stock_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-15 05:45+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: fieldservice_stock_request
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock_request.view_fsm_order_form_inherit_stock_request
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fieldservice_stock_request
+#: selection:fsm.order,request_stage:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: fieldservice_stock_request
+#: selection:fsm.order,request_stage:0
+msgid "Done"
+msgstr "Concluído"
+
+#. module: fieldservice_stock_request
+#: selection:fsm.order,request_stage:0
+msgid "Draft"
+msgstr "Provisório"
+
+#. module: fieldservice_stock_request
+#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request__fsm_order_id
+#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request_order__fsm_order_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock_request.stock_request_order_fsm_order_search
+msgid "FSM Order"
+msgstr "Ordem FSM"
+
+#. module: fieldservice_stock_request
+#: model:ir.model,name:fieldservice_stock_request.model_fsm_order
+msgid "Field Service Order"
+msgstr "Ordem de Serviço de Campo"
+
+#. module: fieldservice_stock_request
+#: selection:fsm.order,request_stage:0
+msgid "In progress"
+msgstr "Em andamento"
+
+#. module: fieldservice_stock_request
+#: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order__stock_request_ids
+msgid "Order Lines"
+msgstr "Itens do Pedido"
+
+#. module: fieldservice_stock_request
+#: code:addons/fieldservice_stock_request/models/fsm_order.py:30
+#: code:addons/fieldservice_stock_request/models/fsm_order.py:43
+#: code:addons/fieldservice_stock_request/models/fsm_order.py:56
+#, python-format
+msgid "Please create a stock request."
+msgstr "Por favor, crie uma requisição de estoque."
+
+#. module: fieldservice_stock_request
+#: model:ir.model,name:fieldservice_stock_request.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimentos do Produto (Linha do Movimento do Estoque)"
+
+#. module: fieldservice_stock_request
+#: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order__request_stage
+msgid "Request State"
+msgstr "Estado de Requisição"
+
+#. module: fieldservice_stock_request
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock_request.view_fsm_order_form_inherit_stock_request
+msgid "Set to Draft"
+msgstr "Definir como Provisório"
+
+#. module: fieldservice_stock_request
+#: model:ir.model,name:fieldservice_stock_request.model_stock_request
+msgid "Stock Request"
+msgstr "Requisição de Estoque"
+
+#. module: fieldservice_stock_request
+#: model:ir.model,name:fieldservice_stock_request.model_stock_request_order
+msgid "Stock Request Order"
+msgstr "Ordens de Requisição de Estoque"
+
+#. module: fieldservice_stock_request
+#: model:ir.ui.menu,name:fieldservice_stock_request.menu_fsm_stock_request
+msgid "Stock Requests"
+msgstr "Requisições de Estoque"
+
+#. module: fieldservice_stock_request
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock_request.view_fsm_order_form_inherit_stock_request
+msgid "Submit"
+msgstr "Enviar"
+
+#. module: fieldservice_stock_request
+#: selection:fsm.order,request_stage:0
+msgid "Submitted"
+msgstr "Enviado"
+
+#. module: fieldservice_stock_request
+#: code:addons/fieldservice_stock_request/models/stock_request.py:58
+#, python-format
+msgid "There is already a Stock Request Order                                   with the same Field Service Order and                                   Warehouse that is in Draft state. Please                                   add this Stock Request there.                                   (%s)"
+msgstr ""
+"Já existe uma Ordem de Requisição de "
+"Estoque                                   com a mesma Order de Serviço de "
+"Campo e                                   Estoque em estado de Rascunho. Por "
+"favor                                    e adicione esta Requisição de "
+"Estoque lá.                                   (%s)"
