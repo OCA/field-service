@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_activity',
         'odoo14-addon-fieldservice_agreement',
         'odoo14-addon-fieldservice_calendar',
+        'odoo14-addon-fieldservice_change_management',
         'odoo14-addon-fieldservice_crm',
         'odoo14-addon-fieldservice_delivery',
         'odoo14-addon-fieldservice_distribution',
