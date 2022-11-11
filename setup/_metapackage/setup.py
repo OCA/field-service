@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_timeline',
         'odoo14-addon-fieldservice_vehicle',
         'odoo14-addon-fieldservice_vehicle_stock',
+        'odoo14-addon-fieldservice_vehicle_stock_request',
     ],
     classifiers=[
         'Programming Language :: Python',
