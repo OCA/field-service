@@ -60,6 +60,7 @@ addon | version | maintainers | summary
 [fieldservice_timeline](fieldservice_timeline/) | 14.0.1.4.0 | [![wolfhall](https://github.com/wolfhall.png?size=30px)](https://github.com/wolfhall) [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | This module is a display timeline view of the Field Service order in Odoo.
 [fieldservice_vehicle](fieldservice_vehicle/) | 14.0.1.0.0 | [![wolfhall](https://github.com/wolfhall.png?size=30px)](https://github.com/wolfhall) [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Manage Field Service vehicles and assign drivers
 [fieldservice_vehicle_stock](fieldservice_vehicle_stock/) | 14.0.1.1.0 | [![brian10048](https://github.com/brian10048.png?size=30px)](https://github.com/brian10048) [![wolfhall](https://github.com/wolfhall.png?size=30px)](https://github.com/wolfhall) [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Track inventory of Field Service vehicles
+[fieldservice_vehicle_stock_request](fieldservice_vehicle_stock_request/) | 14.0.1.0.0 | [![wolfhall](https://github.com/wolfhall.png?size=30px)](https://github.com/wolfhall) [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Link Stock Requests with Field Service Vehicle Inventory
 
 [//]: # (end addons)
 
