@@ -7,14 +7,14 @@ class FSMLocationLevel(models.TransientModel):
     _name = "fsm.location.level"
     _description = "Level in the FSM location tree structure"
 
-    sequence = fields.Integer("Sequence")
-    name = fields.Char("Name", required=True)
-    spacer = fields.Char("Spacer")
-    start_number = fields.Integer("Start Number")
-    end_number = fields.Integer("End Number")
+    sequence = fields.Integer()
+    name = fields.Char(required=True)
+    spacer = fields.Char()
+    start_number = fields.Integer()
+    end_number = fields.Integer()
     total_number = fields.Integer("Total", compute="_compute_total_number")
     tag_ids = fields.Many2many("res.partner.category", string="Tags", readonly=False)
-    wizard_id = fields.Many2one("fsm.location.builder.wizard", "Wizard")
+    wizard_id = fields.Many2one("fsm.location.builder.wizard")
 
     @api.depends("start_number", "end_number")
     def _compute_total_number(self):
