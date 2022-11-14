@@ -4,3 +4,4 @@
   * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
   * Steve Campbell <scampbell@opensourceintegrators.com>
   * Murtaza Mithaiwala <mmithaiwala@opensourceintegrators.com>
+  * Freni Patel <fpatel@opensourceintegrators.com>

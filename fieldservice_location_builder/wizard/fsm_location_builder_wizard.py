@@ -6,6 +6,7 @@ from odoo import fields, models
 class FSMLocationBuilderWizard(models.TransientModel):
     _name = "fsm.location.builder.wizard"
     _description = "FSM Location Builder Wizard"
+
     level_ids = fields.One2many("fsm.location.level", "wizard_id", string="Level ID's")
 
     def create_sub_locations(self):
