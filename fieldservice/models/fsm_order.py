@@ -157,7 +157,9 @@ class FSMOrder(models.Model):
     # Planning
     person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
-    scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
+    scheduled_date_start = fields.Datetime(
+        string="Scheduled Start (ETA)", default=fields.Datetime.now
+    )
     scheduled_duration = fields.Float(
         string="Scheduled duration", help="Scheduled duration of the work in" " hours"
     )

@@ -19,11 +19,13 @@ class TestFSMOrder(TransactionCase):
         new = self.Order.create(
             {
                 "location_id": self.test_location.id,
+                "scheduled_date_start": fields.Datetime.today(),
+                "scheduled_duration": 2,
                 # no duration = no calendar
             }
         )
         evt = new.calendar_event_id
-        self.assertFalse(evt.exists())
+        self.assertTrue(evt.exists())
 
     def test_fsm_order_no_calendar_user(self):
         self.team.calendar_user_id = False
