@@ -65,8 +65,8 @@ msgstr ""
 "Seleccionado por defecto cuando las entregas de un pedido pertenece a esta "
 "compañía.\n"
 "- Privado: las direcciones privadas solo son visibles para los usuarios "
-"autorizados y contienen datos confidenciales (domicilios de los empleados, "
-"...).\n"
+"autorizados y contienen datos confidenciales (domicilios de los "
+"empleados, ...).\n"
 "- Otro: Otra dirección de la empresa (por ejemplo, filial, ...)"
 
 #. module: fieldservice
@@ -105,6 +105,7 @@ msgid "<strong>The contact linked to this user is still active</strong>"
 msgstr "<strong>El contacto vinculado a este usuario sigue activo</strong>"
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 #, python-format
 msgid "A Field Service Location related to that partner already exists."
@@ -112,6 +113,7 @@ msgstr ""
 "Ya existe una Ubicación de Servicio de Campo relacionada con ese contacto."
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 #, python-format
 msgid "A Field Service Worker related to that partner already exists."
@@ -458,6 +460,7 @@ msgid "Cancel Order"
 msgstr "Cancelar Orden"
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_stage.py:0
 #, python-format
 msgid ""
@@ -468,6 +471,7 @@ msgstr ""
 "existente."
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to completed from Kanban"
@@ -585,6 +589,7 @@ msgid "Color Index"
 msgstr "Índice de Color"
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_stage.py:0
 #, python-format
 msgid "Color code should be Hex Code. Ex:-#FFFFFF"
@@ -2131,6 +2136,7 @@ msgid "Need Scheduled"
 msgstr "Necesidad Programada"
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -3326,12 +3332,14 @@ msgid "You can archive the contact"
 msgstr "Puede archivar el contacto"
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_location.py:0
 #, python-format
 msgid "You cannot create recursive location."
 msgstr "No puede crear una ubicación recursiva."
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "You cannot delete this order."
@@ -3343,12 +3351,14 @@ msgid "You cannot have the same worker twice."
 msgstr "No puede tener al mismo trabajador dos veces."
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "You must create an FSM order stage first."
 msgstr "Primero debe crear una etapa de pedido FSM."
 
 #. module: fieldservice
+#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "You must create an FSM team first."
