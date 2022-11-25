@@ -15,6 +15,7 @@ class FSMRecurringCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(FSMRecurringCase, cls).setUpClass()
+        cls.Equipment = cls.env["fsm.equipment"]
         cls.Recurring = cls.env["fsm.recurring"]
         cls.Frequency = cls.env["fsm.frequency"]
         cls.FrequencySet = cls.env["fsm.frequency.set"]
@@ -54,6 +55,7 @@ class FSMRecurringCase(TransactionCase):
         cls.fsm_recurring_template = cls.env["fsm.recurring.template"].create(
             {"name": "Test Template"}
         )
+        cls.test_equipment = cls.Equipment.create({"name": "Equipment"})
 
     def test_cron_generate_orders_rule1(self):
         """Test recurring order with following rule,
@@ -100,6 +102,7 @@ class FSMRecurringCase(TransactionCase):
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
                 "start_date": fields.Datetime.now().replace(hour=12),
+                "equipment_ids": [(6, 0, [self.test_equipment.id])],
             }
         )
         test_recurring = self.Recurring.create(
