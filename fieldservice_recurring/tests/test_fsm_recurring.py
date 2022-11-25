@@ -14,6 +14,7 @@ from odoo.tests.common import TransactionCase
 class FSMRecurringCase(TransactionCase):
     def setUp(self):
         super(FSMRecurringCase, self).setUp()
+        self.Equipment = self.env["fsm.equipment"]
         self.Recurring = self.env["fsm.recurring"]
         self.Frequency = self.env["fsm.frequency"]
         self.FrequencySet = self.env["fsm.frequency.set"]
@@ -53,6 +54,7 @@ class FSMRecurringCase(TransactionCase):
         self.fsm_recurring_template = self.env["fsm.recurring.template"].create(
             {"name": "Test Template"}
         )
+        self.test_equipment = self.Equipment.create({"name": "Equipment"})
 
     def test_cron_generate_orders_rule1(self):
         """Test recurring order with following rule,
@@ -99,6 +101,7 @@ class FSMRecurringCase(TransactionCase):
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
                 "start_date": fields.Datetime.now().replace(hour=12),
+                "equipment_ids": [(6, 0, [self.test_equipment.id])],
             }
         )
         test_recurring = self.Recurring.create(
