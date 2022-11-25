@@ -79,6 +79,7 @@ class FSMRecurringOrder(models.Model):
     person_id = fields.Many2one(
         "fsm.person", string="Assigned To", index=True, tracking=True
     )
+    equipment_ids = fields.Many2many("fsm.equipment")
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
@@ -191,6 +192,7 @@ class FSMRecurringOrder(models.Model):
             "category_ids": [(6, False, self.fsm_order_template_id.category_ids.ids)],
             "company_id": self.company_id.id,
             "person_id": self.person_id.id,
+            "equipment_ids": [(6, 0, self.equipment_ids.ids)],
         }
 
     def _create_order(self, date):
