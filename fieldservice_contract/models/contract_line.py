@@ -55,16 +55,11 @@ class ContractLine(models.Model):
     )
     invoice_policy = fields.Selection(
         [("order_smoothing_bill", "Planned fsm order smoothing bill"),
-         ("order_not_smoothing_bill", "Planned fsm order not smoothing bill"),
          ("delivery_not_smoothing", "Realised fsm order not smoothing bill"),
-         # Ce dernier cas n'est pas gere
-         #("delivery_smoothing", "Realised fsm order smoothing bill"),
          ],
         string="Invoicing Policy",
         help="Planned fsm order smoothing bill: This means that the amount of invoice don't depends on the number of fsm order planned in the invoiced period.\n"
-            "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
-            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n"
-            "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
+            "Realised fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
         default="order_smoothing_bill",
     )
     fsm_order_by_year_count = fields.Float(
@@ -128,7 +123,7 @@ class ContractLine(models.Model):
             if self.invoice_policy == "delivery_not_smoothing":
                 res.update({"name": self._insert_order_markers(dates[0], dates[1], invoiced_orders=fsm_orders)})
         price_unit = self.price_unit
-        if self.invoice_policy in("order_not_smoothing_bill", "delivery_not_smoothing"):
+        if self.invoice_policy == "delivery_not_smoothing":
             price_unit =  self.avg_price_unit_fsm_order
         res.update({"price_unit": price_unit})
         return res
@@ -154,9 +149,10 @@ class ContractLine(models.Model):
         self.ensure_one()
         quantity = 0
         if self.fsm_direct_order_id or self.fsm_recurring_id:
-            if self.invoice_policy == "order_not_smoothing_bill":
-                quantity = self.fsm_frequency_set_id._get_theoretical_order_count_by_period(period_first_date, period_last_date)
-            elif self.invoice_policy == "delivery_not_smoothing":
+            # if self.invoice_policy == "order_not_smoothing_bill":
+            #     quantity = self.fsm_frequency_set_id._get_theoretical_order_count_by_period(period_first_date, period_last_date)
+            #elif
+            if self.invoice_policy == "delivery_not_smoothing":
                 quantity = len(
                     self._invoiceable_fsm_order(
                         period_first_date, period_last_date, invoice_date
@@ -178,6 +174,7 @@ class ContractLine(models.Model):
         ] + self._get_invoiceable_order_domain()
         if invoiceable_stage_ids:
             dom.append(["stage_id", "in", invoiceable_stage_ids.ids])
+
         return self.env["fsm.order"].search(dom)
 
     def _get_realised_fsm_order(
