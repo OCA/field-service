@@ -2,8 +2,10 @@
 # Copyright 2019 - TODAY, Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import pytz
 from datetime import datetime, time
+
+import pytz
+
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.translate import _
