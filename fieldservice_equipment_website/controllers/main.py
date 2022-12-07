@@ -7,17 +7,10 @@ class FieldserviceEquipmentWebsiteController(http.Controller):
 
     @http.route('/equipment/<serial>/',type="http", auth='user', website=True)
     def get_equipment(self, serial):
-        # Validate format of path param (serial)
-        # Get equipment for the serial number (if not, raise error)
-        Equipment = http.request.env['fsm.equipment']
-        # equipment = Equipment.search([['id','=',1]])
-        equipment = {
-            "id": serial,
-            "name": f"equipment: {serial}"
 
-        }
-        _logger.info("Controller testing...")
-        # Render template with equiment data
+        Lots = http.request.env['stock.production.lot']
+        lot_obj = Lots.search([['name','ilike',serial]], limit=1)
+
         return http.request.render('fieldservice_equipment_website.index', {
-            'equipment': equipment,
+            "lot_obj": lot_obj
         })
