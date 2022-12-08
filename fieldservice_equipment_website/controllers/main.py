@@ -10,7 +10,8 @@ class FieldserviceEquipmentWebsiteController(http.Controller):
 
         Lots = http.request.env['stock.production.lot']
         lot_obj = Lots.search([['name','ilike',serial]], limit=1)
-
+        if not lot_obj:
+            return http.request.render('website.page_404')
         return http.request.render('fieldservice_equipment_website.index', {
             "lot_obj": lot_obj
         })
