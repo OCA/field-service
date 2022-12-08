@@ -10,8 +10,8 @@
                 <group string="Inventory" groups="stock.group_stock_user">
                     <field 
                         name="product_id"
-                        domain="[('maintenance_ok', '=', true)]"
-                     />
+                        domain="[('tracking', '!=', 'none'), ('type', '=', 'product'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                    />
                     <field
                         name="lot_id"
                         domain="[('product_id', '=', product_id)]"
