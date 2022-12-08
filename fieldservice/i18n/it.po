@@ -6,21 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-18 10:05+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2022-11-15 19:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice
 #: code:addons/fieldservice/models/fsm_equipment.py:0
 #, python-format
 msgid " (copy)"
-msgstr ""
+msgstr " (copia)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
@@ -146,7 +146,7 @@ msgstr "Conto Crediti"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_needaction
 msgid "Action Needed"
-msgstr "Azione richiesta"
+msgstr "Richiesta un'azione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active
@@ -562,7 +562,7 @@ msgstr "Seleziona questa casella se questo contatto è un dipendente."
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 msgid "Children"
-msgstr "Secondarie"
+msgstr "Figli"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
@@ -1486,7 +1486,7 @@ msgstr "Icona per indicare un'attività eccezione."
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_needaction
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_unread
 msgid "If checked, new messages require your attention."
-msgstr "Se spuntati, i nuovi messaggi richiedono la tua attenzione."
+msgstr "Se attivo, nuovi messaggi richiedono attenzione."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
@@ -1500,7 +1500,7 @@ msgstr "Se spuntati, i nuovi messaggi richiedono la tua attenzione."
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se spuntati, alcuni messaggi hanno un errore di consegna."
+msgstr "Se attivo, alcuni messaggi hanno un errore di consegna."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
@@ -2572,13 +2572,13 @@ msgstr "Proprietario"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__parent_id
 msgid "Parent"
-msgstr "Principale"
+msgstr "Padre"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_name
 msgid "Parent name"
-msgstr "Nome primaria"
+msgstr "Nome padre"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
@@ -2627,6 +2627,12 @@ msgstr "Telefono"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid "Phone Blacklisted"
 msgstr "Telefoni in lista nera"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__plan_to_change_car
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__plan_to_change_car
+msgid "Plan To Change Car"
+msgstr "Pianifica sostituziona auto"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form

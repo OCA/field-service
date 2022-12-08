@@ -1,0 +1,74 @@
+<odoo>
+
+    <record id="ir_ui_view_fsm_location_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.location.map</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <google_map
+                class="o_res_partner_map"
+                library="geometry"
+                string="Map"
+                lat="partner_latitude"
+                lng="partner_longitude"
+                color="marker_color"
+            >
+                 <field name="name" select="1" />
+                 <field name="display_name" />
+                 <field name="contact_id" />
+                 <field name="owner_id" />
+                 <field name="fsm_parent_id" />
+                 <field name="partner_latitude" />
+                 <field name="partner_longitude" />
+                 <field name="territory_id" />
+                 <field name="branch_id" />
+                 <field name="district_id" />
+                 <field name="region_id" />
+                 <field name="stage_id" />
+                 <field name="marker_color" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="oe_kanban_details">
+                                <strong
+                                    class="o_kanban_record_title oe_partner_heading"
+                                >
+                                    <field name="display_name" />
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <b>Related Owner: </b><field name="owner_id" />
+                                    </li>
+                                     <li t-if="record.fsm_parent_id.raw_value">
+                                        <b>Parent: </b><field name="fsm_parent_id" />
+                                    </li>
+                                    <li t-if="record.contact_id.raw_value">
+                                        <b>Primary Contact: </b><field
+                                            name="contact_id"
+                                        />
+                                    </li>
+                                    <li t-if="record.territory_id.raw_value">
+                                        <b>Territory: </b><field name="territory_id" />
+                                    </li>
+                                    <li t-if="record.branch_id.raw_value">
+                                        <b>Branch: </b><field name="branch_id" />
+                                    </li>
+                                    <li t-if="record.district_id.raw_value">
+                                        <b>District: </b><field name="district_id" />
+                                    </li>
+                                    <li t-if="record.region_id.raw_value">
+                                        <b>Region: </b><field name="region_id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </google_map>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,google_map</field>
+    </record>
+
+</odoo>

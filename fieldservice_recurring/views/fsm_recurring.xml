@@ -28,28 +28,19 @@
                     <button
                         id="action_start"
                         name="action_start"
-                        string="Confirm"
+                        string="Start"
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        attrs="{'invisible': [('state', 'in',('close', 'progress'))]}"
                     />
                     <button
-                        id="action_renew"
-                        name="action_renew"
-                        string="Renew"
-                        class="oe_highlight"
+                        id="action_suspend"
+                        name="action_suspend"
+                        string="Suspend"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('state', '!=', 'pending')]}"
-                    />
-                    <button
-                        id="action_cancel"
-                        name="action_cancel"
-                        string="Cancel"
-                        type="object"
-                        groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('state', 'in', ('close', 'cancel'))]}"
+                        attrs="{'invisible': [('state', 'in', ('draft', 'close'))]}"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
@@ -143,19 +134,14 @@
                     name="progress"
                 />
                 <filter
-                    string="To Renew"
-                    domain="[('state', '=', 'pending')]"
-                    name="renew"
-                />
-                <filter
                     string="Closed"
                     domain="[('state', '=', 'close')]"
                     name="closed"
                 />
                 <filter
-                    string="Cancelled"
-                    domain="[('state', '=', 'cancel')]"
-                    name="cancelled"
+                    string="Suspended"
+                    domain="[('state', '=', 'suspend')]"
+                    name="suspended"
                 />
                 <separator />
                 <group expand="0" string="Group By">
