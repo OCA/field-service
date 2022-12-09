@@ -73,26 +73,27 @@
                         <div class="col-lg-4 pt16 pb16 o_colored_level">
                             <t t-if="lot_obj.product_id.is_medical">
                                 <p><b>CERTIFICATE VALIDITY DATE:</b> <t
-                                                    t-esc="lot_obj.product_id.ce_certificate_validity_date"
-                                                /><br />
+                                            t-esc="lot_obj.product_id.ce_certificate_validity_date"
+                                        /><br />
                                 </p>
                                 <div class="list-group list-group-flush mb-4">
                                 <p><b>HISTORICO DE CERTIFICADOS:</b></p>
-                                <t t-foreach="lot_obj.product_id.ce_certificate_medical_class_ids" t-as="attachment">
-                                    <a t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}" class="list-group-item list-group-item-action"><span  class="fa fa-download"/> Descargar: <t
+                                <t
+                                            t-foreach="lot_obj.product_id.ce_certificate_medical_class_ids"
+                                            t-as="attachment"
+                                        >
+                                    <a
+                                                t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                                class="list-group-item list-group-item-action"
+                                            ><span
+                                                    class="fa fa-download"
+                                                /> Descargar: <t
                                                     t-esc="attachment.name"
                                                 /></a>
                                 </t>
                                 </div>
                             </t>
                             <p>
-                                <!-- <a
-                                        href="/web/content/38054?unique=68d3327b735ae5253040bc896376e08f91b4964d&amp;download=true"
-                                        class="mb-2 btn btn-primary"
-                                        data-original-title="HISTORICO DE CERTIFICADOS"
-                                        title="HISTORICO DE CERTIFICADOS"
-                                        target="_blank"
-                                    >HISTORICO DE CERTIFICADOS</a> -->
                                 <a
                                         href="/my/tickets"
                                         class="mb-2 btn btn-secondary"
