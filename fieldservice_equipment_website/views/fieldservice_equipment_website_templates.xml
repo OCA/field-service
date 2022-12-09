@@ -3,36 +3,92 @@
     <template id="index">
     <t t-call="website.layout">
         <div id="wrap" class="oe_structure oe_empty">
-            <section class="s_text_image pt32 pb32 o_colored_level" data-snippet="s_text_image" data-name="Text - Image">
+            <section
+                    class="s_text_image pt32 pb32 o_colored_level"
+                    data-snippet="s_text_image"
+                    data-name="Text - Image"
+                >
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 pt16 pb16 o_colored_level">
-                            <h2><t t-esc="lot_obj.product_id.name"/><br/></h2>
-                            <p>RESGISTRO ANVISA: <t t-esc="lot_obj.product_id.default_code"/><br/>FABRICANTE: <t t-esc="lot_obj.company_id.name"/></p>
-                            <p>NS FABRICANTE: <t t-esc="lot_obj.ref"/><br/>#ENG CLINICA: <t t-esc="lot_obj.name"/></p>
-                            <p><b>PATRIMONIO HOSPITALAR PERTENCENTE:</b></p>
-                            <p><t t-esc="lot_obj.fsm_equipment_id.owned_by_id.legal_name"/></p>
-                            <p>CNPJ: <t t-esc="lot_obj.fsm_equipment_id.owned_by_id.cnpj_cpf"/><br/></p>
-                            <p><b>LOCALIZAÇÃO ORIGINAL:<br/></b>
-                                <t t-esc="lot_obj.fsm_equipment_id.location_id.name"/><br/>
-                                RUA: <t t-esc="lot_obj.fsm_equipment_id.location_id.street"/><br/>
-                                CEP: <t t-esc="lot_obj.fsm_equipment_id.location_id.zip"/>
-                            </p>
-                            <p>
-                                <a href="/web/content/38054?unique=68d3327b735ae5253040bc896376e08f91b4964d&amp;download=true" class="mb-2 btn btn-primary" data-original-title="HISTORICO DE CERTIFICADOS" title="HISTORICO DE CERTIFICADOS" target="_blank">HISTORICO DE CERTIFICADOS</a>
-                                <a href="/my/tickets" class="mb-2 btn btn-secondary" data-original-title="Abrir chamado" title="Abrir chamado" target="_blank">ABRIR CHAMADO</a>
-                            </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2><t t-esc="lot_obj.product_id.name" /><br /></h2>
                         </div>
-                        <div class="col-lg-6 pt16 pb16 o_colored_level">
-                            <img src="/web/image/38052-9a86d6fa/autoclave_vitale_class_21l_aberta-1000x1000.jpg" class="img img-fluid mx-auto" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip942025" data-original-id="38051" data-original-src="/web/image/38051-9aa107f6/autoclave_vitale_class_21l_aberta-1000x1000.jpg" data-mimetype="image/jpeg" data-resize-width="690" style=""/>
-                            <p><b>GERENCIADO POR:</b></p>
-                            <p><t t-esc="lot_obj.fsm_equipment_id.managed_by_id.legal_name"/></p>
-                            <p>CNPJ: <t t-esc="lot_obj.fsm_equipment_id.managed_by_id.cnpj_cpf"/></p>
-                            <p><b>LOCALIZAÇÃO ATUAL:<br/></b>
-                                <t t-esc="lot_obj.fsm_equipment_id.current_location_id.name"/><br/>
-                                RUA: <t t-esc="lot_obj.fsm_equipment_id.current_location_id.street"/><br/>
-                                CEP: <t t-esc="lot_obj.fsm_equipment_id.current_location_id.zip"/>
+                        <div class="col-lg-8 pt16 pb16 o_colored_level">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>RESGISTRO ANVISA: <t
+                                                t-esc="lot_obj.product_id.default_code"
+                                            /><br />FABRICANTE: <t
+                                                t-esc="lot_obj.product_id.product_brand_id.name"
+                                            /></p>
+                                    <p><b>PATRIMONIO HOSPITALAR PERTENCENTE:</b></p>
+                                    <p><t
+                                                t-esc="lot_obj.fsm_equipment_id.owned_by_id.legal_name"
+                                            /></p>
+                                    <p>CNPJ: <t
+                                                t-esc="lot_obj.fsm_equipment_id.owned_by_id.cnpj_cpf"
+                                            /><br /></p>
+                                    <p><b>LOCALIZAÇÃO ORIGINAL:<br /></b>
+                                        <t
+                                                t-esc="lot_obj.fsm_equipment_id.location_id.name"
+                                            /><br />
+                                        RUA: <t
+                                                t-esc="lot_obj.fsm_equipment_id.location_id.street"
+                                            /><br />
+                                        CEP: <t
+                                                t-esc="lot_obj.fsm_equipment_id.location_id.zip"
+                                            />
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>NS FABRICANTE: <t t-esc="lot_obj.ref" /><br
+                                            />#ENG CLINICA: <t
+                                                t-esc="lot_obj.name"
+                                            /></p>
+                                    <p><b>GERENCIADO POR:</b></p>
+                                    <p><t
+                                                t-esc="lot_obj.fsm_equipment_id.managed_by_id.legal_name"
+                                            /></p>
+                                    <p>CNPJ: <t
+                                                t-esc="lot_obj.fsm_equipment_id.managed_by_id.cnpj_cpf"
+                                            /></p>
+                                    <p><b>LOCALIZAÇÃO ATUAL:<br /></b>
+                                        <t
+                                                t-esc="lot_obj.fsm_equipment_id.current_location_id.name"
+                                            /><br />
+                                        RUA: <t
+                                                t-esc="lot_obj.fsm_equipment_id.current_location_id.street"
+                                            /><br />
+                                        CEP: <t
+                                                t-esc="lot_obj.fsm_equipment_id.current_location_id.zip"
+                                            />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pt16 pb16 o_colored_level">
+                            <p>
+                                <a
+                                        href="/web/content/38054?unique=68d3327b735ae5253040bc896376e08f91b4964d&amp;download=true"
+                                        class="mb-2 btn btn-primary"
+                                        data-original-title="HISTORICO DE CERTIFICADOS"
+                                        title="HISTORICO DE CERTIFICADOS"
+                                        target="_blank"
+                                    >HISTORICO DE CERTIFICADOS</a>
+                                <a
+                                        href="/my/tickets"
+                                        class="mb-2 btn btn-secondary"
+                                        data-original-title="Abrir chamado"
+                                        title="Abrir chamado"
+                                        target="_blank"
+                                    >ABRIR CHAMADO</a>
                             </p>
+                            <img
+                                    t-attf-src="/website/image/product.product/{{lot_obj.product_id.id}}/image_512"
+                                    class="img img-fluid mx-auto"
+                                    alt="image"
+                                    loading="lazy"
+                                />
                         </div>
                     </div>
                 </div>
