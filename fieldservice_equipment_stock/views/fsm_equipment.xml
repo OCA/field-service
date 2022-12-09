@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <group id="secondary" position="inside">
                 <group string="Inventory" groups="stock.group_stock_user">
-                    <field 
+                    <field
                         name="product_id"
                         domain="[('tracking', '!=', 'none'), ('type', '=', 'product'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
                     />
