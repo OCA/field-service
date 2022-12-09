@@ -6,11 +6,11 @@ _logger = logging.getLogger(__name__)
 
 
 class FieldserviceEquipmentWebsiteController(http.Controller):
-    @http.route("/equipment/<serial>/", type="http", auth="user", website=True)
+    @http.route("/equipment/<serial>/", type="http", auth="public", website=True)
     def get_equipment(self, serial):
 
         Lots = http.request.env["stock.production.lot"]
-        lot_obj = Lots.search([["name", "ilike", serial]], limit=1)
+        lot_obj = Lots.sudo().search([["name", "ilike", serial]], limit=1)
         if not lot_obj:
             return http.request.render("website.page_404")
         return http.request.render(
