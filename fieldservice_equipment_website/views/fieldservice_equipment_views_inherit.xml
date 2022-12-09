@@ -3,16 +3,16 @@
 <record id="fsm_equipment_form_view_inherit" model="ir.ui.view">
     <field name="name">fsm.equipment.form.website</field>
     <field name="model">fsm.equipment</field>
-    <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view"/>
+    <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
     <field name="arch" type="xml">
         <label position="before">
             <div name="button_box" class="oe_button_box">
-                <button 
-                    class="oe_stat_button"
-                    type="object"
-                    name="to_controller_url"
-                    icon="fa-globe"
-                >
+                <button
+                        class="oe_stat_button"
+                        type="object"
+                        name="to_controller_url"
+                        icon="fa-globe"
+                    >
                 <div class="o_stat_info o_field_widget">
                     <span class="o_stat_text">Go to Website</span>
                 </div>
