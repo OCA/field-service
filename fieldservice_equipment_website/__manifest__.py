@@ -12,6 +12,7 @@
         "base",
         "portal",
         "website",
+        "fieldservice_equipment_stock"
     ],
     "data": [
         "views/fieldservice_equipment_website_templates.xml",
