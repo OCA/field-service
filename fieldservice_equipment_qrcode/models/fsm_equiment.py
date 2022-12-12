@@ -15,7 +15,7 @@ class FsmEquimentQr(models.Model):
         compute='_compute_qrcode',
     )
 
-    @api.depends('lot_id', 'product_id')
+    @api.depends('lot_id', 'product_id', 'url')
     def _compute_qrcode(self):
         for equipment  in self:
             equipment_qrcode = self._generate_qrcode_from_url(equipment.url)

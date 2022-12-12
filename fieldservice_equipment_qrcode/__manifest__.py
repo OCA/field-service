@@ -13,6 +13,8 @@
         'fieldservice_equipment_website'
     ],
     'data': [
+        'reports/fieldservice_equipment_report.xml',
+        'reports/fieldservice_equipment_report_template.xml'
     ],
     'demo': [
     ],
