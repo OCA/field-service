@@ -11,55 +11,59 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2><t t-esc="lot_obj.product_id.name" /><br /></h2>
+                            <h2><t t-esc="lot_obj.fsm_equipment_id.name" /><br /></h2>
+                            <h4>NUMERO DE RASTREAMENTO: <t t-esc="lot_obj.name" /></h4>
                         </div>
                         <div class="col-lg-8 pt16 pb16 o_colored_level">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p>RESGISTRO ANVISA: <t
+                                    <p><b>CATEGORIA ANVISA:</b> <t
+                                                t-esc="lot_obj.product_id.categ_id.name"
+                                            /><br />
+                                            <b>RESGISTRO ANVISA:</b> <t
                                                 t-esc="lot_obj.product_id.default_code"
-                                            /><br />FABRICANTE: <t
-                                                t-esc="lot_obj.product_id.product_brand_id.name"
                                             /></p>
                                     <p><b>PATRIMONIO HOSPITALAR PERTENCENTE:</b></p>
                                     <p><t
                                                 t-esc="lot_obj.fsm_equipment_id.owned_by_id.legal_name"
                                             /></p>
-                                    <p>CNPJ: <t
+                                    <p><b>CNPJ:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.owned_by_id.cnpj_cpf"
                                             /><br /></p>
                                     <p><b>LOCALIZAÇÃO ORIGINAL:<br /></b>
                                         <t
                                                 t-esc="lot_obj.fsm_equipment_id.location_id.name"
                                             /><br />
-                                        RUA: <t
+                                        <b>RUA:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.location_id.street"
                                             /><br />
-                                        CEP: <t
+                                        <b>CEP:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.location_id.zip"
                                             />
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>NS FABRICANTE: <t t-esc="lot_obj.ref" /><br
-                                            />#ENG CLINICA: <t
-                                                t-esc="lot_obj.name"
+                                    <p><b>FABRICANTE:</b> <t
+                                                t-esc="lot_obj.product_id.product_brand_id.name"
+                                            /><br />
+                                            <b>NS FABRICANTE:</b> <t
+                                                t-esc="lot_obj.ref"
                                             /></p>
                                     <p><b>GERENCIADO POR:</b></p>
                                     <p><t
                                                 t-esc="lot_obj.fsm_equipment_id.managed_by_id.legal_name"
                                             /></p>
-                                    <p>CNPJ: <t
+                                    <p><b>CNPJ:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.managed_by_id.cnpj_cpf"
                                             /></p>
                                     <p><b>LOCALIZAÇÃO ATUAL:<br /></b>
                                         <t
                                                 t-esc="lot_obj.fsm_equipment_id.current_location_id.name"
                                             /><br />
-                                        RUA: <t
+                                        <b>RUA:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.current_location_id.street"
                                             /><br />
-                                        CEP: <t
+                                        <b>CEP:</b> <t
                                                 t-esc="lot_obj.fsm_equipment_id.current_location_id.zip"
                                             />
                                     </p>
@@ -67,14 +71,29 @@
                             </div>
                         </div>
                         <div class="col-lg-4 pt16 pb16 o_colored_level">
+                            <t t-if="lot_obj.product_id.is_medical">
+                                <p><b>CERTIFICATE VALIDITY DATE:</b> <t
+                                            t-esc="lot_obj.product_id.ce_certificate_validity_date"
+                                        /><br />
+                                </p>
+                                <div class="list-group list-group-flush mb-4">
+                                <p><b>HISTORICO DE CERTIFICADOS:</b></p>
+                                <t
+                                            t-foreach="lot_obj.product_id.ce_certificate_medical_class_ids"
+                                            t-as="attachment"
+                                        >
+                                    <a
+                                                t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                                class="list-group-item list-group-item-action"
+                                            ><span
+                                                    class="fa fa-download"
+                                                /> Descargar: <t
+                                                    t-esc="attachment.name"
+                                                /></a>
+                                </t>
+                                </div>
+                            </t>
                             <p>
-                                <a
-                                        href="/web/content/38054?unique=68d3327b735ae5253040bc896376e08f91b4964d&amp;download=true"
-                                        class="mb-2 btn btn-primary"
-                                        data-original-title="HISTORICO DE CERTIFICADOS"
-                                        title="HISTORICO DE CERTIFICADOS"
-                                        target="_blank"
-                                    >HISTORICO DE CERTIFICADOS</a>
                                 <a
                                         href="/my/tickets"
                                         class="mb-2 btn btn-secondary"
@@ -83,6 +102,8 @@
                                         target="_blank"
                                     >ABRIR CHAMADO</a>
                             </p>
+                        </div>
+                        <div class="col-md-12">
                             <img
                                     t-attf-src="/website/image/product.product/{{lot_obj.product_id.id}}/image_512"
                                     class="img img-fluid mx-auto"
