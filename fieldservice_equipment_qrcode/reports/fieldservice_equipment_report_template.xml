@@ -48,7 +48,10 @@
                             /></p>
                         </div>
                         <div class="col-right">
-                            <img t-att-src="image_data_uri(o.company_id.labels_logo)" class="logo-company" />
+                            <img
+                            t-att-src="image_data_uri(o.company_id.labels_logo)"
+                            class="logo-company"
+                        />
                             <img t-att-src="image_data_uri(o.qrcode)" class="qrcode" />
                         </div>
                     </div>

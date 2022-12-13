@@ -3,7 +3,7 @@
 {
     "name": "Field Service Equipment Website",
     "summary": "Show a website for the equipements",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
