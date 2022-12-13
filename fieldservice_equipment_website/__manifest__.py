@@ -8,11 +8,7 @@
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
     "author": "Odoo Community Association (OCA), Rafnixg",
-    "depends": [
-        "base",
-        "portal",
-        "website",
-    ],
+    "depends": ["base", "portal", "website", "fieldservice_equipment_stock"],
     "data": [
         "views/fieldservice_equipment_website_templates.xml",
         "views/fieldservice_equipment_views_inherit.xml",

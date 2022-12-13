@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_qrcode">
+            <t t-call="web.html_container">
+                <style>
+                <!-- .page{
+                    width:60mm;
+                    height:40mm;
+                    border: 1px solid red;
+                    padding: 2mm;
+                } -->
+                    .page p{
+                        margin-bottom:0;
+                        font-size:1.8mm;
+                    }
+                    .col-left{
+                        width: 60%;
+                        float: left;
+                    }
+                    .col-right{
+                        width: 40%;
+                        float:right;
+                        text-align:center;
+                    }
+                    .logo-company{
+                        height:14mm;
+                    }
+                    .qrcode{
+                        width:100%;
+                    }
+                </style>
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="col-left">
+                            <p><b>EQUIPO:</b> <t t-esc="o.name" /></p>
+                            <p><b>FABRICANTE:</b> <t
+                                t-esc="o.product_id.product_brand_id.name"
+                            /></p>
+                            <p><b>MODELO:</b> <t
+                                t-esc="o.product_id.categ_id.name"
+                            /></p>
+                            <p><b>N#:</b> <t t-esc="o.lot_id.name" /></p>
+                            <p><b>LOCALIZACAO ORIGINAL:</b><br /> <t
+                                t-esc="o.current_location_id.name"
+                            /></p>
+                            <p><b>PATRIMONIO:</b><br /> <t
+                                t-esc="o.owned_by_id.name"
+                            /></p>
+                        </div>
+                        <div class="col-right">
+                            <img t-att-src="image_data_uri(o.company_id.labels_logo)" class="logo-company" />
+                            <img t-att-src="image_data_uri(o.qrcode)" class="qrcode" />
+                        </div>
+                    </div>
+                </t>
+            </t>
+    </template>
+</odoo>
