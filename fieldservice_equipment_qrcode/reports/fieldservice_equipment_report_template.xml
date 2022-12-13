@@ -2,16 +2,44 @@
 <odoo>
     <template id="report_qrcode">
             <t t-call="web.html_container">
+            <style>
+                .page p{
+                    margin-bottom:0;
+                    font-size:2.4mm;
+                }
+                .col-left{
+                    width: 60%;
+                    float: left;
+                }
+                .col-right{
+                    width: 40%;
+                    float:right;
+                }
+                .col-right img{
+                    width: 100%;
+                }
+            </style>
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
-                        <p t-field="o.name" />
-                        <p t-field="o.lot_id.name" />
-                        <p t-field="o.product_id.categ_id.name" />
-                        <img
-                        t-att-src="image_data_uri(o.company_id.logo)"
-                        width="120"
-                    /><br />
-                        <img t-att-src="image_data_uri(o.qrcode)" />
+                        <div class="col-left">
+                            <p><b>EQUIPO:</b> <t t-esc="o.name" /></p>
+                            <p><b>FABRICANTE:</b> <t
+                                t-esc="o.product_id.product_brand_id.name"
+                            /></p>
+                            <p><b>MODELO:</b> <t
+                                t-esc="o.product_id.categ_id.name"
+                            /></p>
+                            <p><b>N#:</b> <t t-esc="o.lot_id.name" /></p>
+                            <p><b>LOCALIZACAO ORIGINAL:</b><br /> <t
+                                t-esc="o.current_location_id.name"
+                            /></p>
+                            <p><b>PATRIMONIO:</b><br /> <t
+                                t-esc="o.owned_by_id.name"
+                            /></p>
+                        </div>
+                        <div class="col-right">
+                            <img t-att-src="image_data_uri(o.qrcode)" />
+                        </div>
                     </div>
                 </t>
             </t>
