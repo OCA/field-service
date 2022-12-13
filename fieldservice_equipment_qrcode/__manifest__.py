@@ -5,7 +5,8 @@
     "name": "Fieldservice Equipment Qrcode",
     "summary": """
         This module is an add-on for the Field Service application in Odoo.
-        It allows you go to your FSM Equipments print QRcode with URL to fieldserice_equipment_website.""",
+        It allows you go to your FSM Equipments print 
+        QRcode with URL to fieldserice_equipment_website.""",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/field-service",
