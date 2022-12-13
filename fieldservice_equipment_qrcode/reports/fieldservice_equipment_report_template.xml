@@ -2,23 +2,33 @@
 <odoo>
     <template id="report_qrcode">
             <t t-call="web.html_container">
-            <style>
-                .page p{
-                    margin-bottom:0;
-                    font-size:2.4mm;
-                }
-                .col-left{
-                    width: 60%;
-                    float: left;
-                }
-                .col-right{
-                    width: 40%;
-                    float:right;
-                }
-                .col-right img{
-                    width: 100%;
-                }
-            </style>
+                <style>
+                <!-- .page{
+                    width:60mm;
+                    height:40mm;
+                    border: 1px solid red;
+                    padding: 2mm;
+                } -->
+                    .page p{
+                        margin-bottom:0;
+                        font-size:1.8mm;
+                    }
+                    .col-left{
+                        width: 60%;
+                        float: left;
+                    }
+                    .col-right{
+                        width: 40%;
+                        float:right;
+                        text-align:center;
+                    }
+                    .logo-company{
+                        height:14mm;
+                    }
+                    .qrcode{
+                        width:100%;
+                    }
+                </style>
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
                         <div class="col-left">
@@ -38,7 +48,8 @@
                             /></p>
                         </div>
                         <div class="col-right">
-                            <img t-att-src="image_data_uri(o.qrcode)" />
+                            <img t-att-src="image_data_uri(o.company_id.labels_logo)" class="logo-company" />
+                            <img t-att-src="image_data_uri(o.qrcode)" class="qrcode" />
                         </div>
                     </div>
                 </t>

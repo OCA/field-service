@@ -13,6 +13,7 @@
     "author": "Odoo Community Association (OCA), Rafnix Guzman",
     "depends": ["fieldservice_equipment_website"],
     "data": [
+        "views/res_company_views.xml",
         "reports/fieldservice_equipment_report.xml",
         "reports/fieldservice_equipment_report_template.xml",
     ],

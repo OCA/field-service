@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="res_company_qrcode_form_view_inherit" model="ir.ui.view">
+    <field name="name">res.company.qrcode.inherit</field>
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='favicon']" position="after">
+            <field name="labels_logo" widget='image' class="float-left oe_avatar"/>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
+
