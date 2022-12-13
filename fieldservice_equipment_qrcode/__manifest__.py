@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/field-service",
     "author": "Odoo Community Association (OCA), Rafnix Guzman",
-    "depends": ["fieldservice_equipment_website", "res_company"],
+    "depends": ["fieldservice_equipment_website"],
     "data": [
         "views/res_company_views.xml",
         "reports/fieldservice_equipment_report.xml",
