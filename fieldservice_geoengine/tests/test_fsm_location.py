@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-
 from odoo.tests.common import TransactionCase
+
 
 class TestFsmLocation(TransactionCase):
     def setUp(self):
@@ -23,11 +23,13 @@ class TestFsmLocation(TransactionCase):
             }
         )
         self.assertTrue(test_location.shape)
-        test_location.write({
-            "date_localization": fields.Datetime.today(),
-            "partner_latitude": 1.00,
-            "partner_longitude": 2.00
-        })
+        test_location.write(
+            {
+                "date_localization": fields.Datetime.today(),
+                "partner_latitude": 1.00,
+                "partner_longitude": 2.00,
+            }
+        )
         self.assertTrue(test_location.partner_latitude)
         self.assertTrue(test_location.partner_longitude)
         self.assertTrue(test_location.shape)
