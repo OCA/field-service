@@ -14,15 +14,15 @@ class FSMLocation(models.Model):
     def create(self, vals):
         vals.update({"fsm_location": True})
         res = super(FSMLocation, self).create(vals)
-        lat = self.partner_id.partner_latitude
-        lng = self.partner_id.partner_longitude
+        lat = res.partner_id.partner_latitude
+        lng = res.partner_id.partner_longitude
         if lat == 0.0 and lng == 0.0:
             res.geo_localize()
         else:
             point = fields.GeoPoint.from_latlon(
                 cr=self.env.cr, latitude=lat, longitude=lng
             )
-            self.shape = point
+            res.shape = point
         return res
 
     def geo_localize(self):
