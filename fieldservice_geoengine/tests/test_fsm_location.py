@@ -33,3 +33,26 @@ class TestFsmLocation(TransactionCase):
         self.assertTrue(test_location.partner_latitude)
         self.assertTrue(test_location.partner_longitude)
         self.assertTrue(test_location.shape)
+
+        test_location1 = self.fsm_location.create(
+            {
+                "name": "Test Location 3",
+                "phone": "1234",
+                "email": "tl1@email.com",
+                "partner_id": self.location_partner_1.id,
+                "owner_id": self.location_partner_2.id,
+                "partner_latitude": 1.00,
+                "partner_longitude": 2.00,
+            }
+        )
+        self.assertTrue(test_location1.shape)
+        test_location1.write(
+            {
+                "date_localization": fields.Datetime.today(),
+                "partner_latitude": 3.00,
+                "partner_longitude": 4.00,
+            }
+        )
+        self.assertTrue(test_location1.partner_latitude)
+        self.assertTrue(test_location1.partner_longitude)
+        self.assertTrue(test_location1.shape)
