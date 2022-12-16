@@ -117,12 +117,12 @@ class FSMFrequency(models.Model):
                 if not (1 <= rec.month_day <= 31):
                     raise UserError(_("'Day of Month must be between 1 and 31"))
 
-    def _get_rrule(self, dtstart=None, until=None):
+    def _get_rrule(self, dtstart=None, until=None, tz=None):
         self.ensure_one()
         freq = FREQUENCIES[self.interval_type]
         # localize dtstart and until to user timezone
-        tz = (
-            pytz.timezone(self._context.get("tz", None) or self.env.user.tz) or pytz.UTC
+        tz = pytz.timezone(
+            tz or self._context.get("tz", None) or self.env.user.tz or "UTC"
         )
 
         if dtstart:

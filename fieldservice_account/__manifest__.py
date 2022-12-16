@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Accounting",
     "summary": "Track invoices linked to Field Service orders",
-    "version": "14.0.1.2.1",
+    "version": "14.0.1.2.2",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -16,6 +16,6 @@
         "views/fsm_stage.xml",
     ],
     "license": "AGPL-3",
-    "development_status": "Beta",
+    "development_status": "Production/Stable",
     "maintainers": ["osimallen", "brian10048", "bodedra"],
 }

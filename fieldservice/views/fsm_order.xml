@@ -337,6 +337,7 @@
                 <field name="district_id" />
                 <field name="region_id" />
                 <field name="team_id" groups="fieldservice.group_fsm_team" />
+                <field name="person_id" />
                 <field name="person_ids" />
                 <separator />
                 <filter
@@ -415,6 +416,11 @@
                         domain=""
                         context="{'group_by':'region_id'}"
                     />
+                    <filter
+                        name="fsm_person_id"
+                        domain=""
+                        context="{'group_by':'person_id'}"
+                    />
                 </group>
             </search>
         </field>
@@ -456,6 +462,30 @@
                 Create an Order.
             </p>
         </field>
+    </record>
+    <record id="action_fsm_dash_order_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="fsm_order_kanban_view" />
+        <field name="act_window_id" ref="action_fsm_dash_order" />
+    </record>
+    <record id="action_fsm_dash_order_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="fsm_order_tree_view" />
+        <field name="act_window_id" ref="action_fsm_dash_order" />
+    </record>
+    <record id="action_fsm_dash_order_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="fsm_order_form" />
+        <field name="act_window_id" ref="action_fsm_dash_order" />
+    </record>
+    <record id="action_fsm_dash_order_view_calendar" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="fsm_order_calendar_view" />
+        <field name="act_window_id" ref="action_fsm_dash_order" />
     </record>
     <!-- Reporting -->
     <record id="fsm_order_graph_view" model="ir.ui.view">

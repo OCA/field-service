@@ -1,0 +1,544 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_change_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-11-16 18:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__change_log_count
+msgid "# Change Logs"
+msgstr "Nr. registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_needaction
+msgid "Action Needed"
+msgstr "Richiesta un'azione"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__active
+msgid "Active"
+msgstr "Attiva"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_ids
+msgid "Activities"
+msgstr "Attività"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorazione eccezione attività"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_state
+msgid "Activity State"
+msgstr "Stato attività"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona tipo attività"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "Archived"
+msgstr "Archiviata"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteggio allegati"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_change_log
+msgid "Change Log"
+msgstr "Registro modifiche"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_form
+msgid "Change Log Form"
+msgstr "Modulo registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_change_log_impact
+msgid "Change Log Impact"
+msgstr "Impatto registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.actions.act_window,name:fieldservice_change_management.change_log_impact_action
+msgid "Change Log Impact Action"
+msgstr "Azione impatto registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_change_log_stage
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_stage_view_form
+msgid "Change Log Stage"
+msgstr "Fase registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_change_log_tag
+msgid "Change Log Tags"
+msgstr "Etichette registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_change_log_type
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_type_view_form
+msgid "Change Log Type"
+msgstr "Tipo registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.actions.act_window,name:fieldservice_change_management.change_log_type_action
+msgid "Change Log Type Action"
+msgstr "Azione tipo registro modifiche"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_impact_view_form
+msgid "Change Log impact"
+msgstr "Impatto registro modifiche"
+
+#. module: fieldservice_change_management
+#: code:addons/fieldservice_change_management/models/fsm_location.py:0
+#: model:ir.actions.act_window,name:fieldservice_change_management.change_log_action
+#: model:ir.actions.report,name:fieldservice_change_management.change_log_document
+#: model:ir.actions.report,name:fieldservice_change_management.location_change_log_document
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.change_log_document
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.location_change_log_document
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__change_log_ids
+#: model:ir.module.category,name:fieldservice_change_management.module_change_log_category
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_menu
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_root_menu
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.fsm_location_change_log_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#, python-format
+msgid "Change Logs"
+msgstr "Registri modifiche"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Change Logs for"
+msgstr "Registri modifiche per"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__user_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Changed By"
+msgstr "Modificato da"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Changed On"
+msgstr "Modificato il"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__is_close
+msgid "Closing Kanban Stage"
+msgstr "Chiusura fase kanban"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__color
+msgid "Color Index"
+msgstr "Indice colore"
+
+#. module: fieldservice_change_management
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_configuration_menu
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__create_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__create_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__create_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__create_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__create_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__create_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__create_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__create_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__description
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__description
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__description
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__description
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__description
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__display_name
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_tag_form_view
+msgid "Engineering tag"
+msgstr "Etichetta ingegneria"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__location_id
+msgid "FSM Location"
+msgstr "Località FSM"
+
+#. module: fieldservice_change_management
+#: model:ir.model,name:fieldservice_change_management.model_fsm_location
+msgid "Field Service Location"
+msgstr "Località assistenza sul campo"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__fold
+msgid "Folded"
+msgstr "Minimizzata"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_follower_ids
+msgid "Followers"
+msgstr "Iscritti"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Iscritti (canali)"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Iscritti (partner)"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona font awesome es. fa-tasks"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per indicare una attività eccezione."
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_needaction
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Se attivo, nuovi messaggi richiedono attenzione."
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_has_error
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se attivo, alcuni messaggi hanno un errore di consegna."
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__impact_id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__name
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "Impact"
+msgstr "Impatto"
+
+#. module: fieldservice_change_management
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_impact_menu
+msgid "Impacts"
+msgstr "Impatti"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__implemented_on
+msgid "Implemented On"
+msgstr "Implementato su"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_is_follower
+msgid "Is Follower"
+msgstr "È iscritto"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type____last_update
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__write_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__write_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__write_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__write_uid
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__write_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__write_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__write_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__write_date
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "Location"
+msgstr "Località"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__log_impact_sequence
+msgid "Log Impact Sequence"
+msgstr "Sequenza impatto registro"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__log_type_sequence
+msgid "Log Type Sequence"
+msgstr "Sequenza tipo registro"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Allegato principale"
+
+#. module: fieldservice_change_management
+#: model:res.groups,name:fieldservice_change_management.change_log_group_manager
+msgid "Manager"
+msgstr "Responsabile"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore consegna messaggio"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Scadenza mia attività"
+
+#. module: fieldservice_change_management
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "My Change Logs"
+msgstr "Mio registro modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__name
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_impact_view_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_stage_view_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_tag_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_type_view_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_form
+msgid "Name"
+msgstr "Nome"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Scadenza attività successiva"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_summary
+msgid "Next Activity Summary"
+msgstr "Riepilogo attività successiva"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo attività successiva"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di azioni"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Numero di messaggi che richiedono un'azione"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Numero di messaggi non letti"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_user_id
+msgid "Responsible User"
+msgstr "Utente responsabile"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore consegna SMS"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__stage_id
+msgid "Select the current stage of the Bandwidth Change."
+msgstr "Selezionare la fase attuale della modifica di banda."
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__stage_id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__name
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+msgid "Stage"
+msgstr "Fase"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__stage_sequence
+msgid "Stage Sequence"
+msgstr "Sequenza fase"
+
+#. module: fieldservice_change_management
+#: model:ir.actions.act_window,name:fieldservice_change_management.change_log_stage_action
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_stage_menu
+msgid "Stages"
+msgstr "Fasi"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Stato in base alle attività\n"
+"Scaduta: la data richiesta è trascorsa\n"
+"Ogg: la data richiesta è oggi\n"
+"Pianificata: attività future."
+
+#. module: fieldservice_change_management
+#: model:ir.model.constraint,message:fieldservice_change_management.constraint_change_log_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "Nome etichetta già esistente!"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__tag_ids
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_tag_menu
+msgid "Tags"
+msgstr "Etichette"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__name
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Title"
+msgstr "Titolo"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__type_id
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__name
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_search
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_change_log_document
+#: model_terms:ir.ui.view,arch_db:fieldservice_change_management.report_location_change_log_document
+msgid "Type"
+msgstr "Tipo"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo di attività eccezione sul record."
+
+#. module: fieldservice_change_management
+#: model:ir.ui.menu,name:fieldservice_change_management.change_log_type_menu
+msgid "Types"
+msgstr "Tipi"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_unread
+msgid "Unread Messages"
+msgstr "Messaggi non letti"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contatore messaggi non letti"
+
+#. module: fieldservice_change_management
+#: model:res.groups,name:fieldservice_change_management.change_log_group_user
+msgid "User"
+msgstr "Utente"
+
+#. module: fieldservice_change_management
+#: model:res.groups,name:fieldservice_change_management.change_log_group_readonly
+msgid "User (Read Only)"
+msgstr "Utente (solo lettura)"
+
+#. module: fieldservice_change_management
+#: model:ir.module.category,description:fieldservice_change_management.module_change_log_category
+msgid "User access level for Change Logs"
+msgstr "Livello accesso utente per i registri modifiche"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__website_message_ids
+msgid "Website communication history"
+msgstr "Storico messaggi sito web"
+
+#. module: fieldservice_change_management
+#: model:ir.actions.act_window,name:fieldservice_change_management.change_log_tag_action
+msgid "tags"
+msgstr "etichette"

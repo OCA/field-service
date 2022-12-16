@@ -1,0 +1,52 @@
+<odoo>
+    <record id="change_log_type_seq" model="ir.sequence">
+        <field name="name">Change Log Type Sequence</field>
+        <field name="code">change.log.type</field>
+        <field name="prefix">0</field>
+        <field name="padding">1</field>
+    </record>
+
+    <record id="change_log_type_view_list" model="ir.ui.view">
+        <field name="name">Change Log Type List View</field>
+        <field name="model">change.log.type</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="log_type_sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="change_log_type_view_form" model="ir.ui.view">
+        <field name="name">Change Log Type Form</field>
+        <field name="model">change.log.type</field>
+        <field name="arch" type="xml">
+            <form string="Change Log Type">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Name" />
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <field name="description" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="change_log_type_action" model="ir.actions.act_window">
+        <field name="name">Change Log Type Action</field>
+        <field name="res_model">change.log.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Types"
+        id="change_log_type_menu"
+        parent="change_log_configuration_menu"
+        action="change_log_type_action"
+        sequence="40"
+    />
+</odoo>

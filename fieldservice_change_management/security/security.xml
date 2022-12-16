@@ -1,0 +1,29 @@
+<odoo>
+    <record id="module_change_log_category" model="ir.module.category">
+        <field name="name">Change Logs</field>
+        <field name="description">User access level for Change Logs</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="change_log_group_readonly" model="res.groups">
+        <field name="name">User (Read Only)</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="module_change_log_category" />
+    </record>
+
+    <record id="change_log_group_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="implied_ids" eval="[(4, ref('change_log_group_readonly'))]" />
+        <field name="category_id" ref="module_change_log_category" />
+    </record>
+
+    <record id="change_log_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="implied_ids" eval="[(4, ref('change_log_group_user'))]" />
+        <field name="category_id" ref="module_change_log_category" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+</odoo>

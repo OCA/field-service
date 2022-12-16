@@ -1,0 +1,25 @@
+<odoo>
+    <record id="fsm_location_change_log_form" model="ir.ui.view">
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <button name="action_view_contacts" position="after">
+                <button
+                    name="action_open_change_logs"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    groups="fieldservice_change_management.change_log_group_readonly"
+                    context="{'search_default_location_id': active_id,
+                                  'default_location_id': active_id}"
+                >
+                    <field
+                        name="change_log_count"
+                        widget="statinfo"
+                        string="Change Logs"
+                    />
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
