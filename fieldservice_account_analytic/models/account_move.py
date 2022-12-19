@@ -12,7 +12,7 @@ class AccountMoveLine(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
-            if order:
+            if order and not vals.get("analytic_account_id"):
                 if order.location_id.analytic_account_id:
                     vals[
                         "analytic_account_id"

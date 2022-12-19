@@ -14,7 +14,7 @@ class AccountAnalyticLine(models.Model):
     @api.model
     def create(self, vals):
         order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
-        if order:
+        if order and not vals.get("account_id"):
             if order.location_id.analytic_account_id:
                 vals["account_id"] = order.location_id.analytic_account_id.id
             else:
