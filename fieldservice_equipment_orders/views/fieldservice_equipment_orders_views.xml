@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="fieldservice_equipment_orders_form_view_inherit" model="ir.ui.view">
+    <field name="name">fsm.equipment.orders.form.inherit</field>
+    <field name="model">fsm.equipment</field>
+    <field name="inherit_id" ref="fieldservice_equipment_website.fsm_equipment_form_view_inherit" />
+    <field name="arch" type="xml">
+        <div name="button_box" position="inside">
+            <button class="oe_stat_button"
+                name="smart_button_fsm_orders"
+                type="object"
+                icon="fa-pencil"
+            >
+                <field string="Orders"
+                    name="fsm_order_count"
+                    widget="statinfo"/>
+            </button>
+        </div>
+    </field>
+</record>
+
+</odoo>
