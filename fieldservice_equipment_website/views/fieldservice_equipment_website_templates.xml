@@ -102,14 +102,48 @@
                                         target="_blank"
                                     >ABRIR CHAMADO</a>
                             </p>
-                        </div>
-                        <div class="col-md-12">
                             <img
                                     t-attf-src="/website/image/product.product/{{lot_obj.product_id.id}}/image_512"
                                     class="img img-fluid mx-auto"
                                     alt="image"
                                     loading="lazy"
                                 />
+                        </div>
+                        <div class="col-md-12">
+                            <t t-if="lot_obj.fsm_equipment_id.helpdesk_ticket_ids">
+                                <h4>Ticket History</h4>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Created on</th>
+                                            <th scope="col">Last Stage Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <t
+                                                t-foreach="lot_obj.fsm_equipment_id.helpdesk_ticket_ids"
+                                                t-as="ticket"
+                                            >
+                                        <tr>
+                                            <th scope="row"><t
+                                                            t-esc="ticket.number"
+                                                        /></th>
+                                            <td><t t-esc="ticket.name" /></td>
+                                            <td><t
+                                                            t-esc="ticket.category_id.name"
+                                                        /></td>
+                                            <td><t t-esc="ticket.create_date" /></td>
+                                            <td><t
+                                                            t-esc="ticket.last_stage_update"
+                                                        /></td>
+                                        </tr>
+                                    </t>
+                                    </tbody>
+                                </table>
+                            </t>
                         </div>
                     </div>
                 </div>
