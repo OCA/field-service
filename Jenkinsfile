@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'ubuntu-latest'
-  }
+  agent any
   stages {
     stage('pre-commit') {
       steps {
