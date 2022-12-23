@@ -5,7 +5,6 @@ pipeline {
   stages {
     stage('pre-commit') {
       steps {
-        checkout()
         sh 'pip install pre-commit'
         sh 'pre-commit run --all-files --show-diff-on-failure --color=always'
         sh '''
