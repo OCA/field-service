@@ -317,7 +317,7 @@
                                     </div>
                                     <div class="oe_kanban_bottom_right">
                                         <img
-                                            t-att-src="kanban_image('person', 'image_small', record.person_id.name)"
+                                            t-att-src="kanban_image('fsm.person', 'image_128', record.person_id.raw_value)"
                                             t-att-title="record.person_id.name"
                                             t-att-alt="record.person_id.name"
                                             width="24"
