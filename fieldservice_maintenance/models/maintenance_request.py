@@ -36,7 +36,11 @@ class MaintenanceRequest(models.Model):
                     "location_id": fsm_equipment.current_location_id.id,
                     "request_id": request.id,
                     "description": request.description,
+                    "request_early": request.schedule_date,
+                    "scheduled_date_start": request.schedule_date,
+                    "priority": request.priority,
                 }
             )
+
             request.fsm_order_id = fsm_order_id
         return request
