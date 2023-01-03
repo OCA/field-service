@@ -27,21 +27,28 @@ class FieldserviceEquipmentWebsiteController(http.Controller):
         )
 
 
-class PortalFieldserviceEquipment(CustomerPortal):
+class PortalFieldservice(CustomerPortal):
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
         if "equipment_count" in counters:
-            fsm_equipment_model = request.env["fsm.equipment"]
-            # partner_id = request.env.user.partner_id.parent_id
-            equipment_count = (
-                fsm_equipment_model.search_count([])
-                if fsm_equipment_model.check_access_rights(
-                    "read", raise_exception=False
-                )
-                else 0
-            )
-            values["equipment_count"] = equipment_count
+            self._set_count_to_values("fsm.equipment", values, "equipment_count")
+        if "location_count" in counters:
+            partner_id = request.env.user.partner_id.parent_id
+            if partner_id.parent_id:
+                partner_id = partner_id.parent_id
+            self._set_count_to_values("fsm.location", values, "location_count")
         return values
+
+    def _set_count_to_values(self, model_name, values, key, domain=None):
+        if domain is None:
+            domain = []
+        obj_model = request.env[model_name]
+        count = (
+            obj_model.search_count(domain)
+            if obj_model.check_access_rights("read", raise_exception=False)
+            else 0
+        )
+        values[key] = count
 
     def _fieldservice_equipment_get_page_view_values(
         self, equipment, access_token, **kwargs
@@ -52,6 +59,17 @@ class PortalFieldserviceEquipment(CustomerPortal):
         }
         return self._get_page_view_values(
             equipment, access_token, values, "my_equipments_history", False, **kwargs
+        )
+
+    def _fieldservice_location_get_page_view_values(
+        self, location, access_token, **kwargs
+    ):
+        values = {
+            "page_name": "Locations",
+            "location": location,
+        }
+        return self._get_page_view_values(
+            location, access_token, values, "my_locations_history", False, **kwargs
         )
 
     def _get_filter_domain(self, kw):
@@ -135,4 +153,84 @@ class PortalFieldserviceEquipment(CustomerPortal):
         )
         return request.render(
             "fieldservice_equipment_website.portal_equipment_page", values
+        )
+
+    @http.route(
+        ["/my/locations", "/my/locations/page/<int:page>"],
+        type="http",
+        auth="user",
+        website=True,
+    )
+    def portal_my_locations(
+        self, page=1, date_begin=None, date_end=None, sortby=None, **kw
+    ):
+        values = self._prepare_portal_layout_values()
+        fieldservice_location_obj = request.env["fsm.location"].sudo()
+        # Avoid error if the user does not have access.
+        if not fieldservice_location_obj.check_access_rights(
+            "read", raise_exception=False
+        ):
+            return request.redirect("/my")
+        domain = self._get_filter_domain(kw)
+        searchbar_sortings = {
+            # "date": {"label": _("Date"), "order": "recurring_next_date desc"},
+            "name": {"label": _("Name"), "order": "name desc"},
+            "code": {"label": _("Reference"), "order": "code desc"},
+        }
+        # default sort by order
+        if not sortby:
+            sortby = "name"
+        order = searchbar_sortings[sortby]["order"]
+        # count for pager
+        location_count = fieldservice_location_obj.search_count(domain)
+        # pager
+        pager = portal_pager(
+            url="/my/locations",
+            url_args={
+                "date_begin": date_begin,
+                "date_end": date_end,
+                "sortby": sortby,
+            },
+            total=location_count,
+            page=page,
+            step=self._items_per_page,
+        )
+        # content according to pager and archive selected
+        locations = fieldservice_location_obj.search(
+            domain, order=order, limit=self._items_per_page, offset=pager["offset"]
+        )
+        request.session["my_locations_history"] = locations.ids[:100]
+        values.update(
+            {
+                "date": date_begin,
+                "locations": locations,
+                "page_name": "Locations",
+                "pager": pager,
+                "default_url": "/my/locations",
+                "searchbar_sortings": searchbar_sortings,
+                "sortby": sortby,
+            }
+        )
+        return request.render(
+            "fieldservice_equipment_website.portal_my_locations", values
+        )
+
+    @http.route(
+        ["/my/locations/<int:location_id>"],
+        type="http",
+        auth="public",
+        website=True,
+    )
+    def portal_my_location_detail(self, location_id, access_token=None, **kw):
+        try:
+            location_sudo = self._document_check_access(
+                "fsm.location", location_id, access_token
+            )
+        except (AccessError, MissingError):
+            return request.redirect("/my")
+        values = self._fieldservice_location_get_page_view_values(
+            location_sudo, access_token, **kw
+        )
+        return request.render(
+            "fieldservice_equipment_website.portal_location_page", values
         )
