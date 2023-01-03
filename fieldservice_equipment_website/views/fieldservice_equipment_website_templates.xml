@@ -250,68 +250,68 @@
             <t t-call="portal.portal_record_layout">
                 <t t-set="card_header">
                     <section
-                    class="s_text_image pt32 pb32 o_colored_level"
-                    data-snippet="s_text_image"
-                    data-name="Text - Image"
-                >
+                        class="s_text_image pt32 pb32 o_colored_level"
+                        data-snippet="s_text_image"
+                        data-name="Text - Image"
+                    >
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <h2><t t-esc="equipment.name" /><br /></h2>
-                            <h4>NUMERO DE RASTREAMENTO: <t t-esc="equipment.lot_id.name" /></h4>
+                            <h4>NUMERO DE RASTREAMENTO: <t
+                                            t-esc="equipment.lot_id.name"
+                                        /></h4>
                         </div>
                         <div class="col-lg-8 pt16 pb16 o_colored_level">
                             <div class="row">
                                 <div class="col-md-6">
                                     <p><b>CATEGORIA ANVISA:</b> <t
-                                                t-esc="equipment.product_id.categ_id.name"
-                                            /><br />
+                                                    t-esc="equipment.product_id.categ_id.name"
+                                                /><br />
                                             <b>RESGISTRO ANVISA:</b> <t
-                                                t-esc="equipment.product_id.default_code"
-                                            /></p>
+                                                    t-esc="equipment.product_id.default_code"
+                                                /></p>
                                     <p><b>PATRIMONIO HOSPITALAR PERTENCENTE:</b></p>
                                     <p><t
-                                                t-esc="equipment.owned_by_id.legal_name"
-                                            /></p>
+                                                    t-esc="equipment.owned_by_id.legal_name"
+                                                /></p>
                                     <p><b>CNPJ:</b> <t
-                                                t-esc="equipment.owned_by_id.cnpj_cpf"
-                                            /><br /></p>
+                                                    t-esc="equipment.owned_by_id.cnpj_cpf"
+                                                /><br /></p>
                                     <p><b>LOCALIZAÇÃO ORIGINAL:<br /></b>
-                                        <t
-                                                t-esc="equipment.location_id.name"
-                                            /><br />
+                                        <t t-esc="equipment.location_id.name" /><br />
                                         <b>RUA:</b> <t
-                                                t-esc="equipment.location_id.street"
-                                            /><br />
+                                                    t-esc="equipment.location_id.street"
+                                                /><br />
                                         <b>CEP:</b> <t
-                                                t-esc="equipment.location_id.zip"
-                                            />
+                                                    t-esc="equipment.location_id.zip"
+                                                />
                                     </p>
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>FABRICANTE:</b> <t
-                                                t-esc="equipment.product_id.product_brand_id.name"
-                                            /><br />
+                                                    t-esc="equipment.product_id.product_brand_id.name"
+                                                /><br />
                                             <b>NS FABRICANTE:</b> <t
-                                                t-esc="equipment.lot_id.ref"
-                                            /></p>
+                                                    t-esc="equipment.lot_id.ref"
+                                                /></p>
                                     <p><b>GERENCIADO POR:</b></p>
                                     <p><t
-                                                t-esc="equipment.managed_by_id.legal_name"
-                                            /></p>
+                                                    t-esc="equipment.managed_by_id.legal_name"
+                                                /></p>
                                     <p><b>CNPJ:</b> <t
-                                                t-esc="equipment.managed_by_id.cnpj_cpf"
-                                            /></p>
+                                                    t-esc="equipment.managed_by_id.cnpj_cpf"
+                                                /></p>
                                     <p><b>LOCALIZAÇÃO ATUAL:<br /></b>
                                         <t
-                                                t-esc="equipment.current_location_id.name"
-                                            /><br />
+                                                    t-esc="equipment.current_location_id.name"
+                                                /><br />
                                         <b>RUA:</b> <t
-                                                t-esc="equipment.current_location_id.street"
-                                            /><br />
+                                                    t-esc="equipment.current_location_id.street"
+                                                /><br />
                                         <b>CEP:</b> <t
-                                                t-esc="equipment.current_location_id.zip"
-                                            />
+                                                    t-esc="equipment.current_location_id.zip"
+                                                />
                                     </p>
                                 </div>
                             </div>
@@ -319,41 +319,41 @@
                         <div class="col-lg-4 pt16 pb16 o_colored_level">
                             <t t-if="equipment.product_id.is_medical">
                                 <p><b>CERTIFICATE VALIDITY DATE:</b> <t
-                                            t-esc="equipment.product_id.ce_certificate_validity_date"
-                                        /><br />
+                                                t-esc="equipment.product_id.ce_certificate_validity_date"
+                                            /><br />
                                 </p>
                                 <div class="list-group list-group-flush mb-4">
                                 <p><b>HISTORICO DE CERTIFICADOS:</b></p>
                                 <t
-                                            t-foreach="equipment.product_id.ce_certificate_medical_class_ids"
-                                            t-as="attachment"
-                                        >
+                                                t-foreach="equipment.product_id.ce_certificate_medical_class_ids"
+                                                t-as="attachment"
+                                            >
                                     <a
-                                                t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
-                                                class="list-group-item list-group-item-action"
-                                            ><span
-                                                    class="fa fa-download"
-                                                /> Descargar: <t
-                                                    t-esc="attachment.name"
-                                                /></a>
+                                                    t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                                    class="list-group-item list-group-item-action"
+                                                ><span
+                                                        class="fa fa-download"
+                                                    /> Descargar: <t
+                                                        t-esc="attachment.name"
+                                                    /></a>
                                 </t>
                                 </div>
                             </t>
                             <p>
                                 <a
-                                        href="/my/tickets"
-                                        class="mb-2 btn btn-secondary"
-                                        data-original-title="Abrir chamado"
-                                        title="Abrir chamado"
-                                        target="_blank"
-                                    >ABRIR CHAMADO</a>
+                                            href="/my/tickets"
+                                            class="mb-2 btn btn-secondary"
+                                            data-original-title="Abrir chamado"
+                                            title="Abrir chamado"
+                                            target="_blank"
+                                        >ABRIR CHAMADO</a>
                             </p>
                             <img
-                                    t-attf-src="/website/image/product.product/{{equipment.product_id.id}}/image_512"
-                                    class="img img-fluid mx-auto"
-                                    alt="image"
-                                    loading="lazy"
-                                />
+                                        t-attf-src="/website/image/product.product/{{equipment.product_id.id}}/image_512"
+                                        class="img img-fluid mx-auto"
+                                        alt="image"
+                                        loading="lazy"
+                                    />
                         </div>
                         <div class="col-md-12">
                             <t t-if="equipment.helpdesk_ticket_ids">
@@ -370,21 +370,21 @@
                                     </thead>
                                     <tbody>
                                     <t
-                                                t-foreach="equipment.helpdesk_ticket_ids"
-                                                t-as="ticket"
-                                            >
+                                                    t-foreach="equipment.helpdesk_ticket_ids"
+                                                    t-as="ticket"
+                                                >
                                         <tr>
                                             <th scope="row"><t
-                                                            t-esc="ticket.number"
-                                                        /></th>
+                                                                t-esc="ticket.number"
+                                                            /></th>
                                             <td><t t-esc="ticket.name" /></td>
                                             <td><t
-                                                            t-esc="ticket.category_id.name"
-                                                        /></td>
+                                                                t-esc="ticket.category_id.name"
+                                                            /></td>
                                             <td><t t-esc="ticket.create_date" /></td>
                                             <td><t
-                                                            t-esc="ticket.last_stage_update"
-                                                        /></td>
+                                                                t-esc="ticket.last_stage_update"
+                                                            /></td>
                                         </tr>
                                     </t>
                                     </tbody>
