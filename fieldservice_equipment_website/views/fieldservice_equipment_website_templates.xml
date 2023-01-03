@@ -169,7 +169,7 @@
             >
                     <a
                     t-if="equipment"
-                    t-attf-href="/my/equipment?{{ keep_query() }}"
+                    t-attf-href="/my/equipments?{{ keep_query() }}"
                 >Equipments</a>
                     <t t-else="">Equipments</t>
                 </li>
@@ -205,7 +205,9 @@
                 <thead>
                     <tr class="active">
                         <th>Equipment</th>
-                        <th class='d-none d-md-table-cell'>Reference</th>
+                        <!-- <th class='d-none d-md-table-cell'>Equipment Category</th>
+                        <th class='d-none d-md-table-cell'>Product</th>
+                        <th class='d-none d-md-table-cell'>Serial #</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -213,16 +215,22 @@
                         <tr>
                             <td>
                                 <a
-                                    t-att-href="equipment.name"
+                                    t-att-href="equipment.get_portal_url()"
                                     t-attf-class="tr_equipment_link"
                                     t-att-title="equipment.name"
                                 >
                                     <t t-esc="equipment.name" />
                                 </a>
                             </td>
-                            <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.code" />
+                            <!-- <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.category_id.name" />
                             </td>
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.product_id.name" />
+                            </td>
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.lot_id.name" />
+                            </td> -->
                         </tr>
                     </t>
                 </tbody>
@@ -241,11 +249,151 @@
             </t>
             <t t-call="portal.portal_record_layout">
                 <t t-set="card_header">
-                    <h5 class="mb-0">
-                        <span>
-                            Equipment - <span t-field="equipment.name" />
-                        </span>
-                    </h5>
+                    <section
+                    class="s_text_image pt32 pb32 o_colored_level"
+                    data-snippet="s_text_image"
+                    data-name="Text - Image"
+                >
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2><t t-esc="equipment.name" /><br /></h2>
+                            <h4>NUMERO DE RASTREAMENTO: <t t-esc="equipment.lot_id.name" /></h4>
+                        </div>
+                        <div class="col-lg-8 pt16 pb16 o_colored_level">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>CATEGORIA ANVISA:</b> <t
+                                                t-esc="equipment.product_id.categ_id.name"
+                                            /><br />
+                                            <b>RESGISTRO ANVISA:</b> <t
+                                                t-esc="equipment.product_id.default_code"
+                                            /></p>
+                                    <p><b>PATRIMONIO HOSPITALAR PERTENCENTE:</b></p>
+                                    <p><t
+                                                t-esc="equipment.owned_by_id.legal_name"
+                                            /></p>
+                                    <p><b>CNPJ:</b> <t
+                                                t-esc="equipment.owned_by_id.cnpj_cpf"
+                                            /><br /></p>
+                                    <p><b>LOCALIZAÇÃO ORIGINAL:<br /></b>
+                                        <t
+                                                t-esc="equipment.location_id.name"
+                                            /><br />
+                                        <b>RUA:</b> <t
+                                                t-esc="equipment.location_id.street"
+                                            /><br />
+                                        <b>CEP:</b> <t
+                                                t-esc="equipment.location_id.zip"
+                                            />
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>FABRICANTE:</b> <t
+                                                t-esc="equipment.product_id.product_brand_id.name"
+                                            /><br />
+                                            <b>NS FABRICANTE:</b> <t
+                                                t-esc="equipment.lot_id.ref"
+                                            /></p>
+                                    <p><b>GERENCIADO POR:</b></p>
+                                    <p><t
+                                                t-esc="equipment.managed_by_id.legal_name"
+                                            /></p>
+                                    <p><b>CNPJ:</b> <t
+                                                t-esc="equipment.managed_by_id.cnpj_cpf"
+                                            /></p>
+                                    <p><b>LOCALIZAÇÃO ATUAL:<br /></b>
+                                        <t
+                                                t-esc="equipment.current_location_id.name"
+                                            /><br />
+                                        <b>RUA:</b> <t
+                                                t-esc="equipment.current_location_id.street"
+                                            /><br />
+                                        <b>CEP:</b> <t
+                                                t-esc="equipment.current_location_id.zip"
+                                            />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pt16 pb16 o_colored_level">
+                            <t t-if="equipment.product_id.is_medical">
+                                <p><b>CERTIFICATE VALIDITY DATE:</b> <t
+                                            t-esc="equipment.product_id.ce_certificate_validity_date"
+                                        /><br />
+                                </p>
+                                <div class="list-group list-group-flush mb-4">
+                                <p><b>HISTORICO DE CERTIFICADOS:</b></p>
+                                <t
+                                            t-foreach="equipment.product_id.ce_certificate_medical_class_ids"
+                                            t-as="attachment"
+                                        >
+                                    <a
+                                                t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                                class="list-group-item list-group-item-action"
+                                            ><span
+                                                    class="fa fa-download"
+                                                /> Descargar: <t
+                                                    t-esc="attachment.name"
+                                                /></a>
+                                </t>
+                                </div>
+                            </t>
+                            <p>
+                                <a
+                                        href="/my/tickets"
+                                        class="mb-2 btn btn-secondary"
+                                        data-original-title="Abrir chamado"
+                                        title="Abrir chamado"
+                                        target="_blank"
+                                    >ABRIR CHAMADO</a>
+                            </p>
+                            <img
+                                    t-attf-src="/website/image/product.product/{{equipment.product_id.id}}/image_512"
+                                    class="img img-fluid mx-auto"
+                                    alt="image"
+                                    loading="lazy"
+                                />
+                        </div>
+                        <div class="col-md-12">
+                            <t t-if="equipment.helpdesk_ticket_ids">
+                                <h4>Ticket History</h4>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Created on</th>
+                                            <th scope="col">Last Stage Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <t
+                                                t-foreach="equipment.helpdesk_ticket_ids"
+                                                t-as="ticket"
+                                            >
+                                        <tr>
+                                            <th scope="row"><t
+                                                            t-esc="ticket.number"
+                                                        /></th>
+                                            <td><t t-esc="ticket.name" /></td>
+                                            <td><t
+                                                            t-esc="ticket.category_id.name"
+                                                        /></td>
+                                            <td><t t-esc="ticket.create_date" /></td>
+                                            <td><t
+                                                            t-esc="ticket.last_stage_update"
+                                                        /></td>
+                                        </tr>
+                                    </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </section>
                 </t>
             </t>
         </t>

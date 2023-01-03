@@ -18,10 +18,12 @@ class FieldserviceEquipmentWebsiteController(http.Controller):
 
         Lots = http.request.env["stock.production.lot"]
         lot_obj = Lots.sudo().search([["name", "ilike", serial]], limit=1)
-        if not lot_obj:
-            return http.request.render("website.page_404")
-        return http.request.render(
-            "fieldservice_equipment_website.index", {"lot_obj": lot_obj}
+        return (
+            http.request.render(
+                "fieldservice_equipment_website.index", {"lot_obj": lot_obj}
+            )
+            if lot_obj
+            else http.request.render("website.page_404")
         )
 
 
@@ -124,7 +126,7 @@ class PortalFieldserviceEquipment(CustomerPortal):
     def portal_my_equipment_detail(self, equipment_id, access_token=None, **kw):
         try:
             equipment_sudo = self._document_check_access(
-                "equipment", equipment_id, access_token
+                "fsm.equipment", equipment_id, access_token
             )
         except (AccessError, MissingError):
             return request.redirect("/my")
