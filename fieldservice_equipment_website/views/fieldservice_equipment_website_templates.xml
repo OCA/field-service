@@ -1,5 +1,7 @@
 <odoo>
 
+    <!-- Custom template for QRcode routes -->
+
     <template id="index">
     <t t-call="website.layout">
         <div id="wrap" class="oe_structure oe_empty">
@@ -149,6 +151,103 @@
                 </div>
             </section>
         </div>
+        </t>
+    </template>
+
+    <!-- My Portal Links -->
+
+    <template
+        id="portal_my_home_menu_equipment"
+        name="Portal layout : Equipment menu entries"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="35"
+    >
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li
+                t-if="page_name == 'Equipments'"
+                t-attf-class="breadcrumb-item #{'active ' if not equipment else ''}"
+            >
+                    <a
+                    t-if="equipment"
+                    t-attf-href="/my/equipment?{{ keep_query() }}"
+                >Equipments</a>
+                    <t t-else="">Equipments</t>
+                </li>
+                <li t-if="equipment" class="breadcrumb-item active">
+                    <t t-esc="equipment.name" />
+                </li>
+            </xpath>
+        </template>
+        <template
+        id="portal_my_home_equipment"
+        name="Portal My Home : Equipment entries"
+        inherit_id="portal.portal_my_home"
+        priority="30"
+    >
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Equipments</t>
+                    <t t-set="url" t-value="'/my/equipments'" />
+                    <t t-set="placeholder_count" t-value="'equipment_count'" />
+                </t>
+            </xpath>
+        </template>
+
+    <!-- My Portal Templates  -->
+
+    <template id="portal_my_equipments" name="My Equipments">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Equipments</t>
+            </t>
+            <t t-if="equipments" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Equipment</th>
+                        <th class='d-none d-md-table-cell'>Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="equipments" t-as="equipment">
+                        <tr>
+                            <td>
+                                <a
+                                    t-att-href="equipment.name"
+                                    t-attf-class="tr_equipment_link"
+                                    t-att-title="equipment.name"
+                                >
+                                    <t t-esc="equipment.name" />
+                                </a>
+                            </td>
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.code" />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+    <template id="portal_equipment_page" name="My equipment">
+        <t t-call="portal.portal_layout">
+            <t t-set="o_portal_fullwidth_alert" groups="account.group_account_invoice">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t
+                        t-set="backend_url"
+                        t-value="'/web#return_label=Website&amp;model=fsm.equipment&amp;id=%s&amp;view_type=form' % (equipment.id)"
+                    />
+                </t>
+            </t>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h5 class="mb-0">
+                        <span>
+                            Equipment - <span t-field="equipment.name" />
+                        </span>
+                    </h5>
+                </t>
+            </t>
         </t>
     </template>
 
