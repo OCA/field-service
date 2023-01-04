@@ -450,9 +450,9 @@
                 <thead>
                     <tr class="active">
                         <th>Location</th>
-                        <!-- <th class='d-none d-md-table-cell'>Equipment Category</th>
-                        <th class='d-none d-md-table-cell'>Product</th>
-                        <th class='d-none d-md-table-cell'>Serial #</th> -->
+                        <th class='d-none d-md-table-cell'># Tickets</th>
+                        <th class='d-none d-md-table-cell'># Equipment</th>
+                        <th class='d-none d-md-table-cell'>Stage</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -467,15 +467,15 @@
                                     <t t-esc="location.name" />
                                 </a>
                             </td>
-                            <!-- <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.category_id.name" />
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="location.ticket_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.product_id.name" />
+                                <span t-field="location.equipment_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.lot_id.name" />
-                            </td> -->
+                                <span t-field="location.stage_id.name" />
+                            </td>
                         </tr>
                     </t>
                 </tbody>
@@ -503,6 +503,32 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <h2><t t-esc="location.name" /><br /></h2>
+                                    <p><t t-esc="location.street" /></p>
+                                    <hr />
+                                    <h4>Service Profile</h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Agreement</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <t
+                                                t-foreach="location.serviceprofile_ids"
+                                                t-as="serviceprofile"
+                                            >
+                                            <tr>
+                                                <th scope="row"><t
+                                                            t-esc="serviceprofile.name"
+                                                        /></th>
+                                                <td><t
+                                                            t-esc="serviceprofile.agreement_id.name"
+                                                        /></td>
+                                            </tr>
+                                        </t>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

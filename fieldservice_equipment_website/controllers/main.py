@@ -95,7 +95,7 @@ class PortalFieldservice(CustomerPortal):
         searchbar_sortings = {
             # "date": {"label": _("Date"), "order": "recurring_next_date desc"},
             "name": {"label": _("Name"), "order": "name desc"},
-            "code": {"label": _("Reference"), "order": "code desc"},
+            # "code": {"label": _("Reference"), "order": "code desc"},
         }
         # default sort by order
         if not sortby:
@@ -173,9 +173,13 @@ class PortalFieldservice(CustomerPortal):
             return request.redirect("/my")
         domain = self._get_filter_domain(kw)
         searchbar_sortings = {
-            # "date": {"label": _("Date"), "order": "recurring_next_date desc"},
             "name": {"label": _("Name"), "order": "name desc"},
-            "code": {"label": _("Reference"), "order": "code desc"},
+            "equipment_count": {
+                "label": _("# Equipmnts"),
+                "order": "equipment_count asc",
+            },
+            "ticket_count": {"label": _("# Tickets"), "order": "ticket_count asc"},
+            "stage_id": {"label": _("Stage"), "order": "stage_id desc"},
         }
         # default sort by order
         if not sortby:
