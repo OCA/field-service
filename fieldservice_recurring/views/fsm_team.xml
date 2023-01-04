@@ -9,6 +9,10 @@
     <record model="ir.ui.view" id="view_team_kanban_recurring">
         <field name="model">fsm.team</field>
         <field name="inherit_id" ref="fieldservice.view_team_kanban" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('fieldservice_recurring.group_fsm_recurring'))]"
+        />
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="recurring_draft_count" />
