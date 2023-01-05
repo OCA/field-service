@@ -9,6 +9,10 @@ class FSMEquipment(models.Model):
 
     url = fields.Char(store=True, readonly=True, compute="_compute_url")
 
+    def _compute_access_url(self):
+        for record in self:
+            record.access_url = f"/my/equipments/{record.id}"
+
     @api.depends("product_id", "lot_id")
     def _compute_url(self):
         base_url = self.env["ir.config_parameter"].get_param("web.base.url")

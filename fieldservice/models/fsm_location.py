@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 class FSMLocation(models.Model):
     _name = "fsm.location"
     _inherits = {"res.partner": "partner_id"}
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "portal.mixin"]
     _description = "Field Service Location"
 
     direction = fields.Char(string="Directions")

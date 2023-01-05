@@ -15,8 +15,11 @@ class FSMLocation(models.Model):
 
     def _compute_service_ids(self):
         for loc in self:
+            loc_id = loc.id
+            if loc.fsm_parent_id:
+                loc_id = loc.fsm_parent_id.id
             agreements = self.env["agreement"].search(
-                [("fsm_location_id", "=", loc.id)]
+                [("fsm_location_id", "=", loc_id)]
             )
             ids = []
             for agree in agreements:

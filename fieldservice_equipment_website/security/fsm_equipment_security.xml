@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="rule_fsm_equipment_portal" model="ir.rule">
+        <field name="name">Fieldservice Equipment Portal</field>
+        <field name="model_id" ref="model_fsm_equipment" />
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+    <record id="rule_fsm_location_portal" model="ir.rule">
+        <field name="name">Fieldservice Location Portal</field>
+        <field name="model_id" ref="model_fsm_location" />
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>
