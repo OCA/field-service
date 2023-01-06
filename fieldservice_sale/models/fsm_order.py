@@ -9,6 +9,10 @@ class FSMOrder(models.Model):
 
     sale_id = fields.Many2one("sale.order")
     sale_line_id = fields.Many2one("sale.order.line")
+    is_sale_multiple = fields.Boolean(
+        string="Is Sale Multiple",
+        help="To identify FSM orders created when Product has sale_multiple True",
+    )
 
     def action_view_sales(self):
         self.ensure_one()

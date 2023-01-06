@@ -19,6 +19,7 @@ class ProductTemplate(models.Model):
             ("no", "Don't create FSM order"),
             ("sale", "Create one FSM order per sale order"),
             ("line", "Create one FSM order per sale order line"),
+            ("sale_multiple", "Create multiple FSM orders per sale order"),
         ],
         string="Field Service Tracking",
         default="no",
@@ -33,8 +34,14 @@ class ProductTemplate(models.Model):
         "Field Service Order Template",
         help="Select the field service order template to be created",
     )
+    fsm_order_template_ids = fields.One2many(
+        "fsm.template", "product_id", string="Field Service Order Templates"
+    )
 
     @api.onchange("field_service_tracking")
     def _onchange_field_service_tracking(self):
         if self.field_service_tracking == "no":
             self.fsm_order_template_id = False
+            self.fsm_order_template_ids = False
+        if self.field_service_tracking != "sale_multiple":
+            self.fsm_order_template_ids = False

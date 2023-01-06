@@ -9,7 +9,13 @@
                 <field name="field_service_tracking" widget="radio" />
                 <field
                     name="fsm_order_template_id"
-                    attrs="{'invisible': [('field_service_tracking', '=', 'no')]}"
+                    attrs="{'invisible': ['|', ('field_service_tracking', '=',
+                    'sale_multiple'), ('field_service_tracking', '=', 'no')]}"
+                />
+                <field
+                    name="fsm_order_template_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('field_service_tracking', '!=', 'sale_multiple')]}"
                 />
             </xpath>
         </field>

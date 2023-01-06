@@ -53,30 +53,60 @@ class SaleOrder(models.Model):
         location_ids = self.env["fsm.location"].search(domain)
         self.fsm_location_id = location_ids and location_ids[0] or False
 
-    def _field_create_fsm_order_prepare_values(self):
-        self.ensure_one()
-        lines = self.order_line.filtered(
-            lambda sol: sol.product_id.field_service_tracking == "sale"
-        )
-        templates = lines.mapped("product_id.fsm_order_template_id")
-        note = ""
-        hours = 0.0
-        categories = self.env["fsm.category"]
-        for template in templates:
-            note += template.instructions or ""
-            hours += template.duration
-            categories |= template.category_ids
+    def _field_create_multiple_fsm_orders_prepare_values(self, template):
         return {
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
             "request_early": self.expected_date,
             "scheduled_date_start": self.expected_date,
-            "todo": note,
-            "category_ids": [(6, 0, categories.ids)],
-            "scheduled_duration": hours,
+            "todo": template.instructions or "",
+            "category_ids": [(6, 0, template.category_ids.ids)],
+            "scheduled_duration": template.duration,
             "sale_id": self.id,
             "company_id": self.company_id.id,
+            "is_sale_multiple": True,
         }
+
+    def _field_create_fsm_order_prepare_values(self):
+        self.ensure_one()
+        fsm_values = []
+        lines = self.order_line.filtered(
+            lambda sol: sol.product_id.field_service_tracking == "sale"
+        )
+        sale_multi_lines = self.order_line.filtered(
+            lambda sol: sol.product_id.field_service_tracking == "sale_multiple"
+        )
+        if sale_multi_lines:
+            multi_templates = sale_multi_lines.mapped(
+                "product_id.fsm_order_template_ids"
+            )
+            for template in multi_templates:
+                sale_multi_values = (
+                    self._field_create_multiple_fsm_orders_prepare_values(template)
+                )
+                fsm_values.append(sale_multi_values)
+        if lines:
+            templates = lines.mapped("product_id.fsm_order_template_id")
+            note = ""
+            hours = 0.0
+            categories = self.env["fsm.category"]
+            for template in templates:
+                note += template.instructions or ""
+                hours += template.duration
+                categories |= template.category_ids
+            lines_values = {
+                "location_id": self.fsm_location_id.id,
+                "location_directions": self.fsm_location_id.direction,
+                "request_early": self.expected_date,
+                "scheduled_date_start": self.expected_date,
+                "todo": note,
+                "category_ids": [(6, 0, categories.ids)],
+                "scheduled_duration": hours,
+                "sale_id": self.id,
+                "company_id": self.company_id.id,
+            }
+            fsm_values.append(lines_values)
+        return fsm_values
 
     def _field_create_fsm_order(self):
         """Generate fsm_order for the given Sale Order, and link it.
@@ -89,26 +119,28 @@ class SaleOrder(models.Model):
             values = so._field_create_fsm_order_prepare_values()
             fsm_order = self.env["fsm.order"].sudo().create(values)
             # post message on SO
-            msg_body = (
-                _(
-                    """Field Service Order Created: <a href=
-                   # data-oe-model=fsm.order data-oe-id=%d>%s</a>
-                """
+            for order in fsm_order:
+                msg_body = (
+                    _(
+                        """Field Service Order Created: <a href=
+                    # data-oe-model=fsm.order data-oe-id=%d>%s</a>
+                    """
+                    )
+                    % (order.id, order.name)
                 )
-                % (fsm_order.id, fsm_order.name)
-            )
             so.message_post(body=msg_body)
             # post message on fsm_order
-            fsm_order_msg = (
-                _(
-                    """This order has been created from: <a href=
-                   # data-oe-model=sale.order data-oe-id=%d>%s</a>
-                """
+            for order in fsm_order:
+                fsm_order_msg = (
+                    _(
+                        """This order has been created from: <a href=
+                    # data-oe-model=sale.order data-oe-id=%d>%s</a>
+                    """
+                    )
+                    % (so.id, so.name)
                 )
-                % (so.id, so.name)
-            )
-            fsm_order.message_post(body=fsm_order_msg)
-            result[so.id] = fsm_order
+                order.message_post(body=fsm_order_msg)
+                result[so.id] = order
         return result
 
     def _field_find_fsm_order(self):

@@ -150,6 +150,26 @@ class TestFSMSaleOrder(TestFSMSale):
                 "tax_id": False,
             }
         )
+        # create a generic Sale Order with one product
+        # set to create multiple FSM orders for one sale order
+        cls.sale_order_5 = SaleOrder.create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "fsm_location_id": cls.test_location.id,
+                "pricelist_id": cls.pricelist_usd.id,
+            }
+        )
+        cls.sol_multiple_services_per_order_1 = cls.env["sale.order.line"].create(
+            {
+                "name": cls.multiple_fsm_per_order_1.name,
+                "product_id": cls.multiple_fsm_per_order_1.id,
+                "product_uom_qty": 1,
+                "product_uom": cls.multiple_fsm_per_order_1.uom_id.id,
+                "price_unit": cls.multiple_fsm_per_order_1.list_price,
+                "order_id": cls.sale_order_5.id,
+                "tax_id": False,
+            }
+        )
 
     def _isp_account_installed(self):
         """Checks if module is installed which will require more
@@ -441,4 +461,64 @@ class TestFSMSaleOrder(TestFSMSale):
         # 3 invoices created
         self.assertEqual(
             len(invoices.ids), 1, "FSM Sale: Sale Order 4 should create 1 invoice"
+        )
+
+    def test_sale_order_5(self):
+        """Test the sales order 5 flow from sale to invoice.
+        - Multiple FSM orders are linked to the one Sale Order.
+        - One Invoice linked to the FSM Order should be created.
+        """
+        # Confirm the sale order
+        self.sale_order_5.action_confirm()
+        # Multiple FSM orders created
+        self.assertEqual(
+            len(self.sale_order_5.fsm_order_ids.ids),
+            2,
+            "FSM Sale: Sale Order 5 should create 2 FSM Orders",
+        )
+        FSM_Order = self.env["fsm.order"]
+        fsm_orders = FSM_Order.search(
+            [("id", "in", self.sale_order_5.fsm_order_ids.ids)]
+        )
+        # Sale Order linked to FSM order
+        self.assertEqual(
+            len(fsm_orders.ids), 2, "FSM Sale: Sale Order linked to FSM Orders"
+        )
+        fsm_order_1 = fsm_orders[0]
+        fsm_order_2 = fsm_orders[1]
+
+        # Complete the FSM order
+        if self._isp_account_installed():
+            fsm_order_1 = self._fulfill_order(fsm_order_1)
+            fsm_order_2 = self._fulfill_order(fsm_order_2)
+
+        fsm_order_1.write(
+            {
+                "date_end": fields.Datetime.today(),
+                "resolution": "Work completed",
+            }
+        )
+        fsm_order_2.write(
+            {
+                "date_end": fields.Datetime.today(),
+                "resolution": "Work completed",
+            }
+        )
+        fsm_order_1.action_complete()
+        fsm_order_2.action_complete()
+
+        # Invoice the order
+        invoice = self.sale_order_5._create_invoices()
+        # 1 invoices created
+        self.assertEqual(
+            len(invoice.ids), 1, "FSM Sale: Sale Order 5 should create 1 invoice"
+        )
+        self.assertEqual(len(invoice.fsm_order_ids), 2)
+        self.assertTrue(
+            fsm_order_1 in invoice.fsm_order_ids,
+            "FSM Sale: Invoice should be linked to FSM Order 1",
+        )
+        self.assertTrue(
+            fsm_order_2 in invoice.fsm_order_ids,
+            "FSM Sale: Invoice should be linked to FSM Order 2",
         )

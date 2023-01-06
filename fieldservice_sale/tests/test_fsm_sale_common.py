@@ -46,6 +46,22 @@ class TestFSMSale(TestSaleCommonBase):
                 "duration": 0.75,
             }
         )
+        # Template 5
+        cls.fsm_template_5 = FSMTemplate.create(
+            {
+                "name": "Test FSM Template #5",
+                "instructions": "These notes apply to Template #5",
+                "duration": 2.00,
+            }
+        )
+        # Template 6
+        cls.fsm_template_6 = FSMTemplate.create(
+            {
+                "name": "Test FSM Template #6",
+                "instructions": "These notes apply to Template #6",
+                "duration": 3.00,
+            }
+        )
 
     @classmethod
     def setUpFSMProducts(cls):
@@ -108,5 +124,22 @@ class TestFSMSale(TestSaleCommonBase):
                 "invoice_policy": "delivery",
                 "field_service_tracking": "line",
                 "fsm_order_template_id": cls.fsm_template_4.id,
+            }
+        )
+        # Product 1 that creates multiple FSM Orders per SO
+        cls.multiple_fsm_per_order_1 = cls.env["product.product"].create(
+            {
+                "name": "Multiple FSM Orders per Sale Order #5 #6",
+                "categ_id": cls.env.ref("product.product_category_3").id,
+                "standard_price": 80.0,
+                "list_price": 90.0,
+                "type": "service",
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
+                "invoice_policy": "order",
+                "field_service_tracking": "sale_multiple",
+                "fsm_order_template_ids": [
+                    (6, 0, [cls.fsm_template_5.id, cls.fsm_template_6.id])
+                ],
             }
         )

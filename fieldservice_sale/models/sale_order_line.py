@@ -133,7 +133,10 @@ class SaleOrderLine(models.Model):
         exists, it simply links the existing one to the line.
         """
         for rec in self:
-            if rec.product_id.field_service_tracking == "sale":
+            if (
+                rec.product_id.field_service_tracking == "sale"
+                or rec.product_id.field_service_tracking == "sale_multiple"
+            ):
                 sale = rec.order_id
                 so_fo_mapping = sale._field_find_fsm_order()
                 rec.fsm_order_id = so_fo_mapping[rec.order_id.id].id
@@ -142,10 +145,20 @@ class SaleOrderLine(models.Model):
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
-        if self.fsm_order_id:
+        if self.product_id.field_service_tracking == "sale_multiple":
+            orders = self.order_id.fsm_order_ids.filtered(
+                lambda item: item.is_sale_multiple
+            )
             res.update(
                 {
-                    "fsm_order_ids": [(4, self.fsm_order_id.id)],
+                    "fsm_order_ids": [(6, 0, orders.ids)],
                 }
             )
+        else:
+            if self.fsm_order_id:
+                res.update(
+                    {
+                        "fsm_order_ids": [(4, self.fsm_order_id.id)],
+                    }
+                )
         return res
