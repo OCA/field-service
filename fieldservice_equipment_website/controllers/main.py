@@ -85,7 +85,7 @@ class PortalFieldservice(CustomerPortal):
         self, page=1, date_begin=None, date_end=None, sortby=None, **kw
     ):
         values = self._prepare_portal_layout_values()
-        fieldservice_equipment_obj = request.env["fsm.equipment"]
+        fieldservice_equipment_obj = request.env["fsm.equipment"].sudo()
         # Avoid error if the user does not have access.
         if not fieldservice_equipment_obj.check_access_rights(
             "read", raise_exception=False

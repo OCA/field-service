@@ -205,9 +205,8 @@
                 <thead>
                     <tr class="active">
                         <th>Equipment</th>
-                        <!-- <th class='d-none d-md-table-cell'>Equipment Category</th>
-                        <th class='d-none d-md-table-cell'>Product</th>
-                        <th class='d-none d-md-table-cell'>Serial #</th> -->
+                        <th class='d-none d-md-table-cell'>Current Location</th>
+                        <th class='d-none d-md-table-cell'>Stage</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,15 +221,12 @@
                                     <t t-esc="equipment.name" />
                                 </a>
                             </td>
-                            <!-- <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.category_id.name" />
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.current_location_id.name" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.product_id.name" />
+                                <span class="badge badge-pill" t-attf-style="background:#{equipment.stage_id.custom_color};color:white;"><span class="d-none d-md-inline" t-field="equipment.stage_id.name" /></span>
                             </td>
-                            <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.lot_id.name" />
-                            </td> -->
                         </tr>
                     </t>
                 </tbody>
@@ -474,7 +470,7 @@
                                 <span t-field="location.equipment_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="location.stage_id.name" />
+                                <span class="badge badge-pill" t-attf-style="background:#{location.stage_id.custom_color};color:white;"><span class="d-none d-md-inline" t-field="location.stage_id.name" /></span>
                             </td>
                         </tr>
                     </t>
