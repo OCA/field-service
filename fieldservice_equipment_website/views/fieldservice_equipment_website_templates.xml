@@ -225,7 +225,13 @@
                                 <span t-field="equipment.current_location_id.name" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span class="badge badge-pill" t-attf-style="background:#{equipment.stage_id.custom_color};color:white;"><span class="d-none d-md-inline" t-field="equipment.stage_id.name" /></span>
+                                <span
+                                    class="badge badge-pill"
+                                    t-attf-style="background:#{equipment.stage_id.custom_color};color:white;"
+                                ><span
+                                        class="d-none d-md-inline"
+                                        t-field="equipment.stage_id.name"
+                                    /></span>
                             </td>
                         </tr>
                     </t>
@@ -470,7 +476,13 @@
                                 <span t-field="location.equipment_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span class="badge badge-pill" t-attf-style="background:#{location.stage_id.custom_color};color:white;"><span class="d-none d-md-inline" t-field="location.stage_id.name" /></span>
+                                <span
+                                    class="badge badge-pill"
+                                    t-attf-style="background:#{location.stage_id.custom_color};color:white;"
+                                ><span
+                                        class="d-none d-md-inline"
+                                        t-field="location.stage_id.name"
+                                    /></span>
                             </td>
                         </tr>
                     </t>
