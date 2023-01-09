@@ -500,31 +500,60 @@
                                 <div class="col-md-12">
                                     <h2><t t-esc="location.name" /><br /></h2>
                                     <p><t t-esc="location.street" /></p>
-                                    <hr />
-                                    <h4>Service Profile</h4>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Agreement</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <t
-                                                t-foreach="location.serviceprofile_ids"
-                                                t-as="serviceprofile"
-                                            >
-                                            <tr>
-                                                <th scope="row"><t
-                                                            t-esc="serviceprofile.name"
-                                                        /></th>
-                                                <td><t
-                                                            t-esc="serviceprofile.agreement_id.name"
-                                                        /></td>
-                                            </tr>
-                                        </t>
-                                        </tbody>
-                                    </table>
+                                    <t t-if="location.serviceprofile_ids">
+                                        <hr />
+                                        <h4>Service Profile</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Agreement</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <t
+                                                    t-foreach="location.serviceprofile_ids"
+                                                    t-as="serviceprofile"
+                                                >
+                                                <tr>
+                                                    <th scope="row"><t
+                                                                t-esc="serviceprofile.name"
+                                                            /></th>
+                                                    <td><t
+                                                                t-esc="serviceprofile.agreement_id.name"
+                                                            /></td>
+                                                </tr>
+                                            </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                    <t t-if="location.equipment_ids">
+                                        <hr />
+                                        <h4>Equipments</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Class</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <t
+                                                    t-foreach="location.equipment_ids"
+                                                    t-as="equipment"
+                                                >
+                                                <tr>
+                                                    <th scope="row"><t
+                                                                t-esc="equipment.name"
+                                                            /></th>
+                                                    <td><t
+                                                                t-esc="equipment.category_id.name"
+                                                            /></td>
+                                                </tr>
+                                            </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
                                 </div>
                             </div>
                         </div>
