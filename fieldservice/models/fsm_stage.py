@@ -17,7 +17,7 @@ class FSMStage(models.Model):
         return [default_team_id] if default_team_id else None
 
     active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string="Name", required=True, translate=True)
     sequence = fields.Integer(
         "Sequence", default=1, help="Used to order stages. Lower is better."
     )
