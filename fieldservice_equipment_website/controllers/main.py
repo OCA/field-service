@@ -33,10 +33,10 @@ class PortalFieldservice(CustomerPortal):
         if "equipment_count" in counters:
             self._set_count_to_values("fsm.equipment", values, "equipment_count")
         if "location_count" in counters:
-            partner_id = request.env.user.partner_id.parent_id
+            partner_id = request.env.user.partner_id
             if partner_id.parent_id:
                 partner_id = partner_id.parent_id
-            self._set_count_to_values("fsm.location", values, "location_count")
+            self._set_count_to_values("fsm.location", values, "location_count", [["owner_id", "=", partner_id.id]])
         return values
 
     def _set_count_to_values(self, model_name, values, key, domain=None):
