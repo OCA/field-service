@@ -10,7 +10,11 @@ class FSMPersonCalendarFilter(models.Model):
     _description = "FSM Person Calendar Filter"
 
     user_id = fields.Many2one(
-        "res.users", "Me", required=True, default=lambda self: self.env.user
+        "res.users",
+        "Me",
+        required=True,
+        default=lambda self: self.env.user,
+        ondelete="cascade",
     )
     fsm_person_id = fields.Many2one("fsm.person", "FSM Worker", required=True)
     active = fields.Boolean(default=True)
