@@ -205,9 +205,8 @@
                 <thead>
                     <tr class="active">
                         <th>Equipment</th>
-                        <!-- <th class='d-none d-md-table-cell'>Equipment Category</th>
-                        <th class='d-none d-md-table-cell'>Product</th>
-                        <th class='d-none d-md-table-cell'>Serial #</th> -->
+                        <th class='d-none d-md-table-cell'>Current Location</th>
+                        <th class='d-none d-md-table-cell'>Stage</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,15 +221,18 @@
                                     <t t-esc="equipment.name" />
                                 </a>
                             </td>
-                            <!-- <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.category_id.name" />
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.current_location_id.name" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.product_id.name" />
+                                <span
+                                    class="badge badge-pill"
+                                    t-attf-style="background:#{equipment.stage_id.custom_color};color:white;"
+                                ><span
+                                        class="d-none d-md-inline"
+                                        t-field="equipment.stage_id.name"
+                                    /></span>
                             </td>
-                            <td class="d-none d-md-table-cell">
-                                <span t-field="equipment.lot_id.name" />
-                            </td> -->
                         </tr>
                     </t>
                 </tbody>
@@ -474,7 +476,13 @@
                                 <span t-field="location.equipment_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
-                                <span t-field="location.stage_id.name" />
+                                <span
+                                    class="badge badge-pill"
+                                    t-attf-style="background:#{location.stage_id.custom_color};color:white;"
+                                ><span
+                                        class="d-none d-md-inline"
+                                        t-field="location.stage_id.name"
+                                    /></span>
                             </td>
                         </tr>
                     </t>
@@ -504,31 +512,60 @@
                                 <div class="col-md-12">
                                     <h2><t t-esc="location.name" /><br /></h2>
                                     <p><t t-esc="location.street" /></p>
-                                    <hr />
-                                    <h4>Service Profile</h4>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Agreement</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <t
-                                                t-foreach="location.serviceprofile_ids"
-                                                t-as="serviceprofile"
-                                            >
-                                            <tr>
-                                                <th scope="row"><t
-                                                            t-esc="serviceprofile.name"
-                                                        /></th>
-                                                <td><t
-                                                            t-esc="serviceprofile.agreement_id.name"
-                                                        /></td>
-                                            </tr>
-                                        </t>
-                                        </tbody>
-                                    </table>
+                                    <t t-if="location.serviceprofile_ids">
+                                        <hr />
+                                        <h4>Service Profile</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Agreement</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <t
+                                                    t-foreach="location.serviceprofile_ids"
+                                                    t-as="serviceprofile"
+                                                >
+                                                <tr>
+                                                    <th scope="row"><t
+                                                                t-esc="serviceprofile.name"
+                                                            /></th>
+                                                    <td><t
+                                                                t-esc="serviceprofile.agreement_id.name"
+                                                            /></td>
+                                                </tr>
+                                            </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                    <t t-if="location.equipment_ids">
+                                        <hr />
+                                        <h4>Equipments</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Class</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <t
+                                                    t-foreach="location.equipment_ids"
+                                                    t-as="equipment"
+                                                >
+                                                <tr>
+                                                    <th scope="row"><t
+                                                                t-esc="equipment.name"
+                                                            /></th>
+                                                    <td><t
+                                                                t-esc="equipment.category_id.name"
+                                                            /></td>
+                                                </tr>
+                                            </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
                                 </div>
                             </div>
                         </div>

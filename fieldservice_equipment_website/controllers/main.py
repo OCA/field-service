@@ -33,10 +33,15 @@ class PortalFieldservice(CustomerPortal):
         if "equipment_count" in counters:
             self._set_count_to_values("fsm.equipment", values, "equipment_count")
         if "location_count" in counters:
-            partner_id = request.env.user.partner_id.parent_id
+            partner_id = request.env.user.partner_id
             if partner_id.parent_id:
                 partner_id = partner_id.parent_id
-            self._set_count_to_values("fsm.location", values, "location_count")
+            self._set_count_to_values(
+                "fsm.location",
+                values,
+                "location_count",
+                [["owner_id", "=", partner_id.id]],
+            )
         return values
 
     def _set_count_to_values(self, model_name, values, key, domain=None):
@@ -85,7 +90,7 @@ class PortalFieldservice(CustomerPortal):
         self, page=1, date_begin=None, date_end=None, sortby=None, **kw
     ):
         values = self._prepare_portal_layout_values()
-        fieldservice_equipment_obj = request.env["fsm.equipment"]
+        fieldservice_equipment_obj = request.env["fsm.equipment"].sudo()
         # Avoid error if the user does not have access.
         if not fieldservice_equipment_obj.check_access_rights(
             "read", raise_exception=False
