@@ -28,14 +28,23 @@ class FieldserviceEquipmentWebsiteController(http.Controller):
 
 
 class PortalFieldservice(CustomerPortal):
+    def _get_request_partner(self):
+        partner_id = request.env.user.partner_id
+        if partner_id.parent_id:
+            partner_id = partner_id.parent_id
+        return partner_id
+
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
+        partner_id = self._get_request_partner()
         if "equipment_count" in counters:
-            self._set_count_to_values("fsm.equipment", values, "equipment_count")
+            self._set_count_to_values(
+                "fsm.equipment",
+                values,
+                "equipment_count",
+                [["owned_by_id", "=", partner_id.id]],
+            )
         if "location_count" in counters:
-            partner_id = request.env.user.partner_id
-            if partner_id.parent_id:
-                partner_id = partner_id.parent_id
             self._set_count_to_values(
                 "fsm.location",
                 values,
@@ -96,7 +105,8 @@ class PortalFieldservice(CustomerPortal):
             "read", raise_exception=False
         ):
             return request.redirect("/my")
-        domain = self._get_filter_domain(kw)
+        partner_id = self._get_request_partner()
+        domain = [["owned_by_id", "=", partner_id.id]]
         searchbar_sortings = {
             # "date": {"label": _("Date"), "order": "recurring_next_date desc"},
             "name": {"label": _("Name"), "order": "name desc"},
@@ -176,7 +186,8 @@ class PortalFieldservice(CustomerPortal):
             "read", raise_exception=False
         ):
             return request.redirect("/my")
-        domain = self._get_filter_domain(kw)
+        partner_id = self._get_request_partner()
+        domain = [["owner_id", "=", partner_id.id]]
         searchbar_sortings = {
             "name": {"label": _("Name"), "order": "name desc"},
             "equipment_count": {
