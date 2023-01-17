@@ -201,6 +201,7 @@
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Equipments</t>
             </t>
+            <a href="/new/equipment" class="btn btn-primary mb-2">New Equipment</a>
             <t t-if="equipments" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
@@ -448,6 +449,7 @@
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Locations</t>
             </t>
+            <a href="/new/location" class="btn btn-primary mb-2">New Location</a>
             <t t-if="locations" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
