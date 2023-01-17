@@ -17,7 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice_activity
-#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_template__temp_activity_ids
 msgid "Activites"
 msgstr "Attività"
@@ -137,14 +136,19 @@ msgid "Order"
 msgstr "Ordine"
 
 #. module: fieldservice_activity
+#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
+msgid "Order Activities"
+msgstr ""
+
+#. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__ref
 msgid "Reference"
 msgstr "Riferimento"
 
 #. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__required
-msgid "Requireid"
-msgstr "Richiesto"
+msgid "Required"
+msgstr ""
 
 #. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__sequence
@@ -164,7 +168,14 @@ msgstr "Da fare"
 #. module: fieldservice_activity
 #: code:addons/fieldservice_activity/models/fsm_order.py:0
 #, python-format
-msgid ""
-"You must complete activity '%s' before                     completing this "
-"order."
-msgstr "Devi completare l'attività '%s' prima di completare questo ordine."
+msgid "You must complete activity '%s' before completing this order."
+msgstr ""
+
+#~ msgid "Requireid"
+#~ msgstr "Richiesto"
+
+#, python-format
+#~ msgid ""
+#~ "You must complete activity '%s' before                     completing "
+#~ "this order."
+#~ msgstr "Devi completare l'attività '%s' prima di completare questo ordine."
