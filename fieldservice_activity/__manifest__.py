@@ -15,6 +15,7 @@
         "views/fsm_order.xml",
         "views/fsm_template.xml",
         "security/ir.model.access.csv",
+        "security/ir_rule.xml",
     ],
     "development_status": "Beta",
     "maintainers": ["max3903", "osi-scampbell"],
