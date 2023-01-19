@@ -14,7 +14,6 @@ class FSMActivity(models.Model):
         "Name", required=True, readonly=True, states={"todo": [("readonly", False)]}
     )
     required = fields.Boolean(
-        "Requireid",
         default=False,
         readonly=True,
         states={"todo": [("readonly", False)]},

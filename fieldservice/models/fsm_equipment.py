@@ -26,6 +26,7 @@ class FSMEquipment(models.Model):
         "fsm.stage",
         string="Stage",
         tracking=True,
+        domain="[('stage_type', '=', 'equipment')]",
         index=True,
         copy=False,
         group_expand="_read_group_stage_ids",

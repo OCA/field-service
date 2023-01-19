@@ -14,7 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_activity
-#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_template__temp_activity_ids
 msgid "Activites"
 msgstr ""
@@ -134,13 +133,18 @@ msgid "Order"
 msgstr ""
 
 #. module: fieldservice_activity
+#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
+msgid "Order Activities"
+msgstr ""
+
+#. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__ref
 msgid "Reference"
 msgstr ""
 
 #. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__required
-msgid "Requireid"
+msgid "Required"
 msgstr ""
 
 #. module: fieldservice_activity
@@ -161,7 +165,5 @@ msgstr ""
 #. module: fieldservice_activity
 #: code:addons/fieldservice_activity/models/fsm_order.py:0
 #, python-format
-msgid ""
-"You must complete activity '%s' before                     completing this "
-"order."
+msgid "You must complete activity '%s' before completing this order."
 msgstr ""

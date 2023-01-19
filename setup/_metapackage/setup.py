@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_distribution',
         'odoo14-addon-fieldservice_equipment_stock',
         'odoo14-addon-fieldservice_fleet',
+        'odoo14-addon-fieldservice_geoengine',
         'odoo14-addon-fieldservice_google_map',
         'odoo14-addon-fieldservice_google_marker_icon_picker',
         'odoo14-addon-fieldservice_isp_account',

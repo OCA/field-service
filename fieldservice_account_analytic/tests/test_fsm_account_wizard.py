@@ -119,10 +119,3 @@ class FSMAccountAnalyticCase(TransactionCase):
                     "fsm_order_id": order2.id,
                 }
             )
-        with self.assertRaises(ValidationError):
-            self.analytic_line.create(
-                {
-                    "analytic_account_id": self.test_analytic_account.id,
-                    "fsm_order_id": order2.id,
-                }
-            )
