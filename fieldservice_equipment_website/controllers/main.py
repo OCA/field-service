@@ -96,7 +96,7 @@ class PortalFieldservice(CustomerPortal):
         website=True,
     )
     def portal_my_equipments(
-        self, page=1, date_begin=None, date_end=None, sortby=None, **kw
+        self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, **kw
     ):
         values = self._prepare_portal_layout_values()
         fieldservice_equipment_obj = request.env["fsm.equipment"].sudo()
@@ -108,14 +108,30 @@ class PortalFieldservice(CustomerPortal):
         partner_id = self._get_request_partner()
         domain = [["owned_by_id", "=", partner_id.id]]
         searchbar_sortings = {
-            # "date": {"label": _("Date"), "order": "recurring_next_date desc"},
             "name": {"label": _("Name"), "order": "name desc"},
-            # "code": {"label": _("Reference"), "order": "code desc"},
+            "stage": {"label": _("Stage"), "order": "stage_id desc"},
+            "tickets": {"label": _("# Tickets"), "order": "helpdesk_ticket_count asc"},
         }
+        searchbar_filters = {"all": {"label": _("All"), "domain": []}}
+        for stage in request.env["fsm.stage"].search(
+            [("stage_type", "=", "equipment")]
+        ):
+            searchbar_filters.update(
+                {
+                    str(stage.id): {
+                        "label": stage.name,
+                        "domain": [("stage_id", "=", stage.id)],
+                    }
+                }
+            )
         # default sort by order
         if not sortby:
             sortby = "name"
         order = searchbar_sortings[sortby]["order"]
+        # default filter by value
+        if not filterby:
+            filterby = "all"
+        domain += searchbar_filters[filterby]["domain"]
         # count for pager
         equipment_count = fieldservice_equipment_obj.search_count(domain)
         # pager
@@ -144,6 +160,8 @@ class PortalFieldservice(CustomerPortal):
                 "default_url": "/my/equipments",
                 "searchbar_sortings": searchbar_sortings,
                 "sortby": sortby,
+                "searchbar_filters": searchbar_filters,
+                "filterby": filterby,
             }
         )
         return request.render(

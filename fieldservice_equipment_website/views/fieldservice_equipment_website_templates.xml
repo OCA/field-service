@@ -207,6 +207,7 @@
                     <tr class="active">
                         <th>Equipment</th>
                         <th class='d-none d-md-table-cell'>Current Location</th>
+                        <th class='d-none d-md-table-cell'># Tickets</th>
                         <th class='d-none d-md-table-cell'>Stage</th>
                     </tr>
                 </thead>
@@ -224,6 +225,9 @@
                             </td>
                             <td class="d-none d-md-table-cell">
                                 <span t-field="equipment.current_location_id.name" />
+                            </td>
+                            <td class="d-none d-md-table-cell">
+                                <span t-field="equipment.helpdesk_ticket_count" />
                             </td>
                             <td class="d-none d-md-table-cell">
                                 <span
