@@ -14,7 +14,7 @@
                     />
                     <field
                         name="lot_id"
-                        domain="[('product_id', '=', product_id)]"
+                        domain="[('product_id', '=', product_id), ('fsm_equipment_id','=',False)]"
                         context="{'default_product_id': product_id}"
                     />
                     <field name="current_stock_location_id" />
