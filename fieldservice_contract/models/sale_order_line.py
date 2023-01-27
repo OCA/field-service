@@ -39,7 +39,6 @@ class SaleOrderLine(models.Model):
     def _prepare_contract_line_values(
         self, contract, predecessor_contract_line_id=False
     ):
-        import ipdb; ipdb.set_trace()
         self.ensure_one()
         contract.fsm_location_id = self.order_id.fsm_location_id
         res = super()._prepare_contract_line_values(
