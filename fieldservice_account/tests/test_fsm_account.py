@@ -53,11 +53,7 @@ class FSMAccountCase(TransactionCase):
         self.default_account_revenue = self.env["account.account"].search(
             [
                 ("company_id", "=", self.env.user.company_id.id),
-                (
-                    "user_type_id",
-                    "=",
-                    self.env.ref("account.data_account_type_revenue").id,
-                ),
+                ("account_type", "in", ("income", "income_other")),
             ],
             limit=1,
         )

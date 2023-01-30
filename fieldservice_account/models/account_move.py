@@ -27,10 +27,12 @@ class AccountMove(models.Model):
             order.fsm_order_count = len(order.fsm_order_ids)
 
     def action_view_fsm_orders(self):
-        action = self.env.ref("fieldservice.action_fsm_dash_order").read()[0]
-        if self.fsm_order_count > 1:
-            action["domain"] = [("id", "in", self.fsm_order_ids.ids)]
-        elif self.fsm_order_ids:
+        xmlid = "fieldservice.action_fsm_dash_order"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        orders = self.fsm_order_ids
+        if len(orders) > 1:
+            action["domain"] = [("id", "in", orders.ids)]
+        elif orders:
             action["views"] = [(self.env.ref("fieldservice.fsm_order_form").id, "form")]
-            action["res_id"] = self.fsm_order_ids[0].id
+            action["res_id"] = orders.id
         return action
