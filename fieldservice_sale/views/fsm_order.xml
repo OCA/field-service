@@ -3,7 +3,6 @@
     <record id="view_fsm_order_form_inherit_sale" model="ir.ui.view">
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
-        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                 <button
@@ -12,6 +11,7 @@
                     class="oe_stat_button"
                     icon="fa-usd"
                     attrs="{'invisible': [('sale_line_id', '=', False), ('sale_id', '=', False)]}"
+                    groups="sales_team.group_sale_salesman"
                 >
                     <span class="o_stat_text">Sale Order</span>
                     <field name="sale_id" attrs="{'invisible': 1}" />
