@@ -20,15 +20,15 @@ class SaleOrderLine(models.Model):
 
     @api.depends("product_id.type")
     def _compute_product_updatable(self):
+        res = super()._compute_product_updatable()
         for line in self:
             if line.product_id.type == "service" and line.state == "sale":
                 line.product_updatable = False
-            else:
-                return super(SaleOrderLine, line)._compute_product_updatable()
+        return res
 
     @api.depends("product_id")
     def _compute_qty_delivered_method(self):
-        res = super(SaleOrderLine, self)._compute_qty_delivered_method()
+        res = super()._compute_qty_delivered_method()
         for line in self:
             if not line.is_expense and line.product_id.field_service_tracking == "line":
                 line.qty_delivered_method = "field_service"
@@ -36,16 +36,12 @@ class SaleOrderLine(models.Model):
 
     @api.depends("fsm_order_id.stage_id")
     def _compute_qty_delivered(self):
-        res = super(SaleOrderLine, self)._compute_qty_delivered()
-        lines_by_fsm = self.filtered(
-            lambda sol: sol.qty_delivered_method == "field_service"
-        )
-        complete = self.env.ref("fieldservice.fsm_stage_completed")
-        for line in lines_by_fsm:
-            qty = 0
-            if line.fsm_order_id.stage_id == complete:
-                qty = line.product_uom_qty
-                line.qty_delivered = qty
+        res = super()._compute_qty_delivered()
+        stage_complete = self.env.ref("fieldservice.fsm_stage_completed")
+        fsm_lines = self.filtered(lambda l: l.qty_delivered_method == "field_service")
+        for line in fsm_lines:
+            if line.fsm_order_id.stage_id == stage_complete:
+                line.qty_delivered = line.product_uom_qty
         return res
 
     @api.model_create_multi
@@ -54,7 +50,7 @@ class SaleOrderLine(models.Model):
         for line in lines:
             if line.state == "sale":
                 line._field_service_generation()
-        return line
+        return lines
 
     def _field_create_fsm_order_prepare_values(self):
         self.ensure_one()
@@ -110,41 +106,28 @@ class SaleOrderLine(models.Model):
         :return a mapping with the so line id and its linked fsm_order
         :rtype dict
         """
-        for rec in self:
-            # one search for all so lines
-            fsm_orders = self.env["fsm.order"].search([("sale_line_id", "in", rec.ids)])
-            fsm_order_sol_mapping = {
-                fsm_order.sale_line_id.id: fsm_order for fsm_order in fsm_orders
-            }
-            res = {}
-            for so_line in rec:
-                # If the SO was confirmed, cancelled, set to draft then confirmed,
-                # avoid creating a new fsm_order.
-                fsm_order = fsm_order_sol_mapping.get(so_line.id)
-                # If not found, create one fsm_order for the so line
-                if not fsm_order:
-                    fsm_order = so_line._field_create_fsm_order()[so_line.id]
-                res[so_line.id] = fsm_order
-            return res
+        fsm_orders = self.env["fsm.order"].search([("sale_line_id", "in", self.ids)])
+        result = {f.sale_line_id.id: f for f in fsm_orders}
+        for line in self:
+            # If not found, create one fsm_order for the so line
+            if not result.get(line.id):
+                result.update(line._field_create_fsm_order())
+        return result
 
     def _field_service_generation(self):
         """For service lines, create the field service order. If it already
         exists, it simply links the existing one to the line.
         """
-        for rec in self:
-            if rec.product_id.field_service_tracking == "sale":
-                sale = rec.order_id
-                so_fo_mapping = sale._field_find_fsm_order()
-                rec.fsm_order_id = so_fo_mapping[rec.order_id.id].id
-            if rec.product_id.field_service_tracking == "line":
-                rec._field_find_fsm_order()
+        for line in self:
+            prod_track = line.product_id.field_service_tracking
+            if prod_track == "sale":
+                so = line.order_id
+                line.fsm_order_id = so._field_find_fsm_order()[so.id]
+            elif prod_track == "line":
+                line._field_find_fsm_order()
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
         if self.fsm_order_id:
-            res.update(
-                {
-                    "fsm_order_ids": [(4, self.fsm_order_id.id)],
-                }
-            )
+            res.update({"fsm_order_ids": [(4, self.fsm_order_id.id)]})
         return res
