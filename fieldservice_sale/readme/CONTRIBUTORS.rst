@@ -9,3 +9,7 @@
 * Brian McMaster <brian@mcmpest.com>
 * Rapha??l Reverdy <raphael.reverdy@akretion.com>
 * Cl??ment Mombereau <clement.mombereau@akretion.com>
+
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Stefan Ungureanu
