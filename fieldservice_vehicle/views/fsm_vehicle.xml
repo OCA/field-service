@@ -1,0 +1,73 @@
+<odoo>
+    <!-- Field Service Vehicle -->
+    <record id="fsm_vehicle_tree_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.tree</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="person_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="fsm_vehicle_form_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.form</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="person_id" />
+                        </group>
+                        <group />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Field Service Vehicles -->
+    <record id="action_fsm_vehicle" model="ir.actions.act_window">
+        <field name="name">Field Service Vehicles</field>
+        <field name="res_model">fsm.vehicle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a Field Service Vehicle here.
+            </p>
+        </field>
+    </record>
+    <!-- Reporting -->
+    <record id="fsm_vehicle_graph_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.graph</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <graph string="Vehicles" type="bar">
+                <field name="person_id" type="row" />
+            </graph>
+        </field>
+    </record>
+    <record id="fsm_vehicle_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.vehicle.pivot</field>
+        <field name="model">fsm.vehicle</field>
+        <field name="arch" type="xml">
+            <pivot string="Vehicles" display_quantity="true">
+                <field name="person_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_fsm_report_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">fsm.vehicle</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Vehicles Report
+            </p>
+        </field>
+    </record>
+</odoo>
