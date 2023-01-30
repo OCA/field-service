@@ -9,9 +9,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     service_type = fields.Selection(
-        selection_add=[
-            ("field", "Field Service Orders"),
-        ],
+        selection_add=[("field", "Field Service Orders")],
         ondelete={"field": "cascade"},
     )
     field_service_tracking = fields.Selection(

@@ -3,7 +3,6 @@
         <field name="name">sale.order.form.sale.fieldservice</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('fieldservice.group_fsm_user'))]" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_invoice']" position="before">
                 <button
@@ -22,7 +21,7 @@
                 </button>
             </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                <field name="fsm_location_id" />
+                <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
             </xpath>
         </field>
     </record>
