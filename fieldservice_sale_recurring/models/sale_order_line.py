@@ -45,7 +45,6 @@ class SaleOrderLine(models.Model):
             # create fsm_recurring
             values = so_line._field_create_fsm_recurring_prepare_values()
             fsm_recurring = self.env["fsm.recurring"].sudo().create(values)
-            fsm_recurring.action_start()
             so_line.write({"fsm_recurring_id": fsm_recurring.id})
             # post message on SO
             msg_body = (
