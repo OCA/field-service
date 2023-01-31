@@ -10,7 +10,7 @@ class TestFsmLocation(Common):
         project = self.project
         self.assertEqual(location.project_count, 0)
         project.write({"fsm_location_id": location.id})
-        location.invalidate_cache()
+        location.invalidate_model()
         self.assertEqual(location.project_count, 1)
 
     def test_action_view_project(self):
