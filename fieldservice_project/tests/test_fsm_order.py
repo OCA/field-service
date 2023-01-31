@@ -9,7 +9,7 @@ from .common import Common
 class TestFsmOrder(Common):
     @classmethod
     def setUpClass(cls):
-        super(TestFsmOrder, cls).setUpClass()
+        super().setUpClass()
         cls.FsmOrder = cls.env["fsm.order"]
 
     def test_action_view_order(self):
@@ -20,6 +20,7 @@ class TestFsmOrder(Common):
 
     def test_onchange_team_id(self):
         project = self.project
+        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_team")
         team_with_project = self.env["fsm.team"].create(
             {"name": "test team", "project_id": project.id}
         )
