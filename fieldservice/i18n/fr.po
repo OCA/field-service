@@ -3010,11 +3010,10 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__vat
 msgid ""
-"The Tax Identification Number. Complete it if the contact is subjected to "
-"government taxes. Used in some legal statements."
+"The Tax Identification Number. Values here will be validated based on the "
+"country format. You can use '/' to indicate that the partner is not subject "
+"to tax."
 msgstr ""
-"Le numéro d'identification fiscale. Remplissez-le si le contact est soumis à "
-"des taxes gouvernementales. Utilisé dans certaines déclarations légales."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__user_id
@@ -3372,6 +3371,14 @@ msgstr "Etiquette"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
 msgid "template"
 msgstr "Modèle"
+
+#~ msgid ""
+#~ "The Tax Identification Number. Complete it if the contact is subjected to "
+#~ "government taxes. Used in some legal statements."
+#~ msgstr ""
+#~ "Le numéro d'identification fiscale. Remplissez-le si le contact est "
+#~ "soumis à des taxes gouvernementales. Utilisé dans certaines déclarations "
+#~ "légales."
 
 #, python-format
 #~ msgid "%s is a holiday (%s)."
