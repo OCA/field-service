@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-12 06:45+0000\n"
+"PO-Revision-Date: 2023-02-05 22:22+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -908,7 +908,7 @@ msgstr "Límite de Crédito"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit_limit
 msgid "Credit limit specific to this partner."
-msgstr ""
+msgstr "Límite de Crédito específico para este contacto."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
@@ -1070,7 +1070,7 @@ msgstr "Pagado Dentro de 7 Días"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__duplicated_bank_account_partners_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__duplicated_bank_account_partners_count
 msgid "Duplicated Bank Account Partners Count"
-msgstr ""
+msgstr "Cuenta de Cuentas Bancarias de Contactos Duplicadas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__duration
@@ -2574,7 +2574,7 @@ msgstr "Contratos de Socios"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__use_partner_credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__use_partner_credit_limit
 msgid "Partner Limit"
-msgstr ""
+msgstr "Límite de Contacto"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
@@ -2603,7 +2603,7 @@ msgstr "Límite a Pagar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
 msgid "Payment Token Count"
-msgstr ""
+msgstr "Cuenta de Token de Pago"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
@@ -2962,7 +2962,7 @@ msgstr "Compartir Socio"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__show_credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
 msgid "Show Credit Limit"
-msgstr ""
+msgstr "Mostrar Límite de Crédito"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_expiration
@@ -3197,6 +3197,9 @@ msgid ""
 "country format. You can use '/' to indicate that the partner is not subject "
 "to tax."
 msgstr ""
+"El Número de Identificación Fiscal. Los valores acá se validarán según el "
+"formato del país. Puede utilizar '/' para indicar que el contacto no está "
+"sujeto a impuestos."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
