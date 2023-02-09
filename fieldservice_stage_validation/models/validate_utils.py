@@ -12,11 +12,12 @@ def validate_stage_fields(records):
         field_names = [x.name for x in field_ids]
         values = rec.read(field_names)
 
-        for name in field_names:
-            if not values[0][name]:
+        for field in field_ids:
+            if not values[0][field.name]:
                 raise ValidationError(
                     _(
                         'Cannot move to stage "%s" '
-                        'until the "%s" field is set.' % (stage.name, name)
+                        'until the "%s" field is set.'
+                        % (stage.name, field.field_description)
                     )
                 )
