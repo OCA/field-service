@@ -10,7 +10,7 @@ from odoo.tests.common import Form, TransactionCase
 
 
 @freeze_time("2023-02-01")
-class TestFSMOrder(TransactionCase):
+class TestFSMOrderBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -117,6 +117,8 @@ class TestFSMOrder(TransactionCase):
             )
             self.assertRegex(str(res[0]), order.name)
 
+
+class TestFSMOrder(TestFSMOrderBase):
     def test_fsm_order(self):
         """Test creating new workorders, and test following functions,
         - _compute_duration() in hrs
