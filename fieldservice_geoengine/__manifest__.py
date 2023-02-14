@@ -1,4 +1,5 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2023 - TODAY Pytech SRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -7,10 +8,15 @@
     "license": "AGPL-3",
     "version": "14.0.1.0.0",
     "category": "Field Service",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, Odoo Community Association (OCA), Pytech SRL",
     "website": "https://github.com/OCA/field-service",
     "depends": ["base_geoengine", "fieldservice"],
-    "data": ["security/res_groups.xml", "views/fsm_team.xml", "views/fsm_order.xml"],
+    "data": [
+        "security/res_groups.xml",
+        "views/fsm_location.xml",
+        "views/fsm_team.xml",
+        "views/fsm_order.xml",
+    ],
     "development_status": "Beta",
     "maintainers": ["wolfhall", "max3903"],
 }
