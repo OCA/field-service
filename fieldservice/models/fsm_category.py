@@ -13,7 +13,7 @@ class FSMCategory(models.Model):
     _order = "full_name"
 
     name = fields.Char(required="True")
-    full_name = fields.Char(compute="_compute_full_name", store=True)
+    full_name = fields.Char(compute="_compute_full_name", store=True, recursive=True)
     parent_id = fields.Many2one("fsm.category", string="Parent", index=True)
     parent_path = fields.Char(index=True)
     child_id = fields.One2many("fsm.category", "parent_id", "Child Categories")
