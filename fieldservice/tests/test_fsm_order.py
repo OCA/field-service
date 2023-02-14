@@ -1,13 +1,15 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import timedelta
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, TransactionCase
 
 
+@freeze_time("2023-02-01")
 class TestFSMOrder(TransactionCase):
     def setUp(self):
         super().setUp()
@@ -191,7 +193,7 @@ class TestFSMOrder(TransactionCase):
                 order_test.request_late, order.request_early + timedelta(days=late_days)
             )
         # Test scheduled_date_start is not automatically set
-        self.assertEqual(order.scheduled_date_start, False)
+        self.assertFalse(order.scheduled_date_start)
         # Test scheduled_date_end = scheduled_date_start + duration (hrs)
         # Set date start
         order.scheduled_date_start = fields.Datetime.now().replace(
@@ -204,8 +206,7 @@ class TestFSMOrder(TransactionCase):
         order.onchange_scheduled_duration()
         # Check date end
         self.assertEqual(
-            order.scheduled_date_end,
-            order.scheduled_date_start + timedelta(hours=duration),
+            order.scheduled_date_end, fields.Datetime.from_string("2023-02-01 10:00:00")
         )
         # Set new date end
         order.scheduled_date_end = order.scheduled_date_end.replace(
@@ -215,7 +216,7 @@ class TestFSMOrder(TransactionCase):
         # Check date start
         self.assertEqual(
             order.scheduled_date_start,
-            order.scheduled_date_end - timedelta(hours=duration),
+            fields.Datetime.from_string("2023-01-31 15:01:00"),
         )
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.env["fsm.location"], view=view_id) as f:
