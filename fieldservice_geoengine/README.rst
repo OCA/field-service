@@ -91,18 +91,21 @@ Authors
 ~~~~~~~
 
 * Open Source Integrators
+* Pytech SRL
 
 Contributors
 ~~~~~~~~~~~~
 
-* Wolfgang Hall <whall@opensourceintegrators.com>
-* Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-* Steve Campbell <scampbell@opensourceintegrators.com>
-* Bhavesh Odedra <bodedra@opensourceintegrators.com>
-* Michael Allen <mallen@opensourceintegrators.com>
-* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+* Open Source Integrators
+    * Wolfgang Hall <whall@opensourceintegrators.com>
+    * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+    * Steve Campbell <scampbell@opensourceintegrators.com>
+    * Bhavesh Odedra <bodedra@opensourceintegrators.com>
+    * Michael Allen <mallen@opensourceintegrators.com>
+    * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+    * Jevin Dement <jdement@opensourceintegrators.com>
 * Murtuza Saleh <murtuza.saleh@serpentcs.com>
-* Jevin Dement <jdement@opensourceintegrators.com>
+* Sebastiano Picchi <sebastiano.picchi@pytech.it>
 
 Other credits
 ~~~~~~~~~~~~~
