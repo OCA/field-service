@@ -45,7 +45,8 @@ class TestFSMOrder(TestFSMOrderBase):
             vals = {"request_early": fields.Datetime.today(), "priority": priority}
             vals = order._compute_request_late(vals)
             self.assertEqual(
-                vals["request_late"], order.request_early + timedelta(days=late_days)
+                vals["request_late"],
+                order.request_early + timedelta(days=late_days),
             )
         # Test scheduled_date_start is not automatically set
         self.assertEqual(
