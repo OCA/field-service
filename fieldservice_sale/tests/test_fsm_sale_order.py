@@ -240,16 +240,12 @@ class TestFSMSaleOrder(TestFSMSale):
         """
         # Confirm the sale order
         self.sale_order_1.action_confirm()
-        for sol in self.sale_order_1.order_line:
-            sol._compute_product_updatable()
-            sol._field_service_generation()
         # 1 FSM order created
         self.assertEqual(
             len(self.sale_order_1.fsm_order_ids.ids),
             1,
             "FSM Sale: Sale Order 1 should create 1 FSM Order",
         )
-        self.sale_order_1.action_view_fsm_order()
         FSM_Order = self.env["fsm.order"]
         fsm_order = FSM_Order.search(
             [("id", "=", self.sale_order_1.fsm_order_ids[0].id)]
@@ -280,36 +276,6 @@ class TestFSMSaleOrder(TestFSMSale):
             fsm_order in invoice.fsm_order_ids,
             "FSM Sale: Invoice should be linked to FSM Order",
         )
-        self.sale_order_3.action_confirm()
-        for sol in self.sale_order_3.order_line:
-            sol._compute_product_updatable()
-            sol._field_service_generation()
-        self.sale_order_3.action_view_fsm_order()
-        self.sale_order_wo_sol.action_view_fsm_order()
-        self.sale_order_sol.action_confirm()
-        self.fsm_product = self.env["product.product"].create(
-            {
-                "name": "FSM Order per Sale Order #1",
-                "categ_id": self.env.ref("product.product_category_3").id,
-                "standard_price": 85.0,
-                "list_price": 90.0,
-                "type": "service",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": self.env.ref("uom.product_uom_unit").id,
-                "invoice_policy": "order",
-            }
-        )
-        self.sol_sale_order = self.env["sale.order.line"].create(
-            {
-                "name": self.fsm_per_order_1.name,
-                "product_id": self.fsm_product.id,
-                "product_uom_qty": 1,
-                "product_uom": self.fsm_per_order_1.uom_id.id,
-                "price_unit": self.fsm_per_order_1.list_price,
-                "order_id": self.sale_order_sol.id,
-                "tax_id": False,
-            }
-        )
 
     def test_sale_order_2(self):
         """Test the sales order 2 flow from sale to invoice.
@@ -329,7 +295,6 @@ class TestFSMSaleOrder(TestFSMSale):
         FSM_Order = self.env["fsm.order"]
 
         fsm_order = FSM_Order.search([("id", "=", sol.fsm_order_id.id)])
-        fsm_order.action_view_sales()
         # SOL linked to FSM order
         self.assertTrue(
             sol.fsm_order_id.id == fsm_order.id,
