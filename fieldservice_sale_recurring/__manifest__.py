@@ -11,6 +11,7 @@
     "depends": [
         "fieldservice_recurring",
         "fieldservice_sale",
+        "fieldservice_account",
     ],
     "data": [
         "security/ir.model.access.csv",
