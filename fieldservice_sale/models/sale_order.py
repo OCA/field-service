@@ -59,7 +59,21 @@ class SaleOrder(models.Model):
                 ]
             so.fsm_location_id = self.env["fsm.location"].search(domain, limit=1)
 
+    def _prepare_line_fsm_values(self, line):
+        """
+        Prepare the values to create a new FSM Order from a sale order line.
+        """
+        self.ensure_one()
+        templates = line.product_id.fsm_order_template_id
+        vals = self._prepare_fsm_values(
+            so_id=self.id, sol_id=line.id, template_id=templates.id
+        )
+        return vals
+
     def _prepare_fsm_values(self, **kwargs):
+        """
+        Prepare the values to create a new FSM Order from a sale order.
+        """
         self.ensure_one()
         template_id = kwargs.get("template_id", False)
         template_ids = kwargs.get("template_ids", [template_id])
@@ -85,48 +99,88 @@ class SaleOrder(models.Model):
             "company_id": self.company_id.id,
         }
 
+    def _field_service_generate_sale_fsm_orders(self, new_fsm_sol):
+        """
+        Generate the FSM Order for this sale order if it doesn't exist.
+        """
+        self.ensure_one()
+        new_fsm_orders = self.env["fsm.order"]
+
+        if new_fsm_sol:
+            fsm_by_sale = self.env["fsm.order"].search(
+                [("sale_id", "=", self.id), ("sale_line_id", "=", False)]
+            )
+            if not fsm_by_sale:
+                templates = new_fsm_sol.product_id.fsm_order_template_id
+                vals = self._prepare_fsm_values(
+                    so_id=self.id, template_ids=templates.ids
+                )
+                fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
+                new_fsm_orders |= fsm_by_sale
+            new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
+
+        return new_fsm_orders
+
+    def _field_service_generate_line_fsm_orders(self, new_fsm_sol):
+        """
+        Generate FSM Orders for the given sale order lines.
+
+        Override this method to filter lines to generate FSM Orders for.
+        """
+        self.ensure_one()
+        new_fsm_orders = self.env["fsm.order"]
+
+        for line in new_fsm_sol:
+            vals = self._prepare_line_fsm_values(line)
+            fsm_by_line = self.env["fsm.order"].sudo().create(vals)
+            line.write({"fsm_order_id": fsm_by_line.id})
+            new_fsm_orders |= fsm_by_line
+
+        return new_fsm_orders
+
+    def _field_service_generate(self):
+        """
+        Generate FSM Orders for this sale order.
+
+        Override this method to add new field_service_tracking types.
+        """
+        self.ensure_one()
+        new_fsm_orders = self.env["fsm.order"]
+
+        # Process lines set to FSM Sale
+        new_fsm_sale_sol = self.order_line.filtered(
+            lambda l: l.product_id.field_service_tracking == "sale"
+            and not l.fsm_order_id
+        )
+        new_fsm_orders |= self._field_service_generate_sale_fsm_orders(new_fsm_sale_sol)
+
+        # Create new FSM Order for lines set to FSM Line
+        new_fsm_line_sol = self.order_line.filtered(
+            lambda l: l.product_id.field_service_tracking == "line"
+            and not l.fsm_order_id
+        )
+
+        new_fsm_orders |= self._field_service_generate_line_fsm_orders(new_fsm_line_sol)
+
+        return new_fsm_orders
+
     def _field_service_generation(self):
         """
         Create Field Service Orders based on the products' configuration.
         :rtype: list(FSM Orders)
         :return: list of newly created FSM Orders
         """
-        res = []
+        created_fsm_orders = self.env["fsm.order"]
+
         for sale in self:
-            # Process lines set to FSM Sale
-            new_fsm_sale_lines = sale.order_line.filtered(
-                lambda l: l.product_id.field_service_tracking == "sale"
-                and not l.fsm_order_id
-            )
-            if new_fsm_sale_lines:
-                fsm_by_sale = self.env["fsm.order"].search(
-                    [("sale_id", "=", sale.id), ("sale_line_id", "=", False)]
-                )
-                if not fsm_by_sale:
-                    templates = new_fsm_sale_lines.product_id.fsm_order_template_id
-                    vals = sale._prepare_fsm_values(
-                        so_id=sale.id, template_ids=templates.ids
-                    )
-                    fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
-                    res.append(fsm_by_sale)
-                new_fsm_sale_lines.write({"fsm_order_id": fsm_by_sale.id})
-            # Create new FSM Order for lines set to FSM Line
-            new_fsm_line_lines = sale.order_line.filtered(
-                lambda l: l.product_id.field_service_tracking == "line"
-                and not l.fsm_order_id
-            )
-            for line in new_fsm_line_lines:
-                vals = sale._prepare_fsm_values(
-                    template_id=line.product_id.fsm_order_template_id.id,
-                    so_id=self.id,
-                    sol_id=line.id,
-                )
-                fsm_by_line = self.env["fsm.order"].sudo().create(vals)
-                line.write({"fsm_order_id": fsm_by_line.id})
-                res.append(fsm_by_line)
-            if len(res) > 0:
-                sale._post_fsm_message(res)
-        return res
+            new_fsm_orders = self._field_service_generate()
+
+            if len(new_fsm_orders) > 0:
+                created_fsm_orders |= new_fsm_orders
+                # If FSM Orders were created, post a message to the Sale Order
+                sale._post_fsm_message(new_fsm_orders)
+
+        return created_fsm_orders
 
     def _post_fsm_message(self, fsm_orders):
         """
