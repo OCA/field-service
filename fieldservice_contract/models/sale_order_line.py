@@ -58,11 +58,3 @@ class SaleOrderLine(models.Model):
             return {self.id: None}
         else:
             return super()._field_create_fsm_recurring()
-
-    def _field_create_fsm_order(self):
-        if self.is_contract:
-            # we do nothing; it s the contract
-            # that will create the order
-            return {self.id: None}
-        else:
-            return super()._field_create_fsm_order()
