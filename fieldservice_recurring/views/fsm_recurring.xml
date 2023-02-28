@@ -71,7 +71,7 @@
                                 groups="fieldservice.group_fsm_team"
                             />
                             <field name="person_id" />
-                            <field name="equipment_ids" widget="many2many_tags" />
+                            <field name="equipment_ids" widget="many2many_tags" domain="[('current_location_id', '=', location_id)]"/>
                             <field
                                 name="company_id"
                                 options="{'no_create': True}"
