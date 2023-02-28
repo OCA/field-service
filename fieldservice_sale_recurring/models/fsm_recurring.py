@@ -20,3 +20,8 @@ class FSMRecurring(models.Model):
             "context": {"create": False},
             "name": _("Sales Orders"),
         }
+
+    def _prepare_order_values(self, date=None):
+        res = super()._prepare_order_values(date)
+        res["sale_line_id"] = self.sale_line_id.id
+        return res
