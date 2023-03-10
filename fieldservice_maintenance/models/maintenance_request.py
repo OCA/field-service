@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 
 
 class MaintenanceRequest(models.Model):
@@ -25,22 +24,27 @@ class MaintenanceRequest(models.Model):
                 [("internal_type", "=", "maintenance")], order="id desc", limit=1
             )
             if not fsm_equipment.current_location_id.id:
-                raise UserError(
-                    _("Missing current location on FSM equipment %s")
-                    % fsm_equipment.name
+                odoobot = self.env.ref("base.partner_root")
+                request._message_log(
+                    subject="Missing location",
+                    body=_(
+                        "Order was not created because the equipment's location is not set"
+                    ),
+                    message_type="notification",
+                    author_id=odoobot.id,
                 )
-            fsm_order_id = self.env["fsm.order"].create(
-                {
-                    "type": fsm_order_type.id,
-                    "equipment_id": fsm_equipment.id,
-                    "location_id": fsm_equipment.current_location_id.id,
-                    "request_id": request.id,
-                    "description": request.description,
-                    "request_early": request.schedule_date,
-                    "scheduled_date_start": request.schedule_date,
-                    "priority": request.priority,
-                }
-            )
-
-            request.fsm_order_id = fsm_order_id
+            else:
+                fsm_order_id = self.env["fsm.order"].create(
+                    {
+                        "type": fsm_order_type.id,
+                        "equipment_id": fsm_equipment.id,
+                        "location_id": fsm_equipment.current_location_id.id,
+                        "request_id": request.id,
+                        "description": request.description,
+                        "request_early": request.schedule_date,
+                        "scheduled_date_start": request.schedule_date,
+                        "priority": request.priority,
+                    }
+                )
+                request.fsm_order_id = fsm_order_id
         return request
