@@ -1,7 +1,6 @@
 # Copyright (C) 2020, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -66,21 +65,22 @@ class TestFSMMaintenance(TransactionCase):
         )
         self.assertEqual(maint_req_02.fsm_order_id, fsm_order_02)
 
-        # Catch user error for no location set on equipment when creating
-        # a maintenance request
+        # Create a maintenance request when fsm_equipment's location is not set
         fsm_equip_01.current_location_id = False
-        with self.assertRaises(UserError) as e:
-            self.env["maintenance.request"].create(
-                {
-                    "name": "Equip 01 Request",
-                    "equipment_id": maint_equip_01.id,
-                }
-            )
-        self.assertEqual(
-            e.exception.args[0],
-            (("Missing current location on FSM equipment %s") % fsm_equip_01.name),
-            """FSM Maintenance: UserError not thrown when creating maintenance
-               request for equipment without FSM location""",
+        request = self.env["maintenance.request"].create(
+            {
+                "name": "Equip 01 Request",
+                "equipment_id": maint_equip_01.id,
+            }
+        )
+        # and check that a notification regarding its missing value
+        # is shown to the user
+        msg_notification = self.env["mail.message"].search(
+            [("res_id", "=", request.id)], order="id desc", limit=1
+        )
+        self.assertRegex(
+            msg_notification.body,
+            r".*Order was not created because the equipment's location is not set.*",
         )
 
         # Deleting the FSM Equipment
