@@ -17,9 +17,12 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: fieldservice_maintenance
-#: selection:fsm.order.type,internal_type:0
-msgid "FSM"
-msgstr "FSM"
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__display_name
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__display_name
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__display_name
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_request__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: model:ir.model,name:fieldservice_maintenance.model_fsm_equipment
@@ -38,6 +41,15 @@ msgid "Field Service Order Type"
 msgstr "Tipo de Ordem de Serviço de Campo"
 
 #. module: fieldservice_maintenance
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__id
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__id
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment__id
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_request__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type__internal_type
 msgid "Internal Type"
 msgstr "Tipo Interno"
@@ -49,7 +61,16 @@ msgid "Is a FSM Equipment"
 msgstr "É um equipamento FSM"
 
 #. module: fieldservice_maintenance
-#: selection:fsm.order.type,internal_type:0
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment____last_update
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order_type____last_update
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_equipment____last_update
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_maintenance_request____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: model:ir.model.fields.selection,name:fieldservice_maintenance.selection__fsm_order_type__internal_type__maintenance
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.fsm_equipment_form_view_maintenance
 msgid "Maintenance"
 msgstr "Manutenção"
@@ -66,10 +87,15 @@ msgid "Maintenance Request"
 msgstr "Requisição de Manutenção"
 
 #. module: fieldservice_maintenance
-#: code:addons/fieldservice_maintenance/models/maintenance_request.py:28
+#: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/models/maintenance_request.py:0
 #, python-format
-msgid "Missing current location on FSM equipment %s"
-msgstr "Faltando localização atual de equipamento FSM%s"
+msgid "Order was not created because the equipment's location is not set"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.hr_equipment_view_form
@@ -81,7 +107,12 @@ msgstr "Outros"
 msgid "Related Maintenance Equipment"
 msgstr "Equipamento de Manutenção Relacionado"
 
-#. module: fieldservice_maintenance
-#: selection:fsm.order.type,internal_type:0
-msgid "Repair"
-msgstr "Reparo"
+#~ msgid "FSM"
+#~ msgstr "FSM"
+
+#, python-format
+#~ msgid "Missing current location on FSM equipment %s"
+#~ msgstr "Faltando localização atual de equipamento FSM%s"
+
+#~ msgid "Repair"
+#~ msgstr "Reparo"
