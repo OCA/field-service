@@ -87,15 +87,15 @@ msgid "Maintenance Request"
 msgstr "Solicitud de Mantenimiento"
 
 #. module: fieldservice_maintenance
-#: code:addons/fieldservice_maintenance/models/maintenance_request.py:0
-#, python-format
-msgid "Missing current location on FSM equipment %s"
-msgstr "Falta la ubicación actual en el Equipo FSM %s"
-
-#. module: fieldservice_maintenance
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_order__display_name
 msgid "Order"
 msgstr "Pedido"
+
+#. module: fieldservice_maintenance
+#: code:addons/fieldservice_maintenance/models/maintenance_request.py:0
+#, python-format
+msgid "Order was not created because the equipment's location is not set"
+msgstr ""
 
 #. module: fieldservice_maintenance
 #: model_terms:ir.ui.view,arch_db:fieldservice_maintenance.hr_equipment_view_form
@@ -106,3 +106,7 @@ msgstr "Otros"
 #: model:ir.model.fields,field_description:fieldservice_maintenance.field_fsm_equipment__maintenance_equipment_id
 msgid "Related Maintenance Equipment"
 msgstr "Equipo de Mantenimiento Relacionado"
+
+#, python-format
+#~ msgid "Missing current location on FSM equipment %s"
+#~ msgstr "Falta la ubicación actual en el Equipo FSM %s"
