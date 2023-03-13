@@ -99,6 +99,7 @@ Contributors
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Marcel Savegnago - Escodoo <marcel.savegnago@escodoo.com.br>
 * Brian McMaster <brian@mcmpest.com>
+* Jasper Jumelet <jasper.jumelet@codeforward.nl> (https://www.codeforward.nl/)
 
 Other credits
 ~~~~~~~~~~~~~
