@@ -149,7 +149,9 @@ class SaleOrder(models.Model):
                 )
                 if not fsm_by_sale and multi_templates:
                     for template in multi_templates:
-                        vals = sale._field_create_multiple_fsm_orders_prepare_values(template)
+                        vals = sale._field_create_multiple_fsm_orders_prepare_values(
+                            template
+                        )
                         multi_fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                         res.append(multi_fsm_by_sale)
             if len(res) > 0:
