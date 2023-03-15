@@ -1,18 +1,22 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import timedelta
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.tests.common import Form, TransactionCase
 
 
-class TestFSMOrder(TransactionCase):
+@freeze_time("2023-02-01")
+class TestFSMOrderBase(TransactionCase):
     def setUp(self):
-        super(TestFSMOrder, self).setUp()
+        super().setUp()
         self.Order = self.env["fsm.order"]
         self.test_location = self.env.ref("fieldservice.test_location")
 
+
+class TestFSMOrder(TestFSMOrderBase):
     def test_fsm_order(self):
         """Test creating new workorders, and test following functions,
         - _compute_duration() in hrs
@@ -41,10 +45,14 @@ class TestFSMOrder(TransactionCase):
             vals = {"request_early": fields.Datetime.today(), "priority": priority}
             vals = order._compute_request_late(vals)
             self.assertEqual(
-                vals["request_late"], order.request_early + timedelta(days=late_days)
+                vals["request_late"],
+                order.request_early + timedelta(days=late_days),
             )
         # Test scheduled_date_start is not automatically set
-        self.assertEqual(order.scheduled_date_start, fields.Datetime.now())
+        self.assertEqual(
+            order.scheduled_date_start,
+            fields.Datetime.from_string("2023-02-01 00:00:00"),
+        )
         # Test scheduled_date_end = scheduled_date_start + duration (hrs)
         # Set date start
         order.scheduled_date_start = fields.Datetime.now().replace(
@@ -55,8 +63,7 @@ class TestFSMOrder(TransactionCase):
         order.scheduled_duration = duration
         # Check date end
         self.assertEqual(
-            order.scheduled_date_end,
-            order.scheduled_date_start + timedelta(hours=duration),
+            order.scheduled_date_end, fields.Datetime.from_string("2023-02-01 10:00:00")
         )
         # Set new date end
         order.scheduled_date_end = order.scheduled_date_end.replace(
@@ -65,5 +72,5 @@ class TestFSMOrder(TransactionCase):
         # Check date start
         self.assertEqual(
             order.scheduled_date_start,
-            order.scheduled_date_end - timedelta(hours=duration),
+            fields.Datetime.from_string("2023-01-31 15:01:00"),
         )

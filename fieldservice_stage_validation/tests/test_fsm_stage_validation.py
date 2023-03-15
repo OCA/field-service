@@ -136,10 +136,10 @@ class TestFSMStageValidation(SavepointCase):
 
     def get_validate_message(self, stage):
         stage_name = stage.name
-        field_name = fields.first(stage.validate_field_ids).name
+        field_description = fields.first(stage.validate_field_ids).field_description
         return 'Cannot move to stage "%s" until the "%s" field is set.' % (
             stage_name,
-            field_name,
+            field_description,
         )
 
     def test_fsm_stage_validation(self):
