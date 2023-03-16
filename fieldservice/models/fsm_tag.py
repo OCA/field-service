@@ -8,7 +8,7 @@ class FSMTag(models.Model):
     _name = "fsm.tag"
     _description = "Field Service Tag"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string="Name", required=True, translate=True)
     parent_id = fields.Many2one("fsm.tag", string="Parent")
     color = fields.Integer("Color Index", default=10)
     full_name = fields.Char(string="Full Name", compute="_compute_full_name")
