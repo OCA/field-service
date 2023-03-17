@@ -162,10 +162,10 @@
                         <field name="notes" nolabel="1" widget="html" />
                     </group>
                     <notebook>
-                        <page string="Directions">
+                        <page string="Directions" name="directions">
                             <field name="direction" nolabel="1" widget="html" />
                         </page>
-                        <page string="Territory">
+                        <page string="Territory" name="territory">
                             <group id="territory">
                                 <group id="territory-left">
                                     <field name="territory_id" />
@@ -181,7 +181,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Preferred Workers">
+                        <page string="Preferred Workers" name="preferred_workers">
                             <field name="person_ids" nolabel="1">
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
@@ -191,7 +191,7 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Others" id="others-page">
+                        <page string="Others" id="others-page" name="others">
                             <group id="others">
                                 <group id="others-left" />
                                 <group id="others-right" />
