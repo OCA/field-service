@@ -148,7 +148,7 @@ class SaleOrder(models.Model):
             new_fsm_orders |= fsm_by_line
 
         return new_fsm_orders
-    
+
     def _field_service_generate_sale_multiple_fsm_orders(self, new_fsm_sol):
         """
         Generate the multiple FSM Orders for this sale order if it doesn't exist.
@@ -160,16 +160,16 @@ class SaleOrder(models.Model):
             fsm_by_sale = self.env["fsm.order"].search(
                 [("sale_id", "=", self.id), ("sale_line_id", "=", False)]
             )
-            multi_templates = new_fsm_sol.mapped(
-                "product_id.fsm_order_template_ids"
-            )
+            multi_templates = new_fsm_sol.mapped("product_id.fsm_order_template_ids")
             if not fsm_by_sale and multi_templates:
                 for template in multi_templates:
-                    vals = self._field_create_multiple_fsm_orders_prepare_values(template)
+                    vals = self._field_create_multiple_fsm_orders_prepare_values(
+                        template
+                    )
                     multi_fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                     new_fsm_orders |= multi_fsm_by_sale
             # for sale_multiple option, we can not set multi_fsm_by_sale to fsm_order_id
-            # new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id}) 
+            # new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
 
         return new_fsm_orders
 
@@ -202,7 +202,9 @@ class SaleOrder(models.Model):
             lambda l: l.product_id.field_service_tracking == "sale_multiple"
             and not l.fsm_order_id
         )
-        new_fsm_orders |= self._field_service_generate_sale_multiple_fsm_orders(new_fsm_multi_sol)
+        new_fsm_orders |= self._field_service_generate_sale_multiple_fsm_orders(
+            new_fsm_multi_sol
+        )
 
         return new_fsm_orders
 
