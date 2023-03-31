@@ -339,13 +339,15 @@ class FSMOrder(models.Model):
             ) - timedelta(hours=self.scheduled_duration)
             self.date_start = str(date_to_with_delta)
 
-    @api.onchange("scheduled_duration")
+    @api.onchange("scheduled_date_start", "scheduled_duration")
     def onchange_scheduled_duration(self):
         if self.scheduled_duration and self.scheduled_date_start:
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_start
             ) + timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
+        else:
+            self.scheduled_date_end = self.scheduled_date_start
 
     def copy_notes(self):
         old_desc = self.description
