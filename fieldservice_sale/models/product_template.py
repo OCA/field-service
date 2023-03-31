@@ -34,8 +34,8 @@ class ProductTemplate(models.Model):
         "Field Service Order Template",
         help="Select the field service order template to be created",
     )
-    fsm_order_template_ids = fields.One2many(
-        "fsm.template", "product_id", string="Field Service Order Templates"
+    fsm_order_template_ids = fields.Many2many(
+        "fsm.template", string="Field Service Order Templates"
     )
 
     @api.onchange("field_service_tracking")

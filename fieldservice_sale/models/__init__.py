@@ -3,7 +3,6 @@
 
 from . import (
     fsm_order,
-    fsm_template,
     product_template,
     sale_order_line,
     sale_order,
