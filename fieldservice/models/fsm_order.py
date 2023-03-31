@@ -250,9 +250,11 @@ class FSMOrder(models.Model):
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
 
-        if (vals.get('scheduled_duration')
-            or vals.get('scheduled_date_start')
-                or vals.get('scheduled_date_end')):
+        if (
+            vals.get("scheduled_duration") is not None
+            or vals.get("scheduled_date_start")
+            or vals.get("scheduled_date_end")
+        ):
 
             if (vals.get('scheduled_date_start')
                     and vals.get('scheduled_date_end')):
@@ -273,16 +275,22 @@ class FSMOrder(models.Model):
                 ) - timedelta(hours=hrs)
                 vals['scheduled_date_start'] = str(date_to_with_delta)
 
-            elif (vals.get('scheduled_duration', False)
-                  or (vals.get('scheduled_date_start', False)
-                      and (self.scheduled_date_start != vals.get(
-                          'scheduled_date_start', False)))):
-                hours = vals.get('scheduled_duration', False)
-                start_date_val = vals.get('scheduled_date_start',
-                                          self.scheduled_date_start)
+            elif (
+                vals.get("scheduled_duration", False) is not None
+                and vals.get("scheduled_date_start", self.scheduled_date_start)
+                and (
+                    self.scheduled_date_start != vals.get("scheduled_date_start", False)
+                )
+            ):
+                hours = vals.get("scheduled_duration", False)
+                start_date_val = vals.get(
+                    "scheduled_date_start", self.scheduled_date_start
+                )
                 start_date = fields.Datetime.from_string(start_date_val)
                 date_to_with_delta = start_date + timedelta(hours=hours)
-                vals['scheduled_date_end'] = str(date_to_with_delta)
+                vals["scheduled_date_end"] = str(date_to_with_delta)
+        elif vals.get("scheduled_date_start") is not None:
+            vals["scheduled_date_end"] = False
 
     def action_complete(self):
         return self.write({'stage_id': self.env.ref(
