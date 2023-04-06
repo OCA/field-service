@@ -272,7 +272,7 @@ class FSMOrder(models.Model):
         """Calculate scheduled dates and duration"""
 
         if (
-            vals.get("scheduled_duration")
+            vals.get("scheduled_duration") is not None
             or vals.get("scheduled_date_start")
             or vals.get("scheduled_date_end")
         ):
@@ -301,8 +301,9 @@ class FSMOrder(models.Model):
                 ) - timedelta(hours=hrs)
                 vals["scheduled_date_start"] = str(date_to_with_delta)
 
-            elif vals.get("scheduled_duration", False) or (
-                vals.get("scheduled_date_start", False)
+            elif (
+                vals.get("scheduled_duration", False) is not None
+                and vals.get("scheduled_date_start", self.scheduled_date_start)
                 and (
                     self.scheduled_date_start != vals.get("scheduled_date_start", False)
                 )
@@ -314,6 +315,8 @@ class FSMOrder(models.Model):
                 start_date = fields.Datetime.from_string(start_date_val)
                 date_to_with_delta = start_date + timedelta(hours=hours)
                 vals["scheduled_date_end"] = str(date_to_with_delta)
+        elif vals.get("scheduled_date_start") is not None:
+            vals["scheduled_date_end"] = False
 
     def action_complete(self):
         return self.write(
@@ -336,13 +339,15 @@ class FSMOrder(models.Model):
             ) - timedelta(hours=self.scheduled_duration)
             self.date_start = str(date_to_with_delta)
 
-    @api.onchange("scheduled_duration")
+    @api.onchange("scheduled_date_start", "scheduled_duration")
     def onchange_scheduled_duration(self):
         if self.scheduled_duration and self.scheduled_date_start:
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_start
             ) + timedelta(hours=self.scheduled_duration)
             self.scheduled_date_end = str(date_to_with_delta)
+        else:
+            self.scheduled_date_end = self.scheduled_date_start
 
     def copy_notes(self):
         old_desc = self.description
