@@ -19,7 +19,7 @@ class FSMOrder(models.Model):
             [
                 ("stage_type", "=", "order"),
                 ("is_default", "=", True),
-                ("company_id", "in", (self.env.user.company_id.id, False)),
+                ("company_id", "in", (self.env.company.id, False)),
             ],
             order="sequence asc",
             limit=1,
@@ -31,7 +31,7 @@ class FSMOrder(models.Model):
 
     def _default_team_id(self):
         team_ids = self.env["fsm.team"].search(
-            [("company_id", "in", (self.env.user.company_id.id, False))],
+            [("company_id", "in", (self.env.company.id, False))],
             order="sequence asc",
             limit=1,
         )
@@ -53,7 +53,7 @@ class FSMOrder(models.Model):
 
     @api.depends("stage_id")
     def _get_stage_color(self):
-        """ Get stage color"""
+        """Get stage color"""
         self.custom_color = self.stage_id.custom_color or "#FFFFFF"
 
     def _track_subtype(self, init_values):
@@ -131,13 +131,21 @@ class FSMOrder(models.Model):
             early = datetime.now()
 
         if vals.get("priority") == "0":
-            vals["request_late"] = early + timedelta(days=3)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.company.fsm_order_request_late_lowest
+            )
         elif vals.get("priority") == "1":
-            vals["request_late"] = early + timedelta(days=2)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.company.fsm_order_request_late_low
+            )
         elif vals.get("priority") == "2":
-            vals["request_late"] = early + timedelta(days=1)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.company.fsm_order_request_late_medium
+            )
         elif vals.get("priority") == "3":
-            vals["request_late"] = early + timedelta(hours=8)
+            vals["request_late"] = early + timedelta(
+                hours=self.env.company.fsm_order_request_late_high
+            )
         return vals
 
     request_late = fields.Datetime(string="Latest Request Date")
@@ -254,7 +262,7 @@ class FSMOrder(models.Model):
             }
         )
         self._calc_scheduled_dates(vals)
-        if not vals.get('request_late'):
+        if not vals.get("request_late"):
             vals = self._compute_request_late(vals)
         return super(FSMOrder, self).create(vals)
 
@@ -290,7 +298,6 @@ class FSMOrder(models.Model):
             or vals.get("scheduled_date_start")
             or vals.get("scheduled_date_end")
         ):
-
             if vals.get("scheduled_date_start") and vals.get("scheduled_date_end"):
                 new_date_start = fields.Datetime.from_string(
                     vals.get("scheduled_date_start", False)
