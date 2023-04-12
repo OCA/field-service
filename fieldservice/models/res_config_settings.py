@@ -90,6 +90,26 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.search_on_complete_name",
         readonly=False,
     )
+    fsm_order_request_late_lowest = fields.Float(
+        string="Hours of Buffer for Lowest Priority FS Orders",
+        related="company_id.fsm_order_request_late_lowest",
+        readonly=False,
+    )
+    fsm_order_request_late_low = fields.Float(
+        string="Hours of Buffer for Low Priority FS Orders",
+        related="company_id.fsm_order_request_late_low",
+        readonly=False,
+    )
+    fsm_order_request_late_medium = fields.Float(
+        string="Hours of Buffer for Medium Priority FS Orders",
+        related="company_id.fsm_order_request_late_medium",
+        readonly=False,
+    )
+    fsm_order_request_late_high = fields.Float(
+        string="Hours of Buffer for High Priority FS Orders",
+        related="company_id.fsm_order_request_late_high",
+        readonly=False,
+    )
 
     # Dependencies
     @api.onchange("group_fsm_equipment")
