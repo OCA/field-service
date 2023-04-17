@@ -18,6 +18,14 @@ class TestFSMStockCommon(TransactionCase):
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.test_location = self.env.ref("fieldservice.test_location")
+        self.test_location2 = self.env["fsm.location"].create(
+            {
+                "name": "Test location 2",
+                "partner_id": self.env.ref("fieldservice.location_partner_1").id,
+                "owner_id": self.env.ref("fieldservice.location_partner_1").id,
+                "fsm_parent_id": self.test_location.id,
+            }
+        )
         self.partner_1 = (
             self.env["res.partner"]
             .with_context(tracking_disable=True)
@@ -44,7 +52,7 @@ class TestFSMStockCommon(TransactionCase):
         )
         order2 = self.FSMOrder.create(
             {
-                "location_id": self.test_location.id,
+                "location_id": self.test_location2.id,
                 "date_start": date_start,
                 "date_end": date_start + timedelta(hours=50),
                 "request_early": fields.Datetime.today(),
@@ -144,6 +152,11 @@ class TestFSMStockCommon(TransactionCase):
         order.picking_ids = [(6, 0, order_pick_list2)]
         order._compute_picking_ids()
         order.location_id._onchange_fsm_parent_id()
+        order2.location_id._onchange_fsm_parent_id()
+        self.assertTrue(
+            order2.location_id.inventory_location_id
+            == order2.location_id.fsm_parent_id.inventory_location_id
+        )
         order._default_warehouse_id()
         order.action_view_delivery()
         order2.action_view_delivery()
