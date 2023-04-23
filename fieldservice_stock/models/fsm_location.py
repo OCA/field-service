@@ -12,6 +12,7 @@ class FSMLocation(models.Model):
         string="Inventory Location",
         compute="_compute_inventory_location_id",
         store=True,
+        readonly=False,
         required=True,
         recursive=True,
         default=lambda self: self.env.ref("stock.stock_location_customers"),
