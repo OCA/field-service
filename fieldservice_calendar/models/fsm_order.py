@@ -101,7 +101,7 @@ class FSMOrder(models.Model):
 
     def _serialize_location(self):
         partner_id = self.location_id.partner_id
-        return f"{partner_id.name} {partner_id._display_address()}"
+        return '{} {}'.format(partner_id.name, partner_id._display_address())
 
     def update_calendar_person(self, old_persons):
         if self._context.get("recurse_order_calendar"):
