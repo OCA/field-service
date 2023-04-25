@@ -46,7 +46,8 @@ class FSMOrder(models.Model):
             "location": self._serialize_location(),
             "user_id": self.team_id.calendar_user_id.id,
         }
-        vals["partner_ids"] = [(4, self.team_id.calendar_user_id.partner_id.id, False)]
+        partners = self.team_id.calendar_user_id.partner_id | self.person_id.partner_id
+        vals["partner_ids"] = [(6, False, partners.ids)]
         # we let calendar_user has a partner_ids in order
         # to have the meeting in the team's calendar
         return vals
