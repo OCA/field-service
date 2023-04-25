@@ -6,15 +6,16 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFSMOrder(TransactionCase):
-    def setUp(self):
-        super(TestFSMOrder, self).setUp()
-        self.Order = self.env["fsm.order"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.location_1 = self.env.ref("fieldservice.location_1")
-        self.team = self.Order._default_team_id()
-        self.team.calendar_user_id = self.env.ref("base.partner_root").id
-        self.person_id = self.env.ref("fieldservice.person_2")
-        self.person_id3 = self.env.ref("fieldservice.person_3")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Order = cls.env["fsm.order"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.location_1 = cls.env.ref("fieldservice.location_1")
+        cls.team = cls.Order._default_team_id()
+        cls.team.calendar_user_id = cls.env.ref("base.partner_root").id
+        cls.person_id = cls.env.ref("fieldservice.person_2")
+        cls.person_id3 = cls.env.ref("fieldservice.person_3")
 
     def test_fsm_order_no_duration(self):
         new = self.Order.create(
