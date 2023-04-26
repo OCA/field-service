@@ -5,13 +5,14 @@ from odoo.tests.common import TransactionCase
 
 
 class TestStockMove(TransactionCase):
-    def setUp(self):
-        super(TestStockMove, self).setUp()
-        self.Move = self.env["stock.move"]
-        self.stock_location = self.env.ref("stock.stock_location_customers")
-        self.supplier_location = self.env.ref("stock.stock_location_suppliers")
-        self.stock_location = self.env.ref("stock.stock_location_stock")
-        self.uom_unit = self.env.ref("uom.product_uom_unit")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Move = cls.env["stock.move"]
+        cls.stock_location = cls.env.ref("stock.stock_location_customers")
+        cls.supplier_location = cls.env.ref("stock.stock_location_suppliers")
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.uom_unit = cls.env.ref("uom.product_uom_unit")
 
     def test_action_done(self):
         # Create product template
