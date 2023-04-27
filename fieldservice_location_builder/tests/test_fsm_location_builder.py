@@ -6,15 +6,16 @@ from odoo.tests.common import TransactionCase
 
 
 class FSMLocationBuilderWizardCase(TransactionCase):
-    def setUp(self):
-        super(FSMLocationBuilderWizardCase, self).setUp()
-        self.fsm_order = self.env["fsm.order"]
-        self.Wizard = self.env["fsm.location.builder.wizard"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.level = self.env["fsm.location.level"]
-        self.fr = self.env.ref("base.fr")
-        self.state_fr = self.env["res.country.state"].create(
-            dict(name="State", code="ST", country_id=self.fr.id)
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.fsm_order = cls.env["fsm.order"]
+        cls.Wizard = cls.env["fsm.location.builder.wizard"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.level = cls.env["fsm.location.level"]
+        cls.fr = cls.env.ref("base.fr")
+        cls.state_fr = cls.env["res.country.state"].create(
+            dict(name="State", code="ST", country_id=cls.fr.id)
         )
 
     def test_location_wiz(self):
