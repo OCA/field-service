@@ -147,7 +147,7 @@ class FSMOrder(models.Model):
     scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
     scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(default=10)
-    todo = fields.Text(string="Instructions")
+    todo = fields.Html(string="Instructions")
 
     # Execution
     resolution = fields.Text()

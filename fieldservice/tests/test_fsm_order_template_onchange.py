@@ -26,7 +26,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrderBase):
         self.fsm_template_1 = self.env["fsm.template"].create(
             {
                 "name": "Test FSM Template #1",
-                "instructions": "These are the instructions for Template #1",
+                "instructions": "<p>These are the instructions for Template #1</p>",
                 "category_ids": [(6, 0, categories)],
                 "duration": 2.25,
                 "type_id": self.fsm_type_a.id,
@@ -35,7 +35,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrderBase):
         self.fsm_template_2 = self.env["fsm.template"].create(
             {
                 "name": "Test FSM Template #1",
-                "instructions": "These are the instructions for Template #1",
+                "instructions": "<p>These are the instructions for Template #1</p>",
                 "category_ids": [(6, 0, categories)],
                 "duration": 2.25,
                 "team_id": self.fsm_team_a.id,
@@ -62,5 +62,5 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrderBase):
         )
         self.assertEqual(self.fso.scheduled_duration, self.fsm_template_1.duration)
         self.assertEqual(self.fso.type.id, self.fsm_template_1.type_id.id)
-        self.assertEqual(self.fso.todo, self.fsm_template_1.instructions)
+        self.assertEqual(str(self.fso.todo), self.fsm_template_1.instructions)
         self.assertEqual(self.fso2.team_id.id, self.fsm_team_a.id)
