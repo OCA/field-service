@@ -12,8 +12,8 @@ class StockMove(models.Model):
             "name": "%s (%s)" % (move_line.product_id.name, move_line.lot_id.name),
             "product_id": move_line.product_id.id,
             "lot_id": move_line.lot_id.id,
-            "location_id": move.stock_request_ids.fsm_order_id.location_id.id,
-            "current_location_id": move.stock_request_ids.fsm_order_id.location_id.id,
+            "location_id": move.fsm_order_id.location_id.id,
+            "current_location_id": move.fsm_order_id.location_id.id,
             "current_stock_location_id": move_line.location_dest_id.id,
         }
 
