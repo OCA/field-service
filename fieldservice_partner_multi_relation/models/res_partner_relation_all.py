@@ -23,7 +23,7 @@ class ResPartnerRelationAll(models.AbstractModel):
                 if not self.type_selection_id:
                     return self.set_domain_type()
             else:
-                super(ResPartnerRelationAll, self).onchange_partner_id()
+                super().onchange_partner_id()
         else:
             # Remove left_cat domain on type
             return self.set_domain_type()
@@ -43,7 +43,7 @@ class ResPartnerRelationAll(models.AbstractModel):
                 if not type_id:
                     return self.set_domain_type()
             else:
-                super(ResPartnerRelationAll, self).onchange_partner_id()
+                super().onchange_partner_id()
         else:
             # Remove right_cat domain on type
             self.set_domain_type()
@@ -82,7 +82,7 @@ class ResPartnerRelationAll(models.AbstractModel):
                 res.update(res2["domain"])
                 return res
         else:
-            super(ResPartnerRelationAll, self).onchange_type_selection_id()
+            super().onchange_type_selection_id()
 
     def try_type(self):
         type_id = self.env["res.partner.relation.type"].search(

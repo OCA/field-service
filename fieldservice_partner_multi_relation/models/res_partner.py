@@ -17,4 +17,4 @@ class ResPartner(models.Model):
         self.ensure_one()
         if self.fsm_location:
             return "fsm-location"
-        return super(ResPartner, self).get_partner_type()
+        return super().get_partner_type()

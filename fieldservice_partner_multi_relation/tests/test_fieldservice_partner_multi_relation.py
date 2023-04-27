@@ -10,7 +10,7 @@ from odoo.addons.partner_multi_relation.tests.test_partner_relation_common impor
 
 class TestPartnerRelation(TestPartnerRelationCommon):
     def setUp(self):
-        super(TestPartnerRelation, self).setUp()
+        super().setUp()
 
         self.fsm_location_01 = self.partner_model.create(
             {"name": "Test FSM Location - 1", "fsm_location": True, "ref": "FSM01"}

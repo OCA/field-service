@@ -8,7 +8,6 @@ class ResPartnerRelationType(models.Model):
     _inherit = "res.partner.relation.type"
 
     def get_partner_types(self):
-        super(ResPartnerRelationType, self).get_partner_types()
         return [
             ("c", _("Organisation")),
             ("p", _("Person")),
