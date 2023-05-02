@@ -5,11 +5,12 @@ import odoo.tests.common as common
 
 
 class TestFieldServicePurchase(common.TransactionCase):
-    def setUp(self):
-        super(TestFieldServicePurchase, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super(TestFieldServicePurchase, cls).setUpClass()
 
-        self.product_supplierinfo_obj = self.env["product.supplierinfo"]
-        self.fsm_person_obj = self.env["fsm.person"]
+        cls.product_supplierinfo_obj = cls.env["product.supplierinfo"]
+        cls.fsm_person_obj = cls.env["fsm.person"]
 
     def test_fieldservice_purchase(self):
 
@@ -17,7 +18,7 @@ class TestFieldServicePurchase(common.TransactionCase):
 
         # Test with 1 records Vendor Pricelist
         product_supplierinfo_vals = {
-            "name": fsm_person.partner_id.id,
+            "partner_id": fsm_person.partner_id.id,
             "min_qty": 1.0,
             "price": 100,
         }
@@ -31,7 +32,7 @@ class TestFieldServicePurchase(common.TransactionCase):
 
         # Test with 2 records Vendor Pricelist
         product_supplierinfo_vals = {
-            "name": fsm_person.partner_id.id,
+            "partner_id": fsm_person.partner_id.id,
             "min_qty": 2.0,
             "price": 200,
         }
