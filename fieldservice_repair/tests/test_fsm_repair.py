@@ -9,29 +9,30 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFSMRepairCommon(TransactionCase):
-    def setUp(self):
-        super(TestFSMRepairCommon, self).setUp()
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.stock_location = self.env.ref("stock.stock_location_customers")
-        self.FSMOrder = self.env["fsm.order"]
-        self.OrderType = self.env["fsm.order.type"].create(
+    @classmethod
+    def setUpClass(cls):
+        super(TestFSMRepairCommon, cls).setUpClass()
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.stock_location = cls.env.ref("stock.stock_location_customers")
+        cls.FSMOrder = cls.env["fsm.order"]
+        cls.OrderType = cls.env["fsm.order.type"].create(
             {"name": "Test1", "internal_type": "repair"}
         )
-        self.product1 = self.env["product.product"].create(
+        cls.product1 = cls.env["product.product"].create(
             {"name": "Product A", "type": "product"}
         )
-        self.lot1 = self.env["stock.production.lot"].create(
+        cls.lot1 = cls.env["stock.lot"].create(
             {
                 "name": "sn11",
-                "product_id": self.product1.id,
-                "company_id": self.env.company.id,
+                "product_id": cls.product1.id,
+                "company_id": cls.env.company.id,
             }
         )
-        self.equipment = self.env["fsm.equipment"].create(
+        cls.equipment = cls.env["fsm.equipment"].create(
             {
                 "name": "test equipment",
-                "product_id": self.product1.id,
-                "lot_id": self.lot1.id,
+                "product_id": cls.product1.id,
+                "lot_id": cls.lot1.id,
             }
         )
 
