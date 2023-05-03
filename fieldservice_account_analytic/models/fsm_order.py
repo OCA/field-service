@@ -17,7 +17,7 @@ class FSMOrder(models.Model):
         "res.partner",
         string="Contact",
         change_default=True,
-        index=True,
+        index="btree",
         tracking=True,
     )
 
