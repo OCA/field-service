@@ -26,4 +26,42 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='currency_id']" position="after">
+                <field name="fsm_location_id" string="location" optional="hidden" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='currency_id']" position="after">
+                <field name="fsm_location_id" string="location" optional="hidden" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='team_id']" position="after">
+                <field
+                    name="fsm_location_id"
+                    string="location"
+                    filter_domain="[('order_line.fsm_location_id', 'ilike', self)]"
+                />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
