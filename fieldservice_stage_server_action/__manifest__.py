@@ -1,7 +1,7 @@
 # Copyright (C) 2019, Open Source Integrators
 # # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
-    "name": "FSM Stage Server Action",
+    "name": "Field Service - Stage Server Action",
     "summary": "Execute server actions when reaching a Field Service stage",
     "version": "15.0.1.0.0",
     "category": "Field Service",
