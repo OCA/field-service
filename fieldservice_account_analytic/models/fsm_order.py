@@ -56,8 +56,7 @@ class FSMOrder(models.Model):
             self.location_id = self.customer_id.service_location_id
 
     def write(self, vals):
-        res = super(FSMOrder, self).write(vals)
         for order in self:
-            if "customer_id" not in vals and order.customer_id is False:
-                order.customer_id = order.location_id.customer_id.id
-        return res
+            if "customer_id" not in vals and not order.customer_id:
+                vals.update({"customer_id": order.location_id.customer_id.id})
+        return super(FSMOrder, self).write(vals)

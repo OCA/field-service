@@ -20,3 +20,15 @@ class FSMOrder(models.Model):
             "context": {"create": False},
             "name": _("Sales Orders"),
         }
+
+    def write(self, vals):
+        for order in self:
+            if "customer_id" not in vals and not order.customer_id:
+                vals.update({"customer_id": order.sale_id.partner_id.id})
+        return super(FSMOrder, self).write(vals)
+
+    def create(self, vals):
+        sale_id = self.env["sale.order"].browse(vals.get("sale_id"))
+        if sale_id:
+            vals["customer_id"] = sale_id.partner_id.id
+        return super(FSMOrder, self).create(vals)
