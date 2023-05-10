@@ -276,7 +276,7 @@ class ContractLine(models.Model):
         res = self._fsm_create_fsm_common_prepare_values()
 
         def to_locale_datetime(some_date):
-            tz = pytz.timezone(self._context.get("tz", self.env.user.tz or "UTC"))
+            tz = pytz.timezone(self._context.get("tz", self.env.user.tz) or "UTC")
             return tz.localize(
                 datetime.combine(some_date, time())
             ).astimezone(pytz.UTC).replace(tzinfo=None)
