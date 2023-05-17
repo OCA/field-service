@@ -487,3 +487,45 @@ class TestFSMSaleOrder(TestFSMSale):
         self.assertEqual(
             len(invoices.ids), 1, "FSM Sale: Sale Order 4 should create 1 invoice"
         )
+
+    def test_sale_order_5(self):
+        """Test ValidationError isn't raised if order line
+        display_type in ("line_section", "line_note")
+        """
+        # remove normal order line with display_type=False
+        self.sol_service_per_order.unlink()
+        # add note as order line to sale order
+        self.sol_note = self.env["sale.order.line"].create(
+            {
+                "name": "This is a note",
+                "display_type": "line_note",
+                "product_id": False,
+                "product_uom_qty": 0,
+                "product_uom": False,
+                "price_unit": 0,
+                "order_id": self.sale_order.id,
+                "tax_id": False,
+            }
+        )
+        # confirm sale order: ValidationError shouldn't be raised
+        self.sale_order.action_confirm()
+        # set sale order to draft
+        self.sale_order.action_cancel()
+        self.sale_order.action_draft()
+        # remove note order line
+        self.sol_note.unlink()
+        # add section as order line to sale order
+        self.sol_section = self.env["sale.order.line"].create(
+            {
+                "name": "This is a section",
+                "display_type": "line_section",
+                "product_id": False,
+                "product_uom_qty": 0,
+                "product_uom": False,
+                "price_unit": 0,
+                "order_id": self.sale_order.id,
+                "tax_id": False,
+            }
+        )
+        # confirm sale order: ValidationError shouldn't be raised
+        self.sale_order.action_confirm()
