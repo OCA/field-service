@@ -9,7 +9,6 @@ class FSMOrder(models.Model):
 
     contract_line_id = fields.Many2one(
         comodel_name="contract.line",
-        inverse_name="fsm_order_id",
         readonly=True,
         copy=False,
     )

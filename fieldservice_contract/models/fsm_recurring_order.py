@@ -9,7 +9,6 @@ class FSMRecurringOrder(models.Model):
 
     contract_line_id = fields.Many2one(
         comodel_name="contract.line",
-        inverse_name="fsm_recurring_id",
         readonly=True,
     )
 

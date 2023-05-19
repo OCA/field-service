@@ -10,7 +10,6 @@ class ContractContract(models.Model):
     fsm_location_id = fields.Many2one(
         string="FSM Location",
         comodel_name="fsm.location",
-        inverse_name="contract_ids",
         copy=True,
         help="Default Location",
     )
