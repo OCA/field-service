@@ -75,7 +75,7 @@ class ContractLine(models.Model):
         store=True,
     )
     fsm_order_by_month_count = fields.Float(
-        "Theoric Yearly order count", compute="_compute_tehoric_order_count", store=True
+        "Theoric Monthly order count", compute="_compute_tehoric_order_count", store=True
     )
     avg_price_unit_fsm_order = fields.Float(
         "Avg price for a fsm order", compute="_compute_avg_price_unit_fsm_order",
