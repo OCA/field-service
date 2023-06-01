@@ -4,17 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-12 04:46+0000\n"
-"Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
-"Language-Team: none\n"
-"Language: es_AR\n"
+"POT-Creation-Date: 2023-06-01 13:57+0000\n"
+"PO-Revision-Date: 2023-06-01 13:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: \n"
 
 #. module: fieldservice_sale_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale_recurring.fsm_recurring_form_view_inherit_sale
@@ -32,18 +31,14 @@ msgstr "Crear un pedido recurrente"
 msgid ""
 "Determines what happens upon sale order confirmation:\n"
 "                - None: nothing additional, default behavior.\n"
-"                - Per Sale Order: One FSM Order will be created for the "
-"sale.\n"
-"                - Per Sale Order Line: One FSM Order for each sale order "
-"line\n"
+"                - Per Sale Order: One FSM Order will be created for the sale.\n"
+"                - Per Sale Order Line: One FSM Order for each sale order line\n"
 "                will be created."
 msgstr ""
 "Determina qué sucede tras la confirmación del pedido de venta:\n"
 "                 - Ninguno: nada adicional, comportamiento predeterminado.\n"
-"                 - Por orden de venta: se creará un pedido de FSM para la "
-"venta.\n"
-"                 - Por línea de orden de venta: un pedido de FSM para cada "
-"línea de pedido de venta\n"
+"                 - Por orden de venta: se creará un pedido de FSM para la venta.\n"
+"                 - Por línea de orden de venta: un pedido de FSM para cada línea de pedido de venta\n"
 "                 se creará."
 
 #. module: fieldservice_sale_recurring
@@ -76,6 +71,7 @@ msgid "Field Service Tracking"
 msgstr "Rastreo de Servicio de Campo"
 
 #. module: fieldservice_sale_recurring
+#. odoo-python
 #: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -89,8 +85,8 @@ msgstr ""
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_product_template
-msgid "Product Template"
-msgstr "Plantilla del Producto"
+msgid "Product"
+msgstr "Producto"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_fsm_recurring
@@ -110,14 +106,15 @@ msgstr "Línea de Venta"
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de Venta"
+msgstr "Pedido de venta"
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de Pedido de Venta"
+msgstr "Línea de pedido de venta"
 
 #. module: fieldservice_sale_recurring
+#. odoo-python
 #: code:addons/fieldservice_sale_recurring/models/fsm_recurring.py:0
 #, python-format
 msgid "Sales Orders"
@@ -131,6 +128,7 @@ msgstr ""
 "Seleccione una plantilla de servicio de campo recurrente para ser creada"
 
 #. module: fieldservice_sale_recurring
+#. odoo-python
 #: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -141,32 +139,3 @@ msgstr ""
 "La recurrencia ha sido creada desde: <a href=\n"
 "                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
 "                "
-
-#~ msgid "Display Name"
-#~ msgstr "Mostrar Nombre"
-
-#, python-format
-#~ msgid ""
-#~ "Field Service recurring Created (%s): <a href=\n"
-#~ "                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
-#~ "                "
-#~ msgstr ""
-#~ "Servicio de Campo recurrente Creado (%s): <a href=\n"
-#~ "                   # data-oe-model=fsm.recurring data-oe-id=%d>%s</a>\n"
-#~ "                "
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última Modificación el"
-
-#, python-format
-#~ msgid ""
-#~ "This recurring has been created from: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
-#~ "                "
-#~ msgstr ""
-#~ "Esta recurrencia ha sido creada desde: <a href=\n"
-#~ "                   # data-oe-model=sale.order data-oe-id=%d>%s</a> (%s)\n"
-#~ "                "
