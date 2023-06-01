@@ -37,7 +37,12 @@
                         </group>
                         <group />
                     </group>
-                    <group string="Frequency Rules">
+                    <label
+                        for="fsm_frequency_ids"
+                        string="Frequency Rules"
+                        class="col-12 o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small"
+                    />
+                    <div>
                         <field name="fsm_frequency_ids" widget="many2many" nolabel="1">
                             <tree>
                                 <field name="name" />
@@ -46,7 +51,7 @@
                                 <field name="is_exclusive" />
                             </tree>
                         </field>
-                    </group>
+                    </div>
                 </sheet>
             </form>
         </field>
