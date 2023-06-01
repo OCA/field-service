@@ -203,8 +203,10 @@ class SaleOrder(models.Model):
 
     def _get_invalid_lines(self):
         """Hook to exclude specific lines which should not have location.
-        ex : In some case a product can be sold alon or as an option in configrble product (a product with options).
-         in the case that product is sold as option within a configurable product, location is mandatory only on this one.
+        ex : In some case a product can be sold alon or as an option
+         in configrble product (a product with options).
+         in the case that product is sold as option within a configurable product,
+         location is mandatory only on this one.
          We have not to repeat the same location for each option.
         """
         lines_without_location = self.order_line.filtered(
