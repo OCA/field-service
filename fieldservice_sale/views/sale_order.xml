@@ -58,7 +58,7 @@
                 <field
                     name="fsm_location_id"
                     string="location"
-                    filter_domain="[('order_line.fsm_location_id', 'ilike', self)]"
+                    filter_domain="['|', ('fsm_location_id', 'ilike', self), ('order_line.fsm_location_id', 'ilike', self)]"
                 />
             </xpath>
         </field>
