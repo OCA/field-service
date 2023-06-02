@@ -40,6 +40,7 @@ class FSMChangeLogCase(TransactionCase):
                 "impact_id": self.impact_med.id,
             }
         )
+        self.test_location._compute_change_log_count()
         self.test_location.action_open_change_logs()
         self.cl.create(
             {
@@ -52,4 +53,5 @@ class FSMChangeLogCase(TransactionCase):
                 "impact_id": self.impact_med.id,
             }
         )
+        self.test_location2._compute_change_log_count()
         self.test_location2.action_open_change_logs()

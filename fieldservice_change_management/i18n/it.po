@@ -4,17 +4,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-24 18:12+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
-"Language-Team: none\n"
-"Language: it\n"
+"POT-Creation-Date: 2023-06-02 05:32+0000\n"
+"PO-Revision-Date: 2023-06-02 05:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Plural-Forms: \n"
+
+#. module: fieldservice_change_management
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.change_log_document
+#: model:ir.actions.report,print_report_name:fieldservice_change_management.location_change_log_document
+msgid "\"Change Logs\""
+msgstr "Registri modifiche"
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__change_log_count
@@ -109,12 +114,11 @@ msgid "Change Log impact"
 msgstr "Impatto registro modifiche"
 
 #. module: fieldservice_change_management
+#. odoo-python
 #: code:addons/fieldservice_change_management/models/fsm_location.py:0
 #: model:ir.actions.act_window,name:fieldservice_change_management.change_log_action
 #: model:ir.actions.report,name:fieldservice_change_management.change_log_document
 #: model:ir.actions.report,name:fieldservice_change_management.location_change_log_document
-#: model:ir.actions.report,print_report_name:fieldservice_change_management.change_log_document
-#: model:ir.actions.report,print_report_name:fieldservice_change_management.location_change_log_document
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__change_log_ids
 #: model:ir.module.category,name:fieldservice_change_management.module_change_log_category
 #: model:ir.ui.menu,name:fieldservice_change_management.change_log_menu
@@ -194,7 +198,6 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__display_name
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -224,11 +227,6 @@ msgid "Followers"
 msgstr "Seguito da"
 
 #. module: fieldservice_change_management
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguito da (canali)"
-
-#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguito da (partner)"
@@ -244,14 +242,18 @@ msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__id
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_exception_icon
@@ -265,7 +267,6 @@ msgstr "Icona per indicare un'attività eccezione."
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_needaction
-#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
@@ -303,7 +304,6 @@ msgstr "Segue"
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type____last_update
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -416,11 +416,6 @@ msgid "Number of messages with delivery error"
 msgstr "Numero di messaggi con errore di consegna"
 
 #. module: fieldservice_change_management
-#: model:ir.model.fields,help:fieldservice_change_management.field_change_log__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Numero di messaggi non letti"
-
-#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
@@ -502,16 +497,6 @@ msgstr "Tipo di attività eccezione sul record."
 #: model:ir.ui.menu,name:fieldservice_change_management.change_log_type_menu
 msgid "Types"
 msgstr "Tipi"
-
-#. module: fieldservice_change_management
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_unread
-msgid "Unread Messages"
-msgstr "Messaggi non letti"
-
-#. module: fieldservice_change_management
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contatore messaggi non letti"
 
 #. module: fieldservice_change_management
 #: model:res.groups,name:fieldservice_change_management.change_log_group_user

@@ -10,7 +10,7 @@ class ChangeLogTags(models.Model):
     _description = "Change Log Tags"
 
     name = fields.Char(required=True)
-    description = fields.Text(string="Description")
+    description = fields.Text()
     color = fields.Integer(string="Color Index")
 
     _sql_constraints = [

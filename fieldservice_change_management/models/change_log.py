@@ -13,10 +13,8 @@ class ChangeLog(models.Model):
     active = fields.Boolean(default=True)
     name = fields.Char(string="Title", required=True)
     location_id = fields.Many2one("fsm.location", string="FSM Location")
-    implemented_on = fields.Datetime(
-        string="Implemented On", required=True, default=fields.Datetime.now
-    )
-    description = fields.Text(string="Description", required=True)
+    implemented_on = fields.Datetime(required=True, default=fields.Datetime.now)
+    description = fields.Text(required=True)
     user_id = fields.Many2one(
         "res.users",
         string="Changed By",
