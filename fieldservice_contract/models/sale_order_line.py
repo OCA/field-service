@@ -23,16 +23,17 @@ class SaleOrderLine(models.Model):
         "('commercial_partner_id', '=', commercial_partner_id)]",
     )
     invoice_policy = fields.Selection(
-        [("order_smoothing_bill", "Planned fsm order smoothing bill"),
-         ("order_not_smoothing_bill", "Planned fsm order not smoothing bill"),
-         ("delivery_not_smoothing", "Realised fsm order not smoothing bill"),
-         #("delivery_smoothing", "Realised fsm order smoothing bill"),
-         ],
+        [
+            ("order_smoothing_bill", "Planned fsm order smoothing bill"),
+            ("order_not_smoothing_bill", "Planned fsm order not smoothing bill"),
+            ("delivery_not_smoothing", "Realised fsm order not smoothing bill"),
+            # ("delivery_smoothing", "Realised fsm order smoothing bill"),
+        ],
         string="Invoicing Policy",
         help="Planned fsm order smoothing bill: This means that the amount of invoice don't depends on the number of fsm order planned in the invoiced period.\n"
-            "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
-            "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n",
-            #"Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
+        "Planned fsm order not smoothing bill: This means that the amount of invoice depends on the number of fsm order planned in the invoiced period.\n"
+        "Realised fsm order not smoothing bill: This means that the amount of invoice don't depends on the number of fsm order Realised in the invoiced period.\n",
+        # "Realised fsm order smoothing bill: This means that the amount of invoice depends on the number of fsm order Realised in the invoiced period.\n",
         default="order_smoothing_bill",
     )
 
@@ -52,9 +53,14 @@ class SaleOrderLine(models.Model):
         return res
 
     def _field_create_fsm_recurring(self):
-        if self.is_contract:
+        result = {}
+        for so_line in self.filtered(lambda sol: sol.is_contract):
             # we do nothing; it s the contract
             # that will create the order
-            return {self.id: None}
-        else:
-            return super()._field_create_fsm_recurring()
+            result.update({so_line.id: None})
+        result.update(
+            super(
+                SaleOrderLine, self.filtered(lambda sol: not sol.is_contract)
+            )._field_create_fsm_recurring()
+        )
+        return result
