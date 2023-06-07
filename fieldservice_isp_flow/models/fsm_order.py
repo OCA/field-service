@@ -77,7 +77,8 @@ class FSMOrder(models.Model):
             raise ValidationError(
                 _("Cannot move to Complete " + "until 'Resolution' is filled in")
             )
-        return super(FSMOrder, self).action_complete()
+
+        return super(FSMOrder, self.sudo()).action_complete()
 
     def _track_subtype(self, init_values):
         self.ensure_one()
