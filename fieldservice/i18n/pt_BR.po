@@ -2182,6 +2182,12 @@ msgid "Message for Invoice"
 msgstr "Mensagem para Fatura"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
+msgid "Message for Sales Order"
+msgstr "Mensagem para Pedido de Vendas"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
 msgid "Message for Stock Picking"
@@ -2782,10 +2788,28 @@ msgid "SMS Delivery error"
 msgstr "Erro de entrega de SMS"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
+msgid "Sale Order Count"
+msgstr "Contagem de Pedidos de Venda"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
+msgid "Sales Order"
+msgstr "Pedidos de Venda"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
 msgid "Sales Team"
 msgstr "Equipe de Vendas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
+msgid "Sales Warnings"
+msgstr "Avisos de Vendas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -2869,8 +2893,10 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
@@ -3705,9 +3731,6 @@ msgstr "modelo"
 #~ msgid "Message for Purchase Order"
 #~ msgstr "Mensagem para Ordem de Compra"
 
-#~ msgid "Message for Sales Order"
-#~ msgstr "Mensagem para Pedido de Vendas"
-
 #~ msgid ""
 #~ "Number of days to send reminder email before the promised receipt date"
 #~ msgstr ""
@@ -3757,15 +3780,6 @@ msgstr "modelo"
 
 #~ msgid "Relation valid"
 #~ msgstr "Relação válida"
-
-#~ msgid "Sale Order Count"
-#~ msgstr "Contagem de Pedidos de Venda"
-
-#~ msgid "Sales Order"
-#~ msgstr "Pedidos de Venda"
-
-#~ msgid "Sales Warnings"
-#~ msgstr "Avisos de Vendas"
 
 #~ msgid "Scheduled duration"
 #~ msgstr "Duração programada"
