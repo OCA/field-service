@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Activate the FSM Template Group by default -->
+    <record id="base.group_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('fieldservice.group_fsm_template'))]"
+        />
+    </record>
+
+</odoo>

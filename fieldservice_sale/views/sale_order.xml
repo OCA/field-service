@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_order_form_inherit_sale_fieldservice" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.fieldservice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+                    type="object"
+                    name="action_view_fsm_order"
+                    class="oe_stat_button"
+                    icon="fa-map"
+                    attrs="{'invisible': [('fsm_order_count', '=', 0)]}"
+                    groups="fieldservice.group_fsm_user"
+                >
+                    <field
+                        name="fsm_order_count"
+                        widget="statinfo"
+                        string="FSM Orders"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
