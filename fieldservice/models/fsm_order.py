@@ -74,6 +74,10 @@ class FSMOrder(models.Model):
         group_expand="_read_group_stage_ids",
         default=lambda self: self._default_stage_id(),
     )
+    is_closed = fields.Boolean(
+        "Is closed",
+        related="stage_id.is_closed",
+    )
     priority = fields.Selection(
         fsm_stage.AVAILABLE_PRIORITIES,
         index=True,
