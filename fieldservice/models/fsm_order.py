@@ -233,6 +233,11 @@ class FSMOrder(models.Model):
         string="Internal Type", related="type.internal_type"
     )
 
+    is_closed = fields.Boolean(
+        "Is closed",
+        related="stage_id.is_closed",
+    )
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [("stage_type", "=", "order")]
@@ -327,7 +332,7 @@ class FSMOrder(models.Model):
     def action_complete(self):
         return self.write(
             {
-                "stage_id": self.env.ref("fieldservice.fsm_stage_completed").id,
+                "is_closed": True,
                 "is_button": True,
             }
         )
