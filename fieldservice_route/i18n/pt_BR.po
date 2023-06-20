@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-06-17 22:19+0000\n"
-"Last-Translator: Fernando Colus <fcolus1@gmail.com>\n"
+"PO-Revision-Date: 2023-06-22 20:08+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: fieldservice_route
 #: model_terms:ir.actions.act_window,help:fieldservice_route.action_fsm_route_dayroute
@@ -54,7 +54,7 @@ msgstr "Completar Ordem"
 #. module: fieldservice_route
 #: model_terms:ir.actions.act_window,help:fieldservice_route.action_fsm_route_day
 msgid "Create a Route Day."
-msgstr "Crie um Dia de Rota."
+msgstr "Crie Rota do Dia."
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__create_uid
@@ -92,12 +92,12 @@ msgstr "Rota do Dia"
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_dayroute_pivot_view
 msgid "Day Routes"
-msgstr "Rotas Diurnas"
+msgstr "Rotas do Dia"
 
 #. module: fieldservice_route
 #: model_terms:ir.actions.act_window,help:fieldservice_route.action_fsm_route_dayroute_report
 msgid "Day Routes Report"
-msgstr "Relatório de Rotas Diurnas"
+msgstr "Relatório de Rotas do Dia"
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route__day_ids
@@ -134,7 +134,7 @@ msgstr "Rota do Serviço de Campo"
 #. module: fieldservice_route
 #: model:ir.model,name:fieldservice_route.model_fsm_route_dayroute
 msgid "Field Service Route Dayroute"
-msgstr "Dia da Rota do Serviço de Campo"
+msgstr "Rota do Serviço de Campo do Dia"
 
 #. module: fieldservice_route
 #: model:ir.model,name:fieldservice_route.model_fsm_stage
@@ -217,8 +217,7 @@ msgstr "Número máximo de ordens por rota diária."
 #. module: fieldservice_route
 #: model:ir.model.fields,help:fieldservice_route.field_fsm_route_dayroute__max_order
 msgid "Maximum numbers of orders that can be added to this day route."
-msgstr ""
-"Números máximos de ordens que podem ser adicionados a este dia de rota."
+msgstr "Números máximos de ordens que podem ser adicionados a esta rota no dia."
 
 #. module: fieldservice_route
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__monday
@@ -241,7 +240,7 @@ msgstr "Novo"
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__order_count
 msgid "Number of Orders"
-msgstr "Número de Pedidos"
+msgstr "Número de Ordens"
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__order_ids
@@ -284,7 +283,7 @@ msgstr "Rota"
 #: model:ir.model,name:fieldservice_route.model_fsm_route_day
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_day_form_view
 msgid "Route Day"
-msgstr "Dia da Rota"
+msgstr "Rota do Dia"
 
 #. module: fieldservice_route
 #: model:ir.ui.menu,name:fieldservice_route.menu_fsm_route_day
@@ -332,7 +331,7 @@ msgstr "A rota do dia está excedendo o número máximo de ordens da rota."
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "The route %(route_name)s does not run on %(name)s!"
-msgstr ""
+msgstr "A rota %(route_name)s não funciona em %(name)s!"
 
 #. module: fieldservice_route
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
