@@ -1,0 +1,63 @@
+<odoo>
+
+    <record id="fsm_route_tree" model="ir.ui.view">
+        <field name="name">fsm.route.tree</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="fsm_person_id" />
+                <field name="day_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_route_form" model="ir.ui.view">
+        <field name="name">fsm.route.form</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <form string="Route">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group id="main">
+                        <group id="left">
+                            <field name="fsm_person_id" />
+                        </group>
+                        <group id="right">
+                            <field name="day_ids" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page id="capacity" string="Capacity">
+                            <group id="capacity">
+                                <group id="capacity-left">
+                                    <label for="max_order" string="Maximum" />
+                                    <div>
+                                        <field name="max_order" /> orders per day route
+                                    </div>
+                                </group>
+                                <group id="capacity-right" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route" model="ir.actions.act_window">
+        <field name="name">Routes</field>
+        <field name="res_model">fsm.route</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Routes here.
+            </p>
+        </field>
+    </record>
+
+</odoo>

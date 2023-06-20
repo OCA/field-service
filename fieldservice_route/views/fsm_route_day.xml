@@ -1,0 +1,38 @@
+<odoo>
+
+    <record id="fsm_route_day_tree_view" model="ir.ui.view">
+        <field name="name">Route Day</field>
+        <field name="model">fsm.route.day</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_route_day_form_view" model="ir.ui.view">
+        <field name="name">Route Day</field>
+        <field name="model">fsm.route.day</field>
+        <field name="arch" type="xml">
+            <form string="Route Day">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route_day" model="ir.actions.act_window">
+        <field name="name">Route Day</field>
+        <field name="res_model">fsm.route.day</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Route Day.
+            </p>
+        </field>
+    </record>
+
+</odoo>
