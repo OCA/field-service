@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-22 16:09+0000\n"
+"PO-Revision-Date: 2023-06-22 20:08+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -46,12 +46,12 @@ msgstr ""
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__sale
 msgid "Create one FSM order per sale order"
-msgstr "Crie um pedido OSC por pedido de venda"
+msgstr "Crie um pedido GSC por pedido de venda"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__line
 msgid "Create one FSM order per sale order line"
-msgstr "Crie um pedido OSC por linha do pedido de venda"
+msgstr "Crie um pedido GSC por linha do pedido de venda"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_product_product__field_service_tracking
@@ -67,29 +67,29 @@ msgid ""
 msgstr ""
 "Determina o que acontece após a confirmação do pedido de venda:\n"
 "                 - Nenhum: nada adicional, comportamento padrão.\n"
-"                 - Por pedido de venda: um pedido do OSC sera criado para a "
+"                 - Por pedido de venda: um pedido do GSC sera criado para a "
 "venda.\n"
-"                 - Por linha de pedido de venda: um pedido do OSC para cada "
+"                 - Por linha de pedido de venda: um pedido do GSC para cada "
 "linha de pedido de venda.\n"
 "                 Será criado."
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__no
 msgid "Don't create FSM order"
-msgstr "Não crie ordem OSC"
+msgstr "Não crie ordem GSC"
 
 #. module: fieldservice_sale
 #. odoo-python
 #: code:addons/fieldservice_sale/models/sale_order.py:0
 #, python-format
 msgid "FSM Location must be set"
-msgstr "Localização da OSC deve ser definida"
+msgstr "Localização do GSC deve ser definida"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order__fsm_order_count
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_order_form_inherit_sale_fieldservice
 msgid "FSM Orders"
-msgstr "Ordens do OSC (Ordem Serviço de Campo)"
+msgstr "Ordens do GSC (Gerenciamento Serviço de Campo)"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_fsm_order
@@ -143,9 +143,9 @@ msgid ""
 "and track the work hours."
 msgstr ""
 "Definir quantidades manualmente no pedido: fatura com base na quantidade "
-"inserida manualmente, sem criar uma conta anal??tica.\n"
+"inserida manualmente, sem criar uma conta analítica.\n"
 "Quadros de horários do contrato: fatura com base nas horas rastreadas no "
-"quadro de hor??rios relacionado.\n"
+"quadro de horários relacionado.\n"
 "Crie uma tarefa e acompanhe o horário: crie uma tarefa na validação do "
 "pedido de vendas e acompanhe o horário de trabalho."
 
