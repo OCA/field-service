@@ -22,16 +22,28 @@ class FSMOrder(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        action = (
-            self.env["fsm.stage"].browse(vals["stage_id"]).action_id
-            if "stage_id" in vals
-            else None
-        )
-        if action:
+        if "stage_id" in vals:
             for record in self:
-                context = {
-                    "active_model": record._name,
-                    "active_ids": record.ids,
-                }
-                action.with_context(**context).run()
+                if record.stage_id.id != vals.get("stage_id"):
+                    action = (
+                        self.env["fsm.stage"].browse(vals["stage_id"]).action_id
+                        if "stage_id" in vals
+                        else None
+                    )
+                    if action:
+                        context = {
+                            "active_model": record._name,
+                            "active_ids": record.ids,
+                        }
+                        action.with_context(**context).run()
+                else:
+                    self.activity_ids.create(
+                        {
+                            "res_id": self.id,
+                            "res_model_id": self.env["ir.model"]
+                            .search([("model", "=", "fsm.order")], limit=1)
+                            .id,
+                            "activity_type_id": 1,
+                        }
+                    )
         return res
