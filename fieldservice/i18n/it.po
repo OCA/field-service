@@ -1106,6 +1106,18 @@ msgid "Employee"
 msgstr "Dipendente"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employee_ids
+msgid "Employees"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
+msgid "Employees Count"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Enter the resolution for the order..."
 msgstr "Inserire la definizione per l'ordine..."
@@ -2748,6 +2760,12 @@ msgstr "Proprietario correlato"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_id
 msgid "Related Partner"
 msgstr "Partner collegato"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__employee_ids
+msgid "Related employees based on their private address"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
