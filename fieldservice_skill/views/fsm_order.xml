@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Field Service Order Form Extended-->
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="category_ids" position="after">
+                <field
+                    name="skill_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                />
+                <field name="skill_worker_ids" invisible="1" />
+            </field>
+            <field name="person_id" position="attributes">
+                <attribute name="domain">
+                    [("id", "in", skill_worker_ids)]
+                </attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
