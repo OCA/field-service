@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class FSMEquipment(models.Model):
@@ -19,13 +20,16 @@ class FSMEquipment(models.Model):
 
     @api.model
     def create(self, vals):
+        maintenance_team_id = self.env["maintenance.team"].search([("company_id", "=", self.env.company.id)], limit=1)
+        if not maintenance_team_id:
+            raise ValidationError("At least one maintenance team must be created")
         maintenance_equipment_id = self.env["maintenance.equipment"].create(
             {
                 "name": vals.get("name"),
                 "is_fsm_equipment": True,
                 "note": vals.get("notes", False),
                 "maintenance_team_id": vals.get("maintenance_team_id", False)
-                or self.env.ref("maintenance.equipment_team_maintenance").id,
+                or maintenance_team_id.id,
             }
         )
         if maintenance_equipment_id:
