@@ -24,6 +24,18 @@ class TestFSMFleetWizard(TransactionCase):
             [("fleet_vehicle_id", "=", self.fleet_vehicle_1.id)]
         )
 
+        # Create a driver partner without an associated fsm.person record
+        driver_partner = self.env["res.partner"].create(
+            {
+                "name": "Driver Partner",
+            }
+        )
+
+        # Retrieve the fsm_worker record for the driver partner
+        fsm_worker = self.env["fsm.person"].search(
+            [("partner_id", "=", driver_partner.id)]
+        )
+
         self.assertEqual(
             len(fsm_vehicle),
             1,
@@ -46,6 +58,18 @@ class TestFSMFleetWizard(TransactionCase):
             self.fleet_vehicle_1.driver_id,
             """FSM Fleet Wizard: FSM vehicle driver is not same
                as the Fleet vehicle driver""",
+        )
+        self.assertTrue(
+            self.fleet_vehicle_1.driver_id and self.fleet_vehicle_1.is_fsm_vehicle,
+            "Driver ID and is_fsm_vehicle condition is not True",
+        )
+
+        # Set the driver_id of the fleet vehicle to the driver partner
+        self.fleet_vehicle_1.driver_id = driver_partner.id
+
+        # Assert that fsm_worker is not found
+        self.assertFalse(
+            fsm_worker, "FSM worker found for driver partner, but it should not exist"
         )
 
         # Attempt to convert the Fleet vehicle again, but expect UserError
@@ -97,4 +121,4 @@ class TestFSMFleetWizard(TransactionCase):
             "active_ids": [self.fleet_vehicle_3.id],
             "active_id": self.fleet_vehicle_3.id,
         }
-        self.Wizard.with_context(self.context).action_convert()
+        self.Wizard.with_context(**self.context).action_convert()
