@@ -13,20 +13,21 @@ class FSMOrder(models.Model):
         "fsm.recurring", "Recurring Order", readonly=True
     )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("fsm_recurring_id", False) and vals.get(
-            "scheduled_date_start", False
-        ):
-            days_late = (
-                self.env["fsm.recurring"]
-                .browse(vals["fsm_recurring_id"])
-                .fsm_frequency_set_id.buffer_late
-            )
-            vals["request_late"] = vals["scheduled_date_start"] + timedelta(
-                days=days_late
-            )
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("fsm_recurring_id", False) and vals.get(
+                "scheduled_date_start", False
+            ):
+                days_late = (
+                    self.env["fsm.recurring"]
+                    .browse(vals["fsm_recurring_id"])
+                    .fsm_frequency_set_id.buffer_late
+                )
+                vals["request_late"] = vals["scheduled_date_start"] + timedelta(
+                    days=days_late
+                )
+        return super().create(vals_list)
 
     def action_view_fsm_recurring(self):
         action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]

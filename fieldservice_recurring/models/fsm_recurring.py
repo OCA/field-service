@@ -114,13 +114,14 @@ class FSMRecurringOrder(models.Model):
             "company_id": template.company_id,
         }
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("New")) == _("New"):
-            vals["name"] = self.env["ir.sequence"].next_by_code("fsm.recurring") or _(
-                "New"
-            )
-        return super(FSMRecurringOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "fsm.recurring"
+                ) or _("New")
+        return super(FSMRecurringOrder, self).create(vals_list)
 
     def action_start(self):
         for rec in self:
