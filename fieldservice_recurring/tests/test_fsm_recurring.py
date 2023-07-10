@@ -12,26 +12,27 @@ from odoo.tests.common import TransactionCase
 
 
 class FSMRecurringCase(TransactionCase):
-    def setUp(self):
-        super(FSMRecurringCase, self).setUp()
-        self.Recurring = self.env["fsm.recurring"]
-        self.Frequency = self.env["fsm.frequency"]
-        self.FrequencySet = self.env["fsm.frequency.set"]
+    @classmethod
+    def setUpClass(cls):
+        super(FSMRecurringCase, cls).setUpClass()
+        cls.Recurring = cls.env["fsm.recurring"]
+        cls.Frequency = cls.env["fsm.frequency"]
+        cls.FrequencySet = cls.env["fsm.frequency.set"]
         # create a Partner to be converted to FSM Location/Person
-        self.test_loc_partner = self.env["res.partner"].create(
+        cls.test_loc_partner = cls.env["res.partner"].create(
             {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
         )
         # create expected FSM Location to compare to converted FSM Location
-        self.test_location = self.env["fsm.location"].create(
+        cls.test_location = cls.env["fsm.location"].create(
             {
                 "name": "Test Location",
                 "phone": "123",
                 "email": "tp@email.com",
-                "partner_id": self.test_loc_partner.id,
-                "owner_id": self.test_loc_partner.id,
+                "partner_id": cls.test_loc_partner.id,
+                "owner_id": cls.test_loc_partner.id,
             }
         )
-        self.rule = self.Frequency.create(
+        cls.rule = cls.Frequency.create(
             {
                 "name": "All weekdays",
                 "interval_type": "monthly",
@@ -43,14 +44,14 @@ class FSMRecurringCase(TransactionCase):
                 "fr": True,
             }
         )
-        self.fr_set = self.FrequencySet.create(
+        cls.fr_set = cls.FrequencySet.create(
             {
                 "name": "31th only",
                 "schedule_days": 365,
-                "fsm_frequency_ids": [(6, 0, self.rule.ids)],
+                "fsm_frequency_ids": [(6, 0, cls.rule.ids)],
             }
         )
-        self.fsm_recurring_template = self.env["fsm.recurring.template"].create(
+        cls.fsm_recurring_template = cls.env["fsm.recurring.template"].create(
             {"name": "Test Template"}
         )
 
