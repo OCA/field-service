@@ -5,23 +5,24 @@ from odoo.tests.common import TransactionCase
 
 
 class TestFSMSize(TransactionCase):
-    def setUp(self):
-        super(TestFSMSize, self).setUp()
-        self.Size = self.env["fsm.size"]
-        self.Location_size = self.env["fsm.location.size"]
-        self.Type = self.env["fsm.order.type"]
-        self.Order = self.env["fsm.order"]
-        self.UOM = self.env.ref("uom.product_uom_unit")
-        self.type_a = self.Type.create({"name": "Type A"})
-        self.size_a = self.Size.create(
+    @classmethod
+    def setUpClass(cls):
+        super(TestFSMSize, cls).setUpClass()
+        cls.Size = cls.env["fsm.size"]
+        cls.Location_size = cls.env["fsm.location.size"]
+        cls.Type = cls.env["fsm.order.type"]
+        cls.Order = cls.env["fsm.order"]
+        cls.UOM = cls.env.ref("uom.product_uom_unit")
+        cls.type_a = cls.Type.create({"name": "Type A"})
+        cls.size_a = cls.Size.create(
             {
                 "name": "Size A 1",
-                "type_id": self.type_a.id,
-                "uom_id": self.UOM.id,
+                "type_id": cls.type_a.id,
+                "uom_id": cls.UOM.id,
                 "is_order_size": True,
             }
         )
-        self.test_location = self.env.ref("fieldservice.test_location")
+        cls.test_location = cls.env.ref("fieldservice.test_location")
 
     def test_one_size_per_type(self):
         with self.assertRaises(ValidationError) as e:
