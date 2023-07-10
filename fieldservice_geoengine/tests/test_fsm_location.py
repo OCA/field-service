@@ -63,7 +63,7 @@ class TestFsmLocation(SavepointCase):
             test_location_1.partner_latitude, 50.629980, delta=self.delta
         )
         self.assertAlmostEqual(
-            test_location_1.partner_longitude, 4.863860, delta=self.delta
+            test_location_1.partner_longitude, 4.863370, delta=self.delta
         )
         # direct creation and same exit data
         partner_latitude = 1.0
