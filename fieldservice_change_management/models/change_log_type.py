@@ -10,7 +10,7 @@ class ChangeLogType(models.Model):
     _description = "Change Log Type"
 
     name = fields.Char(string="Type", required=True)
-    description = fields.Text(string="Description")
+    description = fields.Text()
     log_type_sequence = fields.Integer(
         required=True,
         default=lambda self: self.env["ir.sequence"].next_by_code("res.log.impact")

@@ -10,7 +10,7 @@ class ChangeLogStage(models.Model):
     _description = "Change Log Stage"
 
     name = fields.Char(string="Stage", required=True)
-    description = fields.Text(string="Description")
+    description = fields.Text()
     fold = fields.Boolean(string="Folded")
     is_close = fields.Boolean(string="Closing Kanban Stage")
     stage_sequence = fields.Integer(
