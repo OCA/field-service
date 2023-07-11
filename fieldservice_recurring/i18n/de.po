@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2022-12-04 15:44+0000\n"
-"Last-Translator: Nils Coenen | NICO SOLUTIONS - ENGINEERING & IT <nils.coenen"
-"@nico-solutions.de>\n"
+"Last-Translator: Nils Coenen | NICO SOLUTIONS - ENGINEERING & IT <nils."
+"coenen@nico-solutions.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice_recurring
+#. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
 #, python-format
 msgid "'Day of Month must be between 1 and 31"
@@ -266,7 +267,6 @@ msgstr "Wiederkehrende Field Service Vorlagen"
 #. module: fieldservice_recurring
 #: model:ir.actions.server,name:fieldservice_recurring.recurring_orders_cron_ir_actions_server
 #: model:ir.cron,cron_name:fieldservice_recurring.recurring_orders_cron
-#: model:ir.cron,name:fieldservice_recurring.recurring_orders_cron
 msgid "Field Service: generate recurring orders"
 msgstr "Field Service: Generieren Sie wiederkehrende Aufträge"
 
@@ -377,13 +377,9 @@ msgstr "Symbol zur Anzeige einer Ausnahmeaktivität."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_needaction
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_unread
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_needaction
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_unread
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_needaction
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_unread
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_needaction
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Wenn es gesetzt ist, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
@@ -544,6 +540,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: fieldservice_recurring
+#. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_recurring.py:0
 #, python-format
 msgid "New"
@@ -607,14 +604,6 @@ msgid "Number of messages with delivery error"
 msgstr "Dies ist die Anzahl von Nachrichten mit einem Übertragungsfehler."
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_unread_counter
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_unread_counter
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_unread_counter
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Dies ist die Anzahl von ungelesenen Nachrichten."
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__oct
 msgid "October"
 msgstr "Oktober"
@@ -638,6 +627,7 @@ msgid "Orders Count"
 msgstr "Auftragsanzahl"
 
 #. module: fieldservice_recurring
+#. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
 #, python-format
 msgid "Position must be between -366 and 366"
@@ -845,22 +835,6 @@ msgid "Type of the exception activity on record."
 msgstr "Art der aufgezeichneten Ausnahmeaktivität."
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_unread
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_unread
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_unread
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_unread
-msgid "Unread Messages"
-msgstr "Ungelesene Nachrichten"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_unread_counter
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_unread_counter
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_unread_counter
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Zähler für ungelesene Nachrichten"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__use_bymonthday
 msgid "Use Day of Month"
 msgstr "Tag des Monats verwenden"
@@ -929,6 +903,15 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Jährlich"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Dies ist die Anzahl von ungelesenen Nachrichten."
+
+#~ msgid "Unread Messages"
+#~ msgstr "Ungelesene Nachrichten"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Zähler für ungelesene Nachrichten"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Abonnenten (Kan??le)"
