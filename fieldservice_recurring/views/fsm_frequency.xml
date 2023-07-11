@@ -1,0 +1,136 @@
+<odoo>
+    <!-- Field Service Frequency -->
+    <record id="fsm_frequency_tree_view" model="ir.ui.view">
+        <field name="name">fsm.frequency.tree</field>
+        <field name="model">fsm.frequency</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="interval" />
+                <field name="interval_type" />
+                <field name="is_exclusive" />
+            </tree>
+        </field>
+    </record>
+    <record id="fsm_frequency_form_view" model="ir.ui.view">
+        <field name="name">fsm.frequency.form</field>
+        <field name="model">fsm.frequency</field>
+        <field name="arch" type="xml">
+            <form string="Frequency">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Frequency Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <label for="interval" />
+                            <div class="o_row">
+                                <field name="interval" />
+                                <field name="interval_type" />
+                            </div>
+                        </group>
+                        <group>
+                            <field name="is_exclusive" />
+                        </group>
+                    </group>
+                    <group>
+                        <div>
+                            <group>
+                                <field name="use_byweekday" />
+                            </group>
+                            <div
+                                attrs="{'invisible': [('use_byweekday', '=', False)]}"
+                                name="weekdays"
+                            >
+                                <group>
+                                    <field name="mo" />
+                                    <field name="tu" />
+                                    <field name="we" />
+                                    <field name="th" />
+                                    <field name="fr" />
+                                    <field name="sa" />
+                                    <field name="su" />
+                                </group>
+                            </div>
+                            <group>
+                                <field name="use_bymonthday" />
+                            </group>
+                            <div
+                                attrs="{'invisible': [('use_bymonthday', '=', False)]}"
+                                name="monthday"
+                            >
+                                <group>
+                                    <field name="month_day" />
+                                </group>
+                            </div>
+                            <group>
+                                <field name="use_setpos" />
+                            </group>
+                            <div
+                                attrs="{'invisible': [('use_setpos', '=', False)]}"
+                                name="setpos"
+                            >
+                                <group>
+                                    <field name="set_pos" />
+                                </group>
+                            </div>
+                        </div>
+                        <div>
+                            <group>
+                                <field name="use_bymonth" />
+                            </group>
+                            <div
+                                attrs="{'invisible': [('use_bymonth', '=', False)]}"
+                                name="months"
+                            >
+                                <group>
+                                    <field name="jan" />
+                                    <field name="feb" />
+                                    <field name="mar" />
+                                    <field name="apr" />
+                                    <field name="may" />
+                                    <field name="jun" />
+                                    <field name="jul" />
+                                    <field name="aug" />
+                                    <field name="sep" />
+                                    <field name="oct" />
+                                    <field name="nov" />
+                                    <field name="dec" />
+                                </group>
+                            </div>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_fsm_frequency" model="ir.actions.act_window">
+        <field name="name">Field Service Frequencies</field>
+        <field name="res_model">fsm.frequency</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define a Frequency for scheduling recurring orders here.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_fsm_frequency"
+        name="Frequencies"
+        action="action_fsm_frequency"
+        parent="fieldservice.menu_fsm_config_order"
+        sequence="45"
+        groups="fieldservice_recurring.group_fsm_recurring"
+    />
+</odoo>
