@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-fieldservice_delivery>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_distribution>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_equipment_stock>=15.0dev,<15.1dev',
+        'odoo-addon-fieldservice_fleet>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_isp_account>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_isp_flow>=15.0dev,<15.1dev',
         'odoo-addon-fieldservice_location_builder>=15.0dev,<15.1dev',
