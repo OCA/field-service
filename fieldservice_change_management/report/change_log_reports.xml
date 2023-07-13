@@ -1,0 +1,135 @@
+<odoo>
+    <record id="change_log_document" model="ir.actions.report">
+        <field name="name">Change Logs</field>
+        <field name="model">change.log</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >fieldservice_change_management.report_change_log_document</field>
+        <field
+            name="report_file"
+        >fieldservice_change_management.report_change_log_document</field>
+        <field name="print_report_name">Change Logs</field>
+        <field name="binding_type">report</field>
+    </record>
+
+  <template id="report_change_log_document">
+    <t t-name="fieldservice_change_management.report_change_log_document">
+        <t t-name="fieldservice_change_management.report_change_log_document">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div align="center">
+                        <h3>Change Logs</h3>
+                    </div>
+                    <t t-foreach="docs" t-as="doc">
+                        <h4>
+                            <span t-field="doc.location_id.ref" /> - <span
+                                    t-field="doc.location_id"
+                                />
+                        </h4>
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <t t-set="colspan" t-value="4" />
+                                <th class="text-left">Title</th>
+                                <th class="text-left">Type</th>
+                                <th class="text-left">Description</th>
+                                <th class="text-left">Changed On</th>
+                                <th class="text-left">Changed By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="doc.name" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="doc.type_id" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="doc.description" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="doc.implemented_on" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="doc.user_id" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+              </t>
+            </t>
+        </t>
+    </t>
+  </template>
+
+    <record id="location_change_log_document" model="ir.actions.report">
+        <field name="name">Change Logs</field>
+        <field name="model">fsm.location</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >fieldservice_change_management.report_location_change_log_document</field>
+        <field
+            name="report_file"
+        >fieldservice_change_management.report_location_change_log_document</field>
+        <field name="print_report_name">Change Logs</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_location_change_log_document">
+        <t t-name="fieldservice_change_management.report_location_change_log_document">
+            <t
+                t-name="fieldservice_change_management.report_location_change_log_document"
+            >
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.external_layout">
+                            <div align="center">
+                                <h3>Change Logs for <span t-field="doc.ref" /> - <span
+                                        t-field="doc.name"
+                                    /></h3>
+                            </div>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <t t-set="colspan" t-value="5" />
+                                        <th class="text-left">Title</th>
+                                        <th class="text-left">Type</th>
+                                        <th class="text-left">Description</th>
+                                        <th class="text-left">Changed On</th>
+                                        <th class="text-left">Changed By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.change_log_ids" t-as="log">
+                                        <tr>
+                                            <td>
+                                                <span t-field="log.name" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="log.type_id" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="log.description" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="log.implemented_on" />
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="log.user_id" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,17 @@
+<odoo noupdate="1">
+    <record id="change_log_stage_pending" model="change.log.stage">
+        <field name="name">Pending</field>
+        <field name="description">Change Log is being built and pending.</field>
+        <field name="stage_sequence">0</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="change_log_stage_active" model="change.log.stage">
+        <field name="name">Active</field>
+        <field name="description">Change Log is live.</field>
+        <field name="stage_sequence">1</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+</odoo>
