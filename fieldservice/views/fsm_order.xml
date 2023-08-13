@@ -42,17 +42,18 @@
                     <group>
                         <group>
                             <field
-                                name="type"
-                                options="{'no_create': True, 'no_open': True}"
-                            />
-                            <field
                                 name="template_id"
                                 groups="fieldservice.group_fsm_template"
+                            />
+                            <field
+                                name="type"
+                                options="{'no_create': True, 'no_open': True}"
                             />
                             <field name="priority" widget="priority" />
                             <field
                                 name="tag_ids"
                                 widget="many2many_tags"
+                                groups="fieldservice.group_fsm_tag"
                                 options="{'color_field': 'color', 'no_create_edit': True}"
                             />
                         </group>
@@ -110,6 +111,7 @@
                                         name="category_ids"
                                         widget="many2many_tags"
                                         options="{'color_field': 'color'}"
+                                        groups="fieldservice.group_fsm_category"
                                     />
                                     <field name="request_early" />
                                     <field name="request_late" />
@@ -130,13 +132,15 @@
                                 >
                                     <tree>
                                         <field name="name" />
+                                        <field name="phone" />
+                                        <field name="email" />
                                         <field
                                             name="category_ids"
                                             widget="many2many_tags"
                                             options="{'color_field': 'color'}"
+                                            groups="fieldservice.group_fsm_category"
                                         />
-                                        <field name="phone" />
-                                        <field name="email" />
+                                        <field name="calendar_id" />
                                     </tree>
                                 </field>
                             </group>
@@ -296,6 +300,7 @@
                                     <field
                                         name="tag_ids"
                                         widget="many2many_tags"
+                                        groups="fieldservice.group_fsm_tag"
                                         options="{'color_field': 'color'}"
                                     />
                                 </div>
