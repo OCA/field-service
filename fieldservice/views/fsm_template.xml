@@ -7,6 +7,14 @@
             <tree>
                 <field name="name" />
                 <field name="duration" />
+                <field name="type_id" />
+                <field
+                    name="category_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                    groups="fieldservice.group_fsm_category"
+                />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
                 <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
