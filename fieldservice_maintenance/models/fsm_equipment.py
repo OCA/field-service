@@ -21,7 +21,9 @@ class FSMEquipment(models.Model):
     @api.model
     def create(self, vals):
         maintenance_team_id = self.env["maintenance.team"].search(
-            [("company_id", "=", self.env.company.id)], limit=1
+            [["company_id", "in", (self.env.company.id, False)]],
+            limit=1,
+        )
         )
         if not maintenance_team_id:
             raise ValidationError(_("At least one maintenance team must be created"))
