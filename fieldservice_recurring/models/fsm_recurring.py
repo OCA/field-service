@@ -15,7 +15,11 @@ class FSMRecurringOrder(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     def _default_team_id(self):
-        return self.env.ref("fieldservice.fsm_team_default")
+        return self.env["fsm.team"].search(
+            [["company_id", "in", (self.env.company.id, False)]],
+            limit=1,
+            order="sequence",
+        )
 
     name = fields.Char(
         required=True,
