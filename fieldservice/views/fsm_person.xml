@@ -12,6 +12,7 @@
                     name="category_ids"
                     widget="many2many_tags"
                     options="{'color_field': 'color'}"
+                    groups="fieldservice.group_fsm_category"
                 />
                 <field name="calendar_id" />
             </tree>
@@ -23,7 +24,7 @@
         <field name="arch" type="xml">
             <search string="Search FSM Workers">
                 <field name="name" />
-                <field name="category_ids" />
+                <field name="category_ids" groups="fieldservice.group_fsm_category" />
                 <field name="territory_ids" groups="fieldservice.group_fsm_territory" />
                 <field name="location_ids" />
             </search>
@@ -100,6 +101,7 @@
                                 name="category_ids"
                                 widget="many2many_tags"
                                 options="{'color_field': 'color'}"
+                                groups="fieldservice.group_fsm_category"
                             />
                             <label for="street" string="Address" />
                             <div class="o_address_format">
