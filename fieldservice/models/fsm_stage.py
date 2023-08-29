@@ -49,6 +49,7 @@ class FSMStage(models.Model):
         ],
         "Type",
         required=True,
+        default="order",
     )
     company_id = fields.Many2one(
         "res.company",
