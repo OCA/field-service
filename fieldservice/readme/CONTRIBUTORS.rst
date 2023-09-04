@@ -9,3 +9,4 @@
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Ammar Officewala <ammar.o.serpentcs@gmail.com>
 * Yves Goldberg <yves@ygol.com>
+* Alex Comba <alex.comba@agilebg.com>
