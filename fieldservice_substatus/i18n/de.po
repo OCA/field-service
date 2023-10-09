@@ -37,6 +37,7 @@ msgid "Default Sub-Status"
 msgstr ""
 
 #. module: fieldservice_substatus
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage_status__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
@@ -52,11 +53,15 @@ msgid "Field Service Stage"
 msgstr "Field-Service-Stufe"
 
 #. module: fieldservice_substatus
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage__id
 #: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage_status__id
 msgid "ID"
 msgstr "ID"
 
 #. module: fieldservice_substatus
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage_status____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
@@ -75,6 +80,11 @@ msgstr "Zuletzt aktualisiert am"
 #: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_stage_status__name
 msgid "Name"
 msgstr "Bezeichnung"
+
+#. module: fieldservice_substatus
+#: model:ir.model.fields,field_description:fieldservice_substatus.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
 
 #. module: fieldservice_substatus
 #: model:ir.actions.act_window,name:fieldservice_substatus.action_fsm_stage_status
