@@ -17,6 +17,13 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__display_name
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_order
 #, fuzzy
 msgid "Field Service Order"
@@ -28,9 +35,25 @@ msgid "Field Service Vehicle"
 msgstr "Service-Fahrzeug"
 
 #. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__inventory_location_id
 msgid "Inventory Location"
 msgstr "Lagerort"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_location
@@ -48,8 +71,13 @@ msgid "Location Return"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model,name:fieldservice_vehicle_stock.model_product_putaway
-msgid "Put Away Strategy"
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_putaway_rule
+msgid "Putaway Rule"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
@@ -94,7 +122,7 @@ msgid "Warehouse → Vehicle"
 msgstr "Lager → Fahrzeug"
 
 #. module: fieldservice_vehicle_stock
-#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:31
+#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
 #, python-format
 msgid "You must provide the vehicle for this picking type."
 msgstr ""
