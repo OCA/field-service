@@ -17,6 +17,13 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__display_name
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_order
 msgid "Field Service Order"
 msgstr "Pedidos de Servicio de Campo"
@@ -27,9 +34,25 @@ msgid "Field Service Vehicle"
 msgstr "Vehículo de Servicio de Campo"
 
 #. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__id
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__inventory_location_id
 msgid "Inventory Location"
 msgstr "Ubicación de Inventario"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_location
@@ -47,9 +70,14 @@ msgid "Location Return"
 msgstr "Ubicación de Retorno"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model,name:fieldservice_vehicle_stock.model_product_putaway
-msgid "Put Away Strategy"
-msgstr "Estrategia de Traslado"
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_putaway_rule
+msgid "Putaway Rule"
+msgstr ""
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_stock_to_vehicle_to_location
@@ -93,10 +121,13 @@ msgid "Warehouse → Vehicle"
 msgstr "Bodega → Vehículo"
 
 #. module: fieldservice_vehicle_stock
-#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:31
+#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
 #, python-format
 msgid "You must provide the vehicle for this picking type."
 msgstr "Debe proporcionar el vehículo para este tipo de picking."
+
+#~ msgid "Put Away Strategy"
+#~ msgstr "Estrategia de Traslado"
 
 #~ msgid "Check Availability"
 #~ msgstr "Consultar Disponibilidad"
