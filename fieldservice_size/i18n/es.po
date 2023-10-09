@@ -34,6 +34,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__display_name
 msgid "Display Name"
@@ -60,7 +61,9 @@ msgid "Field Service Sizes"
 msgstr "Tamaños de Servicio de Campo"
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__id
 msgid "ID"
 msgstr ""
@@ -71,7 +74,9 @@ msgid "Is the Order Size?"
 msgstr "¿Es el tamaño del pedido?"
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size____last_update
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order____last_update
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
@@ -104,15 +109,20 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: fieldservice_size
-#: code:addons/fieldservice_size/models/fsm_size.py:30
+#: code:addons/fieldservice_size/models/fsm_size.py:0
 #, python-format
 msgid "Only one default order size per type is allowed."
 msgstr ""
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.location.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_location_size_one_size_per_location
 msgid "Only one size of same type allowed per location"
 msgstr "Solo se permite un tamaño del mismo tipo por ubicación"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
 
 #. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_value
@@ -148,7 +158,7 @@ msgid "Size for FSM Location"
 msgstr "Tamaño Para la Ubicación FSM"
 
 #. module: fieldservice_size
-#: sql_constraint:fsm.size:0
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_size_name_uniq
 msgid "Size name already exists!"
 msgstr "¡El nombre del tamaño ya existe!"
 
