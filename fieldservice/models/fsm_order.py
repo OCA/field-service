@@ -1,12 +1,15 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 from . import fsm_stage
+
+_logger = logging.getLogger(__name__)
 
 
 class FSMOrder(models.Model):
@@ -311,20 +314,26 @@ class FSMOrder(models.Model):
                 ) - timedelta(hours=hrs)
                 vals["scheduled_date_start"] = str(date_to_with_delta)
 
-            elif (
-                vals.get("scheduled_duration", False) is not None
-                and vals.get("scheduled_date_start", self.scheduled_date_start)
-                and (
-                    self.scheduled_date_start != vals.get("scheduled_date_start", False)
-                )
-            ):
+            elif vals.get(
+                "scheduled_date_start", self.scheduled_date_start
+            ) and self.scheduled_date_start != vals.get("scheduled_date_start", False):
                 hours = vals.get("scheduled_duration", False)
                 start_date_val = vals.get(
                     "scheduled_date_start", self.scheduled_date_start
                 )
                 start_date = fields.Datetime.from_string(start_date_val)
-                date_to_with_delta = start_date + timedelta(hours=hours)
-                vals["scheduled_date_end"] = str(date_to_with_delta)
+                if not start_date:
+                    _logger.error(
+                        "The value of Scheduled End is invalid."
+                        ", new: {}, old: {}, work order id: {}".format(
+                            vals.get("scheduled_date_start"),
+                            self.scheduled_date_start,
+                            self.id,
+                        )
+                    )
+                else:
+                    date_to_with_delta = start_date + timedelta(hours=hours)
+                    vals["scheduled_date_end"] = str(date_to_with_delta)
         elif vals.get("scheduled_date_start") is not None:
             vals["scheduled_date_end"] = False
 
