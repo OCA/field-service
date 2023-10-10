@@ -136,14 +136,18 @@ msgstr "Habilidades"
 #. module: fieldservice_skill
 #: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
 #, python-format
-msgid "The skill %s and skill type %s doesn't match"
-msgstr "A habilidade %s e o tipo de habilidade %s não correspondem"
+msgid ""
+"The skill '%(skill)s'                         and skill type '%(skilltype)s' "
+"doesn't match"
+msgstr ""
 
 #. module: fieldservice_skill
 #: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
 #, python-format
-msgid "The skill level %s is not valid for skill type: %s "
-msgstr "O nível de habilidade %s não é válido para o tipo de habilidade %s "
+msgid ""
+"The skill level '%(skilllevel)s'                         is not valid for "
+"skill type: '%(skilltype)s' "
+msgstr ""
 
 #. module: fieldservice_skill
 #: model:ir.model.constraint,message:fieldservice_skill.constraint_fsm_person_skill_person_skill_uniq
@@ -163,6 +167,14 @@ msgstr "Habilidades do Trabalhador"
 #: model_terms:ir.actions.act_window,help:fieldservice_skill.action_fsm_person_skill_report
 msgid "Worker Skills Report"
 msgstr "Relatório de Habilidades de Trabalhador"
+
+#, python-format
+#~ msgid "The skill %s and skill type %s doesn't match"
+#~ msgstr "A habilidade %s e o tipo de habilidade %s não correspondem"
+
+#, python-format
+#~ msgid "The skill level %s is not valid for skill type: %s "
+#~ msgstr "O nível de habilidade %s não é válido para o tipo de habilidade %s "
 
 #~ msgid "Create a worker skill."
 #~ msgstr "Crie uma habilidade de trabalhador."

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2022-12-04 15:44+0000\n"
-"Last-Translator: Nils Coenen | NICO SOLUTIONS - ENGINEERING & IT <nils.coenen"
-"@nico-solutions.de>\n"
+"Last-Translator: Nils Coenen | NICO SOLUTIONS - ENGINEERING & IT <nils."
+"coenen@nico-solutions.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -137,14 +137,18 @@ msgstr "Fähigkeiten"
 #. module: fieldservice_skill
 #: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
 #, python-format
-msgid "The skill %s and skill type %s doesn't match"
-msgstr "Die Fähigkeit %s und der Fähigkeitstyp %s passen nicht"
+msgid ""
+"The skill '%(skill)s'                         and skill type '%(skilltype)s' "
+"doesn't match"
+msgstr ""
 
 #. module: fieldservice_skill
 #: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
 #, python-format
-msgid "The skill level %s is not valid for skill type: %s "
-msgstr "Das Fähigkeits-Level %s gilt nicht für den Fähigkeitstyp: %s "
+msgid ""
+"The skill level '%(skilllevel)s'                         is not valid for "
+"skill type: '%(skilltype)s' "
+msgstr ""
 
 #. module: fieldservice_skill
 #: model:ir.model.constraint,message:fieldservice_skill.constraint_fsm_person_skill_person_skill_uniq
@@ -164,6 +168,14 @@ msgstr "Mitarbeiter-Fähigkeiten"
 #: model_terms:ir.actions.act_window,help:fieldservice_skill.action_fsm_person_skill_report
 msgid "Worker Skills Report"
 msgstr "Fähigkeiten-Bericht"
+
+#, python-format
+#~ msgid "The skill %s and skill type %s doesn't match"
+#~ msgstr "Die Fähigkeit %s und der Fähigkeitstyp %s passen nicht"
+
+#, python-format
+#~ msgid "The skill level %s is not valid for skill type: %s "
+#~ msgstr "Das Fähigkeits-Level %s gilt nicht für den Fähigkeitstyp: %s "
 
 #~ msgid "Create a worker skill."
 #~ msgstr "Mitarbeiter-F??higkeit erstellen."
