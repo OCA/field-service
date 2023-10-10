@@ -194,7 +194,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__display_name
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__display_name
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__display_name
 msgid "Display Name"
 msgstr "Nome Apresentado"
 
@@ -224,11 +223,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: fieldservice_change_management
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -244,12 +238,16 @@ msgid "Group By"
 msgstr ""
 
 #. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_impact__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag__id
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type__id
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location__id
 msgid "ID"
 msgstr "ID"
 
@@ -303,7 +301,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_stage____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_tag____last_update
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log_type____last_update
-#: model:ir.model.fields,field_description:fieldservice_change_management.field_fsm_location____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -379,6 +376,11 @@ msgstr "Meus Registos de Alteração"
 #: model_terms:ir.ui.view,arch_db:fieldservice_change_management.change_log_view_form
 msgid "Name"
 msgstr "Nome"
+
+#. module: fieldservice_change_management
+#: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice_change_management
 #: model:ir.model.fields,field_description:fieldservice_change_management.field_change_log__activity_date_deadline
