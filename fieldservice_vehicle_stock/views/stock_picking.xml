@@ -1,7 +1,7 @@
 <odoo>
 
     <record id="fsm_vehicle_stock_picking_view" model="ir.ui.view">
-        <field name="model">stock.picking.fsm_vehicle_id.form</field>
+        <field name="name">stock.picking.fsm_vehicle_id.form</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_form" />
         <field name="arch" type="xml">
@@ -12,7 +12,7 @@
     </record>
 
     <record id="fsm_vehicle_stock_picking_tree" model="ir.ui.view">
-        <field name="model">stock.picking.fsm_vehicle_id.tree</field>
+        <field name="name">stock.picking.fsm_vehicle_id.tree</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_tree" />
         <field name="arch" type="xml">
