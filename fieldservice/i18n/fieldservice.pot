@@ -223,12 +223,6 @@ msgid "Add a description..."
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__additional_info
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__additional_info
-msgid "Additional info"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Address"
@@ -405,18 +399,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_blacklisted
 msgid "Blacklist"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__mobile_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile_blacklisted
-msgid "Blacklisted Phone Is Mobile"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_blacklisted
-msgid "Blacklisted Phone is Phone"
 msgstr ""
 
 #. module: fieldservice
@@ -638,12 +620,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_type
 msgid "Company Type"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_gid
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_gid
-msgid "Company database ID"
 msgstr ""
 
 #. module: fieldservice
@@ -1264,14 +1240,6 @@ msgid "Field Service Workers"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized
-msgid ""
-"Field used to store sanitized phone number. Helps speeding up searches and "
-"comparisons."
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
 msgid "Fiscal Position"
@@ -1458,15 +1426,10 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -1484,14 +1447,6 @@ msgstr ""
 msgid ""
 "If the email address is on the blacklist, the contact won't receive mass "
 "mailing anymore, from any list"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
-msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
 msgstr ""
 
 #. module: fieldservice
@@ -1522,24 +1477,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_512
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_512
 msgid "Image 512"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__mobile_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__mobile_blacklisted
-msgid ""
-"Indicates if a blacklisted sanitized phone number is a mobile number. Helps "
-"distinguish which number is blacklisted             when there is both a "
-"mobile and phone field in a model."
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_blacklisted
-msgid ""
-"Indicates if a blacklisted sanitized phone number is a phone number. Helps "
-"distinguish which number is blacklisted             when there is both a "
-"mobile and phone field in a model."
 msgstr ""
 
 #. module: fieldservice
@@ -2572,18 +2509,6 @@ msgid "Phone"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
-msgid "Phone Blacklisted"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
-msgid "Phone/Mobile"
-msgstr ""
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Planning"
 msgstr ""
@@ -2752,15 +2677,6 @@ msgid "Routes"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
@@ -2788,12 +2704,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_id
 msgid "Salesperson"
-msgstr ""
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized
-msgid "Sanitized Number"
 msgstr ""
 
 #. module: fieldservice
