@@ -34,7 +34,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
             self.res_users_ids = [];
 
             // Find their matches
-            if (this.modelName == "fsm.order") {
+            if (this.modelName === "fsm.order") {
                 var args = [[], ["id", "name"]];
                 this._rpc({
                     model: "fsm.person",
@@ -68,7 +68,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
          */
         on_data_loaded_2: function (events, group_bys, adjust_window) {
             var self = this;
-            if (this.modelName == "fsm.order") {
+            if (this.modelName === "fsm.order") {
                 var data = [];
                 var groups = [];
                 this.grouped_by = group_bys;
@@ -148,7 +148,7 @@ odoo.define("fieldservice_timeline.fsm_gantt", function (require) {
          * @returns r
          */
         event_data_transform: function (evt) {
-            if (this.modelName == "fsm.order") {
+            if (this.modelName === "fsm.order") {
                 var self = this;
                 var date_start = new moment();
                 var date_stop = null;

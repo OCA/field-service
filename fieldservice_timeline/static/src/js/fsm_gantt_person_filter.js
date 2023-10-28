@@ -14,7 +14,7 @@ odoo.define("fsm_gantt.person_filter", function (require) {
         start: async function () {
             var self = this;
             var props = self.view.controllerParams.controlPanel.props;
-            if (props && props.action && props.action.res_model == "fsm.order") {
+            if (props && props.action && props.action.res_model === "fsm.order") {
                 var data = JSON.parse(JSON.stringify(props.fields));
                 _.each(data, function (field, i) {
                     data[i].name = i;
