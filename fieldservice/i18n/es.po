@@ -245,12 +245,6 @@ msgid "Add a description..."
 msgstr "Añadir una descripción ..."
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__additional_info
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__additional_info
-msgid "Additional info"
-msgstr "Información Adicional"
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Address"
@@ -434,18 +428,6 @@ msgstr "Código de Barra"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_blacklisted
 msgid "Blacklist"
 msgstr "Lista Negra"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__mobile_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile_blacklisted
-msgid "Blacklisted Phone Is Mobile"
-msgstr "El teléfono de la lista negra es móvil"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_blacklisted
-msgid "Blacklisted Phone is Phone"
-msgstr "El teléfono de la lista negra es el teléfono"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_bounce
@@ -670,12 +652,6 @@ msgstr "Nombre de la Empresa Entidad"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_type
 msgid "Company Type"
 msgstr "Tipo de Compañía"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_gid
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_gid
-msgid "Company database ID"
-msgstr "ID de la base de datos de la Empresa"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_category__company_id
@@ -1306,16 +1282,6 @@ msgid "Field Service Workers"
 msgstr "Trabajadores de Servicio de Campo"
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized
-msgid ""
-"Field used to store sanitized phone number. Helps speeding up searches and "
-"comparisons."
-msgstr ""
-"Campo utilizado para almacenar el número de teléfono saneado. Ayuda a "
-"acelerar las búsquedas y las comparaciones."
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
 msgid "Fiscal Position"
@@ -1503,15 +1469,10 @@ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -1534,16 +1495,6 @@ msgid ""
 msgstr ""
 "Si la dirección de correo electrónico está en la lista negra, el contacto ya "
 "no recibirá correos masivos, de ninguna lista"
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
-msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive "
-"mass mailing sms anymore, from any list"
-msgstr ""
-"Si el número de teléfono saneado está en la lista negra, el contacto no "
-"recibirá más sms de envío masivo, de ninguna lista"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1920
@@ -1574,32 +1525,6 @@ msgstr "Image 256"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_512
 msgid "Image 512"
 msgstr "Image 512"
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__mobile_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__mobile_blacklisted
-msgid ""
-"Indicates if a blacklisted sanitized phone number is a mobile number. Helps "
-"distinguish which number is blacklisted             when there is both a "
-"mobile and phone field in a model."
-msgstr ""
-"Indica si un número de teléfono desinfectado de la lista negra es un número "
-"de móvil. Ayuda a distinguir qué número está en la lista "
-"negra                             cuando hay tanto un campo de móvil como de "
-"teléfono en un modelo."
-
-#. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_blacklisted
-msgid ""
-"Indicates if a blacklisted sanitized phone number is a phone number. Helps "
-"distinguish which number is blacklisted             when there is both a "
-"mobile and phone field in a model."
-msgstr ""
-"Indica si un número de teléfono desinfectado de la lista negra es un número "
-"de teléfono. Ayuda a distinguir qué número está en la lista "
-"negra                                      cuando hay tanto un campo de "
-"móvil como de teléfono en un modelo."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__industry_id
@@ -2639,18 +2564,6 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized_blacklisted
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
-msgid "Phone Blacklisted"
-msgstr "Lista negra de Teléfonos"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
-msgid "Phone/Mobile"
-msgstr "Teléfono fijo/Móvil"
-
-#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Planning"
 msgstr "Planificación"
@@ -2819,15 +2732,6 @@ msgid "Routes"
 msgstr "Rutas"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de SMS"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
@@ -2856,12 +2760,6 @@ msgstr "Advertencias de Ventas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_id
 msgid "Salesperson"
 msgstr "Vendedor"
-
-#. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized
-msgid "Sanitized Number"
-msgstr "Número higienizado"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -3704,6 +3602,64 @@ msgstr "etiqueta"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
 msgid "template"
 msgstr "plantilla"
+
+#~ msgid "Additional info"
+#~ msgstr "Información Adicional"
+
+#~ msgid "Blacklisted Phone Is Mobile"
+#~ msgstr "El teléfono de la lista negra es móvil"
+
+#~ msgid "Blacklisted Phone is Phone"
+#~ msgstr "El teléfono de la lista negra es el teléfono"
+
+#~ msgid "Company database ID"
+#~ msgstr "ID de la base de datos de la Empresa"
+
+#~ msgid ""
+#~ "Field used to store sanitized phone number. Helps speeding up searches "
+#~ "and comparisons."
+#~ msgstr ""
+#~ "Campo utilizado para almacenar el número de teléfono saneado. Ayuda a "
+#~ "acelerar las búsquedas y las comparaciones."
+
+#~ msgid ""
+#~ "If the sanitized phone number is on the blacklist, the contact won't "
+#~ "receive mass mailing sms anymore, from any list"
+#~ msgstr ""
+#~ "Si el número de teléfono saneado está en la lista negra, el contacto no "
+#~ "recibirá más sms de envío masivo, de ninguna lista"
+
+#~ msgid ""
+#~ "Indicates if a blacklisted sanitized phone number is a mobile number. "
+#~ "Helps distinguish which number is blacklisted             when there is "
+#~ "both a mobile and phone field in a model."
+#~ msgstr ""
+#~ "Indica si un número de teléfono desinfectado de la lista negra es un "
+#~ "número de móvil. Ayuda a distinguir qué número está en la lista "
+#~ "negra                             cuando hay tanto un campo de móvil como "
+#~ "de teléfono en un modelo."
+
+#~ msgid ""
+#~ "Indicates if a blacklisted sanitized phone number is a phone number. "
+#~ "Helps distinguish which number is blacklisted             when there is "
+#~ "both a mobile and phone field in a model."
+#~ msgstr ""
+#~ "Indica si un número de teléfono desinfectado de la lista negra es un "
+#~ "número de teléfono. Ayuda a distinguir qué número está en la lista "
+#~ "negra                                      cuando hay tanto un campo de "
+#~ "móvil como de teléfono en un modelo."
+
+#~ msgid "Phone Blacklisted"
+#~ msgstr "Lista negra de Teléfonos"
+
+#~ msgid "Phone/Mobile"
+#~ msgstr "Teléfono fijo/Móvil"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
+
+#~ msgid "Sanitized Number"
+#~ msgstr "Número higienizado"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren acción"
