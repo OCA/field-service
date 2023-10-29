@@ -297,7 +297,6 @@ msgstr ""
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_tree_view
 msgid "Frequency"
 msgstr ""
 
@@ -309,7 +308,6 @@ msgstr ""
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_frequency_set
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_form_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_frequency_set_tree_view
 msgid "Frequency Rule Set"
 msgstr ""
 
@@ -384,13 +382,9 @@ msgstr "Wenn es gesetzt ist, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Wenn es gesetzt ist, gibt es einige Nachrichten mit einem ??"
@@ -662,7 +656,6 @@ msgstr "Wiederkehrender Auftrag"
 #: model:ir.actions.act_window,name:fieldservice_recurring.action_recurring_tree
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_tree_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
 msgid "Recurring Orders"
 msgstr "Wiederkehrende Auftr??ge"
@@ -676,7 +669,6 @@ msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring_templates
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_template_tree_view
 msgid "Recurring Templates"
 msgstr ""
 
@@ -699,15 +691,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_user_id
 msgid "Responsible User"
 msgstr "Verantwortlicher Benutzer"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
-#, fuzzy
-msgid "SMS Delivery error"
-msgstr "Nachrichten-??bertragungsfehler"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sa
@@ -927,6 +910,10 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "J??hrlich"
+
+#, fuzzy
+#~ msgid "SMS Delivery error"
+#~ msgstr "Nachrichten-??bertragungsfehler"
 
 #~ msgid "Cancel"
 #~ msgstr "Abbrechen"
