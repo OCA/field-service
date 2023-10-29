@@ -381,13 +381,9 @@ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -683,14 +679,6 @@ msgid "Responsible User"
 msgstr "Usuario Responsable"
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error de entrega de SMS"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sa
 msgid "Saturday"
 msgstr "Sábado"
@@ -898,6 +886,9 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Anual"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error de entrega de SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren una acción"
