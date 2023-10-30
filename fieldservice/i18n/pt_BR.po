@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-24 15:10+0000\n"
+"PO-Revision-Date: 2023-10-30 05:17+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -98,7 +98,7 @@ msgstr "<strong>Atribuído a:</strong>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "<strong>Date Completed:</strong>"
-msgstr "<strong>Data concluída:</strong>"
+msgstr "<strong>Data de Conclusão:</strong>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
@@ -115,7 +115,7 @@ msgstr "<strong>Contato vinculado ao usuário ainda esta ativo</strong>"
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 #, python-format
 msgid "A Field Service Location related to that partner already exists."
-msgstr "Um local de serviço de campo relacionado a esse parceiro já existe."
+msgstr "Um Local de Serviço de Campo relacionado a esse parceiro já existe."
 
 #. module: fieldservice
 #. odoo-python
@@ -123,7 +123,7 @@ msgstr "Um local de serviço de campo relacionado a esse parceiro já existe."
 #, python-format
 msgid "A Field Service Worker related to that partner already exists."
 msgstr ""
-"Um trabalhador do serviço de campo relacionado a esse parceiro já existe."
+"Um Trabalhador do Serviço de Campo relacionado a esse parceiro já existe."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
@@ -311,7 +311,7 @@ msgstr "Localização Atribuída"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__person_id
 msgid "Assigned Operator"
-msgstr "Atendente selecionado"
+msgstr "Operador Atribuído"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_id
@@ -473,8 +473,8 @@ msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
 "existing FSM Stage."
 msgstr ""
-"Não é possível criar o Estágio FSM porque ele tem o mesmo tipo e sequência "
-"de um Estágio FSM existente."
+"Não é possível criar o Estágio GSC porque ele tem o mesmo tipo e sequência "
+"de um Estágio GSC existente."
 
 #. module: fieldservice
 #. odoo-python
@@ -745,7 +745,7 @@ msgstr "Converter"
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.partner_fsm_action
 msgid "Convert to FSM Record"
-msgstr "Converter para um registro FSM"
+msgstr "Converter para um registro GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
@@ -776,7 +776,7 @@ msgstr "Código Pais"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create FSM Orders from Opportunities."
-msgstr "Crie Ordens FSM a partir de Oportunidades."
+msgstr "Crie Ordens GSC a partir de Oportunidades."
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_customer
@@ -818,7 +818,7 @@ msgstr "Criar um modelo de ordem"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create multiple FSM Locations at once using Location Builder Wizard"
 msgstr ""
-"Criar vários locais de FSM ao mesmo tempo usando Assistente de Construtor de "
+"Criar vários locais de GSC ao mesmo tempo usando Assistente de Construtor de "
 "Localização"
 
 #. module: fieldservice
@@ -995,7 +995,7 @@ msgstr "Despachante"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__display_name
 msgid "Display Name"
-msgstr "Nome exibido"
+msgstr "Nome Exibição"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1026,7 +1026,7 @@ msgstr "Concluído"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_kanban_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_kanban_view
 msgid "Dropdown menu"
-msgstr "Menu dropdown"
+msgstr "Menu Suspenso"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
@@ -1162,28 +1162,28 @@ msgstr "GSC"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 msgid "FSM Equipment Name"
-msgstr "Nome do Equipamento FSM"
+msgstr "Nome do Equipamento GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "FSM Location Builder"
-msgstr "Usar o Construtor da Localização FSM"
+msgstr "Usar o Construtor da Localização GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_pivot_view
 msgid "FSM Locations"
-msgstr "Locais FSM"
+msgstr "Locais GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "FSM Order Name"
-msgstr "Nome da Ordem FSM"
+msgstr "Nome da Ordem GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_calendar_view
 msgid "FSM Orders"
-msgstr "Ordens FSM"
+msgstr "Ordem GSC"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_person_calendar_filter
@@ -1193,7 +1193,7 @@ msgstr "Filtro de Calendário de Pessoa do GSC"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_wizard
 msgid "FSM Record Conversion"
-msgstr "Conversão do Registro FSM"
+msgstr "Conversão do Registro GSC"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__fsm_person_id
@@ -1332,7 +1332,7 @@ msgstr "E-mail Formatado"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_model_mixin
 msgid "Fsm Model Mixin"
-msgstr ""
+msgstr "Modelo Mixin Gsc"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__full_name
@@ -1553,7 +1553,7 @@ msgstr "Fatura"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
 msgid "Invoice your FSM orders"
-msgstr "Faturar Ordens de FSM"
+msgstr "Faturar Ordens de GSC"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1729,7 +1729,7 @@ msgstr "Vincular os Ordens do SC as ordens de reparo do MRP"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_maintenance
 msgid "Link FSM orders to maintenance requests"
-msgstr "Vincular os ordens do FSM às requisições de manutenção"
+msgstr "Vincular os ordens do GSC às requisições de manutenção"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
@@ -1759,7 +1759,7 @@ msgstr "Vincular suas ordens do SC aos Projetos e Tarefas do Projeto"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Link your FSM orders to maintenance requests"
-msgstr "Vincular suas ordens do FSM às solicitações de manutenção"
+msgstr "Vincular suas ordens do GSC às solicitações de manutenção"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__location_ids
@@ -1891,7 +1891,7 @@ msgstr "Gerenciar Equipamentos"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
 msgid "Manage FSM Activities"
-msgstr "Gerenciar Atividades de FSM"
+msgstr "Gerenciar Atividades de GSC"
 
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_equipment
@@ -2296,7 +2296,7 @@ msgstr "Número de erros"
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_needaction_counter
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensagens que exigem ação"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error_counter
@@ -2544,7 +2544,7 @@ msgstr "Limite a Pagar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
 msgid "Payment Token Count"
-msgstr ""
+msgstr "Contagem de Tokens de Pagamento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
@@ -2685,7 +2685,7 @@ msgstr "Parceiro Relacionado"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__employee_ids
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__employee_ids
 msgid "Related employees based on their private address"
-msgstr ""
+msgstr "Funcionários relacionados com base em seu endereço privado"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
@@ -3375,7 +3375,7 @@ msgstr "Urgente"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_location_builder
 msgid "Use FSM Location Builder"
-msgstr "Usar o construtor da localização FSM"
+msgstr "Usar o construtor da localização GSC"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_geoengine
