@@ -20,7 +20,7 @@ class FSMISPAccountCase(TransactionCase):
             {
                 "code": "NC1110",
                 "name": "Test Payable Account",
-                "user_type_id": cls.env.ref("account.data_account_type_payable").id,
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
@@ -134,7 +134,7 @@ class FSMISPAccountCase(TransactionCase):
         # Setup required data
         self.test_location.analytic_account_id = self.test_analytic
         # Create a new work order with contract = 500 and timesheet = 300
-        self.env.ref("hr.employee_qdp").timesheet_cost = 20.0
+        self.env.ref("hr.employee_qdp").hourly_cost = 20.0
         order = self.env["fsm.order"].create(
             {"location_id": self.test_location.id, "person_id": self.test_person.id}
         )
@@ -160,7 +160,7 @@ class FSMISPAccountCase(TransactionCase):
                 "price_unit": 200,
             },
         ]
-        self.env.ref("hr.employee_qdp").timesheet_cost = 100
+        self.env.ref("hr.employee_qdp").hourly_cost = 100
         timesheets = [
             {
                 "name": "timesheet_line_1",
@@ -209,7 +209,7 @@ class FSMISPAccountCase(TransactionCase):
                 "price_unit": 300,
             },
         ]
-        self.env.ref("hr.employee_qdp").timesheet_cost = 20.0
+        self.env.ref("hr.employee_qdp").hourly_cost = 20.0
         timesheets = [
             {
                 "name": "timesheet_line_3",
