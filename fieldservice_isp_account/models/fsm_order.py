@@ -45,7 +45,7 @@ class FSMOrder(models.Model):
             order.total_cost = 0.0
             rate = 0
             for line in order.employee_timesheet_ids:
-                rate = line.employee_id.timesheet_cost
+                rate = line.employee_id.hourly_cost
                 order.total_cost += line.unit_amount * rate
             for cost in order.contractor_cost_ids:
                 order.total_cost += cost.price_unit * cost.quantity
@@ -103,7 +103,6 @@ class FSMOrder(models.Model):
                     0,
                     0,
                     {
-                        "analytic_account_id": self.location_id.analytic_account_id.id,
                         "product_id": cost.product_id.id,
                         "quantity": cost.quantity,
                         "name": cost.product_id.display_name,
@@ -127,8 +126,7 @@ class FSMOrder(models.Model):
 
     def create_bills(self):
         vals = self.prepare_bills()
-        bill = self.env["account.move"].sudo().create(vals)
-        bill._recompute_tax_lines()
+        self.env["account.move"].sudo().create(vals)
 
     def account_confirm(self):
         for order in self:
@@ -175,7 +173,7 @@ class FSMOrder(models.Model):
             price_list = self.location_id.customer_id.property_product_pricelist
         invoice_line_vals = []
         for cost in self.contractor_cost_ids:
-            price = price_list.get_product_price(
+            price = price_list._get_product_price(
                 product=cost.product_id,
                 quantity=cost.quantity,
                 partner=invoice_vals.get("partner_id"),
@@ -193,7 +191,6 @@ class FSMOrder(models.Model):
                     0,
                     {
                         "product_id": cost.product_id.id,
-                        "analytic_account_id": self.location_id.analytic_account_id.id,
                         "quantity": cost.quantity,
                         "name": cost.product_id.display_name,
                         "price_unit": price,
@@ -204,7 +201,7 @@ class FSMOrder(models.Model):
                 )
             )
         for line in self.employee_timesheet_ids:
-            price = price_list.get_product_price(
+            price = price_list._get_product_price(
                 product=line.product_id,
                 quantity=line.unit_amount,
                 partner=invoice_vals.get("partner_id"),
@@ -221,7 +218,6 @@ class FSMOrder(models.Model):
                     0,
                     {
                         "product_id": line.product_id.id,
-                        "analytic_account_id": line.account_id.id,
                         "quantity": line.unit_amount,
                         "name": line.name,
                         "price_unit": price,
@@ -238,7 +234,6 @@ class FSMOrder(models.Model):
         invoice_vals = self.account_prepare_invoice()
         invoice = self.env["account.move"].sudo().create(invoice_vals)
 
-        invoice._recompute_tax_lines()
         self.account_stage = "invoiced"
         return invoice
 

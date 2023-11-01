@@ -40,7 +40,7 @@
             </group>
             <group name="bill_to" position="after">
                 <group string="Contractor Costs">
-                    <field name="contractor_cost_ids" nolabel="1">
+                    <field name="contractor_cost_ids" nolabel="1" colspan="2">
                         <tree editable="bottom">
                             <field name="product_id" />
                             <field name="quantity" />
@@ -56,6 +56,7 @@
                         name="employee_timesheet_ids"
                         nolabel="1"
                         context="{'default_project_id': project_id, 'default_task_id': project_task_id}"
+                        colspan="2"
                     >
                         <tree editable="bottom" default_order="date">
                             <field name="date" />
@@ -66,6 +67,7 @@
                                 required="1"
                                 domain="[('type','=','service')]"
                             />
+                            <field name="company_id" invisible="1" />
                             <field name="account_id" invisible="1" />
                             <field name="name" />
                             <field
