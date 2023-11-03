@@ -3,5 +3,5 @@ from . import (
     stock_picking_type,
     fsm_equipment,
     product_template,
-    stock_production_lot,
+    stock_lot,
 )
