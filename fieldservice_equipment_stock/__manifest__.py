@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Stock Equipment",
     "summary": "Integrate stock operations with your field service equipments",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
@@ -18,7 +18,7 @@
         "views/fsm_equipment.xml",
         "views/product_template.xml",
         "views/stock_picking_type.xml",
-        "views/stock_production_lot.xml",
+        "views/stock_lot.xml",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",

@@ -8,7 +8,7 @@ class FSMEquipment(models.Model):
     _inherit = "fsm.equipment"
 
     product_id = fields.Many2one("product.product", string="Product", required=True)
-    lot_id = fields.Many2one("stock.production.lot", string="Serial #", required=True)
+    lot_id = fields.Many2one("stock.lot", string="Serial #", required=True)
     current_stock_location_id = fields.Many2one(
         "stock.location",
         string="Current Inventory Location",
