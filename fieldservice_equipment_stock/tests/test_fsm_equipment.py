@@ -36,7 +36,7 @@ class TestFSMEquipment(TransactionCase):
                 "tracking": "serial",
             }
         )
-        self.lot1 = self.env["stock.production.lot"].create(
+        self.lot1 = self.env["stock.lot"].create(
             {
                 "name": "serial1",
                 "product_id": self.product1.id,
