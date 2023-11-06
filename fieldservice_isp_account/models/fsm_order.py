@@ -129,8 +129,7 @@ class FSMOrder(models.Model):
 
     def create_bills(self):
         vals = self.prepare_bills()
-        bill = self.env["account.move"].sudo().create(vals)
-        bill._recompute_tax_lines()
+        self.env["account.move"].sudo().create(vals)
 
     def account_confirm(self):
         for order in self:
@@ -246,7 +245,6 @@ class FSMOrder(models.Model):
         invoice_vals = self.account_prepare_invoice()
         invoice = self.env["account.move"].sudo().create(invoice_vals)
 
-        invoice._recompute_tax_lines()
         self.account_stage = "invoiced"
         return invoice
 
