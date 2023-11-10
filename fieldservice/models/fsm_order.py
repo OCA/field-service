@@ -126,7 +126,7 @@ class FSMOrder(models.Model):
         help="Company related to this order",
     )
 
-    def _compute_request_late(self, vals):
+    def _calc_request_late(self, vals):
         if vals.get("request_early", False):
             early = fields.Datetime.from_string(vals.get("request_early"))
         else:
@@ -253,26 +253,7 @@ class FSMOrder(models.Model):
                 )
             self._calc_scheduled_dates(vals)
             if not vals.get("request_late"):
-                if vals.get("priority") == "0":
-                    if vals.get("request_early"):
-                        vals["request_late"] = fields.Datetime.from_string(
-                            vals.get("request_early")
-                        ) + timedelta(days=3)
-                    else:
-                        vals["request_late"] = datetime.now() + timedelta(days=3)
-                elif vals.get("request_early") and vals.get("priority") == "1":
-                    vals["request_late"] = fields.Datetime.from_string(
-                        vals.get("request_early")
-                    ) + timedelta(days=2)
-                elif vals.get("request_early") and vals.get("priority") == "2":
-                    vals["request_late"] = fields.Datetime.from_string(
-                        vals.get("request_early")
-                    ) + timedelta(days=1)
-                elif vals.get("request_early") and vals.get("priority") == "3":
-                    vals["request_late"] = fields.Datetime.from_string(
-                        vals.get("request_early")
-                    ) + timedelta(hours=8)
-
+                vals = self._calc_request_late(vals)
         return super().create(vals_list)
 
     is_button = fields.Boolean(default=False)
