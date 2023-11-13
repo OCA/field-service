@@ -71,8 +71,9 @@ msgstr ""
 #: code:addons/fieldservice_sale_recurring/models/sale_order_line.py:0
 #, python-format
 msgid ""
-"Field Service recurring Created ({}): <a href=\n"
-"                   # data-oe-model=fsm.recurring data-oe-id={}>{}</a>\n"
+"Field Service recurring Created (%(product)s): <a href=\n"
+"                   # data-oe-model=fsm.recurring data-oe-id=%(id)s>%(name)s</"
+"a>\n"
 "                "
 msgstr ""
 
@@ -123,6 +124,8 @@ msgstr ""
 #, python-format
 msgid ""
 "This recurring has been created from: <a href=\n"
-"                   # data-oe-model=sale.order data-oe-id={}>{}</a> ({})\n"
+"                   # data-oe-model=sale.order data-oe-id=%(order_id)s>"
+"%(order)s</a>\n"
+"                   (%(product)s)\n"
 "                "
 msgstr ""
