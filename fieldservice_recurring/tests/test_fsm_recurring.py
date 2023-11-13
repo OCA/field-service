@@ -57,6 +57,19 @@ class FSMRecurringCase(TransactionCase):
         )
         cls.test_equipment = cls.Equipment.create({"name": "Equipment"})
 
+    def test_fsm_recurring_change_states(self):
+        recurring = self.Recurring.create(
+            {
+                "fsm_frequency_set_id": self.fr_set.id,
+                "location_id": self.test_location.id,
+                "start_date": fields.Datetime.now().replace(hour=12),
+            }
+        )
+        recurring.action_start()
+        self.assertEqual(recurring.state, "progress")
+        recurring.action_suspend()
+        self.assertEqual(recurring.state, "suspend")
+
     def test_cron_generate_orders_rule1(self):
         """Test recurring order with following rule,
         - Work order Monday to Friday, exclude odd week Wednesday
