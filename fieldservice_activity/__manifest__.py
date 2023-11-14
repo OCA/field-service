@@ -5,7 +5,7 @@
     "name": "Field Service Activity",
     "summary": """Field Service Activities are a set of actions
      that need to be performed on a service order""",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
