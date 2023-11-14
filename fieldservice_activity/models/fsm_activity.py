@@ -31,6 +31,7 @@ class FSMActivity(models.Model):
         [("todo", "To Do"), ("done", "Completed"), ("cancel", "Cancelled")],
         "State",
         readonly=True,
+        copy=False,
         default="todo",
     )
 

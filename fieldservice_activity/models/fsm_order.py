@@ -9,38 +9,40 @@ class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
     order_activity_ids = fields.One2many(
-        "fsm.activity", "fsm_order_id", "Order Activities"
+        comodel_name="fsm.activity",
+        inverse_name="fsm_order_id",
+        string="Activities",
+        copy=True,
     )
 
     @api.onchange("template_id")
     def _onchange_template_id(self):
         res = super()._onchange_template_id()
-        for rec in self:
+        for rec in self.filtered("template_id"):
             # Clear existing activities
-            rec.order_activity_ids = [(5, 0, 0)]
-            if rec.template_id:
-                activity_list = []
-                for temp_activity in rec.template_id.temp_activity_ids:
-                    activity_list.append(
-                        (
-                            0,
-                            0,
-                            {
-                                "name": temp_activity.name,
-                                "required": temp_activity.required,
-                                "ref": temp_activity.ref,
-                                "state": temp_activity.state,
-                            },
-                        )
+            activity_list = [(5, 0, 0)]
+            for temp_activity in rec.template_id.temp_activity_ids:
+                activity_list.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "name": temp_activity.name,
+                            "required": temp_activity.required,
+                            "ref": temp_activity.ref,
+                            "state": temp_activity.state,
+                        },
                     )
-                rec.order_activity_ids = activity_list
+                )
+            rec.order_activity_ids = activity_list
         return res
 
     @api.model
     def create(self, vals):
         """Update Activities for FSM orders that are generate from SO"""
         order = super(FSMOrder, self).create(vals)
-        order._onchange_template_id()
+        if not order.order_activity_ids:
+            order._onchange_template_id()
         return order
 
     def action_complete(self):

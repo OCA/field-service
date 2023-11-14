@@ -98,3 +98,17 @@ class TestFSMActivity(TransactionCase):
         self.assertNotEquals(
             self.fso.order_activity_ids.ids, self.fso.template_id.temp_activity_ids.ids
         )
+        # making sure that activities are correctly copied when assigning a template
+        test_order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "template_id": self.template.id,
+                "order_activity_ids": False,
+            }
+        )
+        self.assertNotEquals(
+            test_order.order_activity_ids.id, self.template.temp_activity_ids.id
+        )
+        self.assertEqual(
+            test_order.order_activity_ids.name, self.template.temp_activity_ids.name
+        )
