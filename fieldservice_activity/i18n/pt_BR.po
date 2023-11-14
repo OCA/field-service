@@ -22,6 +22,7 @@ msgid "Activites"
 msgstr "Atividades"
 
 #. module: fieldservice_activity
+#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
 #: model_terms:ir.ui.view,arch_db:fieldservice_activity.view_fsm_order_form_add_activity
 #: model_terms:ir.ui.view,arch_db:fieldservice_activity.view_fsm_template_form_add_activity
 msgid "Activities"
@@ -136,11 +137,6 @@ msgid "Order"
 msgstr "Ordem"
 
 #. module: fieldservice_activity
-#: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_order__order_activity_ids
-msgid "Order Activities"
-msgstr "Atividades da Ordem"
-
-#. module: fieldservice_activity
 #: model:ir.model.fields,field_description:fieldservice_activity.field_fsm_activity__ref
 msgid "Reference"
 msgstr "Referencia"
@@ -170,6 +166,9 @@ msgstr "A Fazer"
 #, python-format
 msgid "You must complete activity '%s' before completing this order."
 msgstr "Você deve completar a atividade '%s' antes de concluir esta ordem."
+
+#~ msgid "Order Activities"
+#~ msgstr "Atividades da Ordem"
 
 #~ msgid "Requireid"
 #~ msgstr "Requer ID"
