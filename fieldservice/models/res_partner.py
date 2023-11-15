@@ -14,7 +14,7 @@ class ResPartner(models.Model):
         comodel_name="fsm.location",
         string="Related FS Location",
         inverse_name="partner_id",
-        readonly=1,
+        readonly=True,
     )
     service_location_id = fields.Many2one(
         "fsm.location", string="Primary Service Location"

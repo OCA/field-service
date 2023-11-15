@@ -14,8 +14,8 @@
                         string="Complete"
                         class="oe_highlight"
                         type="object"
-                        groups="fieldservice.group_fsm_user_own"
-                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
+                        groups="fieldservice.group_fsm_user"
+                        invisible="stage_id.is_closed"
                     />
                     <button
                         id="action_cancel"
@@ -23,7 +23,7 @@
                         string="Cancel Order"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
+                        invisible="stage_id.is_closed"
                     />
                     <field
                         name="stage_id"
@@ -75,7 +75,7 @@
                             <field name="internal_type" invisible="1" />
                             <field
                                 name="equipment_id"
-                                attrs="{'invisible':[('internal_type', 'not in',['repair', 'maintenance'])]}"
+                                invisible="internal_type not in ['repair', 'maintenance']"
                                 groups="fieldservice.group_fsm_equipment"
                                 options="{'no_create': True}"
                                 domain="[('current_location_id','=',location_id)]"
@@ -180,11 +180,11 @@
                             string="Equipments"
                             groups="fieldservice.group_fsm_equipment"
                             name="equipements_page"
-                            attrs="{'invisible': [('internal_type', 'in', ['repair', 'maintenance'])]}"
+                            invisible="internal_type in ['repair', 'maintenance']"
                         >
                             <field
                                 name="equipment_ids"
-                                attrs="{'required': [('internal_type', 'not in', ['repair', 'maintenance'])]}"
+                                required="internal_type not in ['repair', 'maintenance']"
                                 options="{'no_create': True}"
                                 domain="[('current_location_id','=',location_id)]"
                             >
@@ -251,45 +251,31 @@
                 <field name="person_id" />
                 <field name="color" />
                 <templates>
+                    <t t-name="kanban-menu">
+                        <div class="container">
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
                     <t t-name="kanban-box">
                         <div
                             t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click"
                             name="fsm_equipment"
                         >
-                            <div class="o_dropdown_kanban dropdown">
-                                <a
-                                    role="button"
-                                    class="dropdown-toggle o-no-caret btn"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    aria-label="Dropdown menu"
-                                    title="Dropdown menu"
-                                >
-                                    <span class="fa fa-ellipsis-v" />
-                                </a>
-                                <div class="dropdown-menu" role="menu">
-                                    <a
-                                        t-if="widget.editable"
-                                        role="menuitem"
-                                        type="edit"
-                                        class="dropdown-item"
-                                    >Edit
-                                    </a>
-                                    <a
-                                        t-if="widget.deletable"
-                                        role="menuitem"
-                                        type="delete"
-                                        class="dropdown-item"
-                                    >
-                                        Delete
-                                    </a>
-                                    <div role="separator" class="dropdown-divider" />
-                                    <ul
-                                        class="oe_kanban_colorpicker"
-                                        data-field="color"
-                                    />
-                                </div>
-                            </div>
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
@@ -316,13 +302,9 @@
                                         />
                                     </div>
                                     <div class="oe_kanban_bottom_right">
-                                        <img
-                                            t-att-src="kanban_image('fsm.person', 'image_128', record.person_id.raw_value)"
-                                            t-att-title="record.person_id.name"
-                                            t-att-alt="record.person_id.name"
-                                            width="24"
-                                            height="24"
-                                            class="oe_kanban_avatar"
+                                        <field
+                                            name="person_id"
+                                            widget="many2one_avatar_user"
                                         />
                                     </div>
                                 </div>

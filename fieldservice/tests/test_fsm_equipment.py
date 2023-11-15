@@ -5,15 +5,16 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class FSMEquipment(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Equipment = self.env["fsm.equipment"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.test_territory = self.env.ref("base_territory.test_territory")
-        self.test_branch = self.env.ref("base_territory.test_branch")
-        self.test_district = self.env.ref("base_territory.test_district")
-        self.test_region = self.env.ref("base_territory.test_region")
-        self.current_location = self.env.ref("fieldservice.location_1")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Equipment = cls.env["fsm.equipment"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.test_territory = cls.env.ref("base_territory.test_territory")
+        cls.test_branch = cls.env.ref("base_territory.test_branch")
+        cls.test_district = cls.env.ref("base_territory.test_district")
+        cls.test_region = cls.env.ref("base_territory.test_region")
+        cls.current_location = cls.env.ref("fieldservice.location_1")
 
     def test_fsm_equipment(self):
         """Test createing new equipment
