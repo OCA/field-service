@@ -1,0 +1,64 @@
+<odoo>
+    <record id="fsm_order_form_analytic" model="ir.ui.view">
+        <field name="name">fsm.order.form.account</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="accounting" string="Accounting">
+                    <group name="bill_to">
+                        <field
+                            name="bill_to"
+                            widget="radio"
+                            options="{'horizontal': true}"
+                        />
+                    </group>
+                </page>
+            </notebook>
+            <field name="region_id" position="after">
+                <field name="customer_id" context="{'location_id': location_id}" />
+            </field>
+            <field name="location_id" position="attributes">
+                <attribute name="context">{"customer_id": customer_id}</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="fsm_order_tree_view" model="ir.ui.view">
+        <field name="name">fsm.order.tree</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="customer_id" />
+            </field>
+        </field>
+    </record>
+    <!-- Dashboard -->
+    <record id="fsm_order_kanban_view" model="ir.ui.view">
+        <field name="name">fsm.order.kanban</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="customer_id" />
+            </field>
+            <xpath expr="//div[hasclass('oe_kanban_content')]/div[2]" position="after">
+                <div class="text-muted o_kanban_record_subtitle">
+                    <span t-if="record.customer_id.value">
+                        <t t-esc="record.customer_id.value" />
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="fsm_order_calendar_view" model="ir.ui.view">
+        <field name="name">Orders</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_calendar_view" />
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="customer_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
