@@ -8,3 +8,4 @@ from . import test_fsm_team
 from . import test_fsm_order
 from . import test_fsm_order_template_onchange
 from . import test_fsm_category
+from . import test_res_partner

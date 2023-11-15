@@ -5,16 +5,17 @@ from . import test_fsm_order
 
 
 class TestFsmCategory(test_fsm_order.TestFSMOrder):
-    def setUp(self):
-        super().setUp()
-        self.fsm_category_a = self.env["fsm.category"].create({"name": "Category A"})
-        self.fsm_category_b = self.env["fsm.category"].create(
-            {"name": "Category B", "parent_id": self.fsm_category_a.id}
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.fsm_category_a = cls.env["fsm.category"].create({"name": "Category A"})
+        cls.fsm_category_b = cls.env["fsm.category"].create(
+            {"name": "Category B", "parent_id": cls.fsm_category_a.id}
         )
 
     def test_fsm_order_category(self):
         self.assertEqual(self.fsm_category_a.full_name, self.fsm_category_a.name)
         self.assertEqual(
             self.fsm_category_b.full_name,
-            "%s/%s" % (self.fsm_category_a.name, self.fsm_category_b.name),
+            f"{self.fsm_category_a.name}/{self.fsm_category_b.name}",
         )

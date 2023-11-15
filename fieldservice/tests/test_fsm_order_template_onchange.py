@@ -6,14 +6,13 @@ from . import test_fsm_order
 
 
 class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
-    def setUp(self):
-        super().setUp()
-        self.fsm_category_a = self.env["fsm.category"].create({"name": "Category A"})
-        self.fsm_category_b = self.env["fsm.category"].create({"name": "Category B"})
-        self.fsm_type_a = self.env["fsm.order.type"].create(
-            {"name": "FSM Order Type A"}
-        )
-        self.fsm_team_a = self.env["fsm.team"].create({"name": "FSM Team A"})
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.fsm_category_a = cls.env["fsm.category"].create({"name": "Category A"})
+        cls.fsm_category_b = cls.env["fsm.category"].create({"name": "Category B"})
+        cls.fsm_type_a = cls.env["fsm.order.type"].create({"name": "FSM Order Type A"})
+        cls.fsm_team_a = cls.env["fsm.team"].create({"name": "FSM Team A"})
 
     def test_fsm_order_onchange_template(self):
         """Test the onchange function for FSM Template

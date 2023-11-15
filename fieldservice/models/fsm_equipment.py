@@ -10,7 +10,7 @@ class FSMEquipment(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _stage_type = "equipment"
 
-    name = fields.Char(required="True")
+    name = fields.Char(required=True)
     person_id = fields.Many2one("fsm.person", string="Assigned Operator")
     location_id = fields.Many2one("fsm.location", string="Assigned Location")
     notes = fields.Text()

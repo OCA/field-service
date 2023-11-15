@@ -10,9 +10,9 @@ Field Service
    !! source digest: sha256:ede17848000da5b1e5a5097e768609a665d16876b137a3736ff066651f16a911
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Production/Stable
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
@@ -241,16 +241,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-wolfhall| image:: https://github.com/wolfhall.png?size=40px
-    :target: https://github.com/wolfhall
-    :alt: wolfhall
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
+    :target: https://github.com/brian10048
+    :alt: brian10048
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-wolfhall| |maintainer-max3903| 
+|maintainer-max3903| |maintainer-brian10048| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice>`_ project on GitHub.
 

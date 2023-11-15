@@ -110,7 +110,7 @@
                             <field name="owner_id" />
                             <field
                                 name="contact_id"
-                                context="{'default_service_location_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"
+                                context="{'default_service_location_id': id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"
                             />
                             <field name="phone" widget="phone" />
                             <field name="email" widget="email" />
@@ -232,7 +232,7 @@
                                             /></span>
                                         <br />
                                         <span
-                                            attrs="{'invisible': [('date_localization', '=', False)]}"
+                                            invisible="not date_localization"
                                         >Updated on:
                                             <field
                                                 name="date_localization"
@@ -243,7 +243,7 @@
                                             <br />
                                         </span>
                                         <button
-                                            attrs="{'invisible': ['|', ('partner_latitude', '!=', 0), ('partner_longitude', '!=', 0)]}"
+                                            invisible="(partner_latitude != 0) or (partner_longitude != 0)"
                                             icon="fa-gear"
                                             string="Compute based on address"
                                             title="Compute Localization"
@@ -252,7 +252,7 @@
                                             class="btn btn-link p-0"
                                         />
                                         <button
-                                            attrs="{'invisible': [('partner_latitude', '=', 0), ('partner_longitude', '=', 0)]}"
+                                            invisible="partner_latitude == partner_longitude == 0"
                                             icon="fa-refresh"
                                             string="Refresh"
                                             title="Refresh Localization"
