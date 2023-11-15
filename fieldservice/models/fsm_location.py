@@ -11,6 +11,7 @@ class FSMLocation(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _description = "Field Service Location"
     _stage_type = "location"
+    _rec_names_search = ["complete_name"]
 
     direction = fields.Char()
     partner_id = fields.Many2one(
@@ -92,21 +93,6 @@ class FSMLocation(models.Model):
                     loc.complete_name = f"[{loc.ref}] {loc.partner_id.name}"
                 else:
                     loc.complete_name = loc.partner_id.name
-
-    def name_get(self):
-        return [(rec.id, rec.complete_name) for rec in self]
-
-    @api.model
-    def name_search(self, name, args=None, operator="ilike", limit=100):
-        args = args or []
-        recs = self.browse()
-        if name:
-            recs = self.search([("ref", "ilike", name)] + args, limit=limit)
-        if not recs and self.env.company.search_on_complete_name:
-            recs = self.search([("complete_name", operator, name)] + args, limit=limit)
-        if not recs and not self.env.company.search_on_complete_name:
-            recs = self.search([("name", operator, name)] + args, limit=limit)
-        return recs.name_get()
 
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id(self):

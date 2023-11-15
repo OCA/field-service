@@ -41,7 +41,6 @@ class FSMPerson(models.Model):
         offset=0,
         limit=None,
         order=None,
-        count=False,
         access_rights_uid=None,
     ):
         res = super()._search(
@@ -49,7 +48,6 @@ class FSMPerson(models.Model):
             offset=offset,
             limit=limit,
             order=order,
-            count=count,
             access_rights_uid=access_rights_uid,
         )
         # Check for args first having location_ids as default filter
@@ -82,9 +80,7 @@ class FSMPerson(models.Model):
                                 [tuple(location_ids)],
                             )
                     workers_ids = self.env.cr.fetchall()
-                    if workers_ids:
-                        preferred_workers_list = [worker[0] for worker in workers_ids]
-                        return preferred_workers_list
+                    return self.browse(workers_ids)._as_query()
         return res
 
     @api.model_create_multi

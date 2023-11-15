@@ -6,19 +6,20 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class FSMLocation(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Location = self.env["fsm.location"]
-        self.Equipment = self.env["fsm.equipment"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.location_1 = self.env.ref("fieldservice.location_1")
-        self.location_2 = self.env.ref("fieldservice.location_2")
-        self.location_3 = self.env.ref("fieldservice.location_3")
-        self.test_territory = self.env.ref("base_territory.test_territory")
-        self.test_loc_partner = self.env.ref("fieldservice.test_loc_partner")
-        self.location_partner_1 = self.env.ref("fieldservice.location_partner_1")
-        self.location_partner_2 = self.env.ref("fieldservice.location_partner_2")
-        self.location_partner_3 = self.env.ref("fieldservice.location_partner_3")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Location = cls.env["fsm.location"]
+        cls.Equipment = cls.env["fsm.equipment"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.location_1 = cls.env.ref("fieldservice.location_1")
+        cls.location_2 = cls.env.ref("fieldservice.location_2")
+        cls.location_3 = cls.env.ref("fieldservice.location_3")
+        cls.test_territory = cls.env.ref("base_territory.test_territory")
+        cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
+        cls.location_partner_1 = cls.env.ref("fieldservice.location_partner_1")
+        cls.location_partner_2 = cls.env.ref("fieldservice.location_partner_2")
+        cls.location_partner_3 = cls.env.ref("fieldservice.location_partner_3")
 
     def test_fsm_location(self):
         """Test createing new location
@@ -91,10 +92,6 @@ class FSMLocation(TransactionCase):
         self.location_2._compute_complete_name()
         self.location_3._compute_complete_name()
         self.location_3.geo_localize()
-        loc = self.env["fsm.location"].name_search("Child Location")
-        self.env.user.company_id.search_on_complete_name = True
-        loc = self.env["fsm.location"].name_search("Child Location")
-        self.assertEqual(len(loc), 1, "name_search should have 1 item")
         self.location_2.state_id = self.env.ref("base.state_au_1").id
         self.location_2.country_id = self.env.ref("base.af").id
         self.location_2._onchange_country_id()
