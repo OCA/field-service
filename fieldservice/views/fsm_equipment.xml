@@ -183,39 +183,6 @@
                         <div
                             t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
                         >
-                            <div class="o_dropdown_kanban dropdown">
-                                <a
-                                    role="button"
-                                    class="dropdown-toggle o-no-caret btn"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    aria-label="Dropdown menu"
-                                    title="Dropdown menu"
-                                >
-                                    <span class="fa fa-ellipsis-v" />
-                                </a>
-                                <div class="dropdown-menu" role="menu">
-                                    <a
-                                        t-if="widget.editable"
-                                        role="menuitem"
-                                        type="edit"
-                                        class="dropdown-item"
-                                    >Edit
-                                    </a>
-                                    <a
-                                        t-if="widget.deletable"
-                                        role="menuitem"
-                                        type="delete"
-                                        class="dropdown-item"
-                                    >Delete
-                                    </a>
-                                    <div role="separator" class="dropdown-divider" />
-                                    <ul
-                                        class="oe_kanban_colorpicker"
-                                        data-field="color"
-                                    />
-                                </div>
-                            </div>
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
@@ -230,6 +197,26 @@
                                 </div>
                             </div>
                             <div class="oe_clear" />
+                        </div>
+                    </t>
+                    <t t-name="kanban-menu">
+                        <div class="container">
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Edit</a>
+                                </div>
+                            </div>
                         </div>
                     </t>
                 </templates>

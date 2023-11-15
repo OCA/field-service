@@ -83,18 +83,6 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="o_kanban_manage_button_section">
-                                        <a
-                                            class="o_kanban_manage_toggle_button"
-                                            href="#"
-                                            groups="fieldservice.group_fsm_manager"
-                                        >
-                                            <i
-                                                class="fa fa-ellipsis-v"
-                                                title="Manager"
-                                            />
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="container o_kanban_card_content">
                                     <div class="row">
@@ -151,101 +139,91 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="kanban-menu" groups="fieldservice.group_fsm_manager">
+                        <div class="container">
+                            <div class="row">
                                 <div
-                                    class="container o_kanban_card_manage_pane dropdown-menu"
-                                    role="menu"
-                                    groups="fieldservice.group_fsm_manager"
+                                    class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
                                 >
-                                    <div class="row">
-                                        <div
-                                            class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
-                                        >
-                                            <div
-                                                role="menuitem"
-                                                class="o_kanban_card_manage_title"
-                                            >
-                                                <span>View</span>
-                                            </div>
-                                            <div role="menuitem">
-                                                <a
-                                                    name="%(fieldservice.fsm_order_action_from_dashboard)d"
-                                                    type="action"
-                                                >
-                                                    All
-                                                </a>
-                                            </div>
-                                            <div role="menuitem">
-                                                <a
-                                                    name="%(fieldservice.fsm_order_action_from_dashboard)d"
-                                                    type="action"
-                                                    context="{'search_default_unassigned': 1}"
-                                                >
-                                                    To Assign
-                                                </a>
-                                            </div>
-                                            <div role="menuitem">
-                                                <a
-                                                    name="%(fieldservice.fsm_order_action_from_dashboard)d"
-                                                    type="action"
-                                                    context="{'search_default_unscheduled': 1}"
-                                                >
-                                                    To Schedule
-                                                </a>
-                                            </div>
-                                            <div role="menuitem">
-                                                <a
-                                                    name="%(fieldservice.fsm_order_action_from_dashboard)d"
-                                                    type="action"
-                                                    context="{'search_default_done': 1}"
-                                                >
-                                                    Done
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="col-6 o_kanban_card_manage_section o_kanban_manage_new"
-                                        >
-                                            <div
-                                                role="menuitem"
-                                                class="o_kanban_card_manage_title"
-                                            >
-                                                <span>Reporting</span>
-                                            </div>
-                                            <div role="menuitem">
-                                                <a
-                                                    name="%(fieldservice.action_fsm_report_order)d"
-                                                    type="action"
-                                                    context="{'search_default_team_id': active_id}"
-                                                >
-                                                    Orders
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        t-if="widget.editable"
-                                        class="o_kanban_card_manage_settings row"
+                                    <h5
+                                        role="menuitem"
+                                        class="o_kanban_card_manage_title"
                                     >
-                                        <div
-                                            class="col-8"
-                                            role="menuitem"
-                                            aria-haspopup="true"
+                                        <span>View</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(fieldservice.fsm_order_action_from_dashboard)d"
+                                            type="action"
                                         >
-                                            <ul
-                                                class="oe_kanban_colorpicker"
-                                                data-field="color"
-                                                role="menu"
-                                            />
-                                        </div>
-                                        <div role="menuitem" class="col-4">
-                                            <a
-                                                class="dropdown-item"
-                                                role="menuitem"
-                                                type="edit"
-                                            >Configuration</a>
-                                        </div>
-
+                                            All
+                                        </a>
                                     </div>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(fieldservice.fsm_order_action_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_unassigned': 1}"
+                                        >
+                                            To Assign
+                                        </a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(fieldservice.fsm_order_action_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_unscheduled': 1}"
+                                        >
+                                            To Schedule
+                                        </a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(fieldservice.fsm_order_action_from_dashboard)d"
+                                            type="action"
+                                            context="{'search_default_done': 1}"
+                                        >
+                                            Done
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-6 o_kanban_card_manage_section o_kanban_manage_view"
+                                >
+                                    <h5
+                                        role="menuitem"
+                                        class="o_kanban_card_manage_title"
+                                    >
+                                        <span>Reporting</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a
+                                            name="%(fieldservice.action_fsm_report_order)d"
+                                            type="action"
+                                            context="{'search_default_team_id': id}"
+                                        >
+                                            Orders
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_manage_settings row">
+                                <div role="menuitem" aria-haspopup="true" class="col-6">
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
+                                </div>
+                                <div role="menuitem" class="col-4">
+                                    <a
+                                        class="dropdown-item"
+                                        role="menuitem"
+                                        type="edit"
+                                    >Configuration</a>
                                 </div>
                             </div>
                         </div>

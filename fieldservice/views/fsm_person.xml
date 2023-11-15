@@ -64,7 +64,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field
                         name="active_partner"
@@ -74,12 +74,11 @@
                     />
                     <div
                         class="alert alert-info text-center o_form_header"
-                        attrs="{'invisible': [
-                            '|', '|',
-                            '&amp;', ('active', '=', True), ('active_partner', '=', True),
-                            '&amp;', ('active', '=', False), ('active_partner', '=', False),
-                            '&amp;', ('active', '=', True), ('active_partner', '=', False),
-                        ]}"
+                        invisible="
+                            (active and active_partner) or
+                            (not active and not active_partner) or
+                            (active and not active_partner)
+                        "
                         role="alert"
                     >
                         <a class="close" data-dismiss="alert" href="#">x</a>

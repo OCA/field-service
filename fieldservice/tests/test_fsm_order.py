@@ -9,31 +9,32 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestFSMOrder(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Order = self.env["fsm.order"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.stage1 = self.env.ref("fieldservice.fsm_stage_completed")
-        self.stage2 = self.env.ref("fieldservice.fsm_stage_cancelled")
-        self.init_values = {
-            "stage_id": self.env.ref("fieldservice.fsm_stage_completed").id
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Order = cls.env["fsm.order"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.stage1 = cls.env.ref("fieldservice.fsm_stage_completed")
+        cls.stage2 = cls.env.ref("fieldservice.fsm_stage_cancelled")
+        cls.init_values = {
+            "stage_id": cls.env.ref("fieldservice.fsm_stage_completed").id
         }
-        self.init_values_2 = {
-            "stage_id": self.env.ref("fieldservice.fsm_stage_cancelled").id
+        cls.init_values_2 = {
+            "stage_id": cls.env.ref("fieldservice.fsm_stage_cancelled").id
         }
         today = fields.Datetime.today()
         start_date = today + timedelta(days=1)
         date_end = start_date.replace(hour=23, minute=59, second=59)
-        self.location_1 = self.env.ref("fieldservice.location_1")
-        self.p_leave = self.env["resource.calendar.leaves"].create(
+        cls.location_1 = cls.env.ref("fieldservice.location_1")
+        cls.p_leave = cls.env["resource.calendar.leaves"].create(
             {
                 "date_from": start_date,
                 "date_to": date_end,
             }
         )
-        self.tag = self.env["fsm.tag"].create({"name": "Test Tag"})
-        self.tag1 = self.env["fsm.tag"].create(
-            {"name": "Test Tag1", "parent_id": self.tag.id}
+        cls.tag = cls.env["fsm.tag"].create({"name": "Test Tag"})
+        cls.tag1 = cls.env["fsm.tag"].create(
+            {"name": "Test Tag1", "parent_id": cls.tag.id}
         )
 
     def test_fsm_order_default_stage(self):
@@ -243,7 +244,7 @@ class TestFSMOrder(TransactionCase):
         order.copy_notes()
         order.type = False
         order.equipment_id = equipment.id
-        order.copy_notes()
+        order.onchange_equipment_ids()
         order.type = False
         order.description = False
         self.location_1.direction = "Test Direction"

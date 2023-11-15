@@ -16,14 +16,15 @@ class FSMWizard(TransactionCase):
     res.partner are converted into Other Addresses.
     """
 
-    def setUp(self):
-        super().setUp()
-        self.Wizard = self.env["fsm.wizard"]
-        self.test_partner = self.env.ref("fieldservice.test_partner")
-        self.test_parent_partner = self.env.ref("fieldservice.test_parent_partner")
-        self.test_loc_partner = self.env.ref("fieldservice.test_loc_partner")
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.test_person = self.env.ref("fieldservice.test_person")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Wizard = cls.env["fsm.wizard"]
+        cls.test_partner = cls.env.ref("fieldservice.test_partner")
+        cls.test_parent_partner = cls.env.ref("fieldservice.test_parent_partner")
+        cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.test_person = cls.env.ref("fieldservice.test_person")
 
     def test_convert_location(self):
         ctx = {

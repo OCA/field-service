@@ -1,69 +1,66 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class FSMPerson(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Worker = self.env["fsm.person"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Worker = cls.env["fsm.person"]
+        cls.LocationWorker = cls.env["fsm.location.person"]
 
     def test_fsm_person(self):
-        """Test creating new person
-        - Default stage
-        - Change stage
-        - _search
-        """
         # Create a person
-        view_id = "fieldservice.fsm_person_form"
-        with Form(self.Worker, view=view_id) as f:
-            f.name = "Worker A"
-        worker = f.save()
-        location_owner = self.env.ref("fieldservice.location_partner_1")
-        location = self.env["fsm.location"].create(
-            {"name": "test location", "owner_id": location_owner.id}
+        test_worker_one = self.Worker.create({"name": "Worker One"})
+        self.assertTrue(test_worker_one.fsm_person)
+        # Test toggle_active
+        test_worker_one.toggle_active()
+        self.assertTrue(
+            test_worker_one.partner_id.active,
+            "Partner related to FSM Person should remain active",
         )
-        parent_partner = self.env.ref("fieldservice.test_parent_partner")
-        sub_p = self.env.ref("fieldservice.s1")
-        sub_p1 = self.env.ref("fieldservice.s2")
-        self.env["fsm.location"].create({"name": "test location", "owner_id": sub_p.id})
-        parent_partner.action_open_owned_locations()
-        self.env["fsm.location"].create(
-            {"name": "test location", "owner_id": sub_p1.id}
+        test_worker_one.partner_id.toggle_active()
+        test_worker_one.toggle_active()
+        self.assertTrue(
+            test_worker_one.partner_id.active,
+            "Activating FSM Person must make related partner active",
         )
-        parent_partner.action_open_owned_locations()
-        self.test_team = self.env["fsm.team"].create({"name": "Test Team"})
-        person_id = self.env.ref("fieldservice.person_1").id
-        self.env["fsm.location.person"].create(
+
+    def test_fsm_person_search(self):
+        # Setup locations
+        location_1 = self.env.ref("fieldservice.location_1")
+        location_2 = self.env.ref("fieldservice.location_2")
+        location_3 = self.env.ref("fieldservice.location_3")
+        # Setup Persons
+        person_1 = self.env.ref("fieldservice.person_1")
+        person_2 = self.env.ref("fieldservice.person_2")
+        person_3 = self.env.ref("fieldservice.person_3")
+        # Setup Location Persons
+        self.LocationWorker.create(
             {
-                "location_id": location.id,
-                "person_id": person_id,
+                "location_id": location_1.id,
+                "person_id": person_1.id,
             }
         )
-        search_domain = [("location_ids", "=", location.id)]
-        data = (
-            self.env["fsm.person"]
-            .with_user(self.env.user)
-            .read_group(
-                [("id", "=", location.id)], fields=["stage_id"], groupby="stage_id"
-            )
+        self.LocationWorker.create(
+            {
+                "location_id": location_2.id,
+                "person_id": person_2.id,
+            }
         )
-        self.assertTrue(data, "It should be able to read group")
-        p1 = self.Worker.search(search_domain)
-        search_domain = [("location_ids", "=", "Test")]
-        self.Worker.search(search_domain)
-        self.assertEqual(p1.id, person_id)
-        # Test change state
-        worker.stage_id = self.env.ref("fieldservice.worker_stage_1")
-        worker.next_stage()
-        self.assertEqual(worker.stage_id, self.env.ref("fieldservice.worker_stage_2"))
-        worker.stage_id = self.env.ref("fieldservice.worker_stage_3")
-        worker.next_stage()
-        self.assertEqual(worker.stage_id, self.env.ref("fieldservice.worker_stage_3"))
-        self.assertFalse(worker.hide)  # hide as max stage
-        worker.stage_id = self.env.ref("fieldservice.worker_stage_2")
-        worker.previous_stage()
-        self.assertEqual(worker.stage_id, self.env.ref("fieldservice.worker_stage_1"))
-
-        # TODO: https://github.com/OCA/field-service/issues/265
+        self.LocationWorker.create(
+            {
+                "location_id": location_3.id,
+                "person_id": person_3.id,
+            }
+        )
+        # Test search using a location ID
+        search_domain = [("location_ids", "=", location_2.id)]
+        workers = self.Worker.search(search_domain)
+        self.assertEqual(workers.id[0], person_2.id)
+        # Test search using a location name
+        search_domain = [("location_ids", "=", "Location")]
+        workers = self.Worker.search(search_domain)
+        self.assertEqual(len(workers), 3, "Incorrect search number result")
