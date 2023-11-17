@@ -155,7 +155,7 @@ class FSMLocation(TransactionCase):
             for i in range(num_eq):
                 self.Equipment.create(
                     {
-                        "name": "Eq-{}-{}".format(str(loc_id), str(i + 1)),
+                        "name": f"Eq-{str(loc_id)}-{str(i + 1)}",
                         "location_id": loc_id,
                         "current_location_id": loc_id,
                     }
