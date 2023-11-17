@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,12 +19,14 @@ msgid "Accounting Stage"
 msgstr ""
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Contractor Costs' is filled in"
 msgstr ""
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Employee Timesheets' is filled in"
@@ -133,13 +135,6 @@ msgid "Fully Invoiced"
 msgstr ""
 
 #. module: fieldservice_isp_account
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_overtime
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_regular_time
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_travel_time
-msgid "Hours"
-msgstr ""
-
-#. module: fieldservice_isp_account
 #: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__id
 msgid "ID"
 msgstr ""
@@ -217,6 +212,7 @@ msgid "Service Orders"
 msgstr ""
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "The worker assigned to this order is not a supplier"
