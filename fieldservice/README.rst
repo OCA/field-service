@@ -17,13 +17,13 @@ Field Service
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice
+    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice
+    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -38,106 +38,107 @@ This module is the base of the Field Service application in Odoo.
 Configuration
 =============
 
-The base Field Service module can be used with minimal initial configuration.
-It also allows for many advanced features, which require a more in-depth
-configuration.
+The base Field Service module can be used with minimal initial
+configuration. It also allows for many advanced features, which require
+a more in-depth configuration.
 
 Order Stages
-~~~~~~~~~~~~
+------------
 
-The stage of an order is used to monitor its progress. Stages can be configured
-based on your company's specific business needs. A basic set of order stages
-comes pre-configured for use.
+The stage of an order is used to monitor its progress. Stages can be
+configured based on your company's specific business needs. A basic set
+of order stages comes pre-configured for use.
 
-#. Go to *Field Service > Configuration > Stages*
-#. Create or edit a stage
-#. Set the name for the stage.
-#. Set the sequence order for the stage.
-#. Select *Order* type to apply this stage to your orders.
-#. Additonally, you can set a color for the stage.
+1. Go to *Field Service > Configuration > Stages*
+2. Create or edit a stage
+3. Set the name for the stage.
+4. Set the sequence order for the stage.
+5. Select *Order* type to apply this stage to your orders.
+6. Additonally, you can set a color for the stage.
 
 Field Service Areas
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
-You can manage designated areas or locales for your field service workers,
-salesmen, and other resources. For example, salesmen may serve a particular
-Territory. There may be multiple Territories served by a single Branch office
-location. Multiple Branches are managed within a District and these Districts
-are managed under an encompassing Region.
+You can manage designated areas or locales for your field service
+workers, salesmen, and other resources. For example, salesmen may serve
+a particular Territory. There may be multiple Territories served by a
+single Branch office location. Multiple Branches are managed within a
+District and these Districts are managed under an encompassing Region.
 
 Setup a Territory
------------------
+~~~~~~~~~~~~~~~~~
 
-#. Go to Settings > Users & Companies > Territories*
-#. Create or select a territory
-#. Set the territory Name and description
-#. Select or create a branch which this territory serves
-#. Choose a type of zip, country whichs defines the boundary used
-#. Input a list of zip codes, countries based on your desired
+1. Go to Settings > Users & Companies > Territories\*
+2. Create or select a territory
+3. Set the territory Name and description
+4. Select or create a branch which this territory serves
+5. Choose a type of zip, country whichs defines the boundary used
+6. Input a list of zip codes, countries based on your desired
    configuration
 
 Setup Branches, Districts, and Regions
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If your business requires, define your Branches, Districts, and Regions.
 These are found under *Field Service > Configuration > Locations*
 
 Advanced Configurations
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
-Additional features, automations, and GeoEngine features can be enabled in
-the General Settings panel for Field Service.
+Additional features, automations, and GeoEngine features can be enabled
+in the General Settings panel for Field Service.
 
-#. Go to *Field Service > Configuration > Settings*
-#. Enable additional options
-#. Configure new options
+1. Go to *Field Service > Configuration > Settings*
+2. Enable additional options
+3. Configure new options
 
 Manage Teams
-------------
+~~~~~~~~~~~~
 
-Teams can be used to organize the processing of field service orders into
-groups. Different teams may have different workflows that a field service
-order needs to follow.
+Teams can be used to organize the processing of field service orders
+into groups. Different teams may have different workflows that a field
+service order needs to follow.
 
-#. Go to *Field Service > Configuration > Workers > Teams*
-#. Create or select a team
-#. Set the team name, description, and sequence
+1. Go to *Field Service > Configuration > Workers > Teams*
+2. Create or select a team
+3. Set the team name, description, and sequence
 
 You can now define custom stages for each team processing orders.
 
-#. Go to *Field Service > Configuration > Stages*
-#. Create or edit a stage
-#. Select the teams for which this stage should be used
+1. Go to *Field Service > Configuration > Stages*
+2. Create or edit a stage
+3. Select the teams for which this stage should be used
 
 Manage Categories
------------------
+~~~~~~~~~~~~~~~~~
 
-Categories are used to group workers and the type of orders a worker can do.
+Categories are used to group workers and the type of orders a worker can
+do.
 
-#. Go to *Field Service > Configuration > Workers > Categories*
-#. Create or select a category
-#. Set the name and description of category
-#. Additionally, you can select a parent category if required
+1. Go to *Field Service > Configuration > Workers > Categories*
+2. Create or select a category
+3. Set the name and description of category
+4. Additionally, you can select a parent category if required
 
 Manage Tags
------------
+~~~~~~~~~~~
 
 Tags can be used to filter and report on field service orders
 
-#. Go to *Field Service > Configuration > Orders > Tags*
-#. Create or select a tag
-#. Set the tag name
-#. Set a color index for the tag
+1. Go to *Field Service > Configuration > Orders > Tags*
+2. Create or select a tag
+3. Set the tag name
+4. Set a color index for the tag
 
 Manage Order Templates
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 Order templates allow you to create standard templates for your orders.
 
-#. Go to *Field Service > Master Data > Templates*
-#. Create or select a template
-#. Set the name
-#. Set the standard order instructions
+1. Go to *Field Service > Master Data > Templates*
+2. Create or select a template
+3. Set the name
+4. Set the standard order instructions
 
 Usage
 =====
@@ -145,38 +146,40 @@ Usage
 To use this module, you need to:
 
 Add Field Service Locations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
-Locations are the specific places where a field service order is performed.
+Locations are the specific places where a field service order is
+performed.
 
-#. Go to *Field Service > Master Data > Locations*
-#. Create a location
+1. Go to *Field Service > Master Data > Locations*
+2. Create a location
 
 Add Field Service Workers
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 Workers are the people responsible for performing a field service order.
 These workers may be subcontractors or a company's own employees.
 
-#. Go to *Field Service > Master Data > Workers*
-#. Create a worker
+1. Go to *Field Service > Master Data > Workers*
+2. Create a worker
 
 Process Orders
-~~~~~~~~~~~~~~
+--------------
 
-Once you have established your data, you can begin processing field service
-orders.
+Once you have established your data, you can begin processing field
+service orders.
 
-#. Go to *Field Service > Dashboard > Orders*
-#. Create or select an order
-#. Enter relevant details for the order
-#. Process order through each stage as defined by your business requirements
+1. Go to *Field Service > Dashboard > Orders*
+2. Create or select an order
+3. Enter relevant details for the order
+4. Process order through each stage as defined by your business
+   requirements
 
 Known issues / Roadmap
 ======================
 
 The roadmap of the Field Service application is documented on
-`Github <https://github.com/OCA/field-service/issues/1>`_.
+`Github <https://github.com/OCA/field-service/issues/1>`__.
 
 Bug Tracker
 ===========
@@ -184,7 +187,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -192,41 +195,41 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Wolfgang Hall <whall@opensourceintegrators.com>
-* Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-* Steve Campbell <scampbell@opensourceintegrators.com>
-* Bhavesh Odedra <bodedra@opensourceintegrators.com>
-* Michael Allen <mallen@opensourceintegrators.com>
-* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Brian McMaster <brian@mcmpest.com>
-* Raphaël Reverdy <raphael.reverdy@akretion.com>
-* Ammar Officewala <ammar.o.serpentcs@gmail.com>
-* Yves Goldberg <yves@ygol.com>
-* Freni Patel <fpatel@opensourceintegrators.com>
+-  Wolfgang Hall <whall@opensourceintegrators.com>
+-  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+-  Steve Campbell <scampbell@opensourceintegrators.com>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Michael Allen <mallen@opensourceintegrators.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Brian McMaster <brian@mcmpest.com>
+-  Raphaël Reverdy <raphael.reverdy@akretion.com>
+-  Ammar Officewala <ammar.o.serpentcs@gmail.com>
+-  Yves Goldberg <yves@ygol.com>
+-  Freni Patel <fpatel@opensourceintegrators.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+   -  Víctor Martínez
 
-  * Víctor Martínez
-* Nils Coenen <nils.coenen@nico-solutions.de>
-* Alex Comba <alex.comba@agilebg.com>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
+-  Alex Comba <alex.comba@agilebg.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -249,6 +252,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-wolfhall| |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

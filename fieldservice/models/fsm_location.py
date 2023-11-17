@@ -89,7 +89,7 @@ class FSMLocation(models.Model):
                     )
             else:
                 if loc.ref:
-                    loc.complete_name = "[{}] {}".format(loc.ref, loc.partner_id.name)
+                    loc.complete_name = f"[{loc.ref}] {loc.partner_id.name}"
                 else:
                     loc.complete_name = loc.partner_id.name
 
