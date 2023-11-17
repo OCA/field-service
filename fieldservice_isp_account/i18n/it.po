@@ -1,0 +1,261 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_isp_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-11-02 11:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__account_stage
+msgid "Accounting Stage"
+msgstr "Fase contabilità"
+
+#. module: fieldservice_isp_account
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
+#, python-format
+msgid "Cannot move to Complete until 'Contractor Costs' is filled in"
+msgstr ""
+"Non si può impostare a Completo finché 'Costi terzista' non è compilato"
+
+#. module: fieldservice_isp_account
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
+#, python-format
+msgid "Cannot move to Complete until 'Employee Timesheets' is filled in"
+msgstr ""
+"Non si può impostare a Completo finché 'Foglio ore dipendente' non è "
+"compilato"
+
+#. module: fieldservice_isp_account
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__confirmed
+msgid "Confirmed"
+msgstr "Confermato"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__contractor_total
+msgid "Contractor Cost Estimate"
+msgstr "Stima costo terzista"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__contractor_cost_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Contractor Costs"
+msgstr "Costi terzista"
+
+#. module: fieldservice_isp_account
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Create Invoice"
+msgstr "Crea fattura"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__draft
+msgid "Draft"
+msgstr "Bozza"
+
+#. module: fieldservice_isp_account
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Duration"
+msgstr "Durata"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__employee
+msgid "Employee"
+msgstr "Dipendente"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__employee_timesheet_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Employee Timesheets"
+msgstr "Foglio ore dipendente"
+
+#. module: fieldservice_isp_account
+#: model:product.template,name:fieldservice_isp_account.field_service_overtime
+msgid "FSM Overtime"
+msgstr "Straordinario FSM"
+
+#. module: fieldservice_isp_account
+#: model:product.template,name:fieldservice_isp_account.field_service_regular_time
+msgid "FSM Regular Time"
+msgstr "Orario regolare FSM"
+
+#. module: fieldservice_isp_account
+#: model:product.template,name:fieldservice_isp_account.field_service_travel_time
+msgid "FSM Travel Time"
+msgstr "Tempo di viaggio FSM"
+
+#. module: fieldservice_isp_account
+#: model:ir.model,name:fieldservice_isp_account.model_fsm_order
+msgid "Field Service Order"
+msgstr "Ordine assistenza sul campo"
+
+#. module: fieldservice_isp_account
+#: model:ir.model,name:fieldservice_isp_account.model_fsm_person
+msgid "Field Service Worker"
+msgstr "Lavoratore assistenza sul campo"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__fsm_order_id
+msgid "Fsm Order"
+msgstr "Ordine FSM"
+
+#. module: fieldservice_isp_account
+#: model:ir.model,name:fieldservice_isp_account.model_fsm_order_cost
+msgid "Fsm Order Cost"
+msgstr "Costo ordine FSM"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__invoiced
+msgid "Fully Invoiced"
+msgstr "Completamente fatturato"
+
+#. module: fieldservice_isp_account
+#: model:product.template,uom_name:fieldservice_isp_account.field_service_overtime
+#: model:product.template,uom_name:fieldservice_isp_account.field_service_regular_time
+#: model:product.template,uom_name:fieldservice_isp_account.field_service_travel_time
+msgid "Hours"
+msgstr "Ore"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__review
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_search_view
+msgid "Needs Review"
+msgstr "Richiede revisione"
+
+#. module: fieldservice_isp_account
+#: model_terms:ir.actions.act_window,help:fieldservice_isp_account.action_account_fsm_order
+msgid "No Field Service Orders to review."
+msgstr "Nessun ordine assistenza sul campo da revisionare."
+
+#. module: fieldservice_isp_account
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "No Invoice"
+msgstr "Nessuna fattura"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields.selection,name:fieldservice_isp_account.selection__fsm_order__account_stage__no
+msgid "Nothing Invoiced"
+msgstr "Niente fatturato"
+
+#. module: fieldservice_isp_account
+#: model:ir.ui.menu,name:fieldservice_isp_account.menu_account_operations
+msgid "Operations"
+msgstr "Operazioni"
+
+#. module: fieldservice_isp_account
+#: model:product.template,description_sale:fieldservice_isp_account.field_service_overtime
+msgid ""
+"Overtime for Field Service Employees\n"
+"        "
+msgstr ""
+"Straordinario per dipendenti assistenza sul campo\n"
+"        "
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__quantity
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: fieldservice_isp_account
+#: model:product.template,description_sale:fieldservice_isp_account.field_service_regular_time
+msgid ""
+"Regular time for Field Service\n"
+"            Employees\n"
+"        "
+msgstr ""
+"Orario regolare per assistenza sul campo\n"
+"            Dipendenti\n"
+"        "
+
+#. module: fieldservice_isp_account
+#: model:ir.actions.act_window,name:fieldservice_isp_account.action_account_fsm_order
+#: model:ir.ui.menu,name:fieldservice_isp_account.menu_account_fsm_order
+msgid "Service Orders"
+msgstr "Ordini servizio"
+
+#. module: fieldservice_isp_account
+#: code:addons/fieldservice_isp_account/models/fsm_order.py:0
+#, python-format
+msgid "The worker assigned to this order is not a supplier"
+msgstr "Il lavoratore assegnato a questo servizio non è un terzista"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__employee_time_total
+msgid "Total Employee Hours"
+msgstr "Ore totali dipendente"
+
+#. module: fieldservice_isp_account
+#: model:product.template,description_sale:fieldservice_isp_account.field_service_travel_time
+msgid ""
+"Travel time for Field Service\n"
+"            Employees\n"
+"        "
+msgstr ""
+"Tempo di viaggio per assistenza sul campo\n"
+"            Dipendenti\n"
+"        "
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__price_unit
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: fieldservice_isp_account
+#: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_person__bill_count
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_person_form_isp_account
+msgid "Vendor Bills"
+msgstr "Fattura fornitore"
