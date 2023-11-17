@@ -14,3 +14,19 @@ class ResCompany(models.Model):
         string="Auto-populate Equipments on Order based on Location"
     )
     search_on_complete_name = fields.Boolean(string="Search Location By Hierarchy")
+
+    fsm_order_request_late_lowest = fields.Float(
+        string="Hours of Buffer for Lowest Priority FS Orders",
+        default=72,
+    )
+    fsm_order_request_late_low = fields.Float(
+        string="Hours of Buffer for Low Priority FS Orders",
+        default=48,
+    )
+    fsm_order_request_late_medium = fields.Float(
+        string="Hours of Buffer for Medium Priority FS Orders",
+        default=24,
+    )
+    fsm_order_request_late_high = fields.Float(
+        string="Hours of Buffer for High Priority FS Orders", default=8
+    )

@@ -102,6 +102,11 @@
                         <group id="main-left">
                             <field name="id" invisible="1" />
                             <field name="fsm_parent_id" domain="[('id', '!=', id)]" />
+                            <field
+                                name="partner_id"
+                                groups="base.group_no_one"
+                                readonly="1"
+                            />
                             <field name="owner_id" />
                             <field
                                 name="contact_id"
@@ -162,7 +167,7 @@
                         <field name="notes" nolabel="1" colspan="2" widget="html" />
                     </group>
                     <notebook>
-                        <page string="Directions">
+                        <page string="Directions" name="directions">
                             <field
                                 name="direction"
                                 nolabel="1"
@@ -172,6 +177,7 @@
                         </page>
                         <page
                             string="Territory"
+                            name="territory"
                             groups="fieldservice.group_fsm_territory"
                         >
                             <group id="territory">
@@ -189,7 +195,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Preferred Workers">
+                        <page string="Preferred Workers" name="preferred_workers">
                             <field name="person_ids" nolabel="1">
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
@@ -199,7 +205,7 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Others" id="others-page">
+                        <page string="Others" id="others-page" name="others">
                             <group id="others">
                                 <group id="others-left" />
                                 <group id="others-right" />

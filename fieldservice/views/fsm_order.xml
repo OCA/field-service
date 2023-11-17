@@ -14,7 +14,7 @@
                         string="Complete"
                         class="oe_highlight"
                         type="object"
-                        groups="fieldservice.group_fsm_user"
+                        groups="fieldservice.group_fsm_user_own"
                         attrs="{'invisible': [('stage_id', 'in', (%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d))]}"
                     />
                     <button
@@ -317,7 +317,7 @@
                                     </div>
                                     <div class="oe_kanban_bottom_right">
                                         <img
-                                            t-att-src="kanban_image('person', 'image_small', record.person_id.name)"
+                                            t-att-src="kanban_image('fsm.person', 'image_128', record.person_id.raw_value)"
                                             t-att-title="record.person_id.name"
                                             t-att-alt="record.person_id.name"
                                             width="24"
@@ -460,15 +460,16 @@
                 color="stage_id"
             >
                 <field name="name" />
-                <field name="stage_id" />
+                <field name="stage_id" filters="1" />
                 <field name="location_id" />
                 <field name="phone" />
                 <field
                     name="person_id"
                     write_model="fsm.person.calendar.filter"
                     write_field="fsm_person_id"
-                    avatar_field="image_small"
+                    avatar_field="image_128"
                 />
+                <field name="team_id" filters="1" />
                 <field name="person_phone" />
                 <field name="city" />
                 <field name="state_name" />
