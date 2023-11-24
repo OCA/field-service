@@ -125,7 +125,7 @@ class FSMRouteDayRoute(models.Model):
             if not vals.get("date_start_planned", False) and vals.get("date", False):
                 # TODO: Use the worker timezone and working schedule
                 date = vals.get("date")
-                if type(vals.get("date")) == str:
+                if isinstance(vals.get("date"), str):
                     date = datetime.strptime(
                         vals.get("date"), DEFAULT_SERVER_DATE_FORMAT
                     ).date()

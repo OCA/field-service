@@ -39,7 +39,7 @@ class FSMOrder(models.Model):
     def _get_dayroute_values(self, vals):
         date = False
         if vals.get("scheduled_date_start"):
-            if type(vals.get("scheduled_date_start")) == str:
+            if isinstance(vals.get("scheduled_date_start"), str):
                 date = datetime.strptime(
                     vals.get("scheduled_date_start"), DEFAULT_SERVER_DATETIME_FORMAT
                 ).date()
