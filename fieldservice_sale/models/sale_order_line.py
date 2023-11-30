@@ -62,7 +62,7 @@ class SaleOrderLine(models.Model):
         """
         invoiceable_stage_ids = self.env["fsm.stage"]._get_invoiceable_stage()
         dom = [
-            ("sale_line_id", "=", self.id),
+            ("sale_id", "=", self.order_id.id),
             ("invoice_lines", "=", False),
         ]
         if invoiceable_stage_ids:
