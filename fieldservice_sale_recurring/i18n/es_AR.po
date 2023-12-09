@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-12 04:46+0000\n"
+"PO-Revision-Date: 2023-12-09 23:52+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: fieldservice_sale_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale_recurring.fsm_recurring_form_view_inherit_sale
@@ -84,6 +84,10 @@ msgid ""
 "a>\n"
 "                "
 msgstr ""
+"Servicio de Campo recurrente Creado (%(product)s): <a href=\n"
+"                   # data-oe-model=fsm.recurring data-oe-"
+"id=%(id)s>%(name)s</a>\n"
+"                "
 
 #. module: fieldservice_sale_recurring
 #: model:ir.model,name:fieldservice_sale_recurring.model_product_template
@@ -138,6 +142,11 @@ msgid ""
 "                   (%(product)s)\n"
 "                "
 msgstr ""
+"Esta recurrencia ha sido creada desde: <a href=\n"
+"                   # data-oe-model=sale.order data-oe-"
+"id=%(order_id)s>%(order)s</a>\n"
+"                   (%(product)s)\n"
+"                "
 
 #, python-format
 #~ msgid ""
