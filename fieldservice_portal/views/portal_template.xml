@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <template
+        id="portal_breadcrumbs"
+        name="Portal layout: ticket and fsm order menu entry"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="55"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'fsm_order' or fsm_order"
+                t-attf-class="breadcrumb-item #{'active ' if not fsm_order else ''}"
+            >
+                <a
+                    t-if="fsm_order"
+                    t-attf-href="/my/workorders?{{ keep_query() }}"
+                >Work Orders</a>
+                <t t-else="">Work Orders</t>
+            </li>
+            <li t-if="fsm_order" class="breadcrumb-item active">
+                <t t-esc="fsm_order.name" />
+            </li>
+        </xpath>
+    </template>
+
+    <template
+        id="portal_my_home"
+        name="Portal My Home : fsm order entries"
+        inherit_id="portal.portal_my_home"
+        priority="45"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="fsm_order_count" t-call="portal.portal_docs_entry">
+              <t t-set="title">Work Orders</t>
+              <t t-set="url" t-value="'/my/workorders'" />
+              <t t-set="count" t-value="fsm_order_count" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
