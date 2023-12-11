@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="fsm_order_rule_portal" model="ir.rule">
+        <field name="name">Portal Personal Orders</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="domain_force">['|','|',
+            ('location_id.owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('location_id.contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('message_partner_ids','child_of',[user.commercial_partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+
+    <record id="fsm_location_rule_portal" model="ir.rule">
+        <field name="name">Portal Personal Locations</field>
+        <field name="model_id" ref="fieldservice.model_fsm_location" />
+        <field name="domain_force">['|','|',
+            ('owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('message_partner_ids','child_of',[user.commercial_partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+
+    <record id="res_partner_fsm_location_rule_portal" model="ir.rule">
+        <field name="name">Portal Personal Locations</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="domain_force">['&amp;',
+            ('service_location_id', '!=', False),
+            '|','|',
+            ('service_location_id.owner_id', 'child_of', [user.commercial_partner_id.id]),
+            ('service_location_id.contact_id', 'child_of', [user.commercial_partner_id.id]),
+            ('service_location_id.message_partner_ids','child_of', [user.commercial_partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+
+</odoo>
