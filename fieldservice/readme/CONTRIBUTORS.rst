@@ -14,3 +14,4 @@
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Víctor Martínez
+* Alex Comba <alex.comba@agilebg.com>

@@ -49,6 +49,7 @@ class FSMStage(models.Model):
         ],
         "Type",
         required=True,
+        default="order",
     )
     company_id = fields.Many2one(
         "res.company",
@@ -83,10 +84,9 @@ class FSMStage(models.Model):
     def create(self, vals):
         stages = self.search([])
         for stage in stages:
-            if (
-                stage.stage_type == vals["stage_type"]
-                and stage.sequence == vals["sequence"]
-            ):
+            if stage.stage_type == vals.get(
+                "stage_type"
+            ) and stage.sequence == vals.get("sequence"):
                 raise ValidationError(
                     _(
                         "Cannot create FSM Stage because "
