@@ -13,6 +13,7 @@
         "security/ir.model.access.csv",
         "views/account_move.xml",
         "views/fsm_order.xml",
+        "views/fsm_stage.xml",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
