@@ -19,12 +19,12 @@ class AccountMove(models.Model):
 
     @api.depends("line_ids")
     def _compute_fsm_order_ids(self):
-        for order in self:
+        for record in self:
             orders = self.env["fsm.order"].search(
-                [("invoice_lines", "in", order.line_ids.ids)]
+                [("invoice_lines", "in", record.line_ids.ids)]
             )
-            order.fsm_order_ids = orders
-            order.fsm_order_count = len(order.fsm_order_ids)
+            record.fsm_order_ids = orders
+            record.fsm_order_count = len(record.fsm_order_ids)
 
     def action_view_fsm_orders(self):
         self.ensure_one()
