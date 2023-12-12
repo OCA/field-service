@@ -1,6 +1,7 @@
 # Copyright (C) 2019 Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import pytz
 from dateutil.rrule import (
     DAILY,
     FR,
@@ -114,18 +115,47 @@ class FSMFrequency(models.Model):
                 if not (1 <= rec.month_day <= 31):
                     raise UserError(_("'Day of Month must be between 1 and 31"))
 
-    def _get_rrule(self, dtstart=None, until=None):
+    def _get_rrule(self, dtstart=None, until=None, tz=None):
         self.ensure_one()
         freq = FREQUENCIES[self.interval_type]
-        return rrule(
-            freq,
-            interval=self.interval,
-            dtstart=dtstart,
-            until=until,
-            byweekday=self._byweekday(),
-            bymonth=self._bymonth(),
-            bymonthday=self._bymonthday(),
-            bysetpos=self._bysetpos(),
+        # localize dtstart and until to user timezone
+        tz = pytz.timezone(
+            tz or self._context.get("tz", None) or self.env.user.tz or "UTC"
+        )
+
+        if dtstart:
+            dtstart = pytz.timezone("UTC").localize(dtstart).astimezone(tz)
+        if until:
+            until = pytz.timezone("UTC").localize(until).astimezone(tz)
+            # We force until in the starting timezone to avoid incoherent results
+            until = tz.normalize(until.replace(tzinfo=dtstart.tzinfo))
+
+        return (
+            # Replace original timezone with current date timezone
+            # without changing the time and force it back to UTC,
+            # this will keep the same final time even in case of
+            # daylight saving time change
+            #
+            # for instance recurring weekly
+            # from 2022-03-21 15:00:00+01:00 to 2022-04-11 15:30:00+02:00
+            # will give:
+            #
+            # utc naive -> datetime timezone aware
+            # 2022-03-21 14:00:00 -> 2022-03-21 15:00:00+01:00
+            # 2022-03-28 13:00:00 -> 2022-03-28 15:00:00+02:00
+            date.replace(tzinfo=tz.normalize(date).tzinfo)
+            .astimezone(pytz.UTC)
+            .replace(tzinfo=None)
+            for date in rrule(
+                freq,
+                interval=self.interval,
+                dtstart=dtstart,
+                until=until,
+                byweekday=self._byweekday(),
+                bymonth=self._bymonth(),
+                bymonthday=self._bymonthday(),
+                bysetpos=self._bysetpos(),
+            )
         )
 
     def _byweekday(self):

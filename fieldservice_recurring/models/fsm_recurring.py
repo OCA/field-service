@@ -15,7 +15,11 @@ class FSMRecurringOrder(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     def _default_team_id(self):
-        return self.env.ref("fieldservice.fsm_team_default")
+        return self.env["fsm.team"].search(
+            [["company_id", "in", (self.env.company.id, False)]],
+            limit=1,
+            order="sequence",
+        )
 
     name = fields.Char(
         required=True,
@@ -27,9 +31,8 @@ class FSMRecurringOrder(models.Model):
         [
             ("draft", "Draft"),
             ("progress", "In Progress"),
-            ("pending", "To Renew"),
+            ("suspend", "Suspended"),
             ("close", "Closed"),
-            ("cancel", "Cancelled"),
         ],
         readonly=True,
         default="draft",
@@ -79,6 +82,7 @@ class FSMRecurringOrder(models.Model):
     person_id = fields.Many2one(
         "fsm.person", string="Assigned To", index=True, tracking=True
     )
+    equipment_ids = fields.Many2many("fsm.equipment")
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
@@ -130,15 +134,12 @@ class FSMRecurringOrder(models.Model):
             rec.write({"state": "progress"})
             rec._generate_orders()
 
-    def action_renew(self):
-        return self.action_start()
-
-    def action_cancel(self):
+    def action_suspend(self):
         for order in self.fsm_order_ids.filtered(
             lambda o: o.stage_id.is_closed is False
         ):
             order.action_cancel()
-        return self.write({"state": "cancel"})
+        return self.write({"state": "suspend"})
 
     def _get_rruleset(self):
         self.ensure_one()
@@ -191,6 +192,7 @@ class FSMRecurringOrder(models.Model):
             "category_ids": [(6, False, self.fsm_order_template_id.category_ids.ids)],
             "company_id": self.company_id.id,
             "person_id": self.person_id.id,
+            "equipment_ids": [(6, 0, self.equipment_ids.ids)],
         }
 
     def _create_order(self, date):
@@ -232,44 +234,26 @@ class FSMRecurringOrder(models.Model):
         """
         return (
             self.env["fsm.recurring"]
-            .search([("state", "in", ("progress", "pending"))])
+            .search([("state", "=", "progress")])
             ._generate_orders()
         )
 
     @api.model
     def _cron_manage_expiration(self):
         """
-        Executed by Cron task to put all 'pending' recurring orders into
+        Executed by Cron task to put all 'in progress' recurring orders into
         'close' stage if it is after their end date or the max orders have
-        been generated.  Next, the 'progress' recurring orders are put in
-        'pending' stage by first checking if the end date is within the next
-        30 days and then checking if the max number of orders will be created
-        within the next 30 days
+        been generated.
         """
         to_close = self.env["fsm.recurring"]
-        pending_rec = self.env["fsm.recurring"].search([("state", "=", "pending")])
-        for rec in pending_rec:
+        open_rec = self.env["fsm.recurring"].search([("state", "=", "progress")])
+        for rec in open_rec:
             if rec.end_date and rec.end_date <= datetime.today():
                 to_close += rec
                 continue
             if rec.max_orders > 0 and rec.fsm_order_count >= rec.max_orders:
                 to_close += rec
         to_close.write({"state": "close"})
-        to_renew = self.env["fsm.recurring"]
-        expire_date = datetime.today() + relativedelta(days=+30)
-        open_rec = self.env["fsm.recurring"].search([("state", "=", "progress")])
-        for rec in open_rec:
-            if rec.end_date and rec.end_date <= expire_date:
-                to_renew += rec
-                continue
-            if rec.max_orders > 0:
-                orders_in_30 = rec.fsm_order_count
-                orders_in_30 += rec.fsm_frequency_set_id._get_rruleset(
-                    until=expire_date
-                ).count()
-                if orders_in_30 >= rec.max_orders:
-                    to_renew += rec
-        to_renew.write({"state": "pending"})
 
     @api.model
     def _cron_scheduled_task(self):

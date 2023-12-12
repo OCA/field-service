@@ -4,7 +4,7 @@
 {
     "name": "Field Service Recurring Work Orders",
     "summary": "Manage recurring Field Service orders",
-    "version": "16.0.1.0.1",
+    "version": "16.0.2.0.0",
     "category": "Field Service",
     "author": "Brian McMaster, "
     "Open Source Integrators, "
@@ -21,6 +21,7 @@
         "views/fsm_order.xml",
         "views/fsm_recurring_template.xml",
         "views/fsm_recurring.xml",
+        "views/fsm_team.xml",
         "data/recurring_cron.xml",
     ],
     "demo": [

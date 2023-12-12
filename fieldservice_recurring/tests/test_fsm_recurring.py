@@ -15,6 +15,7 @@ class FSMRecurringCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(FSMRecurringCase, cls).setUpClass()
+        cls.Equipment = cls.env["fsm.equipment"]
         cls.Recurring = cls.env["fsm.recurring"]
         cls.Frequency = cls.env["fsm.frequency"]
         cls.FrequencySet = cls.env["fsm.frequency.set"]
@@ -54,6 +55,20 @@ class FSMRecurringCase(TransactionCase):
         cls.fsm_recurring_template = cls.env["fsm.recurring.template"].create(
             {"name": "Test Template"}
         )
+        cls.test_equipment = cls.Equipment.create({"name": "Equipment"})
+
+    def test_fsm_recurring_change_states(self):
+        recurring = self.Recurring.create(
+            {
+                "fsm_frequency_set_id": self.fr_set.id,
+                "location_id": self.test_location.id,
+                "start_date": fields.Datetime.now().replace(hour=12),
+            }
+        )
+        recurring.action_start()
+        self.assertEqual(recurring.state, "progress")
+        recurring.action_suspend()
+        self.assertEqual(recurring.state, "suspend")
 
     def test_cron_generate_orders_rule1(self):
         """Test recurring order with following rule,
@@ -99,7 +114,8 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
+                "equipment_ids": [(6, 0, [self.test_equipment.id])],
             }
         )
         test_recurring = self.Recurring.create(
@@ -111,7 +127,6 @@ class FSMRecurringCase(TransactionCase):
         )
         recurring.action_start()
         test_recurring.action_start()
-        test_recurring.action_renew()
         # Run schedule job now, to compute the future work orders
         recurring._cron_scheduled_task()
         recurring.onchange_recurring_template_id()
@@ -177,7 +192,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "end_date": expire_date1,
             }
         )
@@ -185,7 +200,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -193,7 +208,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -210,7 +225,7 @@ class FSMRecurringCase(TransactionCase):
         x = False
         for d in all_dates:
             if x:
-                diff_days = (d - x).days
+                diff_days = (d.date() - x.date()).days
                 self.assertEqual(diff_days, 21)
             x = d
 
@@ -252,7 +267,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
             }
         )
         recurring.action_start()
@@ -292,4 +307,3 @@ class FSMRecurringCase(TransactionCase):
         fsm_order = self.env["fsm.order"].create(order_vals)
         self.env["fsm.order"].create(order_vals2)
         fsm_order.action_view_fsm_recurring()
-        recurring.action_cancel()
