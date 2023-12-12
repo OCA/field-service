@@ -103,17 +103,6 @@ msgid "By Position"
 msgstr "Pozisyona Göre"
 
 #. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Cancel"
-msgstr "İptal"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__cancel
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-msgid "Cancelled"
-msgstr "İptal Edildi"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__is_exclusive
 msgid ""
 "Checking this box will make this an exclusive rule. Exclusive\n"
@@ -135,11 +124,6 @@ msgstr "Kapandı"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__company_id
 msgid "Company"
 msgstr "Firma"
-
-#. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Confirm"
-msgstr "Doğrula"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__create_uid
@@ -211,6 +195,11 @@ msgid "Draft"
 msgstr "Taslak"
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
+msgid "Draft Recurring"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__buffer_early
 msgid "Early Buffer"
 msgstr "Erken Tampon"
@@ -219,6 +208,11 @@ msgstr "Erken Tampon"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__end_date
 msgid "End Date"
 msgstr "Bitiş Tarihi"
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__equipment_ids
+msgid "Equipment"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__is_exclusive
@@ -259,6 +253,11 @@ msgstr "Saha Servis Siparişleri Tekrarlamaları"
 #: model:ir.actions.act_window,name:fieldservice_recurring.action_fsm_recurring_template
 msgid "Field Service Recurring Templates"
 msgstr "Saha Servis Şablon Tekrarlamaları"
+
+#. module: fieldservice_recurring
+#: model:ir.model,name:fieldservice_recurring.model_fsm_team
+msgid "Field Service Team"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.actions.server,name:fieldservice_recurring.recurring_orders_cron_ir_actions_server
@@ -641,8 +640,10 @@ msgid "Recurring Order"
 msgstr "Yinelenen Sipariş"
 
 #. module: fieldservice_recurring
+#: model:ir.actions.act_window,name:fieldservice_recurring.action_recurring_tree
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
 msgid "Recurring Orders"
 msgstr "Yinelenen Siparişler"
 
@@ -659,14 +660,14 @@ msgid "Recurring Templates"
 msgstr "Yinelenen Şablonlar"
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__recurring_draft_count
+msgid "Recurring in draft"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__end_date
 msgid "Recurring orders will not be made after this date"
 msgstr "Bu tarihten sonra tekrarlanan siparişler yapılmayacaktır"
-
-#. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
-msgid "Renew"
-msgstr "Yenile"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__interval
@@ -709,6 +710,11 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
+msgid "Start"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__start_date
 msgid "Start Date"
 msgstr "Başlangıç Tarihi"
@@ -738,7 +744,19 @@ msgid "Sunday"
 msgstr "Pazar"
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
+msgid "Suspend"
+msgstr ""
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__suspend
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "Suspended"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__team_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Team"
 msgstr "Ekip"
 
@@ -788,12 +806,6 @@ msgstr "Bu, tekrarlanacak sipariş şablonudur"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__th
 msgid "Thursday"
 msgstr "Perşembe"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__pending
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-msgid "To Renew"
-msgstr "Yenileme"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__tu
@@ -874,6 +886,21 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Yıllık"
+
+#~ msgid "Cancel"
+#~ msgstr "İptal"
+
+#~ msgid "Cancelled"
+#~ msgstr "İptal Edildi"
+
+#~ msgid "Confirm"
+#~ msgstr "Doğrula"
+
+#~ msgid "Renew"
+#~ msgstr "Yenile"
+
+#~ msgid "To Renew"
+#~ msgstr "Yenileme"
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "SMS Ulaştırma hatası"
