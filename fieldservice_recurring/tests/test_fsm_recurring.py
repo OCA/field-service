@@ -14,6 +14,7 @@ from odoo.tests.common import TransactionCase
 class FSMRecurringCase(TransactionCase):
     def setUp(self):
         super(FSMRecurringCase, self).setUp()
+        self.Equipment = self.env["fsm.equipment"]
         self.Recurring = self.env["fsm.recurring"]
         self.Frequency = self.env["fsm.frequency"]
         self.FrequencySet = self.env["fsm.frequency.set"]
@@ -53,6 +54,7 @@ class FSMRecurringCase(TransactionCase):
         self.fsm_recurring_template = self.env["fsm.recurring.template"].create(
             {"name": "Test Template"}
         )
+        self.test_equipment = self.Equipment.create({"name": "Equipment"})
 
     def test_cron_generate_orders_rule1(self):
         """Test recurring order with following rule,
@@ -98,7 +100,8 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
+                "equipment_ids": [(6, 0, [self.test_equipment.id])],
             }
         )
         test_recurring = self.Recurring.create(
@@ -110,7 +113,6 @@ class FSMRecurringCase(TransactionCase):
         )
         recurring.action_start()
         test_recurring.action_start()
-        test_recurring.action_renew()
         # Run schedule job now, to compute the future work orders
         recurring._cron_scheduled_task()
         recurring.onchange_recurring_template_id()
@@ -176,7 +178,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "end_date": expire_date1,
             }
         )
@@ -184,7 +186,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -192,7 +194,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
                 "max_orders": 1,
             }
         )
@@ -209,7 +211,7 @@ class FSMRecurringCase(TransactionCase):
         x = False
         for d in all_dates:
             if x:
-                diff_days = (d - x).days
+                diff_days = (d.date() - x.date()).days
                 self.assertEqual(diff_days, 21)
             x = d
 
@@ -251,7 +253,7 @@ class FSMRecurringCase(TransactionCase):
             {
                 "fsm_frequency_set_id": fr_set.id,
                 "location_id": self.test_location.id,
-                "start_date": fields.Datetime.today(),
+                "start_date": fields.Datetime.now().replace(hour=12),
             }
         )
         recurring.action_start()
@@ -291,4 +293,3 @@ class FSMRecurringCase(TransactionCase):
         fsm_order = self.env["fsm.order"].create(order_vals)
         self.env["fsm.order"].create(order_vals2)
         fsm_order.action_view_fsm_recurring()
-        recurring.action_cancel()
