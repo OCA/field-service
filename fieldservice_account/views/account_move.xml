@@ -10,7 +10,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-map"
-                    attrs="{'invisible': [('fsm_order_count', '=', 0)]}"
+                    invisible="fsm_order_count == 0"
                     groups="fieldservice.group_fsm_user"
                 >
                     <field
