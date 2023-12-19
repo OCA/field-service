@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class FSMAccountCase(TransactionCase):
     def setUp(self):
-        super(FSMAccountCase, self).setUp()
+        super().setUp()
         self.Wizard = self.env["fsm.wizard"]
         self.WorkOrder = self.env["fsm.order"]
         self.AccountInvoice = self.env["account.move"]
