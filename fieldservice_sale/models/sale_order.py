@@ -189,9 +189,9 @@ class SaleOrder(models.Model):
         self.ensure_one()
         msg_fsm_links = ""
         for fsm_order in fsm_orders:
-            fsm_order.message_post_with_view(
+            fsm_order.message_mail_with_source(
                 "mail.message_origin_link",
-                values={"self": fsm_order, "origin": self},
+                render_values={"self": fsm_order, "origin": self},
                 subtype_id=self.env.ref("mail.mt_note").id,
                 author_id=self.env.user.partner_id.id,
             )
