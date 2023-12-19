@@ -149,15 +149,15 @@ class SaleOrder(models.Model):
 
         # Process lines set to FSM Sale
         new_fsm_sale_sol = self.order_line.filtered(
-            lambda l: l.product_id.field_service_tracking == "sale"
-            and not l.fsm_order_id
+            lambda L: L.product_id.field_service_tracking == "sale"
+            and not L.fsm_order_id
         )
         new_fsm_orders |= self._field_service_generate_sale_fsm_orders(new_fsm_sale_sol)
 
         # Create new FSM Order for lines set to FSM Line
         new_fsm_line_sol = self.order_line.filtered(
-            lambda l: l.product_id.field_service_tracking == "line"
-            and not l.fsm_order_id
+            lambda L: L.product_id.field_service_tracking == "line"
+            and not L.fsm_order_id
         )
 
         new_fsm_orders |= self._field_service_generate_line_fsm_orders(new_fsm_line_sol)
@@ -205,7 +205,7 @@ class SaleOrder(models.Model):
 
     def _action_confirm(self):
         """On SO confirmation, some lines generate field service orders."""
-        result = super(SaleOrder, self)._action_confirm()
+        result = super()._action_confirm()
         if any(
             sol.product_id.field_service_tracking != "no"
             for sol in self.order_line.filtered(

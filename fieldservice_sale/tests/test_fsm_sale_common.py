@@ -7,7 +7,7 @@ from odoo.addons.sale.tests.common import TestSaleCommonBase
 class TestFSMSale(TestSaleCommonBase):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMSale, cls).setUpClass()
+        super().setUpClass()
 
     @classmethod
     def setUpFSMTemplates(cls):
