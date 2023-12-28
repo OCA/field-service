@@ -1,0 +1,178 @@
+<odoo>
+
+    <record id="fsm_route_dayroute_tree" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.tree</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="route_id" />
+                <field name="person_id" />
+                <field name="date" />
+                <field name="stage_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fsm_route_dayroute_form" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.form</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <form string="Day Route">
+                <header>
+                    <field
+                        name="stage_id"
+                        widget="statusbar"
+                        options="{'fold_field': 'fold'}"
+                        clickable="True"
+                        domain="[('stage_type', '=', 'route')]"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group id="main">
+                        <group id="left">
+                            <field name="route_id" />
+                            <field name="person_id" required="1" />
+                            <field
+                                name="team_id"
+                                groups="fieldservice.group_fsm_team"
+                            />
+                        </group>
+                        <group id="right">
+                            <field name="date" required="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Orders">
+                            <group id="orders">
+                                <group id="orders-left">
+                                    <field name="max_order" />
+                                    <field name="order_count" />
+                                    <field name="order_remaining" />
+                                </group>
+                                <group id="orders-right" />
+                            </group>
+                            <field
+                                name="order_ids"
+                                nolabel="1"
+                                widget="many2many"
+                                domain="[('dayroute_id', '=', False), ('fsm_route_id', '=', route_id)]"
+                            >
+                                <tree>
+                                    <field name="sequence" widget="handle" />
+                                    <field name="name" />
+                                    <field name="location_id" />
+                                    <field name="scheduled_date_start" />
+                                    <field name="stage_id" />
+                                    <button
+                                        name="action_complete"
+                                        string="Complete order"
+                                        type="object"
+                                        icon="fa-check text-success"
+                                        attrs="{'invisible': [('stage_id', 'in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d])]}"
+                                    />
+                                    <button
+                                        name="action_cancel"
+                                        string="Cancel order"
+                                        type="object"
+                                        icon="fa-times-circle text-danger"
+                                        attrs="{'invisible': [('stage_id', 'in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d])]}"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Planning">
+                            <group id="planning">
+                                <group id="planning-left" string="Timing">
+                                    <field name="date_start_planned" />
+                                    <field name="work_time" />
+                                    <field name="max_allow_time" />
+                                </group>
+                                <group id="planning-right" string="Positioning">
+                                    <field name="longitude" />
+                                    <field name="latitude" />
+                                    <field name="start_location_id" />
+                                    <field name="end_location_id" />
+                                    <field name="last_location_id" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_route_dayroute" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route.dayroute</field>
+        <field name="view_mode">tree,calendar,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Day Routes here.
+            </p>
+        </field>
+    </record>
+
+    <!-- Dashboard -->
+    <record id="fsm_route_dayroute_calendar" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.calendar</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Day Routes"
+                date_start="date_start_planned"
+                date_delay="max_allow_time"
+                color="route_id"
+            >
+                <field name="name" />
+                <field name="person_id" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_fsm_route_dayroute_dash" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route.dayroute</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+    <!-- Reporting -->
+    <record id="fsm_route_dayroute_graph_view" model="ir.ui.view">
+        <field name="name">fsm.route.graph</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <graph string="Day Routes" type="bar">
+                <field name="date" type="row" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="fsm_route_dayroute_pivot_view" model="ir.ui.view">
+        <field name="name">fsm.route.pivot</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <pivot string="Day Routes" display_quantity="true">
+                <field name="date" type="row" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_fsm_route_dayroute_report" model="ir.actions.act_window">
+        <field name="name">Day Routes</field>
+        <field name="res_model">fsm.route.dayroute</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Day Routes Report
+            </p>
+        </field>
+    </record>
+
+</odoo>
