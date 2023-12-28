@@ -466,7 +466,8 @@
                 <field
                     name="person_id"
                     write_model="fsm.person.calendar.filter"
-                    write_field="fsm_person_id"
+                    write_field="person_id"
+                    filter_field="person_checked"
                     avatar_field="image_128"
                 />
                 <field name="team_id" filters="1" />
