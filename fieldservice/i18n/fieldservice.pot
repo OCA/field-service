@@ -83,6 +83,18 @@ msgid "A Field Service Worker related to that partner already exists."
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_payable_id
+msgid "Account Payable"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_receivable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_receivable_id
+msgid "Account Receivable"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_needaction
@@ -353,6 +365,12 @@ msgid "Avatar 512"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
+msgid "Bank"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_ids
 msgid "Banks"
@@ -527,6 +545,14 @@ msgid "Classify and analyze your orders"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__peppol_eas
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__peppol_eas
+msgid ""
+"Code used to identify the Endpoint for BIS Billing 3.0 and its derivatives.\n"
+"             List available at https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
 msgid "Color Code"
 msgstr ""
@@ -558,6 +584,12 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_res_company
 msgid "Companies"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref_company_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref_company_ids
+msgid "Companies that refers to partner"
 msgstr ""
 
 #. module: fieldservice
@@ -817,6 +849,30 @@ msgid "Created on"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_limit
+msgid "Credit Limit"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_to_invoice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_to_invoice
+msgid "Credit To Invoice"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit_limit
+msgid "Credit limit specific to this partner."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__current_date
 msgid "Current Date"
 msgstr ""
@@ -824,6 +880,18 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__current_location_id
 msgid "Current Location"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
+msgid "Customer Payment Terms"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__customer_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
+msgid "Customer Rank"
 msgstr ""
 
 #. module: fieldservice
@@ -844,6 +912,12 @@ msgid "Date"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__days_sales_outstanding
+msgid "Days Sales Outstanding (DSO)"
+msgstr ""
+
+#. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
 msgid "Default Team"
 msgstr ""
@@ -851,6 +925,12 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
 msgid "Default duration in hours"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
+msgid "Degree of trust you have in this debtor"
 msgstr ""
 
 #. module: fieldservice
@@ -933,6 +1013,12 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Due Within 7 Days"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__duplicated_bank_account_partners_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__duplicated_bank_account_partners_count
+msgid "Duplicated Bank Account Partners Count"
 msgstr ""
 
 #. module: fieldservice
@@ -1070,7 +1156,7 @@ msgid "FSM Record Conversion"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__fsm_person_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_id
 msgid "FSM Worker"
 msgstr ""
 
@@ -1162,6 +1248,18 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fiscal_country_codes
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fiscal_country_codes
+msgid "Fiscal Country Codes"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__fold
 msgid "Folded in Kanban"
 msgstr ""
@@ -1191,6 +1289,12 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__activity_type_icon
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ubl_cii_format
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ubl_cii_format
+msgid "Format"
 msgstr ""
 
 #. module: fieldservice
@@ -1269,6 +1373,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_message
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__has_message
 msgid "Has Message"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__has_unreconciled_entries
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_unreconciled_entries
+msgid "Has Unreconciled Entries"
 msgstr ""
 
 #. module: fieldservice
@@ -1464,6 +1574,12 @@ msgid "Internal Type"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn
+msgid "Invoice"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
 msgid "Invoice your FSM orders"
 msgstr ""
@@ -1471,6 +1587,12 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Invoice your Service Orders"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
+msgid "Invoices"
 msgstr ""
 
 #. module: fieldservice
@@ -1537,6 +1659,12 @@ msgid "Job Position"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__journal_item_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__journal_item_count
+msgid "Journal Items"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__lang
 msgid "Language"
@@ -1577,8 +1705,23 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__last_time_entries_checked
+msgid ""
+"Last time the invoices & payments matching was performed for this partner. "
+"It is set either if there's not at least an unreconciled debit and an "
+"unreconciled credit or if you click the \"Done\" button."
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Lat:"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_time_entries_checked
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_time_entries_checked
+msgid "Latest Invoices & Payments Matching Date"
 msgstr ""
 
 #. module: fieldservice
@@ -1976,6 +2119,12 @@ msgid "Message Delivery error"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn_msg
+msgid "Message for Invoice"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2316,6 +2465,18 @@ msgid "Parent name"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
+msgid "Partner Contracts"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__use_partner_credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__use_partner_credit_limit
+msgid "Partner Limit"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
 msgid "Partner is Active"
 msgstr ""
@@ -2330,6 +2491,47 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_vat_partner_id
 msgid "Partner with same Tax ID"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit_limit
+msgid "Payable Limit"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
+msgid "Payment Method"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
+msgid "Payment Token Count"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
+msgid "Payment Tokens"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__peppol_endpoint
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__peppol_endpoint
+msgid "Peppol Endpoint"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__peppol_eas
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__peppol_eas
+msgid "Peppol e-address (EAS)"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_checked
+msgid "Person Checked"
 msgstr ""
 
 #. module: fieldservice
@@ -2362,10 +2564,25 @@ msgid "Preferred Workers"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_method_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_method_id
+msgid ""
+"Preferred payment method when paying this vendor. This is used to filter "
+"vendor bills by preferred payment method to register payments in mass. Use "
+"cases: create bank files for batch wires, check runs."
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Previous Stage"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
 msgstr ""
 
 #. module: fieldservice
@@ -2590,6 +2807,15 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+msgid ""
+"Selecting the \"Warning\" option will notify user with the message, "
+"Selecting \"Blocking Message\" will throw an exception with the message and "
+"block the flow. The Message has to be written in the next field."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__self
 msgid "Self"
@@ -2650,6 +2876,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_share
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_share
 msgid "Share Partner"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__show_credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
+msgid "Show Credit Limit"
 msgstr ""
 
 #. module: fieldservice
@@ -2780,6 +3012,12 @@ msgid "Sub-Locations"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
+msgid "Supplier Rank"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr ""
@@ -2869,9 +3107,24 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_position_id
+msgid ""
+"The fiscal position determines the taxes/accounts used for this contact."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__user_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__user_id
 msgid "The internal user in charge of this contact."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__has_unreconciled_entries
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__has_unreconciled_entries
+msgid ""
+"The partner has at least one unreconciled debit and credit since last time "
+"the invoices & payments matching was performed."
 msgstr ""
 
 #. module: fieldservice
@@ -2888,11 +3141,51 @@ msgid "The worker is already linked to this location."
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_payable_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_payable_id
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_receivable_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_receivable_id
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
 "This field is used to search on email address as the primary email field can"
 " contain more than strictly an email address."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_supplier_payment_term_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_supplier_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and vendor bills"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_term_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for sales orders "
+"and customer invoices"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the "
+"current partner"
 msgstr ""
 
 #. module: fieldservice
@@ -2942,6 +3235,36 @@ msgid "Today Orders"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
+msgid "Total Invoiced"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
+msgid "Total Payable"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
+msgid "Total Receivable"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
+msgid "Total amount this customer owes you."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
+msgid "Total amount you have to pay to this vendor."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__stage_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__type_id
@@ -2962,6 +3285,14 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Unassigned"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__peppol_endpoint
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__peppol_endpoint
+msgid ""
+"Unique identifier used by the BIS Billing 3.0 and its derivatives, also "
+"known as 'Endpoint ID'."
 msgstr ""
 
 #. module: fieldservice
@@ -3053,9 +3384,33 @@ msgid "Vehicles"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
+msgid "Vendor Payment Terms"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website
 msgid "Website Link"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
 msgstr ""
 
 #. module: fieldservice
@@ -3150,6 +3505,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__zip
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__zip
 msgid "Zip"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__days_sales_outstanding
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__days_sales_outstanding
+msgid ""
+"[(Total Receivable/Total Revenue) * number of days since the first invoice] "
+"for this customer"
 msgstr ""
 
 #. module: fieldservice
