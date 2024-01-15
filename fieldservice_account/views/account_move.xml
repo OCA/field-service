@@ -51,6 +51,9 @@
                     <field name="fsm_order_ids" nolabel="1" />
                 </group>
             </xpath>
+            <xpath expr="//tree//field[@name='price_total']" position="after">
+                <field name="fsm_order_ids" widget="many2many_tags" optional="hide" />
+            </xpath>
         </field>
     </record>
     <!-- Invoice Search View -->
