@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+        <!-- Create the main survey record -->
+        <record id="customer_satisfaction_survey" model="survey.survey">
+            <field name="title">Customer Satisfaction Survey for Field Services</field>
+            <field name="access_token">b247640x-9646-1344-abce-344ca236521e</field>
+            <field name="access_mode">public</field>
+            <field name="state">open</field>
+            <field name="users_can_go_back" eval="True" />
+            <field name="scoring_type">scoring_with_answers</field>
+            <field name="scoring_success_min">0</field>
+            <field name="questions_layout">page_per_question</field>
+            <field name="description" type="html">
+                <p
+            >The purpose of this survey is to evaluate customer satisfaction with our company's field service operations. Your responses will be highly valuable in identifying areas for improvement and enhancing our service quality. We appreciate your time in completing this questionnaire.</p>
+            </field>
+        </record>
+
+        <!-- Question 1 -->
+        <record id="question1" model="survey.question">
+            <field
+            name="title"
+        >Overall, how satisfied are you with the field services you have received from our company?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question1, Answers -->
+        <record id="question1_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question1" />
+            <field name="sequence">1</field>
+            <field name="value">Very satisfied</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question1_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question1" />
+            <field name="sequence">1</field>
+            <field name="value">Satisfied</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question1_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question1" />
+            <field name="sequence">1</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question1_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question1" />
+            <field name="sequence">1</field>
+            <field name="value">Dissatisfied</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question1_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question1" />
+            <field name="sequence">1</field>
+            <field name="value">Very dissatisfied</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 2 -->
+        <record id="question2" model="survey.question">
+            <field
+            name="title"
+        >How would you rate the punctuality of our technicians in meeting scheduled appointments?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question2, Answers -->
+        <record id="question2_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question2" />
+            <field name="sequence">1</field>
+            <field name="value">Very punctual</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question2_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question2" />
+            <field name="sequence">2</field>
+            <field name="value">Punctual</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+            </record>
+        <record id="question2_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question2" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question2_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question2" />
+            <field name="sequence">4</field>
+            <field name="value">Somewhat punctual</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question2_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question2" />
+            <field name="sequence">5</field>
+            <field name="value">Very unpunctual</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 3 -->
+        <record id="question3" model="survey.question">
+            <field
+            name="title"
+        >How would you rate the competence and knowledge of our technicians in addressing your needs?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question3, Answers -->
+        <record id="question3_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question3" />
+            <field name="sequence">1</field>
+            <field name="value">Very competent and knowledgeable</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question3_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question3" />
+            <field name="sequence">2</field>
+            <field name="value">Competent and knowledgeable</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question3_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question3" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question3_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question3" />
+            <field name="sequence">4</field>
+            <field name="value">Somewhat incompetent and uninformed</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question3_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question3" />
+            <field name="sequence">5</field>
+            <field name="value">Very incompetent and uninformed</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 4 -->
+        <record id="question4" model="survey.question">
+            <field
+            name="title"
+        >How would you rate the quality of service provided by our technicians?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question4, Answers -->
+        <record id="question4_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question4" />
+            <field name="sequence">1</field>
+            <field name="value">Very high quality</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question4_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question4" />
+            <field name="sequence">2</field>
+            <field name="value">High quality</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question4_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question4" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question4_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question4" />
+            <field name="sequence">4</field>
+            <field name="value">Low quality</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question4_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question4" />
+            <field name="sequence">5</field>
+            <field name="value">Very low quality</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 5 -->
+        <record id="question5" model="survey.question">
+            <field
+            name="title"
+        >Do you believe our technicians have the necessary tools and equipment to adequately perform the service?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question5, Answers -->
+        <record id="question5_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question5" />
+            <field name="sequence">1</field>
+            <field
+            name="value"
+        >Yes, they always have all the necessary tools and equipment</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question5_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question5" />
+            <field name="sequence">2</field>
+            <field
+            name="value"
+        >Most of the time, they have the necessary tools and equipment</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question5_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question5" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question5_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question5" />
+            <field name="sequence">4</field>
+            <field
+            name="value"
+        >Rarely, they have the necessary tools and equipment</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question5_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question5" />
+            <field name="sequence">5</field>
+            <field
+            name="value"
+        >Almost never, they have the necessary tools and equipment</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 6 -->
+        <record id="question6" model="survey.question">
+            <field
+            name="title"
+        >Would you recommend our services to a friend or colleague?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question6, Answers -->
+        <record id="question6_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question6" />
+            <field name="sequence">1</field>
+            <field name="value">Definitely</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question6_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question6" />
+            <field name="sequence">2</field>
+            <field name="value">Probably</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question6_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question6" />
+            <field name="sequence">3</field>
+            <field name="value">Not sure</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question6_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question6" />
+            <field name="sequence">4</field>
+            <field name="value">Probably not</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question6_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question6" />
+            <field name="sequence">5</field>
+            <field name="value">Definitely not</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 7 -->
+        <record id="question7" model="survey.question">
+            <field
+            name="title"
+        >How would you rate the effectiveness of problem-solving and repairs during the field service operations?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question7, Answers -->
+        <record id="question7_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question7" />
+            <field name="sequence">1</field>
+            <field name="value">Very effective</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question7_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question7" />
+            <field name="sequence">2</field>
+            <field name="value">Effective</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question7_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question7" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question7_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question7" />
+            <field name="sequence">4</field>
+            <field name="value">Ineffective</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question7_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question7" />
+            <field name="sequence">5</field>
+            <field name="value">Very ineffective</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 8 -->
+        <record id="question8" model="survey.question">
+            <field
+            name="title"
+        >How would you rate the communication and clarity of information provided by our technicians during the service?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question8, Answers -->
+        <record id="question8_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question8" />
+            <field name="sequence">1</field>
+            <field name="value">Very clear and informative</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question8_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question8" />
+            <field name="sequence">2</field>
+            <field name="value">Clear and informative</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question8_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question8" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question8_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question8" />
+            <field name="sequence">4</field>
+            <field name="value">Unclear and uninformative</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question8_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question8" />
+            <field name="sequence">5</field>
+            <field name="value">Very unclear and uninformative</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 9 -->
+        <record id="question9" model="survey.question">
+            <field
+            name="title"
+        >Considering your overall experience with our field service operations, would you recommend our company to others?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory">True</field>
+        </record>
+
+        <!-- Question9, Answers -->
+        <record id="question9_answer1" model="survey.question.answer">
+            <field name="question_id" ref="question9" />
+            <field name="sequence">1</field>
+            <field name="value">Definitely yes</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">100</field>
+        </record>
+        <record id="question9_answer2" model="survey.question.answer">
+            <field name="question_id" ref="question9" />
+            <field name="sequence">2</field>
+            <field name="value">Probably yes</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">75</field>
+        </record>
+        <record id="question9_answer3" model="survey.question.answer">
+            <field name="question_id" ref="question9" />
+            <field name="sequence">3</field>
+            <field name="value">Neutral</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">50</field>
+        </record>
+        <record id="question9_answer4" model="survey.question.answer">
+            <field name="question_id" ref="question9" />
+            <field name="sequence">4</field>
+            <field name="value">Probably not</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">25</field>
+        </record>
+        <record id="question9_answer5" model="survey.question.answer">
+            <field name="question_id" ref="question9" />
+            <field name="sequence">5</field>
+            <field name="value">Definitely not</field>
+            <field name="is_correct" eval="True" />
+            <field name="answer_score">0</field>
+        </record>
+
+        <!-- Question 10 -->
+        <record id="question10" model="survey.question">
+            <field
+            name="title"
+        >What suggestions do you have for improving our field services?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">text_box</field>
+        </record>
+
+        <!-- Question 11 -->
+        <record id="question11" model="survey.question">
+            <field
+            name="title"
+        >Do you have any additional comments or observations you would like to share?</field>
+            <field name="survey_id" ref="customer_satisfaction_survey" />
+            <field name="question_type">text_box</field>
+        </record>
+
+
+</odoo>

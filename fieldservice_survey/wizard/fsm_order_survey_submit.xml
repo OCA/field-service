@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 - TODAY, Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+        <record id="fsm_order_survey_submit_view_form" model="ir.ui.view">
+            <field name="name">fsm.order.survey.submit.view.form</field>
+            <field name="model">fsm.order.survey.submit</field>
+            <field name="arch" type="xml">
+                <form string="Submit Survey">
+                    <group col="1">
+                        <group col="2">
+                            <field name="fsm_order_id" invisible="1" />
+                            <field name="survey_template_id" />
+                            <field
+                            name="recipient_ids"
+                            widget="many2many_tags"
+                            context="{'force_email':True, 'show_email':True, 'no_create_edit': True}"
+                        />
+                        </group>
+                        <group col="2">
+                            <field name="subject" />
+                        </group>
+                        <field name="body" options="{'style-inline': true}" />
+                        <group>
+                            <group>
+                                <field
+                                name="attachment_ids"
+                                widget="many2many_binary"
+                            />
+                            </group>
+                            <group>
+                                <field name="deadline" />
+                                <field name="template_id" label="Use template" />
+                            </group>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button
+                        string="Send"
+                        name="action_send"
+                        type="object"
+                        class="btn-primary"
+                    />
+                        <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                    />
+                    </footer>
+                </form>
+            </field>
+        </record>
+</odoo>
