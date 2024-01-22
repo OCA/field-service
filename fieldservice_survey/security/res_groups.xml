@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+        <!-- FSM Survey User -->
+        <record id="group_fsm_survey_user" model="res.groups">
+            <field name="name">Survey User</field>
+            <field name="category_id" ref="fieldservice.fsm" />
+            <field
+            name="implied_ids"
+            eval="[(4, ref('fieldservice.group_fsm_user')), (4, ref('survey.group_survey_user'))]"
+        />
+        </record>
+
+        <!-- FSM Survey Administrator -->
+        <record id="group_fsm_survey_manager" model="res.groups">
+            <field name="name">Survey Manager</field>
+            <field name="category_id" ref="fieldservice.fsm" />
+            <field
+            name="implied_ids"
+            eval="[(4, ref('group_fsm_survey_user')), (4, ref('survey.group_survey_manager'))]"
+        />
+            <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+        </record>
+</odoo>
