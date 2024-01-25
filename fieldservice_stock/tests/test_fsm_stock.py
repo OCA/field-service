@@ -10,7 +10,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFSMStockCommon(TransactionCase):
     def setUp(self):
-        super(TestFSMStockCommon, self).setUp()
+        super().setUp()
         self.location = self.env["fsm.location"]
         self.FSMOrder = self.env["fsm.order"]
         self.Product = self.env["product.product"].search([], limit=1)
