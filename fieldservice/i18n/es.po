@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-20 21:46+0000\n"
+"PO-Revision-Date: 2024-02-06 20:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -43,6 +43,16 @@ msgid ""
 "default when you deliver an order that belongs to this company.\n"
 "- Other: Other address for the company (e.g. subsidiary, ...)"
 msgstr ""
+"- Contactos: Utilícelo para organizar los datos de contacto de los empleados "
+"de una empresa determinada (por ejemplo, director general, director "
+"financiero, ...).\n"
+"- Dirección de facturación: Dirección preferida para todas las facturas. Se "
+"selecciona por defecto cuando se factura un pedido que pertenece a esta "
+"empresa.\n"
+"- Dirección de entrega: Dirección preferida para todas las entregas. Se "
+"selecciona por defecto cuando entrega un pedido que pertenece a esta empresa."
+"\n"
+"- Otra: Otra dirección de la empresa (por ejemplo, filial, ...)"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -261,7 +271,7 @@ msgstr "Permitir Servicio de Campo Google Map"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Google Maps"
-msgstr ""
+msgstr "Permitir el Servicio de Campo Google Maps"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
@@ -569,6 +579,10 @@ msgid ""
 "             List available at https://docs.peppol.eu/poacc/billing/3.0/"
 "codelist/eas/"
 msgstr ""
+"Código utilizado para identificar el Endpoint para BIS Billing 3.0 y sus "
+"derivados.\n"
+"             Lista disponible en https://docs.peppol.eu/poacc/billing/3.0/"
+"codelist/eas/"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
@@ -779,7 +793,7 @@ msgstr "Código del país"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create FSM Orders from Opportunities"
-msgstr ""
+msgstr "Crear Pedidos FSM a partir de Oportunidades"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_customer
@@ -834,6 +848,8 @@ msgstr "Crear las ubicaciones vinculadas de un trabajador."
 msgid ""
 "Create vendor bills and customer invoices when completing service orders."
 msgstr ""
+"Crear facturas de proveedores y clientes al completar las órdenes de "
+"servicio."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__create_uid
@@ -879,7 +895,7 @@ msgstr "Límite de Crédito"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_to_invoice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_to_invoice
 msgid "Credit To Invoice"
-msgstr ""
+msgstr "Crédito a Factura"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
@@ -936,7 +952,7 @@ msgstr "Fecha"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__days_sales_outstanding
 msgid "Days Sales Outstanding (DSO)"
-msgstr ""
+msgstr "Días de Ventas Pendientes (DSO)"
 
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
@@ -999,7 +1015,7 @@ msgstr "Nombre a Mostrar"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Display locations and orders on a map with Google Maps"
-msgstr ""
+msgstr "Mostrar ubicaciones y pedidos en un mapa con Google Maps"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1279,7 +1295,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fiscal_country_codes
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fiscal_country_codes
 msgid "Fiscal Country Codes"
-msgstr ""
+msgstr "Códigos Fiscales de los Países"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
@@ -1323,7 +1339,7 @@ msgstr "Icono de fuente impresionante, por ejemplo fa-tasks"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ubl_cii_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ubl_cii_format
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_formatted
@@ -1427,25 +1443,25 @@ msgstr "Alto"
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_high
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_high
 msgid "Hours of Buffer for High Priority FS Orders"
-msgstr ""
+msgstr "Horas de Reserva para Pedidos FS de Alta Prioridad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_low
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_low
 msgid "Hours of Buffer for Low Priority FS Orders"
-msgstr ""
+msgstr "Horas de Reserva Para Órdenes FS de Baja Prioridad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_lowest
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_lowest
 msgid "Hours of Buffer for Lowest Priority FS Orders"
-msgstr ""
+msgstr "Horas de Margen para los Pedidos FS de Menor Prioridad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_medium
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_medium
 msgid "Hours of Buffer for Medium Priority FS Orders"
-msgstr ""
+msgstr "Horas de Reserva para Órdenes FS de Prioridad Media"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__id
@@ -1597,7 +1613,7 @@ msgstr "Industria"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_address_inline
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contact_address_inline
 msgid "Inlined Complete Address"
-msgstr ""
+msgstr "Dirección Completa en Línea"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__todo
@@ -1691,7 +1707,7 @@ msgstr "Es una etapa predeterminada"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_closed
 msgid "Is closed"
-msgstr ""
+msgstr "Está cerrado"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__function
@@ -1907,7 +1923,7 @@ msgstr "Gestionar Acuerdos"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Catagories"
-msgstr ""
+msgstr "Gestionar Categorías"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
@@ -1963,7 +1979,7 @@ msgstr "Gestionar Categorías de Trabajador de Servicio de Campo"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Maintenance Requests"
-msgstr ""
+msgstr "Gestionar las Solicitudes de Mantenimiento"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2068,11 +2084,13 @@ msgid ""
 "Manage inventory and stock operations. Automatically activate Lots & Serial "
 "Numbers."
 msgstr ""
+"Gestione el inventario y las operaciones de stock. Active automáticamente "
+"Lotes y Números de Serie."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage recurrence of field service orders"
-msgstr ""
+msgstr "Gestionar la recurrencia de las órdenes de servicio sobre el terreno"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
@@ -2093,7 +2111,7 @@ msgstr "Gestionar tamaños para pedidos y ubicaciones"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sub-status of orders"
-msgstr ""
+msgstr "Gestionar el subestado de los pedidos"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_purchase
@@ -2118,17 +2136,17 @@ msgstr "Gestionar plantillas"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage territories, branches, districts and regions"
-msgstr ""
+msgstr "Gestionar territorios, sucursales, distritos y regiones"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage vehicles for Field Service operations"
-msgstr ""
+msgstr "Gestionar los Vehículos para las operaciones del Servicio de Campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage your distrubution structure"
-msgstr ""
+msgstr "Gestione su estructura de distribución"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__managed_by_id
@@ -2546,7 +2564,7 @@ msgstr "Límite por Pagar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
 msgid "Payment Method"
-msgstr ""
+msgstr "Método de Pago"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
@@ -2564,18 +2582,18 @@ msgstr "Tokens de Pago"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__peppol_endpoint
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__peppol_endpoint
 msgid "Peppol Endpoint"
-msgstr ""
+msgstr "Punto final de Peppol"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__peppol_eas
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__peppol_eas
 msgid "Peppol e-address (EAS)"
-msgstr ""
+msgstr "Dirección electrónica de Peppol (EAS)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_checked
 msgid "Person Checked"
-msgstr ""
+msgstr "Persona Verificada"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone
@@ -2614,6 +2632,10 @@ msgid ""
 "vendor bills by preferred payment method to register payments in mass. Use "
 "cases: create bank files for batch wires, check runs."
 msgstr ""
+"Forma de pago preferida al pagar a este proveedor. Se utiliza para filtrar "
+"facturas de proveedores por método de pago preferido para registrar pagos en "
+"masa. Casos de uso: crear archivos bancarios para transferencias por lotes, "
+"ejecuciones de cheques."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2666,7 +2688,7 @@ msgstr "Proyectos y Tareas"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Purchase Field Services"
-msgstr ""
+msgstr "Adquirir Servicios de Campo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -2878,12 +2900,12 @@ msgstr "Vende pedidos FSM"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell Field Service Orders"
-msgstr ""
+msgstr "Vender Órdenes de Servicio de Campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell products that generate field service orders"
-msgstr ""
+msgstr "Vender productos que generen pedidos de servicio externo"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__sequence
@@ -3000,7 +3022,7 @@ msgstr "Etapas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__starred_message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__starred_message_ids
 msgid "Starred Message"
-msgstr ""
+msgstr "Mensaje Destacado"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__state_id
@@ -3373,6 +3395,8 @@ msgid ""
 "Unique identifier used by the BIS Billing 3.0 and its derivatives, also "
 "known as 'Endpoint ID'."
 msgstr ""
+"Identificador único utilizado por el BIS Billing 3.0 y sus derivados, "
+"también conocido como \"Endpoint ID\"."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
@@ -3449,7 +3473,7 @@ msgstr "Usuario"
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_user_own
 msgid "User (only own documents)"
-msgstr ""
+msgstr "Usuario (solo documentos propios)"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
@@ -3603,6 +3627,8 @@ msgid ""
 "[(Total Receivable/Total Revenue) * number of days since the first invoice] "
 "for this customer"
 msgstr ""
+"[(Total pendiente de cobro/total de ingresos) * número de días transcurridos "
+"desde la primera factura] para este cliente"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
