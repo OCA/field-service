@@ -17,6 +17,17 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Reuniones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "# Oportunidades"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -50,8 +61,8 @@ msgstr ""
 "selecciona por defecto cuando se factura un pedido que pertenece a esta "
 "empresa.\n"
 "- Dirección de entrega: Dirección preferida para todas las entregas. Se "
-"selecciona por defecto cuando entrega un pedido que pertenece a esta empresa."
-"\n"
+"selecciona por defecto cuando entrega un pedido que pertenece a esta "
+"empresa.\n"
 "- Otra: Otra dirección de la empresa (por ejemplo, filial, ...)"
 
 #. module: fieldservice
@@ -920,6 +931,12 @@ msgid "Current Location"
 msgstr "Ubicación Actual"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Ubicación del Cliente"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
 msgid "Customer Payment Terms"
@@ -1528,6 +1545,16 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+"Si se establece, este equipo de ventas se utilizará para las ventas y "
+"asignaciones relacionadas con este socio"
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
 msgid ""
@@ -1760,6 +1787,12 @@ msgstr "Última Actualización por"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última Actualización en"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Última notificación marcada como leída del calendario base"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__last_time_entries_checked
@@ -2174,6 +2207,12 @@ msgid "Me"
 msgstr "Yo"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Reuniones"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2187,6 +2226,12 @@ msgstr "Error de Mensaje de Entrega"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn_msg
 msgid "Message for Invoice"
 msgstr "Mensaje para factura"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Mensaje para Despacho"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
@@ -2248,6 +2293,15 @@ msgstr "Necesidad Programada"
 #, python-format
 msgid "New"
 msgstr "Nuevo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo evento del calendario de actividades"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -2347,6 +2401,17 @@ msgstr "Horas de Oficina"
 #: model:ir.ui.menu,name:fieldservice.operations
 msgid "Operations"
 msgstr "Operaciones"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr "Oportunidades"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity"
+msgstr "Oportunidad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2800,6 +2865,12 @@ msgid "SMS Delivery error"
 msgstr "Error en la entrega de SMS"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+msgid "Sales Team"
+msgstr "Equipos de Venta"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_id
 msgid "Salesperson"
@@ -2875,7 +2946,9 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
 "Selecting \"Blocking Message\" will throw an exception with the message and "
@@ -3051,6 +3124,12 @@ msgstr ""
 "Planificado: Actividades futuras."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr "Despacho"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__street
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street
@@ -3220,6 +3299,24 @@ msgid ""
 msgstr ""
 "El número de registro de la empresa. Utilícelo si es diferente del NIF. Debe "
 "ser único para todos los socios de un mismo país"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"La ubicación de stock utilizada como destino al enviar mercancías a este "
+"contacto."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"La ubicación de stock utilizada como fuente al recibir productos de este "
+"contacto."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3487,6 +3584,12 @@ msgid "Vehicles"
 msgstr "Vehículos"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Ubicación de Proveedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
@@ -3640,12 +3743,6 @@ msgstr "etiqueta"
 msgid "template"
 msgstr "plantilla"
 
-#~ msgid "# Meetings"
-#~ msgstr "# Reuniones"
-
-#~ msgid "# Opportunities"
-#~ msgstr "# Oportunidades"
-
 #~ msgid "# Tasks"
 #~ msgstr "# Tareas"
 
@@ -3689,9 +3786,6 @@ msgstr "plantilla"
 #~ "órdenes de servicio.\n"
 #~ "……………………Seguimiento de costos e ingresos."
 
-#~ msgid "Customer Location"
-#~ msgstr "Ubicación del Cliente"
-
 #~ msgid "Delete"
 #~ msgstr "Borrar"
 
@@ -3704,18 +3798,8 @@ msgstr "plantilla"
 #~ msgid "Employees Count"
 #~ msgstr "Recuento de empleados"
 
-#~ msgid ""
-#~ "If set, this Sales Team will be used for sales and assignments related to "
-#~ "this partner"
-#~ msgstr ""
-#~ "Si se establece, este equipo de ventas se utilizará para las ventas y "
-#~ "asignaciones relacionadas con este socio"
-
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modificación en"
-
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Última notificación marcada como leída del calendario base"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Adjunto Principal"
@@ -3751,23 +3835,8 @@ msgstr "plantilla"
 #~ msgid "Manage your distribution structure"
 #~ msgstr "Administra tu estructura de distribución"
 
-#~ msgid "Meetings"
-#~ msgstr "Reuniones"
-
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensaje para Pedido de Venta"
-
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Mensaje para Despacho"
-
-#~ msgid "Next Activity Calendar Event"
-#~ msgstr "Próximo evento del calendario de actividades"
-
-#~ msgid "Opportunities"
-#~ msgstr "Oportunidades"
-
-#~ msgid "Opportunity"
-#~ msgstr "Oportunidad"
 
 #~ msgid "Project and Tasks"
 #~ msgstr "Proyecto y Tareas"
@@ -3781,9 +3850,6 @@ msgstr "plantilla"
 #~ msgid "Sales Order"
 #~ msgstr "Pedidos de Venta"
 
-#~ msgid "Sales Team"
-#~ msgstr "Equipos de Venta"
-
 #~ msgid "Sales Warnings"
 #~ msgstr "Advertencias de Ventas"
 
@@ -3793,29 +3859,11 @@ msgstr "plantilla"
 #~ msgid "Sell Service Orders"
 #~ msgstr "Vender Órdenes de Servicio"
 
-#~ msgid "Stock Picking"
-#~ msgstr "Despacho"
-
 #~ msgid "Tasks"
 #~ msgstr "Tareas"
 
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "La ubicación de stock utilizada como destino al enviar mercancías a este "
-#~ "contacto."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "La ubicación de stock utilizada como fuente al recibir productos de este "
-#~ "contacto."
-
 #~ msgid "Use Odoo Purchase"
 #~ msgstr "Use Compras de Odoo"
-
-#~ msgid "Vendor Location"
-#~ msgstr "Ubicación de Proveedor"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren acción"
