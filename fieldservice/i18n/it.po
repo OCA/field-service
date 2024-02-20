@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-16 15:52+0000\n"
+"PO-Revision-Date: 2024-02-20 16:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -884,7 +884,7 @@ msgstr "Creato il"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_limit
 msgid "Credit Limit"
-msgstr "Credito Limite"
+msgstr "Fido"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_to_invoice
@@ -896,7 +896,7 @@ msgstr "Accredito in fattura"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit_limit
 msgid "Credit limit specific to this partner."
-msgstr "Limite credito specifico di questo partner."
+msgstr "Fido specifico di questo partner."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
@@ -2555,7 +2555,7 @@ msgstr "Limite pagabile"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_method_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_method_id
 msgid "Payment Method"
-msgstr "Metodo pagamento"
+msgstr "Metodo di pagamento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
@@ -2597,7 +2597,7 @@ msgstr "Telefono"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid "Phone Blacklisted"
-msgstr "Telefoni in lista nera"
+msgstr "Telefoni in blacklist"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
@@ -2944,7 +2944,7 @@ msgstr "Condividi partner"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__show_credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
 msgid "Show Credit Limit"
-msgstr "Visualizza limite credito"
+msgstr "Visualizza fido"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_expiration
@@ -2956,25 +2956,25 @@ msgstr "Scadenza iscrizione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_token
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_token
 msgid "Signup Token"
-msgstr "Scadenza token"
+msgstr "Token iscrizione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
 msgid "Signup Token Type"
-msgstr "Scadenza tipo token"
+msgstr "Tipo token iscrizione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_valid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_valid
 msgid "Signup Token is Valid"
-msgstr "Scadenza validità token"
+msgstr "Token iscrizione valido"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_url
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_url
 msgid "Signup URL"
-msgstr "Scadenza URL"
+msgstr "URL iscrizione"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
@@ -3175,7 +3175,7 @@ msgid ""
 msgstr ""
 "Il numero identificazione imposta. I valori verranno validati nel formato "
 "della nazione. Si può utilizzare '/' per indicare che il partner non è "
-"soggetto all' imposta."
+"soggetto all'imposta."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
@@ -3295,7 +3295,7 @@ msgstr "Fuso orario"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz_offset
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__tz_offset
 msgid "Timezone offset"
-msgstr "Offset timezone"
+msgstr "Offset fuso orario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__title
@@ -3328,13 +3328,13 @@ msgstr "Ordini odierni"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
 msgid "Total Invoiced"
-msgstr "Totale fattura"
+msgstr "Totale fatturato"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
 msgid "Total Payable"
-msgstr "Totale pagabile"
+msgstr "Dabito totale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
@@ -3346,13 +3346,13 @@ msgstr "Totale credito"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
 msgid "Total amount this customer owes you."
-msgstr "Ammontare totale che questo cliente ti deve."
+msgstr "Ammontare totale dovuto da questo cliente."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
 msgid "Total amount you have to pay to this vendor."
-msgstr "Ammontare totale che devi pagare a questo fonritore."
+msgstr "Ammontare totale dovuto a questo fonritore."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
@@ -3515,12 +3515,11 @@ msgid ""
 "Anywhere else, time values are computed according to the time offset of your "
 "web client."
 msgstr ""
-"Quando si stampano documenti e si esportano/importano dati, le date vengono "
-"calcolate in base alla fuso orario.\n"
-"Se il fuso orario non è impostato, verrà utilizzato UTC (Universal Time "
-"Coordinate).\n"
-"In qualsiasi altra parte le date vengono calcolate in base alle impostazioni "
-"del tuo client web."
+"Quando si stampano i documenti e si esportano/importano dati, gli orari sono "
+"calcolati in base a questo fuso orario.\n"
+"Se questo non è impostato, viene usato l'UTC (Coordinated Universal Time).\n"
+"In qualunque altra parte, l'orario è calcolato in base regolazione dell'ora "
+"del client web."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__person_id
