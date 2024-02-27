@@ -12,7 +12,7 @@ class FSMLocation(models.Model):
     _description = "Field Service Location"
     _stage_type = "location"
 
-    direction = fields.Char()
+    direction = fields.Html()
     partner_id = fields.Many2one(
         "res.partner",
         string="Related Partner",
@@ -54,7 +54,7 @@ class FSMLocation(models.Model):
 
     calendar_id = fields.Many2one("resource.calendar", string="Office Hours")
     fsm_parent_id = fields.Many2one("fsm.location", string="Parent", index=True)
-    notes = fields.Text(string="Location Notes")
+    notes = fields.Html(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
     contact_count = fields.Integer(
         string="Contacts Count", compute="_compute_contact_ids"
