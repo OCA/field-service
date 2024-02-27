@@ -136,7 +136,7 @@ class FSMOrder(models.Model):
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
-    location_directions = fields.Char(
+    location_directions = fields.Html(
         compute="_compute_location_directions",
         precompute=True,
         store=True,
