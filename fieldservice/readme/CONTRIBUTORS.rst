@@ -16,3 +16,7 @@
   * Víctor Martínez
 * Nils Coenen <nils.coenen@nico-solutions.de>
 * Alex Comba <alex.comba@agilebg.com>
+
+* `XCG Consulting <https://xcg-consulting.fr>`_:
+
+  * Houzéfa Abbasbhay
