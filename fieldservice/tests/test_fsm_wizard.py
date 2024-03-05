@@ -60,14 +60,15 @@ class FSMWizard(TransactionCase):
         # convert test_partner to FSM Location
         self.Wizard.action_convert_location(self.test_partner)
 
-        # check if there is a new FSM Location with name 'Test Partner'
-        self.wiz_location = self.env["fsm.location"].search(
-            [("name", "=", "Test Partner")]
-        )
-
-        # check if 'Test Partner' creation successful and fields copied over
-        self.assertEqual(self.test_location.phone, self.wiz_location.phone)
-        self.assertEqual(self.test_location.email, self.wiz_location.email)
+        # Check new service location.
+        new_location = self.env["fsm.location"].search([("name", "=", "Test Partner")])
+        self.assertNotEqual(new_location, self.test_location)
+        self.assertTrue(new_location.fsm_location)
+        self.assertFalse(new_location.fsm_person)
+        self.assertFalse(new_location.is_company)
+        self.assertEqual(new_location.type, "fsm_location")
+        self.assertEqual(self.test_location.phone, new_location.phone)
+        self.assertEqual(self.test_location.email, new_location.email)
 
     def test_convert_person(self):
         # convert test_partner to FSM Person
