@@ -50,6 +50,14 @@ class FSMLocation(TransactionCase):
         ]:
             self.assertEqual(location[x], self.test_location[x])
 
+        # Check partner defaults.
+        self.assertTrue(location.fsm_location)
+        self.assertFalse(location.fsm_person)
+        self.assertFalse(location.is_company)
+        self.assertEqual(location.parent_id, self.test_loc_partner)
+        self.assertNotEqual(location.partner_id, self.test_loc_partner)
+        self.assertEqual(location.type, "fsm_location")
+
         # Test initial stage
         self.assertEqual(
             location.stage_id, self.env.ref("fieldservice.location_stage_1")
