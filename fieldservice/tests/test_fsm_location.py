@@ -54,6 +54,8 @@ class FSMLocation(TransactionCase):
         self.assertTrue(location.fsm_location)
         self.assertFalse(location.fsm_person)
         self.assertFalse(location.is_company)
+        self.assertEqual(location.parent_id, self.test_loc_partner)
+        self.assertNotEqual(location.partner_id, self.test_loc_partner)
         self.assertEqual(location.type, "fsm_location")
 
         # Test initial stage
