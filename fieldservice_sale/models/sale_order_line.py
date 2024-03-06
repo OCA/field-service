@@ -51,7 +51,7 @@ class SaleOrderLine(models.Model):
         for line in lines:
             if line.state == "sale":
                 line.order_id._field_service_generation()
-        return line
+        return lines
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
