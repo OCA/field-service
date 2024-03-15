@@ -1,0 +1,74 @@
+<odoo>
+
+    <record model="ir.ui.view" id="fsm_equipment_type_form">
+        <field name="model">fsm.equipment.type</field>
+        <field name="arch" type="xml">
+            <form string="Equipment Type">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            string="Archive"
+                            name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                            attrs="{'invisible': [('active', '=', False)]}"
+                        />
+                        <button
+                            string="Restore"
+                            name="toggle_active"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-archive"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
+                        <field name="active" invisible="1" />
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <div class="oe_title">
+                        <label for="code" class="oe_edit_only" />
+                        <h3>
+                            <field name="code" />
+                        </h3>
+                    </div>
+                    <field
+                        name="description"
+                        placeholder="Description of the type..."
+                    />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="fsm_equipment_type_tree">
+        <field name="model">fsm.equipment.type</field>
+        <field name="arch" type="xml">
+            <tree string="Equipment Type">
+                <field name="name" />
+                <field name="code" />
+                <field name="description" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_fsm_equipment_type" model="ir.actions.act_window">
+        <field name="name">FSM Equipment Type</field>
+        <field name="res_model">fsm.equipment.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="fieldservice_equipment_type"
+        name="Equipment Types"
+        parent="fieldservice.data"
+        groups="fieldservice.group_fsm_equipment"
+        sequence="81"
+        action="action_fsm_equipment_type"
+    />
+
+</odoo>
