@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 - TODAY, Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <template
+        id="fsm_survey_button_form_view"
+        inherit_id="survey.survey_button_form_view"
+    >
+            <xpath expr="//div[hasclass('alert')]/div" position="inside">
+                <t t-if="fsm_order_id">
+                    or <a
+                    t-attf-href="/web#view_type=form&amp;model=fsm.order&amp;id=#{fsm_order_id}&amp;action=fieldservice.action_fsm_dash_order"
+                    class=""
+                >Back to the FSM Order</a>
+                </t>
+            </xpath>
+        </template>
+</odoo>
