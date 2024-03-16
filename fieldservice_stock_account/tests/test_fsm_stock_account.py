@@ -3,7 +3,7 @@
 
 import datetime
 
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -77,7 +77,7 @@ class FSMStockAccountCase(TransactionCase):
         SR_2.action_confirm()
         fsm_order2.account_no_invoice()
         fsm_order2.bill_to = "contact"
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             fsm_order2.account_no_invoice()
         fsm_order2.customer_id = self.test_partner.id
         fsm_order2.account_no_invoice()
