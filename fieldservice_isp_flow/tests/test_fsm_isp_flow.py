@@ -9,30 +9,31 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class FSMIspFlowCase(TransactionCase):
-    def setUp(self):
-        super(FSMIspFlowCase, self).setUp()
-        self.WorkOrder = self.env["fsm.order"]
-        self.Worker = self.env["fsm.person"]
+    @classmethod
+    def setUpClass(cls):
+        super(FSMIspFlowCase, cls).setUpClass()
+        cls.WorkOrder = cls.env["fsm.order"]
+        cls.Worker = cls.env["fsm.person"]
         view_id = "fieldservice.fsm_person_form"
-        with Form(self.Worker, view=view_id) as f:
+        with Form(cls.Worker, view=view_id) as f:
             f.name = "Worker A"
-        self.worker = f.save()
-        self.test_partner = self.env["res.partner"].create(
+        cls.worker = f.save()
+        cls.test_partner = cls.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
         # create a Res Partner to be converted to FSM Location/Person
-        self.test_loc_partner = self.env["res.partner"].create(
+        cls.test_loc_partner = cls.env["res.partner"].create(
             {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
         )
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.init_values = {
-            "stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.init_values = {
+            "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
         }
-        self.stage1 = self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
-        self.stage2 = self.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
-        self.stage3 = self.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
-        self.stage4 = self.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
-        self.stage5 = self.env.ref("fieldservice_isp_flow.fsm_stage_started")
+        cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
+        cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
+        cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
+        cls.stage4 = cls.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
+        cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
 
     def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
