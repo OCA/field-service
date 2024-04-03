@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestFsmLocation(SavepointCase):
+class TestFsmLocation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -60,10 +60,10 @@ class TestFsmLocation(SavepointCase):
         self.assertTrue(test_location_1.partner_latitude)
         self.assertTrue(test_location_1.partner_longitude)
         self.assertAlmostEqual(
-            test_location_1.partner_latitude, 50.629980, delta=self.delta
+            test_location_1.partner_latitude, 50.629980, delta=0.0002
         )
         self.assertAlmostEqual(
-            test_location_1.partner_longitude, 4.863370, delta=self.delta
+            test_location_1.partner_longitude, 4.863370, delta=0.00012
         )
         # direct creation and same exit data
         partner_latitude = 1.0

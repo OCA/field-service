@@ -8,3 +8,5 @@
     * Jevin Dement <jdement@opensourceintegrators.com>
 * Murtuza Saleh <murtuza.saleh@serpentcs.com>
 * Sebastiano Picchi <sebastiano.picchi@pytech.it>
+* [APSL-Nagarro](https://apsl.tech):
+  * Antoni Marroig  <amarroig@apsl.net>
