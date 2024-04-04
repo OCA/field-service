@@ -1,0 +1,108 @@
+<odoo>
+
+    <!-- Operations -->
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_complete" position="before">
+                <button
+                    id="action_confirm"
+                    name="action_confirm"
+                    string="Confirm"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"
+                />
+                <button
+                    id="action_request"
+                    name="action_request"
+                    string="Request"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                />
+                <button
+                    id="action_assign"
+                    name="action_assign"
+                    string="Assign"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                />
+                <button
+                    id="action_schedule"
+                    name="action_schedule"
+                    string="Schedule"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_assigned)d, %(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                />
+                <button
+                    id="action_enroute"
+                    name="action_enroute"
+                    string="En Route"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', '!=', %(fieldservice_isp_flow.fsm_stage_scheduled)d)]}"
+                />
+                <button
+                    id="action_start"
+                    name="action_start"
+                    string="Start"
+                    class="oe_highlight"
+                    type="object"
+                    groups="fieldservice.group_fsm_dispatcher"
+                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_scheduled)d, %(fieldservice_isp_flow.fsm_stage_enroute)d))]}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="fsm_order_tree_view" model="ir.ui.view">
+        <field name="name">fsm.order.tree</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="arch" type="xml">
+            <tree name="orders" position="attributes">
+                <attribute name="decoration-danger">stage_id in (
+                    %(fieldservice.fsm_stage_new)d,
+                    %(fieldservice_isp_flow.fsm_stage_confirmed)d,
+                    %(fieldservice_isp_flow.fsm_stage_requested)d,
+                    %(fieldservice_isp_flow.fsm_stage_assigned)d)</attribute>
+
+                <attribute name="decoration-info">stage_id in (
+                    %(fieldservice_isp_flow.fsm_stage_scheduled)d,
+                    %(fieldservice_isp_flow.fsm_stage_enroute)d,
+                    %(fieldservice_isp_flow.fsm_stage_started)d,
+                    %(fieldservice.fsm_stage_completed)d)</attribute>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Search for fsm.order-->
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.search</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <search string="Orders">
+                <filter name="order_today" position="before">
+                    <filter
+                        string="Past Due Orders"
+                        domain="[('stage_id.name', 'not in', ['Started', 'Completed', 'Cancelled']), ('scheduled_date_start', '&lt;', current_date)]"
+                        name="past_due"
+                    />
+                </filter>
+            </search>
+        </field>
+    </record>
+
+</odoo>
