@@ -1,2 +1,2 @@
-The roadmap of the Field Service application is documented on
-`Github <https://github.com/OCA/field-service/issues/1>`_.
+* Restore person proposals & filters same as we had in v14.
+  See v14➔v16 migration PR.
