@@ -35,7 +35,7 @@ class StockRequest(models.Model):
 
     @api.onchange("direction", "fsm_order_id")
     def _onchange_location_id(self):
-        super()._onchange_location_id()
+        res = super()._onchange_location_id()
         if self.fsm_order_id:
             if self.direction == "outbound":
                 # Inventory location of the FSM location of the order
@@ -45,6 +45,7 @@ class StockRequest(models.Model):
             else:
                 self.location_id = self.fsm_order_id.warehouse_id.lot_stock_id.id
             self._update_stock_request_order_data()
+        return res
 
     def prepare_stock_request_order_values(self):
         res = {
