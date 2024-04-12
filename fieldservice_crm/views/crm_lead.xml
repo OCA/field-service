@@ -11,7 +11,7 @@
                 <button
                     class="oe_stat_button o_res_partner_tip_opp"
                     type="action"
-                    attrs="{'invisible': [('type', '=', 'lead')]}"
+                    invisible="type == 'lead'"
                     name="%(fieldservice.action_fsm_dash_order)d"
                     icon="fa-truck"
                     groups="fieldservice.group_fsm_user"
