@@ -13,7 +13,7 @@ class StockRequestOrder(models.Model):
 
     @api.onchange("warehouse_id", "direction", "fsm_order_id")
     def _onchange_location_id(self):
-        super()._onchange_location_id()
+        res = super()._onchange_location_id()
         if self.fsm_order_id:
             if self.direction == "outbound":
                 # Inventory location of the FSM location of the order
@@ -24,12 +24,14 @@ class StockRequestOrder(models.Model):
                 # Otherwise the stock location of the warehouse
                 self.location_id = self.fsm_order_id.warehouse_id.lot_stock_id.id
         self.change_childs()
+        return res
 
     def change_childs(self):
-        super().change_childs()
+        res = super().change_childs()
         if not self._context.get("no_change_childs", False):
             for line in self.stock_request_ids:
                 line.fsm_order_id = self.fsm_order_id.id
+        return res
 
     def _prepare_procurement_group_values(self):
         if self.fsm_order_id:

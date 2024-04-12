@@ -10,83 +10,87 @@ from odoo.addons.fieldservice_stock.tests.test_fsm_stock import TestFSMStockComm
 
 
 class TestFSMStockRequest(TestFSMStockCommon):
-    def setUp(self):
-        super(TestFSMStockRequest, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # disable tracking in test
-        self.env = self.env(context=dict(self.env.context, tracking_disable=True))
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         # Setup for Stock Request
-        self.StockRequest = self.env["stock.request"]
-        self.StockRequestOrder = self.env["stock.request.order"]
-        self.StockPickingType = self.env["stock.picking.type"]
+        cls.StockRequest = cls.env["stock.request"]
+        cls.StockRequestOrder = cls.env["stock.request.order"]
+        cls.StockPickingType = cls.env["stock.picking.type"]
+        cls.Product = cls.env["product.product"]
 
-        self.product_1 = self.Product.create(
+        cls.product_1 = cls.Product.create(
             {
                 "name": "Product 1",
                 "type": "product",
-                "categ_id": self.env.ref("product.product_category_all").id,
+                "categ_id": cls.env.ref("product.product_category_all").id,
             }
         )
-        self.product_2 = self.Product.create(
+        cls.product_2 = cls.Product.create(
             {
                 "name": "Product 2",
                 "type": "product",
-                "categ_id": self.env.ref("product.product_category_all").id,
+                "categ_id": cls.env.ref("product.product_category_all").id,
             }
         )
-        self.warehouse = self.env["stock.warehouse"].search(
-            [("company_id", "=", self.env.user.company_id.id)], limit=1
+        cls.warehouse = cls.env["stock.warehouse"].search(
+            [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
-        self.route = self.env["stock.location.route"].create(
-            {
-                "name": "Transfer",
-                "product_categ_selectable": False,
-                "product_selectable": True,
-                "company_id": self.env.user.company_id.id,
-                "sequence": 10,
-                "rule_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Stock -> output rule",
-                            "action": "pull",
-                            "picking_type_id": self.ref("stock.picking_type_out"),
-                            "location_src_id": self.ref("stock.stock_location_stock"),
-                            "location_id": self.ref("stock.stock_location_customers"),
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "Stock -> output rule",
-                            "action": "pull",
-                            "picking_type_id": self.ref("stock.picking_type_out"),
-                            "location_src_id": self.warehouse.lot_stock_id.id,
-                            "location_id": self.ref("stock.stock_location_customers"),
-                        },
-                    ),
-                ],
-            }
-        )
-        self.ressuply_loc = self.env["stock.location"].create(
+
+        # cls.route = cls.env["stock.location.route"].create(
+        #     {
+        #         "name": "Transfer",
+        #         "product_categ_selectable": False,
+        #         "product_selectable": True,
+        #         "company_id": cls.env.user.company_id.id,
+        #         "sequence": 10,
+        #         "rule_ids": [
+        #             (
+        #                 0,
+        #                 0,
+        #                 {
+        #                     "name": "Stock -> output rule",
+        #                     "action": "pull",
+        #                     "picking_type_id": cls.ref("stock.picking_type_out"),
+        #                     "location_src_id": cls.ref("stock.stock_location_stock"),
+        #                     "location_id": cls.ref("stock.stock_location_customers"),
+        #                 },
+        #             ),
+        #             (
+        #                 0,
+        #                 0,
+        #                 {
+        #                     "name": "Stock -> output rule",
+        #                     "action": "pull",
+        #                     "picking_type_id": cls.ref("stock.picking_type_out"),
+        #                     "location_src_id": cls.warehouse.lot_stock_id.id,
+        #                     "location_id": cls.ref("stock.stock_location_customers"),
+        #                 },
+        #             ),
+        #         ],
+        #     }
+        # )
+
+        cls.ressuply_loc = cls.env["stock.location"].create(
             {
                 "name": "Ressuply",
-                "location_id": self.warehouse.view_location_id.id,
+                "location_id": cls.warehouse.view_location_id.id,
                 "usage": "internal",
-                "company_id": self.env.user.company_id.id,
+                "company_id": cls.env.user.company_id.id,
             }
         )
-        self.stock_request_user_group = self.env.ref(
+        cls.stock_request_user_group = cls.env.ref(
             "stock_request.group_stock_request_user"
         )
-        self.fsm_dispatcher_group = self.env.ref("fieldservice.group_fsm_dispatcher")
-        self.group_stock_request_manager = self.env.ref(
+        cls.fsm_dispatcher_group = cls.env.ref("fieldservice.group_fsm_dispatcher")
+        cls.group_stock_request_manager = cls.env.ref(
             "stock_request.group_stock_request_manager"
         )
-        self.stock_request_user = (
-            self.env["res.users"]
-            .with_context({"no_reset_password": True})
+        cls.stock_request_user = (
+            cls.env["res.users"]
+            .with_context(no_reset_password=True)
             .create(
                 {
                     "name": "stock_request_user1",
@@ -98,18 +102,18 @@ class TestFSMStockRequest(TestFSMStockCommon):
                             6,
                             0,
                             [
-                                self.stock_request_user_group.id,
-                                self.fsm_dispatcher_group.id,
+                                cls.stock_request_user_group.id,
+                                cls.fsm_dispatcher_group.id,
                             ],
                         )
                     ],
-                    "company_ids": [(6, 0, [self.env.user.company_id.id])],
+                    "company_ids": [(6, 0, [cls.env.user.company_id.id])],
                 }
             )
         )
-        self.stock_request_manager = (
-            self.env["res.users"]
-            .with_context({"no_reset_password": True})
+        cls.stock_request_manager = (
+            cls.env["res.users"]
+            .with_context(no_reset_password=True)
             .create(
                 {
                     "name": "stock_request_manager1",
@@ -121,12 +125,12 @@ class TestFSMStockRequest(TestFSMStockCommon):
                             6,
                             0,
                             [
-                                self.fsm_dispatcher_group.id,
-                                self.group_stock_request_manager.id,
+                                cls.fsm_dispatcher_group.id,
+                                cls.group_stock_request_manager.id,
                             ],
                         )
                     ],
-                    "company_ids": [(6, 0, [self.env.user.company_id.id])],
+                    "company_ids": [(6, 0, [cls.env.user.company_id.id])],
                 }
             )
         )
@@ -271,12 +275,11 @@ class TestFSMStockRequest(TestFSMStockCommon):
         )
         stock_request = order.stock_request_ids
         order.procurement_group_id = procurement_group
-        self.product_1.route_ids = [(6, 0, self.route.ids)]
         self.env["stock.rule"].create(
             {
                 "name": "Rule Supplier",
                 "route_id": self.warehouse.reception_route_id.id,
-                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.warehouse.lot_stock_id.id,
                 "location_src_id": self.env.ref("stock.stock_location_suppliers").id,
                 "action": "pull",
                 "delay": 1.0,
@@ -386,12 +389,11 @@ class TestFSMStockRequest(TestFSMStockCommon):
         )
         stock_request = order.stock_request_ids
         order.procurement_group_id = procurement_group
-        self.product_1.route_ids = [(6, 0, self.route.ids)]
         self.env["stock.rule"].create(
             {
                 "name": "Rule Supplier",
                 "route_id": self.warehouse.reception_route_id.id,
-                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.warehouse.lot_stock_id.id,
                 "location_src_id": self.env.ref("stock.stock_location_suppliers").id,
                 "action": "pull",
                 "delay": 1.0,
@@ -432,12 +434,11 @@ class TestFSMStockRequest(TestFSMStockCommon):
                 "warehouse_id": FSO.warehouse_id.id,
             }
         )
-        self.product_1.route_ids = [(6, 0, self.route.ids)]
         self.env["stock.rule"].create(
             {
                 "name": "Rule Supplier",
                 "route_id": self.warehouse.reception_route_id.id,
-                "location_id": self.warehouse.lot_stock_id.id,
+                "location_dest_id": self.warehouse.lot_stock_id.id,
                 "location_src_id": self.env.ref("stock.stock_location_suppliers").id,
                 "action": "pull",
                 "delay": 1.0,
