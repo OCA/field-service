@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-11-04 14:45+0000\n"
-"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"PO-Revision-Date: 2024-04-14 10:37+0000\n"
+"Last-Translator: André Volksdorf <volksdorf@smartpage.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
@@ -62,6 +62,18 @@ msgid ""
 "contain sensitive data (employee home addresses, ...).\n"
 "- Other: Other address for the company (e.g. subsidiary, ...)"
 msgstr ""
+"- Kontakt: Verwenden Sie dies, um die Kontaktdaten der Mitarbeiter eines "
+"bestimmten Unternehmens zu organisieren (z.B. CEO, CFO, ...).\n"
+"- Rechnungsadresse: Bevorzugte Adresse für alle Rechnungen. Wird "
+"standardmäßig ausgewählt, wenn Sie eine Rechnung für eine Bestellung "
+"ausstellen, die zu diesem Unternehmen gehört.\n"
+"- Lieferadresse : Bevorzugte Adresse für alle Lieferungen. Standardmäßig "
+"ausgewählt, wenn Sie eine Bestellung, die zu diesem Unternehmen gehört, "
+"ausliefern.\n"
+"- Privat: Private Adressen sind nur für autorisierte Benutzer sichtbar und "
+"enthalten sensible Daten (Privatadressen von Mitarbeitern, ...).\n"
+"- Andere: Weitere Adresse für das Unternehmen (z. B. Tochtergesellschaft, "
+"...)"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -71,7 +83,7 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "<span class=\"ml-2\">hours</span>"
-msgstr ""
+msgstr "<span class=\"ml-2\">Stunden</span>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -215,7 +227,7 @@ msgstr "Tatsächliche Dauer"
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__duration
 msgid "Actual duration in hours"
-msgstr "Dies ist die tatsächliche Dauer in Stunden."
+msgstr "Tatsächliche Dauer in Stunden"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_person
@@ -262,6 +274,7 @@ msgstr "Adressart"
 msgid ""
 "Administrative divisions of a country. E.g. Fed. State, Departement, Canton"
 msgstr ""
+"Verwaltungseinheiten eines Landes. Z.B. Bund. Staat, Departement, Kanton"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
