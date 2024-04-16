@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class FSMVehicleCase(TransactionCase):
     def setUp(self):
-        super(FSMVehicleCase, self).setUp()
+        super().setUp()
         self.test_partner = self.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
