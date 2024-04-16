@@ -14,7 +14,7 @@ from odoo.tests.common import TransactionCase
 class FSMRecurringCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(FSMRecurringCase, cls).setUpClass()
+        super().setUpClass()
         cls.Equipment = cls.env["fsm.equipment"]
         cls.Recurring = cls.env["fsm.recurring"]
         cls.Frequency = cls.env["fsm.frequency"]
@@ -136,7 +136,7 @@ class FSMRecurringCase(TransactionCase):
         # Test none of the scheduled date (except on recurring start date),
         # are on weekend or odd wednesday
         all_dates = recurring.fsm_order_ids.filtered(
-            lambda l: l.scheduled_date_start != recurring.start_date
+            lambda x: x.scheduled_date_start != recurring.start_date
         ).mapped("scheduled_date_start")
         days = {x.weekday() for x in all_dates}
         mon_to_fri = {0, 1, 2, 3, 4}
@@ -275,7 +275,7 @@ class FSMRecurringCase(TransactionCase):
         recurring._cron_scheduled_task()
         # Test date are 31st
         all_dates = recurring.fsm_order_ids.filtered(
-            lambda l: l.scheduled_date_start != recurring.start_date
+            lambda x: x.scheduled_date_start != recurring.start_date
         ).mapped("scheduled_date_start")
         for d in all_dates:
             self.assertEqual(d.day, 31)

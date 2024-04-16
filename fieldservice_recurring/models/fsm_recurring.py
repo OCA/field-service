@@ -125,7 +125,7 @@ class FSMRecurringOrder(models.Model):
                 vals["name"] = self.env["ir.sequence"].next_by_code(
                     "fsm.recurring"
                 ) or _("New")
-        return super(FSMRecurringOrder, self).create(vals_list)
+        return super().create(vals_list)
 
     def action_start(self):
         for rec in self:
