@@ -24,7 +24,7 @@
                         name="web_ribbon"
                         text="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <h1>
@@ -49,10 +49,7 @@
                             <group>
                                 <field name="use_byweekday" />
                             </group>
-                            <div
-                                attrs="{'invisible': [('use_byweekday', '=', False)]}"
-                                name="weekdays"
-                            >
+                            <div invisible="not use_byweekday" name="weekdays">
                                 <group>
                                     <field name="mo" />
                                     <field name="tu" />
@@ -66,10 +63,7 @@
                             <group>
                                 <field name="use_bymonthday" />
                             </group>
-                            <div
-                                attrs="{'invisible': [('use_bymonthday', '=', False)]}"
-                                name="monthday"
-                            >
+                            <div invisible="not use_bymonthday" name="monthday">
                                 <group>
                                     <field name="month_day" />
                                 </group>
@@ -77,10 +71,7 @@
                             <group>
                                 <field name="use_setpos" />
                             </group>
-                            <div
-                                attrs="{'invisible': [('use_setpos', '=', False)]}"
-                                name="setpos"
-                            >
+                            <div invisible="not use_setpos" name="setpos">
                                 <group>
                                     <field name="set_pos" />
                                 </group>
@@ -90,10 +81,7 @@
                             <group>
                                 <field name="use_bymonth" />
                             </group>
-                            <div
-                                attrs="{'invisible': [('use_bymonth', '=', False)]}"
-                                name="months"
-                            >
+                            <div invisible="not use_bymonth" name="months">
                                 <group>
                                     <field name="jan" />
                                     <field name="feb" />
