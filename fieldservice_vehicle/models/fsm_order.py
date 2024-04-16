@@ -16,7 +16,7 @@ class FSMOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(FSMOrder, self).create(vals)
+        res = super().create(vals)
         if not vals.get("vehicle_id") and vals.get("person_id"):
             self._onchange_person_id()
         return res
