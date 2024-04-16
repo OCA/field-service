@@ -97,6 +97,9 @@ Contributors
 -  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 -  Brian McMaster <brian@mcmpest.com>
 -  Vandan Pandeji <vpandeji@opensourceintegrators.com>
+-  `APSL <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Other credits
 -------------
