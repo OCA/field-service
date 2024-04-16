@@ -31,7 +31,7 @@
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('state', 'in',('close', 'progress'))]}"
+                        invisible="state in ['close', 'progress']"
                     />
                     <button
                         id="action_suspend"
@@ -39,7 +39,7 @@
                         string="Suspend"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('state', 'in', ('draft', 'close'))]}"
+                        invisible="state in ['draft', 'close']"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
