@@ -1,14 +1,13 @@
 <odoo>
-
-    <record id="fsm_route_tree" model="ir.ui.view">
-        <field name="name">fsm.route.tree</field>
+    <record id="fsm_route_list" model="ir.ui.view">
+        <field name="name">fsm.route.list</field>
         <field name="model">fsm.route</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="fsm_person_id" />
                 <field name="day_ids" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -52,12 +51,11 @@
     <record id="action_fsm_route" model="ir.actions.act_window">
         <field name="name">Routes</field>
         <field name="res_model">fsm.route</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add Routes here.
             </p>
         </field>
     </record>
-
 </odoo>
