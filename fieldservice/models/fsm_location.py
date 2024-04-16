@@ -72,7 +72,10 @@ class FSMLocation(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            # By default, create inherited partner as typed child of the location owner.
             vals.update({"fsm_location": True, "type": "fsm_location"})
+            if not vals.get("partner_id"):  # Don't change parent of existing partners.
+                vals["parent_id"] = vals.get("owner_id")
         return super(FSMLocation, self.with_context(creating_fsm_location=True)).create(
             vals_list
         )
