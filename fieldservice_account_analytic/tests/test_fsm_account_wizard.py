@@ -11,7 +11,7 @@ from odoo.tests.common import TransactionCase
 class FSMAccountAnalyticCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(FSMAccountAnalyticCase, cls).setUpClass()
+        super().setUpClass()
         cls.Wizard = cls.env["fsm.wizard"]
         cls.WorkOrder = cls.env["fsm.order"]
         cls.AccountInvoice = cls.env["account.move"]
