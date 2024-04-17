@@ -14,7 +14,6 @@ class ResPartner(models.Model):
         offset=0,
         limit=None,
         order=None,
-        count=False,
         access_rights_uid=None,
     ):
         args = args or []
@@ -34,6 +33,5 @@ class ResPartner(models.Model):
             offset=offset,
             limit=limit,
             order=order,
-            count=count,
             access_rights_uid=access_rights_uid,
         )
