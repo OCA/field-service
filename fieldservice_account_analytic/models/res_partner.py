@@ -29,7 +29,7 @@ class ResPartner(models.Model):
                     ("service_location_id", "=", location.id),
                 ]
             )
-        return super(ResPartner, self)._search(
+        return super()._search(
             args,
             offset=offset,
             limit=limit,

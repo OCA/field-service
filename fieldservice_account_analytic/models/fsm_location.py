@@ -50,7 +50,7 @@ class FSMLocation(models.Model):
                     ("partner_id", "=", partner.id),
                 ]
             )
-        return super(FSMLocation, self)._search(
+        return super()._search(
             args,
             offset=offset,
             limit=limit,

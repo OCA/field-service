@@ -22,4 +22,4 @@ class AccountMoveLine(models.Model):
                         raise ValidationError(
                             _("No analytic account " "set on the order's Location.")
                         )
-        return super(AccountMoveLine, self).create(vals_list)
+        return super().create(vals_list)
