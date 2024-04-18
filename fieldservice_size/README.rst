@@ -17,13 +17,13 @@ Field Service Sizes
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_size
+    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice_size
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_size
+    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_size
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -31,12 +31,11 @@ Field Service Sizes
 Some field service operations may need to track the size of a field
 service location and its orders.
 
-Examples of sizes might be:
-- Area measure of a location
-- Count of service or maintenance items at a location
+Examples of sizes might be: - Area measure of a location - Count of
+service or maintenance items at a location
 
-Once established, sizes can be useful for route capacity planning,
-time estimation for orders, or for planning stock and inventory moves.
+Once established, sizes can be useful for route capacity planning, time
+estimation for orders, or for planning stock and inventory moves.
 
 This module allows you to establish sizes for your field service orders.
 Multiple sizes can be configured and established for a location. Order
@@ -52,34 +51,33 @@ Configuration
 
 To configure field service sizes, go to Configuration > Sizes.
 
-Set the size name, type of orders to which the size will apply,
-and unit of measure for the size. If this size is the default
-size to be used for orders of the designated type, select the
-option for 'Is Order Size'.
+Set the size name, type of orders to which the size will apply, and unit
+of measure for the size. If this size is the default size to be used for
+orders of the designated type, select the option for 'Is Order Size'.
 
 Usage
 =====
 
-## Enter sizes for field service locations.
-Go to Master Data > Locations
+## Enter sizes for field service locations. Go to Master Data >
+Locations
 
-#. Select or create a location.
-#. Go to the Sizes tab.
-#. Select a Size. Enter the value for the size.
+1. Select or create a location.
+2. Go to the Sizes tab.
+3. Select a Size. Enter the value for the size.
 
 ## Use Order Sizes
 
-#. Select or create a field service order.
-#. Set a location on the order.
-#. Set a type on the order.
-#. The size value will update to the location's size
-   value of the order type's default size.
+1. Select or create a field service order.
+2. Set a location on the order.
+3. Set a type on the order.
+4. The size value will update to the location's size value of the order
+   type's default size.
 
 Known issues / Roadmap
 ======================
 
 The roadmap of the Field Service application is documented on
-`Github <https://github.com/OCA/field-service/issues/1>`_.
+`Github <https://github.com/OCA/field-service/issues/1>`__.
 
 Bug Tracker
 ===========
@@ -87,7 +85,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_size%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_size%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -95,17 +93,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Brian McMaster
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Brian McMaster <brian@mcmpest.com>
+-  Brian McMaster <brian@mcmpest.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -125,6 +123,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-brian10048| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_size>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice_size>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
