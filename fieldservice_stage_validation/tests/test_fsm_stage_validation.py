@@ -137,13 +137,9 @@ class TestFSMStageValidation(TransactionCase):
     def get_validate_message(self, stage):
         stage_name = stage.name
         field_name = fields.first(stage.validate_field_ids).name
-        return 'Cannot move to stage "%s" until the "%s" field is set.' % (
-            stage_name,
-            field_name,
-        )
+        return f"Cannot move to stage {stage_name} until the {field_name} field is set."
 
     def test_fsm_stage_validation(self):
-
         # Validate the stage computes the correct model type
         self.assertEqual(
             self.stage_order.stage_type_model_id,
