@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 class TestFSMSize(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMSize, cls).setUpClass()
+        super().setUpClass()
         cls.Size = cls.env["fsm.size"]
         cls.Location_size = cls.env["fsm.location.size"]
         cls.Type = cls.env["fsm.order.type"]
