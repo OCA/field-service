@@ -14,7 +14,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', '!=', %(fieldservice.fsm_stage_new)d)]}"
+                    invisible="stage_id != %(fieldservice.fsm_stage_new)d"
                 />
                 <button
                     id="action_request"
@@ -23,7 +23,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                    invisible="stage_id not in (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d)"
                 />
                 <button
                     id="action_assign"
@@ -32,7 +32,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                    invisible="stage_id not in  (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d)"
                 />
                 <button
                     id="action_schedule"
@@ -41,7 +41,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_assigned)d, %(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d))]}"
+                    invisible="stage_id not in (%(fieldservice_isp_flow.fsm_stage_assigned)d, %(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d)"
                 />
                 <button
                     id="action_enroute"
@@ -50,7 +50,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', '!=', %(fieldservice_isp_flow.fsm_stage_scheduled)d)]}"
+                    invisible="stage_id != %(fieldservice_isp_flow.fsm_stage_scheduled)d"
                 />
                 <button
                     id="action_start"
@@ -59,7 +59,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    attrs="{'invisible': [('stage_id', 'not in', (%(fieldservice_isp_flow.fsm_stage_scheduled)d, %(fieldservice_isp_flow.fsm_stage_enroute)d))]}"
+                    invisible="stage_id not in (%(fieldservice_isp_flow.fsm_stage_scheduled)d, %(fieldservice_isp_flow.fsm_stage_enroute)d)"
                 />
             </button>
         </field>
