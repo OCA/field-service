@@ -75,7 +75,7 @@ class FSMOrder(models.Model):
             raise ValidationError(
                 _("Cannot move to Complete " + "until 'Resolution' is filled in")
             )
-        return super(FSMOrder, self).action_complete()
+        return super().action_complete()
 
     def _track_subtype(self, init_values):
         self.ensure_one()
@@ -105,4 +105,4 @@ class FSMOrder(models.Model):
                 == self.env.ref("fieldservice_isp_flow.fsm_stage_started").id
             ):
                 return self.env.ref("fieldservice.mt_order_started")
-        return super(FSMOrder, self)._track_subtype(init_values)
+        return super()._track_subtype(init_values)
