@@ -11,7 +11,7 @@ from odoo.tests.common import Form, TransactionCase
 class FSMIspFlowCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(FSMIspFlowCase, cls).setUpClass()
+        super().setUpClass()
         cls.WorkOrder = cls.env["fsm.order"]
         cls.Worker = cls.env["fsm.person"]
         view_id = "fieldservice.fsm_person_form"
