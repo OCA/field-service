@@ -261,7 +261,6 @@ msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.actions.server,name:fieldservice_recurring.recurring_orders_cron_ir_actions_server
-#: model:ir.cron,cron_name:fieldservice_recurring.recurring_orders_cron
 msgid "Field Service: generate recurring orders"
 msgstr "Serviço de Campo: gere ordens recorrentes"
 
@@ -380,9 +379,13 @@ msgstr "Se marcado, novas mensagens solicitam sua atenção."
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_error
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_error
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_error
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_error
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
@@ -421,14 +424,6 @@ msgid "June"
 msgstr "Junho"
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency____last_update
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set____last_update
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring____last_update
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template____last_update
-msgid "Last Modified on"
-msgstr "Última Modificação em"
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__write_uid
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__write_uid
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__write_uid
@@ -454,14 +449,6 @@ msgstr "Folga (buffer) Final"
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 msgid "Location"
 msgstr "Localização"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_main_attachment_id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_main_attachment_id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_main_attachment_id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Anexo Principal"
 
 #. module: fieldservice_recurring
 #: model:res.groups,name:fieldservice_recurring.group_fsm_recurring
@@ -678,6 +665,14 @@ msgstr "Repetir a Cada"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_user_id
 msgid "Responsible User"
 msgstr "Usuário Responsável"
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erro de Entrega de Mensagem SMS"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sa
@@ -899,6 +894,12 @@ msgstr ""
 msgid "Yearly"
 msgstr "Anualmente"
 
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificação em"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Anexo Principal"
+
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"
 
@@ -913,9 +914,6 @@ msgstr "Anualmente"
 
 #~ msgid "To Renew"
 #~ msgstr "Para Renovar"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Erro de Entrega de Mensagem SMS"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensagens que requerem uma ação"
