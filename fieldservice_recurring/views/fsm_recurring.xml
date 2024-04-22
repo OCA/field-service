@@ -1,0 +1,207 @@
+<odoo>
+    <!-- Field Service Recurring Order -->
+    <record id="fsm_recurring_tree_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.tree</field>
+        <field name="model">fsm.recurring</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="location_id" />
+                <field
+                    name="fsm_order_template_id"
+                    groups="fieldservice.group_fsm_template"
+                />
+                <field name="person_id" />
+                <field name="end_date" />
+                <field name="state" />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
+            </tree>
+        </field>
+    </record>
+    <record id="fsm_recurring_form_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.form</field>
+        <field name="model">fsm.recurring</field>
+        <field name="arch" type="xml">
+            <form string="Recurring Order">
+                <header>
+                    <button
+                        id="action_start"
+                        name="action_start"
+                        string="Start"
+                        class="oe_highlight"
+                        type="object"
+                        groups="fieldservice.group_fsm_dispatcher"
+                        invisible="state in ['close', 'progress']"
+                    />
+                    <button
+                        id="action_suspend"
+                        name="action_suspend"
+                        string="Suspend"
+                        type="object"
+                        groups="fieldservice.group_fsm_dispatcher"
+                        invisible="state in ['draft', 'close']"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fsm_recurring_template_id" />
+                            <field
+                                name="fsm_order_template_id"
+                                groups="fieldservice.group_fsm_template"
+                            />
+                            <field name="fsm_frequency_set_id" />
+                            <field name="scheduled_duration" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="max_orders" />
+                        </group>
+                        <group>
+                            <field name="location_id" />
+                            <field
+                                name="team_id"
+                                groups="fieldservice.group_fsm_team"
+                            />
+                            <field name="person_id" />
+                            <field name="equipment_ids" widget="many2many_tags" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <group string="Orders">
+                        <field name="fsm_order_ids" nolabel="1">
+                            <tree create="false">
+                                <field name="name" />
+                                <field name="stage_id" />
+                                <field name="scheduled_date_start" />
+                                <field name="scheduled_date_end" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="person_id" />
+                            </tree>
+                        </field>
+                    </group>
+                    <div name="description">
+                        <label for="description" />
+                        <field name="description" placeholder="Description" />
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field
+                        name="message_ids"
+                        widget="mail_thread"
+                        options="{'post_refresh': 'recipients'}"
+                    />
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- Search for fsm.recurring-->
+    <record id="fsm_recurring_search_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.search</field>
+        <field name="model">fsm.recurring</field>
+        <field name="arch" type="xml">
+            <search string="Recurring Orders">
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    string="FSM Recurring Order Name"
+                />
+                <field name="person_id" />
+                <field name="location_id" />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
+                <separator />
+                <filter
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                    name="draft"
+                />
+                <filter
+                    string="In Progress"
+                    domain="[('state', '=', 'progress')]"
+                    name="progress"
+                />
+                <filter
+                    string="Closed"
+                    domain="[('state', '=', 'close')]"
+                    name="closed"
+                />
+                <filter
+                    string="Suspended"
+                    domain="[('state', '=', 'suspend')]"
+                    name="suspended"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="fsm_recurring_template_id"
+                        string="Recurring Template"
+                        domain=""
+                        context="{'group_by':'fsm_recurring_template_id'}"
+                    />
+                    <filter
+                        name="fsm_order_template_id"
+                        string="Order Template"
+                        domain=""
+                        context="{'group_by':'fsm_order_template_id'}"
+                    />
+                    <filter
+                        name="location_id"
+                        string="Location"
+                        domain=""
+                        context="{'group_by':'location_id'}"
+                    />
+                    <filter
+                        name="person_id"
+                        string="Assigned To"
+                        domain=""
+                        context="{'group_by':'person_id'}"
+                    />
+                   <filter
+                        name="state"
+                        string="State"
+                        domain=""
+                        context="{'group_by':'state'}"
+                    />
+                    <filter
+                        name="team_id"
+                        string="Team"
+                        groups="fieldservice.group_fsm_team"
+                        context="{'group_by':'team_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_fsm_recurring" model="ir.actions.act_window">
+        <field name="name">Field Service Recurring Orders</field>
+        <field name="res_model">fsm.recurring</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="fsm_recurring_search_view" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a Field Service Recurring Orders here.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_fsm_recurring"
+        name="Recurring Orders"
+        action="action_fsm_recurring"
+        parent="fieldservice.operations"
+        sequence="35"
+        groups="fieldservice_recurring.group_fsm_recurring"
+    />
+</odoo>

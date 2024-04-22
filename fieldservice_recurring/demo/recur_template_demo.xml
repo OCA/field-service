@@ -1,0 +1,12 @@
+<odoo>
+
+    <record id="recur_template_weekdays" model="fsm.recurring.template">
+        <field name="name">Weekdays Template</field>
+        <field name="description">
+            This template will create an FSM Recurring Order that will
+            generate FSM Orders every weekday.
+        </field>
+        <field name="fsm_frequency_set_id" eval="ref('freq_set_weekdays')" />
+    </record>
+
+</odoo>

@@ -1,0 +1,58 @@
+<odoo>
+    <record id="action_recurring_tree" model="ir.actions.act_window">
+        <field name="name">Recurring Orders</field>
+        <field name="res_model">fsm.recurring</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('team_id', '=', active_id)]</field>
+    </record>
+    <record model="ir.ui.view" id="view_team_kanban_recurring">
+        <field name="model">fsm.team</field>
+        <field name="inherit_id" ref="fieldservice.view_team_kanban" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="recurring_draft_count"
+                    groups="fieldservice_recurring.group_fsm_recurring"
+                />
+            </field>
+            <xpath
+                expr="//div[hasclass('container','o_kanban_card_content')]"
+                position="inside"
+            >
+                <div class="row" groups="fieldservice_recurring.group_fsm_recurring">
+                    <div class="col-6 o_kanban_primary_right">
+                        <div class="row">
+                            <div class="col-9">
+                                <a
+                                    name="%(fieldservice_recurring.action_recurring_tree)d"
+                                    type="action"
+                                    context="{'search_default_progress': 1}"
+                                >
+                                    Recurring Orders
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 o_kanban_primary_left">
+                        <div class="row">
+                            <div class="col-9">
+                                 <a
+                                    name="%(fieldservice_recurring.action_recurring_tree)d"
+                                    type="action"
+                                    context="{'search_default_draft': 1}"
+                                >
+                                Draft Recurring
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <t t-esc="record.recurring_draft_count.value" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
