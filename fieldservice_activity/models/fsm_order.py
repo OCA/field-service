@@ -11,7 +11,7 @@ class FSMOrder(models.Model):
     order_activity_ids = fields.One2many(
         comodel_name="fsm.activity",
         inverse_name="fsm_order_id",
-        string="Activities",
+        string="Order Activities",
         copy=True,
     )
 
