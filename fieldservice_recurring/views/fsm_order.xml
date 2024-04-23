@@ -17,7 +17,11 @@
                     attrs="{'invisible': [('fsm_recurring_id', '=', False)]}"
                 >
                     <span class="o_stat_text">Recurring Order</span>
-                    <field name="fsm_recurring_id" attrs="{'invisible': 1}" />
+                    <field
+                        name="fsm_recurring_id"
+                        groups="fieldservice_recurring.group_fsm_recurring"
+                        attrs="{'invisible': 1}"
+                    />
                 </button>
             </xpath>
         </field>
