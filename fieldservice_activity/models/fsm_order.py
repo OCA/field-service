@@ -43,7 +43,7 @@ class FSMOrder(models.Model):
     @api.model_create_multi
     def create(self, vals):
         """Update Activities for FSM orders that are generate from SO"""
-        orders = super(FSMOrder, self).create(vals)
+        orders = super().create(vals)
         for order in orders:
             order._onchange_template_id()
         return orders

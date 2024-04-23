@@ -13,7 +13,7 @@
                             <field name="name" />
                             <field name="required" />
                             <field name="ref" />
-                            <field name="completed" invisible="1" />
+                            <field name="completed" column_invisible="1" />
                             <field name="completed_on" />
                             <field name="completed_by" />
                             <button
@@ -21,13 +21,13 @@
                                 string="Complete"
                                 type="object"
                                 class="oe_highlight"
-                                attrs="{'invisible': [('state', 'not in', ['todo'])]}"
+                                invisible="state not in ['todo']"
                             />
                             <button
                                 name="action_cancel"
                                 string="Cancel"
                                 type="object"
-                                attrs="{'invisible': [('state', 'not in', ['todo'])]}"
+                                invisible="state not in ['todo']"
                             />
                             <field name="state" readonly="1" />
                         </tree>
