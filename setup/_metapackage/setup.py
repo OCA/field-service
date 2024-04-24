@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo14-addon-fieldservice_stock_account_analytic',
         'odoo14-addon-fieldservice_stock_request',
         'odoo14-addon-fieldservice_substatus',
+        'odoo14-addon-fieldservice_survey',
         'odoo14-addon-fieldservice_timeline',
         'odoo14-addon-fieldservice_vehicle',
         'odoo14-addon-fieldservice_vehicle_stock',
