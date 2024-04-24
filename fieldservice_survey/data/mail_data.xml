@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+        <record id="mail_template_fsm_order_survey_submit" model="mail.template">
+            <field name="name">FSM Survey: Submit Suvery</field>
+            <field name="model_id" ref="model_survey_user_input" />
+            <field
+            name="subject"
+        >Take part in ${ctx.get('fsm_order_name', 'this')} survey</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.partner_id.name},
+                        <br /><br />
+                        An survey was requested.
+                        <br />
+                        Please take time to fill the survey.
+                        <br /><br />
+                        Thank you!
+                        <br /><br />
+                        % if ctx.get('recipient_users'):
+                        <p style="margin: 16px 0px 16px 0px;">
+                            <a
+                            href="${ctx['url']}"
+                            style="background-color:#875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px;"
+                        >
+                                View Survey
+                            </a>
+                        </p>
+                        % endif
+                        <div style="margin: 16px 0px 16px 0px;">
+                            <a
+                            href="${(object.get_start_url()) | safe}"
+                            style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                        >
+                                % if object.survey_id.certification:
+                                    Start Certification
+                                % else:
+                                    Start Survey
+                                % endif
+                            </a>
+                        </div>
+                        % if object.deadline:
+                            Please answer the survey before ${format_date(object.deadline)}.<br
+                    /><br />
+                        % endif
+                        <br /><br />
+                        <tr><td
+                            style="padding:15px 20px 10px 20px;"
+                        >${(object.signature or '')| safe}</td></tr>
+                    </p>
+                </div>
+            </field>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.lang}</field>
+            <field name="auto_delete" eval="True" />
+        </record>
+</odoo>

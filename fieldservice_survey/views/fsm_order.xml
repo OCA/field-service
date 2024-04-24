@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 - TODAY, Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="fsm_order_form_view">
+        <field name="name">fsm.order.form (in fieldservice_survey)</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_open_survey_inputs"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible': [('partner_submitted_answer_survey_ids', '=', [])]}"
+                    groups="fieldservice_survey.group_fsm_survey_user"
+                    type="object"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Survey</span>
+                        <span class="o_stat_text">Answer</span>
+                    </div>
+                </button>
+            </xpath>
+            <notebook position="inside">
+                <page
+                    string="Survey"
+                    name="survey_page"
+                    attrs="{'invisible': [('partner_submitted_answer_survey_ids', '=', [])]}"
+                    groups="fieldservice_survey.group_fsm_survey_user"
+                >
+                    <group>
+                        <group
+                            string="Partners submitted to answer survey"
+                            name="partners_survey"
+                        >
+                             <field
+                                name="partner_submitted_answer_survey_ids"
+                                widget="many2many_tags"
+                                readonly="1"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+             <xpath expr="//button[@name='action_complete']" position="after">
+                <button
+                    name="action_submit_fsm_order_survey"
+                    string="Submit Survey"
+                    type="object"
+                    attrs="{'invisible': &quot;[('stage_id', 'not in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]),]&quot;}"
+                    groups="fieldservice_survey.group_fsm_survey_user"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
