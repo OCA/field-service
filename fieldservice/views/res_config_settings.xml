@@ -12,7 +12,7 @@
                     name="fieldservice"
                     groups="fieldservice.group_fsm_manager"
                 >
-                    <block title="Locations" name="locations_setting_container">
+                    <block title="Service Locations" name="locations_setting_container">
                         <setting
                             string="Manage Territories"
                             help="Manage territories, branches, districts and regions"
@@ -27,7 +27,7 @@
                         </setting>
                         <setting
                             string="Manage Distribution"
-                            help="Manage your distrubution structure"
+                            help="Manage your distribution structure"
                         >
                             <field name="module_fieldservice_distribution" />
                         </setting>
@@ -62,7 +62,7 @@
                             <field name="group_fsm_team" />
                         </setting>
                         <setting
-                            string="Manage Catagories"
+                            string="Manage Categories"
                             help="Manage different categories of Field Service workers"
                         >
                             <field name="group_fsm_category" />
@@ -96,7 +96,7 @@
                         </setting>
                     </block>
 
-                    <block title="Orders" name="order_setting_container">
+                    <block title="Service Orders" name="order_setting_container">
                         <setting
                             string="Auto-fill the equipments on the order"
                             help="Auto-populate the equipments on the order based on the location content"
@@ -135,8 +135,8 @@
                             <field name="module_fieldservice_account" />
                         </setting>
                         <setting
-                            string="Use Odoo Stock Logistics"
-                            help="Manage inventory and stock operations. Automatically activate Lots &amp; Serial Numbers."
+                            string="Manage Inventory Logistics"
+                            help="Manage materials and stock operations. Automatically activate Lots &amp; Serial Numbers."
                         >
                             <field name="module_fieldservice_stock" />
                         </setting>
