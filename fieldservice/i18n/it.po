@@ -1914,7 +1914,6 @@ msgstr "Lavoratori località"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_location
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Locations"
 msgstr "Località"
 
@@ -1946,12 +1945,8 @@ msgid "Manage Agreements"
 msgstr "Gestisci contratti"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage Catagories"
-msgstr "Gestione categorie"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Categories"
 msgstr "Gestisci categorie"
 
@@ -2000,6 +1995,11 @@ msgstr "Gestisci le squadre di assistenza sul campo"
 #: model:res.groups,name:fieldservice.group_fsm_category
 msgid "Manage Field Service Worker Categories"
 msgstr "Gestisci le categorie di lavoratori di assistenza sul campo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Inventory Logistics"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2105,11 +2105,9 @@ msgstr "Gestisci attrezzature presso la località di assistenza"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Manage inventory and stock operations. Automatically activate Lots & Serial "
+"Manage materials and stock operations. Automatically activate Lots & Serial "
 "Numbers."
 msgstr ""
-"Gestione inventario e operazioni di magazzino. Attiva automaticamente Lotti "
-"e Numeri di serie."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2169,7 +2167,7 @@ msgstr "Gestione veicoli per le operazioni servizio sul campo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage your distrubution structure"
+msgid "Manage your distribution structure"
 msgstr "Gestisci la tua struttura di distribuzione"
 
 #. module: fieldservice
@@ -2517,7 +2515,6 @@ msgstr "Ordine iniziato"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_order
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
 msgstr "Ordini"
@@ -2981,6 +2978,7 @@ msgstr "Sequenza"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Locations"
 msgstr "Località assistenza"
 
@@ -2992,6 +2990,7 @@ msgstr "Ordine assistenza"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Orders"
 msgstr "Ordini assistenza"
 
@@ -3526,11 +3525,6 @@ msgid "Use Odoo Logistics"
 msgstr "Usa logistica Odoo"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Use Odoo Stock Logistics"
-msgstr "Usa logistica magazzino Odoo"
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact."
@@ -3731,6 +3725,22 @@ msgstr "etichetta"
 msgid "template"
 msgstr "modello"
 
+#~ msgid "Manage Catagories"
+#~ msgstr "Gestione categorie"
+
+#~ msgid ""
+#~ "Manage inventory and stock operations. Automatically activate Lots & "
+#~ "Serial Numbers."
+#~ msgstr ""
+#~ "Gestione inventario e operazioni di magazzino. Attiva automaticamente "
+#~ "Lotti e Numeri di serie."
+
+#~ msgid "Manage your distrubution structure"
+#~ msgstr "Gestisci la tua struttura di distribuzione"
+
+#~ msgid "Use Odoo Stock Logistics"
+#~ msgstr "Usa logistica magazzino Odoo"
+
 #~ msgid "# Tasks"
 #~ msgstr "N. lavori"
 
@@ -3816,9 +3826,6 @@ msgstr "modello"
 
 #~ msgid "Manage vehicles"
 #~ msgstr "Gestisci i veicoli"
-
-#~ msgid "Manage your distribution structure"
-#~ msgstr "Gestisci la tua struttura di distribuzione"
 
 #~ msgid "Message for Sales Order"
 #~ msgstr "Messaggio per ordine di vendita"
