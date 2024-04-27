@@ -1902,7 +1902,6 @@ msgstr "Trabalhadores da Localização"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_location
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Locations"
 msgstr "Locais"
 
@@ -1934,12 +1933,8 @@ msgid "Manage Agreements"
 msgstr "Gerenciar Acordos"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage Catagories"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Categories"
 msgstr "Gerenciar Categorias"
 
@@ -1988,6 +1983,11 @@ msgstr "Gerenciar Equipes de Serviço de Campo"
 #: model:res.groups,name:fieldservice.group_fsm_category
 msgid "Manage Field Service Worker Categories"
 msgstr "Gerenciar Categorias de Trabalhadores de Serviço de Campo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Inventory Logistics"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2093,7 +2093,7 @@ msgstr "Gerenciar equipamentos no local de serviço"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Manage inventory and stock operations. Automatically activate Lots & Serial "
+"Manage materials and stock operations. Automatically activate Lots & Serial "
 "Numbers."
 msgstr ""
 
@@ -2155,8 +2155,8 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage your distrubution structure"
-msgstr ""
+msgid "Manage your distribution structure"
+msgstr "Gerencie sua estrutura de distribuição"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__managed_by_id
@@ -2503,7 +2503,6 @@ msgstr "Ordem Iniciada"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_order
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
 msgstr "Ordens"
@@ -2966,6 +2965,7 @@ msgstr "Seqüência"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Locations"
 msgstr "Locais de Serviço"
 
@@ -2977,6 +2977,7 @@ msgstr "Ordem de Serviço"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Orders"
 msgstr "Ordens de Serviço"
 
@@ -3508,11 +3509,6 @@ msgid "Use Odoo Logistics"
 msgstr "Usar Logística do Odoo"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Use Odoo Stock Logistics"
-msgstr "Usar Logística de Estoque Odoo"
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact."
@@ -3712,6 +3708,9 @@ msgstr "marcador"
 msgid "template"
 msgstr "modelo"
 
+#~ msgid "Use Odoo Stock Logistics"
+#~ msgstr "Usar Logística de Estoque Odoo"
+
 #~ msgid "# Tasks"
 #~ msgstr "# Tarefas"
 
@@ -3799,9 +3798,6 @@ msgstr "modelo"
 
 #~ msgid "Manage vehicles"
 #~ msgstr "Gerenciar Veículos"
-
-#~ msgid "Manage your distribution structure"
-#~ msgstr "Gerencie sua estrutura de distribuição"
 
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensagem para Pedido de Vendas"

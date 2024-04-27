@@ -1898,7 +1898,6 @@ msgstr "Trabajadores de Ubicación"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_location
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Locations"
 msgstr "Ubicaciones"
 
@@ -1930,12 +1929,8 @@ msgid "Manage Agreements"
 msgstr "Gestionar Acuerdos"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage Catagories"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Categories"
 msgstr "Gestionar Categorías"
 
@@ -1984,6 +1979,11 @@ msgstr "Gestionar Equipos de Servicio de Campo"
 #: model:res.groups,name:fieldservice.group_fsm_category
 msgid "Manage Field Service Worker Categories"
 msgstr "Gestionar Categorías de Trabajador de Servicio de Campo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Inventory Logistics"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2091,7 +2091,7 @@ msgstr "Gestionar equipos en la ubicación del servicio"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Manage inventory and stock operations. Automatically activate Lots & Serial "
+"Manage materials and stock operations. Automatically activate Lots & Serial "
 "Numbers."
 msgstr ""
 
@@ -2153,8 +2153,8 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Manage your distrubution structure"
-msgstr ""
+msgid "Manage your distribution structure"
+msgstr "Administra tu estructura de distribución"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__managed_by_id
@@ -2503,7 +2503,6 @@ msgstr "Orden Iniciada"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_report_order
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "Orders"
 msgstr "Ordenes"
@@ -2966,6 +2965,7 @@ msgstr "Secuencia"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_location
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Locations"
 msgstr "Ubicaciones de Servicio"
 
@@ -2977,6 +2977,7 @@ msgstr "Orden de Servicio"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Service Orders"
 msgstr "Ordenes de Servicio"
 
@@ -3501,11 +3502,6 @@ msgid "Use Odoo Logistics"
 msgstr "Use Logística de Odoo"
 
 #. module: fieldservice
-#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Use Odoo Stock Logistics"
-msgstr "Usar Odoo Stock Logistics"
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
 msgid "Use a barcode to identify this contact."
@@ -3700,6 +3696,9 @@ msgstr "etiqueta"
 msgid "template"
 msgstr "plantilla"
 
+#~ msgid "Use Odoo Stock Logistics"
+#~ msgstr "Usar Odoo Stock Logistics"
+
 #~ msgid "# Tasks"
 #~ msgstr "# Tareas"
 
@@ -3747,9 +3746,6 @@ msgstr "plantilla"
 
 #~ msgid "Manage vehicles"
 #~ msgstr "Administrar Vehículos"
-
-#~ msgid "Manage your distribution structure"
-#~ msgstr "Administra tu estructura de distribución"
 
 #~ msgid "Message for Sales Order"
 #~ msgstr "Mensaje para Pedido de Venta"
