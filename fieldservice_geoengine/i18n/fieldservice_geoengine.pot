@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,14 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "City:"
+msgstr ""
+
+#. module: fieldservice_geoengine
 #: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__shape
 #: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__shape
 msgid "Coordinate"
 msgstr ""
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__display_name
-msgid "Display Name"
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Country:"
 msgstr ""
 
 #. module: fieldservice_geoengine
@@ -60,20 +65,18 @@ msgid "GeoCode Location"
 msgstr ""
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__id
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__id
-msgid "ID"
-msgstr ""
-
-#. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location____last_update
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: fieldservice_geoengine
 #: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.fsm_order_form
 msgid "Map"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Mobile:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Name:"
 msgstr ""
 
 #. module: fieldservice_geoengine
@@ -83,8 +86,8 @@ msgid "Open Street Map"
 msgstr ""
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__display_name
-msgid "Order"
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Phone:"
 msgstr ""
 
 #. module: fieldservice_geoengine
@@ -98,8 +101,40 @@ msgid "Stage Name"
 msgstr ""
 
 #. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "State:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Street 2:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Street:"
+msgstr ""
+
+#. module: fieldservice_geoengine
 #: model:ir.model.fields,help:fieldservice_geoengine.field_fsm_location__custom_color
 msgid "Use Hex Code only Ex:-#FFFFFF"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model:ir.model,name:fieldservice_geoengine.model_geoengine_vector_layer
+msgid "Vector Layer"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#. odoo-python
+#: code:addons/fieldservice_geoengine/models/vector_layer.py:0
+#, python-format
+msgid "You need to select a numeric field"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "ZIP:"
 msgstr ""
 
 #. module: fieldservice_geoengine
