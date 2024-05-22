@@ -15,7 +15,7 @@ class FSMLocation(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        res = super(FSMLocation, self).create(vals)
+        res = super().create(vals)
         if not res.partner_latitude or not res.partner_longitude:
             res.with_context(force_geo_localize=True).geo_localize()
         return res
