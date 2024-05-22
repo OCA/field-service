@@ -15,7 +15,8 @@ class TestFsmLocation(TransactionCase):
         cls.location_partner_2 = cls.env.ref("fieldservice.location_partner_2")
         cls.location_partner_3 = cls.env.ref("fieldservice.location_partner_3")
         cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
-        # delta value of 0.00001 was chosen according to OpenStreetMap's decimal precision table
+        # delta value of 0.00001 was chosen according to
+        # OpenStreetMap's decimal precision table
         # https://wiki.openstreetmap.org/wiki/Precision_of_coordinates#Conversion_to_decimal
         # 5 decimals are necessary for precision of about a metre
         cls.delta = 0.000_01
