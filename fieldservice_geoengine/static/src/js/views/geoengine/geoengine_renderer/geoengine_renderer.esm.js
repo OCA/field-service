@@ -15,7 +15,7 @@ const DEFAULT_END_COLOR = "#000000";
 const LEGEND_MAX_ITEMS = 10;
 const DEFAULT_NUM_CLASSES = 5;
 
-patch(GeoengineRenderer.prototype, "geoengine_renderer_view_patch", {
+patch(GeoengineRenderer.prototype, {
     styleVectorLayerColored(cfg, data) {
         var indicator = cfg.attribute_field_id[1];
         var values = this.extractLayerValues(cfg, data);

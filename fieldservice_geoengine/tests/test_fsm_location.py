@@ -2,6 +2,8 @@
 # Copyright (C) 2023 - TODAY Pytech SRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import requests
+
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
@@ -9,6 +11,7 @@ from odoo.tests.common import TransactionCase
 class TestFsmLocation(TransactionCase):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.FSMLocation = cls.env["fsm.location"]
         cls.location_partner_1 = cls.env.ref("fieldservice.location_partner_1")
@@ -30,6 +33,11 @@ class TestFsmLocation(TransactionCase):
                 "owner_id": cls.location_partner_2.id,
             }
         )
+
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
 
     def test_fsm_location_creation(self):
         test_partner = self.env["res.partner"].create(
