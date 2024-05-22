@@ -17,18 +17,19 @@ Field Service Geoengine
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_geoengine
+    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice_geoengine
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_geoengine
+    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_geoengine
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module displays map views on the order and location using the GeoEngine module and PostGIS.
+This module displays map views on the order and location using the
+GeoEngine module and PostGIS.
 
 **Table of contents**
 
@@ -38,7 +39,8 @@ This module displays map views on the order and location using the GeoEngine mod
 Installation
 ============
 
-To install Field Service and have the mapping features, you need to install GeoEngine.
+To install Field Service and have the mapping features, you need to
+install GeoEngine.
 
 Please refer to the installation instructions available at:
 https://github.com/OCA/geospatial/tree/13.0/base_geoengine
@@ -48,34 +50,36 @@ Configuration
 
 To configure this module, you need to:
 
-* Go to Field Service > Configuration > Settings
+-  Go to Field Service > Configuration > Settings
 
-You need to add attribute mention below with the tag <timeline> as base element.
+You need to add attribute mention below with the tag <timeline> as base
+element.
 
-* colors (optional): it allows to set certain specific colors if the expressed
-  condition (JS syntax) is met.
-* custom_color (optional): it allows to set custom color for fsm.stages
-  example custom_color = "true". And there is minor condition to follow to
-  implement this as. Define any one stage color condition like
-  colors="#ffffff:stage_id=='New';"
+-  colors (optional): it allows to set certain specific colors if the
+   expressed condition (JS syntax) is met.
+-  custom_color (optional): it allows to set custom color for fsm.stages
+   example custom_color = "true". And there is minor condition to follow
+   to implement this as. Define any one stage color condition like
+   colors="#ffffff:stage_id=='New';"
 
 Usage
 =====
 
 To use this module, you need to:
 
-* Go to Field Service > Master Data > Locations
-* Make sure to provide all the address information to geolocalize properly
-* Check the map tab to display the location as a point on the map
-* Go to Field Service > Dashboard
-* Select the map view to show the orders on a map with a different colors
-  based on their stage
+-  Go to Field Service > Master Data > Locations
+-  Make sure to provide all the address information to geolocalize
+   properly
+-  Check the map tab to display the location as a point on the map
+-  Go to Field Service > Dashboard
+-  Select the map view to show the orders on a map with a different
+   colors based on their stage
 
 Known issues / Roadmap
 ======================
 
 The roadmap of the Field Service application is documented on
-`Github <https://github.com/OCA/field-service/issues/1>`_.
+`Github <https://github.com/OCA/field-service/issues/1>`__.
 
 Bug Tracker
 ===========
@@ -83,7 +87,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_geoengine%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_geoengine%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -91,36 +95,41 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 * Pytech SRL
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Open Source Integrators
-    * Wolfgang Hall <whall@opensourceintegrators.com>
-    * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-    * Steve Campbell <scampbell@opensourceintegrators.com>
-    * Bhavesh Odedra <bodedra@opensourceintegrators.com>
-    * Michael Allen <mallen@opensourceintegrators.com>
-    * Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-    * Jevin Dement <jdement@opensourceintegrators.com>
-* Murtuza Saleh <murtuza.saleh@serpentcs.com>
-* Sebastiano Picchi <sebastiano.picchi@pytech.it>
-* [APSL-Nagarro](https://apsl.tech):
-  * Antoni Marroig  <amarroig@apsl.net>
+-  Open Source Integrators
+
+   -  Wolfgang Hall <whall@opensourceintegrators.com>
+   -  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+   -  Steve Campbell <scampbell@opensourceintegrators.com>
+   -  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+   -  Michael Allen <mallen@opensourceintegrators.com>
+   -  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+   -  Jevin Dement <jdement@opensourceintegrators.com>
+
+-  Murtuza Saleh <murtuza.saleh@serpentcs.com>
+
+-  Sebastiano Picchi <sebastiano.picchi@pytech.it>
+
+-  [APSL-Nagarro](https://apsl.tech):
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -143,6 +152,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-wolfhall| |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_geoengine>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice_geoengine>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
