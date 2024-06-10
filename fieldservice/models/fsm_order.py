@@ -317,7 +317,7 @@ class FSMOrder(models.Model):
                     self.scheduled_date_start != vals.get("scheduled_date_start", False)
                 )
             ):
-                hours = vals.get("scheduled_duration", False)
+                hours = vals.get("scheduled_duration", self.scheduled_duration)
                 start_date_val = vals.get(
                     "scheduled_date_start", self.scheduled_date_start
                 )
