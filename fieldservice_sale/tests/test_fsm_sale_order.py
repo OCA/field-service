@@ -181,6 +181,13 @@ class TestFSMSaleOrder(TestFSMSale):
                 "tax_id": False,
             }
         )
+        cls.sale_order_5 = SaleOrder.create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "fsm_location_id": cls.test_location.id,
+                "pricelist_id": cls.pricelist_usd.id,
+            }
+        )
 
     def _isp_account_installed(self):
         """Checks if module is installed which will require more
@@ -503,15 +510,15 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_qty": 0,
                 "product_uom": False,
                 "price_unit": 0,
-                "order_id": self.sale_order.id,
+                "order_id": self.sale_order_5.id,
                 "tax_id": False,
             }
         )
         # confirm sale order: ValidationError shouldn't be raised
-        self.sale_order.action_confirm()
+        self.sale_order_5.action_confirm()
         # set sale order to draft
-        self.sale_order.action_cancel()
-        self.sale_order.action_draft()
+        self.sale_order_5._action_cancel()
+        self.sale_order_5.action_draft()
         # remove note order line
         self.sol_note.unlink()
         # add section as order line to sale order
