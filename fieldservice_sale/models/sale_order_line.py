@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
     def _compute_qty_delivered(self):
         res = super()._compute_qty_delivered()
         stage_complete = self.env.ref("fieldservice.fsm_stage_completed")
-        fsm_lines = self.filtered(lambda l: l.qty_delivered_method == "field_service")
+        fsm_lines = self.filtered(lambda L: L.qty_delivered_method == "field_service")
         for line in fsm_lines:
             if line.fsm_order_id.stage_id == stage_complete:
                 line.qty_delivered = line.product_uom_qty
@@ -47,7 +47,7 @@ class SaleOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        lines = super(SaleOrderLine, self).create(vals_list)
+        lines = super().create(vals_list)
         for line in lines:
             if line.state == "sale":
                 line.order_id._field_service_generation()
