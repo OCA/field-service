@@ -17,19 +17,19 @@ Field Service - Sales
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_sale
+    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice_sale
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_sale
+    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_sale
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-The module integrates the Field Service application with the Sales one and
-allows you to sell products that generate field service orders.
+The module integrates the Field Service application with the Sales one
+and allows you to sell products that generate field service orders.
 
 **Table of contents**
 
@@ -39,7 +39,8 @@ allows you to sell products that generate field service orders.
 Installation
 ============
 
-To install Field Service and have the mapping features, you need to install GeoEngine.
+To install Field Service and have the mapping features, you need to
+install GeoEngine.
 
 Please refer to the installation instructions available at:
 https://github.com/OCA/geospatial/tree/13.0/base_geoengine
@@ -50,51 +51,59 @@ Configuration
 Products must be configured properly in order to create field service
 orders upon sale order confirmation.
 
-The field service tracking of a product defines how it generates a field service
-order if the product is sold via sale order.
+The field service tracking of a product defines how it generates a field
+service order if the product is sold via sale order.
 
-To configure a product that generates a unique field service order on each
-sale order line:
+To configure a product that generates a unique field service order on
+each sale order line:
 
-* Go to Sales > Catalog > Products
-* Create or select a product
-* Set the Field Service Tracking to 'One FSM Order per Sale Order Line'
-* Select the FSM Order Template that will be used for creating FSM Orders when
-  a Sale Order is confirmed with this product
+-  Go to Sales > Catalog > Products
+-  Create or select a product
+-  Set the Field Service Tracking to 'One FSM Order per Sale Order Line'
+-  Select the FSM Order Template that will be used for creating FSM
+   Orders when a Sale Order is confirmed with this product
 
 To configure a product that generates a unique field service order for
 an individual sale order:
 
-* Go to Sales > Catalog > Products
-* Create or select a product
-* Set the Field Service Tracking to 'One FSM Order per Sale Order'
-* Select the FSM Order Template that will be used for creating FSM Orders when
-  a Sale Order is confirmed with this product
+-  Go to Sales > Catalog > Products
+-  Create or select a product
+-  Set the Field Service Tracking to 'One FSM Order per Sale Order'
+-  Select the FSM Order Template that will be used for creating FSM
+   Orders when a Sale Order is confirmed with this product
 
 To setup a sales territory:
 
-* Go to Field Service > Master Data > Locations
-* Create or select a location
-* Go to the Sales tab and select the sales territory
+-  Go to Field Service > Master Data > Locations
+-  Create or select a location
+-  Go to the Sales tab and select the sales territory
 
 Usage
 =====
 
-* Go to Sales
-* Create a new Quotation/Sale Order
-* Set the FSM Location to be used
-* On a Sale Order Line, select a product configured for field service orders
-* Confirm the Sale Order
-* Field Service orders linked to SO lines are created
-* When a Field Service order is completed, the quantity delivered for its
-   linked sale order line will be updated to the quantity ordered, indicating
-   this line is ready for invoicing.
+-  Go to Sales
+
+-  Create a new Quotation/Sale Order
+
+-  Set the FSM Location to be used
+
+-  On a Sale Order Line, select a product configured for field service
+   orders
+
+-  Confirm the Sale Order
+
+-  Field Service orders linked to SO lines are created
+
+-  | When a Field Service order is completed, the quantity delivered for
+     its
+   | linked sale order line will be updated to the quantity ordered,
+     indicating this line is ready for invoicing.
 
 Known issues / Roadmap
 ======================
 
-* Provide a mapping between an address and the branch and use it to set the
-  pricelist of a new partner
+-  Provide a mapping between an address and the branch and use it to set
+   the pricelist of a new partner
 
 Bug Tracker
 ===========
@@ -102,7 +111,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -110,31 +119,30 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
-  * Steve Campbell <scampbell@opensourceintegrators.com>
-  * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-  * Wolfgang Hall <whall@opensourceintegrators.com>
-  * Raphael Lee <rlee@opensourceintegrators.com>
+   -  Steve Campbell <scampbell@opensourceintegrators.com>
+   -  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+   -  Wolfgang Hall <whall@opensourceintegrators.com>
+   -  Raphael Lee <rlee@opensourceintegrators.com>
 
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Brian McMaster <brian@mcmpest.com>
-* Rapha??l Reverdy <raphael.reverdy@akretion.com>
-* Cl??ment Mombereau <clement.mombereau@akretion.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Brian McMaster <brian@mcmpest.com>
+-  Rapha??l Reverdy <raphael.reverdy@akretion.com>
+-  Cl??ment Mombereau <clement.mombereau@akretion.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-* `Tecnativa <https://www.tecnativa.com>`_:
-
-  * Stefan Ungureanu
+   -  Stefan Ungureanu
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -160,6 +168,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-wolfhall| |maintainer-max3903| |maintainer-brian10048| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_sale>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice_sale>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
