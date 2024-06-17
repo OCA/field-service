@@ -10,7 +10,7 @@ from .test_fsm_sale_common import TestFSMSale
 class TestFSMSaleOrder(TestFSMSale):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMSaleOrder, cls).setUpClass()
+        super().setUpClass()
         cls.test_location = cls.env.ref("fieldservice.test_location")
 
         # Setup products that when sold will create some FSM orders
@@ -510,7 +510,7 @@ class TestFSMSaleOrder(TestFSMSale):
         # confirm sale order: ValidationError shouldn't be raised
         self.sale_order.action_confirm()
         # set sale order to draft
-        self.sale_order.action_cancel()
+        self.sale_order._action_cancel()
         self.sale_order.action_draft()
         # remove note order line
         self.sol_note.unlink()
