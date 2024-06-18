@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo-addon-fieldservice_skill>=16.0dev,<16.1dev',
         'odoo-addon-fieldservice_stage_validation>=16.0dev,<16.1dev',
         'odoo-addon-fieldservice_stock>=16.0dev,<16.1dev',
+        'odoo-addon-fieldservice_stock_request>=16.0dev,<16.1dev',
         'odoo-addon-fieldservice_timeline>=16.0dev,<16.1dev',
         'odoo-addon-fieldservice_vehicle>=16.0dev,<16.1dev',
     ],
