@@ -38,41 +38,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
         cls.warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
-
-        # cls.route = cls.env["stock.location.route"].create(
-        #     {
-        #         "name": "Transfer",
-        #         "product_categ_selectable": False,
-        #         "product_selectable": True,
-        #         "company_id": cls.env.user.company_id.id,
-        #         "sequence": 10,
-        #         "rule_ids": [
-        #             (
-        #                 0,
-        #                 0,
-        #                 {
-        #                     "name": "Stock -> output rule",
-        #                     "action": "pull",
-        #                     "picking_type_id": cls.ref("stock.picking_type_out"),
-        #                     "location_src_id": cls.ref("stock.stock_location_stock"),
-        #                     "location_id": cls.ref("stock.stock_location_customers"),
-        #                 },
-        #             ),
-        #             (
-        #                 0,
-        #                 0,
-        #                 {
-        #                     "name": "Stock -> output rule",
-        #                     "action": "pull",
-        #                     "picking_type_id": cls.ref("stock.picking_type_out"),
-        #                     "location_src_id": cls.warehouse.lot_stock_id.id,
-        #                     "location_id": cls.ref("stock.stock_location_customers"),
-        #                 },
-        #             ),
-        #         ],
-        #     }
-        # )
-
         cls.ressuply_loc = cls.env["stock.location"].create(
             {
                 "name": "Ressuply",
@@ -314,7 +279,7 @@ class TestFSMStockRequest(TestFSMStockCommon):
         picking.with_user(self.stock_request_manager).action_confirm()
         picking.with_user(self.stock_request_manager).action_assign()
         packout1 = picking.move_line_ids[0]
-        packout1.qty_done = 5
+        packout1.quantity = 5
         picking.with_user(self.stock_request_manager)._action_done()
 
     def test_08_stock_request(self):

@@ -23,7 +23,6 @@ class FSMOrder(models.Model):
         REQUEST_STATES,
         string="Request State",
         default="draft",
-        readonly=True,
     )
 
     def action_request_submit(self):
