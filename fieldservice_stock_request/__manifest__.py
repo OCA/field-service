@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Stock Request",
     "summary": "Integrate Stock Requests with Field Service Orders",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
