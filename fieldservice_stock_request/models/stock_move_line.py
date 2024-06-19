@@ -7,7 +7,7 @@ class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
     def _action_done(self):
-        res = super(StockMoveLine, self)._action_done()
+        res = super()._action_done()
         for rec in self:
             # cases were found where self contained deleted records
             # example is creating a backorder for Products with lot number

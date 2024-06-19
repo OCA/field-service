@@ -43,7 +43,7 @@ class FSMOrder(models.Model):
             if not rec.stock_request_ids:
                 raise UserError(_("Please create a stock request."))
             for line in rec.stock_request_ids.filtered(
-                lambda l: l.state in ("draft", "open")
+                lambda x: x.state in ("draft", "open")
             ):
                 if line.order_id:
                     line.order_id.action_cancel()
@@ -55,7 +55,7 @@ class FSMOrder(models.Model):
         for rec in self:
             if not rec.stock_request_ids:
                 raise UserError(_("Please create a stock request."))
-            for line in rec.stock_request_ids.filtered(lambda l: l.state == "cancel"):
+            for line in rec.stock_request_ids.filtered(lambda x: x.state == "cancel"):
                 if line.order_id:
                     line.order_id.action_draft()
                 else:
