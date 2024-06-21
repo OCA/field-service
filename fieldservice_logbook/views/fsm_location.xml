@@ -1,0 +1,22 @@
+<odoo>
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_equipment_logs"
+                    class="oe_stat_button"
+                    icon="fa-sticky-note"
+                >
+                    <field
+                        name="equipment_logs_count"
+                        widget="statinfo"
+                        string="Logs"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
