@@ -13,12 +13,6 @@ class FSMAccountPaymentCase(TransactionCase):
             "account.payment.register"
         ].with_context(active_model="account.move")
         self.company = self.env.user.company_id
-        self.default_journal_bank = self.env["account.journal"].search(
-            [("company_id", "=", self.company.id), ("type", "=", "bank")], limit=1
-        )
-        self.inbound_payment_method_line = (
-            self.default_journal_bank.inbound_payment_method_line_ids[0]
-        )
         self.payment_model = self.env["account.payment"]
         self.test_analytic = self.env.ref("analytic.analytic_administratif")
         # create a Res Partner
@@ -33,15 +27,22 @@ class FSMAccountPaymentCase(TransactionCase):
             {"name": "Test Loc Partner 2", "phone": "123", "email": "tlp@example.com"}
         )
         # create expected FSM Location to compare to converted FSM Location
-        self.test_location = self.env["fsm.location"].create(
-            {
-                "name": "Test Location",
-                "phone": "123",
-                "email": "tp@email.com",
-                "partner_id": self.test_loc_partner.id,
-                "owner_id": self.test_loc_partner.id,
-                "customer_id": self.test_partner.id,
-            }
+        # `customer_id` is a required field in `fsm.location` in `fieldservice_account_analytic`
+        # fieldservice_account_analytic is installed before fieldservice_account_payment
+        # so to avoid `null value in column "customer_id" violates not-null constraint` error
+        # we need to inject `default_customer_id` in context
+        self.test_location = (
+            self.env["fsm.location"]
+            .with_context(default_customer_id=self.test_partner.id)
+            .create(
+                {
+                    "name": "Test Location",
+                    "phone": "123",
+                    "email": "tp@email.com",
+                    "partner_id": self.test_loc_partner.id,
+                    "owner_id": self.test_loc_partner.id,
+                }
+            )
         )
         self.account_income = self.env["account.account"].create(
             {
@@ -93,6 +94,9 @@ class FSMAccountPaymentCase(TransactionCase):
         # Create a payment method
         self.bank_journal = self.env["account.journal"].create(
             {"name": "Bank", "type": "bank", "code": "BNK99"}
+        )
+        self.inbound_payment_method_line = (
+            self.bank_journal.inbound_payment_method_line_ids[0]
         )
         self.test_invoice.action_post()
 
