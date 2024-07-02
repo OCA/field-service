@@ -1,0 +1,30 @@
+<odoo>
+    <record id="fsm_equipment_form_view" model="ir.ui.view">
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <field name="location_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="current_location_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <xpath expr="//label[hasclass('oe_edit_only')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        type="object"
+                        name="action_view_equipment_logs"
+                        class="oe_stat_button"
+                        icon="fa-sticky-note"
+                    >
+                        <field
+                            name="equipment_logs_count"
+                            widget="statinfo"
+                            string="Logs"
+                        />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

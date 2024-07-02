@@ -1,0 +1,79 @@
+<odoo>
+
+    <record id="fsm_equipment_logbook_view_search" model="ir.ui.view">
+        <field name="model">fsm.equipment.logbook</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="location_id" />
+                <field name="equipment_id" />
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="location_groupby"
+                        string="Location"
+                        context="{'group_by': 'location_id'}"
+                    />
+                    <filter
+                        name="equipment_groupby"
+                        string="Equipment"
+                        context="{'group_by': 'equipment_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="fsm_equipment_logbook_form" model="ir.ui.view">
+        <field name="model">fsm.equipment.logbook</field>
+        <field name="arch" type="xml">
+            <form edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <field name="location_id" />
+                        <field name="equipment_id" />
+                        <field name="type" invisible="1" />
+                        <field
+                            name="source"
+                            widget="reference"
+                            attrs="{'readonly': [('type', '=', 'note')]}"
+                        />
+                        <field
+                            name="note"
+                            attrs="{'readonly': [('type', '!=', 'note')]}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fsm_equipment_logbook_tree" model="ir.ui.view">
+        <field name="model">fsm.equipment.logbook</field>
+        <field name="arch" type="xml">
+            <tree edit="false" delete="false">
+                <field name="event_date" />
+                <field name="equipment_status" />
+                <field name="location_id" />
+                <field name="equipment_id" />
+                <field name="type" />
+                <field name="source_display_name" />
+                <field name="origin_status" />
+                <field name="note" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_fsm_equipment_logbook" model="ir.actions.act_window">
+        <field name="name">Equipment Logbook</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fsm.equipment.logbook</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        name="Equipment Logbook"
+        id="menu_fieldservice_fsm_equipment_logbook"
+        parent="fieldservice.config"
+        action="action_fsm_equipment_logbook"
+    />
+
+</odoo>
