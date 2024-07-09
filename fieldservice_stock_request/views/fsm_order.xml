@@ -1,0 +1,71 @@
+<odoo>
+    <record id="view_fsm_order_form_inherit_stock_request" model="ir.ui.view">
+        <field name="name">fsm.order.form.stock.request</field>
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_stock.view_fsm_order_form_inherit_stock"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@id='stock']" position="inside">
+                <header>
+                    <button
+                        name="action_request_submit"
+                        invisible="request_stage not in ['draft']"
+                        type="object"
+                        class="oe_highlight"
+                        string="Submit"
+                    />
+                    <button
+                        name="action_request_draft"
+                        type="object"
+                        invisible="request_stage not in  ['cancel']"
+                        class="oe_highlight"
+                        string="Set to Draft"
+                    />
+                    <button
+                        name="action_request_cancel"
+                        invisible="request_stage not in  ['draft','submitted','open']"
+                        type="object"
+                        string="Cancel"
+                    />
+                    <field name='request_stage' widget="statusbar" readonly="1" />
+                </header>
+            </xpath>
+            <field name="move_ids" position="before">
+                <field name="stock_request_ids" nolabel="1">
+                    <tree editable="bottom">
+                        <field name="name" readonly="1" />
+                        <field name="product_id" />
+                        <field name="order_id" force_save="1" />
+                        <field name="allowed_uom_categ_id" column_invisible="1" />
+                        <field name="allow_virtual_location" column_invisible="1" />
+                        <field
+                            name="product_uom_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            groups="uom.group_uom"
+                        />
+                        <field name="direction" required="1" />
+                        <field
+                            name="route_id"
+                            options="{'no_create': True}"
+                            groups="stock.group_stock_multi_locations"
+                            column_invisible="1"
+                        />
+                        <field name="route_ids" column_invisible="1" />
+                        <field name="product_uom_qty" />
+                        <field name="qty_in_progress" />
+                        <field name="qty_done" />
+                        <field name="expected_date" />
+                        <field name="picking_policy" column_invisible="1" />
+                        <field name="warehouse_id" column_invisible="1" />
+                        <field name="location_id" invisible="0" />
+                        <field name="procurement_group_id" column_invisible="1" />
+                        <field name="company_id" column_invisible="1" />
+                        <field name="state" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>
