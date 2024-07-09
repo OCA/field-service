@@ -27,13 +27,6 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: fieldservice_stock_request
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_move_line__display_name
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request__display_name
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request_order__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: fieldservice_stock_request
 #: model:ir.model.fields.selection,name:fieldservice_stock_request.selection__fsm_order__request_stage__done
 msgid "Done"
 msgstr "Hecho"
@@ -56,30 +49,9 @@ msgid "Field Service Order"
 msgstr "Pedido de Servicio de Campo"
 
 #. module: fieldservice_stock_request
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order__id
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_move_line__id
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request__id
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: fieldservice_stock_request
 #: model:ir.model.fields.selection,name:fieldservice_stock_request.selection__fsm_order__request_stage__open
 msgid "In progress"
 msgstr "En progreso"
-
-#. module: fieldservice_stock_request
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order____last_update
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_move_line____last_update
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request____last_update
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_stock_request_order____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: fieldservice_stock_request
-#: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
 
 #. module: fieldservice_stock_request
 #: model:ir.model.fields,field_description:fieldservice_stock_request.field_fsm_order__stock_request_ids
@@ -87,6 +59,7 @@ msgid "Order Lines"
 msgstr "Líneas de Pedido"
 
 #. module: fieldservice_stock_request
+#. odoo-python
 #: code:addons/fieldservice_stock_request/models/fsm_order.py:0
 #, python-format
 msgid "Please create a stock request."
@@ -133,6 +106,7 @@ msgid "Submitted"
 msgstr "Presentado"
 
 #. module: fieldservice_stock_request
+#. odoo-python
 #: code:addons/fieldservice_stock_request/models/stock_request.py:0
 #, python-format
 msgid ""
@@ -147,6 +121,7 @@ msgstr ""
 "Agregue                                   esta solicitud de stock allí. (%s)"
 
 #. module: fieldservice_stock_request
+#. odoo-python
 #: code:addons/fieldservice_stock_request/models/stock_request.py:0
 #, python-format
 msgid ""
@@ -155,3 +130,15 @@ msgid ""
 msgstr ""
 "No hay ningún registro Tipo de operaciones de inventario: "
 "stock_request_order para %s Warehouse."
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
