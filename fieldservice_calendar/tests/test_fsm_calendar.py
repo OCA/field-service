@@ -71,6 +71,17 @@ class TestFSMOrder(TransactionCase):
             len(evt.partner_ids) == 2, "Not workers should be removed from attendees"
         )
 
+    def test_description_sync(self):
+        fsm_order = self._create_fsm_order(schedule=True)
+        event = fsm_order.calendar_event_id
+        self.assertEqual(event.description, "<p></p>")
+        with Form(fsm_order) as form:
+            form.description = "line 1\nline 2"
+        self.assertEqual(event.description, "<p>line 1<br>line 2</p>")
+        with Form(event) as form:
+            form.description = "<p>line 1<br>line 2<br>line 3</p>"
+        self.assertEqual(fsm_order.description, "line 1\nline 2\nline 3")
+
     def _create_fsm_order(self, schedule=False):
         form = Form(self.Order)
         form.location_id = self.test_location

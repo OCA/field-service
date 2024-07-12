@@ -1,7 +1,7 @@
 # Copyright (C) 2021 Raphaël Reverdy <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 
 
 class FSMOrder(models.Model):
@@ -37,7 +37,7 @@ class FSMOrder(models.Model):
         model_id = self.env.ref("fieldservice.model_fsm_order").id
         vals = {
             "name": self.name,
-            "description": self.description,
+            "description": tools.plaintext2html(self.description or ""),
             "start": self.scheduled_date_start,
             "stop": self.scheduled_date_end,
             "allday": False,
@@ -63,6 +63,8 @@ class FSMOrder(models.Model):
             )
             if "scheduled_date_start" in vals or "scheduled_date_end" in vals:
                 with_calendar.update_calendar_date(vals)
+            if "description" in vals:
+                with_calendar.update_calendar_description()
             if "location_id" in vals:
                 with_calendar.update_calendar_location()
             if "person_id" in vals:
@@ -91,6 +93,11 @@ class FSMOrder(models.Model):
         to_apply["stop"] = self.scheduled_date_end
         # always write start and stop in order to calc duration
         self.calendar_event_id.write(to_apply)
+
+    def update_calendar_description(self):
+        for order in self:
+            html_description = tools.plaintext2html(order.description or "")
+            order.calendar_event_id.description = html_description
 
     def update_calendar_location(self):
         for rec in self:
