@@ -1,0 +1,31 @@
+<odoo>
+
+    <record id="view_fsm_order_view_form_inherit_mobile" model="ir.ui.view">
+        <field name="name">view.fsm.order.inherit.mobile</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="attributes">
+                <attribute name="domain">[('stage_type', '=', 'order'),
+                                          ('team_ids', 'in', (team_id, False)),
+                                          ('is_display_in_odoo', '=', True)]</attribute>
+            </xpath>
+            <field name="duration" position="attributes">
+                <attribute name="widget">float_time</attribute>
+            </field>
+            <xpath expr="//notebook/page[@name='execution_page']/group" position="after">
+                <group string="Stages History">
+                    <field name="fsm_stage_history_ids" nolabel="1" readonly="1">
+                        <tree editable="bottom">
+                            <field name="start_datetime" required="1"/>
+                            <field name="stage_id" required="1"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="total_duration" widget="float_time"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
