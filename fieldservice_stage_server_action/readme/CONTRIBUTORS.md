@@ -4,3 +4,4 @@
   - Steve Campbell \<<scampbell@opensourceintegrators.com>\>
   - Mohammad Khalid \<<mkhalid@opensourceintegrators.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
+- Italo Lopes \<<italo.lopes@camptocamp.com>\>
