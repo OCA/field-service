@@ -4,60 +4,62 @@ from odoo.tests.common import Form, TransactionCase
 
 
 class TestFSMEquipment(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Equipment = self.env["fsm.equipment"]
-        self.stock_location = self.env.ref("stock.stock_location_customers")
-        self.current_location = self.env.ref("fieldservice.location_1")
-        self.test_location = self.env.ref("fieldservice.test_location")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.Equipment = cls.env["fsm.equipment"]
+        cls.stock_location = cls.env.ref("stock.stock_location_customers")
+        cls.current_location = cls.env.ref("fieldservice.location_1")
+        cls.test_location = cls.env.ref("fieldservice.test_location")
 
-        currency = self.env["res.currency"].create(
+        currency = cls.env["res.currency"].create(
             {
                 "name": "Currency 1",
                 "symbol": "$",
             }
         )
-        partner = self.env["res.partner"].create(
+        partner = cls.env["res.partner"].create(
             {
                 "name": "Partner 1",
             }
         )
-        self.company1 = self.env["res.company"].create(
+        cls.company1 = cls.env["res.company"].create(
             {
                 "name": "Company 1",
                 "currency_id": currency.id,
                 "partner_id": partner.id,
             }
         )
-        self.product1 = self.env["product.product"].create(
+        cls.product1 = cls.env["product.product"].create(
             {
                 "name": "Product A",
                 "type": "product",
                 "tracking": "serial",
             }
         )
-        self.lot1 = self.env["stock.lot"].create(
+        cls.lot1 = cls.env["stock.lot"].create(
             {
                 "name": "serial1",
-                "product_id": self.product1.id,
-                "company_id": self.company1.id,
+                "product_id": cls.product1.id,
+                "company_id": cls.company1.id,
             }
         )
-        self.env["stock.quant"].create(
+        cls.env["stock.quant"].create(
             {
-                "product_id": self.product1.id,
-                "location_id": self.stock_location.id,
+                "product_id": cls.product1.id,
+                "location_id": cls.stock_location.id,
                 "quantity": 1.0,
-                "lot_id": self.lot1.id,
+                "lot_id": cls.lot1.id,
             }
         )
 
-        self.equipment = self.Equipment.create(
+        cls.equipment = cls.Equipment.create(
             {
                 "name": "Equipment 1",
-                "product_id": self.product1.id,
-                "lot_id": self.lot1.id,
-                "current_stock_location_id": self.stock_location.id,
+                "product_id": cls.product1.id,
+                "lot_id": cls.lot1.id,
+                "current_stock_location_id": cls.stock_location.id,
             }
         )
 

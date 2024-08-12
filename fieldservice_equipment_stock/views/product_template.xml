@@ -5,10 +5,7 @@
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
  			<group name="traceability" position="inside">
-                <field
-                    name="create_fsm_equipment"
-                    attrs="{'invisible': [('tracking', '!=', 'serial')]}"
-                />
+                <field name="create_fsm_equipment" invisible="tracking != 'serial'" />
  			</group>
         </field>
     </record>
