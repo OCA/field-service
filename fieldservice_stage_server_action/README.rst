@@ -80,6 +80,7 @@ Contributors
    -  Mohammad Khalid <mkhalid@opensourceintegrators.com>
 
 -  Brian McMaster <brian@mcmpest.com>
+-  Italo Lopes <italo.lopes@camptocamp.com>
 
 Maintainers
 -----------
