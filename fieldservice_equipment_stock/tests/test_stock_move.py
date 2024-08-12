@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestStockMove(TransactionCase):
     def setUp(self):
-        super(TestStockMove, self).setUp()
+        super().setUp()
         self.Move = self.env["stock.move"]
         self.stock_location = self.env.ref("stock.stock_location_customers")
         self.supplier_location = self.env.ref("stock.stock_location_suppliers")

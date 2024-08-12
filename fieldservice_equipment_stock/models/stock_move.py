@@ -9,7 +9,7 @@ class StockMove(models.Model):
     def prepare_equipment_values(self, move_line):
         move = move_line.move_id
         return {
-            "name": "%s (%s)" % (move_line.product_id.name, move_line.lot_id.name),
+            "name": f"{move_line.product_id.name} ({move_line.lot_id.name})",
             "product_id": move_line.product_id.id,
             "lot_id": move_line.lot_id.id,
             "location_id": move.fsm_order_id.location_id.id,
