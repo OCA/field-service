@@ -5,7 +5,7 @@ from odoo.tests.common import Form, TransactionCase
 
 class TestFSMEquipment(TransactionCase):
     def setUp(self):
-        super(TestFSMEquipment, self).setUp()
+        super().setUp()
         self.Equipment = self.env["fsm.equipment"]
         self.stock_location = self.env.ref("stock.stock_location_customers")
         self.current_location = self.env.ref("fieldservice.location_1")

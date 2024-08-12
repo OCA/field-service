@@ -32,14 +32,14 @@ class FSMEquipment(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        equipments = super(FSMEquipment, self).create(vals_list)
+        equipments = super().create(vals_list)
         for equipment in equipments:
             if equipment.lot_id:
                 equipment.lot_id.fsm_equipment_id = equipment.id
         return equipments
 
     def write(self, vals):
-        res = super(FSMEquipment, self).write(vals)
+        res = super().write(vals)
         for equipment in self:
             if "lot_id" in vals:
                 equipment.lot_id.fsm_equipment_id = equipment.id
