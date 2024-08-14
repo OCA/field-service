@@ -52,7 +52,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="fsm_recurring_template_id" />
+                            <field
+                                name="fsm_recurring_template_id"
+                                readonly="state != 'draft'"
+                            />
                             <field
                                 name="fsm_order_template_id"
                                 groups="fieldservice.group_fsm_template"
