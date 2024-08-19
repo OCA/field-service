@@ -41,8 +41,6 @@ class FSMRecurringOrder(models.Model):
     fsm_recurring_template_id = fields.Many2one(
         "fsm.recurring.template",
         "Recurring Template",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
