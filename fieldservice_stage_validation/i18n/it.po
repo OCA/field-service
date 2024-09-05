@@ -4,8 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-05 15:29+0000\n"
 "PO-Revision-Date: 2024-04-29 14:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
@@ -19,12 +20,11 @@ msgstr ""
 #. module: fieldservice_stage_validation
 #. odoo-python
 #: code:addons/fieldservice_stage_validation/models/validate_utils.py:0
-#, python-format
-msgid ""
-"Cannot move to stage \"%(stage_name)s\" until the \"%(name)s\" field is set."
+#, fuzzy, python-format
+msgid "Cannot move to stage %(stage_name)s until the %(name)s field is set."
 msgstr ""
-"Non si può passare allo stato \"%(stage_name)s\" finché il campo \"%(name)s"
-"\" non è compilato."
+"Non si può passare allo stato %(stage_name)s finché il campo %(name)s non è "
+"compilato."
 
 #. module: fieldservice_stage_validation
 #: model:ir.model,name:fieldservice_stage_validation.model_fsm_equipment
@@ -71,9 +71,3 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice_stage_validation.field_fsm_stage__stage_type_model_id
 msgid "Technical field to hold model type"
 msgstr "Campo tecnico per memorizzare il tipo modello"
-
-#, python-format
-#~ msgid "Cannot move to stage \"%s\" until the \"%s\" field is set."
-#~ msgstr ""
-#~ "Non si può passare alla fase \"%s\" finché il campo \"%s\" non è "
-#~ "impostato."
