@@ -10,7 +10,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFSMRepairCommon(TransactionCase):
     def setUp(self):
-        super(TestFSMRepairCommon, self).setUp()
+        super().setUp()
         self.test_location = self.env.ref("fieldservice.test_location")
         self.stock_location = self.env.ref("stock.stock_location_customers")
         self.FSMOrder = self.env["fsm.order"]
@@ -20,7 +20,7 @@ class TestFSMRepairCommon(TransactionCase):
         self.product1 = self.env["product.product"].create(
             {"name": "Product A", "type": "product"}
         )
-        self.lot1 = self.env["stock.production.lot"].create(
+        self.lot1 = self.env["stock.lot"].create(
             {
                 "name": "sn11",
                 "product_id": self.product1.id,
