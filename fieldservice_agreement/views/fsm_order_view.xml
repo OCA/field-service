@@ -11,10 +11,6 @@
                     name="agreement_id"
                     domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]"
                 />
-                <field
-                    name="serviceprofile_id"
-                    domain="[('agreement_id', '=', agreement_id)]"
-                />
             </field>
         </field>
     </record>
@@ -27,10 +23,10 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <filter
-                    name="serviceprofile_id"
-                    string="Service Profile"
+                    name="agreement_id"
+                    string="Agreement"
                     domain="[]"
-                    context="{'group_by': 'serviceprofile_id'}"
+                    context="{'group_by': 'agreement_id'}"
                 />
             </xpath>
         </field>

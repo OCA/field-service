@@ -19,7 +19,7 @@ class FSMPerson(models.Model):
     def action_view_agreements(self):
         for person in self:
             action = self.env["ir.actions.act_window"]._for_xml_id(
-                "agreement_legal.agreement_operations_agreement"
+                "agreement.agreement_action"
             )
             agreements = self.env["agreement"].search(
                 [("partner_id", "=", person.partner_id.id)]
@@ -27,7 +27,7 @@ class FSMPerson(models.Model):
             if len(agreements) == 1:
                 action["views"] = [
                     (
-                        self.env.ref("agreement_legal.partner_agreement_form_view").id,
+                        self.env.ref("agreement.agreement_form").id,
                         "form",
                     )
                 ]

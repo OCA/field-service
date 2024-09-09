@@ -14,10 +14,6 @@
                                 name="agreement_id"
                                 domain="[('fsm_location_id', '=', location_id)]"
                             />
-                            <field
-                                name="serviceprofile_id"
-                                domain="[('agreement_id', '=', agreement_id)]"
-                            />
                         </group>
                         <group id="agreement-right" />
                     </group>
@@ -34,10 +30,10 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <filter
-                    name="serviceprofile_id"
-                    string="Service Profile"
+                    name="agreement_id"
+                    string="Agreement"
                     domain="[]"
-                    context="{'group_by': 'serviceprofile_id'}"
+                    context="{'group_by': 'agreement_id'}"
                 />
             </xpath>
         </field>

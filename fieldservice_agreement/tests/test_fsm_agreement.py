@@ -7,13 +7,14 @@ from odoo.tests.common import Form, TransactionCase
 
 class FSMOrder(TransactionCase):
     def setUp(self):
-        super(FSMOrder, self).setUp()
+        super().setUp()
         self.Order = self.env["fsm.order"]
         self.Agreement = self.env["agreement"]
-        self.Serviceprofile = self.env["agreement.serviceprofile"]
         self.Equipment = self.env["fsm.equipment"]
         self.test_location = self.env.ref("fieldservice.test_location")
-        self.agreement_type = self.env.ref("agreement_legal.agreement_type_agreement")
+        self.agreement_type = self.env["agreement.type"].create(
+            {"name": "Test Agreement Type"}
+        )
         self.test_person = self.env.ref("fieldservice.test_person")
         self.service = self.env.ref("product.product_product_1_product_template")
 
@@ -25,22 +26,15 @@ class FSMOrder(TransactionCase):
         - Person (partner) can relate back to agreement correctly
         """
         # Create agreement and assign to test location
-        view_id = "agreement_legal.partner_agreement_form_view"
+        view_id = "agreement.agreement_form"
         with Form(self.Agreement, view=view_id) as f:
             f.name = "Test Agreement"
             f.agreement_type_id = self.agreement_type
-            f.description = "Test Agreement"
+            f.code = "TestAgreement"
             f.start_date = f.end_date = fields.Date.today()
             f.fsm_location_id = self.test_location
             f.partner_id = self.test_person.partner_id
         agreement = f.save()
-        profile = self.Serviceprofile.create(
-            {
-                "name": "Test Profile",
-                "agreement_id": agreement.id,
-                "product_id": self.service.id,
-            }
-        )
         # Create 2 Orders, that link to this agreement
         vals = {
             "name": "Order1",
@@ -81,8 +75,6 @@ class FSMOrder(TransactionCase):
             [equipment1.id, equipment2.id, equipment3.id],
             agreement.action_view_fsm_equipment()["domain"][0][2],
         )
-        # Location's service profile display correctly
-        self.assertEqual(self.test_location.serviceprofile_ids, profile)
         # Person (partner) can relate back to agreement correctly
         self.assertEqual(self.test_person.agreement_count, 1)
         self.assertEqual(

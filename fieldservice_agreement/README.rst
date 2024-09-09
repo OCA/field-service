@@ -88,6 +88,7 @@ Contributors
 -  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
 -  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 -  Patrick Wilson <pwilson@opensourceintegrators.com>
+-  Italo LOPES <italo.lopes@camptocamp.com>
 
 Other credits
 -------------
