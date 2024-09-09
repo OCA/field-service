@@ -2,20 +2,22 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class FSMOrder(TransactionCase):
-    def setUp(self):
-        super(FSMOrder, self).setUp()
-        self.Order = self.env["fsm.order"]
-        self.Agreement = self.env["agreement"]
-        self.Serviceprofile = self.env["agreement.serviceprofile"]
-        self.Equipment = self.env["fsm.equipment"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.agreement_type = self.env.ref("agreement_legal.agreement_type_agreement")
-        self.test_person = self.env.ref("fieldservice.test_person")
-        self.service = self.env.ref("product.product_product_1_product_template")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Order = cls.env["fsm.order"]
+        cls.Agreement = cls.env["agreement"]
+        cls.Equipment = cls.env["fsm.equipment"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.agreement_type = cls.env["agreement.type"].create(
+            {"name": "Test Agreement Type"}
+        )
+        cls.test_person = cls.env.ref("fieldservice.test_person")
+        cls.service = cls.env.ref("product.product_product_1_product_template")
 
     def test_fsm_agreement(self):
         """
@@ -25,20 +27,15 @@ class FSMOrder(TransactionCase):
         - Person (partner) can relate back to agreement correctly
         """
         # Create agreement and assign to test location
-        view_id = "agreement_legal.partner_agreement_form_view"
-        with Form(self.Agreement, view=view_id) as f:
-            f.name = "Test Agreement"
-            f.agreement_type_id = self.agreement_type
-            f.description = "Test Agreement"
-            f.start_date = f.end_date = fields.Date.today()
-            f.fsm_location_id = self.test_location
-            f.partner_id = self.test_person.partner_id
-        agreement = f.save()
-        profile = self.Serviceprofile.create(
+        agreement = self.Agreement.create(
             {
-                "name": "Test Profile",
-                "agreement_id": agreement.id,
-                "product_id": self.service.id,
+                "name": "Test Agreement",
+                "agreement_type_id": self.agreement_type.id,
+                "code": "TestAgreement",
+                "start_date": fields.Date.today(),
+                "end_date": fields.Date.today(),
+                "fsm_location_id": self.test_location.id,
+                "partner_id": self.test_person.partner_id.id,
             }
         )
         # Create 2 Orders, that link to this agreement
@@ -81,8 +78,6 @@ class FSMOrder(TransactionCase):
             [equipment1.id, equipment2.id, equipment3.id],
             agreement.action_view_fsm_equipment()["domain"][0][2],
         )
-        # Location's service profile display correctly
-        self.assertEqual(self.test_location.serviceprofile_ids, profile)
         # Person (partner) can relate back to agreement correctly
         self.assertEqual(self.test_person.agreement_count, 1)
         self.assertEqual(

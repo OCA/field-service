@@ -17,40 +17,51 @@ Field Service - Agreements
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_agreement
+    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice_agreement
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_agreement
+    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_agreement
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Odoo Agreement App does not provide an easy way to access field service orders
-related to an agreement. Some organizations needs to have a quick access to
-field service orders to track the performance of an agreement.
+Odoo Agreement App does not provide an easy way to access field service
+orders related to an agreement. Some organizations needs to have a quick
+access to field service orders to track the performance of an agreement.
 
-This module allows you to link a field service order to an agreement and adds a
-smart button on the agreement to look at the list of related field service
-orders.
+This module allows you to link a field service order to an agreement and
+adds a smart button on the agreement to look at the list of related
+field service orders.
 
 **Table of contents**
 
 .. contents::
    :local:
 
+Configuration
+=============
+
+
+
 Usage
 =====
 
 To use this module:
 
-* Go to Field Service > Operations > Orders
-* Select or create a field service order and set the agreement
-* Go to Agreement > Agreements
-* Open the previous agreement
-* Click on the smart button "Service Orders" to see the list of related field service orders
+- Go to Field Service > Operations > Orders
+- Select or create a field service order and set the agreement
+- Go to Agreement > Agreements
+- Open the previous agreement
+- Click on the smart button "Service Orders" to see the list of related
+  field service orders
+
+Known issues / Roadmap
+======================
+
+
 
 Bug Tracker
 ===========
@@ -58,7 +69,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_agreement%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_agreement%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -66,27 +77,29 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Bhavesh Odedra <bodedra@opensourceintegrators.com>
-* Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Patrick Wilson <pwilson@opensourceintegrators.com>
+- Bhavesh Odedra <bodedra@opensourceintegrators.com>
+- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Patrick Wilson <pwilson@opensourceintegrators.com>
+- Italo Lopes <italo.lopes@camptocamp.com>
+- Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Open Source Integrators
+- Open Source Integrators
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -118,6 +131,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-max3903| |maintainer-bodedra| |maintainer-smangukiya| |maintainer-osi-scampbell| |maintainer-patrickrwilson| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_agreement>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice_agreement>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
