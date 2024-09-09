@@ -9,8 +9,8 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": [
-        "fieldservice_equipment_stock",
         "repair",
+        "fieldservice_equipment_stock",
     ],
     "data": ["data/fsm_order_type.xml", "views/fsm_order_view.xml"],
     "license": "AGPL-3",
