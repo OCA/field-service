@@ -14,7 +14,7 @@ class FSMOrder(models.Model):
     def create(self, vals):
         # if FSM order with type repair is created then
         # create a repair order
-        order = super(FSMOrder, self).create(vals)
+        order = super().create(vals)
         if order.type.internal_type == "repair":
             if order.equipment_id and order.equipment_id.current_stock_location_id:
                 equipment = order.equipment_id
@@ -28,7 +28,6 @@ class FSMOrder(models.Model):
                         or False,
                         "lot_id": equipment.lot_id.id or "",
                         "product_qty": 1,
-                        "invoice_method": "none",
                         "internal_notes": order.description,
                         "partner_id": order.location_id.partner_id
                         and order.location_id.partner_id.id
