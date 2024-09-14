@@ -317,7 +317,7 @@ class FSMOrder(models.Model):
                     self.scheduled_date_start != vals.get("scheduled_date_start", False)
                 )
             ):
-                hours = vals.get("scheduled_duration", False)
+                hours = vals.get("scheduled_duration", self.scheduled_duration)
                 start_date_val = vals.get(
                     "scheduled_date_start", self.scheduled_date_start
                 )
@@ -346,7 +346,7 @@ class FSMOrder(models.Model):
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_end
             ) - timedelta(hours=self.scheduled_duration)
-            self.date_start = str(date_to_with_delta)
+            self.scheduled_date_start = str(date_to_with_delta)
 
     @api.onchange("scheduled_date_start", "scheduled_duration")
     def onchange_scheduled_duration(self):
