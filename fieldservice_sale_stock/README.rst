@@ -36,15 +36,6 @@ order created by the sale order.
 .. contents::
    :local:
 
-Installation
-============
-
-To install Field Service and have the mapping features, you need to
-install GeoEngine.
-
-Please refer to the installation instructions available at:
-https://github.com/OCA/geospatial/tree/12.0/base_geoengine
-
 Configuration
 =============
 
@@ -99,6 +90,7 @@ Contributors
 -  Brian McMaster <brian@mcmpest.com>
 -  Ammar Officewala <aofficewala@opensourceintegrators.com>
 -  Freni Patel <fpatel@opensourceintegrators.com>
+-  Italo LOPES <italo.lopes@camptocamp.com>
 
 Maintainers
 -----------
