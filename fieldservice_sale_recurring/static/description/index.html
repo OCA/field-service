@@ -368,7 +368,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:fd6492192ea76655151a8ddf10f58cda75f9b4c12d2f32d37aa8e0100945b10d
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_sale_recurring"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-15-0/field-service-15-0-fieldservice_sale_recurring"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/17.0/fieldservice_sale_recurring"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_sale_recurring"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows you to sell recurring field services.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -388,22 +388,28 @@ ul.auto-toc {
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>To install Field Service and have the mapping features, you need to install GeoEngine.</p>
+<p>To install Field Service and have the mapping features, you need to
+install GeoEngine.</p>
 <p>Please refer to the installation instructions available at:
 <a class="reference external" href="https://github.com/OCA/geospatial/tree/13.0/base_geoengine">https://github.com/OCA/geospatial/tree/13.0/base_geoengine</a></p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
 <p>To setup a product for quoting and selling field service orders:</p>
-<ul class="simple">
-<li>Go to Sales &gt; Catalog &gt; Products</li>
-<li>Create or select a product</li>
-<li>Set the Product Type to ‘Service’ under General Information tab</li>
-<li>Under Invoicing tab, set the Field Service Tracking option</li>
-<li><dl class="first docutils">
-<dt>Select the FSM Order Template that will be used for creating FSM Orders when</dt>
-<dd>a Sale Order is confirmed with this product</dd>
-</dl>
+<ul>
+<li><p class="first">Go to Sales &gt; Catalog &gt; Products</p>
+</li>
+<li><p class="first">Create or select a product</p>
+</li>
+<li><p class="first">Set the Product Type to ‘Service’ under General Information tab</p>
+</li>
+<li><p class="first">Under Invoicing tab, set the Field Service Tracking option</p>
+</li>
+<li><div class="first line-block">
+<div class="line">Select the FSM Order Template that will be used for creating FSM
+Orders when</div>
+<div class="line">a Sale Order is confirmed with this product</div>
+</div>
 </li>
 </ul>
 </div>
@@ -413,7 +419,8 @@ ul.auto-toc {
 <li>Go to Sales</li>
 <li>Create a new Quotation/Sale Order</li>
 <li>Set the FSM Location to be used</li>
-<li>On a Sale Order Line, select a product configured for field service orders</li>
+<li>On a Sale Order Line, select a product configured for field service
+orders</li>
 <li>Confirm the Sale Order</li>
 <li>Field Service Orders linked to SO lines are created</li>
 </ul>
@@ -428,7 +435,7 @@ ul.auto-toc {
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/field-service/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale_recurring%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale_recurring%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -462,7 +469,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/wolfhall"><img alt="wolfhall" src="https://github.com/wolfhall.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/max3903"><img alt="max3903" src="https://github.com/max3903.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/brian10048"><img alt="brian10048" src="https://github.com/brian10048.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_sale_recurring">OCA/field-service</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/17.0/fieldservice_sale_recurring">OCA/field-service</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
