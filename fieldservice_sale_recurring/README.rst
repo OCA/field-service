@@ -35,15 +35,6 @@ This module allows you to sell recurring field services.
 .. contents::
    :local:
 
-Installation
-============
-
-To install Field Service and have the mapping features, you need to
-install GeoEngine.
-
-Please refer to the installation instructions available at:
-https://github.com/OCA/geospatial/tree/13.0/base_geoengine
-
 Configuration
 =============
 
@@ -70,7 +61,8 @@ Usage
 -  On a Sale Order Line, select a product configured for field service
    orders
 -  Confirm the Sale Order
--  Field Service Orders linked to SO lines are created
+-  Field Service Recurring Orders are generated and linked with sale
+   order line
 
 Known issues / Roadmap
 ======================
@@ -108,6 +100,7 @@ Contributors
 -  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 -  Brian McMaster <brian@mcmpest.com>
 -  Raphaël Reverdy <raphael.reverdy@akretion.com>
+-  Italo LOPES <italo.lopes@camptocamp.com>
 
 Maintainers
 -----------
