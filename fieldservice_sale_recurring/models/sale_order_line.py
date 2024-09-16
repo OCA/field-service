@@ -47,33 +47,27 @@ class SaleOrderLine(models.Model):
             values = so_line._field_create_fsm_recurring_prepare_values()
             fsm_recurring = self.env["fsm.recurring"].sudo().create(values)
             so_line.write({"fsm_recurring_id": fsm_recurring.id})
+
+            product_name = so_line.product_id.name
+
             # post message on SO
-            msg_body = _(
-                """Field Service recurring Created (%(product)s): <a href=
-                   # data-oe-model=fsm.recurring data-oe-id=%(id)s>%(name)s</a>
-                """
-            ).format(
-                {
-                    "product": so_line.product_id.name,
-                    "id": fsm_recurring.id,
-                    "name": fsm_recurring.name,
-                }
+            msg_body = (
+                _("Field Service recurring Created ({product_name}): ").format(
+                    product_name=product_name
+                )
+                + fsm_recurring._get_html_link()
             )
             so_line.order_id.message_post(body=msg_body)
+
             # post message on fsm_recurring
-            fsm_recurring_msg = _(
-                """This recurring has been created from: <a href=
-                   # data-oe-model=sale.order data-oe-id=%(order_id)s>%(order)s</a>
-                   (%(product)s)
-                """
-            ).format(
-                {
-                    "order_id": so_line.order_id.id,
-                    "order": so_line.order_id.name,
-                    "product": so_line.product_id.name,
-                }
+            fsm_recurring_msg = (
+                _("This recurring has been created ({product_name}) from: ").format(
+                    product_name=product_name
+                )
+                + so_line.order_id._get_html_link()
             )
             fsm_recurring.message_post(body=fsm_recurring_msg)
+
             result[so_line.id] = fsm_recurring
         return result
 

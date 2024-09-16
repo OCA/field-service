@@ -10,10 +10,10 @@
                     name="action_view_sales"
                     class="oe_stat_button"
                     icon="fa-credit-card"
-                    attrs="{'invisible': [('sale_line_id', '=', False)]}"
+                    invisible="sale_line_id == False"
                 >
                     <span class="o_stat_text">Sale Orders</span>
-                    <field name="sale_line_id" attrs="{'invisible': 1}" />
+                    <field name="sale_line_id" invisible="1" />
                 </button>
             </xpath>
         </field>

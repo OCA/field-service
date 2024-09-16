@@ -8,7 +8,7 @@ from odoo.addons.fieldservice_sale.tests.test_fsm_sale_order import TestFSMSale
 class TestFSMSaleRecurring(TestFSMSale):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMSaleRecurring, cls).setUpClass()
+        super().setUpClass()
         cls.test_location = cls.env.ref("fieldservice.test_location")
 
         # Setup products that when sold will create some FSM orders

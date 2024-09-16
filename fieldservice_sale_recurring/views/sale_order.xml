@@ -10,7 +10,7 @@
                     name="action_view_fsm_recurring"
                     class="oe_stat_button"
                     icon="fa-calendar"
-                    attrs="{'invisible': [('fsm_recurring_count', '=', 0)]}"
+                    invisible="fsm_recurring_count == 0"
                     groups="fieldservice.group_fsm_user"
                 >
                     <field
