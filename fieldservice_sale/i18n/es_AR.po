@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-19 17:10+0000\n"
+"PO-Revision-Date: 2024-09-17 02:06+0000\n"
 "Last-Translator: Ignacio Buioli <ibuioli@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es_AR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: fieldservice_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_fsm_order_form_inherit_sale
@@ -33,6 +33,15 @@ msgid ""
 "this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"Según la configuración del producto, la cantidad entregada se puede calcular "
+"automáticamente mediante los siguientes mecanismos:\n"
+"- Manual: la cantidad se establece manualmente en la línea\n"
+"- Analítica de gastos: la cantidad es la suma de la cantidad de los gastos "
+"registrados\n"
+"- Hoja de horas: la cantidad es la suma de las horas registradas en las "
+"tareas vinculadas a esta línea de venta\n"
+"- Movimientos de inventario: la cantidad proviene de las selecciones "
+"confirmadas\n"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__sale
