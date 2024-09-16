@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
                 rec.procurement_group_id.fsm_order_id = fsm_order.id or False
             for picking in rec.picking_ids:
                 picking.write(rec.prepare_fsm_values_for_stock_picking(fsm_order))
-                for move in picking.move_lines:
+                for move in picking.move_ids:
                     move.write(rec.prepare_fsm_values_for_stock_move(fsm_order))
 
     def _action_confirm(self):
