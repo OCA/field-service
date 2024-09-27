@@ -10,7 +10,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
-                    context="{'default_fsm_location_id': active_id}"
+                    context="{'default_fsm_location_id': id}"
                 >
                     <field name="project_count" widget="statinfo" string="Projects" />
                 </button>
@@ -22,7 +22,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">project.project</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('fsm_location_id', '=', active_id)]</field>
+        <field name="domain">[('fsm_location_id', '=', id)]</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Create Project</p>
         </field>

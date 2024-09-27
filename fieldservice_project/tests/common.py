@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 class Common(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(Common, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "partner test"})
         cls.location = cls.env["fsm.location"].create(
             {"name": "location test", "owner_id": cls.partner.id}
