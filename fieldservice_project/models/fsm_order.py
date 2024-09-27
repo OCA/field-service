@@ -1,11 +1,7 @@
 # Copyright (C) 2019 - TODAY, Patrick Wilson
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
-
 from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
 
 
 class FSMOrder(models.Model):
@@ -21,7 +17,9 @@ class FSMOrder(models.Model):
         This function returns an action that displays a full FSM Order
         form when viewing an FSM Order from a project.
         """
-        action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
+        )
         order = self.env["fsm.order"].search([("id", "=", self.id)])
         action["views"] = [(self.env.ref("fieldservice.fsm_order_form").id, "form")]
         action["res_id"] = order.id
@@ -29,4 +27,5 @@ class FSMOrder(models.Model):
 
     @api.onchange("team_id")
     def onchange_team_id(self):
-        self.project_id = self.team_id.project_id
+        if self.team_id.project_id:
+            self.project_id = self.team_id.project_id

@@ -15,16 +15,15 @@ class Project(models.Model):
         This function returns an action that displays a full FSM Order
         form when creating an FSM Order from a project.
         """
-        action = self.env.ref(
-            "fieldservice.action_fsm_operation_order", raise_if_not_found=False
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
         )
-        result = action.read()[0]
         # override the context to get rid of the default filtering
-        result["context"] = {
+        action["context"] = {
             "default_project_id": self.id,
             "default_location_id": self.fsm_location_id.id,
             "default_origin": self.name,
         }
-        res = self.env.ref("fieldservice.fsm_order_form", raise_if_not_found=False)
-        result["views"] = [(res and res.id or False, "form")]
-        return result
+        view = self.env.ref("fieldservice.fsm_order_form", raise_if_not_found=False)
+        action["views"] = [(view and view.id or False, "form")]
+        return action
