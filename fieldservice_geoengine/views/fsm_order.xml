@@ -1,0 +1,123 @@
+<odoo>
+    <!-- Operations -->
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="map" string="Map">
+                    <field name='shape' />
+                    <button
+                        string="GeoCode Location"
+                        name="geo_localize"
+                        colspan="2"
+                        icon="fa-check"
+                        type="object"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">kanban,tree,geoengine,calendar,form</field>
+        <field name="search_view_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Order.
+            </p>
+        </field>
+    </record>
+    <!-- GeoEngine views -->
+    <record id="ir_ui_view_fsm_order_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.order.map</field>
+        <field name="arch" type="xml">
+            <geoengine editable="1">
+                <field name="name" />
+                <field name="phone" />
+                <field name="street" />
+                <field name="street2" />
+                <field name="city" />
+                <field name="state_name" />
+                <field name="zip" />
+                <field name="country_name" />
+                <field name="stage_name" />
+                <field name="shape" />
+                <field name="shape" />
+                <field name="custom_color" />
+                <templates>
+                    <t t-name="info_box">
+                      <b>
+                        Name: <field name="name" />
+                      </b>
+                      <ul>
+                        <li>Phone: <field name="phone" /> </li>
+                        <li>Mobile: <field name="mobile" /> </li>
+                        <li>Street: <field name="street" /> </li>
+                        <li>Street 2: <field name="street2" /> </li>
+                        <li>City: <field name="city" /> </li>
+                        <li>State: <field name="state_name" /> </li>
+                        <li>ZIP: <field name="zip" /> </li>
+                        <li>Country: <field name="country_name" /> </li>
+                      </ul>
+                    </t>
+                  </templates>
+            </geoengine>
+        </field>
+        <field name="priority" eval="16" />
+        <field name="model">fsm.order</field>
+    </record>
+    <record id="geoengine_vector_layer_fsm0" model="geoengine.vector.layer">
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_order__shape"
+        />
+        <field name="name">FSM Order Point</field>
+        <field name="classification">unique</field>
+        <field name="sequence" eval="6" />
+        <field name="view_id" ref="ir_ui_view_fsm_order_map" />
+        <field name="geo_repr">colored</field>
+        <field name="active_on_startup">True</field>
+        <field name="nb_class" eval="1" />
+        <field
+            name="attribute_field_id"
+            ref="fieldservice.field_fsm_order__stage_name"
+        />
+        <field name="begin_color">#0AFF68</field>
+    </record>
+    <record
+        id="geoengine_vector_layer_fsmordertatecoloredcustom0"
+        model="geoengine.vector.layer"
+    >
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_order__shape"
+        />
+        <field name="name">FSM Order State colored custom</field>
+        <field name="classification">custom</field>
+        <field name="sequence" eval="6" />
+        <field name="view_id" ref="ir_ui_view_fsm_order_map" />
+        <field name="geo_repr">colored</field>
+        <field name="nb_class" eval="1" />
+        <field
+            name="attribute_field_id"
+            ref="fieldservice.field_fsm_order__custom_color"
+        />
+        <field name="begin_color">#FFFFFF</field>
+    </record>
+    <record id="geoengine_raster_layer_retailmachineosm" model="geoengine.raster.layer">
+        <field name="raster_type">osm</field>
+        <field name="name">Open Street Map</field>
+        <field name="view_id" ref="ir_ui_view_fsm_order_map" />
+        <field name="overlay" eval="0" />
+    </record>
+    <record id="geoengine_raster_layer_basic0" model="geoengine.raster.layer">
+        <field name="raster_type">d_wms</field>
+        <field name="name">basic</field>
+        <field name="url">vmap0.tiles.osgeo.org/wms/vmap0</field>
+        <field name="view_id" ref="ir_ui_view_fsm_order_map" />
+        <field name="overlay" eval="1" />
+    </record>
+</odoo>
