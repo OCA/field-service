@@ -28,6 +28,12 @@ msgid "# Opportunities"
 msgstr "# Fırsatalar"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_count
+msgid "# Tasks"
+msgstr "# Görevler"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -2691,6 +2697,12 @@ msgid "Priority Management Explanation"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__project_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__project_ids
+msgid "Projects"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_project
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Projects and Tasks"
@@ -2699,6 +2711,15 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Purchase Field Services"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__rating_ids
+msgid "Ratings"
 msgstr ""
 
 #. module: fieldservice
@@ -3144,6 +3165,12 @@ msgstr "Etiket adı zaten var!"
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_tag
 msgid "Tags"
 msgstr "Etiketler"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__task_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__task_ids
+msgid "Tasks"
+msgstr "Görevler"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
@@ -3656,9 +3683,6 @@ msgstr "etiket"
 msgid "template"
 msgstr "şablon"
 
-#~ msgid "# Tasks"
-#~ msgstr "# Görevler"
-
 #~ msgid "<i class=\"fa fa-ellipsis-v\" title=\"Manager\"/>"
 #~ msgstr "<i class=\"fa fa-ellipsis-v\" title=\"Yönetici\"/>"
 
@@ -3670,9 +3694,6 @@ msgstr "şablon"
 
 #~ msgid "Manage recurring orders"
 #~ msgstr "Yinelenen siparişleri yönetin"
-
-#~ msgid "Tasks"
-#~ msgstr "Görevler"
 
 #, python-format
 #~ msgid "%s is a holiday (%s)."
