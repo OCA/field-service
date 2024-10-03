@@ -1,3 +1,4 @@
 * Michael Allen <mallen@opensourceintegrators.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Brian McMaster <brian@mcmpest.com>
+* Alex Comba <alex.comba@agilebg.com>
