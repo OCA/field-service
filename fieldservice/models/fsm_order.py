@@ -235,7 +235,7 @@ class FSMOrder(models.Model):
     internal_type = fields.Selection(related="type.internal_type")
 
     @api.model
-    def _read_group_stage_ids(self, stages, domain, order):
+    def _read_group_stage_ids(self, stages, domain, order=None):
         search_domain = [("stage_type", "=", "order")]
         if self.env.context.get("default_team_id"):
             search_domain = [
@@ -417,7 +417,7 @@ class FSMOrder(models.Model):
                 ]
             )
             if holidays:
-                msg = "{} is a holiday {}".format(
-                    rec.scheduled_date_start.date(), holidays[0].name
+                msg = (
+                    f"{rec.scheduled_date_start.date()} is a holiday {holidays[0].name}"
                 )
                 raise ValidationError(_(msg))

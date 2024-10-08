@@ -1,7 +1,8 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class FSMEquipment(TransactionCase):
@@ -59,7 +60,9 @@ class FSMEquipment(TransactionCase):
             self.env["fsm.equipment"]
             .with_user(self.env.user)
             .read_group(
-                [("id", "=", equipment.id)], fields=["stage_id"], groupby="stage_id"
+                [("id", "=", equipment.id)],
+                fields=["stage_id"],
+                groupby="stage_id",
             )
         )
         self.assertTrue(data, "It should be able to read group")

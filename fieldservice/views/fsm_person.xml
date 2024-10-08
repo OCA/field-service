@@ -1,10 +1,10 @@
 <odoo>
     <!-- Field Service Worker -->
-    <record id="fsm_person_tree" model="ir.ui.view">
-        <field name="name">fsm.person.tree</field>
+    <record id="fsm_person_list" model="ir.ui.view">
+        <field name="name">fsm.person.list</field>
         <field name="model">fsm.person</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="phone" />
                 <field name="email" />
@@ -15,7 +15,7 @@
                     groups="fieldservice.group_fsm_category"
                 />
                 <field name="calendar_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="fsm_person_search_view" model="ir.ui.view">
@@ -83,7 +83,8 @@
                     >
                         <a class="close" data-dismiss="alert" href="#">x</a>
                         <div>
-                        <strong>The contact linked to this user is still active</strong>
+                            <strong
+                            >The contact linked to this user is still active</strong>
                         </div>
                         <div>You can archive the contact
                         <field name="partner_id" required="0" readonly="1" />
@@ -152,8 +153,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="contact" invisible="1">
-                        </page>
+                        <page name="contact" invisible="1" />
                         <page
                             string="Territories"
                             groups="fieldservice.group_fsm_territory"
@@ -164,41 +164,33 @@
                                 nocreate="1"
                                 widget="many2many"
                             >
-                                <tree>
+                                <list>
                                     <field name="name" />
                                     <field name="branch_id" />
                                     <field name="district_id" />
                                     <field name="region_id" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Linked Locations">
                             <field name="location_ids" nolabel="1" nocreate="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="location_id" />
                                     <field name="owner_id" />
                                     <field name="contact_id" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field
-                        name="message_ids"
-                        widget="mail_thread"
-                        options="{'post_refresh': 'recipients'}"
-                    />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
     <record id="action_fsm_person" model="ir.actions.act_window">
         <field name="name">Field Service Workers</field>
         <field name="res_model">fsm.person</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="fsm_person_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

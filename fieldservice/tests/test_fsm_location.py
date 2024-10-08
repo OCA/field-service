@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class FSMLocation(TransactionCase):
@@ -104,7 +105,9 @@ class FSMLocation(TransactionCase):
             self.env["fsm.location"]
             .with_user(self.env.user)
             .read_group(
-                [("id", "=", location.id)], fields=["stage_id"], groupby="stage_id"
+                [("id", "=", location.id)],
+                fields=["stage_id"],
+                groupby="stage_id",
             )
         )
         self.assertTrue(data, "It should be able to read group")
