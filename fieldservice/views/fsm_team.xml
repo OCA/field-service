@@ -2,7 +2,7 @@
     <record id="fsm_order_action_from_dashboard" model="ir.actions.act_window">
         <field name="name">Orders</field>
         <field name="res_model">fsm.order</field>
-        <field name="view_mode">kanban,tree,form,calendar</field>
+        <field name="view_mode">kanban,list,form,calendar</field>
         <field name="context">{'default_team_id': active_id}</field>
         <field name="domain">[('team_id', '=', active_id)]</field>
     </record>
@@ -32,28 +32,20 @@
                         </group>
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="activity_ids" widget="mail_activity" />
-                    <field
-                        name="message_ids"
-                        widget="mail_thread"
-                        options="{'post_refresh': 'recipients'}"
-                    />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
-    <record id="view_team_tree" model="ir.ui.view">
-        <field name="name">fsm.team.tree</field>
+    <record id="view_team_list" model="ir.ui.view">
+        <field name="name">fsm.team.list</field>
         <field name="model">fsm.team</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle" groups="base.group_no_one" />
                 <field name="name" />
                 <field name="description" />
                 <field name="company_id" groups="base.group_multi_company" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="view_team_kanban">
@@ -241,7 +233,7 @@
     <record id="action_team_settings" model="ir.actions.act_window">
         <field name="name">Teams</field>
         <field name="res_model">fsm.team</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new team

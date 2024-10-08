@@ -5,7 +5,8 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestFSMOrder(TransactionCase):
@@ -255,7 +256,9 @@ class TestFSMOrder(TransactionCase):
             .with_context(**{"default_team_id": self.test_team.id})
             .with_user(self.env.user)
             .read_group(
-                [("id", "=", location.id)], fields=["stage_id"], groupby="stage_id"
+                [("id", "=", location.id)],
+                fields=["stage_id"],
+                groupby="stage_id",
             )
         )
         self.assertTrue(data, "It should be able to read group")

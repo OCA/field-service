@@ -1,14 +1,14 @@
 <odoo>
     <!-- Field Service Location Person Tree View-->
-    <record id="fsm_location_person_tree_view" model="ir.ui.view">
-        <field name="name">fsm.location.person.tree</field>
+    <record id="fsm_location_person_list_view" model="ir.ui.view">
+        <field name="name">fsm.location.person.list</field>
         <field name="model">fsm.location.person</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" />
                 <field name="location_id" />
                 <field name="person_id" />
-            </tree>
+            </list>
         </field>
     </record>
     <!-- Field Service Location Person Form View-->
@@ -62,8 +62,8 @@
     <record id="action_fsm_location_person" model="ir.actions.act_window">
         <field name="name">Location Persons</field>
         <field name="res_model">fsm.location.person</field>
-        <field name="view_id" ref="fsm_location_person_tree_view" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="fsm_location_person_list_view" />
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="fsm_location_person_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
