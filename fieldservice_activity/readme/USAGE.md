@@ -18,7 +18,7 @@
 
 [Field Service Templates](../static/description/field_service_template.png)
 
-- Under the new *Activities* tab, create or add activites.
+- Under the new *Activities* tab, create or add activities.
 
 [Field Service Template Activities](../static/description/field_service_template_activities.png)
 
@@ -26,4 +26,4 @@
 
 - From the form view of a FSM Order, choose the template you created the activities for.
 
-- Under the tab *Activities*, you can noticed that the template activites have been copied.
+- Under the tab *Activities*, you can noticed that the template activities have been copied.
