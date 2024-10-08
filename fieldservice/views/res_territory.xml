@@ -12,12 +12,12 @@
             <notebook position="inside">
                 <page string="Field Service Workers">
                     <field name="person_ids">
-                        <tree>
+                        <list>
                             <field name="name" />
                             <field name="category_ids" widget="many2many_tags" />
                             <field name="phone" />
                             <field name="email" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </notebook>

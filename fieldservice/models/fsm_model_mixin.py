@@ -21,7 +21,7 @@ class FsmModelMixin(models.AbstractModel):
     hide = fields.Boolean()
 
     @api.model
-    def _read_group_stage_ids(self, stages, domain, order):
+    def _read_group_stage_ids(self, stages, domain):
         return self.env["fsm.stage"].search([("stage_type", "=", self._stage_type)])
 
     def _default_stage_id(self):
@@ -34,7 +34,7 @@ class FsmModelMixin(models.AbstractModel):
         order_by = "asc" if operator == ">" else "desc"
         new_stage = self.env["fsm.stage"].search(
             [("stage_type", "=", self._stage_type), ("sequence", operator, seq)],
-            order="sequence %s" % order_by,
+            order=f"sequence {order_by}",
             limit=1,
         )
         if new_stage:
