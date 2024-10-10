@@ -1,7 +1,7 @@
 # Copyright (C) 2021 Raphaël Reverdy <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 
 
 class FSMOrder(models.Model):
@@ -37,7 +37,7 @@ class FSMOrder(models.Model):
         model_id = self.env.ref("fieldservice.model_fsm_order").id
         vals = {
             "name": self.name,
-            "description": self.description,
+            "description": tools.plaintext2html(self.description or ""),
             "start": self.scheduled_date_start,
             "stop": self.scheduled_date_end,
             "allday": False,
@@ -53,18 +53,22 @@ class FSMOrder(models.Model):
         return vals
 
     def write(self, vals):
-        old_persons = {}
-        for rec in self:
-            old_persons[rec.id] = rec.person_id
+        if "person_id" in vals and not self.env.context.get("recurse_order_calendar"):
+            old_persons = {order: order.person_id for order in self}
         res = super().write(vals)
         to_update = self.create_or_delete_calendar()
-        with_calendar = to_update.filtered("calendar_event_id")
-        if "scheduled_date_start" in vals or "scheduled_date_end" in vals:
-            with_calendar.update_calendar_date(vals)
-        if "location_id" in vals:
-            with_calendar.update_calendar_location()
-        if "person_id" in vals:
-            with_calendar.update_calendar_person(old_persons)
+        if not self.env.context.get("recurse_order_calendar"):
+            with_calendar = to_update.filtered("calendar_event_id").with_context(
+                recurse_order_calendar=True
+            )
+            if "scheduled_date_start" in vals or "scheduled_date_end" in vals:
+                with_calendar.update_calendar_date(vals)
+            if "description" in vals:
+                with_calendar.update_calendar_description()
+            if "location_id" in vals:
+                with_calendar.update_calendar_location()
+            if "person_id" in vals:
+                with_calendar.update_calendar_person(old_persons)
         return res
 
     def unlink(self):
@@ -84,16 +88,16 @@ class FSMOrder(models.Model):
         self.calendar_event_id.unlink()
 
     def update_calendar_date(self, vals):
-        if self._context.get("recurse_order_calendar"):
-            # avoid recursion
-            return
         to_apply = {}
         to_apply["start"] = self.scheduled_date_start
         to_apply["stop"] = self.scheduled_date_end
         # always write start and stop in order to calc duration
-        self.mapped("calendar_event_id").with_context(
-            recurse_order_calendar=True
-        ).write(to_apply)
+        self.calendar_event_id.write(to_apply)
+
+    def update_calendar_description(self):
+        for order in self:
+            html_description = tools.plaintext2html(order.description or "")
+            order.calendar_event_id.description = html_description
 
     def update_calendar_location(self):
         for rec in self:
@@ -104,14 +108,9 @@ class FSMOrder(models.Model):
         return f"{partner_id.name} {partner_id._display_address()}"
 
     def update_calendar_person(self, old_persons):
-        if self._context.get("recurse_order_calendar"):
-            # avoid recursion
-            return
-        for rec in self:
-            with_ctx = rec.calendar_event_id.with_context(recurse_order_calendar=True)
-            if old_persons.get(rec.id):
-                # remove buddy
-                with_ctx.partner_ids = [(3, old_persons[rec.id].partner_id.id, False)]
-            if rec.person_id:
-                # add the new one
-                with_ctx.partner_ids = [(4, rec.person_id.partner_id.id, False)]
+        for order in self:
+            event = order.calendar_event_id
+            if person := old_persons.get(order):
+                event.partner_ids -= person.partner_id  # remove buddy
+            if person := order.person_id:
+                event.partner_ids += person.partner_id  # add new one
