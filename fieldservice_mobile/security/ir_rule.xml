@@ -1,0 +1,14 @@
+<odoo noupdate="1">
+
+    <record id="portal_partner_comp_rule" model="ir.rule">
+        <field name="name">Portal Partner multi-company</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>        
+    </record>
+
+</odoo>
