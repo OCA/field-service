@@ -414,6 +414,7 @@ class FSMOrder(models.Model):
                 [
                     ("date_from", ">=", rec.scheduled_date_start),
                     ("date_to", "<=", rec.scheduled_date_end),
+                    ("resource_id", "=", False),
                 ]
             )
             if holidays:
