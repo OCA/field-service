@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Stock Account",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Field Service",
     "summary": "Invoice inventory items delivered with Field Service orders",
     "author": "Open Source Integrators, " "Odoo Community Association (OCA)",
