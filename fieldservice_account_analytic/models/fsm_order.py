@@ -58,6 +58,6 @@ class FSMOrder(models.Model):
     def write(self, vals):
         res = super(FSMOrder, self).write(vals)
         for order in self:
-            if "customer_id" not in vals and order.customer_id is False:
+            if "customer_id" not in vals and not order.customer_id:
                 order.customer_id = order.location_id.customer_id.id
         return res
