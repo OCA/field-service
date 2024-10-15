@@ -23,8 +23,8 @@
         </field>
     </record>
     <!-- Vendor Bill List View -->
-    <record id="vendor_bill_tree_view_fso" model="ir.ui.view">
-        <field name="name">vendor.bill.tree.view.fso</field>
+    <record id="vendor_bill_list_view_fso" model="ir.ui.view">
+        <field name="name">vendor.bill.list.view.fso</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
@@ -51,7 +51,7 @@
                     <field name="fsm_order_ids" nolabel="1" />
                 </group>
             </xpath>
-            <xpath expr="//tree//field[@name='price_total']" position="after">
+            <xpath expr="//list//field[@name='price_total']" position="after">
                 <field name="fsm_order_ids" widget="many2many_tags" optional="hide" />
             </xpath>
         </field>
