@@ -1,5 +1,5 @@
 {
-    "name": "Field Service - Order Portal",
+    "name": "Field Service - Portal",
     "version": "16.0.1.0.0",
     "summary": """
     Bridge module between fieldservice and portal.
@@ -23,6 +23,11 @@
         "demo/fsm_location_demo.xml",
         "demo/fsm_order_demo.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "fieldservice_portal/static/src/js/fsm_order_portal.js",
+        ],
+    },
     "installable": True,
     "application": False,
 }

@@ -25,7 +25,7 @@
                                     <em class="font-weight-normal text-muted">
                                         Work Orders for
                                         <t
-                                            t-esc="searchbar_groupby[groupby]['label']"
+                                            t-out="searchbar_groupby[groupby]['label']"
                                         />:
                                     </em>
                                     <span
@@ -45,23 +45,23 @@
                             <t t-foreach="orders" t-as="order">
                                 <tr>
                                     <td>
-                                        <a t-attf-href="/my/workorder/#{order.id}">
-                                            <t t-esc="order.name" />
+                                        <a t-attf-href="/my/fsm_order/#{order.id}">
+                                            <t t-out="order.name" />
                                         </a>
                                     </td>
                                     <td>
-                                        <t t-esc="order.description" />
+                                        <t t-out="order.description" />
                                     </td>
                                     <td>
                                         <t
-                                            t-esc="order.sudo().location_id.display_name"
+                                            t-out="order.sudo().location_id.display_name"
                                         />
                                     </td>
                                     <td>
-                                        <t t-esc="order.type.name" />
+                                        <t t-out="order.type.name" />
                                     </td>
                                     <td>
-                                        <t t-esc="order.stage_id.name" />
+                                        <t t-out="order.stage_id.name" />
                                     </td>
                                 </tr>
                             </t>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-md-6">
                                 <strong>Stage:</strong>
-                                <t t-esc="order.stage_id.name" />
+                                <t t-out="order.stage_id.name" />
                                 <br />
                                 <strong>Work Type:</strong>
                                 <t t-if="order.type">
@@ -129,7 +129,7 @@
                             <div class="row mt8">
                                 <div class="col-md-12">
                                     <h4 class="page-header">Description</h4>
-                                    <t t-raw="order.description" />
+                                    <t t-out="order.description" />
                                     <br />
                                 </div>
                             </div>
