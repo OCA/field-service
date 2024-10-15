@@ -1,5 +1,5 @@
 {
-    "name": "Field Service - Order Portal",
+    "name": "Field Service - Portal",
     "version": "16.0.1.0.0",
     "summary": """
     Bridge module between fieldservice and portal.

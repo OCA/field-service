@@ -18,7 +18,7 @@
                 <t t-else="">Work Orders</t>
             </li>
             <li t-if="fsm_order" class="breadcrumb-item active">
-                <t t-esc="fsm_order.name" />
+                <t t-out="fsm_order.name" />
             </li>
         </xpath>
     </template>
