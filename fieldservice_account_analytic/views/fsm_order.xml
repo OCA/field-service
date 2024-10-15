@@ -23,10 +23,10 @@
             </field>
         </field>
     </record>
-    <record id="fsm_order_tree_view" model="ir.ui.view">
-        <field name="name">fsm.order.tree</field>
+    <record id="fsm_order_list_view" model="ir.ui.view">
+        <field name="name">fsm.order.list</field>
         <field name="model">fsm.order</field>
-        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="customer_id" />

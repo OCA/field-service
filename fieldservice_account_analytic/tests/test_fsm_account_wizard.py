@@ -71,7 +71,7 @@ class FSMAccountAnalyticCase(TransactionCase):
         )
         cls.default_account_revenue = cls.env["account.account"].search(
             [
-                ("company_id", "=", cls.env.user.company_id.id),
+                ("company_ids", "in", cls.env.user.company_id.id),
                 ("account_type", "=", "income"),
             ],
             limit=1,
@@ -81,7 +81,7 @@ class FSMAccountAnalyticCase(TransactionCase):
         cls.product1 = cls.env["product.product"].create(
             {
                 "name": "Product A",
-                "detailed_type": "consu",
+                "type": "consu",
             }
         )
 

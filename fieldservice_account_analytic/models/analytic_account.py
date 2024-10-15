@@ -11,17 +11,18 @@ class AccountAnalyticLine(models.Model):
     fsm_order_id = fields.Many2one("fsm.order", string="FSM Order")
     product_id = fields.Many2one("product.product", string="Time Type")
 
-    @api.model
-    def create(self, vals):
-        order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
-        if order:
-            if order.location_id.analytic_account_id:
-                vals["account_id"] = order.location_id.analytic_account_id.id
-            else:
-                raise ValidationError(
-                    _("No analytic account set " "on the order's Location.")
-                )
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            order = self.env["fsm.order"].browse(vals.get("fsm_order_id"))
+            if order:
+                if order.location_id.analytic_account_id:
+                    vals["account_id"] = order.location_id.analytic_account_id.id
+                else:
+                    raise ValidationError(
+                        _("No analytic account set " "on the order's Location.")
+                    )
+        return super().create(vals_list)
 
     @api.onchange("product_id")
     def onchange_product_id(self):

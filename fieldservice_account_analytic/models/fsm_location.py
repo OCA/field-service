@@ -38,7 +38,6 @@ class FSMLocation(models.Model):
         offset=0,
         limit=None,
         order=None,
-        access_rights_uid=None,
     ):
         args = args or []
         context = dict(self._context) or {}
@@ -54,5 +53,4 @@ class FSMLocation(models.Model):
             offset=offset,
             limit=limit,
             order=order,
-            access_rights_uid=access_rights_uid,
         )
