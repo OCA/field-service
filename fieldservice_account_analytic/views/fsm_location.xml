@@ -1,9 +1,9 @@
 <odoo>
     <!-- Field Service Location Tree View-->
-    <record id="fsm_location_tree_view_analytic" model="ir.ui.view">
-        <field name="name">fsm.location.tree.accounting</field>
+    <record id="fsm_location_list_view_analytic" model="ir.ui.view">
+        <field name="name">fsm.location.list.accounting</field>
         <field name="model">fsm.location</field>
-        <field name="inherit_id" ref="fieldservice.fsm_location_tree_view" />
+        <field name="inherit_id" ref="fieldservice.fsm_location_list_view" />
         <field name="arch" type="xml">
             <field name="owner_id" position="after">
                 <field name="customer_id" />
