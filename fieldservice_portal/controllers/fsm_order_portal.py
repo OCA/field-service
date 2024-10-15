@@ -11,16 +11,17 @@ from odoo.addons.portal.controllers.portal import CustomerPortal, pager as porta
 
 
 class CustomerPortal(CustomerPortal):
-    def _prepare_portal_layout_values(self):
-        values = super()._prepare_portal_layout_values()
-        fsm_order_count = (
-            request.env["fsm.order"].search_count([])
-            if request.env["fsm.order"].check_access_rights(
-                "read", raise_exception=False
+    def _prepare_home_portal_values(self, counters):
+        values = super()._prepare_home_portal_values(counters)
+        if "fsm_order_count" in counters:
+            fsm_order_count = (
+                request.env["fsm.order"].search_count([])
+                if request.env["fsm.order"].check_access_rights(
+                    "read", raise_exception=False
+                )
+                else 0
             )
-            else 0
-        )
-        values["fsm_order_count"] = fsm_order_count
+            values["fsm_order_count"] = fsm_order_count
         return values
 
     def _fsm_order_check_access(self, order_id):
@@ -49,7 +50,7 @@ class CustomerPortal(CustomerPortal):
         return values
 
     @http.route(
-        ["/my/workorders", "/my/workorders/page/<int:page>"],
+        ["/my/fsm_orders", "/my/fsm_orders/page/<int:page>"],
         type="http",
         auth="user",
         website=True,
@@ -154,7 +155,7 @@ class CustomerPortal(CustomerPortal):
         fsm_order_count = FsmOrder.search_count(domain)
         # pager
         pager = portal_pager(
-            url="/my/workorders",
+            url="/my/fsm_orders",
             url_args={},
             total=fsm_order_count,
             page=page,
@@ -182,7 +183,7 @@ class CustomerPortal(CustomerPortal):
                 "grouped_orders": grouped_orders,
                 "page_name": "fsm_order",
                 "pager": pager,
-                "default_url": "/my/workorders",
+                "default_url": "/my/fsm_orders",
                 "searchbar_sortings": searchbar_sortings,
                 "searchbar_groupby": searchbar_groupby,
                 "searchbar_inputs": searchbar_inputs,
@@ -196,7 +197,7 @@ class CustomerPortal(CustomerPortal):
         return request.render("fieldservice_portal.portal_my_fsm_orders", values)
 
     @http.route(
-        ["/my/workorder/<int:order_id>"],
+        ["/my/fsm_order/<int:order_id>"],
         type="http",
         website=True,
     )
