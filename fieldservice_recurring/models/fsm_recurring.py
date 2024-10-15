@@ -55,7 +55,7 @@ class FSMRecurringOrder(models.Model):
     start_date = fields.Datetime()
     end_date = fields.Datetime(help="Recurring orders will not be made after this date")
     max_orders = fields.Integer(
-        string="Maximum Orders", help="Maximium number of orders that will be created"
+        string="Maximum Orders", help="Maximum number of orders that will be created"
     )
     fsm_order_template_id = fields.Many2one(
         "fsm.template",

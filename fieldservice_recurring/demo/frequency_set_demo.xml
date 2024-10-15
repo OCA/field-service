@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="freq_set_weekdays" model="fsm.frequency.set">
         <field name="name">Weekdays</field>
         <field name="fsm_frequency_ids" eval="[(4, ref('freq_weekdays'))]" />
@@ -7,5 +6,4 @@
         <field name="buffer_early">1</field>
         <field name="buffer_late">1</field>
     </record>
-
 </odoo>

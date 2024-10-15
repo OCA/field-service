@@ -92,7 +92,7 @@ class FSMRecurringCase(TransactionCase):
         for ex in [1, 3, 5]:
             rules += self.Frequency.create(
                 {
-                    "name": "Exclude Wed-%s" % ex,
+                    "name": f"Exclude Wed-{ex}",
                     "is_exclusive": True,
                     "interval_type": "monthly",
                     "use_byweekday": True,

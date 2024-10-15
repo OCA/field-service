@@ -1,9 +1,9 @@
 <odoo>
-    <record id="action_recurring_tree" model="ir.actions.act_window">
+    <record id="action_recurring_list" model="ir.actions.act_window">
         <field name="name">Recurring Orders</field>
         <field name="res_model">fsm.recurring</field>
         <field name="context">{}</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('team_id', '=', active_id)]</field>
     </record>
     <record model="ir.ui.view" id="view_team_kanban_recurring">
@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <a
-                                    name="%(fieldservice_recurring.action_recurring_tree)d"
+                                    name="%(fieldservice_recurring.action_recurring_list)d"
                                     type="action"
                                     context="{'search_default_progress': 1}"
                                 >
@@ -38,8 +38,8 @@
                     <div class="col-6 o_kanban_primary_left">
                         <div class="row">
                             <div class="col-9">
-                                 <a
-                                    name="%(fieldservice_recurring.action_recurring_tree)d"
+                                <a
+                                    name="%(fieldservice_recurring.action_recurring_list)d"
                                     type="action"
                                     context="{'search_default_draft': 1}"
                                 >
