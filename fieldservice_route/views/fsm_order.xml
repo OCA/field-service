@@ -1,0 +1,17 @@
+<odoo>
+
+    <record id="fsm_order_form_inherit_route" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field name="fsm_route_id" />
+            </field>
+            <field name="scheduled_date_end" position="after">
+                <field name="dayroute_id" readonly="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
