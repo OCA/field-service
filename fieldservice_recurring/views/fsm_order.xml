@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_fsm_order_form" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_fsm_recurring"
+                    class="oe_stat_button"
+                    icon="fa-calendar"
+                    invisible="not fsm_recurring_id"
+                    groups="fieldservice_recurring.group_fsm_recurring"
+                >
+                    <span class="o_stat_text">Recurring Order</span>
+                    <field name="fsm_recurring_id" invisible="1" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
