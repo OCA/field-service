@@ -1,8 +1,8 @@
 <odoo>
-    <record id="fsm_person_vehicle_tree_view" model="ir.ui.view">
-        <field name="name">fsm.person.vehicle.tree</field>
+    <record id="fsm_person_vehicle_list_view" model="ir.ui.view">
+        <field name="name">fsm.person.vehicle.list</field>
         <field name="model">fsm.person</field>
-        <field name="inherit_id" ref="fieldservice.fsm_person_tree" />
+        <field name="inherit_id" ref="fieldservice.fsm_person_list" />
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="vehicle_id" />
