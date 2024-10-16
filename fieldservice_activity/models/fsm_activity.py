@@ -9,20 +9,18 @@ class FSMActivity(models.Model):
     _description = "Field Service Activity"
 
     name = fields.Char(
-        required=True, readonly=True, states={"todo": [("readonly", False)]}
+        required=True,
+        readonly=True,
     )
     required = fields.Boolean(
         default=False,
         readonly=True,
-        states={"todo": [("readonly", False)]},
     )
     sequence = fields.Integer()
     completed = fields.Boolean(default=False)
     completed_on = fields.Datetime(readonly=True)
     completed_by = fields.Many2one("res.users", readonly=True)
-    ref = fields.Char(
-        "Reference", readonly=True, states={"todo": [("readonly", False)]}
-    )
+    ref = fields.Char("Reference", readonly=True)
     fsm_order_id = fields.Many2one("fsm.order", "FSM Order")
     fsm_template_id = fields.Many2one("fsm.template", "FSM Template")
     state = fields.Selection(

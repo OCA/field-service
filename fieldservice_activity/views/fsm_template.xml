@@ -8,11 +8,11 @@
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Activities">
                     <field name="temp_activity_ids" nolabel="1">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="sequence" widget="handle" />
-                            <field name="name" />
-                            <field name="required" />
-                            <field name="ref" />
+                            <field name="name" readonly="state != 'todo'" />
+                            <field name="required" readonly="state != 'todo'" />
+                            <field name="ref" readonly="state != 'todo'" />
                             <field name="completed" invisible="1" />
                             <field name="completed_on" invisible="1" />
                             <field name="completed_by" invisible="1" />
@@ -30,7 +30,7 @@
                                 invisible="1"
                             />
                             <field name="state" readonly="1" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
