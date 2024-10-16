@@ -13,7 +13,7 @@
                         class="oe_highlight"
                     />
                     <field name="fsm_order_ids">
-                        <tree create="false">
+                        <list create="false">
                             <field name="name" style="pointer-events:none;" />
                             <field name="stage_id" style="pointer-events:none;" />
                             <field name="location_id" style="pointer-events:none;" />
@@ -29,7 +29,7 @@
                                 type="object"
                                 class="project_column"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </notebook>
