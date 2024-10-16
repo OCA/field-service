@@ -1,5 +1,4 @@
 <odoo>
-
     <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
         <field name="name">fsm.order.form</field>
@@ -65,12 +64,12 @@
         </field>
     </record>
 
-    <record id="fsm_order_tree_view" model="ir.ui.view">
-        <field name="name">fsm.order.tree</field>
+    <record id="fsm_order_list_view" model="ir.ui.view">
+        <field name="name">fsm.order.list</field>
         <field name="model">fsm.order</field>
-        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
         <field name="arch" type="xml">
-            <tree name="orders" position="attributes">
+            <list name="orders" position="attributes">
                 <attribute name="decoration-danger">stage_id in (
                     %(fieldservice.fsm_stage_new)d,
                     %(fieldservice_isp_flow.fsm_stage_confirmed)d,
@@ -82,10 +81,9 @@
                     %(fieldservice_isp_flow.fsm_stage_enroute)d,
                     %(fieldservice_isp_flow.fsm_stage_started)d,
                     %(fieldservice.fsm_stage_completed)d)</attribute>
-            </tree>
+            </list>
         </field>
     </record>
-
 
     <!-- Search for fsm.order-->
     <record id="fsm_order_search_view" model="ir.ui.view">
@@ -104,5 +102,4 @@
             </search>
         </field>
     </record>
-
 </odoo>
