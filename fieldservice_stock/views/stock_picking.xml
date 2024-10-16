@@ -6,19 +6,19 @@
         <field name="arch" type="xml">
             <data>
                 <xpath expr="//page[@name='extra']" position="inside">
-                <separator string="Field Service Information" />
-                <group name="fieldservice">
-                    <group>
-                        <field name="fsm_order_id" />
+                    <separator string="Field Service Information" />
+                    <group name="fieldservice">
+                        <group>
+                            <field name="fsm_order_id" />
+                        </group>
                     </group>
-                </group>
                 </xpath>
             </data>
         </field>
     </record>
 
-    <record id="fsm_stock_picking_tree" model="ir.ui.view">
-        <field name="name">stock.picking.fieldservice.stock.tree</field>
+    <record id="fsm_stock_picking_list" model="ir.ui.view">
+        <field name="name">stock.picking.fieldservice.stock.list</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.vpicktree" />
         <field name="arch" type="xml">
@@ -27,5 +27,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
