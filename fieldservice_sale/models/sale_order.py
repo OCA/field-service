@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
             fsm = self.env["fsm.order"].search(
                 [
                     "|",
-                    ("sale_id", "=", sale.id),
+                    ("sale_id", "in", sale.ids),
                     ("sale_line_id", "in", sale.order_line.ids),
                 ]
             )
@@ -196,9 +196,8 @@ class SaleOrder(models.Model):
                 author_id=self.env.user.partner_id.id,
             )
             msg_fsm_links += (
-                " <a href=# data-oe-model=fsm.order data-oe-id={}>{}</a>,".format(
-                    fsm_order.id, fsm_order.name
-                )
+                f" <a href=# data-oe-model=fsm.order data-oe-id={fsm_order.id}>"
+                f"{fsm_order.name}</a>,"
             )
         so_msg_body = _("Field Service Order(s) Created: %s", msg_fsm_links)
         self.message_post(body=so_msg_body[:-1])
