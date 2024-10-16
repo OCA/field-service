@@ -42,7 +42,7 @@
     <record id="fieldservice_crm_list_view" model="ir.ui.view">
         <field name="name">fieldservice.crm.list</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="inherit_id" ref="crm.crm_case_list_view_oppor" />
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
                 <field name="fsm_location_id" />

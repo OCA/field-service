@@ -4,7 +4,7 @@
     <record id="fsm_order_crm_list_view" model="ir.ui.view">
         <field name="name">fsm.order.crm.list</field>
         <field name="model">fsm.order</field>
-        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
         <field name="arch" type="xml">
             <field name="person_id" position="before">
                 <field name="opportunity_id" />
