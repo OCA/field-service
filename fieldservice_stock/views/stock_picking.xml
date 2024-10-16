@@ -17,10 +17,10 @@
         </field>
     </record>
 
-    <record id="fsm_stock_picking_tree" model="ir.ui.view">
-        <field name="name">stock.picking.fieldservice.stock.tree</field>
+    <record id="fsm_stock_picking_list" model="ir.ui.view">
+        <field name="name">stock.picking.fieldservice.stock.list</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="inherit_id" ref="stock.vpicklist" />
         <field name="arch" type="xml">
             <field name="location_dest_id" position="after">
                 <field name="fsm_order_id" />

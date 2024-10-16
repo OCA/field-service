@@ -43,7 +43,7 @@
                         <group id="stock-right" />
                     </group>
                     <field name="move_ids" readonly="1" invisible="move_ids == False">
-                        <tree
+                        <list
                             decoration-muted="state == 'cancel'"
                             default_order='date, picking_id, sequence'
                         >
@@ -65,7 +65,7 @@
                             <field name="location_dest_id" invisible="1" />
                             <field name="create_date" invisible="1" />
                             <field name="state" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

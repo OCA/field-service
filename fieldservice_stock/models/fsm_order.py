@@ -62,7 +62,7 @@ class FSMOrder(models.Model):
         view, if there is only one delivery order to show.
         """
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "stock.action_picking_tree_all"
+            "stock.action_picking_list_all"
         )
         pickings = self.mapped("picking_ids")
         delivery_ids = self.picking_ids.filtered(
@@ -82,7 +82,7 @@ class FSMOrder(models.Model):
         view, if there is only one return order to show.
         """
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "stock.action_picking_tree_all"
+            "stock.action_picking_list_all"
         )
         pickings = self.mapped("picking_ids")
         return_ids = self.picking_ids.filtered(
