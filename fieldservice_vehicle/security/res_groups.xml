@@ -1,0 +1,13 @@
+<odoo>
+    <!-- FSM groups -->
+    <record id="group_fsm_vehicle" model="res.groups">
+        <field name="name">Manage Vehicles</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="fieldservice.group_fsm_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('fieldservice_vehicle.group_fsm_vehicle'))]"
+        />
+    </record>
+</odoo>
