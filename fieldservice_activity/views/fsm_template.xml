@@ -8,7 +8,7 @@
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Activities">
                     <field name="temp_activity_ids" nolabel="1">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="sequence" widget="handle" />
                             <field name="name" />
                             <field name="required" />
@@ -30,7 +30,7 @@
                                 invisible="1"
                             />
                             <field name="state" readonly="1" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
