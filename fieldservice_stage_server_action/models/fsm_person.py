@@ -4,6 +4,6 @@
 from odoo import models
 
 
-class FSMOrder(models.Model):
-    _name = "fsm.order"
-    _inherit = ["fsm.order", "fsm.stage.server.action.mixin"]
+class FSMPerson(models.Model):
+    _name = "fsm.person"
+    _inherit = ["fsm.person", "fsm.stage.server.action.mixin"]
