@@ -44,3 +44,17 @@ class FSMEquipment(models.Model):
             if "lot_id" in vals:
                 equipment.lot_id.fsm_equipment_id = equipment.id
         return res
+
+    def create_equip_order_return(self):
+        self.ensure_one()
+        order_type = self.env.ref("fieldservice_equipment_stock.fsm_order_type_return")
+        return {
+            "name": "Return Equipment",
+            "type": "ir.actions.act_window",
+            "res_model": "fsm.order",
+            "view_mode": "form",
+            "context": {
+                "default_equipment_id": self.id,
+                "default_type": order_type and order_type.id or False,
+            },
+        }

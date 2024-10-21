@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Fields Service Orders Form View -->
+    <record id="fsm_order_type_form_view" model="ir.ui.view">
+        <field name="model">fsm.order.type</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_type_form_view" />
+        <field name="arch" type="xml">
+            <field name="internal_type" position="after">
+                <field name="picking_type_id" invisible="internal_type != 'return'" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
