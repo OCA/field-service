@@ -15,7 +15,10 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/fsm_order_type.xml",
         "views/fsm_equipment.xml",
+        "views/fsm_order_view.xml",
+        "views/fsm_order_type_view.xml",
         "views/product_template.xml",
         "views/stock_picking_type.xml",
         "views/stock_lot.xml",
