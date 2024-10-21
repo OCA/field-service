@@ -34,7 +34,7 @@
             </xpath>
             <field name="move_ids" position="before">
                 <field name="stock_request_ids" nolabel="1">
-                    <tree editable="bottom">
+                    <list editable="bottom">
                         <field name="name" readonly="1" />
                         <field name="product_id" />
                         <field name="order_id" force_save="1" />
@@ -63,7 +63,7 @@
                         <field name="procurement_group_id" column_invisible="1" />
                         <field name="company_id" column_invisible="1" />
                         <field name="state" />
-                    </tree>
+                    </list>
                 </field>
             </field>
         </field>

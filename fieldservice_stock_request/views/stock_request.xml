@@ -8,9 +8,9 @@
             </field>
         </field>
     </record>
-    <record id="stock_request_fsm_order_tree" model="ir.ui.view">
+    <record id="stock_request_fsm_order_list" model="ir.ui.view">
         <field name="model">stock.request</field>
-        <field name="inherit_id" ref="stock_request.view_stock_request_tree" />
+        <field name="inherit_id" ref="stock_request.view_stock_request_list" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
                 <field name="fsm_order_id" />
