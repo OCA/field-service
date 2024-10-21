@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="fsm_location_form_view_inherit_size" model="ir.ui.view">
         <field name="name">fsm.location.size.form</field>
         <field name="model">fsm.location</field>
@@ -8,16 +7,15 @@
             <page id="others-page" position="before">
                 <page string="Sizes">
                     <field name="location_size_ids" nolabel="1">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="size_id" />
                             <field name="quantity" />
                             <field name="uom_id" />
                             <field name="type_id" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </page>
         </field>
     </record>
-
 </odoo>
