@@ -1,0 +1,26 @@
+<odoo>
+
+    <record id="fsm_person_form" model="ir.ui.view">
+        <field name="name">fsm.person.form</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_agreements"
+                    class="oe_stat_button"
+                    icon="fa-folder"
+                    groups="base.group_user"
+                >
+                    <field
+                        name="agreement_count"
+                        widget="statinfo"
+                        string="Agreements"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
