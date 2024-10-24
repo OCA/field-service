@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_size
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-06-07 17:10+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: fieldservice_size
+#: model_terms:ir.actions.act_window,help:fieldservice_size.action_fsm_size
+msgid "Configure a Field Service Size here."
+msgstr "Configura qui una dimensione assistenza sul campo."
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__create_uid
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__create_date
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__display_name
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: fieldservice_size
+#: model:ir.model,name:fieldservice_size.model_fsm_location
+msgid "Field Service Location"
+msgstr "Località assistenza sul campo"
+
+#. module: fieldservice_size
+#: model:ir.model,name:fieldservice_size.model_fsm_order
+msgid "Field Service Order"
+msgstr "Ordine assistenza sul campo"
+
+#. module: fieldservice_size
+#: model:ir.model,name:fieldservice_size.model_fsm_size
+msgid "Field Service Size"
+msgstr "Dimensione assistenza sul campo"
+
+#. module: fieldservice_size
+#: model:ir.actions.act_window,name:fieldservice_size.action_fsm_size
+msgid "Field Service Sizes"
+msgstr "Dimensioni assistenza sul campo"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__is_order_size
+msgid "Is the Order Size?"
+msgstr "È la dimensione dell'ordine?"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__write_uid
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__write_date
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__location_id
+msgid "Location"
+msgstr "Località"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__location_size_ids
+msgid "Location Sizes"
+msgstr "Dimensioni località"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: fieldservice_size
+#. odoo-python
+#: code:addons/fieldservice_size/models/fsm_size.py:0
+#, python-format
+msgid "Only one default order size per type is allowed."
+msgstr "È consentita solo una dimensione predefinita per tipo ordine."
+
+#. module: fieldservice_size
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_location_size_one_size_per_location
+msgid "Only one size of same type allowed per location"
+msgstr "È consentita solo una dimensione dello stesso tipo per località"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_value
+msgid "Order Size"
+msgstr "Altre dimensioni"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__type_id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__type_id
+msgid "Order Type"
+msgstr "Altri tipi"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__parent_id
+msgid "Parent Size"
+msgstr "Dimensione del padre"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__quantity
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__size_id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_size_form_view
+msgid "Size"
+msgstr "Dimensione"
+
+#. module: fieldservice_size
+#: model:ir.model,name:fieldservice_size.model_fsm_location_size
+msgid "Size for FSM Location"
+msgstr "Dimensione della località FSM"
+
+#. module: fieldservice_size
+#: model:ir.model.constraint,message:fieldservice_size.constraint_fsm_size_name_uniq
+msgid "Size name already exists!"
+msgstr "Il nome della dimensione esiste già!"
+
+#. module: fieldservice_size
+#: model:ir.ui.menu,name:fieldservice_size.menu_fsm_size
+#: model_terms:ir.ui.view,arch_db:fieldservice_size.fsm_location_form_view_inherit_size
+msgid "Sizes"
+msgstr "Dimensioni"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,help:fieldservice_size.field_fsm_size__is_order_size
+msgid "The default size for orders of this type"
+msgstr "La dimensione predefinita per ordini ti questo tipo"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__uom_id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
+msgid "Unit of Measure"
+msgstr "Unità di misura"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
