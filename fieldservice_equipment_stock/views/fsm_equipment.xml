@@ -5,6 +5,15 @@
         <field name="model">fsm.equipment</field>
         <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
         <field name="arch" type="xml">
+            <button id="previous_stage" position="before">
+                <button
+                    id="new_equip_return"
+                    name="create_equip_order_return"
+                    string="Create Return"
+                    class="oe_highlight"
+                    type="object"
+                />
+            </button>
             <group id="secondary" position="inside">
                 <group string="Inventory" groups="stock.group_stock_user">
                     <field name="product_id" required="1" />
