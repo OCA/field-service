@@ -1,0 +1,25 @@
+<odoo>
+    <record id="view_order_form_inherit_sale_fieldservice" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.fieldservice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+                    type="object"
+                    name="action_view_fsm_recurring"
+                    class="oe_stat_button"
+                    icon="fa-calendar"
+                    invisible="fsm_recurring_count == 0"
+                    groups="fieldservice.group_fsm_user"
+                >
+                    <field
+                        name="fsm_recurring_count"
+                        widget="statinfo"
+                        string="FSM Recurring Orders"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
