@@ -1,0 +1,47 @@
+<odoo>
+
+    <!-- Dashboard -->
+    <menuitem
+        id="menu_fsm_dash_dayroute"
+        name="Day Routes"
+        action="action_fsm_route_dayroute_dash"
+        parent="fieldservice.dashboard"
+        sequence="20"
+    />
+
+    <!-- Operations -->
+    <menuitem
+        id="menu_fsm_route_dayroute"
+        name="Day Routes"
+        action="action_fsm_route_dayroute"
+        parent="fieldservice.operations"
+        sequence="10"
+    />
+
+    <!-- Master Data -->
+    <menuitem
+        id="menu_fsm_route"
+        name="Routes"
+        action="action_fsm_route"
+        parent="fieldservice.data"
+        sequence="20"
+    />
+
+    <!-- Reporting -->
+    <menuitem
+        id="menu_fsm_route_dayroute_report"
+        name="Day Routes"
+        action="action_fsm_route_dayroute_report"
+        parent="fieldservice.reporting"
+    />
+
+    <!-- Configuration -->
+    <menuitem
+        id="menu_fsm_route_day"
+        name="Route Days"
+        action="action_fsm_route_day"
+        parent="fieldservice.config"
+        sequence="30"
+    />
+
+</odoo>
