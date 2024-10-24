@@ -1,0 +1,15 @@
+<odoo>
+    <record id="fsm_order_email_sender" model="base.automation">
+        <field name="name">FSM Order Email Sender</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="trigger">on_create_or_write</field>
+        <field name="active" eval="True" />
+        <field
+            name="action_server_ids"
+            eval="[(6, 0, [
+                    ref('fsm_order_parent_completed'),
+                    ref('fsm_order_parent_canceled')])
+                ]"
+        />
+    </record>
+</odoo>
