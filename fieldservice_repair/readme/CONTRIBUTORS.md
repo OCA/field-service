@@ -1,0 +1,5 @@
+- Sandip Mangukiya \<<smangukiya@opensourceintegrators.com>\>
+- Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
+- Marcel Savegnago - Escodoo \<<marcel.savegnago@escodoo.com.br>\>
+- Freni Patel \<<fpatel@opensourceintegrators.com>\>
+- Italo LOPES \<<italo.lopes@camptocamp.com>\>
