@@ -1,6 +1,7 @@
 /** @odoo-module */
 
-import "portal.portal"; // Force dependencies
+// Force dependencies
+import "portal.portal";
 import publicWidget from "web.public.widget";
 
 publicWidget.registry.PortalHomeCounters.include({
