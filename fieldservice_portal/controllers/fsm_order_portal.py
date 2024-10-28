@@ -7,7 +7,8 @@ from odoo.http import request
 from odoo.osv.expression import OR
 from odoo.tools import groupby as groupbyelem
 
-from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
+from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 
 class CustomerPortal(CustomerPortal):
@@ -65,7 +66,7 @@ class CustomerPortal(CustomerPortal):
         groupby=None,
         search=None,
         search_in="all",
-        **kw
+        **kw,
     ):
         values = self._prepare_portal_layout_values()
         FsmOrder = request.env["fsm.order"]
