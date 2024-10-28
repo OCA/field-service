@@ -61,6 +61,10 @@ Contributors
 
       -  Alessio Renda <alessio.renda@pytech.it>
 
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+      -  Antoni Marroig <amarroig@apsl.net>
+
 Maintainers
 -----------
 
