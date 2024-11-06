@@ -1,0 +1,33 @@
+<odoo>
+    <record id="res_config_settings_view_form_mobile" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.fsm.mobile</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="order_setting_container" position="inside">
+                <setting>
+                    <field name="fsm_allow_portal_view_move_qty" />
+
+                    <label
+                        for="fsm_allow_portal_view_move_qty"
+                        string="Allow portal user to view stock move quantities"
+                    />
+                    <div class="text-muted">
+                            Allow portal user to view stock move quantities
+                        </div>
+                </setting>
+                <setting>
+                    <field name="fsm_allow_portal_update_move_qty" />
+                    <label
+                        for="fsm_allow_portal_update_move_qty"
+                        string="Allow portal user update of stock move quantities"
+                    />
+                    <div class="text-muted">
+                        Allow portal user update of stock move quantities
+                    </div>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

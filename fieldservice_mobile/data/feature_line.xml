@@ -1,0 +1,107 @@
+<odoo noupdate="1">
+    <!-- Feature Records -->
+    <record id="fsm_feature_location" model="fsm.mobile.feature.line">
+        <field name="name">Location</field>
+        <field name="code">LOC</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_contact" model="fsm.mobile.feature.line">
+        <field name="name">Contact</field>
+        <field name="code">CON</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_notes" model="fsm.mobile.feature.line">
+        <field name="name">Notes</field>
+        <field name="code">NOT</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_chatter" model="fsm.mobile.feature.line">
+        <field name="name">Chatter</field>
+        <field name="code">CHA</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_documents" model="fsm.mobile.feature.line">
+        <field name="name">Documents</field>
+        <field name="code">DOC</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_picture" model="fsm.mobile.feature.line">
+        <field name="name">Pictures</field>
+        <field name="code">PIC</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_timesheet" model="fsm.mobile.feature.line">
+        <field name="name">Timesheets</field>
+        <field name="code">TIM</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_signature" model="fsm.mobile.feature.line">
+        <field name="name">Signature</field>
+        <field name="code">SIG</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_equipment" model="fsm.mobile.feature.line">
+        <field name="name">Equipment</field>
+        <field name="code">EQU</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_pickup_delivery" model="fsm.mobile.feature.line">
+        <field name="name">Pickup/Delivery</field>
+        <field name="code">DEL</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_sale_order_line" model="fsm.mobile.feature.line">
+        <field name="name">Sale Order Lines</field>
+        <field name="code">SOL</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_durations" model="fsm.mobile.feature.line">
+        <field name="name">Durations</field>
+        <field name="code">DUR</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+    <record id="fsm_feature_stock_request" model="fsm.mobile.feature.line">
+        <field name="name">Stock Requests</field>
+        <field name="code">STO</field>
+        <field
+            name="group_ids"
+            eval='[(6, 0, [ref("fieldservice.group_fsm_manager")])]'
+        />
+    </record>
+</odoo>

@@ -1,0 +1,80 @@
+<odoo>
+    <!-- FSM Features Tree View -->
+    <record id="fsm_mobile_feature_list_view" model="ir.ui.view">
+        <field name="name">fsm.mobile.feature.mapping.list.view</field>
+        <field name="model">fsm.mobile.feature.mapping</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <!-- FSM Features Form View -->
+    <record id="fsm_mobile_feature_view" model="ir.ui.view">
+        <field name="name">fsm.mobile.feature.mapping.view</field>
+        <field name="model">fsm.mobile.feature.mapping</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="set_to_draft"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'active'"
+                        string="Set To Draft"
+                    />
+                    <button
+                        name="set_to_active"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                        string="Active"
+                    />
+                    <field name="state" widget="statusbar" readonly="1" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="company_id" invisible="True" />
+                        <field name="installed_module_ids" widget="many2many_tags" />
+                    </group>
+                    <notebook>
+                        <page name="mapping_page" string="Group Access Rights">
+                            <field name="feature_line_ids">
+                                <list editable="bottom" create="false" delete="false">
+                                    <field name="name" readonly="1" force_save="1" />
+                                    <field
+                                        name="code"
+                                        readonly="1"
+                                        force_save="1"
+                                        optional="hide"
+                                    />
+                                    <field name="group_ids" widget="many2many_tags" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_fsm_mobile_features" model="ir.actions.act_window">
+        <field name="name">Field Service Mobile Feature Mapping</field>
+        <field name="res_model">fsm.mobile.feature.mapping</field>
+        <field name="view_id" ref="fsm_mobile_feature_list_view" />
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem
+        id="menu_fsm_features"
+        name="FSM Mobile Features"
+        action="action_fsm_mobile_features"
+        parent="fieldservice.config"
+        groups="base.group_user"
+        sequence="30"
+    />
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <!-- FSM Features Form View -->
+    <record id="fsm_mobile_feature_line_view" model="ir.ui.view">
+        <field name="name">fsm.mobile.feature.line.view</field>
+        <field name="model">fsm.mobile.feature.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <label for="name" string="Feature Name" />
+                    <field name="name" />
+                    <field name="group_ids" widget="many2many" />
+                    <field name="code" invisible="1" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

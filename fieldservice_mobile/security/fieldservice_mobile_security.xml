@@ -1,0 +1,7 @@
+<odoo noupdate="0">
+    <record id="fieldservice_mobile_feature_mapping_user" model="ir.rule">
+        <field name="name">User can only see own feature mapping</field>
+        <field name="model_id" ref="model_fsm_mobile_feature_mapping" />
+        <field name="domain_force">[('company_id.id','=',user.company_id.id)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,103 @@
+<odoo>
+    <record id="action_fsm_order_started_stage_update" model="ir.actions.server">
+        <field name="name">FSM Order Started Stage Update Action</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">
+            for rec in records:
+                stage_rec = env['fsm.stage.history'].search([('order_id', '=', rec.id)], order='id desc', limit=1)
+                call_it = False
+                if not stage_rec:
+                    call_it = True
+                if stage_rec.stage_id != rec.stage_id:
+                    call_it = True
+                if call_it and rec.stage_id.action_id:
+                    rec.write({
+                    'date_start': datetime.datetime.now(),
+                    'fsm_stage_history_ids': [(0, 0, {
+                    'start_datetime': datetime.datetime.now(),
+                    'stage_id': rec.stage_id.id,
+                    'duration': 0.0,
+                    'total_duration': 0.0,
+                    })]
+                    })
+        </field>
+    </record>
+
+    <record id="action_fsm_order_break_stage_update" model="ir.actions.server">
+        <field name="name">FSM Order Break Stage Update Action</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">
+            for rec in records:
+                stage_rec = env['fsm.stage.history'].search([('order_id', '=', rec.id)], order='id desc', limit=1)
+                call_it = False
+                if not stage_rec:
+                    call_it = True
+                if stage_rec.stage_id != rec.stage_id:
+                    call_it = True
+                if call_it and rec.stage_id.action_id:
+                    delta = datetime.datetime.now() - stage_rec.start_datetime
+                    duration = round((delta.total_seconds() / 3600), 2)
+                    rec.write({
+                    'fsm_stage_history_ids': [(0, 0, {
+                    'start_datetime': datetime.datetime.now(),
+                    'stage_id': rec.stage_id.id,
+                    'duration': duration,
+                    'total_duration': round((duration + stage_rec.total_duration), 2),
+                    })]
+                    })
+        </field>
+    </record>
+
+    <record id="action_fsm_order_resume_stage_update" model="ir.actions.server">
+        <field name="name">FSM Order Resume Stage Update Action</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">
+            for rec in records:
+                stage_rec = env['fsm.stage.history'].search([('order_id', '=', rec.id)], order='id desc', limit=1)
+                call_it = False
+                if not stage_rec:
+                    call_it = True
+                if stage_rec.stage_id != rec.stage_id:
+                    call_it = True
+                if call_it and rec.stage_id.action_id:
+                    rec.write({
+                    'fsm_stage_history_ids': [(0, 0, {
+                    'start_datetime': datetime.datetime.now(),
+                    'stage_id': rec.stage_id.id,
+                    'duration': 0.0,
+                    'total_duration': round((rec.duration + stage_rec.total_duration), 2),
+                    })]
+                    })
+        </field>
+    </record>
+
+    <record id="action_fsm_order_completed_stage_update" model="ir.actions.server">
+        <field name="name">FSM Order Completed Stage Update Action</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">
+            for rec in records:
+                stage_rec = env['fsm.stage.history'].search([('order_id', '=', rec.id)], order='id desc', limit=1)
+                call_it = False
+                if not stage_rec:
+                    call_it = True
+                if stage_rec.stage_id != rec.stage_id:
+                    call_it = True
+                if call_it and rec.stage_id.action_id:
+                    delta = datetime.datetime.now() - stage_rec.start_datetime
+                    duration = round((delta.total_seconds() / 3600), 2)
+                    rec.write({
+                    'date_end': datetime.datetime.now(),
+                    'fsm_stage_history_ids': [(0, 0, {
+                    'start_datetime': datetime.datetime.now(),
+                    'stage_id': rec.stage_id.id,
+                    'duration': duration,
+                    'total_duration': round((duration + stage_rec.total_duration), 2),
+                    })]
+                    })
+        </field>
+    </record>
+</odoo>
