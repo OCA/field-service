@@ -1,0 +1,28 @@
+<odoo noupdate="1">
+    <!-- FSM Mobile Feature Mapping Record -->
+    <record id="fsm_feature_default_mapping" model="fsm.mobile.feature.mapping">
+        <field name="name">Default FSM Mobile Feature Mapping</field>
+        <field
+            name="installed_module_ids"
+            eval='[(6, 0, [ref("base.module_fieldservice"),
+        ref("base.module_fieldservice_stage_server_action"),
+        ref("base.module_fieldservice_mobile")])]'
+        />
+        <field
+            name="feature_line_ids"
+            eval='[(6, 0, [ref("fieldservice_mobile.fsm_feature_location"),
+        ref("fieldservice_mobile.fsm_feature_contact"),
+        ref("fieldservice_mobile.fsm_feature_notes"),
+        ref("fieldservice_mobile.fsm_feature_chatter"),
+        ref("fieldservice_mobile.fsm_feature_documents"),
+        ref("fieldservice_mobile.fsm_feature_picture"),
+        ref("fieldservice_mobile.fsm_feature_timesheet"),
+        ref("fieldservice_mobile.fsm_feature_signature"),
+        ref("fieldservice_mobile.fsm_feature_equipment"),
+        ref("fieldservice_mobile.fsm_feature_pickup_delivery"),
+        ref("fieldservice_mobile.fsm_feature_sale_order_line"),
+        ref("fieldservice_mobile.fsm_feature_durations"),
+        ref("fieldservice_mobile.fsm_feature_stock_request")])]'
+        />
+    </record>
+</odoo>
