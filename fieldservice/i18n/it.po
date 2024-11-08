@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-30 10:06+0000\n"
+"PO-Revision-Date: 2024-11-08 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -336,7 +336,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__autopost_bills
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__autopost_bills
 msgid "Auto-post bills"
-msgstr ""
+msgstr "Auto invia fattura"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -350,7 +350,7 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__autopost_bills
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__autopost_bills
 msgid "Automatically post bills for this trusted partner"
-msgstr ""
+msgstr "Invia automaticamente le fatture per questo partner affidabile"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
@@ -983,13 +983,13 @@ msgstr "Controllore"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_edi_format
 msgid "Display Invoice Edi Format"
-msgstr ""
+msgstr "Visualizza formato EDI fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_template_pdf_report_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_template_pdf_report_id
 msgid "Display Invoice Template Pdf Report"
-msgstr ""
+msgstr "Visualizza resoconto PDF modello fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__display_name
@@ -1533,13 +1533,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_amount
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_amount
 msgid "Ignore Abnormal Invoice Amount"
-msgstr ""
+msgstr "Ignora valore anormale fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_date
 msgid "Ignore Abnormal Invoice Date"
-msgstr ""
+msgstr "Ignora data anormale fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1920
@@ -1632,19 +1632,19 @@ msgstr "Fattura"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format_store
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format_store
 msgid "Invoice Edi Format Store"
-msgstr ""
+msgstr "Deposito formato EDI fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
 msgid "Invoice Template Pdf Report"
-msgstr ""
+msgstr "Resoconto PDF modello fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_sending_method
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_sending_method
 msgid "Invoice sending"
-msgstr ""
+msgstr "Invio fattura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
@@ -1680,7 +1680,7 @@ msgstr "Segue"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_peppol_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_peppol_edi_format
 msgid "Is Peppol Edi Format"
-msgstr ""
+msgstr "È un formato EDI Peppol"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_public
@@ -1692,7 +1692,7 @@ msgstr "È pubblico"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_ubl_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_ubl_format
 msgid "Is Ubl Format"
-msgstr ""
+msgstr "È formato UBI"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_company
@@ -2380,7 +2380,7 @@ msgstr "Opportunità"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
 msgid "Opportunity Count"
-msgstr ""
+msgstr "Conteggio opportunità"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2574,7 +2574,7 @@ msgstr "Limite partner"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_vat_placeholder
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_vat_placeholder
 msgid "Partner Vat Placeholder"
-msgstr ""
+msgstr "Segnaposto PIVA partner"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
@@ -2664,6 +2664,9 @@ msgid ""
 "Preferred payment method when buying from this vendor. This will be set by "
 "default on all outgoing payments created for this vendor"
 msgstr ""
+"Metodo di pagamento preferito per l'acquisto da questo fornitore. Verrà "
+"impostato di default su tutti i pagamenti in uscita creati per questo "
+"fornitore"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_inbound_payment_method_line_id
@@ -2672,6 +2675,9 @@ msgid ""
 "Preferred payment method when selling to this customer. This will be set by "
 "default on all incoming payments created for this customer"
 msgstr ""
+"Metodo di pagamento preferito per la vendita a questo cliente. Verrà "
+"impostato di default su tutti i pagamenti in entrata creati per questo "
+"cliente"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2725,13 +2731,13 @@ msgstr "Progetti e lavori"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_inbound_payment_method_line_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_inbound_payment_method_line_id
 msgid "Property Inbound Payment Method Line"
-msgstr ""
+msgstr "Riga del metodo di pagamento in entrata della proprietà"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_outbound_payment_method_line_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_outbound_payment_method_line_id
 msgid "Property Outbound Payment Method Line"
-msgstr ""
+msgstr "Riga del metodo di pagamento in uscita della proprietà"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -3024,7 +3030,7 @@ msgstr "Tipo token iscrizione"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__specific_property_product_pricelist
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__specific_property_product_pricelist
 msgid "Specific Property Product Pricelist"
-msgstr ""
+msgstr "Listino prodotto proprietà specifico"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
@@ -3653,7 +3659,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format
 msgid "eInvoice format"
-msgstr ""
+msgstr "Formato fattura elettronica"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
