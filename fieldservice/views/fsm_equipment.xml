@@ -171,7 +171,7 @@
                 <field name="person_id" />
                 <field name="color" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div
                             t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
                         >
