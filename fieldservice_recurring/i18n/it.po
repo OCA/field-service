@@ -19,7 +19,6 @@ msgstr ""
 #. module: fieldservice_recurring
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
-#, python-format
 msgid "'Day of Month must be between 1 and 31"
 msgstr "'Il giorno del mese deve essere tra 1 e 31"
 
@@ -461,7 +460,6 @@ msgid "March"
 msgstr "Marzo"
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__max_orders
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__max_orders
 msgid "Maximium number of orders that will be created"
 msgstr "Numero massimo di ordini che verrà creato"
@@ -471,6 +469,11 @@ msgstr "Numero massimo di ordini che verrà creato"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__max_orders
 msgid "Maximum Orders"
 msgstr "Ordini massimi"
+
+#. module: fieldservice_recurring
+#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__max_orders
+msgid "Maximum number of orders that will be created"
+msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__may
@@ -519,7 +522,6 @@ msgstr "Nome"
 #. module: fieldservice_recurring
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_recurring.py:0
-#, python-format
 msgid "New"
 msgstr "Nuovo"
 
@@ -606,7 +608,6 @@ msgstr "Conteggio ordini"
 #. module: fieldservice_recurring
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
-#, python-format
 msgid "Position must be between -366 and 366"
 msgstr "La posizione deve essere tra -366 e 366"
 
@@ -635,7 +636,7 @@ msgid "Recurring Order"
 msgstr "Ordine ricorrente"
 
 #. module: fieldservice_recurring
-#: model:ir.actions.act_window,name:fieldservice_recurring.action_recurring_tree
+#: model:ir.actions.act_window,name:fieldservice_recurring.action_recurring_list
 #: model:ir.ui.menu,name:fieldservice_recurring.menu_fsm_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_team_kanban_recurring
