@@ -11,7 +11,6 @@ class FSMStage(models.Model):
         string="Fields to Validate",
         help="Select fields which must be set on the document in this stage",
     )
-
     stage_type_model_id = fields.Many2one(
         "ir.model",
         compute="_compute_stage_model",
