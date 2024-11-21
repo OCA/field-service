@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 def validate_stage_fields(records):
     for rec in records:
         stage = rec.stage_id
-        field_ids = stage.validate_field_ids
+        field_ids = stage.sudo().validate_field_ids
         field_names = [x.name for x in field_ids]
         values = rec.read(field_names)
 

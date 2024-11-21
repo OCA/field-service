@@ -3,12 +3,15 @@
 {
     "name": "FSM Stage Validation",
     "summary": "Validate input data when reaching a Field Service stage",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Field Service",
     "author": "Brian McMaster, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice"],
-    "data": ["views/fsm_stage.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/fsm_stage.xml",
+    ],
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["brian10048", "max3903"],
