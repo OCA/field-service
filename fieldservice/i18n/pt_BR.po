@@ -906,6 +906,12 @@ msgid "Current Location"
 msgstr "Localização Atual"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Local do Cliente"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
 msgid "Customer Payment Terms"
@@ -2205,6 +2211,12 @@ msgid "Message for Sales Order"
 msgstr "Mensagem para Pedido de Vendas"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Mensagem para Separação de Estoque"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2951,8 +2963,10 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
@@ -3110,6 +3124,12 @@ msgstr ""
 "Atrasado: Data definida já passou\n"
 "Hoje: Data de atividade é hoje\n"
 "Planejado: Atividades futuras."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
+msgid "Stock Picking"
+msgstr "Separação de Estoque"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -3270,6 +3290,23 @@ msgid ""
 msgstr ""
 "O número de registro da empresa. Use-o se for diferente do CNPJ. Deve ser "
 "único em todos os parceiros de um mesmo país"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"O local de estoque usado como destino ao enviar mercadorias para este "
+"contato."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"O local de estoque usado como fonte ao receber mercadorias deste contato."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3529,6 +3566,12 @@ msgid "Vehicles"
 msgstr "Veículos"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Localização de Fornecedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
@@ -3685,9 +3728,6 @@ msgstr "modelo"
 #~ msgid "# Tasks"
 #~ msgstr "# Tarefas"
 
-#~ msgid "Customer Location"
-#~ msgstr "Local do Cliente"
-
 #~ msgid "Date"
 #~ msgstr "Data"
 
@@ -3712,9 +3752,6 @@ msgstr "modelo"
 
 #~ msgid "Latest Invoices & Payments Matching Date"
 #~ msgstr "Última Data de Correspondência das Faturas e Pagamentos"
-
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Mensagem para Separação de Estoque"
 
 #~ msgid "Opportunity"
 #~ msgstr "Oportunidade"
@@ -3747,9 +3784,6 @@ msgstr "modelo"
 #~ msgid "Signup URL"
 #~ msgstr "URL de Inscrição"
 
-#~ msgid "Stock Picking"
-#~ msgstr "Separação de Estoque"
-
 #~ msgid "Tasks"
 #~ msgstr "Tarefas"
 
@@ -3759,20 +3793,6 @@ msgstr "modelo"
 #~ msgstr ""
 #~ "O parceiro tem pelo menos um débito e um crédito não reconciliados desde "
 #~ "a última vez em que a conciliação de faturas e pagamentos foi realizada."
-
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como destino ao enviar mercadorias para este "
-#~ "contato."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "O local de estoque usado como fonte ao receber mercadorias deste contato."
-
-#~ msgid "Vendor Location"
-#~ msgstr "Localização de Fornecedor"
 
 #~ msgid "Use Odoo Stock Logistics"
 #~ msgstr "Usar Logística de Estoque Odoo"
