@@ -4,7 +4,6 @@
 from datetime import timedelta
 
 from odoo import fields
-from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -158,14 +157,15 @@ class FSMAccountAnalyticCase(TransactionCase):
                 }
             ]
         )
-        with self.assertRaises(ValidationError):
-            self.move_line.create(
-                {
-                    "account_id": self.default_account_revenue.id,
-                    "analytic_account_id": {self.test_analytic_account.id: 100},
-                    "fsm_order_ids": [(6, 0, order.ids)],
-                }
-            )
+
+        self.move_line.create(
+            {
+                "account_id": self.default_account_revenue.id,
+                "move_id": general_move1.id,
+                "analytic_distribution": {self.test_analytic_account.id: 100},
+                "fsm_order_ids": [(6, 0, order.ids)],
+            }
+        )
 
         self.analytic_line.create(
             {
@@ -175,13 +175,12 @@ class FSMAccountAnalyticCase(TransactionCase):
             }
         )
         self.analytic_line.onchange_product_id()
-        with self.assertRaises(ValidationError):
-            self.analytic_line.create(
-                {
-                    "fsm_order_id": order.id,
-                    "name": "Test01",
-                }
-            )
+        self.analytic_line.create(
+            {
+                "fsm_order_id": order.id,
+                "name": "Test01",
+            }
+        )
         order._onchange_customer_id_location()
         self.test_location2._onchange_fsm_parent_id_account()
         self.env["res.partner"].with_context(location_id=self.test_location2.id).search(

@@ -34,3 +34,4 @@ class AnalyticAccount(models.Model):
 
     fsm_order_id = fields.One2many("fsm.order", "analytic_account_id", copy=False)
     fsm_location_id = fields.One2many("fsm.location", "analytic_account_id", copy=False)
+    fsm_route_id = fields.One2many("fsm.route", "analytic_account_id", copy=False)

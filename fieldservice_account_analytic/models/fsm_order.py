@@ -41,17 +41,18 @@ class FSMOrder(models.Model):
                 order.customer_id = order.location_id.customer_id.id
         return res
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        analytic_account = self.env["account.analytic.account"].create(
-            {
-                "name": vals.get("name"),
-                "plan_id": self.env.ref(
-                    "fieldservice_account_analytic.fsm_order_analytic_plan"
-                ).id,
-                "fsm_order_id": record,
-            }
-        )
-        record.analytic_account_id = analytic_account
+    @api.model_create_multi
+    def create(self, vals_list):
+        record = super().create(vals_list)
+        for vals in vals_list:
+            analytic_account = self.env["account.analytic.account"].create(
+                {
+                    "name": vals.get("name"),
+                    "plan_id": self.env.ref(
+                        "fieldservice_account_analytic.fsm_order_analytic_plan"
+                    ).id,
+                    "fsm_order_id": record,
+                }
+            )
+            record.analytic_account_id = analytic_account
         return record

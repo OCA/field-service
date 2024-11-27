@@ -13,6 +13,7 @@
         "fieldservice_account",
         "analytic",
         "product",
+        "fieldservice_route",
     ],
     "data": [
         "data/ir_rule.xml",
