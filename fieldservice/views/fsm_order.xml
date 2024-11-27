@@ -15,7 +15,7 @@
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_user"
-                        invisible="stage_id.is_closed"
+                        invisible="is_closed"
                     />
                     <button
                         id="action_cancel"
@@ -23,12 +23,12 @@
                         string="Cancel Order"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        invisible="stage_id.is_closed"
+                        invisible="is_closed"
                     />
                     <field
                         name="stage_id"
                         widget="statusbar"
-                        options="{'fold_field': 'fold', 'clickable': True}"
+                        options="{'fold_field': 'fold'}"
                         domain="[('stage_type', '=', 'order'), '|', ('team_ids', 'in', team_id), ('team_ids', '=', False)]"
                     />
                 </header>
