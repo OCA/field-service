@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="fsm_template_form_view" model="ir.ui.view">
+        <field name="model">fsm.template</field>
+        <field name="inherit_id" ref="fieldservice.fsm_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="type_id" position="after">
+                <field name="type_internal" invisible="1" />
+                <field
+                    name="repair_order_template_id"
+                    string="Order Template"
+                    invisible="type_internal != 'repair'"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
