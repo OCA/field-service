@@ -33,4 +33,4 @@ class AnalyticAccount(models.Model):
     _inherit = "account.analytic.account"
 
     fsm_order_id = fields.One2many("fsm.order", "analytic_account_id", copy=False)
-    # route_id = fields.One2many("tms.route", "analytic_account_id", copy=False)
+    fsm_location_id = fields.One2many("fsm.location", "analytic_account_id", copy=False)

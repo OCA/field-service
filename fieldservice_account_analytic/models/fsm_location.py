@@ -54,3 +54,18 @@ class FSMLocation(models.Model):
             limit=limit,
             order=order,
         )
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        analytic_account = self.env["account.analytic.account"].create(
+            {
+                "name": vals.get("name"),
+                "plan_id": self.env.ref(
+                    "fieldservice_account_analytic.fsm_location_analytic_plan"
+                ).id,
+                "fsm_location_id": record,
+            }
+        )
+        record.analytic_account_id = analytic_account
+        return record
