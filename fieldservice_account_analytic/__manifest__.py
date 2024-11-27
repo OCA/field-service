@@ -16,6 +16,7 @@
     ],
     "data": [
         "data/ir_rule.xml",
+        "data/analytic_plan.xml",
         "security/ir.model.access.csv",
         "report/fsm_order_report_template.xml",
         "views/fsm_location.xml",

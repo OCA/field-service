@@ -21,6 +21,8 @@ class FSMOrder(models.Model):
         tracking=True,
     )
 
+    analytic_account_id = fields.Many2one("account.analytic.account", copy=False)
+
     def _compute_total_cost(self):
         """To be overridden as needed from other modules"""
         for order in self:
@@ -38,3 +40,18 @@ class FSMOrder(models.Model):
             if "customer_id" not in vals and not order.customer_id:
                 order.customer_id = order.location_id.customer_id.id
         return res
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        analytic_account = self.env["account.analytic.account"].create(
+            {
+                "name": vals.get("name"),
+                "plan_id": self.env.ref(
+                    "fieldservice_account_analytic.fsm_order_analytic_plan"
+                ).id,
+                "fsm_order_id": record,
+            }
+        )
+        record.analytic_account_id = analytic_account
+        return record

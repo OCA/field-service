@@ -27,3 +27,10 @@ class AccountAnalyticLine(models.Model):
     @api.onchange("product_id")
     def onchange_product_id(self):
         self.name = self.product_id.name if self.product_id else False
+
+
+class AnalyticAccount(models.Model):
+    _inherit = "account.analytic.account"
+
+    fsm_order_id = fields.One2many("fsm.order", "analytic_account_id", copy=False)
+    # route_id = fields.One2many("tms.route", "analytic_account_id", copy=False)
