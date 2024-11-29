@@ -58,17 +58,18 @@ class FSMLocation(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         record = super().create(vals_list)
-        for vals in vals_list:
-            analytic_account = self.env["account.analytic.account"].create(
-                {
-                    "name": vals.get("name"),
-                    "plan_id": self.env.ref(
-                        "fieldservice_account_analytic.fsm_location_analytic_plan"
-                    ).id,
-                    "fsm_location_id": record,
-                }
-            )
-            record.analytic_account_id = analytic_account
+        if self.env.user.has_group("analytic.group_analytic_accounting"):
+            for vals in vals_list:
+                analytic_account = self.env["account.analytic.account"].create(
+                    {
+                        "name": vals.get("name"),
+                        "plan_id": self.env.ref(
+                            "fieldservice_account_analytic.fsm_location_analytic_plan"
+                        ).id,
+                        "fsm_location_id": record,
+                    }
+                )
+                record.analytic_account_id = analytic_account
         return record
 
     def action_view_analytic_account(self):

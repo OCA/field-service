@@ -14,6 +14,7 @@
         "analytic",
         "product",
         "fieldservice_route",
+        "account_usability",
     ],
     "data": [
         "data/ir_rule.xml",
@@ -21,6 +22,7 @@
         "security/ir.model.access.csv",
         "report/fsm_order_report_template.xml",
         "views/fsm_location.xml",
+        "views/fsm_route.xml",
         "views/fsm_order.xml",
         "views/res_config_settings.xml",
     ],
