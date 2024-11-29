@@ -16,6 +16,21 @@
         <field name="model">fsm.location</field>
         <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_analytic_account"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-bar-chart"
+                    invisible="not analytic_account_id"
+                >
+                    <field
+                        name="analytic_account_id"
+                        widget="statinfo"
+                        string="Analytic Account"
+                    />
+                </button>
+            </xpath>
             <page id="others-page" position="before">
                 <page name="accounting" string="Accounting">
                     <group>

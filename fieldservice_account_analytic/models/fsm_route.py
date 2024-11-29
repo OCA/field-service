@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class FSMRoute(models.Model):
@@ -25,4 +25,20 @@ class FSMRoute(models.Model):
                 }
             )
             record.analytic_account_id = analytic_account
+            print("\n\n", record.analytic_account_id, "\n\n")
         return record
+
+    def action_view_analytic_account(self):
+        self.ensure_one()
+        analytic_account = self.env["account.analytic.account"].search(
+            [("fsm_route_id", "=", self.id)], limit=1
+        )
+
+        if analytic_account:
+            return {
+                "type": "ir.actions.act_window",
+                "res_model": "account.analytic.account",
+                "view_mode": "form",
+                "res_id": analytic_account.id,
+                "name": _("Analytic Account for Route %s") % self.name,
+            }
