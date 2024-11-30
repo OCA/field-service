@@ -4,24 +4,9 @@
         <field name="model">fsm.route</field>
         <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_title')]" position="before">
-                <div class="oe_button_box" name="button_box">
-                    <button
-                        name="action_view_analytic_account"
-                        type="object"
-                        class="oe_stat_button"
-                        icon="fa-bar-chart"
-                        invisible="not analytic_account_id"
-                        groups="analytic.group_analytic_accounting"
-                    >
-                        <field
-                            name="analytic_account_id"
-                            widget="statinfo"
-                            string="Analytic Account"
-                        />
-                    </button>
-                </div>
-            </xpath>
+            <field name="day_ids" position="after">
+                <field name="analytic_account_id" />
+            </field>
         </field>
     </record>
 </odoo>
