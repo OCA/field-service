@@ -4,30 +4,15 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button
-                    name="action_view_analytic_account"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-bar-chart"
-                    invisible="not analytic_account_id"
-                    groups="analytic.group_analytic_accounting"
-                >
-                    <field
-                        name="analytic_account_id"
-                        widget="statinfo"
-                        string="Analytic Account"
-                    />
-                </button>
-            </xpath>
             <notebook position="inside">
                 <page name="accounting" string="Accounting">
-                    <group name="bill_to">
-                        <field
-                            name="bill_to"
-                            widget="radio"
-                            options="{'horizontal': true}"
-                        />
+                    <group id="account-main">
+                        <group id="account-left">
+                            <field name="bill_to" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group id="account-right">
+                            <field name="analytic_account_id" />
+                        </group>
                     </group>
                 </page>
             </notebook>
