@@ -26,17 +26,6 @@ class FSMAccountAnalyticCase(TransactionCase):
         cls.test_loc_partner2 = cls.env["res.partner"].create(
             {"name": "Test Loc Partner 2", "phone": "123", "email": "tlp@example.com"}
         )
-        # create expected FSM Location to compare to converted FSM Location
-        cls.test_location = cls.env["fsm.location"].create(
-            {
-                "name": "Test Location",
-                "phone": "123",
-                "email": "tp@email.com",
-                "partner_id": cls.test_loc_partner.id,
-                "owner_id": cls.test_loc_partner.id,
-                "customer_id": cls.test_loc_partner.id,
-            }
-        )
         cls.location = cls.env["fsm.location"].create(
             {
                 "name": "Location 1",
@@ -54,6 +43,18 @@ class FSMAccountAnalyticCase(TransactionCase):
             {
                 "name": "test_analytic_account",
                 "plan_id": cls.test_analytic_plan.id,
+            }
+        )
+        # create expected FSM Location to compare to converted FSM Location
+        cls.test_location = cls.env["fsm.location"].create(
+            {
+                "name": "Test Location",
+                "phone": "123",
+                "email": "tp@email.com",
+                "partner_id": cls.test_loc_partner.id,
+                "owner_id": cls.test_loc_partner.id,
+                "customer_id": cls.test_loc_partner.id,
+                "analytic_account_id": cls.test_analytic_account.id,
             }
         )
         cls.test_location2 = cls.env["fsm.location"].create(
@@ -122,6 +123,7 @@ class FSMAccountAnalyticCase(TransactionCase):
                 "request_early": fields.datetime.today(),
             }
         )
+
         order4 = self.env["fsm.order"].create(
             {
                 "location_id": self.location.id,
