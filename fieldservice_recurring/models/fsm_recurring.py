@@ -78,9 +78,27 @@ class FSMRecurringOrder(models.Model):
         tracking=True,
     )
     person_id = fields.Many2one(
-        "fsm.person", string="Assigned To", index=True, tracking=True
+        "fsm.person",
+        string="Assigned To",
+        compute="_compute_person_id",
+        precompute=True,
+        store=True,
+        readonly=False,
+        index=True,
+        tracking=True,
     )
     equipment_ids = fields.Many2many("fsm.equipment")
+
+    @api.depends("location_id")
+    def _compute_person_id(self):
+        """Compute the person from the location's territory"""
+        for rec in self:
+            # If the person is one of the territory's workers, keep it.
+            if rec.person_id in rec.location_id.territory_id.person_ids:
+                continue
+            # If the territory has a primary assignment, use it.
+            if rec.location_id.territory_id.person_id:
+                rec.person_id = rec.location_id.territory_id.person_id
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
