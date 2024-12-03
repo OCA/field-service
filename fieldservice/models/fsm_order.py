@@ -167,7 +167,15 @@ class FSMOrder(models.Model):
     person_ids = fields.Many2many("fsm.person", string="Field Service Workers")
 
     # Planning
-    person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
+    person_id = fields.Many2one(
+        "fsm.person",
+        string="Assigned To",
+        compute="_compute_person_id",
+        precompute=True,
+        store=True,
+        readonly=False,
+        index=True,
+    )
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
     scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
     scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
@@ -194,19 +202,24 @@ class FSMOrder(models.Model):
 
     # Location
     territory_id = fields.Many2one(
-        "res.territory",
-        string="Territory",
         related="location_id.territory_id",
+        precompute=True,
         store=True,
     )
     branch_id = fields.Many2one(
-        "res.branch", string="Branch", related="location_id.branch_id", store=True
+        related="location_id.branch_id",
+        precompute=True,
+        store=True,
     )
     district_id = fields.Many2one(
-        "res.district", string="District", related="location_id.district_id", store=True
+        related="location_id.district_id",
+        precompute=True,
+        store=True,
     )
     region_id = fields.Many2one(
-        "res.region", string="Region", related="location_id.region_id", store=True
+        related="location_id.region_id",
+        precompute=True,
+        store=True,
     )
 
     # Fields for Geoengine Identify
@@ -291,6 +304,17 @@ class FSMOrder(models.Model):
             rec.description = "\n".join(
                 equipment.notes for equipment in equipments if equipment.notes
             )
+
+    @api.depends("territory_id")
+    def _compute_person_id(self):
+        """Compute the person from the territory"""
+        for rec in self:
+            # If the person is one of the territory's workers, keep it.
+            if rec.person_id in rec.territory_id.person_ids:
+                continue
+            # If the territory has a primary assignment, use it.
+            if rec.territory_id.person_id:
+                rec.person_id = rec.territory_id.person_id
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
