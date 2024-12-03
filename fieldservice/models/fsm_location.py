@@ -69,6 +69,11 @@ class FSMLocation(models.Model):
     complete_name = fields.Char(
         compute="_compute_complete_name", recursive=True, store=True
     )
+    complete_direction = fields.Char(
+        compute="_compute_complete_direction",
+        store=True,
+        recursive=True,
+    )
 
     @api.model_create_multi
     def create(self, vals):
@@ -94,6 +99,13 @@ class FSMLocation(models.Model):
                     loc.complete_name = f"[{loc.ref}] {loc.partner_id.name}"
                 else:
                     loc.complete_name = loc.partner_id.name
+
+    @api.depends("direction", "fsm_parent_id.complete_direction")
+    def _compute_complete_direction(self):
+        for rec in self:
+            parent_direction = rec.fsm_parent_id.complete_direction
+            complete_direction = (parent_direction or "") + (rec.direction or "")
+            rec.complete_direction = complete_direction or False
 
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id(self):
