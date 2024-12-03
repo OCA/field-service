@@ -17,7 +17,7 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
     def test_fsm_order_onchange_template(self):
         """Test the onchange function for FSM Template
         - Category IDs, Scheduled Duration,and Type should update
-        - The copy_notes() method should be called and instructions copied
+        - The instructions should be copied
         """
         categories = []
         categories.append(self.fsm_category_a.id)

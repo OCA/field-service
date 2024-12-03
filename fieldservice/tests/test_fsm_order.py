@@ -173,7 +173,6 @@ class TestFSMOrder(TransactionCase):
         order4.action_complete()
         order3.action_cancel()
         self.env.user.company_id.auto_populate_equipments_on_order = True
-        order._onchange_location_id_customer()
         self.assertEqual(order.custom_color, order.stage_id.custom_color)
         # Test _compute_duration
         self.assertEqual(order.duration, hours_diff)
@@ -240,17 +239,20 @@ class TestFSMOrder(TransactionCase):
                 }
             )
         order.description = "description"
-        order.copy_notes()
+        order.equipment_ids = equipment
+        self.assertEqual(order.description, "description", "Shouldn't have changed")
         order.description = False
-        order.copy_notes()
-        order.type = False
-        order.equipment_id = equipment.id
-        order.onchange_equipment_ids()
+        equipment.notes = "equipment notes"
+        order.equipment_ids = equipment
+        self.assertEqual(
+            order.description,
+            equipment.notes,
+            "Description should be set from equipment",
+        )
         order.type = False
         order.description = False
         self.location_1.direction = "Test Direction"
         order2.location_id.fsm_parent_id = self.location_1.id
-        order.copy_notes()
         data = (
             self.env["fsm.order"]
             .with_context(**{"default_team_id": self.test_team.id})
