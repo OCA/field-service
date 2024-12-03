@@ -8,14 +8,6 @@ class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
     @api.model
-    def _default_warehouse_id(self):
-        company = self.env.user.company_id
-        warehouse_ids = self.env["stock.warehouse"].search(
-            [("company_id", "=", company.id)], limit=1
-        )
-        return warehouse_ids and warehouse_ids.id
-
-    @api.model
     def _get_move_domain(self):
         return [("picking_id.picking_type_id.code", "in", ("outgoing", "incoming"))]
 
@@ -32,8 +24,11 @@ class FSMOrder(models.Model):
     warehouse_id = fields.Many2one(
         "stock.warehouse",
         string="Warehouse",
+        compute="_compute_warehouse_id",
+        precompute=True,
+        store=True,
+        readonly=False,
         required=True,
-        default=_default_warehouse_id,
         help="Warehouse used to ship the materials",
     )
     return_count = fields.Integer(
@@ -42,6 +37,20 @@ class FSMOrder(models.Model):
     move_ids = fields.One2many(
         "stock.move", "fsm_order_id", string="Operations", domain=_get_move_domain
     )
+
+    @api.depends("company_id", "territory_id")
+    def _compute_warehouse_id(self):
+        """Compute the warehouse from the territory"""
+        for rec in self:
+            # If the territory's warehouse is set and it matches the company, use it.
+            if rec.territory_id.warehouse_id.company_id == rec.company_id:
+                rec.warehouse_id = rec.territory_id.warehouse_id
+                continue
+            # Otherwise, use the company's warehouse
+            company = rec.company_id or self.env.user.company_id
+            rec.warehouse_id = self.env["stock.warehouse"].search(
+                [("company_id", "=", company.id)], limit=1
+            )
 
     @api.depends("picking_ids")
     def _compute_picking_ids(self):

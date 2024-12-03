@@ -14,10 +14,14 @@ class TestFSMStockCommon(TransactionCase):
         self.location = self.env["fsm.location"]
         self.FSMOrder = self.env["fsm.order"]
         self.Product = self.env["product.product"].search([], limit=1)
+        self.warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)], limit=1
+        )
         self.stock_cust_loc = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.test_location = self.env.ref("fieldservice.test_location")
+        self.test_territory = self.env.ref("base_territory.test_territory")
         self.partner_1 = (
             self.env["res.partner"]
             .with_context(tracking_disable=True)
@@ -144,8 +148,32 @@ class TestFSMStockCommon(TransactionCase):
         order.picking_ids = [(6, 0, order_pick_list2)]
         order._compute_picking_ids()
         order.location_id._onchange_fsm_parent_id()
-        order._default_warehouse_id()
         order.action_view_delivery()
         order2.action_view_delivery()
         order3.action_view_returns()
         order.action_view_returns()
+
+    def test_order_warehouse_from_territory(self):
+        self.test_territory.warehouse_id = self.warehouse
+        order = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+            }
+        )
+        self.assertEqual(
+            order.warehouse_id,
+            self.test_territory.warehouse_id,
+            "Warehouse should be assigned from territory",
+        )
+
+    def test_order_warehouse_default_from_company(self):
+        order = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+            }
+        )
+        self.assertEqual(
+            order.warehouse_id,
+            self.warehouse,
+            "Warehouse should have a default value from company",
+        )
