@@ -4,7 +4,7 @@ import datetime
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import Form
+from odoo.tests import Form, new_test_user
 
 from .test_fsm_sale_common import TestFSMSale
 
@@ -601,3 +601,105 @@ class TestFSMSaleOrder(TestFSMSale):
         self.sale_order_3.action_confirm()
         self.assertEqual(len(self.sale_order_3.fsm_order_ids), 2)
         self._assert_fsm_links_in_so_message(self.sale_order_3)
+
+    def test_sale_order_cancel(self):
+        """Test that canceling a Sale Order cancels related FSM orders,
+        and reconfirming creates a new FSM order while keeping old ones linked.
+        """
+        # Confirm the Sale Order
+        self.sale_order_1.action_confirm()
+        self.assertEqual(
+            self.sale_order_1.state,
+            "sale",
+            "Sale Order should be confirmed (state=sale)",
+        )
+        self.assertEqual(
+            len(self.sale_order_1.fsm_order_ids),
+            1,
+            "One FSM order should be created upon confirming the Sale Order",
+        )
+
+        fsm_order = self.sale_order_1.fsm_order_ids[0]
+
+        # Cancel the Sale Order
+        self.sale_order_1.action_cancel()
+        self.assertEqual(
+            self.sale_order_1.state,
+            "cancel",
+            "Sale Order should be canceled (state=cancel)",
+        )
+
+        self.assertTrue(
+            fsm_order.is_closed,
+            "FSM order should be marked as closed after Sale Order is canceled",
+        )
+
+        # Reconfirm the Sale Order
+        self.sale_order_1.action_draft()
+        self.sale_order_1.action_confirm()
+
+        # Ensure that FSM orders are recomputed after reconfirmation
+        self.sale_order_1._compute_fsm_order_ids()
+
+        self.assertEqual(
+            self.sale_order_1.state,
+            "sale",
+            "Sale Order should be re-confirmed (state=sale)",
+        )
+        self.assertEqual(
+            len(self.sale_order_1.fsm_order_ids),
+            2,
+            "A new FSM order should be created upon reconfirming the "
+            "Sale Order, while the old one remains linked.",
+        )
+
+    def test_sale_order_cancel_keeps_completed_fsm_order(self):
+        """Canceling a Sale Order does not cancel already completed FSM orders"""
+        self.sale_order_1.action_confirm()
+        fsm_order = self.sale_order_1.fsm_order_ids
+        if self._isp_account_installed():
+            fsm_order = self._fulfill_order(fsm_order)
+        fsm_order.write(
+            {
+                "date_end": fields.Datetime.today(),
+                "resolution": "Work completed",
+            }
+        )
+        fsm_order.action_complete()
+        completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
+        self.assertEqual(fsm_order.stage_id, completed_stage)
+
+        self.sale_order_1.with_context(
+            disable_cancel_warning="disable_cancel_warning"
+        ).action_cancel()
+        self.assertEqual(
+            fsm_order.stage_id,
+            completed_stage,
+            "Completed FSM order should keep its stage when the SO is canceled",
+        )
+
+    def test_sale_order_cancel_salesman_without_fsm_rights(self):
+        """A salesperson without field service rights can cancel the Sale
+        Order, and its open FSM orders are cancelled"""
+        salesman = new_test_user(
+            self.env,
+            login="fsm_sale_salesman",
+            groups="base.group_user,sales_team.group_sale_salesman_all_leads",
+        )
+        self.assertFalse(
+            self.env["fsm.order"].with_user(salesman).has_access("write"),
+            "Test user should not have write access on FSM orders",
+        )
+        self.sale_order_1.action_confirm()
+        fsm_order = self.sale_order_1.fsm_order_ids
+        self.assertEqual(len(fsm_order), 1)
+
+        self.sale_order_1.with_user(salesman).with_context(
+            disable_cancel_warning="disable_cancel_warning"
+        ).action_cancel()
+        self.assertEqual(self.sale_order_1.state, "cancel")
+        self.assertEqual(
+            fsm_order.stage_id,
+            self.env.ref("fieldservice.fsm_stage_cancelled"),
+            "Open FSM order should be cancelled with the Sale Order",
+        )
