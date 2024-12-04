@@ -31,6 +31,7 @@
         "demo/fsm_location.xml",
     ],
     "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": [

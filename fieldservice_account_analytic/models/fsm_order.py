@@ -76,9 +76,10 @@ class FSMOrder(models.Model):
                     }
                 )
                 record.analytic_account_id = analytic_account
-
-        if "contractor_cost_ids" in vals:
-            for line in record.contractor_cost_ids:
-                line.analytic_distribution = line._default_analytic_distribution()
+                if "contractor_cost_ids" in vals:
+                    for line in record.contractor_cost_ids:
+                        line.analytic_distribution = (
+                            line._default_analytic_distribution()
+                        )
 
         return record

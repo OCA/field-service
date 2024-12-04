@@ -13,15 +13,6 @@
                     <field name="fsm_filter_location_by_contact" />
                 </setting>
             </xpath>
-            <xpath expr="//block[@name='mapping_setting_container']" position="after">
-                <block title="Accounting" name="accounting_setting_container">
-                    <setting
-                        help="Manage analytic account for orders, locations and routes."
-                    >
-                        <field name="group_analytic_accounting" />
-                    </setting>
-                </block>
-            </xpath>
         </field>
     </record>
 </odoo>

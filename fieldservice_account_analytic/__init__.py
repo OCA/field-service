@@ -3,4 +3,4 @@
 
 from . import models
 from . import wizard
-from .init_hook import pre_init_hook
+from .init_hook import pre_init_hook, post_init_hook

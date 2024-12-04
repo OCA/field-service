@@ -8,3 +8,15 @@ def pre_init_hook(env):
         """UPDATE "fsm_location" SET customer_id = owner_id
     WHERE customer_id IS NULL;"""
     )
+
+
+def post_init_hook(env):
+    group_analytic_accounting = env.ref(
+        "analytic.group_analytic_accounting", raise_if_not_found=False
+    )
+
+    if group_analytic_accounting:
+        users = env["res.users"].search([])
+
+        for user in users:
+            user.write({"groups_id": [(4, group_analytic_accounting.id)]})
