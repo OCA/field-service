@@ -4,6 +4,7 @@ from . import (
     account_move,
     analytic_account,
     fsm_location,
+    fsm_order_cost,
     fsm_order,
     fsm_route,
     res_company,

@@ -18,6 +18,22 @@
                             <field name="analytic_account_id" />
                         </group>
                     </group>
+                    <group string="Contractor Costs">
+                        <field name="contractor_cost_ids" nolabel="1">
+                            <list editable="bottom">
+                                <field name="product_id" />
+                                <field name="quantity" />
+                                <field name="price_unit" />
+                                <field
+                                    name="analytic_distribution"
+                                    widget="analytic_distribution"
+                                />
+                            </list>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="contractor_total" readonly="1" />
+                    </group>
                 </page>
             </notebook>
             <field name="region_id" position="after">

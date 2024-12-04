@@ -23,10 +23,25 @@ class FSMOrder(models.Model):
 
     analytic_account_id = fields.Many2one("account.analytic.account", copy=False)
 
+    contractor_cost_ids = fields.One2many(
+        "fsm.order.cost", "fsm_order_id", string="Contractor Costs"
+    )
+
+    contractor_total = fields.Float(
+        compute="_compute_contractor_cost", string="Contractor Cost Estimate"
+    )
+
     def _compute_total_cost(self):
         """To be overridden as needed from other modules"""
         for order in self:
             order.total_cost = 0.0
+
+    @api.depends("contractor_cost_ids")
+    def _compute_contractor_cost(self):
+        for order in self:
+            order.contractor_total = 0.0
+            for cost in order.contractor_cost_ids:
+                order.contractor_total += cost.price_unit * cost.quantity
 
     @api.onchange("customer_id")
     def _onchange_customer_id_location(self):
@@ -39,11 +54,16 @@ class FSMOrder(models.Model):
         for order in self:
             if "customer_id" not in vals and not order.customer_id:
                 order.customer_id = order.location_id.customer_id.id
+
+            if "contractor_cost_ids" in vals:
+                for line in self.contractor_cost_ids:
+                    line.analytic_distribution = line._default_analytic_distribution()
         return res
 
     @api.model_create_multi
     def create(self, vals_list):
         record = super().create(vals_list)
+
         if self.env.user.has_group("analytic.group_analytic_accounting"):
             for vals in vals_list:
                 analytic_account = self.env["account.analytic.account"].create(
@@ -56,4 +76,9 @@ class FSMOrder(models.Model):
                     }
                 )
                 record.analytic_account_id = analytic_account
+
+        if "contractor_cost_ids" in vals:
+            for line in record.contractor_cost_ids:
+                line.analytic_distribution = line._default_analytic_distribution()
+
         return record
