@@ -1,0 +1,33 @@
+<odoo>
+    <record id="fsm_order_view_form" model="ir.ui.view">
+        <field name="name">fsm.order.view.form.inherit.fsm.purchase</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_purchase_orders"
+                    type="object"
+                    groups="purchase.group_purchase_user"
+                    icon="fa-handshake-o"
+                    invisible="purchase_order_count == 0"
+                >
+                    <field
+                        string="Purchases"
+                        name="purchase_order_count"
+                        widget="statinfo"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='execution_page']" position="before">
+                <page string="Purchase">
+                    <field
+                        name="purchase_ids"
+                        context="{'list_view_ref': 'fieldservice_purchase.fsm_custom_purchase_order_tree'}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

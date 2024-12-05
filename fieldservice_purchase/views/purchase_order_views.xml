@@ -1,0 +1,44 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.fsm.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-code-fork"
+                    invisible="not fsm_order_id"
+                >
+                    <span class="o_stat_text">FSM Orders</span>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="FSM Order">
+                    <group>
+                        <field name="fsm_order_id" string="Order" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_custom_purchase_order_tree" model="ir.ui.view">
+        <field name="name">fsm.custom.purchase.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="date_approve" />
+                <field name="partner_id" />
+                <field name="user_id" />
+                <field name="origin" />
+                <field name="amount_total" />
+                <field name="state" />
+                <field name="date_planned" />
+            </list>
+        </field>
+    </record>
+</odoo>
