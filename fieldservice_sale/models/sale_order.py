@@ -46,19 +46,18 @@ class SaleOrder(models.Model):
         the partner_shipping_id or the partner_id.commercial_partner_id if
         they are FS locations.
         """
-        res = super().onchange_partner_id()
-        domain = [
-            "|",
-            "|",
-            ("partner_id", "=", self.partner_id.id),
-            ("partner_id", "=", self.partner_shipping_id.id),
-            ("partner_id", "=", self.partner_id.commercial_partner_id.id),
-        ]
-        if self.partner_id.fsm_location:
-            domain = [("partner_id", "=", self.partner_id.id)]
-        location_ids = self.env["fsm.location"].search(domain)
-        self.fsm_location_id = location_ids and location_ids[0] or False
-        return res
+        for so in self:
+            if so.partner_id.fsm_location:
+                domain = [("partner_id", "=", so.partner_id.id)]
+            else:
+                domain = [
+                    "|",
+                    "|",
+                    ("partner_id", "=", so.partner_id.id),
+                    ("partner_id", "=", so.partner_shipping_id.id),
+                    ("partner_id", "=", so.partner_id.commercial_partner_id.id),
+                ]
+            so.fsm_location_id = self.env["fsm.location"].search(domain, limit=1)
 
     def _prepare_line_fsm_values(self, line):
         """
@@ -154,15 +153,15 @@ class SaleOrder(models.Model):
 
         # Process lines set to FSM Sale
         new_fsm_sale_sol = self.order_line.filtered(
-            lambda l: l.product_id.field_service_tracking == "sale"
-            and (not l.fsm_order_id or l.fsm_order_id.is_closed)
+            lambda x: x.product_id.field_service_tracking == "sale"
+            and (not x.fsm_order_id or x.fsm_order_id.is_closed)
         )
         new_fsm_orders |= self._field_service_generate_sale_fsm_orders(new_fsm_sale_sol)
 
         # Create new FSM Order for lines set to FSM Line
         new_fsm_line_sol = self.order_line.filtered(
-            lambda l: l.product_id.field_service_tracking == "line"
-            and (not l.fsm_order_id or l.fsm_order_id.is_closed)
+            lambda x: x.product_id.field_service_tracking == "line"
+            and (not x.fsm_order_id or x.fsm_order_id.is_closed)
         )
 
         new_fsm_orders |= self._field_service_generate_line_fsm_orders(new_fsm_line_sol)

@@ -550,7 +550,9 @@ class TestFSMSaleOrder(TestFSMSale):
         fsm_order = self.sale_order_1.fsm_order_ids[0]
 
         # Cancel the Sale Order
-        self.sale_order_1.action_cancel()
+        self.sale_order_1.with_context(
+            disable_cancel_warning="disable_cancel_warning"
+        ).action_cancel()
         self.assertEqual(
             self.sale_order_1.state,
             "cancel",
