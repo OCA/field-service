@@ -26,19 +26,19 @@ class CustomerPortal(CustomerPortal):
         return values
 
     def _fsm_order_check_access(self, order_id):
-        order = request.env["fsm.order"].browse([order_id])
+        fsm_order = request.env["fsm.order"].browse([order_id])
 
         try:
-            order.check_access_rights("read")
-            order.check_access_rule("read")
+            fsm_order.check_access_rights("read")
+            fsm_order.check_access_rule("read")
         except AccessError:
             raise
-        return order.sudo()
+        return fsm_order.sudo()
 
-    def fsm_order_get_page_view_values(self, order, **kwargs):
+    def fsm_order_get_page_view_values(self, fsm_order, **kwargs):
         values = {
             "page_name": "fsm_order",
-            "order": order,
+            "fsm_order": fsm_order,
         }
 
         if kwargs.get("error"):
