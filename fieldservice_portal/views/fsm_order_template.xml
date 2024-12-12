@@ -42,26 +42,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-foreach="orders" t-as="order">
+                            <t t-foreach="orders" t-as="fsm_order">
                                 <tr>
                                     <td>
-                                        <a t-attf-href="/my/fsm_order/#{order.id}">
-                                            <t t-out="order.name" />
+                                        <a t-attf-href="/my/fsm_order/#{fsm_order.id}">
+                                            <t t-out="fsm_order.name" />
                                         </a>
                                     </td>
                                     <td>
-                                        <t t-out="order.description" />
+                                        <t t-out="fsm_order.description" />
                                     </td>
                                     <td>
                                         <t
-                                            t-out="order.sudo().location_id.display_name"
+                                            t-out="fsm_order.sudo().location_id.display_name"
                                         />
                                     </td>
                                     <td>
-                                        <t t-out="order.type.name" />
+                                        <t t-out="fsm_order.type.name" />
                                     </td>
                                     <td>
-                                        <t t-out="order.stage_id.name" />
+                                        <t t-out="fsm_order.stage_id.name" />
                                     </td>
                                 </tr>
                             </t>
@@ -78,7 +78,7 @@
                 <t t-set="card_header">
                     <h1>
                         <t t-call='portal.record_pager' />
-                        <span t-field="order.name" />
+                        <span t-field="fsm_order.name" />
                     </h1>
                 </t>
                 <t t-set="card_body">
@@ -86,31 +86,31 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <strong>Location:</strong>
-                                <span t-field="order.location_id" />
+                                <span t-field="fsm_order.location_id" />
                                 <br />
                                 <strong>City:</strong>
-                                <span t-field="order.location_id.city" />
-                                <t t-if="order.location_id.state_id">
+                                <span t-field="fsm_order.location_id.city" />
+                                <t t-if="fsm_order.location_id.state_id">
                                     -
-                                    <span t-field="order.location_id.state_id" />
+                                    <span t-field="fsm_order.location_id.state_id" />
                                 </t>
-                                <t t-if="order.location_id.zip">
+                                <t t-if="fsm_order.location_id.zip">
                                     (
-                                    <span t-field="order.location_id.zip" />
+                                    <span t-field="fsm_order.location_id.zip" />
                                     )
                                 </t>
                                 <br />
                                 <strong>Country:</strong>
-                                <span t-field="order.location_id.country_id" />
+                                <span t-field="fsm_order.location_id.country_id" />
                                 <br />
                             </div>
                             <div class="col-md-6">
                                 <strong>Stage:</strong>
-                                <t t-out="order.stage_id.name" />
+                                <t t-out="fsm_order.stage_id.name" />
                                 <br />
                                 <strong>Work Type:</strong>
-                                <t t-if="order.type">
-                                    <span t-field="order.type.name" />
+                                <t t-if="fsm_order.type">
+                                    <span t-field="fsm_order.type.name" />
                                 </t>
                                 <t t-else="">
                                     <span>N/A</span>
@@ -118,18 +118,18 @@
                                 <br />
                                 <strong>Arrival On Site:</strong>
                                 <span
-                                    t-if="order.date_start"
-                                    t-field="order.date_start"
+                                    t-if="fsm_order.date_start"
+                                    t-field="fsm_order.date_start"
                                 />
                                 <span t-else="">Not started yet</span>
                                 <br />
                             </div>
                         </div>
-                        <t t-if="order.description">
+                        <t t-if="fsm_order.description">
                             <div class="row mt8">
                                 <div class="col-md-12">
                                     <h4 class="page-header">Description</h4>
-                                    <t t-out="order.description" />
+                                    <t t-out="fsm_order.description" />
                                     <br />
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                     </div>
                     <h4 class="page-header">History</h4>
                     <t t-call="portal.message_thread">
-                        <t t-set="object" t-value="order" />
+                        <t t-set="object" t-value="fsm_order" />
                     </t>
                 </t>
             </t>
