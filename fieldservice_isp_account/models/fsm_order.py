@@ -65,6 +65,12 @@ class FSMOrder(models.Model):
             for cost in order.contractor_cost_ids:
                 order.contractor_total += cost.price_unit * cost.quantity
 
+    @api.onchange("project_id")
+    def onchange_project_id(self):
+        for order in self:
+            for timesheet in order.employee_timesheet_ids:
+                timesheet.project_id = order.project_id
+
     def action_complete(self):
         for order in self:
             order.account_stage = "review"
