@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-27 17:49+0000\n"
+"PO-Revision-Date: 2024-12-27 20:06+0000\n"
 "Last-Translator: SMNDVC <simon.dovicovic@gmail.com>\n"
 "Language-Team: none\n"
 "Language: sk\n"
@@ -91,12 +91,13 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "<strong>ETA:</strong>"
-msgstr ""
+msgstr "<strong>Odhadovaný čas príchodu</strong>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "<strong>The contact linked to this user is still active</strong>"
 msgstr ""
+"<strong>Kontakt priradený k tomuto užívateľovi je stále aktívny</strong>"
 
 #. module: fieldservice
 #. odoo-python
@@ -131,7 +132,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_needaction
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Vykonajte Akciu"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active
@@ -139,13 +140,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__active
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__active
 msgid "Active"
-msgstr ""
+msgstr "Aktívny"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active_lang_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_lang_count
 msgid "Active Lang Count"
-msgstr ""
+msgstr "Aktívny počet jazykov"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_ids
@@ -154,7 +155,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivity"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_exception_decoration
@@ -172,7 +173,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_state
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Štádium Aktivity"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_type_icon
@@ -181,27 +182,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_type_icon
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ikona Typu Aktivity"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_end
 msgid "Actual End"
-msgstr ""
+msgstr "Reálny Koniec"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_start
 msgid "Actual Start"
-msgstr ""
+msgstr "Reálny Začiatok"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__duration
 msgid "Actual duration"
-msgstr ""
+msgstr "Reálne Trvanie"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__duration
 msgid "Actual duration in hours"
-msgstr ""
+msgstr "Reálne trvanie v hodinách"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_person
@@ -222,24 +223,24 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Add a description for the order..."
-msgstr ""
+msgstr "Pridať popis ku objednávke..."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
 msgid "Add a description..."
-msgstr ""
+msgstr "Pridať popis..."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__additional_info
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__additional_info
 msgid "Additional info"
-msgstr ""
+msgstr "Doplnkové informácie"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__type
@@ -247,23 +248,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__type
 #: model:ir.model.fields,field_description:fieldservice.field_res_users__type
 msgid "Address Type"
-msgstr ""
+msgstr "Typ Adresy"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__state_name
 msgid ""
 "Administrative divisions of a country. E.g. Fed. State, Departement, Canton"
-msgstr ""
+msgstr "Administrátívne členenie krajiny, npr. Kraj, Okres, Obec"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "All"
-msgstr ""
+msgstr "Všteky"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_operation_order
 msgid "All Orders"
-msgstr ""
+msgstr "Všetky Objednávky"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
@@ -272,6 +273,8 @@ msgid ""
 "All the emails and documents sent to this contact will be translated in this "
 "language."
 msgstr ""
+"Všteky emaily a dokumenty poslané na tento kontakt budú preložené do tohto "
+"jazyka."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_google_map
