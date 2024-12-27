@@ -59,9 +59,12 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_res_partner__type
 #: model:ir.model.fields,help:fieldservice.field_res_users__type
 msgid ""
-"- Contact: Use this to organize the contact details of employees of a given company (e.g. CEO, CFO, ...).\n"
-"- Invoice Address: Preferred address for all invoices. Selected by default when you invoice an order that belongs to this company.\n"
-"- Delivery Address: Preferred address for all deliveries. Selected by default when you deliver an order that belongs to this company.\n"
+"- Contact: Use this to organize the contact details of employees of a given "
+"company (e.g. CEO, CFO, ...).\n"
+"- Invoice Address: Preferred address for all invoices. Selected by default "
+"when you invoice an order that belongs to this company.\n"
+"- Delivery Address: Preferred address for all deliveries. Selected by "
+"default when you deliver an order that belongs to this company.\n"
 "- Other: Other address for the company (e.g. subsidiary, ...)"
 msgstr ""
 
@@ -266,8 +269,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 
 #. module: fieldservice
@@ -345,8 +348,7 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 
 #. module: fieldservice
@@ -576,7 +578,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__peppol_eas
 msgid ""
 "Code used to identify the Endpoint for BIS Billing 3.0 and its derivatives.\n"
-"             List available at https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/"
+"             List available at https://docs.peppol.eu/poacc/billing/3.0/"
+"codelist/eas/"
 msgstr ""
 
 #. module: fieldservice
@@ -1423,6 +1426,12 @@ msgid "Hide"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__hide_peppol_fields
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__hide_peppol_fields
+msgid "Hide Peppol Fields"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__2
 msgid "High"
 msgstr ""
@@ -1535,8 +1544,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
+"If the sanitized phone number is on the blacklist, the contact won't receive "
+"mass mailing sms anymore, from any list"
 msgstr ""
 
 #. module: fieldservice
@@ -2251,9 +2260,6 @@ msgstr ""
 
 #. module: fieldservice
 #. odoo-python
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
-#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #, python-format
 msgid "New"
@@ -3321,8 +3327,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 
 #. module: fieldservice
@@ -3579,9 +3585,11 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 
 #. module: fieldservice
