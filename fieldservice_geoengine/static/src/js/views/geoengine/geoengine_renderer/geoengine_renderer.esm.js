@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 /**
  * Copyright 2024 APSL-Nagarro
  */
