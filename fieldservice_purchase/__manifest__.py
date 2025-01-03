@@ -8,7 +8,7 @@
     "category": "FSM",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": ["fieldservice", "purchase", "fieldservice_account"],
+    "depends": ["purchase", "fieldservice_account"],
     "data": [
         "views/fsm_order.xml",
         "views/purchase_order_views.xml",
