@@ -8,7 +8,7 @@
     "category": "TMS",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
-    "depends": ["fieldservice", "hr_expense", "fieldservice_account"],
+    "depends": ["hr_expense", "fieldservice_account"],
     "data": [
         "views/hr_expense_views.xml",
         "views/fsm_order_views.xml",
