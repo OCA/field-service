@@ -341,7 +341,7 @@
                 <separator />
                 <field
                     name="name"
-                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
+                    filter_domain="[('name', 'ilike', self)]"
                     string="FSM Order Name"
                 />
                 <field name="location_id" />
