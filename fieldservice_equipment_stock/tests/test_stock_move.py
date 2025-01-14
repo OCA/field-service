@@ -26,7 +26,9 @@ class TestStockMove(TransactionCase):
             {
                 "name": "product A",
                 "standard_price": 1,
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "none",
                 "uom_id": self.uom_unit.id,
                 "default_code": "A",
                 "product_tmpl_id": templateAB.id,
