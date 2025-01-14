@@ -18,7 +18,13 @@ class TestStockMove(TransactionCase):
     def test_action_done(self):
         # Create product template
         templateAB = self.env["product.template"].create(
-            {"name": "templAB", "uom_id": self.uom_unit.id}
+            {
+                "name": "templAB",
+                "uom_id": self.uom_unit.id,
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "none",
+            }
         )
 
         # Create product A and B
