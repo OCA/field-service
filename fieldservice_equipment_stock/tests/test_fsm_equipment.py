@@ -34,7 +34,8 @@ class TestFSMEquipment(TransactionCase):
         cls.product1 = cls.env["product.product"].create(
             {
                 "name": "Product A",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "tracking": "serial",
             }
         )
