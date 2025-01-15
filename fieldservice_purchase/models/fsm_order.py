@@ -29,7 +29,7 @@ class FSMOrder(models.Model):
         for order in self:
             order.purchase_order_count = len(order.purchase_ids)
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         order = super().create(vals)
         if len(order.purchase_ids) > 0:
