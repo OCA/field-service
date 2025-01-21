@@ -15,6 +15,7 @@
         "data/ir_sequence.xml",
         "data/fsm_route_day_data.xml",
         "data/fsm_stage_data.xml",
+        "security/ir_rule.xml",
         "security/ir.model.access.csv",
         "views/fsm_route_day.xml",
         "views/fsm_route.xml",
