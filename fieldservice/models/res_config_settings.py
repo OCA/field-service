@@ -70,6 +70,9 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
+    module_fieldservice_website_sale = fields.Boolean(
+        string="Integrate E-Commerce with Field Service Workflows"
+    )
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(

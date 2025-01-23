@@ -25,7 +25,8 @@
                                     string="Auto-fill the workers on the location"
                                 />
                                 <div class="text-muted">
-                                    Auto-populate the preferred workers of a location based on the territory
+                                    Auto-populate the preferred workers of a location based on the
+                                    territory
                                 </div>
                             </div>
                         </div>
@@ -53,7 +54,8 @@
                                     string="FSM Location Builder"
                                 />
                                 <div class="text-muted">
-                                    Create multiple FSM Locations at once using Location Builder Wizard
+                                    Create multiple FSM Locations at once using Location Builder
+                                    Wizard
                                 </div>
                             </div>
                         </div>
@@ -186,7 +188,8 @@
                                 </span>
                                 <div
                                     class="text-muted"
-                                >Automatically calculate the "Latest Request Date" based on an order's priority</div>
+                                >Automatically calculate the "Latest Request
+                                    Date" based on an order's priority</div>
                                 <div class="content-group" modifiers="{}">
                                     <div class="row mt16" modifiers="{}">
                                         <label
@@ -194,9 +197,8 @@
                                             for="fsm_order_request_late_lowest"
                                             class="col-lg-3 o_light_label"
                                         />
-                                        <field
-                                            name="fsm_order_request_late_lowest"
-                                        /><span class="ml-2">hours</span>
+                                        <field name="fsm_order_request_late_lowest" />
+                                        <span class="ml-2">hours</span>
                                     </div>
                                     <div class="row mt16" modifiers="{}">
                                         <label
@@ -204,9 +206,8 @@
                                             for="fsm_order_request_late_low"
                                             class="col-lg-3 o_light_label"
                                         />
-                                        <field name="fsm_order_request_late_low" /><span
-                                            class="ml-2"
-                                        >hours</span>
+                                        <field name="fsm_order_request_late_low" />
+                                        <span class="ml-2">hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -221,9 +222,8 @@
                                             for="fsm_order_request_late_medium"
                                             class="col-lg-3 o_light_label"
                                         />
-                                        <field
-                                            name="fsm_order_request_late_medium"
-                                        /><span class="ml-2">hours</span>
+                                        <field name="fsm_order_request_late_medium" />
+                                        <span class="ml-2">hours</span>
                                     </div>
                                     <div class="row mt16" modifiers="{}">
                                         <label
@@ -231,9 +231,8 @@
                                             for="fsm_order_request_late_high"
                                             class="col-lg-3 o_light_label"
                                         />
-                                        <field
-                                            name="fsm_order_request_late_high"
-                                        /><span class="ml-2">hours</span>
+                                        <field name="fsm_order_request_late_high" />
+                                        <span class="ml-2">hours</span>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +250,8 @@
                                     string="Auto-fill the equipments on the order"
                                 />
                                 <div class="text-muted">
-                                    Auto-populate the equipments on the order based on the location content
+                                    Auto-populate the equipments on the order based on the location
+                                    content
                                 </div>
                             </div>
                         </div>
@@ -318,7 +318,8 @@
                                     string="Invoice your Service Orders"
                                 />
                                 <div class="text-muted">
-                                    Create vendor bills and customer invoices when completing service orders.
+                                    Create vendor bills and customer invoices when completing
+                                    service orders.
                                     Track costs and revenues.
                                 </div>
                             </div>
@@ -467,6 +468,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_fieldservice_website_sale" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label
+                                    for="module_fieldservice_website_sale"
+                                    string="Integrate E-Commerce with Field Service Workflows"
+                                />
+                                <div class="text-muted">
+                                    Enable customers to select delivery dates during checkout. These
+                                    dates define delivery windows for stock pickings and FSM orders,
+                                    which are automatically assigned to day routes.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <h2>Routes</h2>
                     <div class="row mt16 o_settings_container" id="routing">
@@ -480,7 +497,8 @@
                                     string="Manage routes of your workers"
                                 />
                                 <div class="text-muted">
-                                    Automatically creates a day route when an order is assigned and scheduled
+                                    Automatically creates a day route when an order is assigned and
+                                    scheduled
                                 </div>
                             </div>
                         </div>
