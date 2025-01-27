@@ -63,7 +63,7 @@ class FSMRecurringOrder(models.Model):
         help="This is the order template that will be recurring",
     )
     company_id = fields.Many2one(
-        "res.company", "Company", default=lambda self: self.env.user.company_id
+        "res.company", "Company", default=lambda self: self.env.company, required=True
     )
     fsm_order_ids = fields.One2many(
         "fsm.order", "fsm_recurring_id", string="Orders", copy=False
@@ -147,7 +147,26 @@ class FSMRecurringOrder(models.Model):
         ruleset = rruleset()
         if self.state != "progress" or not self.fsm_frequency_set_id:
             return ruleset
-        # set next_date which is used as the rrule 'dtstart' parameter
+        next_date = self._get_next_date()
+        thru_date = self._get_thru_date()
+        # use variables to calulate and return the rruleset object
+        ruleset = self.fsm_frequency_set_id._get_rruleset(
+            dtstart=next_date, until=thru_date
+        )
+        return ruleset
+
+    def _get_thru_date(self):
+        """Get thru_date to use as rrule 'until' parameter"""
+        days_ahead = self.fsm_frequency_set_id.schedule_days
+        request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
+        if self.end_date and (self.end_date < request_thru_date):
+            thru_date = self.end_date
+        else:
+            thru_date = request_thru_date
+        return thru_date
+
+    def _get_next_date(self):
+        """Get next_date which is used as the rrule 'dtstart' parameter"""
         next_date = self.start_date
         last_order = self.env["fsm.order"].search(
             [
@@ -160,18 +179,7 @@ class FSMRecurringOrder(models.Model):
         )
         if last_order:
             next_date = last_order.scheduled_date_start
-        # set thru_date to use as rrule 'until' parameter
-        days_ahead = self.fsm_frequency_set_id.schedule_days
-        request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
-        if self.end_date and (self.end_date < request_thru_date):
-            thru_date = self.end_date
-        else:
-            thru_date = request_thru_date
-        # use variables to calulate and return the rruleset object
-        ruleset = self.fsm_frequency_set_id._get_rruleset(
-            dtstart=next_date, until=thru_date
-        )
-        return ruleset
+        return next_date
 
     def _prepare_order_values(self, date=None):
         self.ensure_one()
