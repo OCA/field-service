@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Record Rule for FSM Users -->
+  <record id="stock_move_dayroute_fsm_user_rule" model="ir.rule">
+    <field name="name">Stock Move FSM User Access (only own)</field>
+    <field name="model_id" ref="stock.model_stock_move" />
+    <field name="domain_force">
+      [('id', '!=', False)]</field>
+    <field name="groups" eval="[(4, ref('fieldservice.group_fsm_user_own'))]" />
+  </record>
+
+  <!-- Record Rule for FSM Managers -->
+  <record id="stock_move_dayroute_fsm_manager_rule" model="ir.rule">
+    <field name="name">Stock Move FSM Manager Access</field>
+    <field name="model_id" ref="stock.model_stock_move" />
+    <field name="domain_force">[('id', '!=', False)]</field>
+    <field name="groups" eval="[(4, ref('fieldservice.group_fsm_manager'))]" />
+  </record>
+
+  <!-- Record Rule for FSM Dispatchers -->
+  <record id="stock_move_dayroute_fsm_dispatcher_rule" model="ir.rule">
+    <field name="name">Stock Move FSM Dispatcher Access</field>
+    <field name="model_id" ref="stock.model_stock_move" />
+    <field name="domain_force">[('id', '!=', False)]</field>
+    <field name="groups" eval="[(4, ref('fieldservice.group_fsm_dispatcher'))]" />
+  </record>
+
+</odoo>
