@@ -4,7 +4,7 @@
 {
     "name": "Field Service Vehicles - Stock",
     "summary": "Track inventory of Field Service vehicles",
-    "version": "14.0.1.1.1",
+    "version": "15.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "

@@ -17,13 +17,13 @@ Field Service Vehicles - Stock
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/14.0/fieldservice_vehicle_stock
+    :target: https://github.com/OCA/field-service/tree/15.0/fieldservice_vehicle_stock
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-14-0/field-service-14-0-fieldservice_vehicle_stock
+    :target: https://translation.odoo-community.org/projects/field-service-15-0/field-service-15-0-fieldservice_vehicle_stock
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=15.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -31,6 +31,16 @@ Field Service Vehicles - Stock
 This module is an add-on for the Field Service application in Odoo.
 It allows you to establish stock locations for field service vehicles
 and process stock moves with field service vehicles.
+
+In field service operations, the general flow of inventory is as follows:
+Stock Location -> Vehicle Location -> Customer Location
+
+Initially there is a demand for product in the Customer Location, but we
+are not sure which field service vehicle needs to load that product until
+a field service order and vehicle is planned.
+
+This module will automatically update pickings linked to field service orders
+so that inventory is moved to the proper vehicle storage locations.
 
 **Table of contents**
 
@@ -42,8 +52,47 @@ Configuration
 
 To configure this module, you need to:
 
-* Set Inventory Locations for FSM Locations and FSM Vehicles
-* Verify procurement routes
+# Configure Operation Types for Loading FSM Vehicles
+Specific stock operation types can be configured for
+moving inventory to the storage locations of FSM Vehicles.
+Moves will not be processed if the FSM Vehicle is not set on
+the transfers of these operation types.
+#. Go to Inventory > Configuration > Operation Types
+#. Select or Create an Operation Type
+#. Check the box "Used to Load a Field Service Vehicle"
+
+# Verify procurement routes
+Some new procurement routes are added with this module. Check
+that these routes fit your individual business needs or you can
+create new ones.
+
+Be sure to have a rule that utilizes an Operation Type that is
+configured for FSM Vehicle Loading and the rule has a Destination
+Location which is a parent of the FSM Vehicle inventory location
+
+# Configure FSM Vehicles
+Each FSM Vehicle that will carry inventory needs to have a
+stock inventory location.  Individual vehicle inventory
+locations should be a descendant location of a procurement
+rule's Destination Location.
+#. Go to Field Service > Master Data > Vehicles
+#. Select or Create a Field Service Vehicle
+#. Set the desired Inventory Location for that vehicle
+
+Usage
+=====
+
+To use this module you must first generate some stock moves that
+that will be transferred using a stock operation type which supports
+FSM vehicle loading.
+
+In order to confirm the transfer, a FSM Vehicle must be set. The FSM
+Vehicle can be set manually on the transfer in the Additional Info tab
+or it will be automatically set if the transfer has a linked FSM Order
+and a vehicle is assigned to that order.
+
+When the FSM Vehicle is updated on a transfer, the destination locations
+are updated to reflect the vehicle storage location.
 
 Known issues / Roadmap
 ======================
@@ -57,7 +106,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle_stock%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle_stock%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -75,6 +124,8 @@ Contributors
 
 * Brian McMaster <brian@mcmpest.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* `APSL-Nagarro <https://www.apsl.tech>`_:
+  * Patryk Pyczko <ppyczko@apsl.net>
 
 Other credits
 ~~~~~~~~~~~~~
@@ -110,6 +161,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/14.0/fieldservice_vehicle_stock>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/15.0/fieldservice_vehicle_stock>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

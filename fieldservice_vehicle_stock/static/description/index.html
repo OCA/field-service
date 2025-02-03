@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,21 +369,29 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:6f16452b948d65c702f8ce4a4aa4dd65d9418107b70b742b01ab2bbb9d2a86ae
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/14.0/fieldservice_vehicle_stock"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-14-0/field-service-14-0-fieldservice_vehicle_stock"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_vehicle_stock"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-15-0/field-service-15-0-fieldservice_vehicle_stock"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module is an add-on for the Field Service application in Odoo.
 It allows you to establish stock locations for field service vehicles
 and process stock moves with field service vehicles.</p>
+<p>In field service operations, the general flow of inventory is as follows:
+Stock Location -&gt; Vehicle Location -&gt; Customer Location</p>
+<p>Initially there is a demand for product in the Customer Location, but we
+are not sure which field service vehicle needs to load that product until
+a field service order and vehicle is planned.</p>
+<p>This module will automatically update pickings linked to field service orders
+so that inventory is moved to the proper vehicle storage locations.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-6">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="toc-entry-7">Other credits</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-8">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-2">Usage</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-7">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-8">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-9">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -391,57 +399,92 @@ and process stock moves with field service vehicles.</p>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>To configure this module, you need to:</p>
-<ul class="simple">
-<li>Set Inventory Locations for FSM Locations and FSM Vehicles</li>
-<li>Verify procurement routes</li>
-</ul>
+<p># Configure Operation Types for Loading FSM Vehicles
+Specific stock operation types can be configured for
+moving inventory to the storage locations of FSM Vehicles.
+Moves will not be processed if the FSM Vehicle is not set on
+the transfers of these operation types.
+#. Go to Inventory &gt; Configuration &gt; Operation Types
+#. Select or Create an Operation Type
+#. Check the box “Used to Load a Field Service Vehicle”</p>
+<p># Verify procurement routes
+Some new procurement routes are added with this module. Check
+that these routes fit your individual business needs or you can
+create new ones.</p>
+<p>Be sure to have a rule that utilizes an Operation Type that is
+configured for FSM Vehicle Loading and the rule has a Destination
+Location which is a parent of the FSM Vehicle inventory location</p>
+<p># Configure FSM Vehicles
+Each FSM Vehicle that will carry inventory needs to have a
+stock inventory location.  Individual vehicle inventory
+locations should be a descendant location of a procurement
+rule’s Destination Location.
+#. Go to Field Service &gt; Master Data &gt; Vehicles
+#. Select or Create a Field Service Vehicle
+#. Set the desired Inventory Location for that vehicle</p>
+</div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
+<p>To use this module you must first generate some stock moves that
+that will be transferred using a stock operation type which supports
+FSM vehicle loading.</p>
+<p>In order to confirm the transfer, a FSM Vehicle must be set. The FSM
+Vehicle can be set manually on the transfer in the Additional Info tab
+or it will be automatically set if the transfer has a linked FSM Order
+and a vehicle is assigned to that order.</p>
+<p>When the FSM Vehicle is updated on a transfer, the destination locations
+are updated to reflect the vehicle storage location.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#toc-entry-2">Known issues / Roadmap</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <p>The roadmap of the Field Service application is documented on
 <a class="reference external" href="https://github.com/OCA/field-service/issues/1">Github</a>.</p>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/field-service/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle_stock%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle_stock%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-4">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-5">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-5">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Authors</a></h2>
 <ul class="simple">
 <li>Open Source Integrators</li>
 <li>Brian McMaster</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-6">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Contributors</a></h2>
 <ul class="simple">
 <li>Brian McMaster &lt;<a class="reference external" href="mailto:brian&#64;mcmpest.com">brian&#64;mcmpest.com</a>&gt;</li>
 <li>Serpent Consulting Services Pvt. Ltd. &lt;<a class="reference external" href="mailto:support&#64;serpentcs.com">support&#64;serpentcs.com</a>&gt;</li>
+<li><a class="reference external" href="https://www.apsl.tech">APSL-Nagarro</a>:
+* Patryk Pyczko &lt;<a class="reference external" href="mailto:ppyczko&#64;apsl.net">ppyczko&#64;apsl.net</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="other-credits">
-<h2><a class="toc-backref" href="#toc-entry-7">Other credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Other credits</a></h2>
 <p>The development of this module has been financially supported by:</p>
 <ul class="simple">
 <li>Open Source Integrators &lt;<a class="reference external" href="https://opensourceintegrators.com">https://opensourceintegrators.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-8">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/brian10048"><img alt="brian10048" src="https://github.com/brian10048.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/wolfhall"><img alt="wolfhall" src="https://github.com/wolfhall.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/max3903"><img alt="max3903" src="https://github.com/max3903.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/14.0/fieldservice_vehicle_stock">OCA/field-service</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_vehicle_stock">OCA/field-service</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
