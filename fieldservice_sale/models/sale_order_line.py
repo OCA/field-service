@@ -1,7 +1,7 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -79,5 +79,5 @@ class SaleOrderLine(models.Model):
         if self.fsm_order_id:
             fsm_orders = self._get_invoiceable_fsm_order()
             if fsm_orders:
-                res.update({"fsm_order_ids": [(6, 0, fsm_orders.ids)]})
+                res.update({"fsm_order_ids": [Command.set(fsm_orders.ids)]})
         return res
