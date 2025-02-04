@@ -375,11 +375,7 @@ It allows you to establish stock locations for field service vehicles
 and process stock moves with field service vehicles.</p>
 <p>In field service operations, the general flow of inventory is as follows:
 Stock Location -&gt; Vehicle Location -&gt; Customer Location</p>
-<p>Initially there is a demand for product in the Customer Location, but we
-are not sure which field service vehicle needs to load that product until
-a field service order and vehicle is planned.</p>
-<p>This module will automatically update pickings linked to field service orders
-so that inventory is moved to the proper vehicle storage locations.</p>
+<p>This module will automatically update pickings linked to field service orders, ensuring that inventory is moved to the correct vehicle storage locations. These pickings have to be of an operation type that is used to load or unload a vehicle.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -425,15 +421,32 @@ rule’s Destination Location.
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
-<p>To use this module you must first generate some stock moves that
-that will be transferred using a stock operation type which supports
-FSM vehicle loading.</p>
-<p>In order to confirm the transfer, a FSM Vehicle must be set. The FSM
-Vehicle can be set manually on the transfer in the Additional Info tab
-or it will be automatically set if the transfer has a linked FSM Order
-and a vehicle is assigned to that order.</p>
-<p>When the FSM Vehicle is updated on a transfer, the destination locations
-are updated to reflect the vehicle storage location.</p>
+<p>1. <strong>Create a Location for the Vehicle</strong>
+- Navigate to Inventory &gt; Configuration &gt; Locations and create a new location.
+- Set a name.
+- Set the <cite>Parent Location</cite> to <cite>Vehicles</cite>.
+- Set the location type to <cite>Internal Location</cite>.
+- Save the location.</p>
+<p>2. <strong>Create an FSM Vehicle</strong>
+- Navigate to Field Service &gt; Master Data &gt; Vehicles and create a new vehicle.
+- Set a name.
+- Assign a driver.
+- Assign the location you created in step 1.
+- Save the vehicle.
+- Enter the driver’s record and set the <cite>Default Vehicle</cite> field to the vehicle you just created.</p>
+<p>3. <strong>Generate Stock Moves</strong>
+- Navigate to Inventory &gt; Operations &gt; Transfers and create a new transfer.
+- On the <cite>Operation Type</cite> field, select an operation type that supports FSM vehicle loading or unloading. Examples of this include <cite>Vehicle Loading</cite>, to load a vehicle from stock, and <cite>Location Delivery</cite>, to unload a vehicle to a customer location.
+- Add the products you want to transfer and save the transfer.
+- By default, the Source Location or Destination Location (depending on the selected operation type) will be set to the default <cite>Vehicles</cite> location.</p>
+<p>4. <strong>Validate the Transfer</strong>
+- In the <cite>Additional Info</cite> tab, set the FSM Vehicle on the transfer.
+- If you link an FSM order to the transfer, and the FSM order has a vehicle assigned with a storage location that is a child of the <cite>Vehicles</cite> location, the vehicle and its corresponding location will be automatically set on the transfer.
+- When validating the picking, the destination location of the picking and it’s move lines will be updated to the vehicle’s storage location. The assigned products will be moved from or to the vehicle location, depending on the selected operation type.
+- If you try to confirm a transfer without setting the FSM Vehicle, an error will be raised.
+- If you try to set a vehicle or link an FSM order with a vehicle whose storage location is not a child of the Vehicles location, an error will be raised.</p>
+<p>Useful groups to manage this module:
+- Technical / Manage Multiple Stock Locations</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>

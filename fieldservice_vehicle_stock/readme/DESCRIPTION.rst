@@ -5,9 +5,4 @@ and process stock moves with field service vehicles.
 In field service operations, the general flow of inventory is as follows:
 Stock Location -> Vehicle Location -> Customer Location
 
-Initially there is a demand for product in the Customer Location, but we
-are not sure which field service vehicle needs to load that product until
-a field service order and vehicle is planned.
-
-This module will automatically update pickings linked to field service orders
-so that inventory is moved to the proper vehicle storage locations.
+This module will automatically update pickings linked to field service orders, ensuring that inventory is moved to the correct vehicle storage locations. These pickings have to be of an operation type that is used to load or unload a vehicle.

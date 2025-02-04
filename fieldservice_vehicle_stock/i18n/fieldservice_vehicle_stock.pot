@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-04 13:50+0000\n"
+"PO-Revision-Date: 2025-02-04 13:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,10 +16,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__display_name
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__display_name
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__display_name
-msgid "Display Name"
+#: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
+msgid ""
+"Check this box for operation types that will be used\n"
+"        to load inventory on FSM Vehicles."
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
+msgid ""
+"Check this box for operation types that will be used\n"
+"        to unload inventory from FSM Vehicles."
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
@@ -31,24 +40,8 @@ msgid "Field Service Vehicle"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__id
-msgid "ID"
-msgstr ""
-
-#. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__inventory_location_id
 msgid "Inventory Location"
-msgstr ""
-
-#. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
@@ -67,13 +60,8 @@ msgid "Location Return"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__display_name
-msgid "Order"
-msgstr ""
-
-#. module: fieldservice_vehicle_stock
-#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_putaway_rule
-msgid "Putaway Rule"
+#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking_type
+msgid "Picking Type"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
@@ -82,8 +70,26 @@ msgid "Stock to Vehicle to Location"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
+#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
+#, python-format
+msgid ""
+"The inventory location of the FSM vehicle must be a descendant of the "
+"Vehicles location."
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
+msgid "Used to load a Field Service Vehicle"
+msgstr ""
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
+msgid "Used to unload a Field Service Vehicle"
 msgstr ""
 
 #. module: fieldservice_vehicle_stock
