@@ -4,24 +4,34 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-23 18:36+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-02-04 13:50+0000\n"
+"PO-Revision-Date: 2025-02-04 13:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"Plural-Forms: \n"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__display_name
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__display_name
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
+#: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
+msgid ""
+"Check this box for operation types that will be used\n"
+"        to load inventory on FSM Vehicles."
+msgstr ""
+"Marque esta casilla para los tipos de operación que se utilizarán\n"
+"        para cargar inventario en los vehículos FSM."
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
+msgid ""
+"Check this box for operation types that will be used\n"
+"        to unload inventory from FSM Vehicles."
+msgstr ""
+"Marque esta casilla para los tipos de operación que se utilizarán\n"
+"        para descargar inventario de los vehículos FSM."
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_order
@@ -34,50 +44,29 @@ msgid "Field Service Vehicle"
 msgstr "Vehículo de Servicio de Campo"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__id
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule__id
-msgid "ID"
-msgstr "ID"
-
-#. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__inventory_location_id
 msgid "Inventory Location"
 msgstr "Ubicación de Inventario"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking____last_update
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_putaway_rule____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_location
 msgid "Location Delivery"
-msgstr "Entrega de Ubicación"
+msgstr "Entrega en ubicación"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_location_to_vehicle
 msgid "Location Pickup"
-msgstr "Ubicación de Recogida"
+msgstr "Recogida en ubicación"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_location_return
 msgid "Location Return"
-msgstr "Ubicación de Retorno"
+msgstr "Devolución desde ubicación"
 
 #. module: fieldservice_vehicle_stock
-#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
-
-#. module: fieldservice_vehicle_stock
-#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_putaway_rule
-msgid "Putaway Rule"
-msgstr "Regla de Estrategia de Salida"
+#: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking_type
+msgid "Picking Type"
+msgstr "Tipo de albarán"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_stock_to_vehicle_to_location
@@ -85,9 +74,28 @@ msgid "Stock to Vehicle to Location"
 msgstr "Stock a Vehículo a Ubicación"
 
 #. module: fieldservice_vehicle_stock
+#: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
+#, python-format
+msgid ""
+"The inventory location of the FSM vehicle must be a descendant of the "
+"Vehicles location."
+msgstr "La ubicación de inventario del vehículo FSM debe ser descendiente de la ubicación de "
+"los vehículos."
+
+#. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking
 msgid "Transfer"
 msgstr "Transferir"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
+msgid "Used to load a Field Service Vehicle"
+msgstr "Utilizado para cargar un vehículo de Servicio de Campo"
+
+#. module: fieldservice_vehicle_stock
+#: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
+msgid "Used to unload a Field Service Vehicle"
+msgstr "Utilizado para descargar un vehículo de Servicio de Campo"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__fsm_vehicle_id
@@ -97,12 +105,12 @@ msgstr "Vehículo"
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_output_to_vehicle
 msgid "Vehicle Loading"
-msgstr "Carga del Vehículo"
+msgstr "Carga del vehículo"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_input
 msgid "Vehicle Returns"
-msgstr "Devoluciones de Vehículos"
+msgstr "Devolución al almacén"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.rule,name:fieldservice_vehicle_stock.procurement_rule_vehicle_to_location
@@ -125,18 +133,3 @@ msgstr "Bodega → Vehículo"
 #, python-format
 msgid "You must provide the vehicle for this picking type."
 msgstr "Debe proporcionar el vehículo para este tipo de picking."
-
-#~ msgid "Put Away Strategy"
-#~ msgstr "Estrategia de Traslado"
-
-#~ msgid "Check Availability"
-#~ msgstr "Consultar Disponibilidad"
-
-#~ msgid "Deliver"
-#~ msgstr "Despachar"
-
-#~ msgid "Register lots, packs, location"
-#~ msgstr "Registrar lotes, paquetes, ubicación"
-
-#~ msgid "Stock Request"
-#~ msgstr "Solicitud de Stock"

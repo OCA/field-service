@@ -1,9 +1,10 @@
 # Copyright (C) 2022, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestFSMVehicleStock(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -36,23 +37,29 @@ class TestFSMVehicleStock(TransactionCase):
             }
         )
 
+        # Fleet model (required when fieldservice_fleet is installed)
+        cls.fleet_model = cls.env.ref("fleet.vehicle_1")
+
         # Set up FSM Vehicles with inventory locations
         cls.fsm_veh_1 = cls.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 1",
                 "inventory_location_id": cls.veh_1_loc.id,
+                "fleet_vehicle_id": cls.fleet_model.id,
             }
         )
         cls.fsm_veh_2 = cls.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle 2",
                 "inventory_location_id": cls.veh_2_loc.id,
+                "fleet_vehicle_id": cls.fleet_model.id,
             }
         )
         cls.fsm_veh_bad_loc = cls.env["fsm.vehicle"].create(
             {
                 "name": "Vehicle with Incorrect Location",
                 "inventory_location_id": cls.non_vehicle_stock_loc.id,
+                "fleet_vehicle_id": cls.fleet_model.id,
             }
         )
 
@@ -69,17 +76,27 @@ class TestFSMVehicleStock(TransactionCase):
         )
 
         # Set up a transfer using the operation type for vehicle loading
-        cls.picking_type_id = cls.env.ref(
+        cls.picking_type_id_loc_to_veh = cls.env.ref(
             "fieldservice_vehicle_stock.picking_type_output_to_vehicle"
+        )
+        cls.picking_type_id_veh_to_loc = cls.env.ref(
+            "fieldservice_vehicle_stock.picking_type_vehicle_to_location"
         )
         cls.picking_out = cls.env["stock.picking"].create(
             {
-                "picking_type_id": cls.picking_type_id.id,
+                "picking_type_id": cls.picking_type_id_loc_to_veh.id,
                 "location_id": cls.stock_location.id,
                 "location_dest_id": cls.veh_parent_loc.id,
             }
         )
-        cls.move = cls.env["stock.move"].create(
+        cls.picking_in = cls.env["stock.picking"].create(
+            {
+                "picking_type_id": cls.picking_type_id_veh_to_loc.id,
+                "location_id": cls.veh_parent_loc.id,
+                "location_dest_id": cls.stock_location.id,
+            }
+        )
+        cls.move_out = cls.env["stock.move"].create(
             {
                 "name": "Test Vehicle Stock Move",
                 "location_id": cls.stock_location.id,
@@ -88,6 +105,17 @@ class TestFSMVehicleStock(TransactionCase):
                 "product_uom_qty": 8.0,
                 "product_uom": cls.env.ref("uom.product_uom_unit").id,
                 "picking_id": cls.picking_out.id,
+            }
+        )
+        cls.move_in = cls.env["stock.move"].create(
+            {
+                "name": "Test Vehicle Stock Move",
+                "location_id": cls.veh_parent_loc.id,
+                "location_dest_id": cls.stock_location.id,
+                "product_id": cls.product.id,
+                "product_uom_qty": 8.0,
+                "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                "picking_id": cls.picking_in.id,
             }
         )
 
@@ -100,8 +128,11 @@ class TestFSMVehicleStock(TransactionCase):
             }
         )
 
-    def test_fsm_vehicle_stock(self):
-        self.picking_out.action_assign()
+    def test_fsm_vehicle_stock_loc_to_veh(self):
+        # 1. Test trasnfer from stock location to vehicle location
+        # Test assing quantities to transfer w/out a vehicle
+        with self.assertRaises(UserError):
+            self.picking_out.action_assign()
         # Test confirm transfer w/out a vehicle
         with self.assertRaises(UserError):
             self.picking_out._action_done()
@@ -117,10 +148,34 @@ class TestFSMVehicleStock(TransactionCase):
         # Test same vehicle is on the transfer
         self.assertEqual(self.picking_out.fsm_vehicle_id, self.fsm_veh_1)
         # Test correct vehicle storage location is on the transfer
-        move_line = self.move.move_line_ids
+        self.picking_out.action_assign()
+        move_line = self.move_out.move_line_ids
         self.assertEqual(move_line.location_dest_id, self.veh_1_loc)
         # confirm the transfer
         move_line.qty_done = 8.0
         self.picking_out._action_done()
+        # test moves are done
+        self.assertEqual(move_line.state, "done")
+
+        # 2. Test transfer from vehicle location to stock location
+        # Test assing quantities to transfer w/out a vehicle
+        with self.assertRaises(UserError):
+            self.picking_in.action_assign()
+        # Test confirm transfer w/out a vehicle
+        with self.assertRaises(UserError):
+            self.picking_in._action_done()
+        # Write FSM Order to the Transfer
+        self.picking_in.write({"fsm_order_id": self.fsm_order_1.id})
+        # Test vehicle is on the transfer, as we updated earlier the FSM order's vehicle
+        self.assertTrue(self.picking_in.fsm_vehicle_id)
+        # Test same vehicle is on the transfer
+        self.assertEqual(self.picking_in.fsm_vehicle_id, self.fsm_veh_1)
+        # Test correct vehicle storage location is on the transfer
+        self.picking_in.action_assign()
+        move_line = self.move_in.move_line_ids
+        self.assertEqual(move_line.location_id, self.veh_1_loc)
+        # confirm the transfer
+        move_line.qty_done = 8.0
+        self.picking_in._action_done()
         # test moves are done
         self.assertEqual(move_line.state, "done")

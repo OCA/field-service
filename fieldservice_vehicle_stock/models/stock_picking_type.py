@@ -12,3 +12,10 @@ class StockPickingType(models.Model):
         help="""Check this box for operation types that will be used
         to load inventory on FSM Vehicles.""",
     )
+
+    fsm_vehicle_out = fields.Boolean(
+        "Used to unload a Field Service Vehicle",
+        default=False,
+        help="""Check this box for operation types that will be used
+        to unload inventory from FSM Vehicles.""",
+    )
