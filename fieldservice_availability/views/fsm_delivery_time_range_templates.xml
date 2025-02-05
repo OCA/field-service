@@ -1,0 +1,50 @@
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="view_fsm_delivery_time_range_tree" model="ir.ui.view">
+    <field name="name">fsm.delivery.time.range.tree</field>
+    <field name="model">fsm.delivery.time.range</field>
+    <field name="arch" type="xml">
+      <tree name="Delivery Time Ranges">
+        <field name="name" readonly="1" />
+        <field name="start_time" widget="float_time" />
+        <field name="end_time" widget="float_time" />
+        <field name="route_id" />
+        <field name="sequence" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_fsm_delivery_time_range_form" model="ir.ui.view">
+    <field name="name">fsm.delivery.time.range.form</field>
+    <field name="model">fsm.delivery.time.range</field>
+    <field name="arch" type="xml">
+      <form string="Delivery Time Range">
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="start_time" widget="float_time" />
+            <field name="end_time" widget="float_time" />
+            <field name="route_id" />
+            <field name="sequence" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_fsm_delivery_time_range" model="ir.actions.act_window">
+    <field name="name">Delivery Time Ranges</field>
+    <field name="res_model">fsm.delivery.time.range</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Add a Field Service Delivery Time Range here.
+      </p>
+    </field>
+  </record>
+
+
+</odoo>
