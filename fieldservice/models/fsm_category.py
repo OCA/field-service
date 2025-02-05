@@ -15,7 +15,7 @@ class FSMCategory(models.Model):
     name = fields.Char(required=True)
     full_name = fields.Char(compute="_compute_full_name", store=True, recursive=True)
     parent_id = fields.Many2one("fsm.category", string="Parent", index=True)
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
     child_id = fields.One2many("fsm.category", "parent_id", "Child Categories")
     color = fields.Integer("Color Index", default=10)
     description = fields.Char()
