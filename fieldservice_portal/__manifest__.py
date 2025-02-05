@@ -18,6 +18,7 @@
         "security/portal_security.xml",
         "views/fsm_order_template.xml",
         "views/portal_template.xml",
+        "views/fsm_stage.xml",
     ],
     "demo": [
         "demo/fsm_location_demo.xml",

@@ -16,7 +16,7 @@ class CustomerPortal(CustomerPortal):
         values = super()._prepare_home_portal_values(counters)
         if "fsm_order_count" in counters:
             fsm_order_count = (
-                request.env["fsm.order"].search_count([])
+                request.env["fsm.order"].search_count(self._prepare_fsm_orders_domain())
                 if request.env["fsm.order"].check_access_rights(
                     "read", raise_exception=False
                 )
@@ -24,6 +24,9 @@ class CustomerPortal(CustomerPortal):
             )
             values["fsm_order_count"] = fsm_order_count
         return values
+
+    def _prepare_fsm_orders_domain(self):
+        return [("stage_id.portal_visible", "=", True)]
 
     def _fsm_order_check_access(self, order_id):
         fsm_order = request.env["fsm.order"].browse([order_id])
@@ -70,7 +73,7 @@ class CustomerPortal(CustomerPortal):
     ):
         values = self._prepare_portal_layout_values()
         FsmOrder = request.env["fsm.order"]
-        domain = []
+        domain = self._prepare_fsm_orders_domain()
 
         searchbar_sortings = {
             "date": {"label": _("Newest"), "order": "request_early desc"},
@@ -131,7 +134,12 @@ class CustomerPortal(CustomerPortal):
                     "domain": [("stage_id", "=", stage.id)],
                 },
             )
-            for stage in request.env["fsm.stage"].search([("stage_type", "=", "order")])
+            for stage in request.env["fsm.stage"].search(
+                [
+                    ("stage_type", "=", "order"),
+                    ("portal_visible", "=", True),
+                ]
+            )
         )
         searchbar_filters.update(
             {
