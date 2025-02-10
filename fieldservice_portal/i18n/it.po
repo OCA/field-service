@@ -81,9 +81,20 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_fsm_stage__portal_visible
+msgid ""
+"Enable to display field service orders based on it's stage in the portal"
+msgstr ""
+
+#. module: fieldservice_portal
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_fsm_order
 msgid "FSM Orders"
 msgstr "Ordini FSM"
+
+#. module: fieldservice_portal
+#: model:ir.model,name:fieldservice_portal.model_fsm_stage
+msgid "Field Service Stage"
+msgstr ""
 
 #. module: fieldservice_portal
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
@@ -92,7 +103,6 @@ msgstr "Storico"
 
 #. module: fieldservice_portal
 #. odoo-python
-#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
 #: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
 #, python-format
@@ -164,7 +174,6 @@ msgstr "Cerca nei numero OL"
 #. module: fieldservice_portal
 #. odoo-python
 #: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
-#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
 #, python-format
 msgid "Stage"
@@ -185,7 +194,6 @@ msgstr "Ticket"
 #. module: fieldservice_portal
 #. odoo-python
 #: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
-#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
 #, python-format
 msgid "Type"
@@ -195,6 +203,11 @@ msgstr "Tipo"
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_fsm_order
 msgid "View your fieldservice orders"
 msgstr "Visualizza i tuoi ordini assistenza sul campo"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_stage__portal_visible
+msgid "Visible in Portal"
+msgstr ""
 
 #. module: fieldservice_portal
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_breadcrumbs
