@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class FSMOrder(models.Model):
@@ -20,6 +20,10 @@ class FSMOrder(models.Model):
         index="btree",
         tracking=True,
     )
+
+    @api.onchange("location_id")
+    def _onchange_location_id(self):
+        self.customer_id = self.location_id.customer_id
 
     def _compute_total_cost(self):
         """To be overridden as needed from other modules"""
