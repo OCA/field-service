@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class FSMOrder(models.Model):
@@ -25,12 +25,6 @@ class FSMOrder(models.Model):
         """To be overridden as needed from other modules"""
         for order in self:
             order.total_cost = 0.0
-
-    @api.onchange("customer_id")
-    def _onchange_customer_id_location(self):
-        self.location_id = (
-            self.customer_id.service_location_id if self.customer_id else False
-        )
 
     def write(self, vals):
         res = super().write(vals)

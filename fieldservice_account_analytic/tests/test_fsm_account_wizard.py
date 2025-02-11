@@ -182,7 +182,6 @@ class FSMAccountAnalyticCase(TransactionCase):
                     "name": "Test01",
                 }
             )
-        order._onchange_customer_id_location()
         self.test_location2._onchange_fsm_parent_id_account()
         self.env["res.partner"].with_context(location_id=self.test_location2.id).search(
             []
