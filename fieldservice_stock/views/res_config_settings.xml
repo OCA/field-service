@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="res_config_settings_view_form_fsm_stock" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.fsm.stock</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='order_setting_container']" position="inside">
+                <setting
+                    string="Auto Validate FSM Pickings"
+                    help="Automatically validates related stock pickings when an FSM Order is completed."
+                >
+                    <field name="auto_validate_pickings" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
