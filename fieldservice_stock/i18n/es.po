@@ -4,22 +4,39 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-02 16:30+0000\n"
-"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2025-02-17 12:10+0000\n"
+"PO-Revision-Date: 2025-02-17 12:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: \n"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
 msgid "Allocated Quantity"
 msgstr "Cantidad Asignada"
+
+#. module: fieldservice_stock
+#: model:ir.model.fields,field_description:fieldservice_stock.field_res_config_settings__auto_validate_pickings
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock.res_config_settings_view_form_fsm_stock
+msgid "Auto Validate FSM Pickings"
+msgstr "Validar automáticamente los albaranes FSM"
+
+#. module: fieldservice_stock
+#: model_terms:ir.ui.view,arch_db:fieldservice_stock.res_config_settings_view_form_fsm_stock
+msgid ""
+"Automatically validates related stock pickings when an FSM Order is "
+"completed."
+msgstr "Valida automáticamente los albaranes relacionados cuando se completa una orden FSM."
+
+#. module: fieldservice_stock
+#: model:ir.model,name:fieldservice_stock.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
 
 #. module: fieldservice_stock
 #: model_terms:ir.ui.view,arch_db:fieldservice_stock.view_fsm_order_form_inherit_stock
@@ -57,6 +74,13 @@ msgstr "Ubicación del Servicio de Campo"
 #: model:ir.model.fields,field_description:fieldservice_stock.field_stock_picking__fsm_order_id
 msgid "Field Service Order"
 msgstr "Orden de Servicio de Campo"
+
+#. module: fieldservice_stock
+#: model:ir.model.fields,help:fieldservice_stock.field_res_config_settings__auto_validate_pickings
+msgid ""
+"If enabled, related stock pickings will be automatically validated when an "
+"FSM order is completed."
+msgstr "Si está habilitado, los albaranes relacionados se validarán automáticamente cuando se complete una orden FSM."
 
 #. module: fieldservice_stock
 #: model:ir.ui.menu,name:fieldservice_stock.menu_fsm_stock_inventory
@@ -113,12 +137,12 @@ msgstr "Lugar de Envío"
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de Stock"
+msgstr "Movimiento de existencias"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_rule
 msgid "Stock Rule"
-msgstr "Regla de Stock"
+msgstr "Regla de Inventario"
 
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_res_territory
@@ -128,7 +152,7 @@ msgstr "Territorio"
 #. module: fieldservice_stock
 #: model:ir.model,name:fieldservice_stock.model_stock_picking
 msgid "Transfer"
-msgstr "Transferir"
+msgstr "Albarán"
 
 #. module: fieldservice_stock
 #: model:ir.model.fields,field_description:fieldservice_stock.field_fsm_order__picking_ids
@@ -150,85 +174,3 @@ msgstr "Almacén"
 #: model:ir.model.fields,help:fieldservice_stock.field_fsm_order__warehouse_id
 msgid "Warehouse used to ship the materials"
 msgstr "Almacén utilizado para enviar los materiales"
-
-#~ msgid "Moves"
-#~ msgstr "Movimientos"
-
-#~ msgid "Please create a stock request."
-#~ msgstr "Por favor cree una solicitud de stock."
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Cancelled"
-#~ msgstr "Cancelado"
-
-#, fuzzy
-#~ msgid "Create Fsm Equipment"
-#~ msgstr "Crea Equipos FSM"
-
-#~ msgid "Creates a FSM Equipment"
-#~ msgstr "Crea Equipos FSM"
-
-#~ msgid "Current Inventory Location"
-#~ msgstr "Ubicación Actual de Inventario"
-
-#~ msgid "Done"
-#~ msgstr "Hecho"
-
-#~ msgid "Draft"
-#~ msgstr "Borrador"
-
-#~ msgid "Equipment"
-#~ msgstr "Equipo"
-
-#~ msgid "FSM Order"
-#~ msgstr "Orden FSM"
-
-#~ msgid "Field Service Equipment"
-#~ msgstr "Equipo de Servicio de Campo"
-
-#~ msgid "In progress"
-#~ msgstr "En progreso"
-
-#~ msgid "Lot/Serial"
-#~ msgstr "Lote / Serie"
-
-#~ msgid "Order Lines"
-#~ msgstr "Líneas de Pedido"
-
-#~ msgid "Product"
-#~ msgstr "Producto"
-
-#~ msgid "Product Moves (Stock Move Line)"
-#~ msgstr "Movimientos de Producto (Línea de Movimiento de Stock)"
-
-#~ msgid "Product Template"
-#~ msgstr "Plantilla de Producto"
-
-#~ msgid "Request State"
-#~ msgstr "Estado de Solicitud"
-
-#~ msgid "Serial #"
-#~ msgstr "# de Serial"
-
-#~ msgid "Set to Draft"
-#~ msgstr "Establecer en Borrador"
-
-#~ msgid "Stock Request"
-#~ msgstr "Solicitud de Stock"
-
-#~ msgid "Stock Request Order"
-#~ msgstr "Pedido de Solicitud de Stock"
-
-#~ msgid "Stock Requests"
-#~ msgstr "Solicitudes de Stock"
-
-#~ msgid "Submit"
-#~ msgstr "Enviar"
-
-#~ msgid "Submitted"
-#~ msgstr "Enviado"
-
-#~ msgid "Receipts"
-#~ msgstr "Ingresos"

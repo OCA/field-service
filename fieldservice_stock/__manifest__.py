@@ -19,6 +19,7 @@
         "views/fsm_order.xml",
         "views/stock.xml",
         "views/stock_picking.xml",
+        "views/res_config_settings.xml",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
