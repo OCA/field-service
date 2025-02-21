@@ -6,9 +6,11 @@ from odoo.exceptions import ValidationError
 
 
 def validate_stage_fields(records):
-    for rec in records:
+    for rec in records.sudo():
         stage = rec.stage_id
         field_ids = stage.validate_field_ids
+        if not field_ids:
+            continue
         field_names = [x.name for x in field_ids]
         values = rec.read(field_names)
 
