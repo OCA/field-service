@@ -38,6 +38,9 @@ class FSMOrder(models.Model):
             return team
         raise ValidationError(_("You must create an FSM team first."))
 
+    def _default_request_early(self):
+        return fields.Datetime.now().replace(second=0)
+
     @api.depends("date_start", "date_end")
     def _compute_duration(self):
         for rec in self:
@@ -114,7 +117,8 @@ class FSMOrder(models.Model):
     )
     location_directions = fields.Char()
     request_early = fields.Datetime(
-        string="Earliest Request Date", default=datetime.now()
+        string="Earliest Request Date",
+        default=lambda self: self._default_request_early(),
     )
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
