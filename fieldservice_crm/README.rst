@@ -92,6 +92,7 @@ Contributors
 -  `APSL <https://apsl.tech>`__:
 
    -  Antoni Marroig <amarroig@apsl.net>
+   -  Bernat Obrador <bobrador@apsl.net>
 
 Other credits
 -------------
