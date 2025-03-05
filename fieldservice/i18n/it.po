@@ -28,6 +28,12 @@ msgid "# Opportunities"
 msgstr "N. opportunità"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "N. fatture fornitore"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1647,16 +1653,16 @@ msgid "Invoice Edi Format Store"
 msgstr "Deposito formato EDI fattura"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
-msgid "Invoice Template Pdf Report"
-msgstr "Resoconto PDF modello fattura"
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_sending_method
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_sending_method
 msgid "Invoice sending"
 msgstr "Invio fattura"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
+msgid "Invoice template"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
@@ -3055,6 +3061,12 @@ msgid "Services in this stage are considered as closed."
 msgstr "Le assistenze in questa fase sono considerate chiuse."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__use_partner_credit_limit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__use_partner_credit_limit
+msgid "Set a value greater than 0.0 to activate a credit limit check"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
 #: model:ir.ui.menu,name:fieldservice.settings
 msgid "Settings"
@@ -3759,6 +3771,9 @@ msgstr "etichetta"
 msgid "template"
 msgstr "modello"
 
+#~ msgid "Invoice Template Pdf Report"
+#~ msgstr "Resoconto PDF modello fattura"
+
 #~ msgid "# Tasks"
 #~ msgstr "N. lavori"
 
@@ -3976,9 +3991,6 @@ msgstr "modello"
 #~ msgstr ""
 #~ "Il numero di identificazione fiscale. Completalo se il contatto è "
 #~ "soggetto a tasse governative. Utilizzato in alcune dichiarazioni legali."
-
-#~ msgid "# Vendor Bills"
-#~ msgstr "N. fatture fornitore"
 
 #, python-format
 #~ msgid "%s is a holiday (%s)."

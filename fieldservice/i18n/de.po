@@ -28,6 +28,12 @@ msgid "# Opportunities"
 msgstr "# Verkaufschancen"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# Eingangsrechnungen"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1616,15 +1622,15 @@ msgid "Invoice Edi Format Store"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
-msgid "Invoice Template Pdf Report"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_sending_method
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_sending_method
 msgid "Invoice sending"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
+msgid "Invoice template"
 msgstr ""
 
 #. module: fieldservice
@@ -3016,6 +3022,12 @@ msgid "Services in this stage are considered as closed."
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__use_partner_credit_limit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__use_partner_credit_limit
+msgid "Set a value greater than 0.0 to activate a credit limit check"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
 #: model:ir.ui.menu,name:fieldservice.settings
 msgid "Settings"
@@ -3688,9 +3700,6 @@ msgstr ""
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zuletzt geändert am"
-
-#~ msgid "# Vendor Bills"
-#~ msgstr "# Eingangsrechnungen"
 
 #~ msgid "Agreements"
 #~ msgstr "Vereinbarungen"
