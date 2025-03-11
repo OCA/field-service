@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="view_fsm_route_form_inherit" model="ir.ui.view">
+    <field name="name">fsm.route.form.inherit.force_schedule</field>
+    <field name="model">fsm.route</field>
+    <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//group[@id='right']" position="after">
+        <group>
+          <field name="force_schedule" />
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
