@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_sale_stock_route
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-24 08:23+0000\n"
+"PO-Revision-Date: 2025-03-24 08:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model.fields,field_description:fieldservice_sale_stock_route.field_sale_order__commitment_date_end
+msgid "Delivery End Date"
+msgstr "Data de finalització del lliurament"
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/fsm_order.py:0
+#, python-format
+msgid "Delivery postponed. New scheduled date: %s."
+msgstr "Lliurament ajornat. Nova data programada: %s."
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model.fields,help:fieldservice_sale_stock_route.field_fsm_route__force_schedule
+msgid "Enable this to allow scheduling on non-route days."
+msgstr ""
+"Activa això per permetre la programació en dies no assignats a la ruta."
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/sale_order.py:0
+#, python-format
+msgid "FSM Location must have a route set."
+msgstr "La ubicació FSM ha de tenir una ruta establerta."
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/sale_order.py:0
+#, python-format
+msgid "FSM Route must have a person set."
+msgstr "La ruta FSM ha de tenir una persona establerta."
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/sale_order.py:0
+#, python-format
+msgid "FSM Route must have days set."
+msgstr "La ruta FSM ha de tenir dies establerts."
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model,name:fieldservice_sale_stock_route.model_fsm_order
+msgid "Field Service Order"
+msgstr "Ordre de servei de camp"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model,name:fieldservice_sale_stock_route.model_fsm_route
+msgid "Field Service Route"
+msgstr "Ruta de servei de camp"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model,name:fieldservice_sale_stock_route.model_fsm_route_dayroute
+msgid "Field Service Route Dayroute"
+msgstr "Ruta diària de servei de camp"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model.fields,field_description:fieldservice_sale_stock_route.field_fsm_route__force_schedule
+msgid "Force Schedule"
+msgstr "Forçar programació"
+
+#. module: fieldservice_sale_stock_route
+#: model_terms:ir.ui.view,arch_db:fieldservice_sale_stock_route.fsm_order_form_inherit_product_move_ids
+msgid "Postpone Delivery"
+msgstr "Aplaçar el lliurament"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model,name:fieldservice_sale_stock_route.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda de venda"
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model.fields,field_description:fieldservice_sale_stock_route.field_fsm_order__show_postpone_button
+msgid "Show Postpone Button"
+msgstr "Mostrar botó d'aplaçament"
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/sale_order.py:0
+#, python-format
+msgid ""
+"The selected delivery date (%(day)s) is not available for route %(route)s. "
+"Please choose a valid date based on the available schedule, or enable 'Force"
+" Schedule' on the route to override this restriction."
+msgstr ""
+"La data de lliurament seleccionada (%(day)s) no està disponible per a la "
+"ruta %(route)s. Si us plau, trieu una data vàlida segons el calendari "
+"disponible, o activeu 'Forçar programació' a la ruta per anul·lar aquesta "
+"restricció."
+
+#. module: fieldservice_sale_stock_route
+#: model:ir.model.fields,help:fieldservice_sale_stock_route.field_sale_order__commitment_date_end
+msgid ""
+"This is the delivery deadline date promised to the customer. If set, the "
+"delivery order will be scheduled based on this date rather than product lead"
+" times."
+msgstr ""
+"Aquesta és la data límit de lliurament promesa al client. Si s'estableix, "
+"l'ordre de lliurament es programarà en funció d'aquesta data en lloc dels "
+"temps de lliurament del producte."
