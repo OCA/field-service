@@ -2,3 +2,4 @@
 - Freni Patel \<<fpatel@opensourceintegrators.com>\>
 - [APSL](https://apsl.tech):
   - Antoni Marroig   \<<amarroig@apsl.net>\>
+  - Bernat Obrador \<<bobrador@apsl.net>\>
