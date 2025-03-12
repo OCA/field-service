@@ -6,11 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05 09:16+0000\n"
-"PO-Revision-Date: 2025-03-05 09:16+0000\n"
+"POT-Creation-Date: 2025-03-13 07:08+0000\n"
+"PO-Revision-Date: 2025-03-13 07:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -27,6 +26,11 @@ msgid "# Opportunities"
 msgstr "# Oportunidades"
 
 #. module: fieldservice_crm
+#: model_terms:ir.ui.view,arch_db:fieldservice_crm.fsm_order_crm_kanban_view
+msgid "<i class=\"fa fa-dollar me-2 fa-lg\" title=\"Salesperson\"/>"
+msgstr "<i class=\"fa fa-dollar me-2 fa-lg\" title=\"Comercial\"/>"
+
+#. module: fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice_crm.fieldservice_crm_form_view
 msgid "Create FS Order"
 msgstr "Crear Orden FS"
@@ -37,6 +41,11 @@ msgstr "Crear Orden FS"
 #, python-format
 msgid "Create FSM Order"
 msgstr "Crear Orden FSM"
+
+#. module: fieldservice_crm
+#: model:ir.model.fields,field_description:fieldservice_crm.field_fsm_order__opportunity_customer_vat
+msgid "Customer VAT"
+msgstr "NIF del cliente"
 
 #. module: fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice_crm.fieldservice_crm_form_view
@@ -79,6 +88,11 @@ msgstr "Oportunidad"
 #, python-format
 msgid "Please select a customer."
 msgstr "Por favor seleccione un cliente."
+
+#. module: fieldservice_crm
+#: model:ir.model.fields,field_description:fieldservice_crm.field_fsm_order__sales_person_id
+msgid "Salesperson"
+msgstr "Comercial"
 
 #. module: fieldservice_crm
 #: model:ir.model.fields,field_description:fieldservice_crm.field_crm_lead__fsm_order_ids
