@@ -9,7 +9,6 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, TransactionCase
 
 
-@freeze_time("2023-02-01")
 class TestFSMOrderBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -119,6 +118,7 @@ class TestFSMOrderBase(TransactionCase):
 
 
 class TestFSMOrder(TestFSMOrderBase):
+    @freeze_time("2023-02-01")
     def test_fsm_order(self):
         """Test creating new workorders, and test following functions,
         - _compute_duration() in hrs
