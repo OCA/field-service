@@ -9,4 +9,5 @@ from . import (
     stock_rule,
     stock_picking,
     fsm_wizard,
+    res_config_settings,
 )

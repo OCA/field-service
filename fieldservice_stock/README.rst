@@ -59,6 +59,11 @@ If you are in a multi-warehouse situation:
 * Create or select a territory
 * Set the warehouse that will serve this territory
 
+If you want to enable autovalidation of related pickings when completing an FSM order:
+
+* Go to Field Service > Configuration > Settings
+* Under the 'Orders' tab, check the 'Auto Validate FSM Pickings' option
+
 Usage
 =====
 
@@ -99,6 +104,8 @@ Contributors
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
 * Freni Patel <fpatel@opensourceintegrators.com>
+* `APSL-Nagarro <https://www.apsl.tech>`_:
+  * Patryk Pyczko <ppyczko@apsl.net>
 
 Other credits
 ~~~~~~~~~~~~~

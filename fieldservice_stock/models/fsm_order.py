@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class FSMOrder(models.Model):
@@ -95,3 +96,32 @@ class FSMOrder(models.Model):
             action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = return_ids[0]
         return action
+
+    def action_complete(self):
+        """Validate related pickings before marking FSM Order as complete."""
+        auto_validate = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice_stock.auto_validate_pickings", default=False)
+        )
+
+        if auto_validate:
+            for order in self:
+                for picking in order.picking_ids.filtered(
+                    lambda p: p.state in ["confirmed", "assigned"]
+                ):
+                    picking.action_assign()
+                    picking.action_set_quantities_to_reservation()
+
+                    if any(
+                        move.quantity_done < move.product_uom_qty
+                        for move in picking.move_lines
+                    ):
+                        raise ValidationError(
+                            f"Not enough stock to complete transfer for FSM Order "
+                            f"{order.name} - {picking.name}. Please check product quantities."
+                        )
+
+                    picking.button_validate()
+
+        return super().action_complete()
