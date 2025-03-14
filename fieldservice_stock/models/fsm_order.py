@@ -110,15 +110,15 @@ class FSMOrder(models.Model):
                     lambda p: p.state in ["confirmed", "assigned"]
                 ):
                     picking.action_assign()
-                    picking.action_set_quantities_to_reservation()
 
                     if any(
-                        move.quantity_done < move.product_uom_qty
+                        move.quantity < move.product_uom_qty
                         for move in picking.move_lines
                     ):
                         raise ValidationError(
                             f"Not enough stock to complete transfer for FSM Order "
-                            f"{order.name} - {picking.name}. Please check product quantities."
+                            f"{order.name} - {picking.name}. "
+                            "Please check product quantities."
                         )
 
                     picking.button_validate()

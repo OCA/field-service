@@ -54,7 +54,7 @@ class TestFSMStockActionComplete(TransactionCase):
         self.env["ir.config_parameter"].sudo().set_param(
             "fieldservice_stock.auto_validate_pickings", False
         )
-        self.stock_move.quantity_done = self.stock_move.product_uom_qty
+        self.stock_move.quantity = self.stock_move.product_uom_qty
         self.fsm_order.action_complete()
         self.assertNotEqual(
             self.picking.state,
@@ -67,7 +67,8 @@ class TestFSMStockActionComplete(TransactionCase):
         self.env["ir.config_parameter"].sudo().set_param(
             "fieldservice_stock.auto_validate_pickings", True
         )
-        self.stock_move.quantity_done = self.stock_move.product_uom_qty
+        self.stock_move.quantity = self.stock_move.product_uom_qty
+        self.stock_move.picked = True
         self.fsm_order.action_complete()
         self.assertEqual(
             self.picking.state, "done", "Picking should be validated and set to 'done'."
