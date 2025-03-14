@@ -7,54 +7,46 @@ from odoo.tests.common import TransactionCase
 
 
 class FSMDeliveryCase(TransactionCase):
-    def setUp(self):
-        super(FSMDeliveryCase, self).setUp()
-        self.SaleOrder = self.env["sale.order"]
-        self.test_partner = self.env["res.partner"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.test_partner = cls.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
-        self.product_delivery_normal = self.env["product.product"].create(
+        cls.product_delivery_normal = cls.env["product.product"].create(
             {
                 "name": "Normal Delivery Charges",
                 "invoice_policy": "order",
                 "type": "service",
                 "list_price": 10.0,
-                "categ_id": self.env.ref("delivery.product_category_deliveries").id,
+                "categ_id": cls.env.ref("delivery.product_category_deliveries").id,
             }
         )
-        self.product_cable_management_box = self.env["product.product"].create(
+        cls.product_cable_management_box = cls.env["product.product"].create(
             {
                 "name": "Another product to deliver",
                 "weight": 1.0,
                 "invoice_policy": "order",
             }
         )
-        self.pricelist_id = self.env.ref("product.list0")
-        self.normal_delivery = self.env["delivery.carrier"].create(
+        cls.pricelist_id = cls.env.ref("product.list0")
+        cls.normal_delivery = cls.env["delivery.carrier"].create(
             {
                 "name": "Normal Delivery Charges",
                 "fixed_price": 10,
                 "delivery_type": "fixed",
-                "product_id": self.product_delivery_normal.id,
+                "product_id": cls.product_delivery_normal.id,
             }
         )
-        self.test_location = self.env["fsm.location"].create(
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.test_order = cls.env["fsm.order"].create(
             {
-                "name": "Test Location",
-                "phone": "123",
-                "email": "tp@email.com",
-                "partner_id": self.test_partner.id,
-                "owner_id": self.test_partner.id,
-                "customer_id": self.test_partner.id,
-            }
-        )
-        self.test_order = self.env["fsm.order"].create(
-            {
-                "location_id": self.test_location.id,
+                "location_id": cls.test_location.id,
                 "date_start": datetime.today(),
                 "date_end": datetime.today() + timedelta(hours=2),
                 "request_early": datetime.today(),
-                "carrier_id": self.normal_delivery.id,
+                "carrier_id": cls.normal_delivery.id,
             }
         )
 
