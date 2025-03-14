@@ -8,8 +8,11 @@ from odoo.addons.fieldservice_sale.tests.test_fsm_sale_order import TestFSMSale
 class TestFSMSaleRecurring(TestFSMSale):
     @classmethod
     def setUpClass(cls):
-        super(TestFSMSaleRecurring, cls).setUpClass()
+        super().setUpClass()
         cls.test_location = cls.env.ref("fieldservice.test_location")
+
+        if cls._is_fieldservice_route_installed():
+            cls._setup_fsm_route()
 
         # Setup products that when sold will create some FSM orders
         cls.setUpFSMProducts()
@@ -136,6 +139,38 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "tax_id": False,
             }
         )
+
+    @classmethod
+    def _is_fieldservice_route_installed(cls):
+        """Checks if 'fieldservice_route' module is installed,
+        which will require more setup to avoid validation errors.
+        :return: Boolean indicating the installed status of the module
+        """
+        module = cls.env["ir.module.module"].search(
+            [("name", "=", "fieldservice_route"), ("state", "=", "installed")]
+        )
+        return bool(module)
+
+    @classmethod
+    def _setup_fsm_route(cls):
+        """Ensure FSM Route is correctly set up to prevent issues
+        when confirming Sale Orders in test environments.
+
+        Some modules require a properly configured FSM Route when confirming
+        a Sale Order. This method sets up the necessary route to avoid validation
+        errors and ensure smooth test execution.
+        """
+        cls.fsm_day_monday = cls.env.ref("fieldservice_route.fsm_route_day_0")
+        cls.test_person = cls.env.ref("fieldservice.test_person")
+        cls.test_route = cls.env["fsm.route"].create(
+            {
+                "name": "Test Route",
+                "fsm_person_id": cls.test_person.id,
+                "day_ids": [(6, 0, [cls.fsm_day_monday.id])],
+                "max_order": 1000,
+            }
+        )
+        cls.test_location.write({"fsm_route_id": cls.test_route.id})
 
     def test_fsm_sale_order_recurring(self):
         """Test the flow for a Sale Order that will generate
