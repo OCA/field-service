@@ -47,6 +47,11 @@ class StockRequest(models.Model):
             self._update_stock_request_order_data()
         return res
 
+    @api.onchange("fsm_order_id")
+    def _onchange_fsm_order_id(self):
+        if self.fsm_order_id and self.fsm_order_id.scheduled_date_start:
+            self.expected_date = self.fsm_order_id.scheduled_date_start
+
     def prepare_stock_request_order_values(self):
         res = {
             "expected_date": self.expected_date,
