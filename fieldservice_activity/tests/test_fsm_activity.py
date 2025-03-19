@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
+from freezegun import freeze_time
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, TransactionCase
 
@@ -36,6 +38,7 @@ class TestFSMActivity(TransactionCase):
             }
         )
 
+    @freeze_time("2025-03-19")
     def test_fsm_activity(self):
         """Test creating new activites, and moving them along thier stages,
         - Don't move FSM Order to complete if Required Activity in 'To Do'
