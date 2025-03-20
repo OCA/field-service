@@ -23,6 +23,11 @@ msgid "Assign"
 msgstr "Zuweisen"
 
 #. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_assigned
+msgid "Assigned"
+msgstr ""
+
+#. module: fieldservice_isp_flow
 #. odoo-python
 #: code:addons/fieldservice_isp_flow/models/fsm_order.py:0
 #, python-format
@@ -84,6 +89,12 @@ msgid "Confirm"
 msgstr "Bestätigen"
 
 #. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_enroute
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_flow.fsm_order_form
 msgid "En Route"
 msgstr "Unterwegs"
@@ -109,11 +120,26 @@ msgid "Request"
 msgstr "Anfrage"
 
 #. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_requested
+msgid "Requested"
+msgstr ""
+
+#. module: fieldservice_isp_flow
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_flow.fsm_order_form
 msgid "Schedule"
 msgstr "Planen"
 
 #. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_scheduled
+msgid "Scheduled"
+msgstr ""
+
+#. module: fieldservice_isp_flow
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_flow.fsm_order_form
 msgid "Start"
+msgstr ""
+
+#. module: fieldservice_isp_flow
+#: model:fsm.stage,name:fieldservice_isp_flow.fsm_stage_started
+msgid "Started"
 msgstr ""
