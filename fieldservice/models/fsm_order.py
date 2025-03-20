@@ -112,7 +112,7 @@ class FSMOrder(models.Model):
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
-    location_directions = fields.Char()
+    location_directions = fields.Html()
     request_early = fields.Datetime(
         string="Earliest Request Date", default=datetime.now()
     )
@@ -180,7 +180,7 @@ class FSMOrder(models.Model):
     scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
     scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(default=10)
-    todo = fields.Text(string="Instructions")
+    todo = fields.Html(string="Instructions")
 
     # Execution
     resolution = fields.Text()
@@ -321,7 +321,7 @@ class FSMOrder(models.Model):
                     self.scheduled_date_start != vals.get("scheduled_date_start", False)
                 )
             ):
-                hours = vals.get("scheduled_duration", False)
+                hours = vals.get("scheduled_duration", self.scheduled_duration)
                 start_date_val = vals.get(
                     "scheduled_date_start", self.scheduled_date_start
                 )
@@ -350,7 +350,7 @@ class FSMOrder(models.Model):
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_end
             ) - timedelta(hours=self.scheduled_duration)
-            self.date_start = str(date_to_with_delta)
+            self.scheduled_date_start = str(date_to_with_delta)
 
     @api.onchange("scheduled_date_start", "scheduled_duration")
     def onchange_scheduled_duration(self):
@@ -417,7 +417,8 @@ class FSMOrder(models.Model):
                 [
                     ("date_from", ">=", rec.scheduled_date_start),
                     ("date_to", "<=", rec.scheduled_date_end),
-                ],
+                    ("resource_id", "=", False),
+                ]
             )
             if holidays:
                 raise ValidationError(

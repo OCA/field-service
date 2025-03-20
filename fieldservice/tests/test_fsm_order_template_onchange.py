@@ -5,7 +5,7 @@ from odoo import fields
 from . import test_fsm_order
 
 
-class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
+class TestTemplateOnchange(test_fsm_order.TestFSMOrderBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

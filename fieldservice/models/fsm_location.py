@@ -13,7 +13,7 @@ class FSMLocation(models.Model):
     _stage_type = "location"
     _rec_names_search = ["complete_name"]
 
-    direction = fields.Char()
+    direction = fields.Html()
     partner_id = fields.Many2one(
         "res.partner",
         string="Related Partner",
@@ -55,7 +55,7 @@ class FSMLocation(models.Model):
 
     calendar_id = fields.Many2one("resource.calendar", string="Office Hours")
     fsm_parent_id = fields.Many2one("fsm.location", string="Parent", index=True)
-    notes = fields.Text(string="Location Notes")
+    notes = fields.Html(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
     contact_count = fields.Integer(
         string="Contacts Count", compute="_compute_contact_ids"
@@ -71,10 +71,15 @@ class FSMLocation(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals):
-        res = super().create(vals)
-        res.write({"fsm_location": True})
-        return res
+    def create(self, vals_list):
+        for vals in vals_list:
+            # By default, create inherited partner as typed child of the location owner.
+            vals.update({"fsm_location": True, "type": "fsm_location"})
+            if not vals.get("partner_id"):  # Don't change parent of existing partners.
+                vals["parent_id"] = vals.get("owner_id")
+        return super(FSMLocation, self.with_context(creating_fsm_location=True)).create(
+            vals_list
+        )
 
     @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):

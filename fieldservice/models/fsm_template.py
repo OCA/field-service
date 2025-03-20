@@ -10,7 +10,7 @@ class FSMTemplate(models.Model):
     _check_company_auto = True
 
     name = fields.Char(required=True)
-    instructions = fields.Text()
+    instructions = fields.Html()
     category_ids = fields.Many2many("fsm.category", string="Categories")
     duration = fields.Float(help="Default duration in hours")
     company_id = fields.Many2one(

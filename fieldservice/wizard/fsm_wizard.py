@@ -28,13 +28,13 @@ class FSMWizard(models.TransientModel):
         return {"type": "ir.actions.act_window_close"}
 
     def _prepare_fsm_location(self, partner):
-        return {"partner_id": partner.id, "owner_id": partner.id}
+        return {"partner_id": partner.id, "owner_id": (partner.parent_id or partner).id}
 
     def action_convert_location(self, partner):
         fl_model = self.env["fsm.location"]
         if fl_model.search_count([("partner_id", "=", partner.id)]) == 0:
             fl_model.create(self._prepare_fsm_location(partner))
-            partner.write({"fsm_location": True})
+            partner.write({"fsm_location": True, "type": "fsm_location"})
             self.action_other_address(partner)
         else:
             raise UserError(
