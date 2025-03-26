@@ -5,7 +5,7 @@
         <field name="name">Manage Recurring Orders</field>
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
-    <record id="fieldservice.group_fsm_user" model="res.groups">
+    <record id="fieldservice.group_fsm_user_own" model="res.groups">
         <field
             name="implied_ids"
             eval="[(4, ref('fieldservice_recurring.group_fsm_recurring'))]"
