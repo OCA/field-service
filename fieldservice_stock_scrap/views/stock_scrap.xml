@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="stock_scrap_form" model="ir.ui.view">
+        <field name="name">stock.scrap.form</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <separator string="Field Service Information" />
+                    <field name="fsm_order_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="stock_scrap_tree" model="ir.ui.view">
+        <field name="name">stock.scrap.tree</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scrap_location_id']" position="after">
+                <field name="fsm_order_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
