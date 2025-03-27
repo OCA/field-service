@@ -37,6 +37,7 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Location</th>
+                                <th>Scheduled Date</th>
                                 <th>Type</th>
                                 <th>Stage</th>
                             </tr>
@@ -55,6 +56,11 @@
                                     <td>
                                         <t
                                             t-out="fsm_order.sudo().location_id.display_name"
+                                        />
+                                    </td>
+                                    <td>
+                                        <span
+                                            t-field="fsm_order.scheduled_date_start"
                                         />
                                     </td>
                                     <td>
@@ -88,6 +94,12 @@
                                 <strong>Location:</strong>
                                 <span t-field="fsm_order.location_id" />
                                 <br />
+                                <strong>
+                                Address:</strong>
+                                <span t-field="fsm_order.location_id.street" />, <span
+                                    t-field="fsm_order.location_id.street2"
+                                />
+                                <br />
                                 <strong>City:</strong>
                                 <span t-field="fsm_order.location_id.city" />
                                 <t t-if="fsm_order.location_id.state_id">
@@ -116,12 +128,27 @@
                                     <span>N/A</span>
                                 </t>
                                 <br />
-                                <strong>Arrival On Site:</strong>
+                                <strong>Scheduled Date:</strong>
+                                <t t-if="fsm_order.scheduled_date_start">
+                                    <span t-field="fsm_order.scheduled_date_start" />
+                                </t>
+                                <t t-else="">
+                                    <span>N/A</span>
+                                </t>
+                                <br />
+                                <strong>Actual Start:</strong>
                                 <span
                                     t-if="fsm_order.date_start"
                                     t-field="fsm_order.date_start"
                                 />
                                 <span t-else="">Not started yet</span>
+                                <br />
+                                <strong>Actual End:</strong>
+                                <span
+                                    t-if="fsm_order.date_end"
+                                    t-field="fsm_order.date_end"
+                                />
+                                <span t-else="">Not completed yet</span>
                                 <br />
                             </div>
                         </div>
