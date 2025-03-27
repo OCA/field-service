@@ -187,20 +187,16 @@ class SaleOrder(models.Model):
         Post messages to the Sale Order and the newly created FSM Orders
         """
         self.ensure_one()
-        msg_fsm_links = ""
         for fsm_order in fsm_orders:
-            fsm_order.message_mail_with_source(
+            fsm_order.message_post_with_source(
                 "mail.message_origin_link",
                 render_values={"self": fsm_order, "origin": self},
-                subtype_id=self.env.ref("mail.mt_note").id,
-                author_id=self.env.user.partner_id.id,
+                subtype_xmlid="mail.mt_note",
             )
-            msg_fsm_links += (
-                " <a href=# data-oe-model=fsm.order data-oe-id={}>{}</a>,".format(
-                    fsm_order.id, fsm_order.name
-                )
-            )
-        so_msg_body = _("Field Service Order(s) Created: %s", msg_fsm_links)
+        so_msg_body = _(
+            "Field Service Order(s) Created: %s",
+            fsm_order._get_html_link(title=fsm_order.name),
+        )
         self.message_post(body=so_msg_body[:-1])
 
     def _action_confirm(self):
