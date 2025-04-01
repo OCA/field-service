@@ -54,6 +54,7 @@ class FSMOrder(models.Model):
                 lambda p: p.picking_type_id.code == "incoming"
             )
             order.return_count = len(incoming_pickings.ids)
+            order.move_ids = order.picking_ids.mapped("move_ids")
 
     def action_view_delivery(self):
         """

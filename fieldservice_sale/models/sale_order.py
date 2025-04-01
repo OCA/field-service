@@ -108,7 +108,11 @@ class SaleOrder(models.Model):
 
         if new_fsm_sol:
             fsm_by_sale = self.env["fsm.order"].search(
-                [("sale_id", "=", self.id), ("sale_line_id", "=", False)]
+                [
+                    ("sale_id", "=", self.id),
+                    ("sale_line_id", "=", False),
+                    ("is_closed", "=", False),
+                ]
             )
             if not fsm_by_sale:
                 templates = new_fsm_sol.product_id.fsm_order_template_id
@@ -149,15 +153,15 @@ class SaleOrder(models.Model):
 
         # Process lines set to FSM Sale
         new_fsm_sale_sol = self.order_line.filtered(
-            lambda L: L.product_id.field_service_tracking == "sale"
-            and not L.fsm_order_id
+            lambda x: x.product_id.field_service_tracking == "sale"
+            and (not x.fsm_order_id or x.fsm_order_id.is_closed)
         )
         new_fsm_orders |= self._field_service_generate_sale_fsm_orders(new_fsm_sale_sol)
 
         # Create new FSM Order for lines set to FSM Line
         new_fsm_line_sol = self.order_line.filtered(
-            lambda L: L.product_id.field_service_tracking == "line"
-            and not L.fsm_order_id
+            lambda x: x.product_id.field_service_tracking == "line"
+            and (not x.fsm_order_id or x.fsm_order_id.is_closed)
         )
 
         new_fsm_orders |= self._field_service_generate_line_fsm_orders(new_fsm_line_sol)
@@ -230,3 +234,10 @@ class SaleOrder(models.Model):
         else:
             action = {"type": "ir.actions.act_window_close"}
         return action
+
+    def _action_cancel(self):
+        res = super()._action_cancel()
+
+        [fsm_order.action_cancel() for fsm_order in self.mapped("fsm_order_ids")]
+
+        return res

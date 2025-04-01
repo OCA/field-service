@@ -529,3 +529,56 @@ class TestFSMSaleOrder(TestFSMSale):
         )
         # confirm sale order: ValidationError shouldn't be raised
         self.sale_order.action_confirm()
+
+    def test_sale_order_cancel(self):
+        """Test that canceling a Sale Order cancels related FSM orders,
+        and reconfirming creates a new FSM order while keeping old ones linked.
+        """
+        # Confirm the Sale Order
+        self.sale_order_1.action_confirm()
+        self.assertEqual(
+            self.sale_order_1.state,
+            "sale",
+            "Sale Order should be confirmed (state=sale)",
+        )
+        self.assertEqual(
+            len(self.sale_order_1.fsm_order_ids),
+            1,
+            "One FSM order should be created upon confirming the Sale Order",
+        )
+
+        fsm_order = self.sale_order_1.fsm_order_ids[0]
+
+        # Cancel the Sale Order
+        self.sale_order_1.with_context(
+            disable_cancel_warning="disable_cancel_warning"
+        ).action_cancel()
+        self.assertEqual(
+            self.sale_order_1.state,
+            "cancel",
+            "Sale Order should be canceled (state=cancel)",
+        )
+
+        self.assertTrue(
+            fsm_order.is_closed,
+            "FSM order should be marked as closed after Sale Order is canceled",
+        )
+
+        # Reconfirm the Sale Order
+        self.sale_order_1.action_draft()
+        self.sale_order_1.action_confirm()
+
+        # Ensure that FSM orders are recomputed after reconfirmation
+        self.sale_order_1._compute_fsm_order_ids()
+
+        self.assertEqual(
+            self.sale_order_1.state,
+            "sale",
+            "Sale Order should be re-confirmed (state=sale)",
+        )
+        self.assertEqual(
+            len(self.sale_order_1.fsm_order_ids),
+            2,
+            "A new FSM order should be created upon reconfirming the "
+            "Sale Order, while the old one remains linked.",
+        )
