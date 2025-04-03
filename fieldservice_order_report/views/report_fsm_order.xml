@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+   <template id="report_fsm_order">
+        <t t-set="company" t-value="env.company" />
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                   <div class="page">
+                        <h2>Field Service Order Report</h2>
+                        <br />
+                        <div class="oe_structure" />
+                        <div t-if="orders" id="orders">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <t t-foreach="fields" t-as="field">
+                                            <th class="text-start" t-out="field[0]" />
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="orders" t-as="o">
+                                        <t t-foreach="fields" t-as="field">
+                                            <td style="background-color: #dadada;">
+                                                <t
+                                                t-if="o[field[1]] and 'name' in o[field[1]]"
+                                            >
+                                                    <span t-out="o[field[1]].name" />
+                                                </t>
+                                                <t t-else="">
+                                                    <span
+                                                    t-out="o[field[1]] if o[field[1]] else ''"
+                                                />
+                                                </t>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                       </div>
+                   </div>
+           </t>
+       </t>
+   </template>
+</odoo>

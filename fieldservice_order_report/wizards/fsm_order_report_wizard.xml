@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_report_wizard_form" model="ir.ui.view">
+       <field name="name">fsm.order.report.wizard.form</field>
+       <field name="model">fsm.order.report.wizard</field>
+       <field name="arch" type="xml">
+           <form>
+                <group>
+                    <group>
+                        <field name="template_id" />
+                    </group>
+                </group>
+                <separator string="Filter Fields" />
+                <group>
+
+                    <group>
+                            <field name="vehicle_id" />
+                            <field name="dayroute_id" />
+                            <field name="fsm_route_id" />
+                            <field name="person_id" />
+                            <field name="location_id" />
+                    </group>
+                    <group>
+                            <field name="stage_id" />
+                            <field name="tag_ids" widget="many2many_tags" />
+                            <field name="team_id" />
+                            <field name="category_ids" widget="many2many_tags" />
+                            <field name="type" />
+                    </group>
+                    <separator string="Report Fields" />
+                    <field name="field_ids" widget="many2many_tags" />
+                </group>
+                <footer>
+                   <button
+                        name="action_print_report"
+                        string="Print"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                   <button name="cancel" string="Cancel" special="cancel" />
+               </footer>
+           </form>
+        </field>
+   </record>
+    <record id="fsm_order_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Field Service Order Report</field>
+        <field name="res_model">fsm.order.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="fsm_order_report_wizard_form" />
+    </record>
+    <menuitem
+        id="fsm_order_report_wizard_menu_action"
+        action="fsm_order_report_wizard_action"
+        parent="fieldservice.reporting"
+    />
+</odoo>

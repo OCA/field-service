@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+   <record id="action_report_fsm_order" model="ir.actions.report">
+       <field name="name">Fieldservice Order Report</field>
+       <field name="model">fsm.order</field>
+       <field name="report_type">qweb-pdf</field>
+       <field name="report_name">fieldservice_order_report.report_fsm_order</field>
+       <field name="binding_model_id" ref="fieldservice.model_fsm_order" />
+       <field name="binding_type">report</field>
+   </record>
+</odoo>
