@@ -55,14 +55,14 @@ Configuration
 
 To configure this module, you need to:
 
-- Go to Field Service > Master Data > Locations
-- Create or select a location and set the inventory location
+-  Go to Field Service > Master Data > Locations
+-  Create or select a location and set the inventory location
 
 If you are in a multi-warehouse situation:
 
-- Go to Field Service > Configuration > Territories
-- Create or select a territory
-- Set the warehouse that will serve this territory
+-  Go to Field Service > Configuration > Territories
+-  Create or select a territory
+-  Set the warehouse that will serve this territory
 
 Usage
 =====
@@ -98,18 +98,18 @@ Authors
 Contributors
 ------------
 
-- Brian McMaster <brian@mcmpest.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-- Freni Patel <fpatel@opensourceintegrators.com>
+-  Brian McMaster <brian@mcmpest.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+-  Freni Patel <fpatel@opensourceintegrators.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------

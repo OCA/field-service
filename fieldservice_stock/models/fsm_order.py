@@ -56,6 +56,17 @@ class FSMOrder(models.Model):
             order.return_count = len(incoming_pickings.ids)
             order.move_ids = order.picking_ids.mapped("move_ids")
 
+    @api.onchange("person_id")
+    def _onchange_person_id(self):
+        # Autofill the worker deafault warehouse if has one
+        completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
+        for order in self:
+            if order.stage_id.id == completed_stage.id:
+                continue
+            if order.person_id and order.person_id.default_warehouse_id:
+                order.warehouse_id = order.person_id.default_warehouse_id
+        return super()._onchange_person_id()
+
     def action_view_delivery(self):
         """
         This function returns an action that display existing delivery orders

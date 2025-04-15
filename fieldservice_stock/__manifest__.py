@@ -19,6 +19,7 @@
         "views/fsm_order.xml",
         "views/stock.xml",
         "views/stock_picking.xml",
+        "views/fsm_person.xml",
     ],
     "pre_init_hook": "_pre_init_hook",
     "license": "AGPL-3",
