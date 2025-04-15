@@ -10,4 +10,5 @@ from . import (
     stock_rule,
     stock_picking,
     fsm_wizard,
+    fsm_person,
 )
