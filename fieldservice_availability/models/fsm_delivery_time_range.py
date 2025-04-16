@@ -16,7 +16,8 @@ class FSMDeliveryTimeRange(models.Model):
     route_id = fields.Many2one(
         "fsm.route",
         string="Route",
-        help="Specific route this time range applies to. Leave empty for global time ranges.",
+        help="Specific route this time range applies to. "
+        "Leave empty for global time ranges.",
     )
     sequence = fields.Integer(
         default=10,
