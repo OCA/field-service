@@ -83,6 +83,7 @@ Contributors
 -  `APSL-Nagarro <https://www.apsl.tech>`__:
 
    -  Patryk Pyczko <ppyczko@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
