@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class FSMOrder(models.Model):
             skill_ids = []
             for category in self.category_ids:
                 skill_ids.extend([skill.id for skill in category.skill_ids])
-            self.skill_ids = [(6, 0, skill_ids)]
+            self.skill_ids = [Command.set(skill_ids)]
 
     @api.onchange("template_id")
     def _onchange_template_id(self):
@@ -52,4 +52,4 @@ class FSMOrder(models.Model):
                 )
                 if set(worker_skills.ids) >= set(req_skills):
                     worker_ids.append(w.id)
-        self.skill_worker_ids = [(6, 0, worker_ids)]
+        self.skill_worker_ids = [Command.set(worker_ids)]
