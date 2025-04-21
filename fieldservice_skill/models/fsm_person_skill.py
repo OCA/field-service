@@ -2,7 +2,7 @@
 # Copyright (C) 2020, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -32,7 +32,7 @@ class FSMPersonSkill(models.Model):
         for record in self:
             if record.skill_id not in record.skill_type_id.skill_ids:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The skill '%(skill)s' \
                         and skill type '%(skilltype)s' doesn't match",
                         skill=record.skill_id.name,
@@ -45,7 +45,7 @@ class FSMPersonSkill(models.Model):
         for record in self:
             if record.skill_level_id not in record.skill_type_id.skill_level_ids:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The skill level '%(skilllevel)s' \
                         is not valid for skill type: '%(skilltype)s' ",
                         skilllevel=record.skill_level_id.name,
