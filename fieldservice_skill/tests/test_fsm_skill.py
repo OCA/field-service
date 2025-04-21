@@ -1,6 +1,7 @@
 # Copyright 2020, Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -130,22 +131,25 @@ class TestFSMSkill(TransactionCase):
         # Create a category that requires great skills
         self.category_01_skills = [self.skill_04.id, self.skill_05.id, self.skill_06.id]
         self.category_01 = self.fsm_category.create(
-            {"name": "Sales", "skill_ids": [(6, 0, self.category_01_skills)]}
+            {"name": "Sales", "skill_ids": [Command.set(self.category_01_skills)]}
         )
         self.category_02_skills = [self.skill_05.id, self.skill_06.id, self.skill_07.id]
         self.category_02 = self.fsm_category.create(
-            {"name": "Sales1", "skill_ids": [(6, 0, self.category_02_skills)]}
+            {"name": "Sales1", "skill_ids": [Command.set(self.category_02_skills)]}
         )
         self.skill_type_02 = self.skill_type.create(
             {
                 "name": "Field Service Skills 2",
-                "skill_ids": [(6, 0, self.category_02_skills)],
+                "skill_ids": [Command.set(self.category_02_skills)],
             }
         )
         # Create a template that requires great skills
         self.template_01_skills = [self.skill_01.id, self.skill_02.id]
         self.template_01 = self.fsm_template.create(
-            {"name": "Template Name", "skill_ids": [(6, 0, self.template_01_skills)]}
+            {
+                "name": "Template Name",
+                "skill_ids": [Command.set(self.template_01_skills)],
+            }
         )
 
         # Create an order that requires no skills
@@ -157,7 +161,7 @@ class TestFSMSkill(TransactionCase):
         self.order_category_skills = self.fsm_order.create(
             {
                 "location_id": self.location_01.id,
-                "category_ids": [(6, 0, [self.category_01.id])],
+                "category_ids": [Command.set([self.category_01.id])],
             }
         )
 
