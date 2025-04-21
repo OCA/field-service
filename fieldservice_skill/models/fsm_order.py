@@ -31,7 +31,7 @@ class FSMOrder(models.Model):
     def _onchange_template_id(self):
         res = False
         if self.template_id:
-            res = super(FSMOrder, self)._onchange_template_id()
+            res = super()._onchange_template_id()
             self.skill_ids = self.template_id.skill_ids
         return res
 
