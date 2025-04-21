@@ -4,10 +4,11 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tests import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestFieldServiceKanbanInfo(TransactionCase):
+class TestFieldServiceKanbanInfo(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
