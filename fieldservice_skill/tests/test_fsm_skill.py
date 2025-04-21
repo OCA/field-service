@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFSMSkill(TransactionCase):
     def setUp(self):
-        super(TestFSMSkill, self).setUp()
+        super().setUp()
 
         self.skill = self.env["hr.skill"]
         self.skill_level = self.env["hr.skill.level"]
@@ -167,7 +167,6 @@ class TestFSMSkill(TransactionCase):
         )
 
     def test_fsm_skills(self):
-
         # Validate the order without skills can be done by all workers
         self.assertEqual(
             self.order_no_skills.skill_worker_ids.ids,
