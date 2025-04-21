@@ -4,3 +4,5 @@
 - Ammar Officewala \<aofficewala@opensourceintegrators.com\>
 - [XCG Consulting](https://xcg-consulting.fr):
   - Houzéfa Abbasbhay
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
