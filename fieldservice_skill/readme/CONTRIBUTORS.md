@@ -5,3 +5,5 @@
 - Brian McMaster \<brian@mcmpest.com\>
 - [Tecnativa](https://www.tecnativa.com):
   - Stefan Ungureanu
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
