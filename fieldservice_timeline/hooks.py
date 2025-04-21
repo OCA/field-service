@@ -3,7 +3,6 @@
 
 
 def uninstall_hook(cr, registry):
-
     cr.execute(
         "UPDATE ir_act_window "
         "SET view_mode=replace(view_mode, ',timeline', '')"
