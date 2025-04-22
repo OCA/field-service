@@ -34,14 +34,17 @@ operations. It provides the necessary models to store this information,
 which can be used by other modules to manage scheduling, availability,
 and workload adjustments.
 
-- **Blackout Days (\`fsm.blackout.day\`)**: Represent dates when field
-  service operations are unavailable (e.g., holidays, company-wide
-  closures).
-- **Stress Days (\`fsm.stress.day\`)**: Indicate dates with increased
-  service demand (e.g., peak business periods requiring additional
-  workforce).
-- **Delivery Time Ranges (\`fsm.delivery.time.range\`)**: Define
-  available time slots for scheduling field service operations.
+-  **Blackout Days (\`fsm.blackout.day\`)**: Represent dates when field
+   service operations are unavailable (e.g., holidays, company-wide
+   closures).
+-  **Blackout Groups (\`fsm.blackout.group\`)**: Represent groups of
+   days when field service operations are unavailable (e.g., holidays,
+   company-wide closures).
+-  **Stress Days (\`fsm.stress.day\`)**: Indicate dates with increased
+   service demand (e.g., peak business periods requiring additional
+   workforce).
+-  **Delivery Time Ranges (\`fsm.delivery.time.range\`)**: Define
+   available time slots for scheduling field service operations.
 
 This is a technical module and does not provide functionality on its
 own. Extend this module to integrate availability management into field
@@ -56,8 +59,8 @@ Usage
 =====
 
 Navigate to Field Service > Configuration > Scheduling. Once there, you
-can select Delivery Time Ranges, Blackout Days or Festive Days to create
-new records.
+can select Delivery Time Ranges, Blackout Days, Blackout Groups or
+Festive Days to create new records.
 
 Bug Tracker
 ===========
@@ -80,10 +83,10 @@ Authors
 Contributors
 ------------
 
-- `APSL-Nagarro <https://www.apsl.tech>`__:
+-  `APSL-Nagarro <https://www.apsl.tech>`__:
 
-  - Patryk Pyczko <ppyczko@apsl.net>
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Patryk Pyczko <ppyczko@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
