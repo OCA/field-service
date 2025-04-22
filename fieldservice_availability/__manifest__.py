@@ -3,7 +3,7 @@
 
 {
     "name": "Fieldservice Availability",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "summary": "Provides models for defining blackout days, stress days, "
     "and delivery time ranges for FSM availability management.",
     "category": "Field Service",
