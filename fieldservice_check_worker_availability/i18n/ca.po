@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_check_worker_availability
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-24 06:09+0000\n"
+"PO-Revision-Date: 2025-04-24 06:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fieldservice_check_worker_availability
+#. odoo-python
+#: code:addons/fieldservice_check_worker_availability/models/fsm_order.py:0
+#, python-format
+msgid ""
+"%(name)s has a registered leave from %(leave_start)s to %(leave_end)s, which overlaps with the scheduled time of this order (from %(order_start)s to %(order_end)s).\n"
+"Reason: %(reason)s"
+msgstr ""
+"%(name)s té una vacança registrada del %(leave_start)s al %(leave_end)s, "
+"que coincideix amb l'horari planificat per a aquesta ordre "
+"(del %(order_start)s fins al %(order_end)s).\n"
+"Motiu: %(reason)s"
+
+#. module: fieldservice_check_worker_availability
+#. odoo-python
+#: code:addons/fieldservice_check_worker_availability/models/fsm_order.py:0
+#, python-format
+msgid ""
+"%(name)s is not scheduled to work at the selected time range %(date)s / "
+"%(date_end)s."
+msgstr "%(name)s no fa feina el rang horari seleccionat %(date)s / "
+"%(date_end)s."
+
+#. module: fieldservice_check_worker_availability
+#: model:ir.model,name:fieldservice_check_worker_availability.model_fsm_order
+msgid "Field Service Order"
+msgstr ""
