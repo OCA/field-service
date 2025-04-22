@@ -30,6 +30,11 @@ msgid "Add a Field Service Blackout Day here."
 msgstr ""
 
 #. module: fieldservice_availability
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_blackout_groups
+msgid "Add a Field Service Blackout Group here."
+msgstr ""
+
+#. module: fieldservice_availability
 #: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_delivery_time_range
 msgid "Add a Field Service Delivery Time Range here."
 msgstr ""
@@ -61,7 +66,19 @@ msgid "Blackout Days (No Service)"
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_blackout_group
+msgid "Blackout Group"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_blackout_groups
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_blackout_group_root
+msgid "Blackout Groups"
+msgstr ""
+
+#. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_uid
 msgid "Created by"
@@ -69,6 +86,7 @@ msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_date
 msgid "Created on"
@@ -77,6 +95,11 @@ msgstr ""
 #. module: fieldservice_availability
 #: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__sequence
 msgid "Customize the order of time ranges. Lower numbers are shown first."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__fsm_blackout_day_ids
+msgid "Days"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -99,6 +122,7 @@ msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__display_name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__display_name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__display_name
 msgid "Display Name"
@@ -116,6 +140,7 @@ msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__id
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__id
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__id
 msgid "ID"
@@ -123,6 +148,7 @@ msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_uid
 msgid "Last Updated by"
@@ -130,12 +156,14 @@ msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__name
 msgid "Name"
 msgstr ""
