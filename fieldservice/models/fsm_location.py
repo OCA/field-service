@@ -25,7 +25,6 @@ class FSMLocation(models.Model):
     owner_id = fields.Many2one(
         "res.partner",
         string="Related Owner",
-        required=True,
         ondelete="restrict",
         auto_join=True,
     )
