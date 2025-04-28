@@ -216,6 +216,13 @@
                         >
                             <field name="module_fieldservice_route_stock" />
                         </setting>
+                        <setting
+                            string="Restricts route availability"
+                            help="Restricts blackout days for Scheduled Start (ETA)"
+                            invisible="not module_fieldservice_route"
+                        >
+                            <field name="module_fieldservice_route_availability" />
+                        </setting>
                     </block>
 
                     <block title="Mapping Tools" name="mapping_setting_container">

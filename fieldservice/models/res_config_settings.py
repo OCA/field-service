@@ -62,6 +62,9 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_route_stock = fields.Boolean(
         string="Check the inventory of the vehicle at the end of the route"
     )
+    module_fieldservice_route_availability = fields.Boolean(
+        string="Restricts blackout days for Scheduled Start (ETA)"
+    )
     module_fieldservice_sale = fields.Boolean(string="Sell FSM orders")
     module_fieldservice_size = fields.Boolean(
         string="Manage sizes for orders and locations"
