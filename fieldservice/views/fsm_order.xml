@@ -405,6 +405,12 @@
                     ]"
                     name="order_upcoming_month"
                 />
+                <filter
+                    string="Due This Week"
+                    name="this_week_orders"
+                    domain="[('scheduled_date_start', '&lt;=', ((context_today()+relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))),
+                    ('scheduled_date_start', '&gt;=', ((context_today()-relativedelta(weeks=1, weekday=0)).strftime('%Y-%m-%d')))]"
+                />
                 <separator />
                 <group expand="0" string="Group By">
                     <filter
