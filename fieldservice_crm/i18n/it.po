@@ -27,6 +27,11 @@ msgid "# Opportunities"
 msgstr "N° opportunità"
 
 #. module: fieldservice_crm
+#: model_terms:ir.ui.view,arch_db:fieldservice_crm.fsm_order_crm_kanban_view
+msgid "<i class=\"fa fa-dollar me-2 fa-lg\" title=\"Salesperson\"/>"
+msgstr ""
+
+#. module: fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice_crm.fieldservice_crm_form_view
 msgid "Create FS Order"
 msgstr "Crea ordine FS"
@@ -37,6 +42,11 @@ msgstr "Crea ordine FS"
 #, python-format
 msgid "Create FSM Order"
 msgstr "Crea ordine FSM"
+
+#. module: fieldservice_crm
+#: model:ir.model.fields,field_description:fieldservice_crm.field_fsm_order__opportunity_customer_vat
+msgid "Customer VAT"
+msgstr ""
 
 #. module: fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice_crm.fieldservice_crm_form_view
@@ -81,6 +91,19 @@ msgid "Please select a customer."
 msgstr "Selezionare un cliente."
 
 #. module: fieldservice_crm
+#: model:ir.model.fields,field_description:fieldservice_crm.field_fsm_order__sales_person_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: fieldservice_crm
 #: model:ir.model.fields,field_description:fieldservice_crm.field_crm_lead__fsm_order_ids
 msgid "Service Orders"
 msgstr "Ordini servizio"
+
+#. module: fieldservice_crm
+#: model:ir.model.fields,help:fieldservice_crm.field_fsm_order__opportunity_customer_vat
+msgid ""
+"The Tax Identification Number. Values here will be validated based on the "
+"country format. You can use '/' to indicate that the partner is not subject "
+"to tax."
+msgstr ""
