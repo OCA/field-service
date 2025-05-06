@@ -254,8 +254,8 @@ msgstr "Todas las Órdenes"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this "
-"language."
+"All the emails and documents sent to this contact will be translated in this"
+" language."
 msgstr ""
 "Todos los correos electrónicos y documentos enviados a este contacto serán "
 "traducidos a este idioma."
@@ -337,7 +337,8 @@ msgstr "Autocompletar equipos en Orden según la Ubicación"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Auto-populate the equipments on the order based on the location content"
+msgid ""
+"Auto-populate the equipments on the order based on the location content"
 msgstr ""
 "Rellenar automáticamente los equipos en el pedido en función del contenido "
 "de la ubicación"
@@ -484,8 +485,8 @@ msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
 "existing FSM Stage."
 msgstr ""
-"No se puede crear Etapa de FSM porque tiene el mismo tipo y secuencia de una "
-"existente."
+"No se puede crear Etapa de FSM porque tiene el mismo tipo y secuencia de una"
+" existente."
 
 #. module: fieldservice
 #. odoo-python
@@ -788,7 +789,8 @@ msgstr "Convertir en un Trabajador de Servicio de Campo o Ubicación"
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_bounce
 msgid "Counter of the number of bounced emails for this contact"
 msgstr ""
-"Contador de la cantidad de correos electrónicos rechazados para este contacto"
+"Contador de la cantidad de correos electrónicos rechazados para este "
+"contacto"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_id
@@ -1226,8 +1228,8 @@ msgid ""
 "Explanation text to help users using the star and priority mechanism on "
 "stages or orders that are in this stage."
 msgstr ""
-"Texto de explicación para ayudar a los usuarios que utilizan el mecanismo de "
-"estrella y prioridad en etapas u órdenes que se encuentran en esta etapa."
+"Texto de explicación para ayudar a los usuarios que utilizan el mecanismo de"
+" estrella y prioridad en etapas u órdenes que se encuentran en esta etapa."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
@@ -1422,8 +1424,7 @@ msgstr "Icono de fuente impresionante, por ejemplo fa-tasks"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_formatted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_formatted
 msgid "Format email address \"Name <email@domain>\""
-msgstr ""
-"Formato de dirección de correo electrónico \"Nombre <email @ dominio>\""
+msgstr "Formato de dirección de correo electrónico \"Nombre <email @ dominio>\""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email_formatted
@@ -1599,15 +1600,10 @@ msgstr "Si está marcado, los nuevos mensajes requieren su atención."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
-#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -2380,6 +2376,9 @@ msgstr "Necesidad Programada"
 
 #. module: fieldservice
 #. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+#: code:addons/fieldservice/models/fsm_order.py:0
+#: code:addons/fieldservice/models/fsm_order.py:0
 #: code:addons/fieldservice/models/fsm_order.py:0
 #: model:fsm.stage,name:fieldservice.fsm_stage_new
 msgid "New"
@@ -3163,12 +3162,6 @@ msgid "Services in this stage are considered as closed."
 msgstr "Los servicios en esta etapa se consideran cerrados."
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__use_partner_credit_limit
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__use_partner_credit_limit
-msgid "Set a value greater than 0.0 to activate a credit limit check"
-msgstr ""
-
-#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
 #: model:ir.ui.menu,name:fieldservice.settings
 msgid "Settings"
@@ -3363,6 +3356,7 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__team_id
 msgid "Team"
 msgstr "Equipo"
@@ -3431,8 +3425,8 @@ msgid ""
 "country format. You can use '/' to indicate that the partner is not subject "
 "to tax."
 msgstr ""
-"El número de identificación fiscal. Los valores aquí se validarán en función "
-"del formato del país. Puede utilizar '/' para indicar que el socio no está "
+"El número de identificación fiscal. Los valores aquí se validarán en función"
+" del formato del país. Puede utilizar '/' para indicar que el socio no está "
 "sujeto a impuestos."
 
 #. module: fieldservice
@@ -3507,8 +3501,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can "
-"contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can"
+" contain more than strictly an email address."
 msgstr ""
 "Este campo se utiliza para buscar por dirección de correo electrónico, ya "
 "que el campo de correo electrónico principal puede contener algo más que "
@@ -3550,8 +3544,8 @@ msgid ""
 "This stage is folded in the kanban view when there are no record in that "
 "stage to display."
 msgstr ""
-"Esta etapa se pliega en la vista kanban cuando no hay ningún registro en esa "
-"etapa para mostrar."
+"Esta etapa se pliega en la vista kanban cuando no hay ningún registro en esa"
+" etapa para mostrar."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz
@@ -3768,11 +3762,9 @@ msgstr "Historial de comunicación del sitio web"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are "
-"computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your "
-"web client."
+"Anywhere else, time values are computed according to the time offset of your web client."
 msgstr ""
 "Al imprimir documentos y exportar e importar datos, los valores de fechas y "
 "horas se calculan con base en esta zona horaria.\n"
