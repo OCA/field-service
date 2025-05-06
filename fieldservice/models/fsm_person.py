@@ -27,6 +27,7 @@ class FSMPerson(models.Model):
     active_partner = fields.Boolean(
         related="partner_id.active", readonly=True, string="Partner is Active"
     )
+    team_id = fields.Many2one("fsm.team", string="Team")
 
     def toggle_active(self):
         for person in self:

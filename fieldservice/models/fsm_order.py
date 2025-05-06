@@ -443,6 +443,11 @@ class FSMOrder(models.Model):
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
 
+    @api.onchange("person_id")
+    def _onchange_person_id(self):
+        if self.person_id and self.person_id.team_id:
+            self.team_id = self.person_id.team_id
+
     def _get_location_directions(self, location_id):  # pragma: no cover
         # TODO(migration): Remove this method
         warnings.warn(

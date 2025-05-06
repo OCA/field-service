@@ -14,6 +14,7 @@
                     options="{'color_field': 'color'}"
                     groups="fieldservice.group_fsm_category"
                 />
+                <field name="team_id" groups="fieldservice.group_fsm_team" />
                 <field name="calendar_id" />
             </list>
         </field>
@@ -149,6 +150,10 @@
                             <field name="phone" />
                             <field name="mobile" />
                             <field name="email" />
+                            <field
+                                name="team_id"
+                                groups="fieldservice.group_fsm_team"
+                            />
                             <field name="calendar_id" />
                         </group>
                     </group>
