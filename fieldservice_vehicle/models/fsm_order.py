@@ -29,3 +29,4 @@ class FSMOrder(models.Model):
             and self.person_id.vehicle_id.id
             or False
         )
+        return super()._onchange_person_id()
