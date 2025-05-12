@@ -56,28 +56,30 @@ class SaleOrder(models.Model):
 
     def write(self, values):
         res = super().write(values)
-        commitment_date = self.commitment_date or self._get_next_route_day()
+        for order in self:
+            commitment_date = order.commitment_date or order._get_next_route_day()
 
-        picking_values = {
-            "scheduled_date": commitment_date,
-        }
-        fsm_order_values = {
-            "request_early": commitment_date,
-            "scheduled_date_start": commitment_date,
-            "scheduled_date_end": self.commitment_date_end or commitment_date,
-        }
+            picking_values = {
+                "scheduled_date": commitment_date,
+            }
+            fsm_order_values = {
+                "request_early": commitment_date,
+                "scheduled_date_start": commitment_date,
+                "scheduled_date_end": order.commitment_date_end or commitment_date,
+            }
 
-        self.picking_ids.filtered(lambda r: r.state not in ["done", "cancel"]).write(
-            picking_values
-        )
-        fsm_orders = self.env["fsm.order"].search(
-            [
-                ("sale_id", "=", self.id),
-                ("sale_line_id", "=", False),
-                ("is_closed", "=", False),
-            ]
-        )
-        fsm_orders.write(fsm_order_values)
+            order.picking_ids.filtered(
+                lambda r: r.state not in ["done", "cancel"]
+            ).write(picking_values)
+            fsm_orders = self.env["fsm.order"].search(
+                [
+                    ("sale_id", "=", order.id),
+                    ("sale_line_id", "=", False),
+                    ("is_closed", "=", False),
+                ]
+            )
+            fsm_orders.write(fsm_order_values)
+
         return res
 
     def _action_confirm(self):
