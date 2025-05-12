@@ -172,7 +172,7 @@ class SaleOrder(models.Model):
         created_fsm_orders = self.env["fsm.order"]
 
         for sale in self:
-            new_fsm_orders = self._field_service_generate()
+            new_fsm_orders = sale._field_service_generate()
 
             if len(new_fsm_orders) > 0:
                 created_fsm_orders |= new_fsm_orders
