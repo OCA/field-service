@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Sale Stock Route",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "summary": "Link between Field Service Sale Stock and Route",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
