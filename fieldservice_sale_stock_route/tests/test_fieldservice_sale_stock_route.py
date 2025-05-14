@@ -177,7 +177,9 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
             "Postpone button should be visible after confirmation.",
         )
 
-        next_route_day = self.sale_order._get_next_route_day()
+        next_route_day = self.sale_order._get_next_route_day(
+            from_date=self.sale_order.commitment_date + timedelta(days=1)
+        )
         related_fsm_order.action_postpone_delivery()
 
         self.assertEqual(

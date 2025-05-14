@@ -36,7 +36,7 @@ class FSMOrder(models.Model):
         for fsm_order in self.filtered(self._is_valid_fsm_order):
             sale_order = fsm_order.sale_id
             new_commitment_date = sale_order._get_next_route_day(
-                from_date=sale_order.commitment_date
+                from_date=sale_order.commitment_date + timedelta(days=1)
             )
             date_diff = (new_commitment_date - sale_order.commitment_date).days
 
