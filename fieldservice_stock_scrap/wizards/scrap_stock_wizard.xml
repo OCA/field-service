@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="scrap_stock_wizard_view_form" model="ir.ui.view">
+    <field name="name">scrap.stock.wizard.form</field>
+    <field name="model">scrap.stock.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Scrap Stock from Stock Requests">
+            <group>
+                <field name="company_id" invisible="1" />
+                <field name="scrap_location_id" />
+            </group>
+            <notebook>
+                <page string="Stock Requests Orders">
+                    <field name="scrap_stock_entries">
+                         <tree editable="bottom" create="0">
+                            <field name="product_id" />
+                            <field name="quantity" readonly="1" />
+                            <field name="scrap_qty" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+            <footer>
+                <button
+                        name="action_scrap"
+                        type="object"
+                        string="Accept"
+                        class="oe_highlight"
+                    />
+                <button special="cancel" string="Cancel" />
+            </footer>
+        </form>
+    </field>
+</record>
+</odoo>
