@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.fsm</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//div[@id='orders']" position="after">
+        <h2>Website Sales</h2>
+        <div class="row mt16 o_settings_container" id="orders">
+          <div class="col-xs-12 col-md-6 o_setting_box">
+            <div class="o_setting_left_pane" />
+            <div class="o_setting_right_pane">
+              <span class="o_form_label">
+                Maximum Allowed Time for Order Placement
+              </span>
+              <div class="text-muted">
+                Specify the maximum timeframe for future order placement by selecting a number and a
+                unit (e.g., '1 month', '2 weeks'). This determines how far into the future customers
+                can schedule their orders.
+              </div>
+              <div class="content-group">
+                <div class="row mt16">
+                  <label
+                                        string="Number"
+                                        for="max_date_number"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                  <div class="col-lg-6">
+                    <field
+                                            name="max_date_number"
+                                            class="o_field_widget"
+                                            widget="selection"
+                                        />
+                  </div>
+                </div>
+                <div class="row mt16">
+                  <label
+                                        string="Unit"
+                                        for="max_date_unit"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                  <div class="col-lg-6">
+                    <field
+                                            name="max_date_unit"
+                                            class="o_field_widget"
+                                            widget="selection"
+                                        />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

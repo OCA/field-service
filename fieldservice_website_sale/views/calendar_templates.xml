@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <template id="fsm_delivery_calendar_template" name="FSM Delivery Calendar">
+    <section id="delivery_calendar" class="fsm_delivery_calendar">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-8 col-md-12 my-4 my-lg-0">
+              <div class="fsm_website_sale_calendar" />
+            </div>
+            <div
+                            class="col-lg-4 col-md-12 d-flex flex-column align-items-center justify-content-center"
+                        >
+              <div
+                                class="time-range-container d-flex flex-column justify-content-center mt-3"
+                            >
+                <label
+                                    for="time-range-dropdown"
+                                    class="text-center"
+                                >Select Time Range: </label>
+                <select
+                                    id="time-range-dropdown"
+                                    class="time-range-dropdown form-control text-center"
+                                >
+                </select>
+              </div>
+              <div class="legend-container mt-4 text-left">
+                <div class="d-flex align-items-center mt-2">
+                  <div
+                                        class="legend-color-box"
+                                        style="background-color: #d0ebff; width: 20px; height: 20px; border: 1px solid #ccc; margin-right: 10px;"
+                                    />
+                  <span class="text-muted">Available Day</span>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                  <div
+                                        class="legend-color-box"
+                                        style="background-color: #f8f9fa; width: 20px; height: 20px; border: 1px solid #ccc; margin-right: 10px;"
+                                    />
+                  <span class="text-muted">Unavailable Day</span>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                  <div
+                                        class="legend-color-box"
+                                        style="background-color: #71639e; width: 20px; height: 20px; border: 1px solid #ccc; margin-right: 10px;"
+                                    />
+                  <span class="text-muted">Selected Day</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+                        class="no-enabled-dates-message alert alert-danger text-center d-none m-0"
+                    >No delivery dates are available because a valid delivery route hasn't been assigned to the selected address. Please reach out to us using this <a
+                            href="/contactus"
+                        >contact form</a>. </div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="payment_with_calendar" inherit_id="website_sale.payment">
+    <xpath expr="//div[@id='address_on_payment']" position="after">
+      <t t-call="fieldservice_website_sale.fsm_delivery_calendar_template" />
+    </xpath>
+  </template>
+
+  <template id="payment_checkout_with_calendar" inherit_id="payment.checkout">
+    <xpath expr="//form[@name='o_payment_checkout']" position="attributes">
+      <attribute name="data-selected-date" />
+      <attribute name="data-selected-time-range" />
+    </xpath>
+  </template>
+
+  <template id="payment_manage_with_calendar" inherit_id="payment.manage">
+    <xpath expr="//form[@name='o_payment_manage']" position="attributes">
+      <attribute name="data-selected-date" />
+      <attribute name="data-selected-time-range" />
+    </xpath>
+  </template>
+
+</odoo>

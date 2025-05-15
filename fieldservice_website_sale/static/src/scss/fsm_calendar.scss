@@ -1,0 +1,35 @@
+.datepicker table tr td.day {
+    background-color: #d0ebff;
+    color: #000;
+}
+
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+    background: #f8f9fa;
+    color: #999999;
+}
+
+.datepicker table tr td.day.active,
+.datepicker table tr td.day.active:hover {
+    background-color: #71639e;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.datepicker table tr td.day:hover {
+    background-color: #8b7ca7;
+    color: #fff;
+}
+
+.time-range-dropdown {
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+// Prevent first column to be wider than the other ones
+.datepicker table td:first-child {
+    min-width: auto !important;
+}
