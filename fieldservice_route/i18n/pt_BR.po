@@ -143,7 +143,9 @@ msgid "Field Service Stage"
 msgstr "Estágio do Serviço de Campo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__friday
+#, python-format
 msgid "Friday"
 msgstr "Sexta"
 
@@ -222,7 +224,9 @@ msgstr ""
 "Números máximos de ordens que podem ser adicionados a este dia de rota."
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__monday
+#, python-format
 msgid "Monday"
 msgstr "Segunda"
 
@@ -299,7 +303,9 @@ msgid "Routes"
 msgstr "Rotas"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__saturday
+#, python-format
 msgid "Saturday"
 msgstr "Sábado"
 
@@ -314,7 +320,9 @@ msgid "Start Location"
 msgstr "Localização Inical"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__sunday
+#, python-format
 msgid "Sunday"
 msgstr "Domingo"
 
@@ -332,11 +340,13 @@ msgstr "A rota do dia está excedendo o número máximo de ordens da rota."
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
-msgid "The route %(route_name)s does not run on %(name)s!"
-msgstr "A rota %(route_name)s não funciona em %(name)s!"
+msgid "The route %(route_name)s does not run on %(day)s!"
+msgstr ""
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
+#, python-format
 msgid "Thursday"
 msgstr "Quinta"
 
@@ -351,7 +361,9 @@ msgid "Timing"
 msgstr "Cronometragem"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__tuesday
+#, python-format
 msgid "Tuesday"
 msgstr "Terça"
 
@@ -361,7 +373,9 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__wednesday
+#, python-format
 msgid "Wednesday"
 msgstr "Quarta"
 
@@ -376,6 +390,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "orders per day route"
 msgstr "ordens por dia de rota"
+
+#, python-format
+#~ msgid "The route %(route_name)s does not run on %(name)s!"
+#~ msgstr "A rota %(route_name)s não funciona em %(name)s!"
 
 #~ msgid "Equipment"
 #~ msgstr "Equipamento"

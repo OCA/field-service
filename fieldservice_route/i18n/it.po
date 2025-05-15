@@ -142,7 +142,9 @@ msgid "Field Service Stage"
 msgstr "Fase assistenza sul campo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__friday
+#, python-format
 msgid "Friday"
 msgstr "Venerdì"
 
@@ -222,7 +224,9 @@ msgstr ""
 "giornaliero."
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__monday
+#, python-format
 msgid "Monday"
 msgstr "Lunedì"
 
@@ -299,7 +303,9 @@ msgid "Routes"
 msgstr "Percorsi"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__saturday
+#, python-format
 msgid "Saturday"
 msgstr "Sabato"
 
@@ -314,7 +320,9 @@ msgid "Start Location"
 msgstr "Località di partenza"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__sunday
+#, python-format
 msgid "Sunday"
 msgstr "Domenica"
 
@@ -333,11 +341,13 @@ msgstr ""
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
-msgid "The route %(route_name)s does not run on %(name)s!"
-msgstr "Il percorso %(route_name)s non passa per %(name)s!"
+msgid "The route %(route_name)s does not run on %(day)s!"
+msgstr ""
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
+#, python-format
 msgid "Thursday"
 msgstr "Giovedì"
 
@@ -352,7 +362,9 @@ msgid "Timing"
 msgstr "Tempistica"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__tuesday
+#, python-format
 msgid "Tuesday"
 msgstr "Martedì"
 
@@ -362,7 +374,9 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__wednesday
+#, python-format
 msgid "Wednesday"
 msgstr "Mercoledì"
 
@@ -376,3 +390,7 @@ msgstr "Prima serve creare una squadra FSM."
 #: model_terms:ir.ui.view,arch_db:fieldservice_route.fsm_route_form
 msgid "orders per day route"
 msgstr "ordini per percorso giornaliero"
+
+#, python-format
+#~ msgid "The route %(route_name)s does not run on %(name)s!"
+#~ msgstr "Il percorso %(route_name)s non passa per %(name)s!"
