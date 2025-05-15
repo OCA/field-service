@@ -360,26 +360,30 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Auto-populate the equipments on the order based on the location content"
+msgid ""
+"Auto-populate the equipments on the order based on the location\n"
+"                                    content"
 msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Auto-populate the preferred workers of a location based on the territory"
+"Auto-populate the preferred workers of a location based on the\n"
+"                                    territory"
 msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Automatically calculate the \"Latest Request Date\" based on an order's "
-"priority"
+"Automatically calculate the \"Latest Request\n"
+"                                    Date\" based on an order's priority"
 msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Automatically creates a day route when an order is assigned and scheduled"
+"Automatically creates a day route when an order is assigned and\n"
+"                                    scheduled"
 msgstr ""
 
 #. module: fieldservice
@@ -468,6 +472,12 @@ msgstr "Şube Müdürü"
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "CRM"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__can_publish
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__can_publish
+msgid "Can Publish"
 msgstr ""
 
 #. module: fieldservice
@@ -815,7 +825,9 @@ msgstr "Bir sipariş şablonu oluşturun"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Create multiple FSM Locations at once using Location Builder Wizard"
+msgid ""
+"Create multiple FSM Locations at once using Location Builder\n"
+"                                    Wizard"
 msgstr ""
 
 #. module: fieldservice
@@ -826,7 +838,8 @@ msgstr "Bir çalışanın bağlantılı konumlarını oluşturun."
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Create vendor bills and customer invoices when completing service orders.\n"
+"Create vendor bills and customer invoices when completing\n"
+"                                    service orders.\n"
 "                                    Track costs and revenues."
 msgstr ""
 
@@ -1095,6 +1108,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
 msgid "Employees Count"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Enable customers to select delivery dates during checkout. These\n"
+"                                    dates define delivery windows for stock "
+"pickings and FSM orders,\n"
+"                                    which are automatically assigned to day "
+"routes."
 msgstr ""
 
 #. module: fieldservice
@@ -1580,6 +1603,12 @@ msgid "Instructions"
 msgstr "Talimatlar"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Integrate E-Commerce with Field Service Workflows"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
 msgid "Internal Type"
@@ -1632,6 +1661,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_is_follower
 msgid "Is Follower"
 msgstr "Takipçi mi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_published
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_published
+msgid "Is Published"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_company
@@ -1704,6 +1739,12 @@ msgstr "Dil"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard____last_update
 msgid "Last Modified on"
 msgstr "Son Düzenlenme"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_website_so_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_website_so_id
+msgid "Last Online Sales Order"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__write_uid
@@ -2839,6 +2880,12 @@ msgid "Responsible User"
 msgstr "Sorumlu Kullanıcı"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_id
+msgid "Restrict publishing to this website."
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Routes"
 msgstr "Rotalar"
@@ -3254,6 +3301,12 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_url
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_url
+msgid "The full URL to access the document through the website."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__country_name
 msgid "The full name of the country."
 msgstr ""
@@ -3571,6 +3624,24 @@ msgid "Vendor Payment Terms"
 msgstr "Tedarikçi Ödeme Koşulları"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_published
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_published
+msgid "Visible on current website"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__visitor_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__visitor_ids
+msgid "Visitors"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_id
+msgid "Website"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website
 msgid "Website Link"
@@ -3583,6 +3654,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
 msgid "Website Messages"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_url
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_url
+msgid "Website URL"
 msgstr ""
 
 #. module: fieldservice

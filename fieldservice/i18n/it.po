@@ -366,33 +366,31 @@ msgstr "Autocompleta le attrezzature negli ordini in base alla località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Auto-populate the equipments on the order based on the location content"
+msgid ""
+"Auto-populate the equipments on the order based on the location\n"
+"                                    content"
 msgstr ""
-"Autocompleta le attrezzature negli ordini in base al contenuto della località"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Auto-populate the preferred workers of a location based on the territory"
+"Auto-populate the preferred workers of a location based on the\n"
+"                                    territory"
 msgstr ""
-"Autocompleta l'operatore preferito nella località in base al territorio"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Automatically calculate the \"Latest Request Date\" based on an order's "
-"priority"
+"Automatically calculate the \"Latest Request\n"
+"                                    Date\" based on an order's priority"
 msgstr ""
-"Calcola automaticamente la \"data ultima richiesta\" in base alla priorità "
-"dell'ordine"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Automatically creates a day route when an order is assigned and scheduled"
+"Automatically creates a day route when an order is assigned and\n"
+"                                    scheduled"
 msgstr ""
-"Crea automaticamente un itinerario giornaliero quando viene assegnato e "
-"pianificato un ordine"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
@@ -483,6 +481,12 @@ msgstr "Responsabile filiale"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "CRM"
 msgstr "CRM"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__can_publish
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__can_publish
+msgid "Can Publish"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
@@ -831,10 +835,10 @@ msgstr "Crea un modello ordine"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid "Create multiple FSM Locations at once using Location Builder Wizard"
+msgid ""
+"Create multiple FSM Locations at once using Location Builder\n"
+"                                    Wizard"
 msgstr ""
-"Crea più località FSM contemporaneamente utilizzando la procedura guidata "
-"del generatore di località"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location_person
@@ -844,12 +848,10 @@ msgstr "Crea le località collegate di un lavoratore."
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
-"Create vendor bills and customer invoices when completing service orders.\n"
+"Create vendor bills and customer invoices when completing\n"
+"                                    service orders.\n"
 "                                    Track costs and revenues."
 msgstr ""
-"Crea fatture fornitore e fatture cliente durante il completamento degli "
-"ordini di assistenza.\n"
-"Tieni traccia di costi e ricavi."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__create_uid
@@ -1117,6 +1119,16 @@ msgstr "Dipendenti"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
 msgid "Employees Count"
 msgstr "Conteggio dipendenti"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Enable customers to select delivery dates during checkout. These\n"
+"                                    dates define delivery windows for stock "
+"pickings and FSM orders,\n"
+"                                    which are automatically assigned to day "
+"routes."
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__equipment_count
@@ -1607,6 +1619,12 @@ msgid "Instructions"
 msgstr "Istruzioni"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Integrate E-Commerce with Field Service Workflows"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
 msgid "Internal Type"
@@ -1659,6 +1677,12 @@ msgstr "È un pulsante"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_is_follower
 msgid "Is Follower"
 msgstr "Segue"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_published
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_published
+msgid "Is Published"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_company
@@ -1731,6 +1755,12 @@ msgstr "Lingua"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__last_website_so_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__last_website_so_id
+msgid "Last Online Sales Order"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__write_uid
@@ -2880,6 +2910,12 @@ msgid "Responsible User"
 msgstr "Utente responsabile"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_id
+msgid "Restrict publishing to this website."
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Routes"
 msgstr "Rotte"
@@ -3308,6 +3344,12 @@ msgstr ""
 "La posizione fiscale determina le tasse/conti utilizzati per questo contatto."
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_url
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_url
+msgid "The full URL to access the document through the website."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__country_name
 msgid "The full name of the country."
 msgstr "Il nome completo della nazione."
@@ -3647,6 +3689,24 @@ msgid "Vendor Payment Terms"
 msgstr "Termini pagamento fornitore"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_published
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_published
+msgid "Visible on current website"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__visitor_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__visitor_ids
+msgid "Visitors"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_id
+msgid "Website"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website
 msgid "Website Link"
@@ -3660,6 +3720,12 @@ msgstr "Link al sito web"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_url
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_url
+msgid "Website URL"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
@@ -3778,6 +3844,44 @@ msgstr "etichetta"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
 msgid "template"
 msgstr "modello"
+
+#~ msgid ""
+#~ "Auto-populate the equipments on the order based on the location content"
+#~ msgstr ""
+#~ "Autocompleta le attrezzature negli ordini in base al contenuto della "
+#~ "località"
+
+#~ msgid ""
+#~ "Auto-populate the preferred workers of a location based on the territory"
+#~ msgstr ""
+#~ "Autocompleta l'operatore preferito nella località in base al territorio"
+
+#~ msgid ""
+#~ "Automatically calculate the \"Latest Request Date\" based on an order's "
+#~ "priority"
+#~ msgstr ""
+#~ "Calcola automaticamente la \"data ultima richiesta\" in base alla "
+#~ "priorità dell'ordine"
+
+#~ msgid ""
+#~ "Automatically creates a day route when an order is assigned and scheduled"
+#~ msgstr ""
+#~ "Crea automaticamente un itinerario giornaliero quando viene assegnato e "
+#~ "pianificato un ordine"
+
+#~ msgid "Create multiple FSM Locations at once using Location Builder Wizard"
+#~ msgstr ""
+#~ "Crea più località FSM contemporaneamente utilizzando la procedura guidata "
+#~ "del generatore di località"
+
+#~ msgid ""
+#~ "Create vendor bills and customer invoices when completing service "
+#~ "orders.\n"
+#~ "                                    Track costs and revenues."
+#~ msgstr ""
+#~ "Crea fatture fornitore e fatture cliente durante il completamento degli "
+#~ "ordini di assistenza.\n"
+#~ "Tieni traccia di costi e ricavi."
 
 #~ msgid "Additional info"
 #~ msgstr "Informazioni aggiuntive"
