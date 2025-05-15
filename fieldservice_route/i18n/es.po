@@ -6,16 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-06 08:15+0000\n"
-"PO-Revision-Date: 2022-10-06 10:22+0200\n"
+"POT-Creation-Date: 2025-04-01 05:23+0000\n"
+"PO-Revision-Date: 2025-04-01 05:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
 
 #. module: fieldservice_route
 #: model_terms:ir.actions.act_window,help:fieldservice_route.action_fsm_route_dayroute
@@ -143,7 +141,9 @@ msgid "Field Service Stage"
 msgstr "Etapa de Servicio de Campo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__friday
+#, python-format
 msgid "Friday"
 msgstr "Viernes"
 
@@ -152,7 +152,7 @@ msgstr "Viernes"
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_day__id
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: fieldservice_route
 #: model:ir.model.fields,field_description:fieldservice_route.field_fsm_route_dayroute__last_location_id
@@ -218,10 +218,13 @@ msgstr "Número máximo de pedidos por ruta del día."
 #. module: fieldservice_route
 #: model:ir.model.fields,help:fieldservice_route.field_fsm_route_dayroute__max_order
 msgid "Maximum numbers of orders that can be added to this day route."
-msgstr "Número máximo de pedidos que pueden ser añadidos a estar ruta del día."
+msgstr ""
+"Número máximo de pedidos que pueden ser añadidos a estar ruta del día."
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__monday
+#, python-format
 msgid "Monday"
 msgstr "Lunes"
 
@@ -233,6 +236,9 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
+#: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
 msgid "New"
@@ -298,7 +304,9 @@ msgid "Routes"
 msgstr "Rutas"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__saturday
+#, python-format
 msgid "Saturday"
 msgstr "Sábado"
 
@@ -313,7 +321,9 @@ msgid "Start Location"
 msgstr "Ubicación Inicial"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__sunday
+#, python-format
 msgid "Sunday"
 msgstr "Domingo"
 
@@ -332,11 +342,13 @@ msgstr ""
 #. module: fieldservice_route
 #: code:addons/fieldservice_route/models/fsm_route_dayroute.py:0
 #, python-format
-msgid "The route %(route_name)s does not run on %(name)s!"
-msgstr "¡La ruta %(route_name)s no se realiza el %(name)s!"
+msgid "The route %(route_name)s does not run on %(day)s!"
+msgstr "¡La ruta %(route_name)s no se realiza el %(day)s!"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__thursday
+#, python-format
 msgid "Thursday"
 msgstr "Jueves"
 
@@ -351,7 +363,9 @@ msgid "Timing"
 msgstr "Temporizador"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__tuesday
+#, python-format
 msgid "Tuesday"
 msgstr "Martes"
 
@@ -361,7 +375,9 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: fieldservice_route
+#: code:addons/fieldservice_route/models/fsm_route_day.py:0
 #: model:ir.model.fields.selection,name:fieldservice_route.selection__fsm_route_day__name__wednesday
+#, python-format
 msgid "Wednesday"
 msgstr "Miércoles"
 

@@ -125,9 +125,13 @@ class FSMRouteDayRoute(models.Model):
                 day_index = rec.date.weekday()
                 day = self.env.ref("fieldservice_route.fsm_route_day_" + str(day_index))
                 if day.id not in rec.route_id.day_ids.ids:
+                    translated_day = day.with_context(
+                        lang=self.env.user.lang
+                    ).name_get()[0][1]
+
                     raise ValidationError(
-                        _("The route %(route_name)s does not run on %(name)s!")
-                        % {"route_name": rec.route_id.name, "name": day.name}
+                        _("The route %(route_name)s does not run on %(day)s!")
+                        % {"route_name": rec.route_id.name, "day": translated_day}
                     )
 
     @api.constrains("route_id", "max_order", "order_count")
