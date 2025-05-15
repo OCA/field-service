@@ -3,6 +3,8 @@
 
 from datetime import datetime, timedelta
 
+from freezegun import freeze_time
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -44,6 +46,7 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
             }
         )
 
+    @freeze_time("2025-05-15")
     def test_commitment_dates_on_confirmation(self):
         """
         Test that commitment_date and commitment_date_end are correctly
@@ -69,6 +72,7 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
             "Commitment date end should match commitment date after confirmation.",
         )
 
+    @freeze_time("2025-05-15")
     def test_commitment_date_end_before_commitment_date(self):
         """
         Test that commitment_date_end is set to commitment_date if
@@ -112,6 +116,7 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
         with self.assertRaises(ValidationError):
             self.sale_order._action_confirm()
 
+    @freeze_time("2025-05-15")
     def test_write_commitment_dates_to_related_records(self):
         """Test that commitment_date is written to related pickings and FSM orders."""
         next_route_day = self.sale_order._get_next_route_day()
@@ -201,6 +206,7 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
             "and preserve the time.",
         )
 
+    @freeze_time("2025-05-15")
     def test_force_schedule_override(self):
         """
         Test that force_schedule on FSM route allows scheduling on any day.
