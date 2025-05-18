@@ -175,8 +175,5 @@ class StockRequest(models.Model):
                 if req.order_id:
                     req.order_id.procurement_group_id = group.id
                 req.procurement_group_id = group.id
-                res = super(StockRequest, req)._action_confirm()
                 req.fsm_order_id.request_stage = "open"
-            else:
-                res = super(StockRequest, req)._action_confirm()
-            return res
+        return super()._action_confirm()
