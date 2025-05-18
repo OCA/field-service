@@ -5,7 +5,7 @@
 {
     "name": "Field Service Route",
     "summary": "Organize the routes of each day.",
-    "version": "15.0.1.3.0",
+    "version": "15.0.1.4.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
