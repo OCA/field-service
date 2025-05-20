@@ -14,4 +14,15 @@
         </field>
     </record>
 
+    <record id="fsm_order_route_calendar_view" model="ir.ui.view">
+        <field name="name">fsm.order.route.calendar</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_calendar_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field name="fsm_route_id" filters="1" invisible="not fsm_route_id" />
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
