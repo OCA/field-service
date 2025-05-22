@@ -70,6 +70,24 @@ class FSMLocation(models.Model):
         compute="_compute_complete_name", recursive=True, store=True
     )
 
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        args = args or []
+        if name:
+            locations = self.search(
+                [
+                    "|",
+                    "|",
+                    ("name", operator, name),
+                    ("partner_id.vat", operator, name),
+                    ("email", operator, name),
+                ]
+                + args,
+                limit=limit,
+            )
+            return locations.name_get()
+        return super().name_search(name, args, operator, limit)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
