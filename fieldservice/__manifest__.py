@@ -35,6 +35,7 @@
         "views/fsm_team.xml",
         "views/menu.xml",
         "wizard/fsm_wizard.xml",
+        "wizard/fsm_create_sublocation_wizard.xml",
     ],
     "demo": [
         "demo/fsm_demo.xml",
