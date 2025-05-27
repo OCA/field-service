@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from freezegun import freeze_time
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -52,7 +53,8 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
         Test that commitment_date and commitment_date_end are correctly
         computed when the sale order is confirmed.
         """
-        next_route_day = self.sale_order._get_next_route_day()
+        tomorrow = fields.Datetime.now() + timedelta(days=1)
+        next_route_day = self.sale_order._get_next_route_day(from_date=tomorrow)
         self.sale_order._action_confirm()
 
         self.assertTrue(

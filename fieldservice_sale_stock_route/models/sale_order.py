@@ -107,9 +107,11 @@ class SaleOrder(models.Model):
                 # Get allowed FSM days (1=Monday, 7=Sunday)
                 allowed_days = fsm_route.day_ids.mapped("id")
 
-                order.commitment_date = (
-                    order.commitment_date or order._get_next_route_day()
-                )
+                if not order.commitment_date:
+                    tomorrow = fields.Datetime.now() + timedelta(days=1)
+                    order.commitment_date = order._get_next_route_day(
+                        from_date=tomorrow
+                    )
 
                 # Convert weekday() days (0-6) to FSM days (1-7)
                 scheduled_day = order.commitment_date.weekday() + 1
