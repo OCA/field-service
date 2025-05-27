@@ -13,6 +13,52 @@ class FSMOrder(models.Model):
         compute="_compute_postpone_button_visibility", store=False
     )
 
+    def write(self, vals):
+        res = super().write(vals)
+
+        if vals.get("scheduled_date_start") or vals.get("scheduled_date_end"):
+            for record in self:
+                if record.sale_id:
+                    sale = record.sale_id
+
+                    old_start = sale.commitment_date
+                    old_end = sale.commitment_date_end
+
+                    new_start = record.scheduled_date_start
+                    new_end = record.scheduled_date_end
+
+                    changes = []
+
+                    if old_start != new_start:
+                        sale.commitment_date = new_start
+                        changes.append(
+                            _("- Delivery Date: %(old)s → %(new)s")
+                            % {
+                                "old": old_start or "—",
+                                "new": new_start or "—",
+                            }
+                        )
+
+                    if old_end != new_end:
+                        sale.commitment_date_end = new_end
+                        changes.append(
+                            _("- Delivery End Date: %(old)s → %(new)s")
+                            % {
+                                "old": old_end or "—",
+                                "new": new_end or "—",
+                            }
+                        )
+
+                    if changes:
+                        body = _("<b>Updated Delivery Dates:</b><br/>") + "<br/>".join(
+                            changes
+                        )
+                        sale.message_post(
+                            body=body, subtype_id=self.env.ref("mail.mt_note").id
+                        )
+
+        return res
+
     def _is_valid_fsm_order(self, fsm_order):
         required_fields = [
             fsm_order.sale_id,
