@@ -10,10 +10,29 @@ msgstr ""
 "PO-Revision-Date: 2025-03-24 08:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/fsm_order.py:0
+#, python-format
+msgid "- Delivery Date: %(old)s → %(new)s"
+msgstr ""
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/fsm_order.py:0
+#, python-format
+msgid "- Delivery End Date: %(old)s → %(new)s"
+msgstr ""
+
+#. module: fieldservice_sale_stock_route
+#: code:addons/fieldservice_sale_stock_route/models/fsm_order.py:0
+#, python-format
+msgid "<b>Updated Delivery Dates:</b><br/>"
+msgstr ""
 
 #. module: fieldservice_sale_stock_route
 #: model:ir.model.fields,field_description:fieldservice_sale_stock_route.field_sale_order__commitment_date_end
@@ -90,8 +109,8 @@ msgstr "Mostrar botó d'aplaçament"
 #, python-format
 msgid ""
 "The selected delivery date (%(day)s) is not available for route %(route)s. "
-"Please choose a valid date based on the available schedule, or enable 'Force"
-" Schedule' on the route to override this restriction."
+"Please choose a valid date based on the available schedule, or enable 'Force "
+"Schedule' on the route to override this restriction."
 msgstr ""
 "La data de lliurament seleccionada (%(day)s) no està disponible per a la "
 "ruta %(route)s. Si us plau, trieu una data vàlida segons el calendari "
@@ -102,8 +121,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice_sale_stock_route.field_sale_order__commitment_date_end
 msgid ""
 "This is the delivery deadline date promised to the customer. If set, the "
-"delivery order will be scheduled based on this date rather than product lead"
-" times."
+"delivery order will be scheduled based on this date rather than product lead "
+"times."
 msgstr ""
 "Aquesta és la data límit de lliurament promesa al client. Si s'estableix, "
 "l'ordre de lliurament es programarà en funció d'aquesta data en lloc dels "
