@@ -17,20 +17,20 @@ Field Service - ISP Accounting
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_isp_account
+    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_isp_account
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_isp_account
+    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_isp_account
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the ability to track employee time and contractor
-costs for Field Service Orders. It also adds functionality to create
-a customer invoice and a vendor bill when a Field Service Order is
+This module adds the ability to track employee time and contractor costs
+for Field Service Orders. It also adds functionality to create a
+customer invoice and a vendor bill when a Field Service Order is
 completed.
 
 **Table of contents**
@@ -54,15 +54,15 @@ Usage
 To use the module:
 
 On a field service order, open the "Accounting" tab. Depending on
-whether the logged in user or an employee or not, they will see
-either a place to enter timesheet records or contractor costs.
+whether the logged in user or an employee or not, they will see either a
+place to enter timesheet records or contractor costs.
 
-The total cost of the order is calculated based on the entries in
-the employee timesheet entries and contractor costs.
+The total cost of the order is calculated based on the entries in the
+employee timesheet entries and contractor costs.
 
-When an order is completed, a customer invoice will be generated for
-the employee time and the contractor costs. A vendor bill will be
-created for the contractor costs.
+When an order is completed, a customer invoice will be generated for the
+employee time and the contractor costs. A vendor bill will be created
+for the contractor costs.
 
 Bug Tracker
 ===========
@@ -70,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_isp_account%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_isp_account%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,27 +78,28 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Michael Allen <mallen@opensourceintegrators.com>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Brian McMaster <brian@mcmpest.com>
-* Freni Patel <fpatel@opensourceintegrators.com>
+- Michael Allen <mallen@opensourceintegrators.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Brian McMaster <brian@mcmpest.com>
+- Freni Patel <fpatel@opensourceintegrators.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Open Source Integrators <https://opensourceintegrators.com>
+- Open Source Integrators
+  <`https://opensourceintegrators.com\\> <https://opensourceintegrators.com\>>`__
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -124,6 +125,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-osimallen| |maintainer-brian10048| |maintainer-bodedra| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_isp_account>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_isp_account>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -9,7 +9,7 @@ from odoo.tests import TransactionCase
 class FSMISPAccountCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(FSMISPAccountCase, cls).setUpClass()
+        super().setUpClass()
         cls.AccountMoveLine = cls.env["account.move.line"]
         cls.test_person = cls.env["fsm.person"].create({"name": "Worker-1"})
         cls.test_person2 = cls.env["fsm.person"].create(
