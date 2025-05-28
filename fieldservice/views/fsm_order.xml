@@ -110,9 +110,28 @@
                                     <field name="request_late" />
                                 </group>
                                 <group id="schedule" string="Schedule Details">
-                                    <field name="scheduled_date_start" />
+                                    <label
+                                        for="scheduled_date_start"
+                                        string="Scheduled Dates"
+                                    />
+                                    <div name="dates" class="o_row">
+                                      <field
+                                            name="scheduled_date_start"
+                                            widget="date_range"
+                                            options="{'related_end_date': 'scheduled_date_end'}"
+                                        />
+                                      <i
+                                            class="fa fa-long-arrow-right mx-2"
+                                            aria-label="Arrow icon"
+                                            title="Arrow"
+                                        />
+                                      <field
+                                            name="scheduled_date_end"
+                                            widget="date_range"
+                                            options="{'related_start_date': 'scheduled_date_start'}"
+                                        />
+                                    </div>
                                     <field name="scheduled_duration" />
-                                    <field name="scheduled_date_end" readonly="1" />
                                 </group>
                             </group>
                             <group string="Request Workers" name="request_workers">

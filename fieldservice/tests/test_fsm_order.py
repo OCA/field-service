@@ -256,7 +256,8 @@ class TestFSMOrder(TestFSMOrderBase):
             )
         )
         self.assertTrue(data, "It should be able to read group")
-        self.Order.write(
+        new_order = order.copy()
+        new_order.write(
             {
                 "location_id": self.test_location.id,
                 "stage_id": self.stage1.id,
@@ -264,7 +265,7 @@ class TestFSMOrder(TestFSMOrderBase):
             }
         )
         with self.assertRaises(UserError):
-            self.Order.write(
+            new_order.write(
                 {
                     "location_id": self.test_location.id,
                     "stage_id": self.stage1.id,
