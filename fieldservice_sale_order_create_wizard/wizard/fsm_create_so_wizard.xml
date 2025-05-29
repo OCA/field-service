@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="fsm_order_create_wizard_view_form" model="ir.ui.view">
+    <field name="name">fsm_order_create_wizard.view.form</field>
+    <field name="model">fsm.create.so.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Create Sale Order">
+            <sheet>
+                <group>
+                    <field name="location_id" options="{'no_create': True}" />
+                    <field name="line_ids">
+                        <tree editable="bottom">
+                            <field name="product_id" options="{'no_create': True}" />
+                            <field
+                                    name="product_uom_id"
+                                    options="{'no_create': True}"
+                                    groups="uom.group_uom"
+                                />
+                            <field name="quantity" />
+                            <field
+                                    name="discount"
+                                    groups="product.group_discount_per_so_line"
+                                />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                            string="Create"
+                            type="object"
+                            name="action_create_sale_order"
+                            class="btn-primary"
+                        />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+</odoo>
