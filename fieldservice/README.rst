@@ -32,14 +32,14 @@ This module is the base of the Field Service application in Odoo.
 
 Videos from OCA Days:
 
-- 2024: `Field Service
-  Management <https://www.youtube.com/watch?v=zBCa3e9rLHU>`__
-- 2022: `Field Service - New features and
-  roadmap <https://www.youtube.com/watch?v=MH8agrNE88A>`__
-- 2021: `Job and Service Management for Install and
-  Construction <https://www.youtube.com/watch?v=b7iivgfzPoo>`__
-- 2020: `Advanced Field Service
-  Management <https://www.youtube.com/watch?v=7bq3cwMFeME>`__
+-  2024: `Field Service
+   Management <https://www.youtube.com/watch?v=zBCa3e9rLHU>`__
+-  2022: `Field Service - New features and
+   roadmap <https://www.youtube.com/watch?v=MH8agrNE88A>`__
+-  2021: `Job and Service Management for Install and
+   Construction <https://www.youtube.com/watch?v=b7iivgfzPoo>`__
+-  2020: `Advanced Field Service
+   Management <https://www.youtube.com/watch?v=7bq3cwMFeME>`__
 
 **Table of contents**
 
@@ -213,35 +213,35 @@ Authors
 Contributors
 ------------
 
-- Wolfgang Hall <whall@opensourceintegrators.com>
-- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-- Steve Campbell <scampbell@opensourceintegrators.com>
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Michael Allen <mallen@opensourceintegrators.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Brian McMaster <brian@mcmpest.com>
-- Raphaël Reverdy <raphael.reverdy@akretion.com>
-- Ammar Officewala <ammar.o.serpentcs@gmail.com>
-- Yves Goldberg <yves@ygol.com>
-- Freni Patel <fpatel@opensourceintegrators.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Wolfgang Hall <whall@opensourceintegrators.com>
+-  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+-  Steve Campbell <scampbell@opensourceintegrators.com>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Michael Allen <mallen@opensourceintegrators.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Brian McMaster <brian@mcmpest.com>
+-  Raphaël Reverdy <raphael.reverdy@akretion.com>
+-  Ammar Officewala <ammar.o.serpentcs@gmail.com>
+-  Yves Goldberg <yves@ygol.com>
+-  Freni Patel <fpatel@opensourceintegrators.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
-- Nils Coenen <nils.coenen@nico-solutions.de>
-- Alex Comba <alex.comba@agilebg.com>
-- `APSL-Nagarro <https://apsl.tech>`__:
+-  Nils Coenen <nils.coenen@nico-solutions.de>
+-  Alex Comba <alex.comba@agilebg.com>
+-  `APSL-Nagarro <https://apsl.tech>`__:
 
-  - Bernat Obrador <bobrador@apsl.net>
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Bernat Obrador <bobrador@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------
