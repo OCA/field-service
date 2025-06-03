@@ -135,8 +135,26 @@ class PaymentPortal(website_sale_controller.PaymentPortal):
         selected_date = kwargs.get("selected_date")
         selected_time_range = kwargs.get("selected_time_range")
 
-        if not selected_date or not selected_time_range:
-            raise ValidationError(_("Please select a delivery date and time range."))
+        config = request.env["res.config.settings"].sudo().get_values()
+        auto_assign = config.get("auto_assign_default_time_range", False)
+
+        if not selected_date:
+            raise ValidationError(_("Please select a delivery date."))
+
+        if not selected_time_range and auto_assign:
+            time_range_default_id = config.get("time_range_default_id")
+            if time_range_default_id:
+                time_range = (
+                    request.env["fsm.delivery.time.range"]
+                    .sudo()
+                    .browse(time_range_default_id)
+                )
+                if time_range.exists():
+                    selected_time_range = time_range.id
+                    kwargs["selected_time_range"] = selected_time_range
+
+        if not selected_time_range:
+            raise ValidationError(_("Please select a delivery time range."))
 
         order = (
             request.env["sale.order"].sudo().search([("id", "=", kwargs["order_id"])])

@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-03 14:35+0000\n"
+"PO-Revision-Date: 2025-06-03 14:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +34,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
 msgid ""
 "<span class=\"o_form_label\">\n"
+"                Auto-assign Default Delivery Time Range\n"
+"              </span>"
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">\n"
 "                Maximum Allowed Time for Order Placement\n"
 "              </span>"
 msgstr ""
@@ -52,6 +62,12 @@ msgid "<span class=\"text-muted\">Unavailable Day</span>"
 msgstr ""
 
 #. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Auto-assign default delivery time range"
+msgstr ""
+
+#. module: fieldservice_website_sale
 #: model:ir.model,name:fieldservice_website_sale.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -59,6 +75,27 @@ msgstr ""
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_unit__days
 msgid "Days"
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Default Delivery Time Range"
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"Enable this option to automatically assign a default delivery time range to new\n"
+"                orders. This helps streamline order scheduling by preselecting a time range for\n"
+"                customers."
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+msgid ""
+"If enabled, a default delivery time range will be auto-assigned when not "
+"selected by the user."
 msgstr ""
 
 #. module: fieldservice_website_sale
@@ -91,7 +128,13 @@ msgstr ""
 #. module: fieldservice_website_sale
 #: code:addons/fieldservice_website_sale/controllers/main.py:0
 #, python-format
-msgid "Please select a delivery date and time range."
+msgid "Please select a delivery date."
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: code:addons/fieldservice_website_sale/controllers/main.py:0
+#, python-format
+msgid "Please select a delivery time range."
 msgstr ""
 
 #. module: fieldservice_website_sale
@@ -110,6 +153,13 @@ msgid ""
 "Specify the maximum timeframe for future order placement by selecting a number and a\n"
 "                unit (e.g., '1 month', '2 weeks'). This determines how far into the future customers\n"
 "                can schedule their orders."
+msgstr ""
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+msgid ""
+"Time range to auto-assign when 'Auto-assign default delivery time range' is "
+"enabled."
 msgstr ""
 
 #. module: fieldservice_website_sale
