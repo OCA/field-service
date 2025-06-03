@@ -74,9 +74,9 @@ Authors
 Contributors
 ------------
 
-- [APSL-Nagarro](https://apsl.tech):
+-  `APSL-Nagarro <https://apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
