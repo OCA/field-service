@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 13:05+0000\n"
-"PO-Revision-Date: 2025-03-12 13:05+0000\n"
+"POT-Creation-Date: 2025-06-03 14:35+0000\n"
+"PO-Revision-Date: 2025-06-03 14:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,28 @@ msgstr ""
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__10
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__11
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__12
 msgid "12"
+msgstr "12"
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">\n"
+"                Auto-assign Default Delivery Time Range\n"
+"              </span>"
 msgstr ""
+"<span class=\"o_form_label\">\n"
+"                Assigna automàticament l'interval horari de lliurament per defecte\n"
+"              </span>"
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
@@ -57,6 +68,12 @@ msgid "<span class=\"text-muted\">Unavailable Day</span>"
 msgstr "<span class=\"text-muted\">Dia no disponible</span>"
 
 #. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Auto-assign default delivery time range"
+msgstr "Assigna automàticament l'interval horari de lliurament per defecte"
+
+#. module: fieldservice_website_sale
 #: model:ir.model,name:fieldservice_website_sale.model_res_config_settings
 msgid "Config Settings"
 msgstr "Ajustos de configuració"
@@ -65,6 +82,31 @@ msgstr "Ajustos de configuració"
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_unit__days
 msgid "Days"
 msgstr "Dies"
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Default Delivery Time Range"
+msgstr "Interval horari de lliurament per defecte"
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"Enable this option to automatically assign a default delivery time range to new\n"
+"                orders. This helps streamline order scheduling by preselecting a time range for\n"
+"                customers."
+msgstr ""
+"Activeu aquesta opció per assignar automàticament un interval horari de lliurament per defecte a les noves\n"
+"                comandes. Això ajuda a agilitzar la programació de comandes preseleccionant un interval horari per als\n"
+"                clients."
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+msgid ""
+"If enabled, a default delivery time range will be auto-assigned when not "
+"selected by the user."
+msgstr ""
+"Si està activat, s'assignarà automàticament un interval horari de lliurament per defecte quan l'usuari no en seleccioni cap."
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__max_date_number
@@ -87,7 +129,9 @@ msgid ""
 "No delivery dates are available because a valid delivery route hasn't been "
 "assigned to the selected address. Please reach out to us using this"
 msgstr ""
-"No hi ha dates de lliurament disponibles perquè no s'ha assignat una ruta de lliurament vàlida a l'adreça seleccionada. Poseu-vos en contacte amb nosaltres utilitzant aquest"
+"No hi ha dates de lliurament disponibles perquè no s'ha assignat una ruta de"
+" lliurament vàlida a l'adreça seleccionada. Poseu-vos en contacte amb "
+"nosaltres utilitzant aquest"
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
@@ -97,9 +141,14 @@ msgstr "Número"
 #. module: fieldservice_website_sale
 #: code:addons/fieldservice_website_sale/controllers/main.py:0
 #, python-format
-msgid "Please select a delivery date and time range."
-msgstr ""
-"Si us plau, seleccioneu una data i un interval de temps de lliurament."
+msgid "Please select a delivery date."
+msgstr "Si us plau, seleccioneu una data de lliurament."
+
+#. module: fieldservice_website_sale
+#: code:addons/fieldservice_website_sale/controllers/main.py:0
+#, python-format
+msgid "Please select a delivery time range."
+msgstr "Si us plau, seleccioneu un interval horari de lliurament."
 
 #. module: fieldservice_website_sale
 #: model:ir.model,name:fieldservice_website_sale.model_sale_order
@@ -121,6 +170,14 @@ msgstr ""
 "Especifiqueu el termini màxim per a la realització de comandes futures seleccionant un número i una\n"
 "                unitat (per exemple, '1 mes', '2 setmanes'). Això determina fins a quin punt en el futur els clients\n"
 "                poden programar les seves comandes."
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+msgid ""
+"Time range to auto-assign when 'Auto-assign default delivery time range' is "
+"enabled."
+msgstr ""
+"Interval horari que s'assignarà automàticament quan l'opció 'Assigna automàticament l'interval horari de lliurament per defecte' estigui activada."
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form

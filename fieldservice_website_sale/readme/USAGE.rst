@@ -22,6 +22,7 @@
 - Under `Configuration` > `Availability` > `Delivery Time Ranges`, create delivery time ranges.
 - When the `Route` field is specified, the delivery time range is used on the related route only. When the `Route` field is empty, the delivery time range is used on all routes.
 - Save the delivery time ranges.
+- You can also set a default delivery time range in the `Field Service` module under `Configuration` > `Settings` > `Website Sales` > `Auto-assign Default Delivery Time Range`. This will be used when a delivery date is selected during the checkout process, but no specific delivery time range is selected.
 
 5. **Configure Maximum Allowed Time for Order Placement**
 - Navigate to the `Field Service` module.

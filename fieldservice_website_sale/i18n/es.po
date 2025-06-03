@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 13:04+0000\n"
-"PO-Revision-Date: 2025-03-12 13:04+0000\n"
+"POT-Creation-Date: 2025-06-03 14:35+0000\n"
+"PO-Revision-Date: 2025-06-03 14:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,28 @@ msgstr ""
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__10
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__11
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_number__12
 msgid "12"
+msgstr "12"
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">\n"
+"                Auto-assign Default Delivery Time Range\n"
+"              </span>"
 msgstr ""
+"<span class=\"o_form_label\">\n"
+"                Asignar automáticamente el rango de tiempo de entrega predeterminado\n"
+"              </span>"
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
@@ -57,6 +68,12 @@ msgid "<span class=\"text-muted\">Unavailable Day</span>"
 msgstr "<span class=\"text-muted\">Día No Disponible</span>"
 
 #. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Auto-assign default delivery time range"
+msgstr "Asignar automáticamente el rango de tiempo de entrega predeterminado"
+
+#. module: fieldservice_website_sale
 #: model:ir.model,name:fieldservice_website_sale.model_res_config_settings
 msgid "Config Settings"
 msgstr "Opciones de configuración"
@@ -65,6 +82,32 @@ msgstr "Opciones de configuración"
 #: model:ir.model.fields.selection,name:fieldservice_website_sale.selection__res_config_settings__max_date_unit__days
 msgid "Days"
 msgstr "Días"
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid "Default Delivery Time Range"
+msgstr "Rango de Tiempo de Entrega Predeterminado"
+
+#. module: fieldservice_website_sale
+#: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
+msgid ""
+"Enable this option to automatically assign a default delivery time range to new\n"
+"                orders. This helps streamline order scheduling by preselecting a time range for\n"
+"                customers."
+msgstr ""
+"Habilite esta opción para asignar automáticamente un rango de tiempo de entrega predeterminado a los nuevos\n"
+"                pedidos. Esto ayuda a agilizar la programación de pedidos preseleccionando un rango de tiempo para\n"
+"                los clientes."
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__auto_assign_default_time_range
+msgid ""
+"If enabled, a default delivery time range will be auto-assigned when not "
+"selected by the user."
+msgstr ""
+"Si está habilitado, se asignará automáticamente un rango de tiempo de entrega predeterminado cuando no "
+"sea seleccionado por el usuario."
 
 #. module: fieldservice_website_sale
 #: model:ir.model.fields,field_description:fieldservice_website_sale.field_res_config_settings__max_date_number
@@ -87,7 +130,9 @@ msgid ""
 "No delivery dates are available because a valid delivery route hasn't been "
 "assigned to the selected address. Please reach out to us using this"
 msgstr ""
-"No hay fechas de entrega disponibles porque no se ha asignado una ruta de entrega válida a la dirección seleccionada. Por favor, contáctenos usando este"
+"No hay fechas de entrega disponibles porque no se ha asignado una ruta de "
+"entrega válida a la dirección seleccionada. Por favor, contáctenos usando "
+"este"
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form
@@ -97,8 +142,14 @@ msgstr "Número"
 #. module: fieldservice_website_sale
 #: code:addons/fieldservice_website_sale/controllers/main.py:0
 #, python-format
-msgid "Please select a delivery date and time range."
-msgstr "Por favor, seleccione una fecha y un rango de tiempo de entrega."
+msgid "Please select a delivery date."
+msgstr "Por favor, seleccione una fecha de entrega."
+
+#. module: fieldservice_website_sale
+#: code:addons/fieldservice_website_sale/controllers/main.py:0
+#, python-format
+msgid "Please select a delivery time range."
+msgstr "Por favor, seleccione un rango de tiempo de entrega."
 
 #. module: fieldservice_website_sale
 #: model:ir.model,name:fieldservice_website_sale.model_sale_order
@@ -120,6 +171,14 @@ msgstr ""
 "Especifique el marco de tiempo máximo para la realización de pedidos futuros seleccionando un número y una\n"
 "                unidad (por ejemplo, '1 mes', '2 semanas'). Esto determina cuán lejos en el futuro los clientes\n"
 "                pueden programar sus pedidos."
+
+#. module: fieldservice_website_sale
+#: model:ir.model.fields,help:fieldservice_website_sale.field_res_config_settings__time_range_default_id
+msgid ""
+"Time range to auto-assign when 'Auto-assign default delivery time range' is "
+"enabled."
+msgstr ""
+"Rango de tiempo que se asignará automáticamente cuando la opción 'Asignar automáticamente el rango de tiempo de entrega predeterminado' esté habilitada."
 
 #. module: fieldservice_website_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_website_sale.res_config_settings_view_form

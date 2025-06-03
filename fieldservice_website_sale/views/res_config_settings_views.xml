@@ -56,6 +56,54 @@
             </div>
           </div>
         </div>
+        <div class="row mt16 o_settings_container" id="orders">
+          <div class="col-xs-12 col-md-6 o_setting_box">
+            <div class="o_setting_left_pane" />
+            <div class="o_setting_right_pane">
+              <span class="o_form_label">
+                Auto-assign Default Delivery Time Range
+              </span>
+              <div class="text-muted">
+                Enable this option to automatically assign a default delivery time range to new
+                orders. This helps streamline order scheduling by preselecting a time range for
+                customers.
+              </div>
+              <div class="content-group">
+                <div class="row mt16">
+                  <label
+                                        string="Auto-assign default delivery time range"
+                                        for="auto_assign_default_time_range"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                  <div class="col-lg-6">
+                    <field
+                                            name="auto_assign_default_time_range"
+                                            class="o_field_widget"
+                                        />
+                  </div>
+                </div>
+                <div
+                                    class="row mt16"
+                                    attrs="{'invisible': [('auto_assign_default_time_range', '=', False)]}"
+                                >
+                  <label
+                                        string="Default Delivery Time Range"
+                                        for="time_range_default_id"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                  <div class="col-lg-6">
+                    <field
+                                            name="time_range_default_id"
+                                            class="o_field_widget"
+                                            options="{'no_create': True}"
+                                            attrs="{'required':[('auto_assign_default_time_range','!=',False)]}"
+                                        />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </xpath>
     </field>
   </record>
