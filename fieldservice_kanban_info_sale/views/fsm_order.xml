@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Bernat Obrador (APSL-Nagarro)<bobrador@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="inherit_fsm_order_kanban_view" model="ir.ui.view">
+    <field name="name">fsm.order.kanban.inherit</field>
+    <field name="model">fsm.order</field>
+    <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+        <div attrs="{'invisible': [('payment_mode', '=', False)]}">
+          <i class="fa fa-dollar text-info mr-2 fa-lg" title="Payment Mode" />
+          <field name="payment_mode" />
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
