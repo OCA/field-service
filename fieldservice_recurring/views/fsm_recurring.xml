@@ -109,11 +109,7 @@
         <field name="model">fsm.recurring</field>
         <field name="arch" type="xml">
             <search string="Recurring Orders">
-                <field
-                    name="name"
-                    filter_domain="['|', ('name', 'ilike', self), ('name', '=like', str(self) + '%')]"
-                    string="FSM Recurring Order Name"
-                />
+                <field name="name" string="FSM Recurring Order Name" />
                 <field name="person_id" />
                 <field name="location_id" />
                 <field name="team_id" groups="fieldservice.group_fsm_team" />
