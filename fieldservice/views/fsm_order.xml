@@ -239,6 +239,12 @@
                 <field name="name" />
                 <field name="location_id" />
                 <field name="person_id" />
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                    optional="show"
+                />
                 <field name="stage_id" string="Stage" />
                 <field name="company_id" groups="base.group_multi_company" />
             </list>
