@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--# Copyright (C) 2025 APSL-Nagarro Bernat Obrador bobrador@apsl.net
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).-->
+
+    <record id="view_fsm_order_signature_wizard" model="ir.ui.view">
+        <field name="name">fsm.order.signature.wizard.form</field>
+        <field name="model">fsm.order.signature.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Signature">
+                <group>
+                    <field name="signature" widget="signature" />
+                </group>
+                <footer>
+                    <button
+                        string="Save"
+                        type="object"
+                        name="action_confirm"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

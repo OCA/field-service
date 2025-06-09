@@ -1,0 +1,31 @@
+<odoo>
+
+<!--
+# Copyright (C) 2025 APSL-Nagarro Bernat Obrador bobrador@apsl.net
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+    <record id="view_fsm_order_form_inherit_sale_sign" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    string="Sign"
+                    name="action_open_signature_wizard"
+                    type="object"
+                    class="oe_highlight"
+                />
+            </xpath>
+            <xpath expr="//page[@name='execution_page']" position="after">
+                <page string="Signature" name="signature_info">
+                    <group>
+                        <field name="signed_by" readonly="1" />
+                        <field name="signed_on" readonly="1" />
+                        <field name="signature" widget="signature" readonly="1" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
