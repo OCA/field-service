@@ -3,6 +3,8 @@
 
 from datetime import datetime, timedelta
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import format_date
@@ -237,6 +239,22 @@ class FSMOrder(models.Model):
     type = fields.Many2one("fsm.order.type")
 
     internal_type = fields.Selection(related="type.internal_type")
+
+    date_today_order_tz = fields.Date(
+        string="Scheduled Date (User TZ)",
+        compute="_compute_date_today_order_tz",
+        store=True,
+    )
+
+    @api.depends("scheduled_date_start")
+    def _compute_date_today_order_tz(self):
+        tz = pytz.timezone(self.env.user.tz or "UTC")
+        for rec in self:
+            if rec.scheduled_date_start:
+                dt_user = rec.scheduled_date_start.astimezone(tz)
+                rec.date_today_order_tz = dt_user.date()
+            else:
+                rec.date_today_order_tz = False
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

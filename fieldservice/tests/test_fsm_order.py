@@ -289,3 +289,23 @@ class TestFSMOrder(TestFSMOrderBase):
             order.stage_id.stage_type = "location"
             order.can_unlink()
             order.unlink()
+
+    @freeze_time("2025-06-19 22:30:00")  # UTC
+    def test_date_today_order_tz_timezone_dependent(self):
+        self.env.user.tz = "Europe/Madrid"
+
+        dt_utc = fields.Datetime.from_string("2025-06-19 22:30:00")
+
+        order = self.Order.create(
+            {
+                "scheduled_date_start": dt_utc,
+                "location_id": self.test_location.id,
+                "stage_id": self.stage1.id,
+            }
+        )
+
+        self.assertEqual(
+            order.date_today_order_tz,
+            fields.Date.from_string("2025-06-20"),
+            "date_today_order_tz should reflect 2025-06-20 for Europe/Madrid",
+        )
