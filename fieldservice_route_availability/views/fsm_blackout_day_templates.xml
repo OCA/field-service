@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_fsm_blackout_day_tree_inherit" model="ir.ui.view">
+        <field name="name">fsm.blackout.day.tree.inhetir</field>
+        <field name="model">fsm.blackout.day</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_availability.view_fsm_blackout_day_tree"
+        />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="zip" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_fsm_blackout_day_form_inherit" model="ir.ui.view">
+        <field name="name">fsm.blackout.day.form.inhetir</field>
+        <field name="model">fsm.blackout.day</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_availability.view_fsm_blackout_day_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="zip" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_fsm_blackout_group_form_inherit" model="ir.ui.view">
+        <field name="name">fsm.blackout.group.form.inhetir</field>
+        <field name="model">fsm.blackout.group</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_availability.view_fsm_blackout_group_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath expr="//tree/field[@name='date']" position="after">
+                <field name="zip" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
