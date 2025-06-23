@@ -51,3 +51,19 @@ class TestRouteAvailability(common.TransactionCase):
             order_form.save()
         order_form.scheduled_date_start = fields.Datetime.today() + timedelta(days=1)
         self.assertTrue(order_form.save())
+
+    def test_validate_blackout_days_with_zip(self):
+        self.blackout_group.fsm_blackout_day_ids[0].zip = "12345"
+
+        self.test_location.zip = "12345"
+        order_form = Form(self.env["fsm.order"])
+        order_form.location_id = self.test_location
+        order_form.scheduled_date_start = fields.Datetime.today()
+        with self.assertRaises(ValidationError):
+            order_form.save()
+
+        self.test_location.zip = "99999"
+        order_form = Form(self.env["fsm.order"])
+        order_form.location_id = self.test_location
+        order_form.scheduled_date_start = fields.Datetime.today()
+        self.assertTrue(order_form.save())
