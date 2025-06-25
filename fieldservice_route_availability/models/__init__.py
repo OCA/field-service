@@ -2,3 +2,4 @@
 
 from . import fsm_route
 from . import fsm_order
+from . import fsm_blackout_day
