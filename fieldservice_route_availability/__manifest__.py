@@ -4,7 +4,7 @@
     "name": "Field Service Route Availability",
     "summary": "Restricts blackout days for Scheduled Start (ETA) "
     "orders with the same date.",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
     "author": "APSL-Nagarro, Odoo Community Association (OCA)",
