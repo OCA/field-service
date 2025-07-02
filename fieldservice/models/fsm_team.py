@@ -86,5 +86,9 @@ class FSMTeam(models.Model):
         default=lambda self: self.env.company,
         help="Company related to this team",
     )
+    location_id = fields.Many2one(
+        "fsm.location",
+        string="Default Location ",
+    )
 
     _sql_constraints = [("name_uniq", "unique (name)", "Team name already exists!")]
