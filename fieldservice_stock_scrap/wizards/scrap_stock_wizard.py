@@ -108,12 +108,14 @@ class ScrapStockWizard(models.TransientModel):
         for scrap in self:
             scrap.scrap_location_id = locations_per_company[scrap.company_id.id]
 
-    def scrap(self, location_id, product_id, scrap_qty, scrap_id):
+    def scrap(self, product_id, scrap_qty, scrap_id):
         move_id = self.env["stock.move"].create(
             {
                 "fsm_order_id": self.env.context["fsm_order_id"],
                 "location_id": self.env.ref("stock.stock_location_suppliers").id,
-                "location_dest_id": location_id.id,
+                "location_dest_id": self.env.ref(
+                    "fieldservice_stock_scrap.intermediate_location"
+                ).id,
                 "product_id": product_id.id,
                 "picked": True,
                 "product_uom_qty": scrap_qty,
@@ -134,7 +136,9 @@ class ScrapStockWizard(models.TransientModel):
         move_id._action_done()
         scrap_id = self.env["stock.scrap"].create(
             {
-                "location_id": location_id.id,
+                "location_id": self.env.ref(
+                    "fieldservice_stock_scrap.intermediate_location"
+                ).id,
                 "scrap_location_id": self.scrap_location_id.id,
                 "product_id": product_id.id,
                 "scrap_qty": scrap_qty,
@@ -146,7 +150,7 @@ class ScrapStockWizard(models.TransientModel):
 
     def action_scrap(self):
         for line in self.scrap_stock_entries.filtered(lambda x: x.scrap_qty > 0):
-            self.scrap(line.location_id, line.product_id, line.scrap_qty, line.id)
+            self.scrap(line.product_id, line.scrap_qty, line.id)
             if line.stock_request_id.product_uom_qty - line.scrap_qty == 0:
                 line.stock_request_id.unlink()
             else:
@@ -161,7 +165,6 @@ class ScrapStockWizard(models.TransientModel):
 
         for request in unmatched_requests:
             self.scrap(
-                request.location_id,
                 request.product_id,
                 request.product_uom_qty,
                 request.id,
