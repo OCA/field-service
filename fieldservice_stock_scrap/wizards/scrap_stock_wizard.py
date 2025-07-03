@@ -149,6 +149,7 @@ class ScrapStockWizard(models.TransientModel):
         scrap_id.action_validate()
 
     def action_scrap(self):
+        self.ensure_one()
         for line in self.scrap_stock_entries.filtered(lambda x: x.scrap_qty > 0):
             self.scrap(line.product_id, line.scrap_qty, line.id)
             if line.stock_request_id.product_uom_qty - line.scrap_qty == 0:
@@ -170,3 +171,8 @@ class ScrapStockWizard(models.TransientModel):
                 request.id,
             )
             request.unlink()
+
+        orders_to_delete = self.env["stock.request.order"].search(
+            [("fsm_order_id", "=", fsm_order.id), ("stock_request_ids", "=", False)]
+        )
+        orders_to_delete.unlink()

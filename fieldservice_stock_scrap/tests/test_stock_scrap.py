@@ -99,3 +99,10 @@ class SomethingCase(TransactionCase):
             )
         )
         self.assertEqual(self.fsm_order_id.scrap_count, 3)
+        self.fsm_order_id.stock_request_ids.unlink()
+        self.wizard.action_scrap()
+        orders = self.env["stock.request.order"].search(
+            [("fsm_order_id", "=", self.fsm_order_id.id)]
+        )
+        # After scrapping all stock requests, no stock request orders should remain
+        self.assertEqual(len(orders), 0)
