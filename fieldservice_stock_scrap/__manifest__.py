@@ -3,7 +3,7 @@
 {
     "name": "Field Service Stock Scrap",
     "summary": "Scrap stock from Field Service order of Stock Requests",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.1.1",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
     "author": "Antoni Marroig, APSL-Nagarro, Odoo Community Association (OCA)",
