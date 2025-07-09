@@ -10,6 +10,12 @@ class StockRequestOrder(models.Model):
     fsm_order_id = fields.Many2one(
         "fsm.order", string="FSM Order", ondelete="cascade", index=True, copy=False
     )
+    fsm_order_person_id = fields.Many2one(
+        "fsm.person",
+        related="fsm_order_id.person_id",
+        string="Assigned To",
+        store=True,
+    )
 
     @api.onchange("warehouse_id", "direction", "fsm_order_id")
     def _onchange_location_id(self):
