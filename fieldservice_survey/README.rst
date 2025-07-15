@@ -17,22 +17,33 @@ Fieldservice Survey
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/14.0/fieldservice_survey
+    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_survey
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-14-0/field-service-14-0-fieldservice_survey
+    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_survey
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module introduces enhanced survey functionalities in the Field Service module, streamlining the process of collecting and analyzing feedback for service orders. Users can seamlessly navigate to Field Service, access settings, and select a customized FSM Order Survey Template. When generating a new order, the system prompts users to submit a survey, facilitating efficient data collection.
+This module introduces enhanced survey functionalities in the Field
+Service module, streamlining the process of collecting and analyzing
+feedback for service orders. Users can seamlessly navigate to Field
+Service, access settings, and select a customized FSM Order Survey
+Template. When generating a new order, the system prompts users to
+submit a survey, facilitating efficient data collection.
 
-The module further extends capabilities by incorporating an intuitive "Survey Answer" button within the order interface. This button provides users with the flexibility to either view comprehensive statistics derived from survey responses or directly edit the survey for any necessary adjustments.
+The module further extends capabilities by incorporating an intuitive
+"Survey Answer" button within the order interface. This button provides
+users with the flexibility to either view comprehensive statistics
+derived from survey responses or directly edit the survey for any
+necessary adjustments.
 
-With the Field Service Survey Enhancements module, businesses can effortlessly manage and optimize their survey processes, gaining valuable insights into service performance and customer satisfaction.
+With the Field Service Survey Enhancements module, businesses can
+effortlessly manage and optimize their survey processes, gaining
+valuable insights into service performance and customer satisfaction.
 
 **Table of contents**
 
@@ -42,17 +53,19 @@ With the Field Service Survey Enhancements module, businesses can effortlessly m
 Usage
 =====
 
-* Navigate to Field Service
-* Go to Settings
-* Choose a FSM Order Survey Template
-* Generate a new order
-* Submit Survey
-* Access the "Survey Answer" button in the order to either view the statistics or edit the survey.
+- Navigate to Field Service
+- Go to Settings
+- Choose a FSM Order Survey Template
+- Generate a new order
+- Submit Survey
+- Access the "Survey Answer" button in the order to either view the
+  statistics or edit the survey.
 
 Known issues / Roadmap
 ======================
 
-* Improve survey data integrity by updating the fsm_order_person_id field in response to changes in the field service order's person_id.
+- Improve survey data integrity by updating the fsm_order_person_id
+  field in response to changes in the field service order's person_id.
 
 Bug Tracker
 ===========
@@ -60,7 +73,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_survey%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_survey%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -68,20 +81,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Escodoo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Escodoo <https://www.escodoo.com.br>`_:
+- `Escodoo <https://www.escodoo.com.br>`__:
 
-  * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-  * Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+  - Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+  - Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -93,6 +106,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/14.0/fieldservice_survey>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_survey>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -11,7 +11,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFsmOrder(TransactionCase):
     def setUp(self):
-        super(TestFsmOrder, self).setUp()
+        super().setUp()
         self.test_loc_partner = self.env["res.partner"].create(
             {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
         )

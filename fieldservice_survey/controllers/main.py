@@ -63,7 +63,6 @@ class FsmOrderSurveySurvey(Survey):
                 "fieldservice_survey.group_fsm_survey_user"
             )
         ):
-
             return request.render(
                 "http_routing.http_error",
                 {

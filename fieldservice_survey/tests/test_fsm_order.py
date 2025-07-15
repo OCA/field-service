@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class TestFsmOrderSurveySubmit(TransactionCase):
     def setUp(self):
-        super(TestFsmOrderSurveySubmit, self).setUp()
+        super().setUp()
         self.test_loc_partner = self.env["res.partner"].create(
             {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
         )
@@ -40,7 +40,7 @@ class TestFsmOrderSurveySubmit(TransactionCase):
 
     def test_action_open_survey_inputs(self):
         result = self.fsm_order.action_open_survey_inputs()
-        expected_url = "/fsm_order/{}/results/".format(self.fsm_order.id)
+        expected_url = f"/fsm_order/{self.fsm_order.id}/results/"
         self.assertEqual(result["type"], "ir.actions.act_url")
         self.assertEqual(result["name"], "Survey Answer")
         self.assertEqual(result["target"], "self")

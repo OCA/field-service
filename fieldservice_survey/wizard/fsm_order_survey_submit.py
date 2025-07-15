@@ -95,9 +95,9 @@ class FsmOrderSurveySubmit(models.TransientModel):
             and fsm_order
             and not result.get("survey_template_id")
         ):
-            result[
-                "survey_template_id"
-            ] = fsm_order.company_id.fsm_order_survey_template_id.id
+            result["survey_template_id"] = (
+                fsm_order.company_id.fsm_order_survey_template_id.id
+            )
         return result
 
     @api.depends("fsm_order_id")

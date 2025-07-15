@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class SurveyUserInput(models.Model):
-
     _inherit = "survey.user_input"
 
     fsm_order_id = fields.Many2one("fsm.order", string="FSM Order")
