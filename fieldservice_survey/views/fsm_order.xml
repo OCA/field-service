@@ -12,7 +12,7 @@
                     class="oe_stat_button"
                     name="action_open_survey_inputs"
                     icon="fa-pencil-square-o"
-                    attrs="{'invisible': [('partner_submitted_answer_survey_ids', '=', [])]}"
+                    invisible="partner_submitted_answer_survey_ids == []"
                     groups="fieldservice_survey.group_fsm_survey_user"
                     type="object"
                 >
@@ -26,7 +26,7 @@
                 <page
                     string="Survey"
                     name="survey_page"
-                    attrs="{'invisible': [('partner_submitted_answer_survey_ids', '=', [])]}"
+                    invisible="partner_submitted_answer_survey_ids == []"
                     groups="fieldservice_survey.group_fsm_survey_user"
                 >
                     <group>
@@ -48,7 +48,7 @@
                     name="action_submit_fsm_order_survey"
                     string="Submit Survey"
                     type="object"
-                    attrs="{'invisible': &quot;[('stage_id', 'not in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]),]&quot;}"
+                    invisible="stage_id not in [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]"
                     groups="fieldservice_survey.group_fsm_survey_user"
                 />
             </xpath>

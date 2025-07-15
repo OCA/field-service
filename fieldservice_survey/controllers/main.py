@@ -26,7 +26,7 @@ class FsmOrderSurveySurvey(Survey):
         try:
             fsm_order = request.env["fsm.order"].sudo().browse(int(fsm_order_id))
         except ValueError:
-            raise AccessDenied(_("Invalid FSM Order ID"))
+            raise AccessDenied(_("Invalid FSM Order ID")) from None
 
         user = request.env.user
         partner = user.partner_id
@@ -55,7 +55,7 @@ class FsmOrderSurveySurvey(Survey):
         try:
             fsm_order = request.env["fsm.order"].sudo().browse(fsm_order_id)
         except ValueError:
-            raise AccessDenied(_("Invalid FSM Order ID"))
+            raise AccessDenied(_("Invalid FSM Order ID")) from None
 
         if (
             fsm_order.person_id.partner_id == request.env.user.partner_id

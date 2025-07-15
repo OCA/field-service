@@ -22,5 +22,5 @@ class FsmOrder(models.Model):
             "type": "ir.actions.act_url",
             "name": "Survey Answer",
             "target": "self",
-            "url": "/fsm_order/%s/results/" % self.id,
+            "url": f"/fsm_order/{self.id}/results/",
         }

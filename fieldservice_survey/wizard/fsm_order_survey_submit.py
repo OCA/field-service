@@ -21,7 +21,7 @@ class FsmOrderSurveySubmit(models.TransientModel):
         related="fsm_order_id.person_id", string="Survey Person"
     )
     subject = fields.Char(
-        "Subject", compute="_compute_subject", store=True, readonly=False
+        "Subject title", compute="_compute_subject", store=True, readonly=False
     )
     body = fields.Html(
         "Contents",
@@ -84,7 +84,8 @@ class FsmOrderSurveySubmit(models.TransientModel):
         if not self.env.user.email:
             raise UserError(
                 _(
-                    "Unable to post message, please configure the sender's email address."
+                    "Unable to post message,"
+                    "please configure the sender's email address."
                 )
             )
         result = super().default_get(fields_list)
@@ -149,10 +150,14 @@ class FsmOrderSurveySubmit(models.TransientModel):
         ctx = {"fsm_order_name": self.fsm_order_id.name}
         RenderMixin = self.env["mail.render.mixin"].with_context(**ctx)
         subject = RenderMixin._render_template(
-            self.subject, "survey.user_input", answer.ids, post_process=True
+            self.subject,
+            "survey.user_input",
+            answer.ids,
         )[answer.id]
         body = RenderMixin._render_template(
-            self.body, "survey.user_input", answer.ids, post_process=True
+            self.body,
+            "survey.user_input",
+            answer.ids,
         )[answer.id]
 
         mail_values = {
@@ -171,16 +176,10 @@ class FsmOrderSurveySubmit(models.TransientModel):
         else:
             mail_values["email_to"] = answer.email
 
-        try:
-            template = self.env.ref(
-                "mail.mail_notification_light", raise_if_not_found=True
-            )
-        except ValueError:
-            _logger.warning(
-                "QWeb template mail.mail_notification_light not found "
-                "when sending survey mails. Sending without layouting."
-            )
-        else:
+        email_layout_xmlid = self.env.context.get(
+            "mail.mail_notification_light", self.env.context.get("notif_layout")
+        )
+        if email_layout_xmlid:
             template_ctx = {
                 "message": self.env["mail.message"]
                 .sudo()
@@ -195,12 +194,22 @@ class FsmOrderSurveySubmit(models.TransientModel):
                 .display_name,
                 "company": self.env.company,
             }
-            body = template._render(
-                template_ctx, engine="ir.qweb", minimal_qcontext=True
+            body = self.env["ir.qweb"]._render(
+                email_layout_xmlid,
+                template_ctx,
+                minimal_qcontext=True,
+                raise_if_not_found=False,
             )
-            mail_values["body_html"] = self.env[
-                "mail.render.mixin"
-            ]._replace_local_links(body)
+            if body:
+                mail_values["body_html"] = self.env[
+                    "mail.render.mixin"
+                ]._replace_local_links(body)
+            else:
+                _logger.warning(
+                    "QWeb template %s not found or is empty when sending survey mails."
+                    "Sending without layout",
+                    email_layout_xmlid,
+                )
 
         return self.env["mail.mail"].sudo().create(mail_values)
 
@@ -220,7 +229,7 @@ class FsmOrderSurveySubmit(models.TransientModel):
 
         for person in self.recipient_ids.filtered(lambda e: e.user_id):
             answer = answers.filtered(
-                lambda l: l.partner_id == person.user_id.partner_id
+                lambda s, person=person: s.partner_id == person.user_id.partner_id
             )
             self.fsm_order_id.with_context(
                 mail_activity_quick_update=True

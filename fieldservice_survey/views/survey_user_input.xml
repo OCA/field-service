@@ -8,14 +8,8 @@
         <field name="inherit_id" ref="survey.survey_user_input_view_form" />
         <field name="arch" type="xml">
             <field name="access_token" position="after">
-                <field
-                    name="fsm_order_id"
-                    attrs="{'invisible': [('fsm_order_id', '==', False)]}"
-                />
-                <field
-                    name="fsm_order_person_id"
-                    attrs="{'invisible': [('fsm_order_id', '==', False)]}"
-                />
+                <field name="fsm_order_id" invisible="fsm_order_id == False" />
+                <field name="fsm_order_person_id" invisible="fsm_order_id == False" />
             </field>
         </field>
     </record>

@@ -123,7 +123,6 @@ class TestFsmOrder(TransactionCase):
             self.survey_submit_wizard.subject,
             "survey.user_input",
             answer.ids,
-            post_process=True,
         )[answer.id]
 
         self.env.ref("mail.mail_notification_light")
@@ -152,7 +151,6 @@ class TestFsmOrder(TransactionCase):
             self.survey_submit_wizard.subject,
             "survey.user_input",
             answer.ids,
-            post_process=True,
         )[answer.id]
         mail = self.survey_submit_wizard._send_mail(answer)
 

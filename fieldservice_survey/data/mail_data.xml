@@ -3,56 +3,47 @@
     <record id="mail_template_fsm_order_survey_submit" model="mail.template">
         <field name="name">FSM Survey: Submit Suvery</field>
         <field name="model_id" ref="model_survey_user_input" />
-        <field
-            name="subject"
-        >Take part in ${ctx.get('fsm_order_name', 'this')} survey</field>
+        <field name="subject">Take part in {{object.fsm_order_id.name}} survey</field>
         <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 13px;">
-                        Dear ${object.partner_id.name},
-                        <br /><br />
-                        An survey was requested.
-                        <br />
-                        Please take time to fill the survey.
-                        <br /><br />
-                        Thank you!
-                        <br /><br />
-                        % if ctx.get('recipient_users'):
-                        <p style="margin: 16px 0px 16px 0px;">
-                    <a
-                        href="${ctx['url']}"
-                        style="background-color:#875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px;"
-                    >
-                                View Survey
-                            </a>
-                </p>
-                        % endif
+                        Dear <t
+                    t-out="object.partner_id.name or 'participant'"
+                >participant</t><br /><br />
+                        <t t-if="object.survey_id.certification">
+                        You have been invited to take a new certification.
+                        </t>
+                        <t t-else="">
+                        We are conducting a survey and your response would be appreciated.
+                        </t>
                         <div style="margin: 16px 0px 16px 0px;">
                     <a
-                        href="${(object.get_start_url()) | safe}"
+                        t-att-href="(object.get_start_url())"
                         style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
                     >
-                                % if object.survey_id.certification:
-                                    Start Certification
-                                % else:
-                                    Start Survey
-                                % endif
-                            </a>
+                        <t t-if="object.survey_id.certification">
+                                Start Certification
+                            </t>
+                        <t t-else="">
+                                Start Survey
+                            </t>
+                    </a>
                 </div>
-                        % if object.deadline:
-                            Please answer the survey before ${format_date(object.deadline)}.<br
-                /><br />
-                        % endif
-                        <br /><br />
-                        <tr>
-                    <td
-                        style="padding:15px 20px 10px 20px;"
-                    >${(object.signature or '')| safe}</td>
-                </tr>
-                    </p>
+                            <t t-if="object.deadline">
+                                Please answer the survey for <t
+                    t-out="format_date(object.deadline) or ''"
+                >05/05/2021</t>.<br /><br />
+                            </t>
+                            <t t-if="object.survey_id.certification">
+                                We wish you good luck!
+                            </t>
+                            <t t-else="">
+                                Thank you in advance for your participation.
+                            </t>
+                </p>
             </div>
         </field>
-        <field name="report_name">${(object.name or '').replace('/','_')}</field>
+        <!-- <field name="report_name">${(object.name or '').replace('/','_')}</field> -->
         <field name="lang">${object.lang}</field>
         <field name="auto_delete" eval="True" />
     </record>
