@@ -8,6 +8,20 @@
             <group id="get_locate" position="before">
                 <field name="shape" />
             </group>
+            <xpath expr="//sheet/label" position="before">
+                <field name="partner_latitude" invisible="1" />
+                <field name="partner_longitude" invisible="1" />
+                <div
+                    class="alert alert-warning text-center"
+                    role="alert"
+                    invisible="(partner_latitude != 0) or (partner_longitude != 0)"
+                    style="margin-bottom:0px;"
+                >
+                    <p
+                        class="fa fa-warning"
+                    >&amp;nbsp;Update Latitude and Longitude details accordingly!</p>
+                </div>
+            </xpath>
         </field>
     </record>
     <!-- GeoEngine views -->
