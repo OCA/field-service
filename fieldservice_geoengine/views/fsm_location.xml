@@ -15,17 +15,62 @@
         <field name="name">ir.ui.view.fsm.location.map</field>
         <field name="arch" type="xml">
             <geoengine>
-                <field name="name" select="1" />
+                <!-- display_name field is necessary to display records
+                in the GeoEngine view RecordPanel -->
                 <field name="display_name" />
+                <field name="name" />
                 <field name="phone" />
                 <field name="mobile" />
                 <field name="street" />
                 <field name="street2" />
                 <field name="city" />
-                <field name='zip' />
-                <field name='stage_name' />
+                <field name="state_id" />
+                <field name="country_id" />
+                <field name="zip" />
+                <field name="stage_name" />
                 <field name="shape" />
                 <field name="custom_color" />
+                <templates>
+                    <t t-name="info_box">
+                        <b>
+                          Name: <field name="name" widget="badge" />
+                        </b>
+                        <ul>
+                            <t t-if="record.phone.value">
+                                <li>Phone: <field name="phone" />
+                                </li>
+                            </t>
+                            <t t-if="record.mobile.value">
+                                <li>Mobile: <field name="mobile" />
+                                </li>
+                            </t>
+                            <t t-if="record.street.value">
+                                <li>Street: <field name="street" />
+                                </li>
+                            </t>
+                            <t t-if="record.street2.value">
+                                <li>Street 2: <field name="street2" />
+                                </li>
+                            </t>
+                            <t t-if="record.city.value">
+                                <li>City: <field name="city" />
+                                </li>
+                            </t>
+                            <t t-if="record.state_id.value">
+                                <li>State: <field name="state_id" />
+                                </li>
+                            </t>
+                            <t t-if="record.country_id.value">
+                                <li>Country: <field name="country_id" />
+                                </li>
+                            </t>
+                            <t t-if="record.zip.value">
+                                <li>ZIP: <field name="zip" />
+                                </li>
+                            </t>
+                        </ul>
+                    </t>
+                </templates>
             </geoengine>
         </field>
         <field name="priority" eval="16" />
@@ -41,7 +86,7 @@
         <field name="sequence" eval="6" />
         <field name="view_id" ref="ir_ui_view_fsm_location_map" />
         <field name="geo_repr">colored</field>
-        <field name="nb_class" eval="1" />
+        <field name="active_on_startup">True</field>
         <field
             name="attribute_field_id"
             ref="fieldservice_geoengine.field_fsm_location__stage_name"
@@ -73,12 +118,5 @@
         <field name="name">Open Street Map</field>
         <field name="view_id" ref="ir_ui_view_fsm_location_map" />
         <field name="overlay" eval="0" />
-    </record>
-    <record id="loc_geoengine_raster_layer_basic0" model="geoengine.raster.layer">
-        <field name="raster_type">d_wms</field>
-        <field name="name">basic</field>
-        <field name="url">vmap0.tiles.osgeo.org/wms/vmap0</field>
-        <field name="view_id" ref="ir_ui_view_fsm_location_map" />
-        <field name="overlay" eval="1" />
     </record>
 </odoo>
