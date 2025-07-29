@@ -17,15 +17,27 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.fsm_location_form_view
+msgid "&amp;nbsp;Update Latitude and Longitude details accordingly!"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "City:"
+msgstr ""
+
+#. module: fieldservice_geoengine
 #: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__shape
 #: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__shape
 msgid "Coordinate"
 msgstr "Coordenada"
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Country:"
+msgstr ""
 
 #. module: fieldservice_geoengine
 #: model:geoengine.vector.layer,name:fieldservice_geoengine.loc_geoengine_vector_layer_fsm0
@@ -63,21 +75,21 @@ msgid "GeoCode Location"
 msgstr "Ubicación del GeoCódigo"
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__id
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location____last_update
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
-
-#. module: fieldservice_geoengine
 #: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.fsm_order_form
 msgid "Map"
 msgstr "Mapa"
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Mobile:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Name:"
+msgstr ""
 
 #. module: fieldservice_geoengine
 #: model:geoengine.raster.layer,name:fieldservice_geoengine.geoengine_raster_layer_retailmachineosm
@@ -86,9 +98,10 @@ msgid "Open Street Map"
 msgstr "Open Street Map"
 
 #. module: fieldservice_geoengine
-#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Phone:"
+msgstr ""
 
 #. module: fieldservice_geoengine
 #: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__custom_color
@@ -101,12 +114,57 @@ msgid "Stage Name"
 msgstr "Nombre de la Etapa"
 
 #. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "State:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Street 2:"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "Street:"
+msgstr ""
+
+#. module: fieldservice_geoengine
 #: model:ir.model.fields,help:fieldservice_geoengine.field_fsm_location__custom_color
 msgid "Use Hex Code only Ex:-#FFFFFF"
 msgstr "Utilice solo Código Hexadecimal, Ej:-#FFFFFF"
 
 #. module: fieldservice_geoengine
-#: model:geoengine.raster.layer,name:fieldservice_geoengine.geoengine_raster_layer_basic0
-#: model:geoengine.raster.layer,name:fieldservice_geoengine.loc_geoengine_raster_layer_basic0
-msgid "basic"
-msgstr "básico"
+#: model:ir.model,name:fieldservice_geoengine.model_geoengine_vector_layer
+msgid "Vector Layer"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#. odoo-python
+#: code:addons/fieldservice_geoengine/models/vector_layer.py:0
+#, python-format
+msgid "You need to select a numeric field"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
+msgid "ZIP:"
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última Modificación el"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
+
+#~ msgid "basic"
+#~ msgstr "básico"
