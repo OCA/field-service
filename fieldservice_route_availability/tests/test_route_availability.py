@@ -5,13 +5,14 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import Form, common
+from odoo.tests import common
 
 
 class TestRouteAvailability(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.Order = cls.env["fsm.order"]
         cls.test_person = cls.env.ref("fieldservice.test_person")
         cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.blackout_group = cls.env["fsm.blackout.group"].create(
@@ -43,27 +44,42 @@ class TestRouteAvailability(common.TransactionCase):
         cls.test_location.fsm_route_id = cls.fsm_route_id.id
         cls.fsm_route_id.fsm_blackout_group_ids = [cls.blackout_group.id]
 
-    def test_validate_blackout_days(self):
-        order_form = Form(self.env["fsm.order"])
-        order_form.location_id = self.test_location
-        order_form.scheduled_date_start = fields.Datetime.today()
-        with self.assertRaises(ValidationError):
-            order_form.save()
-        order_form.scheduled_date_start = fields.Datetime.today() + timedelta(days=1)
-        self.assertTrue(order_form.save())
+    def test_blackout_day_validation(self):
+        with self.assertRaisesRegex(ValidationError, r"The date .+ is a blackout day"):
+            self.Order.create(
+                {
+                    "location_id": self.test_location.id,
+                    "scheduled_date_start": fields.Datetime.now(),
+                }
+            )
 
-    def test_validate_blackout_days_with_zip(self):
+        self.assertTrue(
+            self.Order.create(
+                {
+                    "location_id": self.test_location.id,
+                    "scheduled_date_start": fields.Datetime.now() + timedelta(days=1),
+                }
+            )
+        )
+
+    def test_blackout_day_with_zip(self):
         self.blackout_group.fsm_blackout_day_ids[0].zip = "12345"
-
         self.test_location.zip = "12345"
-        order_form = Form(self.env["fsm.order"])
-        order_form.location_id = self.test_location
-        order_form.scheduled_date_start = fields.Datetime.today()
-        with self.assertRaises(ValidationError):
-            order_form.save()
+
+        with self.assertRaisesRegex(ValidationError, r"The date .+ is a blackout day"):
+            self.Order.create(
+                {
+                    "location_id": self.test_location.id,
+                    "scheduled_date_start": fields.Datetime.now(),
+                }
+            )
 
         self.test_location.zip = "99999"
-        order_form = Form(self.env["fsm.order"])
-        order_form.location_id = self.test_location
-        order_form.scheduled_date_start = fields.Datetime.today()
-        self.assertTrue(order_form.save())
+        self.assertTrue(
+            self.Order.create(
+                {
+                    "location_id": self.test_location.id,
+                    "scheduled_date_start": fields.Datetime.now(),
+                }
+            )
+        )

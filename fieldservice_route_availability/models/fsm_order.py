@@ -1,14 +1,14 @@
 # Copyright 2025 APSL-Nagarro Antoni Marroig
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import format_date
 
 
 class FSMRoute(models.Model):
     _inherit = "fsm.order"
 
-    @api.constrains("fsm_route_id", "scheduled_date_start", "location_id")
+    @api.constrains("scheduled_date_start", "location_id")
     def check_black_out_days(self):
         for order in self:
             if order.fsm_route_id and order.scheduled_date_start:
@@ -25,13 +25,9 @@ class FSMRoute(models.Model):
                     )
                     if match:
                         raise ValidationError(
-                            _(
+                            self.env._(
                                 "The date %(date)s is a blackout day for field"
-                                " service operations on this route."
+                                " service operations on this route.",
+                                date=format_date(order.env, order.scheduled_date_start),
                             )
-                            % {
-                                "date": order.scheduled_date_start.date().strftime(
-                                    "%d/%m/%Y"
-                                )
-                            }
                         )
