@@ -34,7 +34,7 @@
             ref="fieldservice_availability.view_fsm_blackout_group_form"
         />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='date']" position="after">
+            <xpath expr="//list/field[@name='date']" position="after">
                 <field name="zip" />
             </xpath>
         </field>
