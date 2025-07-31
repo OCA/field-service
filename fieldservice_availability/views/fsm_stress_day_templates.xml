@@ -7,10 +7,10 @@
         <field name="name">fsm.stress.day.tree</field>
         <field name="model">fsm.stress.day</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="date" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -32,7 +32,7 @@
     <record id="action_fsm_stress_days" model="ir.actions.act_window">
         <field name="name">Stress Days</field>
         <field name="res_model">fsm.stress.day</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
         Add a Field Service Stress Day here.
