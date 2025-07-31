@@ -6,13 +6,13 @@
         <field name="name">fsm.delivery.time.range.tree</field>
         <field name="model">fsm.delivery.time.range</field>
         <field name="arch" type="xml">
-            <tree name="Delivery Time Ranges">
+            <list name="Delivery Time Ranges">
                 <field name="name" readonly="1" />
                 <field name="start_time" widget="float_time" />
                 <field name="end_time" widget="float_time" />
                 <field name="route_id" />
                 <field name="sequence" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -37,7 +37,7 @@
     <record id="action_fsm_delivery_time_range" model="ir.actions.act_window">
         <field name="name">Delivery Time Ranges</field>
         <field name="res_model">fsm.delivery.time.range</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
         Add a Field Service Delivery Time Range here.
