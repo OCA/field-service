@@ -52,6 +52,7 @@ class FSMTeam(models.Model):
 
     name = fields.Char(required=True, translate=True)
     description = fields.Text(translate=True)
+    active = fields.Boolean(default=True)
     color = fields.Integer("Color Index")
     stage_ids = fields.Many2many(
         "fsm.stage",
