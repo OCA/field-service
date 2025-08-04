@@ -16,11 +16,9 @@ class CustomerPortal(CustomerPortal):
         values = super()._prepare_home_portal_values(counters)
         if "fsm_order_count" in counters:
             fsm_order_count = (
-                request.env["fsm.order"].search_count(self._prepare_fsm_orders_domain())
-                if request.env["fsm.order"].check_access_rights(
-                    "read", raise_exception=False
-                )
-                else 0
+                request.env["fsm.order"]
+                .sudo()
+                .search_count(self._prepare_fsm_orders_domain())
             )
             values["fsm_order_count"] = fsm_order_count
         return values
@@ -32,8 +30,7 @@ class CustomerPortal(CustomerPortal):
         fsm_order = request.env["fsm.order"].browse([order_id])
 
         try:
-            fsm_order.check_access_rights("read")
-            fsm_order.check_access_rule("read")
+            fsm_order.check_access("read")
         except AccessError:
             raise
         return fsm_order.sudo()

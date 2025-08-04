@@ -74,14 +74,13 @@
 
     <template id="portal_fieldservice_order_page">
         <t t-call="portal.portal_layout">
-            <t t-call="portal.portal_record_layout">
-                <t t-set="card_header">
+            <div class="card">
+                <div class="card-header">
                     <h1>
-                        <t t-call='portal.record_pager' />
                         <span t-field="fsm_order.name" />
                     </h1>
-                </t>
-                <t t-set="card_body">
+                </div>
+                <div class="card-body">
                     <div class="mb8">
                         <div class="row">
                             <div class="col-md-6">
@@ -91,14 +90,14 @@
                                 <strong>City:</strong>
                                 <span t-field="fsm_order.location_id.city" />
                                 <t t-if="fsm_order.location_id.state_id">
-                                    -
-                                    <span t-field="fsm_order.location_id.state_id" />
-                                </t>
+                                -
+                                <span t-field="fsm_order.location_id.state_id" />
+                            </t>
                                 <t t-if="fsm_order.location_id.zip">
-                                    (
-                                    <span t-field="fsm_order.location_id.zip" />
-                                    )
-                                </t>
+                                (
+                                <span t-field="fsm_order.location_id.zip" />
+                                )
+                            </t>
                                 <br />
                                 <strong>Country:</strong>
                                 <span t-field="fsm_order.location_id.country_id" />
@@ -139,8 +138,9 @@
                     <t t-call="portal.message_thread">
                         <t t-set="object" t-value="fsm_order" />
                     </t>
-                </t>
-            </t>
+                </div>
+            </div>
+
             <div class="oe_structure mb32" id="oe_structure_1" />
         </t>
     </template>

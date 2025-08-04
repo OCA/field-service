@@ -3,10 +3,12 @@ import json
 from odoo.exceptions import AccessError
 from odoo.http import Request
 from odoo.tests.common import HttpCase, TransactionCase, tagged
+from odoo.tools import mute_logger
 
 
 @tagged("post_install", "-at_install")
 class TestUsersHttp(HttpCase, TransactionCase):
+    @mute_logger("odoo.http")
     def test_fsm_order_portal(self):
         # Accessing work order of the portal user through route APIs available
         login = "portal"
@@ -62,7 +64,6 @@ class TestUsersHttp(HttpCase, TransactionCase):
                 "name": "Test Location No Portal User",
                 "phone": "123",
                 "email": "tp@email.com",
-                "customer_id": test_loc_partner.id,
                 "partner_id": test_loc_partner.id,
                 "owner_id": test_loc_partner.id,
             }
