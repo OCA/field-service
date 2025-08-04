@@ -25,8 +25,8 @@
                                     <em class="font-weight-normal text-muted">
                                         Work Orders for
                                         <t
-                                            t-out="searchbar_groupby[groupby]['label']"
-                                        />:
+                                        t-out="searchbar_groupby[groupby]['label']"
+                                    />:
                                     </em>
                                     <span
                                         t-field="orders[0].sudo()[groupby].display_name"
@@ -141,8 +141,7 @@
                     </t>
                 </t>
             </t>
-            <div class="oe_structure mb32" />
+            <div class="oe_structure mb32" id="oe_structure_1" />
         </t>
     </template>
-
 </odoo>
