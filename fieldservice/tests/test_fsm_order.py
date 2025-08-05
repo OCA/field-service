@@ -74,6 +74,25 @@ class TestFSMOrder(TransactionCase):
         ):
             Form(self.Order, view=view_id)
 
+    def test_fsm_order_default_team_from_location(self):
+        """The default team for an order comes from its location."""
+        # Arrange
+        team_form = Form(self.env["fsm.team"])
+        team_form.name = "Test team"
+        team = team_form.save()
+        location = self.test_location
+        location.team_id = team
+        # pre-condition
+        self.assertNotEqual(team, self.Order._default_team_id())
+
+        # Act
+        order_form = Form(self.Order)
+        order_form.location_id = location
+        order = order_form.save()
+
+        # Assert
+        self.assertEqual(order.team_id, team)
+
     def test_fsm_order_create(self):
         priority_vs_late_days = {"0": 3, "1": 2, "2": 1, "3": 1 / 3}
         vals = {

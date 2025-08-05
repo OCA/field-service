@@ -196,14 +196,19 @@
                             </group>
                         </page>
                         <page string="Preferred Workers" name="preferred_workers">
-                            <field name="person_ids" nolabel="1">
-                                <list editable="bottom">
-                                    <field name="sequence" widget="handle" />
-                                    <field name="person_id" />
-                                    <field name="phone" />
-                                    <field name="email" />
-                                </list>
-                            </field>
+                            <group>
+                                <group>
+                                    <field name="team_id" />
+                                    <field name="person_ids" nolabel="1">
+                                        <list editable="bottom">
+                                            <field name="sequence" widget="handle" />
+                                            <field name="person_id" />
+                                            <field name="phone" />
+                                            <field name="email" />
+                                        </list>
+                                    </field>
+                                </group>
+                            </group>
                         </page>
                         <page string="Others" id="others-page" name="others">
                             <group id="others">
