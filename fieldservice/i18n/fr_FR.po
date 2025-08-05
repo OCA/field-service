@@ -114,6 +114,7 @@ msgstr "Action nécessaire"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__active
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__active
 msgid "Active"
 msgstr "Actif"
 
@@ -228,6 +229,18 @@ msgstr ""
 "canton"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
+msgid "Agreements"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreements_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreements_count
+msgid "Agreements Count"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
 msgid "All"
 msgstr "Tout"
@@ -267,6 +280,8 @@ msgstr "Autoriser la vue chronologique du Web du service de terrain"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_search
 msgid "Archived"
 msgstr ""
 
@@ -464,6 +479,11 @@ msgstr "Annuler"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Cancel Order"
 msgstr "Commande annulée"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.fsm_stage_cancelled
+msgid "Cancelled"
+msgstr ""
 
 #. module: fieldservice
 #. odoo-python
@@ -711,6 +731,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__complete_name
 msgid "Complete Name"
 msgstr "Nom complet"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.fsm_stage_completed
+msgid "Completed"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -967,6 +992,11 @@ msgid "Default duration in hours"
 msgstr "Durée en heures par défaut"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+msgid "Default team assigned to orders in this location"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
 msgid "Degree of trust you have in this debtor"
@@ -1154,6 +1184,21 @@ msgstr "Équipement"
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_equipment_name_uniq
 msgid "Equipment name already exists!"
 msgstr "Le nom de l'équipement existe déjà !"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.equipment_stage_1
+msgid "Equipment-1"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.equipment_stage_2
+msgid "Equipment-2"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.equipment_stage_3
+msgid "Equipment-3"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_equipment
@@ -1407,6 +1452,12 @@ msgid "Future Orders"
 msgstr "Commandes futures"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__global_location_number
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__global_location_number
+msgid "GLN"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "General Notes"
 msgstr "Notes générales"
@@ -1438,6 +1489,12 @@ msgstr "Géolocalisation"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__date_localization
 msgid "Geolocation Date"
 msgstr "Date de géolocalisation"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__global_location_number
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__global_location_number
+msgid "Global Location Number"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
@@ -1943,6 +2000,21 @@ msgid "Location Workers"
 msgstr "Localisation des agents de terrain"
 
 #. module: fieldservice
+#: model:fsm.stage,name:fieldservice.location_stage_1
+msgid "Location-1"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.location_stage_2
+msgid "Location-2"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.location_stage_3
+msgid "Location-3"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
 #: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
@@ -2319,6 +2391,7 @@ msgstr "Besoin programmé"
 #. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
+#: model:fsm.stage,name:fieldservice.fsm_stage_new
 msgid "New"
 msgstr "Nouveau"
 
@@ -2993,6 +3066,11 @@ msgid "Search FSM Location"
 msgstr "Recherche de l'emplacement du service de terrain"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_search
+msgid "Search FSM Teams"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
 msgid "Search FSM Workers"
@@ -3290,6 +3368,7 @@ msgid "Tax ID Label"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__team_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__team_id
 msgid "Team"
@@ -3706,6 +3785,21 @@ msgstr "Technicien"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_phone
 msgid "Worker Phone"
 msgstr "Téléphone du technicien"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.worker_stage_1
+msgid "Worker Stage 1"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.worker_stage_2
+msgid "Worker Stage 2"
+msgstr ""
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.worker_stage_3
+msgid "Worker Stage 3"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__person_ids
