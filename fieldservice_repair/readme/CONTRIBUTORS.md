@@ -3,3 +3,4 @@
 - Marcel Savegnago - Escodoo \<<marcel.savegnago@escodoo.com.br>\>
 - Freni Patel \<<fpatel@opensourceintegrators.com>\>
 - Italo LOPES \<<italo.lopes@camptocamp.com>\>
+- Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>

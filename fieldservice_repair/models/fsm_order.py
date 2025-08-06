@@ -1,67 +1,74 @@
 # Copyright (C) 2021 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    repair_id = fields.Many2one("repair.order", string="Repair Order")
+    repair_id = fields.Many2one("repair.order", string="Repair Order", readonly=True)
 
-    def _create_linked_repair_order(self):
+    def _prepare_repair_order_vals(self):
+        """Prepare the values for the repair order."""
         self.ensure_one()
-        if self.equipment_id and self.equipment_id.current_stock_location_id:
-            equipment = self.equipment_id
-            repair_id = self.env["repair.order"].create(
-                {
-                    "name": self.name or "",
-                    "product_id": equipment.product_id.id or False,
-                    "product_uom": equipment.product_id.uom_id.id or False,
-                    "location_id": equipment.current_stock_location_id
-                    and equipment.current_stock_location_id.id
-                    or False,
-                    "lot_id": equipment.lot_id.id or "",
-                    "product_qty": 1,
-                    "internal_notes": self.description,
-                    "partner_id": self.location_id.partner_id
-                    and self.location_id.partner_id.id
-                    or False,
-                }
-            )
-            self.repair_id = repair_id
-        elif not self.equipment_id.current_stock_location_id:
-            raise ValidationError(
-                _(
-                    "Cannot create Repair Order because "
-                    "Equipment does not have a Current "
-                    "Inventory Location."
-                )
-            )
+        return {
+            "name": self.name,
+            "product_id": self.equipment_id.product_id.id,
+            "product_uom": self.equipment_id.product_id.uom_id.id,
+            "location_id": self.equipment_id.current_stock_location_id.id,
+            "lot_id": self.equipment_id.lot_id.id,
+            "product_qty": 1,
+            "internal_notes": self.description,
+            "partner_id": self.location_id.partner_id.id,
+        }
 
-    @api.model
-    def create(self, vals):
-        # if FSM order with type repair is created then
-        # create a repair order
-        order = super().create(vals)
-        if order.type.internal_type == "repair":
-            order._create_linked_repair_order()
-        return order
+    def _create_repair_orders(self):
+        """Create the repair orders for the FSM orders that have a type of repair."""
+        created_repair_orders = self.env["repair.order"]
+        for rec in self:
+            if rec.internal_type != "repair":
+                continue
+            if rec.repair_id:
+                continue
+            if not rec.equipment_id:
+                raise ValidationError(
+                    self.env._("The Equipment must be set to create a Repair Order.")
+                )
+            if not rec.equipment_id.current_stock_location_id:
+                raise ValidationError(
+                    self.env._(
+                        "Cannot create the Repair Order because the Equipment '%s' "
+                        "does not have a Current Inventory Location set.",
+                        rec.equipment_id.name,
+                    )
+                )
+            repair_order_vals = rec._prepare_repair_order_vals()
+            repair_order = self.env["repair.order"].create(repair_order_vals)
+            rec.repair_id = repair_order
+            created_repair_orders += repair_order
+        return created_repair_orders
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # OVERRIDE to create a repair.order if an FSM order with type repair is created
+        orders = super().create(vals_list)
+        orders._create_repair_orders()
+        return orders
 
     def write(self, vals):
         res = super().write(vals)
         if vals.get("type"):
-            for order in self:
-                # If internal_type is changed to not repair
-                # then cancel the repair order
-                if order.repair_id and order.internal_type != "repair":
-                    order.repair_id.action_repair_cancel()
-                    order.repair_id = False
-                # If internal_type is changed to repair
-                # then create a repair order
-                if not order.repair_id and order.internal_type == "repair":
-                    order._create_linked_repair_order()
+            fsm_order_type = self.env["fsm.order.type"].browse(vals["type"])
+            # If internal type is changed to something other than repair,
+            # cancel the repair orders
+            if fsm_order_type.internal_type != "repair":
+                self.repair_id.action_repair_cancel()
+                self.repair_id = False
+            # If the internal type is changed to a repair order, create them
+            elif fsm_order_type.internal_type == "repair":
+                self._create_repair_orders()
         return res
 
     @api.onchange("internal_type")
@@ -71,7 +78,7 @@ class FSMOrder(models.Model):
         if self.repair_id and self.internal_type != "repair":
             return {
                 "warning": {
-                    "title": _("Warning"),
-                    "message": _("The repair order will be cancelled."),
+                    "title": self.env._("Warning"),
+                    "message": self.env._("The repair order will be cancelled."),
                 }
             }

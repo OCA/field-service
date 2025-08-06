@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <!-- Fields Service Orders Form View -->
-    <record id="fsm_order_maintenance_form" model="ir.ui.view">
-        <field name="name">fsm.order.maintenance.form</field>
+    <record id="fsm_order_form" model="ir.ui.view">
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
         <field name="arch" type="xml">
-            <field name="priority" position="before">
-                <field name="internal_type" invisible="1" />
-                <field
-                    name="repair_id"
-                    readonly="1"
-                    invisible="internal_type != 'repair'"
+            <field name="equipment_id" position="attributes">
+                <attribute
+                    name="invisible"
+                    add="internal_type != 'repair'"
+                    separator="and"
                 />
-
+                <attribute
+                    name="required"
+                    add="internal_type == 'repair'"
+                    separator="or"
+                />
+            </field>
+            <field name="equipment_id" position="after">
+                <field name="repair_id" invisible="not repair_id" />
             </field>
         </field>
     </record>
-
 </odoo>
