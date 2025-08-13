@@ -10,6 +10,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-map"
+                    invisible="service_order_count == 0"
                 >
                     <field
                         name="service_order_count"
@@ -22,19 +23,15 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-laptop"
+                    invisible="equipment_count == 0"
                     context="{'default_agreement_id': id}"
                     groups="fieldservice.group_fsm_equipment"
                 >
-                    <div class="o_field_widget o_stat_info">
-                        <span class="o_stat_value">
-                            <field
-                                name="equipment_count"
-                                widget="statinfo"
-                                nolabel="1"
-                            />
-                        </span>
-                        <span class="o_stat_text">Equipments</span>
-                    </div>
+                    <field
+                        name="equipment_count"
+                        widget="statinfo"
+                        string="Service Orders"
+                    />
                 </button>
             </div>
             <notebook position="inside">
