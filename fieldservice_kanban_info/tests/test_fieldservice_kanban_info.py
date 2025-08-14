@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
+from freezegun import freeze_time
 
 from odoo import fields
 
@@ -48,6 +49,7 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         order = self._create_order()
         self.assertFalse(order.schedule_time_range)
 
+    @freeze_time("2025-08-14 09:00:00")
     def test_schedule_time_range_us_format(self):
         """Test %m/%d/%Y %I:%M %p (US format with AM/PM)"""
         self.env.user.lang = "en_US"
@@ -64,6 +66,7 @@ class TestFieldServiceKanbanInfo(BaseCommon):
             r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} (AM|PM) - \d{2}:\d{2} (AM|PM)",
         )
 
+    @freeze_time("2025-08-14 09:00:00")
     def test_schedule_time_range_eu_format(self):
         """Test %d/%m/%Y %H:%M:%S (EU format with seconds)"""
         self.env["res.lang"]._activate_lang("es_ES")
