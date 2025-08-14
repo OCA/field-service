@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Kanban Info",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "summary": "Display key service information on Field Service Kanban cards.",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
