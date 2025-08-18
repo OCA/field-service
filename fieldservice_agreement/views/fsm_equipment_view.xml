@@ -10,7 +10,7 @@
                         <group id="agreement-left">
                             <field
                                 name="agreement_id"
-                                domain="[('fsm_location_id', '=', location_id)]"
+                                domain="[('fsm_location_ids', 'in', location_id)]"
                             />
                         </group>
                         <group id="agreement-right" />
