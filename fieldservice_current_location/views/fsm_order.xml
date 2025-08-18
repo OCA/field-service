@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="fsm_order_crm_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="js_class">geolocate_button</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
