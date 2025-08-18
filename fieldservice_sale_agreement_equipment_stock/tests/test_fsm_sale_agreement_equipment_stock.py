@@ -11,13 +11,19 @@ from odoo.addons.sale.tests.common import TestSaleCommon
 @tagged("post_install", "-at_install")
 class TestFieldServiceSaleAgreementEquipmentStock(TestSaleCommon):
     @classmethod
+    def get_default_groups(cls):
+        groups = super().get_default_groups()
+        return groups | cls.env.ref("fieldservice.group_fsm_manager")
+
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.product = cls.env["product.product"].create(
             {
                 "name": "FSM Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "tracking": "serial",
                 "create_fsm_equipment": True,
             }

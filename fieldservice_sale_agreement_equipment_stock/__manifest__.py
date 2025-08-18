@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Sale Agreements and Stock Equipment",
     "summary": "Integrate Field Service with Sale Agreements and Stock Equipment",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["ivantodorovich"],
     "website": "https://github.com/OCA/field-service",
@@ -12,6 +12,7 @@
     "category": "Field Service",
     "depends": [
         "agreement_sale",
+        "fieldservice_agreement",
         "fieldservice_sale",
         "fieldservice_equipment_stock",
         "sale_stock",
