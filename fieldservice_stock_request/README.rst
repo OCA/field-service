@@ -41,34 +41,34 @@ Configuration
 
 To configure this module, you need to:
 
-- Go to Inventory > Configuration > Routes
-- Select the routes that you want to use from a FSM order
-- Check the box 'FSM Order Line' for outbound transfer
-- Check the box 'FSM Return Line' for inbound transfer
+-  Go to Inventory > Configuration > Routes
+-  Select the routes that you want to use from a FSM order
+-  Check the box 'FSM Order Line' for outbound transfer
+-  Check the box 'FSM Return Line' for inbound transfer
 
 The route 'Receipt in 1 step' has no procurement rule so if you want
 items to be returned from the service location to your warehouse, you
 need to create a new procurement rule for that route:
 
-- Name: YourCompany: Return
-- Action: Move From Another Location
-- Procurement Location: WH/Stock
-- Served Warehouse: YourCompany
-- Source Location: Partner Locations/Customers
-- Move Supply Method: Take From Stock
-- Operation Type: YourCompany: Receipts
+-  Name: YourCompany: Return
+-  Action: Move From Another Location
+-  Procurement Location: WH/Stock
+-  Served Warehouse: YourCompany
+-  Source Location: Partner Locations/Customers
+-  Move Supply Method: Take From Stock
+-  Operation Type: YourCompany: Receipts
 
 Usage
 =====
 
 To use this module, you need to:
 
-- Create a new service order
-- Under the Inventory tab, select the warehouse and add products with
-  quantity
-- Confirm the order to create the delivery orders
-- Validate the transfers in the Inventory app. Quantities delivered on
-  FSM Order Line will be updated.
+-  Create a new service order
+-  Under the Inventory tab, select the warehouse and add products with
+   quantity
+-  Confirm the order to create the delivery orders
+-  Validate the transfers in the Inventory app. Quantities delivered on
+   FSM Order Line will be updated.
 
 Known issues / Roadmap
 ======================
@@ -98,19 +98,19 @@ Authors
 Contributors
 ------------
 
-- Brian McMaster <brian@mcmpest.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- [APSL](https://apsl.tech):
+-  Brian McMaster <brian@mcmpest.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  `APSL-Nagarro <https://apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------

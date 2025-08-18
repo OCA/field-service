@@ -53,6 +53,21 @@
                     context="{'group_by': 'fsm_order_id'}"
                 />
             </filter>
+            <filter name="cancel" position="after">
+                 <filter
+                    string="Today Orders"
+                    name="order_today"
+                    domain="[('fsm_order_id.date_today_order_tz', '=', context_today())]"
+                />
+            </filter>
+            <filter name="location" position="after">
+                <filter
+                    string="Assigned To"
+                    name="assigned_to"
+                    domain="[]"
+                    context="{'group_by':'fsm_order_person_id'}"
+                />
+            </filter>
         </field>
     </record>
 </odoo>
