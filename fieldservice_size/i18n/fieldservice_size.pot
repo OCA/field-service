@@ -19,6 +19,13 @@ msgid "Configure a Field Service Size here."
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,help:fieldservice_size.field_fsm_order__size_uom_category
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__create_uid
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__create_uid
 msgid "Created by"
@@ -159,4 +166,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
 msgid "Unit of Measure"
+msgstr ""
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom_category
+msgid "Unit of Measure Category"
 msgstr ""
