@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2025-06-10 10:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -35,6 +36,20 @@ msgid "Point of Sale Configuration"
 msgstr "Configuración del TPV"
 
 #. module: fieldservice_sale_stock_from_pos
+#. odoo-python
+#: code:addons/fieldservice_sale_stock_from_pos/models/sale_order.py:0
+#, python-format
+msgid "Review FSM Order"
+msgstr ""
+
+#. module: fieldservice_sale_stock_from_pos
+#. odoo-python
+#: code:addons/fieldservice_sale_stock_from_pos/models/sale_order.py:0
+#, python-format
+msgid "Review and assign this FSM order created from POS."
+msgstr ""
+
+#. module: fieldservice_sale_stock_from_pos
 #: model:ir.model,name:fieldservice_sale_stock_from_pos.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -47,7 +62,8 @@ msgstr "Traslado"
 #. module: fieldservice_sale_stock_from_pos
 #: model:ir.model.fields,field_description:fieldservice_sale_stock_from_pos.field_pos_config__fsm_notification_user_id
 #: model:ir.model.fields,field_description:fieldservice_sale_stock_from_pos.field_res_config_settings__fsm_notification_user_id
-msgid "User who will receive notifications of FSM Orders"
+#, fuzzy
+msgid "User who will receive notifications of FSM Orders created from POS"
 msgstr "Usuario que recibirá notificaciones de las órdenes FSM"
 
 #. module: fieldservice_sale_stock_from_pos
