@@ -1,0 +1,29 @@
+<!--
+    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
+    @author: Italo Lopes <italo.lopes@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="fsm_equipment_form_view_stock" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.stock</field>
+        <field name="model">fsm.equipment</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_equipment_stock.fsm_equipment_form_view_stock"
+        />
+        <field name="arch" type="xml">
+            <button id="previous_stage" position="before">
+                <button
+                    id="new_equipment_return"
+                    name="create_equipment_order_return"
+                    string="Create Return"
+                    type="object"
+                    invisible="not current_stock_location_id and not current_location_id"
+                    groups="stock.group_stock_user"
+                />
+            </button>
+        </field>
+    </record>
+
+</odoo>
