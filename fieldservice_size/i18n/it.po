@@ -22,6 +22,13 @@ msgid "Configure a Field Service Size here."
 msgstr "Configura qui una dimensione assistenza sul campo."
 
 #. module: fieldservice_size
+#: model:ir.model.fields,help:fieldservice_size.field_fsm_order__size_uom_category
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__create_uid
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__create_uid
 msgid "Created by"
@@ -100,7 +107,6 @@ msgstr "Nome"
 #. module: fieldservice_size
 #. odoo-python
 #: code:addons/fieldservice_size/models/fsm_size.py:0
-#, python-format
 msgid "Only one default order size per type is allowed."
 msgstr "È consentita solo una dimensione predefinita per tipo ordine."
 
@@ -164,6 +170,11 @@ msgstr "La dimensione predefinita per ordini ti questo tipo"
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
 msgid "Unit of Measure"
 msgstr "Unità di misura"
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom_category
+msgid "Unit of Measure Category"
+msgstr ""
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"
