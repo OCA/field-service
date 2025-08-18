@@ -1,7 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests.common import TransactionCase
 
 
@@ -34,7 +34,7 @@ class FSMOrder(TransactionCase):
                 "code": "TestAgreement",
                 "start_date": fields.Date.today(),
                 "end_date": fields.Date.today(),
-                "fsm_location_id": self.test_location.id,
+                "fsm_location_ids": [Command.set([self.test_location.id])],
                 "partner_id": self.test_person.partner_id.id,
             }
         )
