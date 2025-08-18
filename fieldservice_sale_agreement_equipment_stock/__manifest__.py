@@ -12,6 +12,7 @@
     "category": "Field Service",
     "depends": [
         "agreement_sale",
+        "fieldservice_agreement",
         "fieldservice_sale",
         "fieldservice_equipment_stock",
         "sale_stock",
