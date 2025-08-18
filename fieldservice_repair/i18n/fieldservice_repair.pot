@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,10 +16,9 @@ msgstr ""
 #. module: fieldservice_repair
 #. odoo-python
 #: code:addons/fieldservice_repair/models/fsm_order.py:0
-#, python-format
 msgid ""
-"Cannot create Repair Order because Equipment does not have a Current "
-"Inventory Location."
+"Cannot create the Repair Order because the Equipment '%s' does not have a "
+"Current Inventory Location set."
 msgstr ""
 
 #. module: fieldservice_repair
@@ -50,13 +49,17 @@ msgstr ""
 #. module: fieldservice_repair
 #. odoo-python
 #: code:addons/fieldservice_repair/models/fsm_order.py:0
-#, python-format
+msgid "The Equipment must be set to create a Repair Order."
+msgstr ""
+
+#. module: fieldservice_repair
+#. odoo-python
+#: code:addons/fieldservice_repair/models/fsm_order.py:0
 msgid "The repair order will be cancelled."
 msgstr ""
 
 #. module: fieldservice_repair
 #. odoo-python
 #: code:addons/fieldservice_repair/models/fsm_order.py:0
-#, python-format
 msgid "Warning"
 msgstr ""
