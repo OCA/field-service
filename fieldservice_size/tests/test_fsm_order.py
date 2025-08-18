@@ -52,9 +52,6 @@ class TestFSMSize(TransactionCase):
                 "location_id": self.test_location.id,
             }
         )
-        order._onchange_location_id_customer()
-        order.onchange_type()
-        order.onchange_size_id()
         self.assertTrue(order.size_id, self.size_a.id)
         self.assertTrue(order.size_value, 24.5)
         self.assertTrue(order.size_uom, self.size_a.uom_id)
