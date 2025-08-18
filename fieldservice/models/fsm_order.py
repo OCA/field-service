@@ -420,6 +420,12 @@ class FSMOrder(models.Model):
     def _onchange_person_id(self):
         if self.person_id and self.person_id.team_id:
             self.team_id = self.person_id.team_id
+            self._onchange_team_id()
+
+    @api.onchange("team_id")
+    def _onchange_team_id(self):
+        if not self.location_id and self.team_id and self.team_id.location_id:
+            self.location_id = self.team_id.location_id
 
     def _get_location_directions(self, location_id):
         self.location_directions = ""
