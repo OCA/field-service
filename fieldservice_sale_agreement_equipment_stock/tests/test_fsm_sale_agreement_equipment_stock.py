@@ -17,7 +17,8 @@ class TestFieldServiceSaleAgreementEquipmentStock(TestSaleCommon):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "FSM Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "tracking": "serial",
                 "create_fsm_equipment": True,
             }
