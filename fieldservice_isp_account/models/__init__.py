@@ -4,4 +4,5 @@ from . import (
     fsm_order,
     fsm_person,
 )
-from . import fsm_order_cost
+# fsm_order_cost is now implemented in fieldservice_account_analytic
+# from . import fsm_order_cost

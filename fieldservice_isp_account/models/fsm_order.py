@@ -16,16 +16,18 @@ ACCOUNT_STAGES = [
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    contractor_cost_ids = fields.One2many(
-        "fsm.order.cost", "fsm_order_id", string="Contractor Costs"
-    )
+    # contractor_cost_ids is now implemented in fieldservice_account_analytic
+    # contractor_cost_ids = fields.One2many(
+    #     "fsm.order.cost", "fsm_order_id", string="Contractor Costs"
+    # )
     employee_timesheet_ids = fields.One2many(
         "account.analytic.line", "fsm_order_id", string="Employee Timesheets"
     )
     employee = fields.Boolean(compute="_compute_employee")
-    contractor_total = fields.Float(
-        compute="_compute_contractor_cost", string="Contractor Cost Estimate"
-    )
+    # contractor_total is now implemented in fieldservice_account_analytic
+    # contractor_total = fields.Float(
+    #     compute="_compute_contractor_cost", string="Contractor Cost Estimate"
+    # )
     employee_time_total = fields.Float(
         compute="_compute_employee_hours", string="Total Employee Hours"
     )
@@ -58,12 +60,12 @@ class FSMOrder(models.Model):
             for line in order.employee_timesheet_ids:
                 order.employee_time_total += line.unit_amount
 
-    @api.depends("contractor_cost_ids")
-    def _compute_contractor_cost(self):
-        for order in self:
-            order.contractor_total = 0.0
-            for cost in order.contractor_cost_ids:
-                order.contractor_total += cost.price_unit * cost.quantity
+    # @api.depends("contractor_cost_ids")
+    # def _compute_contractor_cost(self):
+    #     for order in self:
+    #         order.contractor_total = 0.0
+    #         for cost in order.contractor_cost_ids:
+    #             order.contractor_total += cost.price_unit * cost.quantity
 
     @api.onchange("project_id")
     def onchange_project_id(self):
