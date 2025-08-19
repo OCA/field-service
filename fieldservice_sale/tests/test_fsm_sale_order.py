@@ -1,8 +1,10 @@
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import datetime
 
 from odoo import fields
 from odoo.exceptions import ValidationError
+from odoo.tests import Form
 
 from .test_fsm_sale_common import TestFSMSale
 
@@ -12,6 +14,9 @@ class TestFSMSaleOrder(TestFSMSale):
     def setUpClass(cls):
         super().setUpClass()
         cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.today = fields.Datetime.now()
+        cls.dt1 = cls.today + datetime.timedelta(days=9)
+        cls.dt2 = cls.today + datetime.timedelta(days=10)
 
         # Setup products that when sold will create some FSM orders
         cls.setUpFSMProducts()
@@ -529,3 +534,38 @@ class TestFSMSaleOrder(TestFSMSale):
         )
         # confirm sale order: ValidationError shouldn't be raised
         self.sale_order.action_confirm()
+
+    def test_sale_order_6(self):
+        """Test sale order commitment date propagation to FSM orders"""
+        # Confirm the sale order
+        self.sale_order_3.action_confirm()
+        # 2 orders created and SOLs linked to FSM orders
+        self.assertEqual(
+            len(self.sale_order_3.fsm_order_ids.ids),
+            2,
+            "FSM Sale: Sale Order 3 should create 2 FSM Orders",
+        )
+        self.sale_order_3.commitment_date = self.dt1
+        self.assertEqual(
+            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
+            self.sale_order_3.commitment_date,
+            "FSM Sale: FSM Orders should have the same scheduled start date "
+            "as the Sale Order commitment date",
+        )
+        # Changed commitment_date should be propagated to FSM Orders
+        self.sale_order_3.write({"commitment_date": self.dt2})
+        self.assertEqual(
+            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
+            self.dt2,
+            "FSM Sale: FSM Orders should have the new scheduled start date",
+        )
+        # Using the Form, empty commitment_date should fall back to expected_date
+        with Form(self.sale_order_3) as order_form:
+            order_form.commitment_date = False
+            order_form.save()
+        self.assertEqual(
+            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
+            self.sale_order_3.expected_date,
+            "FSM Sale: FSM Orders should have the same scheduled start date "
+            "as the Sale Order expected date",
+        )
