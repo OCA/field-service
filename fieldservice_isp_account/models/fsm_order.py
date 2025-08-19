@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 ACCOUNT_STAGES = [
@@ -76,11 +76,13 @@ class FSMOrder(models.Model):
             order.account_stage = "review"
         if self.person_id.supplier_rank and not self.contractor_cost_ids:
             raise ValidationError(
-                _("Cannot move to Complete " + "until 'Contractor Costs' is filled in")
+                self.env._(
+                    "Cannot move to Complete " + "until 'Contractor Costs' is filled in"
+                )
             )
         if not self.person_id.supplier_rank and not self.employee_timesheet_ids:
             raise ValidationError(
-                _(
+                self.env._(
                     "Cannot move to Complete until "
                     + "'Employee Timesheets' is filled in"
                 )
@@ -142,7 +144,9 @@ class FSMOrder(models.Model):
                     order.account_stage = "confirmed"
                 else:
                     raise ValidationError(
-                        _("The worker assigned to this order" " is not a supplier")
+                        self.env._(
+                            "The worker assigned to this order" " is not a supplier"
+                        )
                     )
             if order.employee_timesheet_ids:
                 order.account_stage = "confirmed"

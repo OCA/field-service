@@ -16,7 +16,7 @@
                         class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
-                        attrs="{'invisible': [('account_stage', '!=', 'review')]}"
+                        invisible="account_stage != 'review'"
                     />
                     <button
                         id="account_create_invoice"
@@ -25,7 +25,7 @@
                         class="oe_highlight"
                         type="object"
                         groups="account.group_account_invoice"
-                        attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"
+                        invisible="account_stage != 'confirmed'"
                     />
                     <button
                         id="account_no_invoice"
@@ -33,7 +33,7 @@
                         string="No Invoice"
                         type="object"
                         groups="account.group_account_invoice"
-                        attrs="{'invisible': [('account_stage', '!=', 'confirmed')]}"
+                        invisible="account_stage != 'confirmed'"
                     />
                     <field name="account_stage" widget="statusbar" />
                 </header>
@@ -41,11 +41,11 @@
             <group name="bill_to" position="after">
                 <group string="Contractor Costs">
                     <field name="contractor_cost_ids" nolabel="1" colspan="2">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="product_id" />
                             <field name="quantity" />
                             <field name="price_unit" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <group>
@@ -58,31 +58,31 @@
                         context="{'default_project_id': project_id, 'default_task_id': project_task_id}"
                         colspan="2"
                     >
-                        <tree editable="bottom" default_order="date">
+                        <list editable="bottom" default_order="date">
                             <field name="date" />
-                            <field name="user_id" invisible="1" />
+                            <field name="user_id" column_invisible="1" />
                             <field name="employee_id" required="1" />
                             <field
                                 name="product_id"
                                 required="1"
                                 domain="[('type','=','service')]"
                             />
-                            <field name="company_id" invisible="1" />
-                            <field name="account_id" invisible="1" />
+                            <field name="company_id" column_invisible="1" />
+                            <field name="account_id" column_invisible="1" />
                             <field name="name" />
                             <field
                                 name="unit_amount"
                                 string="Duration"
                                 widget="float_time"
                             />
-                            <field name="project_id" invisible="1" />
-                            <field name="task_id" invisible="1" />
+                            <field name="project_id" column_invisible="1" />
+                            <field name="task_id" column_invisible="1" />
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
-                                invisible="1"
+                                column_invisible="1"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <group col="4">
