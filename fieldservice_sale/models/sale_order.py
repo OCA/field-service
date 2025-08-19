@@ -89,7 +89,7 @@ class SaleOrder(models.Model):
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
             "request_early": self.expected_date,
-            "scheduled_date_start": self.expected_date,
+            "scheduled_date_start": self.commitment_date or self.expected_date,
             "todo": note,
             "category_ids": [(6, 0, categories.ids)],
             "scheduled_duration": hours,
@@ -229,3 +229,14 @@ class SaleOrder(models.Model):
         else:
             action = {"type": "ir.actions.act_window_close"}
         return action
+
+    def write(self, values):
+        res = super().write(values)
+        if "commitment_date" in values:
+            scheduled_date_start = values["commitment_date"]
+            for order in self:
+                for fsm_order in order.fsm_order_ids:
+                    fsm_order.scheduled_date_start = (
+                        scheduled_date_start or order.expected_date
+                    )
+        return res
