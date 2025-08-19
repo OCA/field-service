@@ -21,6 +21,7 @@ class FSMOrder(models.Model):
             self._apply_repair_order_template()
         return res
 
+    @api.onchange("template_id")
     def _onchange_template_id(self):
         res = super()._onchange_template_id()
         self._apply_repair_order_template()

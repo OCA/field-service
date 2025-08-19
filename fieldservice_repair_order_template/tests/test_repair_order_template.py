@@ -26,7 +26,7 @@ class TestRepairOrderTemplate(TransactionCase):
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"name": "Product A", "type": "product"}
+            {"name": "Product A", "type": "consu", "is_storable": True}
         )
         cls.lot = cls.env["stock.lot"].create(
             {
