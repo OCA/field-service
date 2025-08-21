@@ -1,0 +1,14 @@
+<!-- Copyright 2025 APSL-Nagarro Antoni Marroig
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_fsm_route_form_inherit">
+        <field name="name">fsm.route.form.inherit</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='day_ids']" position="after">
+                <field name="fsm_blackout_group_ids" widget="many2many_tags" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
