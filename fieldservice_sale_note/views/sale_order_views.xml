@@ -1,0 +1,14 @@
+<!-- Copyright 2025 APSL-Nagarro Antoni Marroig
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_form_inherit">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="internal_note" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
