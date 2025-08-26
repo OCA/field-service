@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+
+  <record id="stock_move_dayroute_view_tree" model="ir.ui.view">
+    <field name="name">stock_move.view.tree</field>
+    <field name="model">stock.move</field>
+    <field name="arch" type="xml">
+      <tree create="0">
+          <field
+                    name="date"
+                    groups="base.group_no_one"
+                    decoration-danger="(state not in ('cancel','done')) and date > current_date"
+                />
+          <field name="picking_type_id" invisible="1" />
+          <field name="route_name" />
+          <field name="fsm_worker_id" />
+          <field name="fsm_location_id" />
+          <field name="product_id" />
+          <field name="product_uom_qty" />
+          <field
+                    name="product_uom"
+                    options="{'no_open': True, 'no_create': True}"
+                    string="Unit of Measure"
+                    groups="uom.group_uom"
+                />
+          <field name="company_id" groups="base.group_multi_company" />
+          <field
+                    name="state"
+                    widget='badge'
+                    decoration-success="state == 'done'"
+                    decoration-info="state not in ('done', 'cancel')"
+                />
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_stock_move_dayroute" model="ir.actions.act_window">
+    <field name="name">Delivery Quantities</field>
+    <field name="res_model">stock.move</field>
+    <field name="view_mode">tree</field>
+    <field
+            name="view_id"
+            ref="fieldservice_delivery_quantities.stock_move_dayroute_view_tree"
+        />
+    <field name="domain">[('fsm_order_id', '!=', False),
+      ('picking_type_id.code', '=', 'outgoing'),
+      ('state', 'not in', ['draft', 'cancel'])]</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        No deliveries found.
+      </p>
+    </field>
+    <field name="context">
+      {
+      'search_default_filter_today_fsm': 1, 'search_default_by_product': '1'
+      }
+    </field>
+  </record>
+
+  <record id="view_move_search_dayroute" model="ir.ui.view">
+    <field name="name">stock.move.search.dayroute</field>
+    <field name="model">stock.move</field>
+    <field name="inherit_id" ref="stock.view_move_search" />
+    <field name="arch" type="xml">
+      <xpath expr="//search" position="inside">
+        <filter
+                    name="filter_today_fsm"
+                    string="Today's Deliveries"
+                    domain="[     ('date', '&gt;=', context_today().strftime('%Y-%m-%d')),
+                        ('date', '&lt;=', context_today().strftime('%Y-%m-%d'))]"
+                    context="{'search_default_filter_today_fsm': 1}"
+                />
+
+        <filter
+                    name="filter_tomorrow_fsm"
+                    string="Tomorrow's Deliveries"
+                    domain="[
+                        ('date', '&gt;=', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')),
+                        ('date', '&lt;=', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"
+                />
+
+        <filter
+                    name="filter_next_7_days_fsm"
+                    string="Next 7 Days' Deliveries"
+                    domain="[
+                ('date', '&gt;=', context_today().strftime('%Y-%m-%d')),
+                ('date', '&lt;=', (context_today() + datetime.timedelta(days=6)).strftime('%Y-%m-%d'))]"
+                />
+
+        <filter
+                    name="filter_next_14_days_fsm"
+                    string="Next 14 Days' Deliveries"
+                    domain="[
+                ('date', '&gt;=', context_today().strftime('%Y-%m-%d')),
+                ('date', '&lt;=', (context_today() + datetime.timedelta(days=13)).strftime('%Y-%m-%d'))]"
+                />
+      </xpath>
+
+      <xpath expr="//group/filter[@name='by_product']" position="before">
+        <filter
+                    string="Day Route"
+                    name="by_dayroute"
+                    domain="[]"
+                    context="{'group_by': 'fsm_dayroute_id'}"
+                />
+        <filter
+                    string="Worker"
+                    name="by_worker"
+                    domain="[]"
+                    context="{'group_by': 'fsm_worker_id'}"
+                />
+        <filter
+                    string="Location"
+                    name="by_location"
+                    domain="[]"
+                    context="{'group_by': 'fsm_location_id'}"
+                />
+
+        <filter
+                    string="Route"
+                    name="by_route"
+                    domain="[]"
+                    context="{'group_by': 'route_name'}"
+                />
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

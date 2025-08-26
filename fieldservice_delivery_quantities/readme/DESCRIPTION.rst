@@ -1,0 +1,1 @@
+This module provides an easy way to review the quantities scheduled for delivery on a given day. By default, it groups stock moves by `Product` and displays today's stock moves. Additional filters are available, including `Tomorrow's Deliveries`, `Next 7 Days' Deliveries`, and `Next 14 Days' Deliveries`.
