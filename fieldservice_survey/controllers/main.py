@@ -1,7 +1,7 @@
 # Copyright 2023 - TODAY, Marcel Savegnago <marcel.savegnago@escodoo.com.br>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, http
+from odoo import http
 from odoo.exceptions import AccessDenied
 from odoo.http import request
 from odoo.osv import expression
@@ -26,7 +26,7 @@ class FsmOrderSurveySurvey(Survey):
         try:
             fsm_order = request.env["fsm.order"].sudo().browse(int(fsm_order_id))
         except ValueError:
-            raise AccessDenied(_("Invalid FSM Order ID")) from None
+            raise AccessDenied(request.env._("Invalid FSM Order ID")) from None
 
         user = request.env.user
         partner = user.partner_id
@@ -46,7 +46,9 @@ class FsmOrderSurveySurvey(Survey):
                 user_input_domain,
             )
 
-        raise AccessDenied(_("You do not have access to this FSM Order Survey"))
+        raise AccessDenied(
+            request.env._("You do not have access to this FSM Order Survey")
+        )
 
     @http.route(
         "/fsm_order/<int:fsm_order_id>/results", type="http", auth="user", website=True
@@ -55,7 +57,7 @@ class FsmOrderSurveySurvey(Survey):
         try:
             fsm_order = request.env["fsm.order"].sudo().browse(fsm_order_id)
         except ValueError:
-            raise AccessDenied(_("Invalid FSM Order ID")) from None
+            raise AccessDenied(request.env._("Invalid FSM Order ID")) from None
 
         if (
             fsm_order.person_id.partner_id == request.env.user.partner_id
@@ -105,7 +107,7 @@ class FsmOrderSurveySurvey(Survey):
             survey_sudo = answer.survey_id
 
         if not survey_sudo:
-            raise AccessDenied(_("No survey found for the given FSM Order"))
+            raise AccessDenied(request.env._("No survey found for the given FSM Order"))
 
         post["fsm_order_id"] = fsm_order_id
         user_input_lines_sudo, search_filters = self._extract_filters_data(

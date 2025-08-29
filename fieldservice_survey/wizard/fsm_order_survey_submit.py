@@ -2,7 +2,7 @@ import logging
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -83,7 +83,7 @@ class FsmOrderSurveySubmit(models.TransientModel):
         """Override default_get to add custom defaults."""
         if not self.env.user.email:
             raise UserError(
-                _(
+                self.env._(
                     "Unable to post message,"
                     "please configure the sender's email address."
                 )
@@ -236,8 +236,8 @@ class FsmOrderSurveySubmit(models.TransientModel):
             ).activity_schedule(
                 "mail.mail_activity_data_todo",
                 self.deadline,
-                summary=_("Fill the answer form on survey"),
-                note=_(
+                summary=self.env_("Fill the answer form on survey"),
+                note=self.env._(
                     "An survey was requested. Please take time to fill "
                     'the <a href="%s" target="_blank">survey</a>'
                 )
