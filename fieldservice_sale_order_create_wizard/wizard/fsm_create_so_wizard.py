@@ -19,32 +19,32 @@ class FsmCreateSoWizard(models.TransientModel):
         required=True,
     )
 
+    def _prepare_sale_order_vals(self):
+        """Prepare the values to create a Sale Order from the wizard."""
+        return {
+            "partner_id": self.location_id.partner_id.id,
+            "pricelist_id": self.location_id.partner_id.property_product_pricelist.id,
+            "fsm_location_id": self.location_id.id,
+            "payment_term_id": self.location_id.partner_id.property_payment_term_id.id,
+            "commitment_date": datetime.now(),
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": line.product_id.id,
+                        "product_uom_qty": line.quantity,
+                        "discount": line.discount,
+                    },
+                )
+                for line in self.line_ids
+            ],
+        }
+
     def action_create_sale_order(self):
         """Create a Sale Order based on the selected lines."""
         sale_order = (
-            self.env["sale.order"]
-            .sudo()
-            .create(
-                {
-                    "partner_id": self.location_id.partner_id.id,
-                    "pricelist_id": self.location_id.partner_id.property_product_pricelist.id,
-                    "fsm_location_id": self.location_id.id,
-                    "payment_term_id": self.location_id.partner_id.property_payment_term_id.id,
-                    "commitment_date": datetime.now(),
-                    "order_line": [
-                        (
-                            0,
-                            0,
-                            {
-                                "product_id": line.product_id.id,
-                                "product_uom_qty": line.quantity,
-                                "discount": line.discount,
-                            },
-                        )
-                        for line in self.line_ids
-                    ],
-                }
-            )
+            self.env["sale.order"].sudo().create(self._prepare_sale_order_vals())
         )
 
         try:
