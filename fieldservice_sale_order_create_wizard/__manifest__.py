@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Sale Order Create Wizard",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.1.0",
     "summary": "Create Sale Order from Field Service Kanban View",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
