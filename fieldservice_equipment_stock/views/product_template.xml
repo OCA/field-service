@@ -4,7 +4,11 @@
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
             <group name="group_general" position="inside">
-                <field name="create_fsm_equipment" invisible="tracking != 'serial'" />
+                <field
+                    name="create_fsm_equipment"
+                    groups="fieldservice.group_fsm_user"
+                    invisible="tracking != 'serial'"
+                />
             </group>
         </field>
     </record>
