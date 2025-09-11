@@ -39,9 +39,9 @@
                     <h3>Description</h3>
                     <p t-field="doc.description" />
                 </div>
-                <div t-if="doc.todo" id="instruction">
+                <div t-if="not is_html_empty(doc.todo)" id="instruction">
                     <h3>Instructions</h3>
-                    <p t-out="doc.todo" />
+                    <p t-field="doc.todo" />
                 </div>
                 <div t-if="doc.resolution" id="resolution">
                     <h3>Resolution Notes</h3>
