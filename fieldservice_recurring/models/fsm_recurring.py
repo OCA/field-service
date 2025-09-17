@@ -205,7 +205,7 @@ class FSMRecurringOrder(models.Model):
         self.ensure_one()
         vals = self._prepare_order_values(date)
         order = self.env["fsm.order"].create(vals)
-        order._onchange_template_id()
+        order.onchange_template_id()
         return order
 
     def _generate_orders(self):
