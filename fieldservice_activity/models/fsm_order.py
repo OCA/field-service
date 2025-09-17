@@ -45,7 +45,7 @@ class FSMOrder(models.Model):
         """Update Activities for FSM orders that are generate from SO"""
         orders = super().create(vals)
         for order in orders:
-            order._onchange_template_id()
+            order.onchange_template_id()
         return orders
 
     def action_complete(self):
