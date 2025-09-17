@@ -421,7 +421,7 @@ class FSMOrder(models.Model):
             self.scheduled_date_end = self.scheduled_date_start
 
     @api.onchange("template_id")
-    def _onchange_template_id(self):
+    def onchange_template_id(self):
         if self.template_id:
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.duration
