@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-22 16:42+0000\n"
+"PO-Revision-Date: 2025-09-22 19:42+0000\n"
 "Last-Translator: Tamer Sezgin <tamer.sezgin@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -712,6 +712,12 @@ msgid ""
 "            'Monthly' frequency, and a weekday of (MO, TU, WE, TH, FR),\n"
 "            will result in the last work day of every month."
 msgstr ""
+"Kuralın sıklık periyodu içindeki n'inci tekrarına karşılık gelen,\n"
+"            pozitif veya negatif, bir tekrar sayısı belirtin. Örneğin,\n"
+"            'Aylık' bir sıklık periyodu ve (PZT, SAL, ÇAR, PER, CUMA)\n"
+"            günlerinden birsi ile birleştirilirse, -1 her ayın son iş "
+"gününe\n"
+"            karşılık gelen sonucu verir."
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
@@ -780,6 +786,8 @@ msgid ""
 "The allowed number of days after the computed schedule date\n"
 "           that an event can be done"
 msgstr ""
+"Hesaplanan planlama tarihinden sonra bir etkinliğin\n"
+"           yapılmasına izin verilen gün sayısı"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__buffer_early
@@ -787,6 +795,8 @@ msgid ""
 "The allowed number of days before the computed schedule date\n"
 "            that an event can be done"
 msgstr ""
+"Hesaplanan planlama tarihinden önce bir etkinliğin\n"
+"            yapılmasına izin verilen gün sayısı"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__schedule_days
@@ -794,6 +804,8 @@ msgid ""
 "The number of days from today that the scheduler will generate\n"
 "            orders for this rule"
 msgstr ""
+"Bugünden itibaren, zaman planlayıcının bu kural için \n"
+"            iş emri üreteceği gün sayısı"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__interval
