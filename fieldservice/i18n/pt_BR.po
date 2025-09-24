@@ -1100,6 +1100,18 @@ msgid "Employee"
 msgstr "Funcionario"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employee_ids
+msgid "Employees"
+msgstr "Funcionários"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
+msgid "Employees Count"
+msgstr "Número de Funcionários"
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Enter the resolution for the order..."
 msgstr "Digite a resolução para o pedido..."
@@ -2811,6 +2823,12 @@ msgid "Related Partner"
 msgstr "Parceiro Relacionado"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__employee_ids
+msgid "Related employees based on their private address"
+msgstr "Funcionários relacionados com base em seu endereço privado"
+
+#. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
 msgid "Reporting"
 msgstr "Relatórios"
@@ -3842,12 +3860,6 @@ msgstr "modelo"
 #~ msgid "Dropdown menu"
 #~ msgstr "Menu dropdown"
 
-#~ msgid "Employees"
-#~ msgstr "Funcionários"
-
-#~ msgid "Employees Count"
-#~ msgstr "Número de Funcionários"
-
 #~ msgid "Last Modified on"
 #~ msgstr "Última modificação em"
 
@@ -3884,9 +3896,6 @@ msgstr "modelo"
 
 #~ msgid "Project and Tasks"
 #~ msgstr "Projeto e Tarefas"
-
-#~ msgid "Related employees based on their private address"
-#~ msgstr "Funcionários relacionados com base em seu endereço privado"
 
 #~ msgid "Select field services on sale orders."
 #~ msgstr "Selecione serviços de campo em pedidos de venda."
