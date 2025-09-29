@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_fsm_order_project_form" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_project.view_fsm_order_project_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="Timesheets"
+                    name="timesheets"
+                    invisible="not project_id"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                >
+                    <field
+                        name="timesheet_ids"
+                        context="{'default_project_id': project_id, 'default_task_id': project_task_id}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
