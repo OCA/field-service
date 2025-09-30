@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase
 
@@ -36,9 +36,16 @@ class TestFSMRepairCommon(TransactionCase):
                 "company_id": cls.env.company.id,
             }
         )
-        cls.equipment = cls.env["fsm.equipment"].create(
+        cls.equipment_1 = cls.env["fsm.equipment"].create(
             {
-                "name": "test equipment",
+                "name": "Equipment 1",
+                "product_id": cls.product.id,
+                "lot_id": cls.lot.id,
+            }
+        )
+        cls.equipment_2 = cls.env["fsm.equipment"].create(
+            {
+                "name": "Equipment 2",
                 "product_id": cls.product.id,
                 "lot_id": cls.lot.id,
             }
@@ -53,74 +60,148 @@ class TestFSMRepairCommon(TransactionCase):
             }
         )
 
-    def _prepare_fsm_order_vals(self):
+    def _prepare_fsm_order_vals(self, equipments):
         return {
             "type": self.repair_type.id,
             "location_id": self.test_location.id,
             "date_start": fields.Datetime.today(),
             "date_end": fields.Datetime.today() + timedelta(hours=100),
             "request_early": fields.Datetime.today(),
-            "equipment_id": self.equipment.id,
+            "equipment_ids": [Command.link(eq.id) for eq in equipments],
         }
 
     def test_fsm_repair_order_fails_if_no_equipment(self):
         with self.assertRaisesRegex(
             ValidationError,
-            "The Equipment must be set to create a Repair Order.",
+            "Equipments must be set to create Repair Orders.",
         ):
-            order_vals = self._prepare_fsm_order_vals()
-            order_vals.pop("equipment_id")
+            order_vals = self._prepare_fsm_order_vals(self.equipment_1)
+            order_vals.pop("equipment_ids")
             self.env["fsm.order"].create(order_vals)
 
     def test_fsm_repair_order_fails_if_no_current_stock_location(self):
         self.env["stock.quant"].search([("product_id", "=", self.product.id)]).unlink()
-        self.equipment.invalidate_recordset(["current_stock_location_id"])
+        self.equipment_1.invalidate_recordset(["current_stock_location_id"])
         with self.assertRaisesRegex(
             ValidationError,
             r"Cannot create the Repair Order because the Equipment '.*' "
             r"does not have a Current Inventory Location set.",
         ):
-            self.env["fsm.order"].create(self._prepare_fsm_order_vals())
+            self.env["fsm.order"].create(self._prepare_fsm_order_vals(self.equipment_1))
 
     def test_fsm_repair_order_creates_repair_order(self):
-        order = self.env["fsm.order"].create(self._prepare_fsm_order_vals())
-        self.assertTrue(order.repair_id, "Repair order was created")
-        self.assertEqual(order.repair_id.state, "draft")
-        self.assertEqual(order.repair_id.name, order.name)
-        self.assertEqual(order.repair_id.product_id, self.equipment.product_id)
-        self.assertEqual(order.repair_id.product_uom, self.equipment.product_id.uom_id)
-        self.assertEqual(order.repair_id.location_id, self.stock_location)
-        self.assertEqual(order.repair_id.lot_id, self.equipment.lot_id)
-        self.assertEqual(order.repair_id.product_qty, 1)
-        self.assertEqual(order.repair_id.internal_notes, order.description)
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals(self.equipment_1)
+        )
+        self.assertTrue(order.repair_ids, "Repair order was created")
+        repair_order = order.repair_ids[0]
+        self.assertEqual(repair_order.state, "draft")
+        self.assertEqual(repair_order.name, f"{order.name} - {self.equipment_1.name}")
+        self.assertEqual(repair_order.product_id, self.equipment_1.product_id)
+        self.assertEqual(repair_order.product_uom, self.equipment_1.product_id.uom_id)
+        self.assertEqual(repair_order.location_id, self.stock_location)
+        self.assertEqual(repair_order.lot_id, self.equipment_1.lot_id)
+        self.assertEqual(repair_order.product_qty, 1)
+        self.assertEqual(repair_order.internal_notes, order.description)
 
     def test_fsm_repair_order_is_created_when_type_is_switched_to_repair(self):
-        order_vals = self._prepare_fsm_order_vals()
+        order_vals = self._prepare_fsm_order_vals(self.equipment_1)
         order_vals["type"] = self.fsm_type.id
         order = self.env["fsm.order"].create(order_vals)
-        self.assertFalse(order.repair_id, "Repair order was not created, wrong type")
+        self.assertFalse(order.repair_ids, "Repair order was not created, wrong type")
         order.type = self.repair_type
-        self.assertTrue(order.repair_id, "Repair order was created")
+        self.assertTrue(order.repair_ids, "Repair order was created")
 
     def test_fsm_repair_order_is_canceled_when_type_is_switched_to_not_repair(self):
-        order_vals = self._prepare_fsm_order_vals()
+        order_vals = self._prepare_fsm_order_vals(self.equipment_1)
         order = self.env["fsm.order"].create(order_vals)
-        self.assertTrue(order.repair_id, "Repair order was created")
-        self.assertEqual(order.repair_id.state, "draft")
-        repair_order = order.repair_id
+        self.assertTrue(order.repair_ids, "Repair order was created")
+        repair_order = order.repair_ids[0]
+        self.assertEqual(repair_order.state, "draft")
         order.type = self.fsm_type
         self.assertEqual(repair_order.state, "cancel", "Repair order was canceled")
-        self.assertFalse(order.repair_id, "Repair order was unlinked from the FSM")
+        self.assertFalse(order.repair_ids, "Repair order was unlinked from the FSM")
 
     def test_warning_is_shown_when_type_is_switched_to_not_repair(self):
-        order_vals = self._prepare_fsm_order_vals()
+        order_vals = self._prepare_fsm_order_vals(self.equipment_1)
         order = self.env["fsm.order"].create(order_vals)
         with Form(order) as form:
             with self.assertLogs("odoo.tests.form.onchange") as log_catcher:
                 form.type = self.fsm_type
                 self.assertIn(
-                    "The repair order will be cancelled",
+                    "The repair orders will be cancelled",
                     log_catcher.output[0],
                 )
             with self.assertNoLogs("odoo.tests.form.onchange"):
                 form.type = self.repair_type
+
+    def test_fsm_repair_order_creates_multiple_repairs_for_multiple_equipments(self):
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals([self.equipment_1, self.equipment_2])
+        )
+        self.assertEqual(
+            len(order.repair_ids), 2, "Two repair orders should be created"
+        )
+
+        repair_names = order.repair_ids.mapped("name")
+        self.assertIn(f"{order.name} - {self.equipment_1.name}", repair_names)
+        self.assertIn(f"{order.name} - {self.equipment_2.name}", repair_names)
+
+        for repair in order.repair_ids:
+            self.assertEqual(repair.state, "draft", "Repairs must be in draft")
+            self.assertIn(
+                repair.lot_id, [self.equipment_1.lot_id, self.equipment_2.lot_id]
+            )
+            self.assertEqual(repair.product_qty, 1)
+
+    def test_cancel_all_repairs_when_switching_type_with_multiple_equipments(self):
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals([self.equipment_1, self.equipment_2])
+        )
+        self.assertEqual(len(order.repair_ids), 2)
+        order.type = self.fsm_type
+        for repair in order.repair_ids:
+            self.assertEqual(repair.state, "cancel")
+        self.assertFalse(
+            order.repair_ids, "All repairs should be unlinked after cancel"
+        )
+
+    def test_action_view_repairs_single(self):
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals(self.equipment_1)
+        )
+        self.assertEqual(len(order.repair_ids), 1, "One repair should be created")
+
+        action = order.action_view_repairs()
+        self.assertIsInstance(action, dict, "Action must be a dictionary")
+        self.assertEqual(action["res_model"], "repair.order")
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["view_mode"], "form")
+        self.assertEqual(action["res_id"], order.repair_ids.id)
+
+    def test_action_view_repairs_multiple(self):
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals([self.equipment_1, self.equipment_2])
+        )
+        self.assertEqual(len(order.repair_ids), 2, "Two repairs should be created")
+
+        action = order.action_view_repairs()
+        self.assertIsInstance(action, dict)
+        self.assertEqual(action["res_model"], "repair.order")
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertIn("list", action["view_mode"])
+        self.assertIn("form", action["view_mode"])
+        self.assertIn("domain", action)
+        self.assertIn(("id", "in", order.repair_ids.ids), [tuple(action["domain"][0])])
+
+    def test_action_view_repairs_none(self):
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals(self.equipment_1)
+        )
+        order.repair_ids.unlink()
+        self.assertFalse(order.repair_ids)
+
+        action = order.action_view_repairs()
+        self.assertIsNone(
+            action, "No action should be returned when there are no repairs"
+        )

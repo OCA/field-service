@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================
 Field Service - Repair
 ======================
@@ -17,7 +13,7 @@ Field Service - Repair
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -58,19 +54,19 @@ Configuration
 
 To configure this module, you need to:
 
-- Go to Field Service > Master Data > Equipments
-- Set the product and serial number on each of your equipments
+-  Go to Field Service > Master Data > Equipments
+-  Set the product and serial number on each of your equipments
 
 Usage
 =====
 
 To use this module, you need to:
 
-- Go to Field Service
-- Create a FSM order
-- Choose the type: Repair
-- Select the equipment
-- Upon saving, a repair order is created and linked to the FSM order
+-  Go to Field Service
+-  Create a FSM order
+-  Choose the type: Repair
+-  Select the equipment
+-  Upon saving, a repair order is created and linked to the FSM order
 
 Known issues / Roadmap
 ======================
@@ -99,19 +95,19 @@ Authors
 Contributors
 ------------
 
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Marcel Savegnago - Escodoo <marcel.savegnago@escodoo.com.br>
-- Freni Patel <fpatel@opensourceintegrators.com>
-- Italo LOPES <italo.lopes@camptocamp.com>
-- Iván Todorovich <ivan.todorovich@camptocamp.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Marcel Savegnago - Escodoo <marcel.savegnago@escodoo.com.br>
+-  Freni Patel <fpatel@opensourceintegrators.com>
+-  Italo LOPES <italo.lopes@camptocamp.com>
+-  Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------
