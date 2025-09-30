@@ -231,11 +231,6 @@ class FSMOrder(models.Model):
     # Template
     template_id = fields.Many2one("fsm.template", string="Template")
     category_ids = fields.Many2many("fsm.category", string="Categories")
-
-    # Equipment used for Maintenance and Repair Orders
-    equipment_id = fields.Many2one("fsm.equipment", string="Equipment")
-
-    # Equipment used for all other Service Orders
     equipment_ids = fields.Many2many(
         "fsm.equipment",
         string="Equipments",
@@ -282,18 +277,13 @@ class FSMOrder(models.Model):
             if rec.template_id:
                 rec.todo = rec.template_id.instructions
 
-    @api.depends("equipment_ids", "equipment_id", "type")
+    @api.depends("equipment_ids", "type")
     def _compute_description(self):
         for rec in self:
             if rec.description:
                 continue
-            equipments = (
-                rec.equipment_ids
-                if rec.type and rec.internal_type not in ("repair", "maintenance")
-                else rec.equipment_id
-            )
             rec.description = "\n".join(
-                equipment.notes for equipment in equipments if equipment.notes
+                equipment.notes for equipment in rec.equipment_ids if equipment.notes
             )
 
     @api.model
