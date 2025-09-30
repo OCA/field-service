@@ -74,13 +74,6 @@
                             <field name="person_id" />
                             <field name="internal_type" invisible="1" />
                             <field
-                                name="equipment_id"
-                                invisible="internal_type not in ['repair', 'maintenance']"
-                                groups="fieldservice.group_fsm_equipment"
-                                options="{'no_create': True}"
-                                domain="[('current_location_id','=',location_id)]"
-                            />
-                            <field
                                 name="company_id"
                                 options="{'no_create': True}"
                                 groups="base.group_multi_company"
@@ -180,11 +173,9 @@
                             string="Equipments"
                             groups="fieldservice.group_fsm_equipment"
                             name="equipements_page"
-                            invisible="internal_type in ['repair', 'maintenance']"
                         >
                             <field
                                 name="equipment_ids"
-                                required="internal_type not in ['repair', 'maintenance']"
                                 options="{'no_create': True}"
                                 domain="[('current_location_id','=',location_id)]"
                             >

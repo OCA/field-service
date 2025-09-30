@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============
 Field Service
 =============
@@ -17,7 +13,7 @@ Field Service
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -206,31 +202,31 @@ Authors
 Contributors
 ------------
 
-- Wolfgang Hall <whall@opensourceintegrators.com>
-- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-- Steve Campbell <scampbell@opensourceintegrators.com>
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Michael Allen <mallen@opensourceintegrators.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Brian McMaster <brian@mcmpest.com>
-- Raphaël Reverdy <raphael.reverdy@akretion.com>
-- Ammar Officewala <ammar.o.serpentcs@gmail.com>
-- Yves Goldberg <yves@ygol.com>
-- Freni Patel <fpatel@opensourceintegrators.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Wolfgang Hall <whall@opensourceintegrators.com>
+-  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+-  Steve Campbell <scampbell@opensourceintegrators.com>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Michael Allen <mallen@opensourceintegrators.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Brian McMaster <brian@mcmpest.com>
+-  Raphaël Reverdy <raphael.reverdy@akretion.com>
+-  Ammar Officewala <ammar.o.serpentcs@gmail.com>
+-  Yves Goldberg <yves@ygol.com>
+-  Freni Patel <fpatel@opensourceintegrators.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
-- Nils Coenen <nils.coenen@nico-solutions.de>
-- Alex Comba <alex.comba@agilebg.com>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
+-  Alex Comba <alex.comba@agilebg.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------
