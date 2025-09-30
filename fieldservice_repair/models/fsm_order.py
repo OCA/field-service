@@ -8,20 +8,54 @@ from odoo.exceptions import ValidationError
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    repair_id = fields.Many2one("repair.order", string="Repair Order", readonly=True)
+    repair_ids = fields.One2many(
+        "repair.order", "fsm_order_id", string="Repair Orders", readonly=True
+    )
+    repair_count = fields.Integer(
+        string="Repair Orders Count", compute="_compute_repair_count", store=True
+    )
 
-    def _prepare_repair_order_vals(self):
-        """Prepare the values for the repair order."""
+    @api.depends("repair_ids")
+    def _compute_repair_count(self):
+        for order in self:
+            order.repair_count = len(order.repair_ids)
+
+    def action_view_repairs(self):
+        if self.repair_ids:
+            action = {
+                "res_model": "repair.order",
+                "type": "ir.actions.act_window",
+            }
+            if len(self.repair_ids) == 1:
+                action.update(
+                    {
+                        "view_mode": "form",
+                        "res_id": self.repair_ids[0].id,
+                    }
+                )
+            else:
+                action.update(
+                    {
+                        "name": self.env._("Repair Orders"),
+                        "view_mode": "list,form",
+                        "domain": [("id", "in", self.repair_ids.ids)],
+                    }
+                )
+            return action
+
+    def _prepare_repair_order_vals(self, equipment):
+        """Prepare the values for the repair order for a given equipment."""
         self.ensure_one()
         return {
-            "name": self.name,
-            "product_id": self.equipment_id.product_id.id,
-            "product_uom": self.equipment_id.product_id.uom_id.id,
-            "location_id": self.equipment_id.current_stock_location_id.id,
-            "lot_id": self.equipment_id.lot_id.id,
+            "name": f"{self.name} - {equipment.name}",
+            "product_id": equipment.product_id.id,
+            "product_uom": equipment.product_id.uom_id.id,
+            "location_id": equipment.current_stock_location_id.id,
+            "lot_id": equipment.lot_id.id,
             "product_qty": 1,
             "internal_notes": self.description,
             "partner_id": self.location_id.partner_id.id,
+            "fsm_order_id": self.id,
         }
 
     def _create_repair_orders(self):
@@ -30,29 +64,29 @@ class FSMOrder(models.Model):
         for rec in self:
             if rec.internal_type != "repair":
                 continue
-            if rec.repair_id:
+            if rec.repair_ids:
                 continue
-            if not rec.equipment_id:
+            if not rec.equipment_ids:
                 raise ValidationError(
-                    self.env._("The Equipment must be set to create a Repair Order.")
+                    self.env._("Equipments must be set to create Repair Orders.")
                 )
-            if not rec.equipment_id.current_stock_location_id:
-                raise ValidationError(
-                    self.env._(
-                        "Cannot create the Repair Order because the Equipment '%s' "
-                        "does not have a Current Inventory Location set.",
-                        rec.equipment_id.name,
+            for equipment in rec.equipment_ids:
+                if not equipment.current_stock_location_id:
+                    raise ValidationError(
+                        self.env._(
+                            "Cannot create the Repair Order because the Equipment '%s' "
+                            "does not have a Current Inventory Location set.",
+                            equipment.name,
+                        )
                     )
-                )
-            repair_order_vals = rec._prepare_repair_order_vals()
-            repair_order = self.env["repair.order"].create(repair_order_vals)
-            rec.repair_id = repair_order
-            created_repair_orders += repair_order
+                repair_order_vals = rec._prepare_repair_order_vals(equipment)
+                repair_order = self.env["repair.order"].create(repair_order_vals)
+                created_repair_orders += repair_order
         return created_repair_orders
 
     @api.model_create_multi
     def create(self, vals_list):
-        # OVERRIDE to create a repair.order if an FSM order with type repair is created
+        # OVERRIDE to create repair orders if an FSM order with type repair is created
         orders = super().create(vals_list)
         orders._create_repair_orders()
         return orders
@@ -64,8 +98,8 @@ class FSMOrder(models.Model):
             # If internal type is changed to something other than repair,
             # cancel the repair orders
             if fsm_order_type.internal_type != "repair":
-                self.repair_id.action_repair_cancel()
-                self.repair_id = False
+                self.repair_ids.action_repair_cancel()
+                self.repair_ids = False
             # If the internal type is changed to a repair order, create them
             elif fsm_order_type.internal_type == "repair":
                 self._create_repair_orders()
@@ -75,10 +109,10 @@ class FSMOrder(models.Model):
     def _onchange_internal_type(self):
         # If we change the type of the order to not repair,
         # we should inform the user that the repair order will be canceled.
-        if self.repair_id and self.internal_type != "repair":
+        if self.repair_ids and self.internal_type != "repair":
             return {
                 "warning": {
                     "title": self.env._("Warning"),
-                    "message": self.env._("The repair order will be cancelled."),
+                    "message": self.env._("The repair orders will be cancelled."),
                 }
             }
