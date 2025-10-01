@@ -38,7 +38,11 @@
                 <page string="Field Service">
                     <group id="fsm">
                         <group id="fsm-left">
-                            <field name="fsm_location_id" />
+                            <field
+                                name="fsm_location_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
                         </group>
                         <group id="fsm-right" />
                     </group>
@@ -53,7 +57,7 @@
         <field name="inherit_id" ref="agreement.agreement_search" />
         <field name="arch" type="xml">
             <xpath expr="/search/filter[1]" position="before">
-                <field name="fsm_location_id" />
+                <field name="fsm_location_ids" />
             </xpath>
         </field>
     </record>

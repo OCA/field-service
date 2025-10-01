@@ -7,7 +7,7 @@
             <field name="location_id" position="after">
                 <field
                     name="agreement_id"
-                    domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]"
+                    domain="[('fsm_location_ids', 'in', location_id), ('is_template', '=', False)]"
                 />
             </field>
         </field>

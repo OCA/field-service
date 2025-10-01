@@ -11,7 +11,13 @@ class Agreement(models.Model):
         compute="_compute_service_order_count", string="# Service Orders"
     )
     equipment_count = fields.Integer("# Equipments", compute="_compute_equipment_count")
-    fsm_location_id = fields.Many2one("fsm.location", string="FSM Location")
+    fsm_location_ids = fields.Many2many(
+        "fsm.location",
+        relation="agreement_fsm_location_rel",
+        column1="agreement_id",
+        column2="fsm_location_id",
+        string="FSM Locations",
+    )
 
     def _compute_service_order_count(self):
         data = self.env["fsm.order"]._read_group(

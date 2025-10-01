@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==========================
 Field Service - Agreements
 ==========================
@@ -17,7 +13,7 @@ Field Service - Agreements
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -55,12 +51,12 @@ Usage
 
 To use this module:
 
-- Go to Field Service > Operations > Orders
-- Select or create a field service order and set the agreement
-- Go to Agreement > Agreements
-- Open the previous agreement
-- Click on the smart button "Service Orders" to see the list of related
-  field service orders
+-  Go to Field Service > Operations > Orders
+-  Select or create a field service order and set the agreement
+-  Go to Agreement > Agreements
+-  Open the previous agreement
+-  Click on the smart button "Service Orders" to see the list of related
+   field service orders
 
 Known issues / Roadmap
 ======================
@@ -88,19 +84,19 @@ Authors
 Contributors
 ------------
 
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Patrick Wilson <pwilson@opensourceintegrators.com>
-- Italo Lopes <italo.lopes@camptocamp.com>
-- Iván Todorovich <ivan.todorovich@camptocamp.com>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Patrick Wilson <pwilson@opensourceintegrators.com>
+-  Italo Lopes <italo.lopes@camptocamp.com>
+-  Iván Todorovich <ivan.todorovich@camptocamp.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators
+-  Open Source Integrators
 
 Maintainers
 -----------
