@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form, TransactionCase
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
@@ -57,7 +57,7 @@ class TestRepairOrderTemplate(TransactionCase):
         cls.order_vals = {
             "type": cls.env.ref("fieldservice_repair.fsm_order_type_repair").id,
             "location_id": cls.env.ref("fieldservice.test_location").id,
-            "equipment_id": cls.equipment.id,
+            "equipment_ids": [Command.set([cls.equipment.id])],
             "date_start": fields.Datetime.today(),
             "date_end": fields.Datetime.today() + timedelta(hours=1),
             "request_early": fields.Datetime.today(),
@@ -67,15 +67,17 @@ class TestRepairOrderTemplate(TransactionCase):
         order = self.env["fsm.order"].create(
             dict(self.order_vals, template_id=self.template.id)
         )
-        self.assertEqual(order.repair_id.repair_order_template_id, self.repair_template)
-        self.assertEqual(len(order.repair_id.move_ids), 2)
+        for repair in order.repair_ids:
+            self.assertEqual(repair.repair_order_template_id, self.repair_template)
+            self.assertEqual(len(repair.move_ids), 2)
 
     def test_repair_order_template_on_write(self):
         order = self.env["fsm.order"].create(self.order_vals)
         with Form(order) as order_form:
             order_form.template_id = self.template
-        self.assertEqual(order.repair_id.repair_order_template_id, self.repair_template)
-        self.assertEqual(len(order.repair_id.move_ids), 2)
+        for repair in order.repair_ids:
+            self.assertEqual(repair.repair_order_template_id, self.repair_template)
+            self.assertEqual(len(repair.move_ids), 2)
 
     def test_repair_order_template_with_onchange_template_flow(self):
         """Test the flow when the type is inferred from the template
@@ -93,5 +95,6 @@ class TestRepairOrderTemplate(TransactionCase):
         self.assertEqual(
             order.type, self.env.ref("fieldservice_repair.fsm_order_type_repair")
         )
-        self.assertEqual(order.repair_id.repair_order_template_id, self.repair_template)
-        self.assertEqual(len(order.repair_id.move_ids), 2)
+        for repair in order.repair_ids:
+            self.assertEqual(repair.repair_order_template_id, self.repair_template)
+            self.assertEqual(len(repair.move_ids), 2)

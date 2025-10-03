@@ -30,12 +30,7 @@ class FSMOrder(models.Model):
     def _apply_repair_order_template(self):
         """Apply the Repair Order Template on the related repair order"""
         for rec in self:
-            if (
-                rec.repair_id
-                and rec.repair_id.state == "draft"
-                and rec.template_id.repair_order_template_id
-            ):
-                rec.repair_id.repair_order_template_id = (
-                    rec.template_id.repair_order_template_id
-                )
-                rec.repair_id._onchange_repair_order_template_id()
+            if repair_order_template := rec.template_id.repair_order_template_id:
+                for repair in rec.repair_ids.filtered(lambda r: r.state == "draft"):
+                    repair.repair_order_template_id = repair_order_template
+                    repair._onchange_repair_order_template_id()
