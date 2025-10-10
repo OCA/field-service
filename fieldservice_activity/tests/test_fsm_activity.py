@@ -56,16 +56,6 @@ class TestFSMActivity(TransactionCase):
             }
         )
         order_id = order.id
-        activity_id = self.env["mail.activity"].create(
-            {
-                "summary": "Meeting with partner",
-                "activity_type_id": self.activty_type.id,
-                "res_model_id": self.env["ir.model"]._get("fsm.order").id,
-                "res_id": order2.id,
-                "user_id": self.env.user.id,
-            }
-        )
-        order2.activity_ids = [(6, False, activity_id.ids)]
         self.Activity.create(
             self.get_activity_vals("Activity Test", False, "Ref 1", order2.id)
         )

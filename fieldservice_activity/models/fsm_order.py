@@ -51,5 +51,4 @@ class FSMOrder(models.Model):
                     )
                     % activity.name
                 )
-        self.activity_ids._action_done()
         return res
