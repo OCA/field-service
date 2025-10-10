@@ -19,6 +19,7 @@ class FSMRecurringCase(TransactionCase):
         cls.Recurring = cls.env["fsm.recurring"]
         cls.Frequency = cls.env["fsm.frequency"]
         cls.FrequencySet = cls.env["fsm.frequency.set"]
+        cls.OrderTemplate = cls.env["fsm.template"]
         # create a Partner to be converted to FSM Location/Person
         cls.test_loc_partner = cls.env["res.partner"].create(
             {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
@@ -307,3 +308,27 @@ class FSMRecurringCase(TransactionCase):
         fsm_order = self.env["fsm.order"].create(order_vals)
         self.env["fsm.order"].create(order_vals2)
         fsm_order.action_view_fsm_recurring()
+
+    def test_fsm_order_vals_from_template(self):
+        order_template = self.OrderTemplate.create(
+            {
+                "name": "Order Template",
+                "instructions": "Instructions for the order template",
+                "duration": 1.5,
+            }
+        )
+        recurring = self.Recurring.create(
+            {
+                "fsm_frequency_set_id": self.fr_set.id,
+                "location_id": self.test_location.id,
+                "start_date": fields.Datetime.now().replace(hour=12),
+                "fsm_order_template_id": order_template.id,
+                "scheduled_duration": 2.0,
+            }
+        )
+        recurring.action_start()
+        order = recurring.fsm_order_ids[0]
+        # Test the template instructions were added on order
+        self.assertEqual(order.todo, order_template.instructions)
+        # Test the duration is set to the RFO duration (not the template)
+        self.assertEqual(order.scheduled_duration, recurring.scheduled_duration)

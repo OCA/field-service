@@ -192,7 +192,7 @@ class FSMRecurringOrder(models.Model):
         return {
             "fsm_recurring_id": self.id,
             "location_id": self.location_id.id,
-            "team_id": self.team_id.id,
+            "team_id": self.team_id.id or self.fsm_order_template_id.team_id.id,
             "scheduled_date_start": schedule_date,
             "request_early": str(earliest_date),
             "description": self.description,
@@ -202,13 +202,15 @@ class FSMRecurringOrder(models.Model):
             "company_id": self.company_id.id,
             "person_id": self.person_id.id,
             "equipment_ids": [(6, 0, self.equipment_ids.ids)],
+            "type": self.fsm_order_template_id.type_id.id,
         }
 
     def _create_order(self, date):
         self.ensure_one()
         vals = self._prepare_order_values(date)
         order = self.env["fsm.order"].create(vals)
-        order._onchange_template_id()
+        if order.template_id:
+            order.copy_notes()
         return order
 
     def _generate_orders(self):
