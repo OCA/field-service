@@ -115,7 +115,7 @@ class TestFSMActivity(TransactionCase):
             "fsm_order_id": order_id,
         }
 
-    def test_onchange_template_id(self):
+    def test_compute_order_activity_ids(self):
         # Create a Template
         self.template = self.template_obj.create(
             {
@@ -138,8 +138,24 @@ class TestFSMActivity(TransactionCase):
         self.fso = self.Order.create(
             {"location_id": self.test_location.id, "template_id": self.template.id}
         )
-        # Test _onchange_template_id()
-        self.fso._onchange_template_id()
-        self.assertNotEqual(
-            self.fso.order_activity_ids.ids, self.fso.template_id.temp_activity_ids.ids
+        # Test FSM Order has FSM Activity based on the FSM Template
+        self.assertEqual(
+            len(self.fso.order_activity_ids),
+            len(self.fso.template_id.temp_activity_ids),
+            "Amount of FSM Activites on FSM Order should be the same as FSM Template",
+        )
+        self.assertEqual(
+            self.fso.order_activity_ids[0].name,
+            self.fso.template_id.temp_activity_ids[0].name,
+            "Name of FSM Activity on FSM Order should match FSM Template",
+        )
+        self.assertEqual(
+            self.fso.order_activity_ids[0].required,
+            self.fso.template_id.temp_activity_ids[0].required,
+            "Required field of FSM Activity on FSM Order should match FSM Template",
+        )
+        self.assertEqual(
+            self.fso.order_activity_ids[0].ref,
+            self.fso.template_id.temp_activity_ids[0].ref,
+            "Reference of FSM Activity on FSM Order should match FSM Template",
         )
