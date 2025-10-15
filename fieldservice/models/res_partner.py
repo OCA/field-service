@@ -10,7 +10,7 @@ class ResPartner(models.Model):
     type = fields.Selection(selection_add=[("fsm_location", "Location")])
     fsm_location = fields.Boolean("Is a FS Location")
     fsm_person = fields.Boolean("Is a FS Worker")
-    fsm_location_id = fields.One2many(
+    fsm_location_ids = fields.One2many(
         comodel_name="fsm.location",
         string="Related FS Location",
         inverse_name="partner_id",

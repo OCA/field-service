@@ -243,11 +243,9 @@ class FSMLocation(TransactionCase):
         child_loc = self.env["res.partner"].create(vals)
 
         self.assertTrue(child_loc.fsm_location, "fsm_location Flag should be set")
-        self.assertTrue(
-            child_loc.fsm_location_id.exists(), "fsm.location should exists"
-        )
+        self.assertTrue(child_loc.fsm_location_ids, "fsm.location should exist")
         self.assertEqual(
-            child_loc.fsm_location_id.partner_id,
+            child_loc.fsm_location_ids.partner_id,
             child_loc,
             "ensure circular references",
         )
