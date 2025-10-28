@@ -143,7 +143,7 @@ class TestFSMStockCommon(TransactionCase):
         order3.picking_ids = [(6, 0, order_in_pickings)]
         order.picking_ids = [(6, 0, order_pick_list2)]
         order._compute_picking_ids()
-        order.location_id._onchange_fsm_parent_id()
+        order.location_id._onchange_parent_id()
         order._default_warehouse_id()
         order.action_view_delivery()
         order2.action_view_delivery()
