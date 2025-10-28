@@ -1,7 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -34,7 +34,7 @@ class FSMLocation(TransactionCase):
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.Location, view=view_id) as f:
             f.name = "Child Location"
-            f.fsm_parent_id = self.test_location
+            f.parent_id = self.test_location
         location = f.save()
         # Test child location equal to parent location
         for x in [
@@ -86,7 +86,7 @@ class FSMLocation(TransactionCase):
         self.assertEqual(len(location.person_ids), 3)
         res = location.owner_id.action_open_owned_locations()
         self.assertIn(location.id, res["domain"][0][2])
-        self.location_1.fsm_parent_id = self.test_location
+        self.location_1.parent_id = self.test_location
         self.location_1.ref = "Test Ref"
         self.location_3.ref = "Test Ref3"
         self.location_1._compute_complete_name()
@@ -118,9 +118,9 @@ class FSMLocation(TransactionCase):
         - Test count all equipments, contacts, sublocations
         """
         # Test Location > Location 1 > Location 2 > Location 3
-        self.location_3.fsm_parent_id = self.location_2
-        self.location_2.fsm_parent_id = self.location_1
-        self.location_1.fsm_parent_id = self.test_location
+        self.location_3.parent_id = self.location_2
+        self.location_2.parent_id = self.location_1
+        self.location_1.parent_id = self.test_location
         # Test sublocation_count of each level
         self.assertEqual(
             (
@@ -131,18 +131,32 @@ class FSMLocation(TransactionCase):
             ),
             (3, 2, 1, 0),
         )
-        loc_ids = self.test_location.action_view_sublocation()["domain"][0][2]
-        loc_1_ids = self.location_1.action_view_sublocation()["domain"][0][2]
-        loc_2_ids = [self.location_2.action_view_sublocation()["res_id"]]
-        loc_3_ids = self.location_3.action_view_sublocation()["domain"][0][2]
+
+        location_0_sublocations = self.env["fsm.location"].search(
+            self.test_location.action_view_sublocation()["domain"]
+        )
         self.assertEqual(
-            (len(loc_ids), len(loc_1_ids), len(loc_2_ids), len(loc_3_ids)), (3, 2, 1, 0)
+            location_0_sublocations, self.location_1 + self.location_2 + self.location_3
         )
 
+        location_1_sublocations = self.env["fsm.location"].search(
+            self.location_1.action_view_sublocation()["domain"]
+        )
+        self.assertEqual(location_1_sublocations, self.location_2 + self.location_3)
+
+        location_2_sublocations = (
+            self.env["fsm.location"]
+            .browse(self.location_2.action_view_sublocation()["res_id"])
+            .exists()
+        )
+        self.assertEqual(location_2_sublocations, self.location_3)
+
         # Test recursion exception
-        with self.assertRaises(ValidationError):
-            self.test_location.fsm_parent_id = self.location_3
-        self.test_location.fsm_parent_id = False  # Set back
+        with (
+            self.assertRaisesRegex(UserError, "Recursion Detected"),
+            self.env.cr.savepoint(),
+        ):
+            self.test_location.parent_id = self.location_3
 
         # Add equipments on each locations, and test counting
         location_vs_num_eq = {
@@ -171,19 +185,26 @@ class FSMLocation(TransactionCase):
             (8, 7, 6, 1),
         )  # !!
         # Test smart button to open equipment
-        loc_eq_ids = self.test_location.action_view_equipment()["domain"][0][2]
-        loc_1_eq_ids = self.location_1.action_view_equipment()["domain"][0][2]
-        loc_2_eq_ids = self.location_2.action_view_equipment()["domain"][0][2]
-        loc_3_eq_ids = self.location_3.action_view_equipment()["res_id"]
-        self.assertEqual(
-            (
-                len(loc_eq_ids),
-                len(loc_1_eq_ids),
-                len(loc_2_eq_ids),
-                len([loc_3_eq_ids]),
-            ),
-            (8, 7, 6, 1),
+        location_0_equipment = self.env["fsm.equipment"].search(
+            self.test_location.action_view_equipment()["domain"]
         )
+        location_1_equipment = self.env["fsm.equipment"].search(
+            self.location_1.action_view_equipment()["domain"]
+        )
+        location_2_equipment = self.env["fsm.equipment"].search(
+            self.location_2.action_view_equipment()["domain"]
+        )
+        location_3_equipment = (
+            self.env["fsm.equipment"]
+            .browse(self.location_3.action_view_equipment()["res_id"])
+            .exists()
+        )
+
+        self.assertEqual(len(location_0_equipment), 8)
+        self.assertEqual(len(location_1_equipment), 7)
+        self.assertEqual(len(location_2_equipment), 6)
+        self.assertEqual(len(location_3_equipment), 1)
+
         self.test_loc_partner._compute_owned_location_count()
         # Set service_location_id, on relavant res.partner, test contact count
         self.test_loc_partner.service_location_id = self.test_location
@@ -201,14 +222,24 @@ class FSMLocation(TransactionCase):
             (4, 3, 2, 1),
         )
         # Test smart button to open contacts
-        cont_ids = self.test_location.action_view_contacts()["domain"][0][2]
-        cont_1_ids = self.location_1.action_view_contacts()["domain"][0][2]
-        cont_2_ids = self.location_2.action_view_contacts()["domain"][0][2]
-        cont_3_ids = [self.location_3.action_view_contacts()["res_id"]]
-        self.assertEqual(
-            (len(cont_ids), len(cont_1_ids), len(cont_2_ids), len(cont_3_ids)),
-            (4, 3, 2, 1),
+        location_0_contacts = self.env["res.partner"].search(
+            self.test_location.action_view_contacts()["domain"]
         )
+        location_1_contacts = self.env["res.partner"].search(
+            self.location_1.action_view_contacts()["domain"]
+        )
+        location_2_contacts = self.env["res.partner"].search(
+            self.location_2.action_view_contacts()["domain"]
+        )
+        location_3_contacts = (
+            self.env["res.partner"]
+            .browse(self.location_3.action_view_contacts()["res_id"])
+            .exists()
+        )
+        self.assertEqual(len(location_0_contacts), 4)
+        self.assertEqual(len(location_1_contacts), 3)
+        self.assertEqual(len(location_2_contacts), 2)
+        self.assertEqual(len(location_3_contacts), 1)
 
     def test_convert_partner_to_fsm_location(self):
         """
