@@ -219,7 +219,7 @@ class TestFSMOrder(TransactionCase):
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.env["fsm.location"], view=view_id) as f:
             f.name = "Child Location"
-            f.fsm_parent_id = self.test_location
+            f.parent_id = self.test_location
         location = f.save()
         self.test_team = self.env["fsm.team"].create({"name": "Test Team"})
         order_type = self.env["fsm.order.type"].create(
@@ -252,7 +252,7 @@ class TestFSMOrder(TransactionCase):
         order.type = False
         order.description = False
         self.location_1.direction = "Test Direction"
-        order2.location_id.fsm_parent_id = self.location_1.id
+        order2.location_id.parent_id = self.location_1.id
         data = (
             self.env["fsm.order"]
             .with_context(**{"default_team_id": self.test_team.id})

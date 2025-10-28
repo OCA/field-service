@@ -23,7 +23,7 @@ class ResPartner(models.Model):
         "fsm.location",
         "owner_id",
         string="Owned Locations",
-        domain=[("fsm_parent_id", "=", False)],
+        domain=[("parent_id", "=", False)],
     )
     owned_location_count = fields.Integer(
         compute="_compute_owned_location_count", string="# of Owned Locations"
