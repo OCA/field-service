@@ -38,11 +38,12 @@ class FSMIspFlowCase(TransactionCase):
         cls.init_values = {
             "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
         }
-        cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
-        cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
-        cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
-        cls.stage4 = cls.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
-        cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
+        # Move stage references to test methods to avoid timing issues
+        # cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
+        # cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
+        # cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
+        # cls.stage4 = cls.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
+        # cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
 
     def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
