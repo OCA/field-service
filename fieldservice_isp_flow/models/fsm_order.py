@@ -14,9 +14,9 @@ class FSMOrder(models.Model):
         )
 
     def action_request(self):
-        if not self.person_ids:
+        if not self.person_id and not self.person_ids:
             raise ValidationError(
-                _("Cannot move to Requested " + "until 'Request Workers' is filled in")
+                _("Cannot move to Requested " + "until 'Assigned To' is filled in")
             )
         return self.write(
             {"stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_requested").id}
