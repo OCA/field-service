@@ -35,15 +35,12 @@ class FSMIspFlowCase(TransactionCase):
                 "owner_id": cls.test_partner.id,
             }
         )
-        # Move stage references to test methods to avoid timing issues
-        # cls.init_values = {
-        #     "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
-        # }
-        # cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
-        # cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
-        # cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
-        # cls.stage4 = cls.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
-        # cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
+        # Create a test team since FSMOrder requires team_id
+        cls.test_team = cls.env["fsm.team"].create(
+            {
+                "name": "Test Team",
+            }
+        )
 
     def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
@@ -52,6 +49,7 @@ class FSMIspFlowCase(TransactionCase):
             {
                 "location_id": self.test_location.id,
                 "person_id": self.worker.id,
+                "team_id": self.test_team.id,
                 "date_start": fields.Datetime.now(),
                 "date_end": fields.Datetime.now() + timedelta(hours=1),
                 "request_early": fields.Datetime.now(),
@@ -66,3 +64,8 @@ class FSMIspFlowCase(TransactionCase):
         # Verify the stage was set to confirmed
         confirmed_stage = self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
         self.assertEqual(order.stage_id, confirmed_stage)
+
+        # Test action_request - this should work now since person_id is set
+        order.action_request()
+        requested_stage = self.env.ref("fieldservice_isp_flow.fsm_stage_requested")
+        self.assertEqual(order.stage_id, requested_stage)
