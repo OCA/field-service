@@ -35,10 +35,10 @@ class FSMIspFlowCase(TransactionCase):
                 "owner_id": cls.test_partner.id,
             }
         )
-        cls.init_values = {
-            "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
-        }
         # Move stage references to test methods to avoid timing issues
+        # cls.init_values = {
+        #     "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
+        # }
         # cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
         # cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
         # cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
