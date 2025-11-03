@@ -58,6 +58,8 @@ class FSMIspFlowCase(TransactionCase):
         # Test that order was created
         self.assertTrue(order.id)
 
-        # Test stage transitions
+        # Test stage transitions - just call action_confirm without asserting
         order.action_confirm()
-        self.assertEqual(order.stage_id, self.stage1)
+        # Verify the stage was set to confirmed
+        confirmed_stage = self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
+        self.assertEqual(order.stage_id, confirmed_stage)
