@@ -48,17 +48,17 @@ class FSMIspFlowCase(TransactionCase):
                 "date_end": fields.Datetime.now() + timedelta(hours=1),
             }
         )
-        
+
         # Test that order was created
         self.assertTrue(order.id)
-        
+
         # Test stage transitions
         order.action_confirm()
         self.assertEqual(order.stage_id, self.stage1)
-        
-        order.action_enroute() 
+
+        order.action_enroute()
         self.assertEqual(order.stage_id, self.stage4)
-        
+
         # Test validation errors
         with self.assertRaises(ValidationError):
             order.action_request()
