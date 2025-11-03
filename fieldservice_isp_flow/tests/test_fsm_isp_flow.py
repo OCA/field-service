@@ -5,7 +5,7 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase, tagged
+from odoo.tests.common import TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -15,10 +15,12 @@ class FSMIspFlowCase(TransactionCase):
         super().setUpClass()
         cls.WorkOrder = cls.env["fsm.order"]
         cls.Worker = cls.env["fsm.person"]
-        view_id = "fieldservice.fsm_person_form"
-        with Form(cls.Worker, view=view_id) as f:
-            f.name = "Worker A"
-        cls.worker = f.save()
+        cls.worker = cls.env["fsm.person"].create(
+            {
+                "name": "Worker A",
+                "email": "worker@example.com",
+            }
+        )
         cls.test_partner = cls.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
