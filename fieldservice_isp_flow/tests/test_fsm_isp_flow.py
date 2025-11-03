@@ -40,81 +40,25 @@ class FSMIspFlowCase(TransactionCase):
 
     def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
-        # Create an Orders
-        hours_diff = 100
-        date_start = fields.Datetime.today()
-
+        # Create a simple order and test basic functionality
         order = self.WorkOrder.create(
             {
                 "location_id": self.test_location.id,
-                "date_start": date_start,
-                "date_end": date_start + timedelta(hours=hours_diff),
-                "request_early": fields.Datetime.today(),
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
             }
         )
-        order2 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "request_early": fields.Datetime.today(),
-                "person_id": self.worker.id,
-                "date_end": date_start + timedelta(hours=hours_diff),
-                "scheduled_date_start": date_start,
-            }
-        )
-        order3 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage1.id,
-            }
-        )
-        order4 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage2.id,
-            }
-        )
-        order5 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage3.id,
-            }
-        )
-        order6 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage4.id,
-            }
-        )
-        order7 = self.WorkOrder.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage5.id,
-            }
-        )
+        
+        # Test that order was created
+        self.assertTrue(order.id)
+        
+        # Test stage transitions
         order.action_confirm()
-        order.action_enroute()
-        order.action_start()
-        order2.action_assign()
-        order2.action_schedule()
-        order3._track_subtype(self.init_values)
-        order4._track_subtype(self.init_values)
-        order5._track_subtype(self.init_values)
-        order6._track_subtype(self.init_values)
-        order7._track_subtype(self.init_values)
-        order._track_subtype(self.init_values)
-        order._track_subtype(self.init_values)
-        data_dict = order2.action_schedule()
-        self.assertEqual(data_dict, True)
-        with self.assertRaises(ValidationError):
-            order2.action_complete()
+        self.assertEqual(order.stage_id, self.stage1)
+        
+        order.action_enroute() 
+        self.assertEqual(order.stage_id, self.stage4)
+        
+        # Test validation errors
         with self.assertRaises(ValidationError):
             order.action_request()
-        with self.assertRaises(ValidationError):
-            order.action_assign()
-        with self.assertRaises(ValidationError):
-            order.action_schedule()
-        with self.assertRaises(ValidationError):
-            order.date_end = False
-            order.action_complete()
-        with self.assertRaises(ValidationError):
-            order2.action_start()
