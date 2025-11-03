@@ -550,6 +550,11 @@ msgid "Children"
 msgstr "Niños"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__child_ids
+msgid "Children Locations"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
 msgid "Choose a team to be set on orders of this template"
 msgstr "Elija un equipo para establecer en los pedidos de esta plantilla"
@@ -725,7 +730,6 @@ msgstr "Configuración"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_res_partner
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__child_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__contact_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__child_ids
 msgid "Contact"
@@ -955,6 +959,11 @@ msgstr "Duración predeterminada en horas"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
 msgid "Degree of trust you have in this debtor"
 msgstr "Grado de confianza en este deudor"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
+msgid "Deprecated Parent"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
@@ -2571,10 +2580,15 @@ msgstr "Propietario"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__parent_id
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__parent_id
 msgid "Parent"
 msgstr "Padre"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_path
+msgid "Parent Path"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
@@ -2801,7 +2815,6 @@ msgid "Region Manager"
 msgstr "Gerente de Región"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_id
 msgid "Related Company"
 msgstr "Compañía Relacionada"
@@ -3680,12 +3693,6 @@ msgstr "Puede archivar el contacto"
 
 #. module: fieldservice
 #. odoo-python
-#: code:addons/fieldservice/models/fsm_location.py:0
-msgid "You cannot create recursive location."
-msgstr "No puede crear una ubicación recursiva."
-
-#. module: fieldservice
-#. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "You cannot delete this order."
 msgstr "No puede eliminar este pedido."
@@ -3743,6 +3750,9 @@ msgstr "etiqueta"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
 msgid "template"
 msgstr "plantilla"
+
+#~ msgid "You cannot create recursive location."
+#~ msgstr "No puede crear una ubicación recursiva."
 
 #~ msgid "Additional info"
 #~ msgstr "Información adicional"
