@@ -37,33 +37,6 @@ class FSMIspFlowCase(TransactionCase):
         cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
 
     def test_fsm_orders(self):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.WorkOrder = cls.env["fsm.order"]
-        cls.Worker = cls.env["fsm.person"]
-        view_id = "fieldservice.fsm_person_form"
-        with Form(cls.Worker, view=view_id) as f:
-            f.name = "Worker A"
-        cls.worker = f.save()
-        cls.test_partner = cls.env["res.partner"].create(
-            {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
-        )
-        # create a Res Partner to be converted to FSM Location/Person
-        cls.test_loc_partner = cls.env["res.partner"].create(
-            {"name": "Test Loc Partner", "phone": "ABC", "email": "tlp@email.com"}
-        )
-        cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.init_values = {
-            "stage_id": cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
-        }
-        cls.stage1 = cls.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
-        cls.stage2 = cls.env.ref("fieldservice_isp_flow.fsm_stage_scheduled")
-        cls.stage3 = cls.env.ref("fieldservice_isp_flow.fsm_stage_assigned")
-        cls.stage4 = cls.env.ref("fieldservice_isp_flow.fsm_stage_enroute")
-        cls.stage5 = cls.env.ref("fieldservice_isp_flow.fsm_stage_started")
-
-    def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
         # Create an Orders
         hours_diff = 100
