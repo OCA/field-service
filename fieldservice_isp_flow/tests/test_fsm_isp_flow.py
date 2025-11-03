@@ -49,6 +49,7 @@ class FSMIspFlowCase(TransactionCase):
         order = self.WorkOrder.create(
             {
                 "location_id": self.test_location.id,
+                "person_id": self.worker.id,
                 "date_start": fields.Datetime.now(),
                 "date_end": fields.Datetime.now() + timedelta(hours=1),
             }
