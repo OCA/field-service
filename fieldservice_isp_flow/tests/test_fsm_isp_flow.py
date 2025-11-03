@@ -32,6 +32,7 @@ class FSMIspFlowCase(TransactionCase):
                 "name": "Test Location",
                 "phone": "123-456-7890",
                 "email": "test@example.com",
+                "owner_id": cls.test_partner.id,
             }
         )
         cls.init_values = {
