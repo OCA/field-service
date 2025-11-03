@@ -3,8 +3,12 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
-            <group name="traceability" position="inside">
-                <field name="create_fsm_equipment" invisible="tracking != 'serial'" />
+            <group name="group_general" position="inside">
+                <field
+                    name="create_fsm_equipment"
+                    groups="fieldservice.group_fsm_user"
+                    invisible="tracking != 'serial'"
+                />
             </group>
         </field>
     </record>
