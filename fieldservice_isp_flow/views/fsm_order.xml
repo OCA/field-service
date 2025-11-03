@@ -31,7 +31,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id not in  (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d)"
+                    invisible="stage_id not in (%(fieldservice_isp_flow.fsm_stage_confirmed)d, %(fieldservice_isp_flow.fsm_stage_requested)d)"
                 />
                 <button
                     id="action_schedule"
