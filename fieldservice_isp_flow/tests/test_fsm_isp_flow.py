@@ -54,6 +54,7 @@ class FSMIspFlowCase(TransactionCase):
                 "person_id": self.worker.id,
                 "date_start": fields.Datetime.now(),
                 "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
             }
         )
 
