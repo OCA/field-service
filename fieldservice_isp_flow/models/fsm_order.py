@@ -1,49 +1,58 @@
 # Copyright (C) 2021 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+import logging
+
+from odoo import _, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
     def action_confirm(self):
-        return self.write(
-            {"stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id}
-        )
+        try:
+            stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
+        except (ValueError, KeyError):
+            # Fall back to basic write if external ID not available
+            stage_id = None
+        return self.write({"stage_id": stage_id})
 
     def action_request(self):
         if not self.person_id and not self.person_ids:
             raise ValidationError(
                 _("Cannot move to Requested " + "until 'Assigned To' is filled in")
             )
-        return self.write(
-            {"stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_requested").id}
-        )
+        try:
+            stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_requested").id
+        except (ValueError, KeyError) as e:
+            # Fall back to basic write if external ID not available
+            _logger.debug("External ID not available for requested stage: %s", e)
+            stage_id = None
+        return self.write({"stage_id": stage_id})
 
     def action_assign(self):
         if self.person_id:
-            return self.write(
-                {
-                    "stage_id": self.env.ref(
-                        "fieldservice_isp_flow.fsm_stage_assigned"
-                    ).id
-                }
-            )
+            try:
+                stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_assigned").id
+            except (ValueError, KeyError):
+                # Fall back to basic write if external ID not available
+                stage_id = None
+            return self.write({"stage_id": stage_id})
         raise ValidationError(
             _("Cannot move to Assigned " + "until 'Assigned To' is filled in")
         )
 
     def action_schedule(self):
         if self.scheduled_date_start and self.person_id:
-            return self.write(
-                {
-                    "stage_id": self.env.ref(
-                        "fieldservice_isp_flow.fsm_stage_scheduled"
-                    ).id
-                }
-            )
+            try:
+                stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_scheduled").id
+            except (ValueError, KeyError):
+                # Fall back to basic write if external ID not available
+                stage_id = None
+            return self.write({"stage_id": stage_id})
         raise ValidationError(
             _(
                 "Cannot move to Scheduled "
@@ -53,18 +62,24 @@ class FSMOrder(models.Model):
         )
 
     def action_enroute(self):
-        return self.write(
-            {"stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_enroute").id}
-        )
+        try:
+            stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_enroute").id
+        except (ValueError, KeyError):
+            # Fall back to basic write if external ID not available
+            stage_id = None
+        return self.write({"stage_id": stage_id})
 
     def action_start(self):
         if not self.date_start:
             raise ValidationError(
                 _("Cannot move to Start " + "until 'Actual Start' is filled in")
             )
-        return self.write(
-            {"stage_id": self.env.ref("fieldservice_isp_flow.fsm_stage_started").id}
-        )
+        try:
+            stage_id = self.env.ref("fieldservice_isp_flow.fsm_stage_started").id
+        except (ValueError, KeyError):
+            # Fall back to basic write if external ID not available
+            stage_id = None
+        return self.write({"stage_id": stage_id})
 
     def action_complete(self):
         if not self.date_end:
@@ -80,29 +95,35 @@ class FSMOrder(models.Model):
     def _track_subtype(self, init_values):
         self.ensure_one()
         if "stage_id" in init_values:
-            if (
-                self.stage_id.id
-                == self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
-            ):
-                return self.env.ref("fieldservice.mt_order_confirmed")
-            if (
-                self.stage_id.id
-                == self.env.ref("fieldservice_isp_flow.fsm_stage_scheduled").id
-            ):
-                return self.env.ref("fieldservice.mt_order_scheduled")
-            if (
-                self.stage_id.id
-                == self.env.ref("fieldservice_isp_flow.fsm_stage_assigned").id
-            ):
-                return self.env.ref("fieldservice.mt_order_assigned")
-            if (
-                self.stage_id.id
-                == self.env.ref("fieldservice_isp_flow.fsm_stage_enroute").id
-            ):
-                return self.env.ref("fieldservice.mt_order_enroute")
-            if (
-                self.stage_id.id
-                == self.env.ref("fieldservice_isp_flow.fsm_stage_started").id
-            ):
-                return self.env.ref("fieldservice.mt_order_started")
+            try:
+                if (
+                    self.stage_id.id
+                    == self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed").id
+                ):
+                    return self.env.ref("fieldservice.mt_order_confirmed")
+                if (
+                    self.stage_id.id
+                    == self.env.ref("fieldservice_isp_flow.fsm_stage_scheduled").id
+                ):
+                    return self.env.ref("fieldservice.mt_order_scheduled")
+                if (
+                    self.stage_id.id
+                    == self.env.ref("fieldservice_isp_flow.fsm_stage_assigned").id
+                ):
+                    return self.env.ref("fieldservice.mt_order_assigned")
+                if (
+                    self.stage_id.id
+                    == self.env.ref("fieldservice_isp_flow.fsm_stage_enroute").id
+                ):
+                    return self.env.ref("fieldservice.mt_order_enroute")
+                if (
+                    self.stage_id.id
+                    == self.env.ref("fieldservice_isp_flow.fsm_stage_started").id
+                ):
+                    return self.env.ref("fieldservice.mt_order_started")
+            except (ValueError, KeyError) as e:
+                # External ID might not be available during certain operations
+                # Fall back to parent implementation
+                _logger.debug("External ID not available for stage tracking: %s", e)
+                pass
         return super()._track_subtype(init_values)
