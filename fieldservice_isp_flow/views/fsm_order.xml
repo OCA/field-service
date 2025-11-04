@@ -13,7 +13,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id != ref('fieldservice.fsm_stage_new')"
+                    invisible="stage_id.name != 'New'"
                 />
                 <button
                     id="action_request"
@@ -22,7 +22,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id not in (ref('fieldservice_isp_flow.fsm_stage_confirmed'), ref('fieldservice_isp_flow.fsm_stage_requested'))"
+                    invisible="stage_id.name not in ['Confirmed', 'Requested']"
                 />
                 <button
                     id="action_assign"
@@ -31,7 +31,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id not in (ref('fieldservice_isp_flow.fsm_stage_confirmed'), ref('fieldservice_isp_flow.fsm_stage_requested'))"
+                    invisible="stage_id.name not in ['Confirmed', 'Requested']"
                 />
                 <button
                     id="action_schedule"
@@ -40,7 +40,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id not in (ref('fieldservice_isp_flow.fsm_stage_assigned'), ref('fieldservice_isp_flow.fsm_stage_confirmed'), ref('fieldservice_isp_flow.fsm_stage_requested'))"
+                    invisible="stage_id.name not in ['Confirmed', 'Requested', 'Assigned']"
                 />
                 <button
                     id="action_enroute"
@@ -49,7 +49,7 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id != ref('fieldservice_isp_flow.fsm_stage_scheduled')"
+                    invisible="stage_id.name != 'Scheduled'"
                 />
                 <button
                     id="action_start"
@@ -58,30 +58,24 @@
                     class="oe_highlight"
                     type="object"
                     groups="fieldservice.group_fsm_dispatcher"
-                    invisible="stage_id not in (ref('fieldservice_isp_flow.fsm_stage_scheduled'), ref('fieldservice_isp_flow.fsm_stage_enroute'))"
+                    invisible="stage_id.name not in ['Scheduled', 'En Route']"
                 />
             </button>
         </field>
     </record>
 
-    <record id="fsm_order_tree_view" model="ir.ui.view">
-        <field name="name">fsm.order.tree</field>
+    <record id="fsm_order_list_view" model="ir.ui.view">
+        <field name="name">fsm.order.list</field>
         <field name="model">fsm.order</field>
-        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
         <field name="arch" type="xml">
-            <tree name="orders" position="attributes">
-                <attribute name="decoration-danger">stage_id in (
-                    ref('fieldservice.fsm_stage_new'),
-                    ref('fieldservice_isp_flow.fsm_stage_confirmed'),
-                    ref('fieldservice_isp_flow.fsm_stage_requested'),
-                    ref('fieldservice_isp_flow.fsm_stage_assigned'))</attribute>
+            <list name="orders" position="attributes">
+                <attribute name="decoration-danger">stage_id.name in [
+                    'New', 'Confirmed', 'Requested', 'Assigned']</attribute>
 
-                <attribute name="decoration-info">stage_id in (
-                    ref('fieldservice_isp_flow.fsm_stage_scheduled'),
-                    ref('fieldservice_isp_flow.fsm_stage_enroute'),
-                    ref('fieldservice_isp_flow.fsm_stage_started'),
-                    ref('fieldservice.fsm_stage_completed'))</attribute>
-            </tree>
+                <attribute name="decoration-info">stage_id.name in [
+                    'Scheduled', 'En Route', 'Started', 'Completed']</attribute>
+            </list>
         </field>
     </record>
 
