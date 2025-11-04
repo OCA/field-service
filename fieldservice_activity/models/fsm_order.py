@@ -40,14 +40,6 @@ class FSMOrder(models.Model):
 
             rec.order_activity_ids = activity_list
 
-    @api.model_create_multi
-    def create(self, vals):
-        """Update Activities for FSM orders that are generate from SO"""
-        orders = super().create(vals)
-        for order in orders:
-            order._onchange_template_id()
-        return orders
-
     def action_complete(self):
         res = super().action_complete()
         for activity in self.order_activity_ids:
@@ -59,5 +51,4 @@ class FSMOrder(models.Model):
                     )
                     % activity.name
                 )
-        self.activity_ids._action_done()
         return res
