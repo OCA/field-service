@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Current Location",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "summary": "Use current location on fsm orders",
     "category": "Field Service",
     "author": "APSL - Nagarro, Odoo Community Association (OCA)",
