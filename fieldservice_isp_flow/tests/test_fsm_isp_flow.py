@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from datetime import timedelta
+from unittest.mock import patch
 
 from odoo import fields
 from odoo.exceptions import ValidationError
@@ -323,3 +324,197 @@ class FSMIspFlowCase(TransactionCase):
         order.action_request()
         requested_stage = self.env.ref("fieldservice_isp_flow.fsm_stage_requested")
         self.assertEqual(order.stage_id, requested_stage)
+
+    def test_action_confirm_missing_external_id(self):
+        """Test action_confirm gracefully handles missing external ID."""
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
+            }
+        )
+
+        # Mock env.ref to raise ValueError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=ValueError("External ID not found")
+        ):
+            result = order.action_confirm()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_action_request_missing_external_id(self):
+        """Test action_request gracefully handles missing external ID."""
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
+            }
+        )
+
+        # Mock env.ref to raise KeyError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=KeyError("External ID not found")
+        ):
+            result = order.action_request()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_action_assign_missing_external_id(self):
+        """Test action_assign gracefully handles missing external ID."""
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
+            }
+        )
+
+        # Mock env.ref to raise ValueError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=ValueError("External ID not found")
+        ):
+            result = order.action_assign()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_action_schedule_missing_external_id(self):
+        """Test action_schedule gracefully handles missing external ID."""
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
+                "scheduled_date_start": fields.Datetime.now() + timedelta(hours=2),
+            }
+        )
+
+        # Mock env.ref to raise KeyError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=KeyError("External ID not found")
+        ):
+            result = order.action_schedule()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_action_enroute_missing_external_id(self):
+        """Test action_enroute gracefully handles missing external ID."""
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=1),
+                "request_early": fields.Datetime.now(),
+            }
+        )
+
+        # Mock env.ref to raise ValueError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=ValueError("External ID not found")
+        ):
+            result = order.action_enroute()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_action_start_missing_external_id(self):
+        """Test action_start gracefully handles missing external ID."""
+        now = fields.Datetime.now()
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": now,
+                "date_end": now + timedelta(hours=1),
+                "request_early": now,
+            }
+        )
+
+        # Mock env.ref to raise KeyError for external ID
+        with patch.object(
+            order.env, "ref", side_effect=KeyError("External ID not found")
+        ):
+            result = order.action_start()
+            # Should still execute and set stage_id to None
+            self.assertTrue(result)
+
+    def test_track_subtype_missing_external_id(self):
+        """Test _track_subtype gracefully handles missing external IDs."""
+        now = fields.Datetime.now()
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": now,
+                "date_end": now + timedelta(hours=1),
+                "request_early": now,
+            }
+        )
+
+        # Mock env.ref to raise ValueError for all external ID lookups
+        with patch.object(
+            order.env, "ref", side_effect=ValueError("External ID not found")
+        ):
+            result = order._track_subtype({"stage_id": 0})
+            # Should fall back to parent implementation
+            self.assertIsNotNone(result)
+
+    def test_track_subtype_missing_only_stage_external_id(self):
+        """Test _track_subtype when stage external ID fails but message type works."""
+        now = fields.Datetime.now()
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": now,
+                "date_end": now + timedelta(hours=1),
+                "request_early": now,
+            }
+        )
+
+        # Set order to confirmed stage first
+        order.action_confirm()
+
+        # Mock env.ref to raise KeyError for external ID lookups
+        with patch.object(
+            order.env, "ref", side_effect=KeyError("External ID not found")
+        ):
+            result = order._track_subtype({"stage_id": 0})
+            # Should fall back to parent implementation
+            self.assertIsNotNone(result)
+
+    def test_track_subtype_without_stage_change(self):
+        """Test _track_subtype when stage_id is not in init_values."""
+        now = fields.Datetime.now()
+        order = self.WorkOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "person_id": self.worker.id,
+                "team_id": self.test_team.id,
+                "date_start": now,
+                "date_end": now + timedelta(hours=1),
+                "request_early": now,
+            }
+        )
+
+        # When stage_id is not in init_values, should skip stage checking
+        result = order._track_subtype({"name": "Changed"})
+        # Should return parent implementation result
+        self.assertIsNotNone(result)
