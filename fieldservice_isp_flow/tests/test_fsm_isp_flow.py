@@ -292,7 +292,6 @@ class FSMIspFlowCase(TransactionCase):
 
         # Change to confirmed stage
         order.action_confirm()
-        confirmed_stage = self.env.ref("fieldservice_isp_flow.fsm_stage_confirmed")
         subtype = order._track_subtype({"stage_id": 0})
         # Should return a subtype for confirmed stage
         self.assertIsNotNone(subtype)
