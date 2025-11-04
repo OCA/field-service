@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ================================
 Field Service - Current Location
 ================================
@@ -17,7 +13,7 @@ Field Service - Current Location
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -41,6 +37,23 @@ reduces manual entry and helps prevent human error.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+| To comply with `Nominatim’s usage
+  policy <https://operations.osmfoundation.org/policies/nominatim/>`__,
+  each instance must have a unique **User-Agent** string configured.
+| This value is stored in the system parameter: ``nominatim.user_agent``
+
+| If not set manually, it will be automatically generated the first time
+  the geolocation feature is used
+| and stored under **Settings → Technical → System Parameters**.
+
+   | You can optionally define a custom value (for example, including
+     your company name or contact email)
+   | to make API requests more easily identifiable and compliant with
+     OpenStreetMap policies.
 
 Usage
 =====
@@ -76,10 +89,10 @@ Authors
 Contributors
 ------------
 
-- `APSL <https://apsl.tech>`__:
+-  `APSL <https://apsl.tech>`__:
 
-  - Bernat Obrador <bobrador@apsl.net>
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Bernat Obrador <bobrador@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
