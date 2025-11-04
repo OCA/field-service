@@ -36,6 +36,15 @@ class TestFSMRepairCommon(FSMCommon):
                 "company_id": cls.env.company.id,
             }
         )
+        # Create some stocks so that the current stock location is properly computed
+        cls.env["stock.quant"].create(
+            {
+                "product_id": cls.product.id,
+                "location_id": cls.stock_location.id,
+                "lot_id": cls.lot.id,
+                "quantity": 100,
+            }
+        )
         cls.equipment_1 = cls.env["fsm.equipment"].create(
             {
                 "name": "Equipment 1",
@@ -48,15 +57,6 @@ class TestFSMRepairCommon(FSMCommon):
                 "name": "Equipment 2",
                 "product_id": cls.product.id,
                 "lot_id": cls.lot.id,
-            }
-        )
-        # Create some stocks so that the current stock location is properly computed
-        cls.env["stock.quant"].create(
-            {
-                "product_id": cls.product.id,
-                "location_id": cls.stock_location.id,
-                "lot_id": cls.lot.id,
-                "quantity": 100,
             }
         )
 
