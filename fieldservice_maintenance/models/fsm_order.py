@@ -13,7 +13,7 @@ class FSMOrder(models.Model):
     def create(self, vals):
         # if FSM order with type maintenance is create then
         # create maintenance request
-        order = super(FSMOrder, self).create(vals)
+        order = super().create(vals)
         if order.type.internal_type == "maintenance":
             if order.equipment_id and not order.request_id:
                 equipment = order.equipment_id
