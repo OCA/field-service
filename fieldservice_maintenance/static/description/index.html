@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -9,10 +8,11 @@
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
 
 See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
 customize this style sheet.
@@ -275,7 +275,7 @@ pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
 
-pre.code .ln { color: grey; } /* line numbers */
+pre.code .ln { color: gray; } /* line numbers */
 pre.code, code { background-color: #eeeeee }
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
@@ -301,7 +301,7 @@ span.option {
 span.pre {
   white-space: pre }
 
-span.problematic {
+span.problematic, pre.problematic {
   color: red }
 
 span.section-subtitle {
@@ -369,13 +369,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:38072a3e462b68e9313429bd75388dcf7b2de3c93ac7c206296dee4c5a6c4365
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/14.0/fieldservice_maintenance"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-14-0/field-service-14-0-fieldservice_maintenance"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>Odoo Maintenance App does not support Field Service operations for equipments
-outside the company facilities. On the other hand, the Field Service App does
-not support a maintenance schedule generating preventive maintenance request.</p>
-<p>This module allows you to merge equipments from Field Service and Maintenance
-and have a maintenance schedule for FSM equipments as well as Field Service
-capabilities for maintenance equipments.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/17.0/fieldservice_maintenance"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_maintenance"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>Odoo Maintenance App does not support Field Service operations for
+equipments outside the company facilities. On the other hand, the Field
+Service App does not support a maintenance schedule generating
+preventive maintenance request.</p>
+<p>This module allows you to merge equipments from Field Service and
+Maintenance and have a maintenance schedule for FSM equipments as well
+as Field Service capabilities for maintenance equipments.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -395,8 +396,8 @@ capabilities for maintenance equipments.</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>To install Field Service and have the mapping features,
-you need to install fieldservice_stock and maintenance</p>
+<p>To install Field Service and have the mapping features, you need to
+install fieldservice_stock and maintenance</p>
 <p>Please refer to the installation instructions available at:
 <a class="reference external" href="https://github.com/OCA/field-service/tree/14.0/fieldservice_maintenance">https://github.com/OCA/field-service/tree/14.0/fieldservice_maintenance</a></p>
 </div>
@@ -404,7 +405,8 @@ you need to install fieldservice_stock and maintenance</p>
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
 <p>To use this module, you need to:</p>
 <ul class="simple">
-<li>Go to Field Service &gt; Master Data &gt; Equipments or Maintenance &gt; Equipments</li>
+<li>Go to Field Service &gt; Master Data &gt; Equipments or Maintenance &gt;
+Equipments</li>
 <li>Create or select an equipment</li>
 <li>Specify the maintenance schedule</li>
 </ul>
@@ -413,11 +415,13 @@ you need to install fieldservice_stock and maintenance</p>
 <h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
 <p>To use this module, you need to:</p>
 <ul class="simple">
-<li>Maintenance requests related to a FSM equipment will create a FSM order</li>
+<li>Maintenance requests related to a FSM equipment will create a FSM
+order</li>
 <li>Go to Field Service</li>
 <li>Create or select a FSM order and select the type Maintenance.</li>
 <li>Select the maintenance team, the equipment and the location</li>
-<li>Upon saving, a maintenance request will be created with the information from the FSM order.</li>
+<li>Upon saving, a maintenance request will be created with the
+information from the FSM order.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
@@ -430,7 +434,7 @@ you need to install fieldservice_stock and maintenance</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/field-service/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_maintenance%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_maintenance%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -455,19 +459,22 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <h2><a class="toc-backref" href="#toc-entry-9">Other credits</a></h2>
 <p>The development of this module has been financially supported by:</p>
 <ul class="simple">
-<li>Open Source Integrators &lt;<a class="reference external" href="https://opensourceintegrators.com">https://opensourceintegrators.com</a>&gt;</li>
+<li>Open Source Integrators
+&lt;<a class="reference external" href="https://opensourceintegrators.com&gt;">https://opensourceintegrators.com\&gt;</a></li>
 </ul>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-10">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
-<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/smangukiya"><img alt="smangukiya" src="https://github.com/smangukiya.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/max3903"><img alt="max3903" src="https://github.com/max3903.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/bodedra"><img alt="bodedra" src="https://github.com/bodedra.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/14.0/fieldservice_maintenance">OCA/field-service</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/17.0/fieldservice_maintenance">OCA/field-service</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

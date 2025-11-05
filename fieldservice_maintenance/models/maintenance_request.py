@@ -13,7 +13,7 @@ class MaintenanceRequest(models.Model):
     def create(self, vals):
         # create FSM order with type maintenance if selected equipment is
         # enabled with boolean is_fsm_equipment
-        request = super(MaintenanceRequest, self).create(vals)
+        request = super().create(vals)
         ctx = dict(self._context)
         if request.equipment_id.is_fsm_equipment and "fsm_order" not in ctx:
             # Get the fsm equipment

@@ -34,7 +34,7 @@ class FSMEquipment(models.Model):
 
     def unlink(self):
         equipments = self.mapped("maintenance_equipment_id")
-        res = super(FSMEquipment, self).unlink()
+        res = super().unlink()
         for equipment in equipments:
             other = self.env["fsm.equipment"].search(
                 [("maintenance_equipment_id", "=", equipment.id)]
