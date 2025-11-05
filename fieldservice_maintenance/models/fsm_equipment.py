@@ -17,20 +17,21 @@ class FSMEquipment(models.Model):
         index=True,
     )
 
-    @api.model
-    def create(self, vals):
-        maintenance_equipment_id = self.env["maintenance.equipment"].create(
-            {
-                "name": vals.get("name"),
-                "is_fsm_equipment": True,
-                "note": vals.get("notes", False),
-                "maintenance_team_id": vals.get("maintenance_team_id", False)
-                or self.env.ref("maintenance.equipment_team_maintenance").id,
-            }
-        )
-        if maintenance_equipment_id:
-            vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        MaintenanceEquipement = self.env["maintenance.equipment"]
+        for vals in vals_list:
+            maintenance_equipment_id = MaintenanceEquipement.create(
+                {
+                    "name": vals.get("name", False),
+                    "is_fsm_equipment": True,
+                    "note": vals.get("notes", False),
+                    "maintenance_team_id": vals.get("maintenance_team_id", False),
+                }
+            )
+            if maintenance_equipment_id:
+                vals.update({"maintenance_equipment_id": maintenance_equipment_id.id})
+        return super().create(vals_list)
 
     def unlink(self):
         equipments = self.mapped("maintenance_equipment_id")

@@ -2,25 +2,25 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     # Check for existing fsm equipments
-    cr.execute("SELECT * FROM fsm_equipment")
+    env.cr.execute("SELECT * FROM fsm_equipment")
     equipments = []
-    equipments = cr.dictfetchall()
+    equipments = env.cr.dictfetchall()
     if equipments:
         # Add new columns to hold values
-        cr.execute(
+        env.cr.execute(
             """ALTER TABLE fsm_equipment
         ADD maintenance_equipment_id INT;"""
         )
-        cr.execute(
+        env.cr.execute(
             """ALTER TABLE maintenance_equipment
         ADD is_fsm_equipment BOOLEAN;"""
         )
 
         # Create a new Maintenance equipment for each FSM equipment
         for equipment in equipments:
-            cr.execute(
+            env.cr.execute(
                 """INSERT INTO maintenance_equipment (
                 name,
                 maintenance_team_id,
@@ -37,7 +37,7 @@ def pre_init_hook(cr):
             )
 
             # Set this new Maintenance equipment on the existing FSM equipment
-            cr.execute(
+            env.cr.execute(
                 """UPDATE fsm_equipment
                 SET maintenance_equipment_id = (
                     SELECT id
