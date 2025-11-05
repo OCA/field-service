@@ -7,10 +7,7 @@
         <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='equipment_id']" position="after">
-                <field
-                    name="fsm_order_id"
-                    attrs="{'invisible': [('fsm_order_id', '=', False)]}"
-                />
+                <field name="fsm_order_id" invisible="not fsm_order_id" />
             </xpath>
         </field>
     </record>

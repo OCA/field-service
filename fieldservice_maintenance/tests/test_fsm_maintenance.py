@@ -15,11 +15,15 @@ class TestFSMMaintenance(TransactionCase):
         fsm_loc = self.env["fsm.location"].create(
             {"name": "Test Maintenance Location", "owner_id": partner.id}
         )
+        maintenance_team_id = self.env["maintenance.team"].create(
+            {"name": "Test Maintenance Team", "company_id": self.env.user.company_id.id}
+        )
         # Create FSM equipment
         fsm_equip_01 = self.env["fsm.equipment"].create(
             {
                 "name": "Test FSM Equipment 01",
                 "current_location_id": fsm_loc.id,
+                "maintenance_team_id": maintenance_team_id.id,
             }
         )
         maint_equip_01 = fsm_equip_01.maintenance_equipment_id
