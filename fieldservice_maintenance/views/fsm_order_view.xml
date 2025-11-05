@@ -14,7 +14,7 @@
                 <field
                     name="request_id"
                     readonly="1"
-                    attrs="{'invisible': [('internal_type', '!=', 'maintenance')]}"
+                    invisible="internal_type != 'maintenance'"
                 />
             </field>
         </field>

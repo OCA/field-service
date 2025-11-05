@@ -28,7 +28,8 @@ class MaintenanceRequest(models.Model):
                 request._message_log(
                     subject="Missing location",
                     body=_(
-                        "Order was not created because the equipment's location is not set"
+                        "Order was not created because the "
+                        "equipment's location is not set"
                     ),
                     message_type="notification",
                     author_id=odoobot.id,
