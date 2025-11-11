@@ -442,3 +442,36 @@ class TestFSMStockRequest(TestFSMStockCommon):
             },
         )
         stock_request.order_id.action_confirm()
+
+    def test_onchange_warehouse_id(self):
+        fsm_order = self.FSMOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "warehouse_id": self.warehouse.id,
+            }
+        )
+        stock_request = self.StockRequest.create(
+            {
+                "warehouse_id": fsm_order.warehouse_id.id,
+                "location_id": fsm_order.inventory_location_id.id,
+                "product_id": self.product_1.id,
+                "product_uom_qty": 1,
+                "product_uom_id": self.product_1.uom_id.id,
+                "fsm_order_id": fsm_order.id,
+                "direction": "outbound",
+                "expected_date": datetime.datetime.now(),
+                "picking_policy": "direct",
+            }
+        )
+        warehouse2 = self.env["stock.warehouse"].create(
+            {
+                "name": "Test Warehouse 2",
+                "code": "TW2",
+            }
+        )
+        fsm_order.warehouse_id = warehouse2
+        fsm_order._onchange_warehouse_id()
+        self.assertEqual(
+            stock_request.location_id,
+            warehouse2.lot_stock_id,
+        )
