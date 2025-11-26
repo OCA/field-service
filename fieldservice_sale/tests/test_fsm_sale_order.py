@@ -4,7 +4,6 @@ import datetime
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import Form
 
 from .test_fsm_sale_common import TestFSMSale
 
