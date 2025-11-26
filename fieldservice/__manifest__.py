@@ -27,6 +27,7 @@
         "views/fsm_location.xml",
         "views/fsm_location_person.xml",
         "views/fsm_person.xml",
+        "wizard/fsm_order_sign_wizard.xml",
         "views/fsm_order.xml",
         "views/fsm_order_type.xml",
         "views/fsm_category.xml",

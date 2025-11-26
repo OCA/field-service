@@ -136,6 +136,12 @@ class FSMOrder(models.Model):
         help="Company related to this order",
     )
 
+    # Signature
+    signed_by = fields.Char(copy=False, readonly=True)
+    signed_on = fields.Datetime(copy=False, readonly=True)
+    signature = fields.Image(copy=False, max_width=1024, max_height=1024, readonly=True)
+    require_signature = fields.Boolean(related="stage_id.require_signature")
+
     def _calc_request_late(self, vals):
         if vals.get("request_early", False):
             early = fields.Datetime.from_string(vals.get("request_early"))
