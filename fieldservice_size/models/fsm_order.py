@@ -34,12 +34,12 @@ class FSMOrder(models.Model):
         store=True,
     )
 
-    @api.depends("type")
+    @api.depends("type_id")
     def _compute_size_id(self):
         for rec in self:
-            if rec.type:
+            if rec.type_id:
                 rec.size_id = self.env["fsm.size"].search(
-                    [("type_id", "=", rec.type.id), ("is_order_size", "=", True)],
+                    [("type_id", "=", rec.type_id.id), ("is_order_size", "=", True)],
                     limit=1,
                 )
 
