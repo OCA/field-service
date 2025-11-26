@@ -58,7 +58,7 @@
                                         />
                                     </td>
                                     <td>
-                                        <t t-out="fsm_order.type.name" />
+                                        <t t-out="fsm_order.type_id.name" />
                                     </td>
                                     <td>
                                         <t t-out="fsm_order.stage_id.name" />
@@ -108,8 +108,8 @@
                                 <t t-out="fsm_order.stage_id.name" />
                                 <br />
                                 <strong>Work Type:</strong>
-                                <t t-if="fsm_order.type">
-                                    <span t-field="fsm_order.type.name" />
+                                <t t-if="fsm_order.type_id">
+                                    <span t-field="fsm_order.type_id.name" />
                                 </t>
                                 <t t-else="">
                                     <span>N/A</span>
