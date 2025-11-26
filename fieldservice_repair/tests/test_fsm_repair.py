@@ -62,7 +62,7 @@ class TestFSMRepairCommon(TransactionCase):
 
     def _prepare_fsm_order_vals(self, equipments):
         return {
-            "type": self.repair_type.id,
+            "type_id": self.repair_type.id,
             "location_id": self.test_location.id,
             "date_start": fields.Datetime.today(),
             "date_end": fields.Datetime.today() + timedelta(hours=100),
@@ -106,10 +106,10 @@ class TestFSMRepairCommon(TransactionCase):
 
     def test_fsm_repair_order_is_created_when_type_is_switched_to_repair(self):
         order_vals = self._prepare_fsm_order_vals(self.equipment_1)
-        order_vals["type"] = self.fsm_type.id
+        order_vals["type_id"] = self.fsm_type.id
         order = self.env["fsm.order"].create(order_vals)
         self.assertFalse(order.repair_ids, "Repair order was not created, wrong type")
-        order.type = self.repair_type
+        order.type_id = self.repair_type
         self.assertTrue(order.repair_ids, "Repair order was created")
 
     def test_fsm_repair_order_is_canceled_when_type_is_switched_to_not_repair(self):
@@ -118,7 +118,7 @@ class TestFSMRepairCommon(TransactionCase):
         self.assertTrue(order.repair_ids, "Repair order was created")
         repair_order = order.repair_ids[0]
         self.assertEqual(repair_order.state, "draft")
-        order.type = self.fsm_type
+        order.type_id = self.fsm_type
         self.assertEqual(repair_order.state, "cancel", "Repair order was canceled")
         self.assertFalse(order.repair_ids, "Repair order was unlinked from the FSM")
 
@@ -127,13 +127,13 @@ class TestFSMRepairCommon(TransactionCase):
         order = self.env["fsm.order"].create(order_vals)
         with Form(order) as form:
             with self.assertLogs("odoo.tests.form.onchange") as log_catcher:
-                form.type = self.fsm_type
+                form.type_id = self.fsm_type
                 self.assertIn(
                     "The repair orders will be cancelled",
                     log_catcher.output[0],
                 )
             with self.assertNoLogs("odoo.tests.form.onchange"):
-                form.type = self.repair_type
+                form.type_id = self.repair_type
 
     def test_fsm_repair_order_creates_multiple_repairs_for_multiple_equipments(self):
         order = self.env["fsm.order"].create(
@@ -159,7 +159,7 @@ class TestFSMRepairCommon(TransactionCase):
             self._prepare_fsm_order_vals([self.equipment_1, self.equipment_2])
         )
         self.assertEqual(len(order.repair_ids), 2)
-        order.type = self.fsm_type
+        order.type_id = self.fsm_type
         for repair in order.repair_ids:
             self.assertEqual(repair.state, "cancel")
         self.assertFalse(

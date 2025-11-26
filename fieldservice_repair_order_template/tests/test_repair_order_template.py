@@ -93,7 +93,7 @@ class TestRepairOrderTemplate(TransactionCase):
         )
         order._onchange_template_id()
         self.assertEqual(
-            order.type, self.env.ref("fieldservice_repair.fsm_order_type_repair")
+            order.type_id, self.env.ref("fieldservice_repair.fsm_order_type_repair")
         )
         for repair in order.repair_ids:
             self.assertEqual(repair.repair_order_template_id, self.repair_template)

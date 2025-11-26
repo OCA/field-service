@@ -540,7 +540,7 @@ class TestFSMSaleOrder(TestFSMSale):
         fsm_type = self.env["fsm.order.type"].create(
             {
                 "name": "Test Service Type",
-                "internal_type": "service",
+                "internal_type": "fsm",
             }
         )
 
