@@ -340,11 +340,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise ValueError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise ValueError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_confirm()
             # Should still execute and set stage_id to None
@@ -365,11 +366,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise KeyError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise KeyError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_request()
             # Should still execute and set stage_id to None
@@ -390,11 +392,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise ValueError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise ValueError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_assign()
             # Should still execute and set stage_id to None
@@ -416,11 +419,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise KeyError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise KeyError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_schedule()
             # Should still execute and set stage_id to None
@@ -441,11 +445,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise ValueError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise ValueError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_enroute()
             # Should still execute and set stage_id to None
@@ -467,11 +472,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise KeyError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise KeyError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order.action_start()
             # Should still execute and set stage_id to None
@@ -493,11 +499,14 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise ValueError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
-            if external_id.startswith("fieldservice_isp_flow.") or external_id.startswith("fieldservice.mt_order"):
+            if external_id.startswith(
+                "fieldservice_isp_flow."
+            ) or external_id.startswith("fieldservice.mt_order"):
                 raise ValueError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order._track_subtype({"stage_id": 0})
             # Should fall back to parent implementation
@@ -522,11 +531,12 @@ class FSMIspFlowCase(TransactionCase):
 
         # Mock env.ref to raise KeyError only for fieldservice_isp_flow external IDs
         original_ref = order.env.ref
+
         def selective_ref(external_id):
             if external_id.startswith("fieldservice_isp_flow."):
                 raise KeyError("External ID not found")
             return original_ref(external_id)
-        
+
         with patch.object(order.env, "ref", selective_ref):
             result = order._track_subtype({"stage_id": 0})
             # Should fall back to parent implementation
