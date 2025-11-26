@@ -51,6 +51,9 @@ class FSMStage(models.Model):
         required=True,
         default="order",
     )
+    require_signature = fields.Boolean(
+        help="Whether to ask for a Customer Signature when the order is in this stage.",
+    )
     company_id = fields.Many2one(
         "res.company",
         string="Company",
