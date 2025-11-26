@@ -7,6 +7,7 @@ from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 TEST_IMAGE_BASE64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACklEQVR4nGP4DwABAQEAGN2N9wAAAABJRU5ErkJggg=="  # noqa: E501
 
@@ -39,6 +40,14 @@ class TestFSMOrder(TransactionCase):
         cls.tag1 = cls.env["fsm.tag"].create(
             {"name": "Test Tag1", "parent_id": cls.tag.id}
         )
+        cls.order = cls.env["fsm.order"].create(
+            {
+                "location_id": cls.test_location.id,
+                "date_start": fields.Datetime.today(),
+                "date_end": fields.Datetime.today() + timedelta(hours=10),
+                "request_early": fields.Datetime.today(),
+            }
+        )
 
     def test_fsm_order_default_stage(self):
         view_id = "fieldservice.fsm_order_form"
@@ -57,13 +66,12 @@ class TestFSMOrder(TransactionCase):
 
     def test_fsm_order_default_team(self):
         view_id = "fieldservice.fsm_order_form"
-        with self.assertRaises(ValidationError):
-            team_ids = self.env["fsm.team"].search(
-                [("company_id", "in", (self.env.user.company_id.id, False))],
-                order="sequence asc",
-            )
-            for team in team_ids:
-                team.unlink()
+        with mute_logger("odoo.models.unlink"):
+            self.order.unlink()
+            self.env["fsm.team"].search([]).unlink()
+        with self.assertRaisesRegex(
+            ValidationError, "You must create an FSM team first."
+        ):
             Form(self.Order, view=view_id)
 
     def test_fsm_order_create(self):
@@ -266,22 +274,21 @@ class TestFSMOrder(TransactionCase):
             )
         )
         self.assertTrue(data, "It should be able to read group")
-        self.Order.write(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage1.id,
-                "is_button": True,
-            }
-        )
-        with self.assertRaises(UserError):
-            self.Order.write(
-                {
-                    "location_id": self.test_location.id,
-                    "stage_id": self.stage1.id,
-                }
-            )
         order.can_unlink()
         order.unlink()
+
+    def test_order_move_to_completed(self):
+        """Test move to completed
+
+        An order can't be moved to Completed directly from Kanban or Status bar.
+        Instead, it should go through the "Complete" button (action_complete).
+        """
+        # Can't move to completed directly
+        with self.assertRaisesRegex(UserError, "Cannot move to completed from Kanban"):
+            self.order.stage_id = self.stage1
+        # Instead, it should go through the "Complete" button (action_complete).
+        self.order.action_complete()
+        self.assertEqual(self.order.stage_id, self.stage1)
 
     def test_order_unlink(self):
         with self.assertRaises(ValidationError):
