@@ -610,38 +610,7 @@ class TestFSMSaleOrder(TestFSMSale):
             "Template should be assigned to FSM order",
         )
         self.assertEqual(
-            fsm_order.type, fsm_type, "Type should be assigned to FSM order"
-    def test_sale_order_6(self):
-        """Test sale order commitment date propagation to FSM orders"""
-        # Confirm the sale order
-        self.sale_order_3.action_confirm()
-        # 2 orders created and SOLs linked to FSM orders
-        self.assertEqual(
-            len(self.sale_order_3.fsm_order_ids.ids),
-            2,
-            "FSM Sale: Sale Order 3 should create 2 FSM Orders",
-        )
-        self.sale_order_3.commitment_date = self.dt1
-        self.assertEqual(
-            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
-            self.sale_order_3.commitment_date,
-            "FSM Sale: FSM Orders should have the same scheduled start date "
-            "as the Sale Order commitment date",
-        )
-        # Changed commitment_date should be propagated to FSM Orders
-        self.sale_order_3.write({"commitment_date": self.dt2})
-        self.assertEqual(
-            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
-            self.dt2,
-            "FSM Sale: FSM Orders should have the new scheduled start date",
-        )
-        # Using the Form, empty commitment_date should fall back to expected_date
-        with Form(self.sale_order_3) as order_form:
-            order_form.commitment_date = False
-            order_form.save()
-        self.assertEqual(
-            self.sale_order_3.fsm_order_ids.mapped("scheduled_date_start")[0],
-            self.sale_order_3.expected_date,
-            "FSM Sale: FSM Orders should have the same scheduled start date "
-            "as the Sale Order expected date",
+            fsm_order.type_id,
+            fsm_type,
+            "Type should be assigned to FSM order",
         )

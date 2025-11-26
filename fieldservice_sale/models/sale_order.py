@@ -99,7 +99,7 @@ class SaleOrder(models.Model):
             "sale_id": kwargs.get("so_id", False),
             "sale_line_id": kwargs.get("sol_id", False),
             "template_id": template_id,
-            "type": type_id,
+            "type_id": type_id,
             "company_id": self.company_id.id,
         }
 
