@@ -60,6 +60,6 @@ class TestTemplateOnchange(test_fsm_order.TestFSMOrder):
             self.fso.category_ids.ids, self.fsm_template_1.category_ids.ids
         )
         self.assertEqual(self.fso.scheduled_duration, self.fsm_template_1.duration)
-        self.assertEqual(self.fso.type.id, self.fsm_template_1.type_id.id)
+        self.assertEqual(self.fso.type_id.id, self.fsm_template_1.type_id.id)
         self.assertEqual(self.fso.todo, self.fsm_template_1.instructions)
         self.assertEqual(self.fso2.team_id.id, self.fsm_team_a.id)
