@@ -4,7 +4,7 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
         <field name="arch" type="xml">
             <field name="person_id" position="after">
-                <field name="size_id" domain="[('type_id', '=', type)]" />
+                <field name="size_id" domain="[('type_id', '=', type_id)]" />
                 <label for="size_value" />
                 <div class="o_row">
                     <field
