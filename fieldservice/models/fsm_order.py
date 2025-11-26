@@ -314,15 +314,13 @@ class FSMOrder(models.Model):
                 vals = self._calc_request_late(vals)
         return super().create(vals_list)
 
-    is_button = fields.Boolean(default=False)
-
     def write(self, vals):
-        if vals.get("stage_id", False) and vals.get("is_button", False):
-            vals["is_button"] = False
-        else:
-            stage_id = self.env["fsm.stage"].browse(vals.get("stage_id"))
-            if stage_id == self.env.ref("fieldservice.fsm_stage_completed"):
-                raise UserError(_("Cannot move to completed from Kanban"))
+        if (
+            not self.env.context.get("bypass_order_completed_stage")
+            and (stage_id := vals.get("stage_id"))
+            and stage_id == self.env.ref("fieldservice.fsm_stage_completed").id
+        ):
+            raise UserError(_("Cannot move to completed from Kanban"))
         self._calc_scheduled_dates(vals)
         res = super().write(vals)
         return res
@@ -386,10 +384,9 @@ class FSMOrder(models.Model):
             vals["scheduled_date_end"] = False
 
     def action_complete(self):
-        return self.write(
+        return self.with_context(bypass_order_completed_stage=True).write(
             {
                 "stage_id": self.env.ref("fieldservice.fsm_stage_completed").id,
-                "is_button": True,
             }
         )
 
