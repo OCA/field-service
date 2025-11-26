@@ -116,8 +116,14 @@ class SaleOrder(models.Model):
             )
             if not fsm_by_sale:
                 templates = new_fsm_sol.product_id.fsm_order_template_id
+                if templates:
+                    template_id = templates[0].id
+                    template_ids = templates.ids
+                else:
+                    template_id = False
+                    template_ids = []
                 vals = self._prepare_fsm_values(
-                    so_id=self.id, template_ids=templates.ids
+                    so_id=self.id, template_ids=template_ids, template_id=template_id
                 )
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                 new_fsm_orders |= fsm_by_sale
