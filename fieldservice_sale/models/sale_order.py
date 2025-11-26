@@ -82,7 +82,7 @@ class SaleOrder(models.Model):
         hours = 0.0
         categories = self.env["fsm.category"]
         type_id = False
-        
+
         # Find the primary template (the one assigned to template_id)
         primary_template = templates.filtered(lambda t: t.id == template_id)
         if primary_template and primary_template.type_id:
@@ -93,12 +93,12 @@ class SaleOrder(models.Model):
                 if template.type_id:
                     type_id = template.type_id.id
                     break
-        
+
         for template in templates:
             note += template.instructions or ""
             hours += template.duration
             categories |= template.category_ids
-        
+
         return {
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
