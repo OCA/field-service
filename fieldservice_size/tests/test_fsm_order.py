@@ -48,7 +48,7 @@ class TestFSMSize(TransactionCase):
         )
         order = self.Order.create(
             {
-                "type": self.type_a.id,
+                "type_id": self.type_a.id,
                 "location_id": self.test_location.id,
             }
         )

@@ -93,8 +93,8 @@ class FSMOrder(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if vals.get("type"):
-            fsm_order_type = self.env["fsm.order.type"].browse(vals["type"])
+        if vals.get("type_id"):
+            fsm_order_type = self.env["fsm.order.type"].browse(vals["type_id"])
             # If internal type is changed to something other than repair,
             # cancel the repair orders
             if fsm_order_type.internal_type != "repair":

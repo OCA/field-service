@@ -225,7 +225,7 @@ class TestFSMOrder(TransactionCase):
         order_type = self.env["fsm.order.type"].create(
             {"name": "Test Type", "internal_type": "fsm"}
         )
-        order.type = order_type.id
+        order.type_id = order_type.id
         stage = self.env["fsm.stage"]
         stage.get_color_information()
         with self.assertRaises(ValidationError):
@@ -249,7 +249,7 @@ class TestFSMOrder(TransactionCase):
             equipment.notes,
             "Description should be set from equipment",
         )
-        order.type = False
+        order.type_id = False
         order.description = False
         self.location_1.direction = "Test Direction"
         order2.location_id.parent_id = self.location_1.id
