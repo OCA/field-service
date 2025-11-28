@@ -27,7 +27,8 @@ class TestFSMSaleOrder(TestFSMSale):
             }
         )
         cls.pricelist_usd = cls.env["product.pricelist"].search(
-            [("currency_id.name", "=", "USD")], limit=1
+            [("currency_id.name", "=", "USD"), ("company_id", "=", cls.env.company.id)],
+            limit=1,
         )
         # Create some sale orders that will use the above products
         SaleOrder = cls.env["sale.order"].with_context(tracking_disable=True)
