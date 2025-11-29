@@ -572,62 +572,92 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def test_sale_order_template_and_type_assignment(self):
-        """Test that FSM orders created from sales orders have both template and type assigned."""
+        """Test that FSM orders have both template and type assigned."""
         # Create a FSM order type
+<<<<<<< HEAD
         fsm_type = self.env["fsm.order.type"].create({
             "name": "Test Service Type",
             "internal_type": "fsm",
         })
+=======
+        fsm_type = self.env["fsm.order.type"].create(
+            {
+                "name": "Test Service Type",
+                "internal_type": "fsm",
+            }
+        )
+>>>>>>> 1d4ffd1 (Add test for template and type assignment in FSM orders)
 
         # Create a template with the type assigned
-        template_with_type = self.env["fsm.template"].create({
-            "name": "Template with Type",
-            "instructions": "Test template with type",
-            "duration": 1.0,
-            "type_id": fsm_type.id,
-        })
+        template_with_type = self.env["fsm.template"].create(
+            {
+                "name": "Template with Type",
+                "instructions": "Test template with type",
+                "duration": 1.0,
+                "type_id": fsm_type.id,
+            }
+        )
 
         # Create a product using this template
-        product_with_type = self.env["product.product"].create({
-            "name": "FSM Product with Type",
-            "categ_id": self.env.ref("product.product_category_3").id,
-            "standard_price": 100.0,
-            "list_price": 120.0,
-            "type": "service",
-            "uom_id": self.env.ref("uom.product_uom_unit").id,
-            "uom_po_id": self.env.ref("uom.product_uom_unit").id,
-            "invoice_policy": "order",
-            "field_service_tracking": "sale",
-            "fsm_order_template_id": template_with_type.id,
-        })
+        product_with_type = self.env["product.product"].create(
+            {
+                "name": "FSM Product with Type",
+                "categ_id": self.env.ref("product.product_category_3").id,
+                "standard_price": 100.0,
+                "list_price": 120.0,
+                "type": "service",
+                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_po_id": self.env.ref("uom.product_uom_unit").id,
+                "invoice_policy": "order",
+                "field_service_tracking": "sale",
+                "fsm_order_template_id": template_with_type.id,
+            }
+        )
 
         # Create a sale order with this product
-        sale_order = self.env["sale.order"].create({
-            "partner_id": self.partner_customer_usd.id,
-            "fsm_location_id": self.test_location.id,
-            "pricelist_id": self.pricelist_usd.id,
-        })
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_customer_usd.id,
+                "fsm_location_id": self.test_location.id,
+                "pricelist_id": self.pricelist_usd.id,
+            }
+        )
 
         # Add the product to the sale order
-        self.env["sale.order.line"].create({
-            "name": product_with_type.name,
-            "product_id": product_with_type.id,
-            "product_uom_qty": 1,
-            "product_uom": product_with_type.uom_id.id,
-            "price_unit": product_with_type.list_price,
-            "order_id": sale_order.id,
-            "tax_id": False,
-        })
+        self.env["sale.order.line"].create(
+            {
+                "name": product_with_type.name,
+                "product_id": product_with_type.id,
+                "product_uom_qty": 1,
+                "product_uom": product_with_type.uom_id.id,
+                "price_unit": product_with_type.list_price,
+                "order_id": sale_order.id,
+                "tax_id": False,
+            }
+        )
 
         # Confirm the sale order
         sale_order.action_confirm()
 
         # Check that FSM order was created
-        self.assertEqual(len(sale_order.fsm_order_ids), 1, "One FSM order should be created")
+        self.assertEqual(
+            len(sale_order.fsm_order_ids), 1, "One FSM order should be created"
+        )
 
         fsm_order = sale_order.fsm_order_ids[0]
 
         # Check that both template and type are assigned
+<<<<<<< HEAD
         self.assertEqual(fsm_order.template_id, template_with_type, "Template should be assigned to FSM order")
         self.assertEqual(fsm_order.type_id, fsm_type, "Type should be assigned to FSM order")
 
+=======
+        self.assertEqual(
+            fsm_order.template_id,
+            template_with_type,
+            "Template should be assigned to FSM order",
+        )
+        self.assertEqual(
+            fsm_order.type, fsm_type, "Type should be assigned to FSM order"
+        )
+>>>>>>> 1d4ffd1 (Add test for template and type assignment in FSM orders)
