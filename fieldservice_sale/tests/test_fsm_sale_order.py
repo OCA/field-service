@@ -573,19 +573,12 @@ class TestFSMSaleOrder(TestFSMSale):
     def test_sale_order_template_and_type_assignment(self):
         """Test that FSM orders have both template and type assigned."""
         # Create a FSM order type
-<<<<<<< HEAD
-        fsm_type = self.env["fsm.order.type"].create({
-            "name": "Test Service Type",
-            "internal_type": "fsm",
-        })
-=======
         fsm_type = self.env["fsm.order.type"].create(
             {
                 "name": "Test Service Type",
                 "internal_type": "fsm",
             }
         )
->>>>>>> 1d4ffd1 (Add test for template and type assignment in FSM orders)
 
         # Create a template with the type assigned
         template_with_type = self.env["fsm.template"].create(
@@ -656,4 +649,3 @@ class TestFSMSaleOrder(TestFSMSale):
             fsm_type,
             "Type should be assigned to FSM order",
         )
-
