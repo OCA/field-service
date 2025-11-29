@@ -647,17 +647,14 @@ class TestFSMSaleOrder(TestFSMSale):
         fsm_order = sale_order.fsm_order_ids[0]
 
         # Check that both template and type are assigned
-<<<<<<< HEAD
-        self.assertEqual(fsm_order.template_id, template_with_type, "Template should be assigned to FSM order")
-        self.assertEqual(fsm_order.type_id, fsm_type, "Type should be assigned to FSM order")
-
-=======
         self.assertEqual(
             fsm_order.template_id,
             template_with_type,
             "Template should be assigned to FSM order",
         )
         self.assertEqual(
-            fsm_order.type, fsm_type, "Type should be assigned to FSM order"
+            fsm_order.type_id,
+            fsm_type,
+            "Type should be assigned to FSM order",
         )
->>>>>>> 1d4ffd1 (Add test for template and type assignment in FSM orders)
+

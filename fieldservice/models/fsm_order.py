@@ -239,9 +239,9 @@ class FSMOrder(models.Model):
         store=True,
         readonly=False,
     )
-    type = fields.Many2one("fsm.order.type")
+    type_id = fields.Many2one("fsm.order.type")
 
-    internal_type = fields.Selection(related="type.internal_type")
+    internal_type = fields.Selection(related="type_id.internal_type")
 
     @api.depends("company_id")
     def _compute_equipment_ids(self):
@@ -277,7 +277,7 @@ class FSMOrder(models.Model):
             if rec.template_id:
                 rec.todo = rec.template_id.instructions
 
-    @api.depends("equipment_ids", "type")
+    @api.depends("equipment_ids", "type_id")
     def _compute_description(self):
         for rec in self:
             if rec.description:
@@ -416,7 +416,7 @@ class FSMOrder(models.Model):
             self.category_ids = self.template_id.category_ids
             self.scheduled_duration = self.template_id.duration
             if self.template_id.type_id:
-                self.type = self.template_id.type_id
+                self.type_id = self.template_id.type_id
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
 
