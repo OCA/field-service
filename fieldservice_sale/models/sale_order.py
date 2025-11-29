@@ -81,10 +81,13 @@ class SaleOrder(models.Model):
         note = ""
         hours = 0.0
         categories = self.env["fsm.category"]
+        type_id = False
         for template in templates:
             note += template.instructions or ""
             hours += template.duration
             categories |= template.category_ids
+            if template.type_id:
+                type_id = template.type_id.id
         return {
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
@@ -96,6 +99,7 @@ class SaleOrder(models.Model):
             "sale_id": kwargs.get("so_id", False),
             "sale_line_id": kwargs.get("sol_id", False),
             "template_id": template_id,
+            "type": type_id,
             "company_id": self.company_id.id,
         }
 
