@@ -55,7 +55,7 @@ class TestRepairOrderTemplate(TransactionCase):
             }
         )
         cls.order_vals = {
-            "type": cls.env.ref("fieldservice_repair.fsm_order_type_repair").id,
+            "type_id": cls.env.ref("fieldservice_repair.fsm_order_type_repair").id,
             "location_id": cls.env.ref("fieldservice.test_location").id,
             "equipment_ids": [Command.set([cls.equipment.id])],
             "date_start": fields.Datetime.today(),
@@ -87,7 +87,7 @@ class TestRepairOrderTemplate(TransactionCase):
         anymore.
         """
         order_vals = self.order_vals.copy()
-        order_vals.pop("type", None)
+        order_vals.pop("type_id", None)
         order = self.env["fsm.order"].create(
             dict(order_vals, template_id=self.template.id)
         )
