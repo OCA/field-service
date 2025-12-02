@@ -551,6 +551,14 @@ msgid "Check this box if this contact is an Employee."
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__country_enforce_cities
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__country_enforce_cities
+msgid ""
+"Check this box to ensure every address created in that country has a 'City' "
+"chosen in the list of the country's cities."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__child_id
 msgid "Child Categories"
 msgstr ""
@@ -576,6 +584,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_create_sub_location_wizard
 msgid "City"
 msgstr "Şehir"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__city_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__city_id
+msgid "City ID"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__tag_ids
@@ -1067,6 +1081,12 @@ msgid "Done"
 msgstr "Biten"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street_number2
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street_number2
+msgid "Door"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Due This Week"
 msgstr ""
@@ -1139,6 +1159,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
 msgid "Employees Count"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_enforce_cities
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_enforce_cities
+msgid "Enforce Cities"
 msgstr ""
 
 #. module: fieldservice
@@ -1509,6 +1535,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_medium
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_medium
 msgid "Hours of Buffer for Medium Priority FS Orders"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street_number
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street_number
+msgid "House"
 msgstr ""
 
 #. module: fieldservice
@@ -3256,6 +3288,12 @@ msgid "Street 2..."
 msgstr "Adres 2..."
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street_name
+msgid "Street Name"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_create_sub_location_wizard
@@ -3811,6 +3849,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_create_sub_location_wizard
 msgid "ZIP"
 msgstr "PK"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__zip_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__zip_id
+msgid "ZIP Location"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_create_sub_location_wizard__zip
