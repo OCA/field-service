@@ -1,0 +1,1 @@
+This module adds the zip_id field to the fsm.location form, enabling automatic address completion based on the ZIP code entered in the location’s completion field.
