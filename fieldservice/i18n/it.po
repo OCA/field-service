@@ -445,6 +445,7 @@ msgid "CRM"
 msgstr "CRM"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
 msgid "Cancel"
 msgstr "Annulla"
@@ -842,6 +843,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_uid
@@ -859,6 +861,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_date
@@ -921,6 +924,12 @@ msgstr "Termini pagamento cliente"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
 msgid "Customer Rank"
 msgstr "Classe cliente"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.fsm_order_sign_wizard_action
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Customer Signature"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
@@ -1003,6 +1012,7 @@ msgstr "Visualizza resoconto PDF modello fattura"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__display_name
@@ -1200,6 +1210,11 @@ msgstr "Località FSM"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "FSM Order Name"
 msgstr "Nome ordine FSM"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_order_sign_wizard
+msgid "FSM Order Sign Wizard"
+msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_calendar_view
@@ -1475,6 +1490,7 @@ msgstr "Riserva di ore per ordini FS a media priorità"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__id
@@ -1773,6 +1789,7 @@ msgstr "Lingua"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_uid
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_uid
@@ -1790,6 +1807,7 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_date
@@ -2414,6 +2432,7 @@ msgstr "Conteggio opportunità"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__order_id
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__order
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Order"
@@ -2509,6 +2528,12 @@ msgstr "Ordine in corso"
 #: model:mail.message.subtype,description:fieldservice.mt_order_scheduled
 msgid "Order scheduled"
 msgstr "Ordine programmato"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/wizard/fsm_order_sign_wizard.py:0
+msgid "Order signed by %s"
+msgstr ""
 
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_started
@@ -2858,6 +2883,12 @@ msgid "Request Workers"
 msgstr "Richiesta lavoratori"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__require_signature
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__require_signature
+msgid "Require Signature"
+msgstr ""
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Requirements"
 msgstr "Requisiti"
@@ -3081,6 +3112,29 @@ msgstr "Condividi partner"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
 msgid "Show Credit Limit"
 msgstr "Visualizza fido"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
+msgid "Sign"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signature
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signature
+msgid "Signature"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_by
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signed_by
+msgid "Signed By"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_on
+msgid "Signed On"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
@@ -3649,6 +3703,13 @@ msgstr ""
 "Se questo non è impostato, viene usato l'UTC (Coordinated Universal Time).\n"
 "In qualunque altra parte, l'orario è calcolato in base regolazione dell'ora "
 "del client web."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__require_signature
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__require_signature
+msgid ""
+"Whether to ask for a Customer Signature when the order is in this stage."
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__person_id
