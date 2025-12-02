@@ -248,11 +248,13 @@ class TestFSMOrder(TransactionCase):
                     "sequence": 10,
                 }
             )
-        order.description = "description"
+        order.description = "<p>Description</p>"
         order.equipment_ids = equipment
-        self.assertEqual(order.description, "description", "Shouldn't have changed")
+        self.assertEqual(
+            order.description, "<p>Description</p>", "Shouldn't have changed"
+        )
         order.description = False
-        equipment.notes = "equipment notes"
+        equipment.notes = "<p>Equipment notes</p>"
         order.equipment_ids = equipment
         self.assertEqual(
             order.description,

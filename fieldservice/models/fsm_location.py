@@ -64,7 +64,7 @@ class FSMLocation(models.Model):
         inverse_name="parent_id",
         readonly=True,
     )
-    notes = fields.Text(string="Location Notes")
+    notes = fields.Html(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
     contact_count = fields.Integer(
         string="Contacts Count", compute="_compute_contact_count"
