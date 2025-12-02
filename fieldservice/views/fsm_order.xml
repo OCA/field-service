@@ -18,6 +18,21 @@
                         invisible="is_closed"
                     />
                     <button
+                        string="Sign"
+                        id="action_sign_1"
+                        type="action"
+                        name="%(fsm_order_sign_wizard_action)d"
+                        class="oe_highlight"
+                        invisible="not require_signature or signature"
+                    />
+                    <button
+                        string="Sign"
+                        id="action_sign_2"
+                        type="action"
+                        name="%(fsm_order_sign_wizard_action)d"
+                        invisible="not require_signature or not signature"
+                    />
+                    <button
                         id="action_cancel"
                         name="action_cancel"
                         string="Cancel Order"
@@ -188,12 +203,24 @@
                                 </list>
                             </field>
                         </page>
+                        <page
+                            string="Customer Signature"
+                            name="customer_signature"
+                            invisible="not require_signature and not signed_by and not signature and not signed_on"
+                        >
+                            <group>
+                                <field name="signed_by" />
+                                <field name="signed_on" />
+                                <field name="signature" widget="image" />
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
                 <chatter />
             </form>
         </field>
     </record>
+
     <record id="fsm_order_list_view" model="ir.ui.view">
         <field name="name">fsm.order.list</field>
         <field name="model">fsm.order</field>
