@@ -615,7 +615,7 @@ class TestFSMSaleOrder(TestFSMSale):
         )
 
     def test_sale_order_multiple_templates_assignment(self):
-        """Test FSM order creation with multiple sale lines having different templates."""
+        """Test FSM order creation with multiple sale lines with different templates."""
         # Create FSM order types
         fsm_type1 = self.env["fsm.order.type"].create(
             {
