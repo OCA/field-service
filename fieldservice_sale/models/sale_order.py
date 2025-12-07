@@ -149,14 +149,22 @@ class SaleOrder(models.Model):
                 if templates:
                     template_id = templates[0].id
                     template_ids = templates.ids
+                    hours = sum(
+                        self.env["fsm.template"]
+                        .browse(sorted(template_ids))
+                        .mapped("duration")
+                    )
                 else:
                     template_id = False
                     template_ids = []
+                    hours = 0.0
                 vals = self._prepare_fsm_values(
                     so_id=self.id, template_ids=template_ids, template_id=template_id
                 )
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                 fsm_by_sale.write({"template_id": template_id})
+                if hours:
+                    fsm_by_sale.write({"scheduled_duration": hours})
                 new_fsm_orders |= fsm_by_sale
             new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
 
