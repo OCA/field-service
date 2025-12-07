@@ -4,7 +4,13 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-from odoo.addons.fieldservice.models.helpers import safe_ref
+
+def safe_ref(env, xmlid):
+    """Return env.ref(xmlid) or False if missing."""
+    try:
+        return env.ref(xmlid)
+    except (ValueError, KeyError):
+        return False
 
 
 class SaleOrder(models.Model):
