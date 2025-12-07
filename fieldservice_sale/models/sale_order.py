@@ -4,6 +4,8 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+from odoo.addons.fieldservice.models.helpers import safe_ref
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -75,26 +77,37 @@ class SaleOrder(models.Model):
         Prepare the values to create a new FSM Order from a sale order.
         """
         self.ensure_one()
-        template_id = kwargs.get("template_id", False)
-        template_ids = kwargs.get("template_ids", [template_id])
-        templates = self.env["fsm.template"].search([("id", "in", template_ids)])
+        template_id = kwargs.get("template_id")
+        template_ids = [tid for tid in (kwargs.get("template_ids") or []) if tid]
+        if not template_ids and template_id:
+            template_ids = [template_id]
+        elif template_id and template_id not in template_ids:
+            template_ids.insert(0, template_id)
+        if not template_id and template_ids:
+            template_id = template_ids[0]
+        templates = self.env["fsm.template"].browse(sorted(template_ids))
+        templates_by_id = {template.id: template for template in templates}
         note = ""
         hours = 0.0
         categories = self.env["fsm.category"]
         type_id = False
 
-        # Find the primary template (the one assigned to template_id)
-        primary_template = templates.filtered(lambda t: t.id == template_id)
+        primary_template = (
+            self.env["fsm.template"].browse(template_id) if template_id else False
+        )
         if primary_template and primary_template.type_id:
             type_id = primary_template.type_id.id
         else:
-            # If primary template has no type, use the first template that has one
-            for template in templates:
-                if template.type_id:
+            for tid in template_ids:
+                template = templates_by_id.get(tid)
+                if template and template.type_id:
                     type_id = template.type_id.id
                     break
 
-        for template in templates:
+        for tid in template_ids:
+            template = templates_by_id.get(tid)
+            if not template:
+                continue
             note += template.instructions or ""
             hours += template.duration
             categories |= template.category_ids
@@ -210,10 +223,11 @@ class SaleOrder(models.Model):
         self.ensure_one()
         msg_fsm_links = ""
         for fsm_order in fsm_orders:
+            subtype_ref = safe_ref(self.env, "mail.mt_note")
             fsm_order.message_mail_with_source(
                 "mail.message_origin_link",
                 render_values={"self": fsm_order, "origin": self},
-                subtype_id=self.env.ref("mail.mt_note").id,
+                subtype_id=(subtype_ref and subtype_ref.id) if subtype_ref else None,
                 author_id=self.env.user.partner_id.id,
             )
             msg_fsm_links += (
@@ -245,7 +259,9 @@ class SaleOrder(models.Model):
         if len(fsm_orders) > 1:
             action["domain"] = [("id", "in", fsm_orders.ids)]
         elif len(fsm_orders) == 1:
-            action["views"] = [(self.env.ref("fieldservice.fsm_order_form").id, "form")]
+            view = safe_ref(self.env, "fieldservice.fsm_order_form")
+            if view:
+                action["views"] = [(view.id, "form")]
             action["res_id"] = fsm_orders.id
         else:
             action = {"type": "ir.actions.act_window_close"}
