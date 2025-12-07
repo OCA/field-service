@@ -128,7 +128,7 @@ class SaleOrder(models.Model):
             "scheduled_duration": hours,
             "sale_id": kwargs.get("so_id", False),
             "sale_line_id": kwargs.get("sol_id", False),
-            "template_id": template_id,
+            # "template_id": template_id,  # Set after create to avoid onchange
             "type_id": type_id,
             "company_id": self.company_id.id,
         }
@@ -156,6 +156,7 @@ class SaleOrder(models.Model):
                     so_id=self.id, template_ids=template_ids, template_id=template_id
                 )
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
+                fsm_by_sale.write({"template_id": template_id})
                 new_fsm_orders |= fsm_by_sale
             new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
 
