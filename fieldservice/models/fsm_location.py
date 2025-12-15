@@ -66,6 +66,10 @@ class FSMLocation(models.Model):
     )
     notes = fields.Html(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
+    team_id = fields.Many2one(
+        comodel_name="fsm.team",
+        help="Default team assigned to orders in this location",
+    )
     contact_count = fields.Integer(
         string="Contacts Count", compute="_compute_contact_count"
     )

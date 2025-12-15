@@ -17,7 +17,7 @@ class FSMStage(models.Model):
         return [default_team_id] if default_team_id else None
 
     active = fields.Boolean(default=True)
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, translate=True)
     sequence = fields.Integer(default=1, help="Used to order stages. Lower is better.")
     legend_priority = fields.Text(
         "Priority Management Explanation",

@@ -41,6 +41,21 @@ class FSMOrder(models.Model):
             return team
         raise ValidationError(_("You must create an FSM team first."))
 
+    @api.depends(
+        "location_id",
+    )
+    def _compute_team_id(self):
+        cached_teams = dict()
+        for order in self:
+            team = order.location_id.team_id
+            if not team:
+                order_key = order.env.company
+                team = cached_teams.get(order_key)
+                if not team:
+                    team = cached_teams[order_key] = order._default_team_id()
+
+            order.team_id = team
+
     def _default_request_early(self):
         return fields.Datetime.now().replace(second=0)
 
@@ -101,7 +116,10 @@ class FSMOrder(models.Model):
     team_id = fields.Many2one(
         "fsm.team",
         string="Team",
-        default=lambda self: self._default_team_id(),
+        compute="_compute_team_id",
+        precompute=True,
+        store=True,
+        readonly=False,
         index=True,
         required=True,
         tracking=True,
