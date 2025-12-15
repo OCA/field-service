@@ -8,11 +8,10 @@ from odoo import models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    def _create_linked_repair_order(self):
-        res = super()._create_linked_repair_order()
-        for order in self:
-            # Use the equipment agreement, fallback to the order agreement
-            agreement = order.equipment_id.agreement_id or order.agreement_id
-            if agreement and order.repair_id.agreement_id != agreement:
-                order.repair_id.agreement_id = agreement
-        return res
+    def _prepare_repair_order_vals(self, equipment):
+        # Use the equipment agreement, fallback to the order agreement
+        vals = super()._prepare_repair_order_vals(equipment)
+        agreement = equipment.agreement_id or self.agreement_id
+        if agreement:
+            vals.update({"agreement_id": agreement.id})
+        return vals

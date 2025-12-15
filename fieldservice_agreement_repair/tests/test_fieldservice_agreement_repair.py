@@ -4,7 +4,7 @@
 
 from datetime import timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests.common import TransactionCase
 
 
@@ -16,7 +16,7 @@ class TestRepairPartSourceLocation(TransactionCase):
         cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.stock_location = cls.env.ref("stock.stock_location_customers")
         cls.product = cls.env["product.product"].create(
-            {"name": "Product A", "type": "product"}
+            {"name": "Product A", "is_storable": True, "tracking": "lot"}
         )
         cls.lot = cls.env["stock.lot"].create(
             {
@@ -53,7 +53,7 @@ class TestRepairPartSourceLocation(TransactionCase):
         return {
             "type": self.order_type.id,
             "location_id": self.test_location.id,
-            "equipment_id": self.equipment.id,
+            "equipment_ids": [Command.link(self.equipment.id)],
             "date_start": fields.Datetime.today(),
             "date_end": fields.Datetime.today() + timedelta(hours=1),
             "request_early": fields.Datetime.today(),
@@ -63,13 +63,13 @@ class TestRepairPartSourceLocation(TransactionCase):
         fsm_order_vals = self._prepare_fsm_order_vals()
         fsm_order_vals["agreement_id"] = self.agreement.id
         fsm_order = self.env["fsm.order"].create(fsm_order_vals)
-        self.assertEqual(fsm_order.repair_id.agreement_id.id, self.agreement.id)
+        self.assertEqual(fsm_order.repair_ids.agreement_id.id, self.agreement.id)
 
     def test_agreement_propagated_from_equipment(self):
         self.equipment.agreement_id = self.agreement
         fsm_order_vals = self._prepare_fsm_order_vals()
         fsm_order = self.env["fsm.order"].create(fsm_order_vals)
-        self.assertEqual(fsm_order.repair_id.agreement_id.id, self.agreement.id)
+        self.assertEqual(fsm_order.repair_ids.agreement_id.id, self.agreement.id)
 
     def test_agreement_propagated_from_equipment_takes_precedence(self):
         # Equipment uses agreement 02
@@ -80,9 +80,9 @@ class TestRepairPartSourceLocation(TransactionCase):
         fsm_order_vals["agreement_id"] = agreement_2.id
         fsm_order = self.env["fsm.order"].create(fsm_order_vals)
         # Repair order should use the equipment agreement
-        self.assertEqual(fsm_order.repair_id.agreement_id.id, agreement_2.id)
+        self.assertEqual(fsm_order.repair_ids.agreement_id.id, agreement_2.id)
 
     def test_no_agreement(self):
         fsm_order_vals = self._prepare_fsm_order_vals()
         fsm_order = self.env["fsm.order"].create(fsm_order_vals)
-        self.assertFalse(fsm_order.repair_id.agreement_id)
+        self.assertFalse(fsm_order.repair_ids.agreement_id)
