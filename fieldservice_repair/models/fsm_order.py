@@ -60,7 +60,7 @@ class FSMOrder(models.Model):
 
     def _create_repair_orders(self):
         """Create the repair orders for the FSM orders that have a type of repair."""
-        created_repair_orders = self.env["repair.order"]
+        repair_order_vals_list = []
         for rec in self:
             if rec.internal_type != "repair":
                 continue
@@ -80,9 +80,8 @@ class FSMOrder(models.Model):
                         )
                     )
                 repair_order_vals = rec._prepare_repair_order_vals(equipment)
-                repair_order = self.env["repair.order"].create(repair_order_vals)
-                created_repair_orders += repair_order
-        return created_repair_orders
+                repair_order_vals_list.append(repair_order_vals)
+        return self.env["repair.order"].create(repair_order_vals_list)
 
     @api.model_create_multi
     def create(self, vals_list):
