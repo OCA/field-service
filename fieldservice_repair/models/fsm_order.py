@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import clean_context
 
 
 class FSMOrder(models.Model):
@@ -81,7 +82,12 @@ class FSMOrder(models.Model):
                     )
                 repair_order_vals = rec._prepare_repair_order_vals(equipment)
                 repair_order_vals_list.append(repair_order_vals)
-        return self.env["repair.order"].create(repair_order_vals_list)
+        # pylint: disable=context-overridden
+        return (
+            self.env["repair.order"]
+            .with_context(clean_context(self.env.context))
+            .create(repair_order_vals_list)
+        )
 
     @api.model_create_multi
     def create(self, vals_list):
