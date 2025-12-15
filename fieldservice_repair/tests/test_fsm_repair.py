@@ -205,3 +205,13 @@ class TestFSMRepairCommon(TransactionCase):
         self.assertIsNone(
             action, "No action should be returned when there are no repairs"
         )
+
+    def test_create_repair_orders_no_context_propagation(self):
+        # Create an FSM order with a default_priority in context
+        # The '2' is a valid value for the fsm.order, but not for the repair.order.
+        order = (
+            self.env["fsm.order"]
+            .with_context(default_priority="2")
+            .create(self._prepare_fsm_order_vals(self.equipment_1))
+        )
+        self.assertEqual(order.repair_ids.priority, "0")
