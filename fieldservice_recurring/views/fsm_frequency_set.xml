@@ -38,7 +38,12 @@
                         <group />
                     </group>
                     <group string="Frequency Rules">
-                        <field name="fsm_frequency_ids" widget="many2many" nolabel="1">
+                        <field
+                            name="fsm_frequency_ids"
+                            widget="many2many"
+                            nolabel="1"
+                            colspan="2"
+                        >
                             <tree>
                                 <field name="name" />
                                 <field name="interval" />
