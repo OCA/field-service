@@ -8,7 +8,7 @@
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
     "license": "AGPL-3",
-    "version": "18.0.2.0.0",
+    "version": "18.0.2.0.1",
     "depends": ["fieldservice", "agreement"],
     "data": [
         "views/fsm_order_view.xml",
