@@ -219,15 +219,13 @@ class FSMRecurringOrder(models.Model):
         """
         orders = self.env["fsm.order"]
         for rec in self:
-            order_dates = []
-            for order in rec.fsm_order_ids:
-                if order.scheduled_date_start:
-                    order_dates.append(order.scheduled_date_start.date())
             max_orders = rec.max_orders if rec.max_orders > 0 else False
             order_count = rec.fsm_order_count
-            for date in rec._get_rruleset():
-                if date.date() in order_dates:
-                    continue
+            dates = list(rec._get_rruleset())
+            if order_count > 0:
+                # skip first date since an order already exists for that date
+                dates = dates[1:]
+            for date in dates:
                 if max_orders > order_count or not max_orders:
                     orders |= rec._create_order(date=date)
                     order_count += 1
