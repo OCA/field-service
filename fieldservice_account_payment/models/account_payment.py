@@ -32,12 +32,16 @@ class AccountPayment(models.Model):
             "fieldservice.action_fsm_operation_order"
         )
         if self.fsm_order_count > 1:
-            action["domain"] = [("id", "in", self.fsm_order_ids)]
+            action["domain"] = [("id", "in", self.fsm_order_ids.ids)]
         elif self.fsm_order_ids:
             action["views"] = [(self.env.ref("fieldservice.fsm_order_form").id, "form")]
             action["res_id"] = self.fsm_order_ids[0].id
         return action
 
+    @api.depends(
+        "move_id.line_ids.matched_debit_ids",
+        "move_id.line_ids.matched_credit_ids",
+    )
     def _compute_fsm_order_ids(self):
         for record in self:
             fsm_orders = record.reconciled_invoice_ids.mapped("fsm_order_ids")
