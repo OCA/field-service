@@ -14,9 +14,7 @@ class FSMOrder(models.Model):
         "payment_id",
         string="Payments",
     )
-    payment_count = fields.Integer(
-        compute="_compute_account_payment_count", readonly=True
-    )
+    payment_count = fields.Integer(compute="_compute_account_payment_count")
 
     @api.depends("payment_ids")
     def _compute_account_payment_count(self):
@@ -24,7 +22,10 @@ class FSMOrder(models.Model):
             order.payment_count = len(order.payment_ids)
 
     def action_view_payments(self):
-        action = self.env.ref("account.action_account_payments").read()[0]
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "account.action_account_payments"
+        )
         if self.payment_count > 1:
             action["domain"] = [("id", "in", self.payment_ids.ids)]
         elif self.payment_ids:

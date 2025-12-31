@@ -1,7 +1,7 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent Consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class AccountPayment(models.Model):
@@ -16,21 +16,21 @@ class AccountPayment(models.Model):
         compute="_compute_fsm_order_ids",
         store=True,
         index=True,
-        copy=False,
     )
     fsm_order_count = fields.Integer(
-        string="FSM Order Count", compute="_compute_fsm_order_count", readonly=True
+        string="FSM Order Count", compute="_compute_fsm_order_count"
     )
 
     @api.depends("fsm_order_ids")
     def _compute_fsm_order_count(self):
         for payment in self:
-            payment.fsm_order_count = (
-                len(payment.fsm_order_ids) if payment.fsm_order_ids else 0
-            )
+            payment.fsm_order_count = len(payment.fsm_order_ids)
 
     def action_view_fsm_orders(self):
-        action = self.env.ref("fieldservice.action_fsm_operation_order").read()[0]
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
+        )
         if self.fsm_order_count > 1:
             action["domain"] = [("id", "in", self.fsm_order_ids)]
         elif self.fsm_order_ids:
@@ -39,9 +39,6 @@ class AccountPayment(models.Model):
         return action
 
     def _compute_fsm_order_ids(self):
-        fsm_order_ids = []
-        for invoice in self.reconciled_invoice_ids:
-            if invoice.fsm_order_ids:
-                fsm_order_ids.extend(invoice.fsm_order_ids.ids)
-        if fsm_order_ids:
-            self.fsm_order_ids = [(6, 0, fsm_order_ids)]
+        for record in self:
+            fsm_orders = record.reconciled_invoice_ids.mapped("fsm_order_ids")
+            record.fsm_order_ids = [Command.set(fsm_orders.ids)]
