@@ -8,12 +8,13 @@ from odoo.addons.fieldservice_fleet import hooks
 
 
 class TestFSMFleetWizard(TransactionCase):
-    def setUp(self):
-        super(TestFSMFleetWizard, self).setUp()
-        self.Wizard = self.env["fsm.fleet.wizard"]
-        self.fleet_vehicle_1 = self.env.ref("fleet.vehicle_1")
-        self.person_1 = self.env.ref("fieldservice.person_1")
-        self.driver_1 = self.env.ref("base.res_partner_address_25")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Wizard = cls.env["fsm.fleet.wizard"]
+        cls.fleet_vehicle_1 = cls.env.ref("fleet.vehicle_1")
+        cls.person_1 = cls.env.ref("fieldservice.person_1")
+        cls.driver_1 = cls.env.ref("base.res_partner_address_25")
 
     def test_convert_vehicle(self):
         # Convert a Fleet vehicle to FSM vehicle and link it
