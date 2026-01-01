@@ -2,19 +2,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase, new_test_user
+from odoo.tests.common import new_test_user
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.fieldservice_fleet import hooks
 
 
-class TestFSMFleetWizard(TransactionCase):
+class TestFSMFleetWizard(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Wizard = cls.env["fsm.fleet.wizard"]
         cls.fleet_vehicle_1 = cls.env.ref("fleet.vehicle_1")
         cls.person_1 = cls.env.ref("fieldservice.person_1")
-        cls.driver_1 = cls.env.ref("base.res_partner_address_25")
+        cls.driver_1 = cls.partner
 
     def test_convert_vehicle(self):
         # Convert a Fleet vehicle to FSM vehicle and link it
@@ -105,7 +106,7 @@ class TestFSMFleetWizard(TransactionCase):
                 "name": "A3",
             }
         )
-        hooks.pre_init_hook(self.env.cr)
+        hooks.pre_init_hook(self.env)
         self.fleet_vehicle_3 = (
             self.env["fleet.vehicle"]
             .with_user(manager)

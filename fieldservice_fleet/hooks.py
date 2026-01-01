@@ -1,17 +1,14 @@
 # Copyright (C) 2019 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import SUPERUSER_ID, api
 
-
-def pre_init_hook(cr):
+def pre_init_hook(env):
     # Check for existing fsm vehicles
+    cr = env.cr
     cr.execute("SELECT * FROM fsm_vehicle")
-    vehicles = []
     vehicles = cr.dictfetchall()
     if vehicles:
         # Get a fleet vehicle model to set on the new Fleet vehicle(s)
-        env = api.Environment(cr, SUPERUSER_ID, {})
         model_id = env["fleet.vehicle.model"].search([], limit=1).id
         # Create a new Fleet vehicle for each FSM vehicle
         for veh in vehicles:

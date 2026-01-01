@@ -5,7 +5,7 @@
 {
     "name": "Field Service Fleet",
     "summary": "Link Field Service vehicles with Odoo Fleet",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Field Service",
     "author": "Brian McMaster, "
     "Open Source Integrators, "
