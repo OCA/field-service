@@ -32,14 +32,12 @@ class FSMVehicle(models.Model):
                 if vals.get("person_id", False):
                     vals["driver_id"] = vals.get("person_id")
                 vals["is_fsm_vehicle"] = True
-        return super(FSMVehicle, self).create(vals_list)
+        return super().create(vals_list)
 
     def write(self, vals):
         # update fsm.vehicle worker based on the fleet.vehicle driver
         if "driver_id" in vals:
-            for vehicle in self:
-                if vehicle.is_fsm_vehicle:
-                    vehicle.fleet_vehicle_id.set_fsm_driver()
+            self.mapped("fleet_vehicle_id").set_fsm_driver()
         # update fleet.vehicle driver based on the fsm.vehicle worker
         fsm_worker_id = vals.get("person_id", False)
         if fsm_worker_id:
