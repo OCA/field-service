@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Field Service Skill -->
+    <record id="fsm_person_skill_form" model="ir.ui.view">
+        <field name="name">fsm.person.skill.form</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <form string="Worker Skills">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="skill_type_id" />
+                            <field
+                                name="skill_id"
+                                domain="[('skill_type_id', '=', skill_type_id)]"
+                                options="{'no_create_edit': True}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="skill_level_id"
+                                domain="[('skill_type_id', '=', skill_type_id)]"
+                            />
+                            <field name="level_progress" widget="progressbar" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Reporting -->
+    <record id="view_fsm_person_skill_graph" model="ir.ui.view">
+        <field name="name">fsm.person.skill.graph</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <graph string="Worker Skills" type="bar">
+                <field name="person_id" type="row" />
+                <field name="skill_id" type="row" />
+                <field name="level_progress" type="row" />
+            </graph>
+        </field>
+    </record>
+    <record id="view_fsm_person_skill_pivot" model="ir.ui.view">
+        <field name="name">fsm.person.skill.pivot</field>
+        <field name="model">fsm.person.skill</field>
+        <field name="arch" type="xml">
+            <pivot string="Worker Skills" display_quantity="true">
+                <field name="person_id" type="row" />
+                <field name="skill_id" type="row" />
+                <field name="level_progress" type="row" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_fsm_person_skill_report" model="ir.actions.act_window">
+        <field name="name">Worker Skills</field>
+        <field name="res_model">fsm.person.skill</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p>
+                Worker Skills Report
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_fsm_person_skill_reporting"
+        name="Worker Skills"
+        action="action_fsm_person_skill_report"
+        parent="fieldservice.reporting"
+        sequence="80"
+    />
+</odoo>
