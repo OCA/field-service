@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Properties" name="fsm_order_properties_page">
+                    <field name="fsm_order_properties" columns="2" />
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record id="fsm_order_kanban_view" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field name="team_id" />
+            </field>
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div>
+                    <field name="fsm_order_properties" widget="properties" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <filter name="fsm_person_id" position="after">
+                <filter
+                    name="group_by_fsm_order_properties"
+                    string="Properties"
+                    context="{'group_by': 'fsm_order_properties'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
