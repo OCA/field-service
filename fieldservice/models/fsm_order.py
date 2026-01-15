@@ -200,7 +200,7 @@ class FSMOrder(models.Model):
     person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
     scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
-    scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
+    scheduled_duration = fields.Float(help="Scheduled duration of the work in hours")
     scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(default=10)
     todo = fields.Html(

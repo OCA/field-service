@@ -34,7 +34,7 @@ class FSMLocation(models.Model):
     contact_id = fields.Many2one(
         "res.partner",
         string="Primary Contact",
-        domain="[('is_company', '=', False)," " ('fsm_location', '=', False)]",
+        domain="[('is_company', '=', False), ('fsm_location', '=', False)]",
         index=True,
     )
     description = fields.Char()

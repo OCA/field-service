@@ -33,7 +33,7 @@ class FSMStage(models.Model):
         "there are no record in that stage to display.",
     )
     is_closed = fields.Boolean(
-        "Is a close stage", help="Services in this stage are considered " "as closed."
+        "Is a close stage", help="Services in this stage are considered as closed."
     )
     is_default = fields.Boolean("Is a default stage", help="Used a default stage")
     custom_color = fields.Char(
