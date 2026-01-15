@@ -63,9 +63,7 @@ class FSMPerson(models.Model):
                     else:
                         arg_2 = "%" + arg[2] + "%"
                         self.env.cr.execute(
-                            "SELECT id "
-                            "FROM fsm_location "
-                            "WHERE complete_name like %s",
+                            "SELECT id FROM fsm_location WHERE complete_name like %s",
                             (arg_2,),
                         )
                         location_ids = self.env.cr.fetchall()

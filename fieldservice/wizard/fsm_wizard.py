@@ -38,7 +38,7 @@ class FSMWizard(models.TransientModel):
             self.action_other_address(partner)
         else:
             raise UserError(
-                _("A Field Service Location related to that" " partner already exists.")
+                _("A Field Service Location related to that partner already exists.")
             )
 
     def action_convert_person(self, partner):
@@ -48,7 +48,7 @@ class FSMWizard(models.TransientModel):
             partner.write({"fsm_person": True})
         else:
             raise UserError(
-                _("A Field Service Worker related to that" " partner already exists.")
+                _("A Field Service Worker related to that partner already exists.")
             )
 
     def action_other_address(self, partner):
