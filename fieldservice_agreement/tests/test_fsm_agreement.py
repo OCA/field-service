@@ -2,22 +2,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command, fields
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class FSMOrder(TransactionCase):
+class FSMOrder(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Order = cls.env["fsm.order"]
         cls.Agreement = cls.env["agreement"]
         cls.Equipment = cls.env["fsm.equipment"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.agreement_type = cls.env["agreement.type"].create(
             {"name": "Test Agreement Type"}
         )
-        cls.test_person = cls.env.ref("fieldservice.test_person")
-        cls.service = cls.env.ref("product.product_product_1_product_template")
 
     def test_fsm_agreement(self):
         """
@@ -82,4 +80,23 @@ class FSMOrder(TransactionCase):
         self.assertEqual(self.test_person.agreement_count, 1)
         self.assertEqual(
             self.test_person.action_view_agreements()["res_id"], agreement.id
+        )
+        # With a second agreement on the same partner, the action returns a
+        # domain covering all matching agreements instead of a single record
+        agreement2 = self.Agreement.create(
+            {
+                "name": "Test Agreement 2",
+                "agreement_type_id": self.agreement_type.id,
+                "code": "TestAgreement2",
+                "start_date": fields.Date.today(),
+                "end_date": fields.Date.today(),
+                "fsm_location_ids": [Command.set([self.test_location.id])],
+                "partner_id": self.test_person.partner_id.id,
+            }
+        )
+        self.test_person.invalidate_recordset(["agreement_count"])
+        self.assertEqual(self.test_person.agreement_count, 2)
+        self.assertEqual(
+            sorted(self.test_person.action_view_agreements()["domain"][0][2]),
+            sorted([agreement.id, agreement2.id]),
         )

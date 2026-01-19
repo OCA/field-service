@@ -4,3 +4,5 @@
 - Patrick Wilson \<<pwilson@opensourceintegrators.com>\>
 - Italo Lopes \<<italo.lopes@camptocamp.com>\>
 - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
+- [Komit](https://komit-consulting.com):
+  - Vang Nguyen Phu

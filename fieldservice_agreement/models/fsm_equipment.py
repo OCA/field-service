@@ -7,4 +7,4 @@ from odoo import fields, models
 class FSMEquipment(models.Model):
     _inherit = "fsm.equipment"
 
-    agreement_id = fields.Many2one("agreement", string="Agreement")
+    agreement_id = fields.Many2one("agreement")
