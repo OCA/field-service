@@ -5,25 +5,30 @@
 from datetime import timedelta
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMStockCommon(TransactionCase):
-    def setUp(self):
+class TestFSMStockCommon(FSMCommon):
+    def setUp(cls):
         super().setUp()
-        self.location = self.env["fsm.location"]
-        self.FSMOrder = self.env["fsm.order"]
-        self.Product = self.env["product.product"].search([], limit=1)
-        self.stock_cust_loc = self.env.ref("stock.stock_location_customers")
-        self.stock_location = self.env.ref("stock.stock_location_stock")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.partner_1 = (
-            self.env["res.partner"]
+        cls.location = cls.env["fsm.location"]
+        cls.FSMOrder = cls.env["fsm.order"]
+        cls.Product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "uom_id": cls.env.ref("uom.product_uom_meter").id,
+            }
+        )
+        cls.stock_cust_loc = cls.env.ref("stock.stock_location_customers")
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
+        cls.partner_1 = (
+            cls.env["res.partner"]
             .with_context(tracking_disable=True)
             .create({"name": "Partner 1"})
         )
-        self.customer = self.env["res.partner"].create({"name": "SuperPartner"})
+        cls.customer = cls.env["res.partner"].create({"name": "SuperPartner"})
 
     def test_fsm_orders(self):
         """Test creating new workorders, and test following functions."""
@@ -149,3 +154,80 @@ class TestFSMStockCommon(TransactionCase):
         order2.action_view_delivery()
         order3.action_view_returns()
         order.action_view_returns()
+
+    def test_action_view_no_pickings(self):
+        """
+        action_view_delivery/returns return plain action when order has no pickings.
+        """
+        date_start = fields.Datetime.today()
+        order = self.FSMOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "date_start": date_start,
+                "date_end": date_start + timedelta(hours=1),
+                "request_early": date_start,
+            }
+        )
+        # No pickings attached — elif pickings: evaluates to False
+        action_delivery = order.action_view_delivery()
+        self.assertIsInstance(action_delivery, dict)
+        action_returns = order.action_view_returns()
+        self.assertIsInstance(action_returns, dict)
+
+    def test_compute_inventory_location_id(self):
+        """inventory_location_id is inherited from parent_id when parent is set."""
+        stock_loc = self.env.ref("stock.stock_location_stock")
+        parent_loc = self.env["fsm.location"].create(
+            {
+                "name": "Parent Location",
+                "partner_id": self.partner_1.id,
+                "owner_id": self.partner_1.id,
+            }
+        )
+        # Write after creation so the stored compute doesn't race with the value
+        parent_loc.inventory_location_id = stock_loc
+        child_loc = self.env["fsm.location"].create(
+            {
+                "name": "Child Location",
+                "partner_id": self.partner_1.id,
+                "owner_id": self.partner_1.id,
+            }
+        )
+        # Setting parent_id triggers _compute_inventory_location_id on child
+        child_loc.parent_id = parent_loc
+        self.assertEqual(child_loc.inventory_location_id, stock_loc)
+
+    def test_onchange_person_id_warehouse(self):
+        """_onchange_person_id sets warehouse from worker and skips completed orders."""
+        date_start = fields.Datetime.today()
+        warehouse2 = self.env["stock.warehouse"].create(
+            {
+                "name": "Test Warehouse 2",
+                "code": "TW2",
+            }
+        )
+        self.test_person.default_warehouse_id = warehouse2
+
+        # Normal order: warehouse should be updated from person's default
+        order = self.FSMOrder.create(
+            {
+                "location_id": self.test_location.id,
+                "date_start": date_start,
+                "date_end": date_start + timedelta(hours=1),
+                "request_early": date_start,
+                "person_id": self.test_person.id,
+            }
+        )
+        order.person_id = self.test_person
+        order._onchange_person_id()
+        self.assertEqual(order.warehouse_id, warehouse2)
+
+        # Completed order: warehouse must not change
+        completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
+        order.with_context(bypass_order_completed_stage=True).write(
+            {"stage_id": completed_stage.id}
+        )
+        original_warehouse = order.warehouse_id
+        order.person_id = False
+        order._onchange_person_id()
+        self.assertEqual(order.warehouse_id, original_warehouse)

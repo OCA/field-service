@@ -9,10 +9,22 @@ class FSMWizard(TransactionCase):
     Test used to check that the base functionalities of Field Service Stock.
     """
 
-    def setUp(self):
+    def setUp(cls):
         super().setUp()
-        self.Wizard = self.env["fsm.wizard"]
-        self.test_partner = self.env.ref("fieldservice.test_partner")
+        cls.Wizard = cls.env["fsm.wizard"]
+        cls.test_inventory_location = cls.env.ref(
+            "fieldservice_stock.stock_location_field"
+        )
+        cls.test_partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "phone": "1234567890",
+                "email": "tp@email.com",
+                "property_stock_customer": cls.test_inventory_location.id,
+            }
+        )
 
     def test_prepare_location(self):
-        self.Wizard._prepare_fsm_location(self.test_partner)
+        res = self.Wizard._prepare_fsm_location(self.test_partner)
+
+        self.assertEqual(res["inventory_location_id"], self.test_inventory_location.id)

@@ -6,4 +6,4 @@ from odoo import fields, models
 class ResTerritory(models.Model):
     _inherit = "res.territory"
 
-    warehouse_id = fields.Many2one("stock.warehouse", string="Warehouse")
+    warehouse_id = fields.Many2one("stock.warehouse")

@@ -6,9 +6,8 @@ from . import (
     fsm_location,
     fsm_order,
     stock_move,
-    procurement_group,
+    stock_reference,
     stock_rule,
     stock_picking,
-    fsm_wizard,
     fsm_person,
 )

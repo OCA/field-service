@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class FSMOrder(models.Model):
@@ -11,36 +12,42 @@ class FSMOrder(models.Model):
     def _default_warehouse_id(self):
         company = self.env.user.company_id
         warehouse_ids = self.env["stock.warehouse"].search(
-            [("company_id", "=", company.id)], limit=1
+            domain=Domain("company_id", "=", company.id), limit=1
         )
         return warehouse_ids and warehouse_ids.id
 
     @api.model
     def _get_move_domain(self):
-        return [("picking_id.picking_type_id.code", "in", ("outgoing", "incoming"))]
+        return Domain("picking_id.picking_type_id.code", "in", ("outgoing", "incoming"))
 
     picking_ids = fields.One2many("stock.picking", "fsm_order_id", string="Transfers")
     delivery_count = fields.Integer(
         string="Delivery Orders", compute="_compute_picking_ids"
     )
-    procurement_group_id = fields.Many2one(
-        "procurement.group", "Procurement Group", copy=False
+    reference_ids = fields.Many2many(
+        "stock.reference",
+        "stock_reference_fsm_order_rel",
+        "fsm_order_id",
+        "reference_id",
+        string="Stock References",
     )
     inventory_location_id = fields.Many2one(
         related="location_id.inventory_location_id",
     )
     warehouse_id = fields.Many2one(
         "stock.warehouse",
-        string="Warehouse",
         required=True,
-        default=_default_warehouse_id,
+        default=lambda self: self._default_warehouse_id(),
         help="Warehouse used to ship the materials",
     )
     return_count = fields.Integer(
         string="Return Orders", compute="_compute_picking_ids"
     )
     move_ids = fields.One2many(
-        "stock.move", "fsm_order_id", string="Operations", domain=_get_move_domain
+        "stock.move",
+        "fsm_order_id",
+        string="Operations",
+        domain=lambda self: self._get_move_domain(),
     )
 
     @api.depends("picking_ids")
@@ -58,7 +65,7 @@ class FSMOrder(models.Model):
 
     @api.onchange("person_id")
     def _onchange_person_id(self):
-        # Autofill the worker deafault warehouse if has one
+        # Autofill the worker default warehouse if has one
         completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
         for order in self:
             if order.stage_id.id == completed_stage.id:
@@ -81,7 +88,7 @@ class FSMOrder(models.Model):
             lambda p: p.picking_type_id.code == "outgoing"
         ).ids
         if len(delivery_ids) > 1:
-            action["domain"] = [("id", "in", delivery_ids)]
+            action["domain"] = Domain("id", "in", delivery_ids)
         elif pickings:
             action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = delivery_ids[0]
@@ -101,7 +108,7 @@ class FSMOrder(models.Model):
             lambda p: p.picking_type_id.code == "incoming"
         ).ids
         if len(return_ids) > 1:
-            action["domain"] = [("id", "in", return_ids)]
+            action["domain"] = Domain("id", "in", return_ids)
         elif pickings:
             action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = return_ids[0]

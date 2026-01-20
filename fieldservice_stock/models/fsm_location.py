@@ -9,7 +9,6 @@ class FSMLocation(models.Model):
 
     inventory_location_id = fields.Many2one(
         "stock.location",
-        string="Inventory Location",
         compute="_compute_inventory_location_id",
         store=True,
         readonly=False,
