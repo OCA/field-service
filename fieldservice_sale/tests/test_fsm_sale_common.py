@@ -1,14 +1,10 @@
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.addons.sale.tests.common import SaleCommon
 
 
-class TestFSMSale(TestSaleCommonBase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
+class TestFSMSale(SaleCommon):
     @classmethod
     def setUpFSMTemplates(cls):
         # Create some templates to use on the FSM products
@@ -54,12 +50,11 @@ class TestFSMSale(TestSaleCommonBase):
         cls.fsm_per_order_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 85.0,
                 "list_price": 90.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_1.id,
@@ -70,12 +65,11 @@ class TestFSMSale(TestSaleCommonBase):
         cls.fsm_per_order_2 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 125.0,
                 "list_price": 140.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_2.id,
@@ -85,12 +79,11 @@ class TestFSMSale(TestSaleCommonBase):
         cls.fsm_per_line_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per SO Line #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "line",
                 "fsm_order_template_id": cls.fsm_template_3.id,
@@ -100,30 +93,28 @@ class TestFSMSale(TestSaleCommonBase):
         cls.fsm_per_line_2 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per SO Line #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "line",
                 "fsm_order_template_id": cls.fsm_template_4.id,
             }
         )
-        # Normal Product
-        cls.product_line = cls.env["product.template"].create(
+        # Normal Product (no field service tracking)
+        cls.product_no_tracking = cls.env["product.template"].create(
             {
-                "name": "FSM Order per SO Line #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "name": "Normal Product (no FSM tracking)",
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "no",
                 "fsm_order_template_id": cls.fsm_template_4.id,
             }
         )
-        cls.product_line._onchange_field_service_tracking()
+        cls.product_no_tracking._onchange_field_service_tracking()

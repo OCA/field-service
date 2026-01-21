@@ -13,4 +13,5 @@
 
 - When a Field Service order is completed, the quantity delivered for its  
   linked sale order line will be updated to the quantity ordered,
-  indicating this line is ready for invoicing.
+  indicating this line is ready for invoicing (only applicable for "Create
+   one FSM order per sale order line").

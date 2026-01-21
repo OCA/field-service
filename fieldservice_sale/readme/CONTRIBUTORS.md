@@ -9,3 +9,5 @@
 - Cl??ment Mombereau \<<clement.mombereau@akretion.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Stefan Ungureanu
+- [Komit](https://komit-consulting.com):
+  - Vang Nguyen Phu

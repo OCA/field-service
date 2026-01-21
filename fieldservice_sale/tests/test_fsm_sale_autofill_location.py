@@ -32,10 +32,27 @@ class FSMSale(TransactionCase):
                 "type": "delivery",
             }
         )
-        # Demo FS location
-        cls.location1 = cls.env.ref("fieldservice.location_1")
-        cls.location2 = cls.env.ref("fieldservice.location_2")
-        cls.location3 = cls.env.ref("fieldservice.location_3")
+        # FS locations
+        FSMLocation = cls.env["fsm.location"]
+        Partner = cls.env["res.partner"]
+        cls.location1 = FSMLocation.create(
+            {
+                "name": "Location 1",
+                "owner_id": Partner.create({"name": "Location Owner 1"}).id,
+            }
+        )
+        cls.location2 = FSMLocation.create(
+            {
+                "name": "Location 2",
+                "owner_id": Partner.create({"name": "Location Owner 2"}).id,
+            }
+        )
+        cls.location3 = FSMLocation.create(
+            {
+                "name": "Location 3",
+                "owner_id": Partner.create({"name": "Location Owner 3"}).id,
+            }
+        )
 
     def test_00_autofill_so_fsm_location(self):
         """Check location autofill from SO partner
