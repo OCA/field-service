@@ -2,3 +2,5 @@
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
+- [Komit](https://komit-consulting.com):
+  - Vang Nguyen Phu
