@@ -6,7 +6,8 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import rruleset
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class FSMRecurringOrder(models.Model):
@@ -25,7 +26,7 @@ class FSMRecurringOrder(models.Model):
         required=True,
         index=True,
         copy=False,
-        default=lambda self: _("New"),
+        default=lambda self: self.env._("New"),
     )
     state = fields.Selection(
         [
@@ -84,19 +85,23 @@ class FSMRecurringOrder(models.Model):
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
-        data = self.env["fsm.order"].read_group(
-            [
-                ("fsm_recurring_id", "in", self.ids),
-                ("stage_id", "!=", self.env.ref("fieldservice.fsm_stage_cancelled").id),
-            ],
-            ["fsm_recurring_id"],
-            ["fsm_recurring_id"],
+        data = self.env["fsm.order"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("fsm_recurring_id", "in", self.ids),
+                    Domain(
+                        "stage_id",
+                        "!=",
+                        self.env.ref("fieldservice.fsm_stage_cancelled").id,
+                    ),
+                ]
+            ),
+            groupby=["fsm_recurring_id"],
+            aggregates=["__count"],
         )
-        count_data = {
-            item["fsm_recurring_id"][0]: item["fsm_recurring_id_count"] for item in data
-        }
         for recurring in self:
-            recurring.fsm_order_count = count_data.get(recurring.id, 0)
+            count_data = next(filter(lambda r: r[0] == recurring, data), None)
+            recurring.fsm_order_count = count_data[1] if count_data else 0
 
     @api.onchange("fsm_recurring_template_id")
     def onchange_recurring_template_id(self):
@@ -119,10 +124,10 @@ class FSMRecurringOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("name", _("New")) == _("New"):
+            if vals.get("name", self.env._("New")) == self.env._("New"):
                 vals["name"] = self.env["ir.sequence"].next_by_code(
                     "fsm.recurring"
-                ) or _("New")
+                ) or self.env._("New")
         return super().create(vals_list)
 
     def action_start(self):
@@ -240,7 +245,7 @@ class FSMRecurringOrder(models.Model):
         """
         return (
             self.env["fsm.recurring"]
-            .search([("state", "=", "progress")])
+            .search(domain=Domain("state", "=", "progress"))
             ._generate_orders()
         )
 
@@ -252,7 +257,9 @@ class FSMRecurringOrder(models.Model):
         been generated.
         """
         to_close = self.env["fsm.recurring"]
-        open_rec = self.env["fsm.recurring"].search([("state", "=", "progress")])
+        open_rec = self.env["fsm.recurring"].search(
+            domain=Domain("state", "=", "progress")
+        )
         for rec in open_rec:
             if rec.end_date and rec.end_date <= datetime.today():
                 to_close += rec

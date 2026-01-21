@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Recurring Order -->
     <record id="fsm_recurring_list_view" model="ir.ui.view">
@@ -82,7 +83,7 @@
                         </group>
                     </group>
                     <group string="Orders">
-                        <field name="fsm_order_ids" nolabel="1">
+                        <field name="fsm_order_ids" nolabel="1" colspan="2">
                             <list create="false">
                                 <field name="name" />
                                 <field name="stage_id" />
@@ -135,7 +136,7 @@
                     name="suspended"
                 />
                 <separator />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="fsm_recurring_template_id"
                         string="Recurring Template"

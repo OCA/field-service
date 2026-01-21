@@ -281,7 +281,6 @@ class FSMRecurringCase(TransactionCase):
             self.assertEqual(d.day, 31)
 
     def test_fsm_order(self):
-        self.test_location = self.env.ref("fieldservice.test_location")
         recurring = self.Recurring.create(
             {
                 "fsm_frequency_set_id": self.fr_set.id,
