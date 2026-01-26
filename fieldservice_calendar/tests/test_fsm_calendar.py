@@ -2,20 +2,19 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMOrder(TransactionCase):
+class TestFSMOrder(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Order = cls.env["fsm.order"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.location_1 = cls.env.ref("fieldservice.location_1")
         cls.team = cls.Order._default_team_id()
         cls.team.calendar_user_id = cls.env.ref("base.partner_root").id
-        cls.person_id = cls.env.ref("fieldservice.person_2")
-        cls.person_id3 = cls.env.ref("fieldservice.person_3")
+        cls.person_id = cls.person_2
+        cls.person_id3 = cls.person_3
 
     def test_fsm_order_no_duration(self):
         new = self.Order.create(
@@ -70,6 +69,69 @@ class TestFSMOrder(TransactionCase):
         # this test may fail if another module
         # archive instead of unlink (like gcalendar)
         self.assertFalse(evt.exists())
+
+    def test_update_calendar_date_scheduled_date_end(self):
+        """Writing scheduled_date_end on the FSM order must sync stop on the
+        calendar event (covers the 'scheduled_date_end' branch in
+        update_calendar_date)."""
+        new = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "scheduled_date_start": fields.Datetime.today(),
+                "scheduled_duration": 2,
+            }
+        )
+        evt = new.calendar_event_id
+        self.assertTrue(evt.exists())
+
+        new_end = fields.Datetime.add(fields.Datetime.today(), hours=5)
+        new.write({"scheduled_date_end": new_end})
+        self.assertEqual(evt.stop, new_end)
+
+    def test_update_fsm_order_date_recursion_guard(self):
+        """Writing a calendar event with recurse_order_calendar=True must not
+        propagate the change back to the FSM order (avoids infinite recursion)."""
+        new = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "scheduled_date_start": fields.Datetime.today(),
+                "scheduled_duration": 2,
+            }
+        )
+        evt = new.calendar_event_id
+        self.assertTrue(evt.exists())
+
+        # Simulate the write that originates from the FSM order itself; the
+        # context flag must short-circuit _update_fsm_order_date.
+        evt.with_context(recurse_order_calendar=True).write({"duration": 99})
+        # The FSM order must NOT have been updated to 99 h.
+        self.assertNotEqual(new.scheduled_duration, 99)
+
+    def test_update_fsm_assigned_recursion_guard(self):
+        """Writing partner_ids on a calendar event with recurse_order_calendar=True
+        must not propagate the person change back to the FSM order."""
+        new = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "scheduled_date_start": fields.Datetime.today(),
+                "scheduled_duration": 2,
+            }
+        )
+        new.person_id = self.person_id
+        evt = new.calendar_event_id
+        self.assertTrue(evt.exists())
+        original_person = new.person_id
+
+        # Simulate the write that originates from the FSM order itself; the
+        # context flag must short-circuit _update_fsm_assigned so it never
+        # clears person_id on the FSM order.
+        # We remove the worker's partner — without the guard, _update_fsm_assigned
+        # would iterate empty fsm_person partners and write person_id=None back.
+        evt.with_context(recurse_order_calendar=True).write(
+            {"partner_ids": [(3, self.person_id.partner_id.id)]}
+        )
+        # The FSM order's person must NOT have been cleared.
+        self.assertEqual(new.person_id, original_person)
 
     def test_fsm_order_ensure_attendee(self):
         # Create an Orders
