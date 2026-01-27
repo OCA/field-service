@@ -1,7 +1,7 @@
 This module improves the **Field Service Kanban view** by displaying
 essential job details directly on the order cards. The **scheduled time
-range**, **customer address**, and **contact details** (phone and
-mobile) are visible at a glance, providing technicians with the most
+range**, **customer address**, and **contact details** (phone) 
+are visible at a glance, providing technicians with the most
 relevant information without needing to open the order.
 
 Field Service operations depend on **speed, clarity, and efficiency**.

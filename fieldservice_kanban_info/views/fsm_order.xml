@@ -17,16 +17,26 @@
                 <div invisible="not street and not city and not zip">
                     <i class="fa fa-map-marker text-danger me-2" title="Address" />
                     <field name="street" class="o_address_street" />
+                    <span
+                        t-if="record.street.raw_value and (record.street2.raw_value or record.city.raw_value or record.state_name.raw_value or record.zip.raw_value or record.country_name.raw_value)"
+                    >, </span>
                     <field name="street2" class="o_address_street" />
+                    <span
+                        t-if="record.street2.raw_value and (record.city.raw_value or record.state_name.raw_value or record.zip.raw_value or record.country_name.raw_value)"
+                    >, </span>
                     <field name="city" class="o_address_city" />
+                    <span
+                        t-if="record.city.raw_value and (record.state_name.raw_value or record.zip.raw_value or record.country_name.raw_value)"
+                    >, </span>
                     <field name="state_name" class="o_address_state" />
+                    <span
+                        t-if="record.state_name.raw_value and (record.zip.raw_value or record.country_name.raw_value)"
+                    >, </span>
                     <field name="zip" class="o_address_zip" />
+                    <span
+                        t-if="record.zip.raw_value and record.country_name.raw_value"
+                    >, </span>
                     <field name="country_name" class="o_address_country" />
-                </div>
-
-                <div invisible="not mobile">
-                    <i class="fa fa-mobile text-info me-2 fa-lg" title="Mobile" />
-                    <field name="mobile" />
                 </div>
 
                 <div invisible="not phone">

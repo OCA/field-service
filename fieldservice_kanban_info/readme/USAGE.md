@@ -4,7 +4,7 @@
 
 - In the Kanban view, the scheduled time range is automatically computed
   based on the **Scheduled Start (ETA)** and **Scheduled End** fields.
-  The customer address and contact details (partner's phone and mobile)
+  The customer address and contact details (partner's phone)
   are also displayed on the order card, if set.
 
 - To configure the format of the scheduled time range, go to

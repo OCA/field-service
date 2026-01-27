@@ -21,22 +21,22 @@ Field Service - Kanban Info
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_kanban_info
+    :target: https://github.com/OCA/field-service/tree/19.0/fieldservice_kanban_info
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_kanban_info
+    :target: https://translation.odoo-community.org/projects/field-service-19-0/field-service-19-0-fieldservice_kanban_info
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module improves the **Field Service Kanban view** by displaying
 essential job details directly on the order cards. The **scheduled time
-range**, **customer address**, and **contact details** (phone and
-mobile) are visible at a glance, providing technicians with the most
-relevant information without needing to open the order.
+range**, **customer address**, and **contact details** (phone) are
+visible at a glance, providing technicians with the most relevant
+information without needing to open the order.
 
 Field Service operations depend on **speed, clarity, and efficiency**.
 By surfacing key information in the Kanban view, this module helps
@@ -61,8 +61,8 @@ Usage
 
 - In the Kanban view, the scheduled time range is automatically computed
   based on the **Scheduled Start (ETA)** and **Scheduled End** fields.
-  The customer address and contact details (partner's phone and mobile)
-  are also displayed on the order card, if set.
+  The customer address and contact details (partner's phone) are also
+  displayed on the order card, if set.
 
 - To configure the format of the scheduled time range, go to
   **Configuration > Settings > Technical > Orders > Schedule Time Range
@@ -94,7 +94,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_kanban_info%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_kanban_info%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -139,6 +139,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ppyczko| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_kanban_info>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_kanban_info>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

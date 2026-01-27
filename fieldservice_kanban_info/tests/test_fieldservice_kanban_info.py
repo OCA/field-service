@@ -6,16 +6,15 @@ from freezegun import freeze_time
 
 from odoo import fields
 
-from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFieldServiceKanbanInfo(BaseCommon):
+class TestFieldServiceKanbanInfo(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.FSMOrder = cls.env["fsm.order"]
         cls.config_param = cls.env["ir.config_parameter"].sudo()
-        cls.location = cls.env.ref("fieldservice.test_location")
         cls.now = fields.Datetime.now()
         cls.lang = cls.env.user.lang
 
@@ -24,7 +23,7 @@ class TestFieldServiceKanbanInfo(BaseCommon):
             {
                 "scheduled_date_start": start,
                 "scheduled_date_end": end,
-                "location_id": self.location.id,
+                "location_id": self.test_location.id,
             }
         )
         order._compute_schedule_time_range()
@@ -54,7 +53,7 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         """Test %m/%d/%Y %I:%M %p (US format with AM/PM)"""
         self.env.user.lang = "en_US"
         self.env["res.lang"]._lang_get("en_US").write(
-            {"date_format": "%m/%d/%Y", "time_format": "%I:%M %p"}
+            {"date_format": "%m/%d/%Y", "time_format": "%I:%M:%S %p"}
         )
         self.config_param.set_param(
             "fieldservice.schedule_time_range_format", "date_and_time"
