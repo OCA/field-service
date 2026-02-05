@@ -1,21 +1,18 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.fields import Domain
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from .test_fsm_common import FSMCommon
 
 
-class FSMEquipment(TransactionCase):
+class FSMEquipment(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Equipment = cls.env["fsm.equipment"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.test_territory = cls.env.ref("base_territory.test_territory")
-        cls.test_branch = cls.env.ref("base_territory.test_branch")
-        cls.test_district = cls.env.ref("base_territory.test_district")
-        cls.test_region = cls.env.ref("base_territory.test_region")
-        cls.current_location = cls.env.ref("fieldservice.location_1")
+        cls.current_location = cls.location_1
 
     def test_fsm_equipment(self):
         """Test createing new equipment
@@ -36,33 +33,25 @@ class FSMEquipment(TransactionCase):
         self.assertEqual(self.test_district, equipment.district_id)
         self.assertEqual(self.test_region, equipment.region_id)
         # Test initial stage
-        self.assertEqual(
-            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_1")
-        )
+        self.assertEqual(equipment.stage_id, self.equipment_stage_1)
 
         # Test change state
         equipment.next_stage()
-        self.assertEqual(
-            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_2")
-        )
-        equipment.stage_id = self.env.ref("fieldservice.equipment_stage_3")
+        self.assertEqual(equipment.stage_id, self.equipment_stage_2)
+        equipment.stage_id = self.equipment_stage_3
         equipment.next_stage()
-        self.assertEqual(
-            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_3")
-        )
+        self.assertEqual(equipment.stage_id, self.equipment_stage_3)
         self.assertFalse(equipment.hide)  # hide as max stage
-        equipment.stage_id = self.env.ref("fieldservice.equipment_stage_2")
+        equipment.stage_id = self.equipment_stage_2
         equipment.previous_stage()
-        self.assertEqual(
-            equipment.stage_id, self.env.ref("fieldservice.equipment_stage_1")
-        )
+        self.assertEqual(equipment.stage_id, self.equipment_stage_1)
         data = (
             self.env["fsm.equipment"]
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", equipment.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=Domain("id", "=", equipment.id),
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")

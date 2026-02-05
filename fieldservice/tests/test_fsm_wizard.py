@@ -2,10 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.fields import Domain
+
+from .test_fsm_common import FSMCommon
 
 
-class FSMWizard(TransactionCase):
+class FSMWizard(FSMCommon):
     """
     Test used to check that the base functionalities of Field Service.
     - test_convert_location: tests that a res.partner can be converted
@@ -20,17 +22,12 @@ class FSMWizard(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.Wizard = cls.env["fsm.wizard"]
-        cls.test_partner = cls.env.ref("fieldservice.test_partner")
-        cls.test_parent_partner = cls.env.ref("fieldservice.test_parent_partner")
-        cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
-        cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.test_person = cls.env.ref("fieldservice.test_person")
 
     def test_convert_location(self):
         ctx = {
             "active_model": "res.partner",
-            "active_id": self.test_parent_partner.id,
-            "active_ids": self.test_parent_partner.ids,
+            "active_id": self.parent_partner.id,
+            "active_ids": self.parent_partner.ids,
         }
         ctx1 = {
             "active_model": "res.partner",
@@ -63,7 +60,7 @@ class FSMWizard(TransactionCase):
 
         # check if there is a new FSM Location with name 'Test Partner'
         self.wiz_location = self.env["fsm.location"].search(
-            [("name", "=", "Test Partner")]
+            Domain("name", "=", "Test Partner")
         )
 
         # check if 'Test Partner' creation successful and fields copied over
@@ -87,17 +84,21 @@ class FSMWizard(TransactionCase):
             self.Wizard.action_convert_person(self.test_partner)
 
         # check if there is a new FSM Person with name 'Test Partner'
-        self.wiz_person = self.env["fsm.person"].search([("name", "=", "Test Partner")])
+        self.wiz_person = self.env["fsm.person"].search(
+            Domain("name", "=", "Test Partner")
+        )
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_person.phone, self.wiz_person.phone)
         self.assertEqual(self.test_person.email, self.wiz_person.email)
 
     def test_convert_sublocation(self):
         # convert Parent Partner to FSM Location
-        self.Wizard.action_convert_location(self.test_parent_partner)
+        self.Wizard.action_convert_location(self.parent_partner)
 
         # check if 'Parent Partner' creation successful and fields copied over
-        wiz_parent = self.env["fsm.location"].search([("name", "=", "Parent Partner")])
+        wiz_parent = self.env["fsm.location"].search(
+            Domain("name", "=", "Parent Partner")
+        )
 
         # check all children were assigned type 'other'
         for child in wiz_parent.child_ids:

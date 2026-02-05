@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Equipment -->
     <record id="fsm_equipment_search_view" model="ir.ui.view">
@@ -12,7 +13,7 @@
                 <field name="district_id" />
                 <field name="region_id" />
                 <field name="person_id" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="person_id"
                         string="Worker"
@@ -165,16 +166,18 @@
         <field name="name">fsm.equipment.kanban</field>
         <field name="model">fsm.equipment</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="person_id" class="o_kanban_small_column">
+            <kanban
+                highlight_color="color"
+                default_group_by="person_id"
+                class="o_kanban_small_column"
+            >
                 <field name="name" />
                 <field name="location_id" />
                 <field name="person_id" />
                 <field name="color" />
                 <templates>
                     <t t-name="card">
-                        <div
-                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
-                        >
+                        <div class="oe_kanban_card">
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
@@ -195,11 +198,7 @@
                         <div class="container">
                             <div class="o_kanban_card_manage_settings row">
                                 <div role="menuitem" aria-haspopup="true" class="col-6">
-                                    <ul
-                                        class="oe_kanban_colorpicker"
-                                        data-field="color"
-                                        role="popup"
-                                    />
+                                    <field name="color" widget="kanban_color_picker" />
                                 </div>
                                 <div role="menuitem" class="col-4">
                                     <a

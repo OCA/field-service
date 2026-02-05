@@ -60,6 +60,7 @@
         <field name="model">fsm.team</field>
         <field name="arch" type="xml">
             <kanban
+                highlight_color="color"
                 class="oe_background_grey o_kanban_dashboard o_emphasize_colors o_fsm_team_kanban"
                 create="0"
             >
@@ -70,9 +71,7 @@
                 <field name="order_need_schedule_count" />
                 <templates>
                     <t t-name="card">
-                        <div
-                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
-                        >
+                        <div class="oe_kanban_card">
                             <div>
                                 <div t-attf-class="o_kanban_card_header">
                                     <div class="o_kanban_card_header_title">
@@ -211,11 +210,7 @@
                             </div>
                             <div class="o_kanban_card_manage_settings row">
                                 <div role="menuitem" aria-haspopup="true" class="col-6">
-                                    <ul
-                                        class="oe_kanban_colorpicker"
-                                        data-field="color"
-                                        role="popup"
-                                    />
+                                    <field name="color" widget="kanban_color_picker" />
                                 </div>
                                 <div role="menuitem" class="col-4">
                                     <a

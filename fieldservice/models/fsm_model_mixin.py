@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class FsmModelMixin(models.AbstractModel):
@@ -22,18 +23,23 @@ class FsmModelMixin(models.AbstractModel):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain):
-        return self.env["fsm.stage"].search([("stage_type", "=", self._stage_type)])
+        return self.env["fsm.stage"].search(Domain("stage_type", "=", self._stage_type))
 
     def _default_stage_id(self):
         return self.env["fsm.stage"].search(
-            [("stage_type", "=", self._stage_type)], limit=1
+            Domain("stage_type", "=", self._stage_type), limit=1
         )
 
     def new_stage(self, operator):
         seq = self.stage_id.sequence
         order_by = "asc" if operator == ">" else "desc"
         new_stage = self.env["fsm.stage"].search(
-            [("stage_type", "=", self._stage_type), ("sequence", operator, seq)],
+            domain=Domain.AND(
+                [
+                    Domain("stage_type", "=", self._stage_type),
+                    Domain("sequence", operator, seq),
+                ]
+            ),
             order=f"sequence {order_by}",
             limit=1,
         )
@@ -51,6 +57,8 @@ class FsmModelMixin(models.AbstractModel):
     def _onchange_stage_id(self):
         # get last stage
         heighest_stage = self.env["fsm.stage"].search(
-            [("stage_type", "=", self._stage_type)], order="sequence desc", limit=1
+            domain=Domain("stage_type", "=", self._stage_type),
+            order="sequence desc",
+            limit=1,
         )
         self.hide = self.stage_id.name == heighest_stage.name

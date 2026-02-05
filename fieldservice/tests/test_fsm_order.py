@@ -2,22 +2,24 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
+from unittest.mock import patch
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
+
+from .test_fsm_common import FSMCommon
 
 TEST_IMAGE_BASE64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACklEQVR4nGP4DwABAQEAGN2N9wAAAABJRU5ErkJggg=="  # noqa: E501
 
 
-class TestFSMOrder(TransactionCase):
+class TestFSMOrder(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Order = cls.env["fsm.order"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.stage1 = cls.env.ref("fieldservice.fsm_stage_completed")
         cls.stage2 = cls.env.ref("fieldservice.fsm_stage_cancelled")
         cls.init_values = {
@@ -29,7 +31,6 @@ class TestFSMOrder(TransactionCase):
         today = fields.Datetime.today()
         start_date = today + timedelta(days=1)
         date_end = start_date.replace(hour=23, minute=59, second=59)
-        cls.location_1 = cls.env.ref("fieldservice.location_1")
         cls.p_leave = cls.env["resource.calendar.leaves"].create(
             {
                 "date_from": start_date,
@@ -52,11 +53,13 @@ class TestFSMOrder(TransactionCase):
     def test_fsm_order_default_stage(self):
         view_id = "fieldservice.fsm_order_form"
         stage_ids = self.env["fsm.stage"].search(
-            [
-                ("stage_type", "=", "order"),
-                ("is_default", "=", True),
-                ("company_id", "in", (self.env.user.company_id.id, False)),
-            ],
+            domain=Domain.AND(
+                [
+                    Domain("stage_type", "=", "order"),
+                    Domain("is_default", "=", True),
+                    Domain("company_id", "in", (self.env.user.company_id.id, False)),
+                ]
+            ),
             order="sequence asc",
         )
         for stage in stage_ids:
@@ -283,15 +286,16 @@ class TestFSMOrder(TransactionCase):
         order.type = False
         order.description = False
         self.location_1.direction = "Test Direction"
+        order2.location_id = location
         order2.location_id.parent_id = self.location_1.id
         data = (
             self.env["fsm.order"]
             .with_context(**{"default_team_id": self.test_team.id})
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", location.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=Domain("id", "=", order.id),
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")
@@ -338,7 +342,10 @@ class TestFSMOrder(TransactionCase):
         with Form(Wizard) as wizard_form:
             wizard_form.signed_by = "Test Customer"
             wizard_form.signature = TEST_IMAGE_BASE64
-        wizard_form.record.action_sign()
+
+        now = fields.Datetime.now()
+        with patch("odoo.fields.Datetime.now", return_value=now):
+            wizard_form.record.action_sign()
         # Check that the signature has been updated
         self.assertEqual(order.signed_by, "Test Customer")
         self.assertEqual(order.signed_on, fields.Datetime.now())
