@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     create_fsm_equipment = fields.Boolean(
-        string="Creates a FSM Equipment",
+        string="Create FSM Equipment",
         help="Creates a Field Service Equipment when a stock move is done. "
         "It requires the 'Create FSM Equipment' option to be enabled on the "
         "picking type, too.",

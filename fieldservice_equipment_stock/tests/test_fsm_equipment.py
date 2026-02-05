@@ -1,17 +1,17 @@
 # Copyright (C) 2020 - TODAY, Marcel Savegnago (Escodoo)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMEquipment(TransactionCase):
+class TestFSMEquipment(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.Equipment = cls.env["fsm.equipment"]
         cls.stock_location = cls.env.ref("stock.stock_location_customers")
-        cls.current_location = cls.env.ref("fieldservice.location_1")
-        cls.test_location = cls.env.ref("fieldservice.test_location")
 
         currency = cls.env["res.currency"].create(
             {
@@ -79,7 +79,7 @@ class TestFSMEquipment(TransactionCase):
         view_id = "fieldservice.fsm_equipment_form_view"
         with Form(self.Equipment, view=view_id) as f:
             f.name = "Test Equipment 1"
-            f.current_location_id = self.current_location
+            f.current_location_id = self.location_1
             f.location_id = self.test_location
             f.lot_id = self.lot1
             f.product_id = self.product1

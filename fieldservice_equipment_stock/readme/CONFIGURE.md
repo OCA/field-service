@@ -5,9 +5,9 @@ want to create the FSM Equipment on Delivery, or on Receipts.
 
 To enable on Products:
 
-- Go to Inventory \> Master Data \> Products
-- Open the Product form, Inventory tab
-- On the "Traceability" section, make sure "Tracking" is set to "By
+- Go to Inventory \> Products \> Products
+- Open the Product form, General Information
+- Enable the "Track Inventory" checkbox, make sure "Tracking" is set to "By
   Unique Serial Number"
 - Enable the "Creates FSM Equipment" checkbox
 
@@ -15,5 +15,5 @@ To enable on Operation Types:
 
 - Go to Inventory \> Configuration \> Operation Types
 - Select the intended Operation Type ("Receipts" for example)
-- On the "Traceability" section, enable the "Create FSM Equipment"
+- On the "LOTS/SERIAL NUMBERS" section, enable the "Create FSM Equipment"
   checkbox

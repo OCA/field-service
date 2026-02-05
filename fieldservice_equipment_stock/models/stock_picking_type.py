@@ -7,7 +7,7 @@ class StockPickingType(models.Model):
     _inherit = "stock.picking.type"
 
     create_fsm_equipment = fields.Boolean(
-        name="Create FSM Equipment",
+        string="Create FSM Equipment",
         help="Products with the 'Creates a FSM Equipment' flag "
         "will automatically be converted to an FSM Equipment.",
     )

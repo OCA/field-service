@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Stock Equipment",
     "summary": "Integrate stock operations with your field service equipments",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "

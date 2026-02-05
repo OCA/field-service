@@ -4,3 +4,5 @@
 - Marcel Savegnago \<<marcel.savegnago@escodoo.com.br>\>
 - [XCG Consulting](https://xcg-consulting.fr):
   - Szeka Wong
+- [Komit Consulting](https://komit-consulting.com/):
+  - Hoa - Truong Thi Kim \<<hoa-ttk@komit-consulting.com>>
