@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 AVAILABLE_PRIORITIES = [("0", "Normal"), ("1", "Low"), ("2", "High"), ("3", "Urgent")]
@@ -70,7 +70,7 @@ class FSMStage(models.Model):
 
     def get_color_information(self):
         # get stage ids
-        stage_ids = self.search([])
+        stage_ids = self.search([])  # pylint: disable=no-search-all
         color_information_dict = []
         for stage in stage_ids:
             color_information_dict.append(
@@ -85,14 +85,14 @@ class FSMStage(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        stages = self.search([])
+        stages = self.search([])  # pylint: disable=no-search-all
         for vals in vals_list:
             for stage in stages:
                 if stage.stage_type == vals.get(
                     "stage_type"
                 ) and stage.sequence == vals.get("sequence"):
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "Cannot create FSM Stage because "
                             "it has the same Type and Sequence "
                             "of an existing FSM Stage."
@@ -107,4 +107,6 @@ class FSMStage(models.Model):
             and not self.custom_color.startswith("#")
             or len(self.custom_color) != 7
         ):
-            raise ValidationError(_("Color code should be Hex Code. Ex:-#FFFFFF"))
+            raise ValidationError(
+                self.env._("Color code should be Hex Code. Ex:-#FFFFFF")
+            )

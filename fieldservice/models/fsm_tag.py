@@ -21,7 +21,10 @@ class FSMTag(models.Model):
         help="Company related to this tag",
     )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Tag name already exists!")]
+    _name_uniq = models.Constraint(
+        "unique (name)",
+        "Tag name already exists!",
+    )
 
     def _compute_full_name(self):
         for record in self:

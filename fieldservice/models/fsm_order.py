@@ -1,13 +1,13 @@
 # Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import warnings
 from datetime import datetime, timedelta
 
 from markupsafe import Markup
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Domain
 
 from . import fsm_stage
 
@@ -19,27 +19,29 @@ class FSMOrder(models.Model):
 
     def _default_stage_id(self):
         stage = self.env["fsm.stage"].search(
-            [
-                ("stage_type", "=", "order"),
-                ("is_default", "=", True),
-                ("company_id", "in", (self.env.company.id, False)),
-            ],
+            domain=Domain.AND(
+                [
+                    Domain("stage_type", "=", "order"),
+                    Domain("is_default", "=", True),
+                    Domain("company_id", "in", (self.env.company.id, False)),
+                ]
+            ),
             order="sequence asc",
             limit=1,
         )
         if stage:
             return stage
-        raise ValidationError(_("You must create an FSM order stage first."))
+        raise ValidationError(self.env._("You must create an FSM order stage first."))
 
     def _default_team_id(self):
         team = self.env["fsm.team"].search(
-            [("company_id", "in", (self.env.company.id, False))],
+            domain=Domain("company_id", "in", (self.env.company.id, False)),
             order="sequence asc",
             limit=1,
         )
         if team:
             return team
-        raise ValidationError(_("You must create an FSM team first."))
+        raise ValidationError(self.env._("You must create an FSM team first."))
 
     @api.depends(
         "location_id",
@@ -130,7 +132,7 @@ class FSMOrder(models.Model):
         required=True,
         index=True,
         copy=False,
-        default=lambda self: _("New"),
+        default=lambda self: self.env._("New"),
     )
 
     location_id = fields.Many2one(
@@ -217,7 +219,7 @@ class FSMOrder(models.Model):
     date_end = fields.Datetime(string="Actual End")
     duration = fields.Float(
         string="Actual duration",
-        compute=_compute_duration,
+        compute="_compute_duration",
         help="Actual duration in hours",
     )
     current_date = fields.Datetime(default=fields.Datetime.now, store=True)
@@ -248,7 +250,6 @@ class FSMOrder(models.Model):
     state_name = fields.Char(related="location_id.state_id.name", string="State")
     country_name = fields.Char(related="location_id.country_id.name", string="Country")
     phone = fields.Char(related="location_id.phone", string="Location Phone")
-    mobile = fields.Char(related="location_id.mobile")
 
     stage_name = fields.Char(related="stage_id.name", string="Stage Name")
     # Field for Stage Color
@@ -286,10 +287,12 @@ class FSMOrder(models.Model):
                 and not rec.equipment_ids
             ):
                 rec.equipment_ids = self.env["fsm.equipment"].search(
-                    [
-                        ("current_location_id", "=", rec.location_id.id),
-                        ("company_id", "=", rec.company_id.id),
-                    ]
+                    domain=Domain.AND(
+                        [
+                            Domain("current_location_id", "=", rec.location_id.id),
+                            Domain("company_id", "=", rec.company_id.id),
+                        ]
+                    )
                 )
 
     @api.depends("location_id")
@@ -314,21 +317,23 @@ class FSMOrder(models.Model):
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order=None):
-        search_domain = [("stage_type", "=", "order")]
+        search_domain = Domain("stage_type", "=", "order")
         if self.env.context.get("default_team_id"):
-            search_domain = [
-                "&",
-                ("team_ids", "in", self.env.context["default_team_id"]),
-            ] + search_domain
+            search_domain = Domain.AND(
+                [
+                    Domain("team_ids", "in", self.env.context["default_team_id"]),
+                    search_domain,
+                ]
+            )
         return stages.search(search_domain, order=order)
 
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("name", _("New")) == _("New"):
-                vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _(
-                    "New"
-                )
+            if vals.get("name", self.env._("New")) == self.env._("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "fsm.order"
+                ) or self.env._("New")
             self._calc_scheduled_dates(vals)
             if not vals.get("request_late"):
                 vals = self._calc_request_late(vals)
@@ -340,7 +345,7 @@ class FSMOrder(models.Model):
             and (stage_id := vals.get("stage_id"))
             and stage_id == self.env.ref("fieldservice.fsm_stage_completed").id
         ):
-            raise UserError(_("Cannot move to completed from Kanban"))
+            raise UserError(self.env._("Cannot move to completed from Kanban"))
         self._calc_scheduled_dates(vals)
         res = super().write(vals)
         return res
@@ -349,10 +354,10 @@ class FSMOrder(models.Model):
         """:return True if the order can be deleted, False otherwise"""
         return self.stage_id == self._default_stage_id()
 
-    def unlink(self):
-        if all(order.can_unlink() for order in self):
-            return super().unlink()
-        raise ValidationError(_("You cannot delete this order."))
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_not_default_stage(self):
+        if not all(order.can_unlink() for order in self):
+            raise ValidationError(self.env._("You cannot delete this order."))
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
@@ -448,16 +453,6 @@ class FSMOrder(models.Model):
         if self.person_id and self.person_id.team_id:
             self.team_id = self.person_id.team_id
 
-    def _get_location_directions(self, location_id):  # pragma: no cover
-        # TODO(migration): Remove this method
-        warnings.warn(
-            "Deprecated fsm.order._get_location_directions(), "
-            "use location.complete_direction instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return location_id.complete_direction
-
     @api.constrains("scheduled_date_start")
     def check_day(self):
         for rec in self:
@@ -465,13 +460,15 @@ class FSMOrder(models.Model):
                 continue
 
             holidays = self.env["resource.calendar.leaves"].search(
-                [
-                    ("date_from", ">=", rec.scheduled_date_start),
-                    ("date_to", "<=", rec.scheduled_date_end),
-                ]
+                domain=Domain.AND(
+                    [
+                        Domain("date_from", ">=", rec.scheduled_date_start),
+                        Domain("date_to", "<=", rec.scheduled_date_end),
+                    ]
+                )
             )
             if holidays:
                 msg = (
                     f"{rec.scheduled_date_start.date()} is a holiday {holidays[0].name}"
                 )
-                raise ValidationError(_(msg))
+                raise ValidationError(self.env._(msg))

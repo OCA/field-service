@@ -229,6 +229,10 @@ Contributors
   - Bernat Obrador <bobrador@apsl.net>
   - Antoni Marroig <amarroig@apsl.net>
 
+- `Komit Consulting <https://komit-consulting.com>`__:
+
+  - Truong Thi Kim Hoa <hoa-ttk@komit-consulting.com>
+
 Other credits
 -------------
 

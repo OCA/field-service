@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.api import Self
+from odoo.fields import Domain
 
 
 class FSMLocation(models.Model):
@@ -22,19 +23,19 @@ class FSMLocation(models.Model):
         required=True,
         ondelete="restrict",
         delegate=True,
-        auto_join=True,
+        bypass_search_access=True,
     )
     owner_id = fields.Many2one(
         "res.partner",
         string="Related Owner",
         required=True,
         ondelete="restrict",
-        auto_join=True,
+        bypass_search_access=True,
     )
     contact_id = fields.Many2one(
         "res.partner",
         string="Primary Contact",
-        domain="[('is_company', '=', False), ('fsm_location', '=', False)]",
+        domain=Domain("is_company", "=", False) & Domain("fsm_location", "=", False),
         index=True,
     )
     description = fields.Char()
@@ -84,16 +85,11 @@ class FSMLocation(models.Model):
         recursive=True,
         store=True,
     )
-    complete_direction = fields.Char(
+    complete_direction = fields.Html(
         compute="_compute_complete_direction",
         store=True,
         recursive=True,
     )
-
-    # This field is added for backward compatibility. But it's deprecated.
-    # Use `parent_id` instead.
-    # TODO: Remove this field in the 19.0 migration.
-    fsm_parent_id = fields.Many2one(string="Deprecated Parent", related="parent_id")
 
     @api.model_create_multi
     def create(self, vals):
@@ -169,7 +165,7 @@ class FSMLocation(models.Model):
             "contacts.action_contacts"
         )
         action["context"] = dict(self.env.context, default_service_location_id=self.id)
-        domain = [("service_location_id", "child_of", self.ids)]
+        domain = Domain("service_location_id", "child_of", self.ids)
         contacts = self.env["res.partner"].search(domain)
         if len(contacts) == 1:
             action["views"] = [(None, "form")]
@@ -184,7 +180,7 @@ class FSMLocation(models.Model):
             return
         count_by_location = dict[Self, int](
             self.env["res.partner"]._read_group(
-                domain=[("service_location_id", "child_of", self.ids)],
+                domain=Domain("service_location_id", "child_of", self.ids),
                 groupby=["service_location_id"],
                 aggregates=["__count"],
             )
@@ -205,7 +201,7 @@ class FSMLocation(models.Model):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "fieldservice.action_fsm_equipment"
         )
-        domain = [("location_id", "child_of", self.ids)]
+        domain = Domain("location_id", "child_of", self.ids)
         equipment = self.env["fsm.equipment"].search(domain)
         if len(equipment) == 1:
             action["views"] = [(None, "form")]
@@ -220,10 +216,12 @@ class FSMLocation(models.Model):
             return
         count_by_location = dict[Self, int](
             self.env["fsm.location"]._read_group(
-                domain=[
-                    ("parent_id", "child_of", self.ids),
-                    ("parent_id", "!=", False),
-                ],
+                domain=Domain.AND(
+                    [
+                        Domain("parent_id", "child_of", self.ids),
+                        Domain("parent_id", "!=", False),
+                    ]
+                ),
                 groupby=["parent_id"],
                 aggregates=["__count"],
             )
@@ -244,7 +242,12 @@ class FSMLocation(models.Model):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "fieldservice.action_fsm_location"
         )
-        domain = [("parent_id", "child_of", self.ids), ("id", "not in", self.ids)]
+        domain = Domain.AND(
+            [
+                Domain("parent_id", "child_of", self.ids),
+                Domain("id", "not in", self.ids),
+            ]
+        )
         sublocations = self.env["fsm.location"].search(domain)
         if len(sublocations) == 1:
             action["views"] = [(None, "form")]
@@ -262,7 +265,7 @@ class FSMLocation(models.Model):
             return
         count_by_location = dict[Self, int](
             self.env["fsm.equipment"]._read_group(
-                domain=[("location_id", "child_of", self.ids)],
+                domain=Domain("location_id", "child_of", self.ids),
                 groupby=["location_id"],
                 aggregates=["__count"],
             )

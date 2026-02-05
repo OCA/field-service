@@ -7,7 +7,7 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="base.model_res_partner" />
         <field
-            name="groups_id"
+            name="group_ids"
             eval="[(4, ref('fieldservice.group_fsm_dispatcher'))]"
         />
         <field name="binding_view_types">form,list</field>

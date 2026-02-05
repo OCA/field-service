@@ -2,25 +2,18 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from .test_fsm_common import FSMCommon
 
 
-class FSMLocation(TransactionCase):
+class FSMLocation(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Location = cls.env["fsm.location"]
         cls.Equipment = cls.env["fsm.equipment"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.location_1 = cls.env.ref("fieldservice.location_1")
-        cls.location_2 = cls.env.ref("fieldservice.location_2")
-        cls.location_3 = cls.env.ref("fieldservice.location_3")
-        cls.test_territory = cls.env.ref("base_territory.test_territory")
-        cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
-        cls.location_partner_1 = cls.env.ref("fieldservice.location_partner_1")
-        cls.location_partner_2 = cls.env.ref("fieldservice.location_partner_2")
-        cls.location_partner_3 = cls.env.ref("fieldservice.location_partner_3")
 
     def test_fsm_location(self):
         """Test createing new location
@@ -30,7 +23,7 @@ class FSMLocation(TransactionCase):
         - Create fsm.location.person if auto_populate_persons_on_location
         """
         # Create an equipment
-        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_territory")
+        self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_territory")
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.Location, view=view_id) as f:
             f.name = "Child Location"
@@ -53,39 +46,28 @@ class FSMLocation(TransactionCase):
             self.assertEqual(location[x], self.test_location[x])
 
         # Test initial stage
-        self.assertEqual(
-            location.stage_id, self.env.ref("fieldservice.location_stage_1")
-        )
+        self.assertEqual(location.stage_id, self.location_stage_1)
         # Test change state
         location.next_stage()
-        self.assertEqual(
-            location.stage_id, self.env.ref("fieldservice.location_stage_2")
-        )
-        location.stage_id = self.env.ref("fieldservice.location_stage_3")
+        self.assertEqual(location.stage_id, self.location_stage_2)
+        location.stage_id = self.location_stage_3
         location.next_stage()
-        self.assertEqual(
-            location.stage_id, self.env.ref("fieldservice.location_stage_3")
-        )
+        self.assertEqual(location.stage_id, self.location_stage_3)
         self.assertFalse(location.hide)  # hide as max stage
-        location.stage_id = self.env.ref("fieldservice.location_stage_2")
+        location.stage_id = self.location_stage_2
         location.previous_stage()
-        self.assertEqual(
-            location.stage_id, self.env.ref("fieldservice.location_stage_1")
-        )
+        self.assertEqual(location.stage_id, self.location_stage_1)
         # Test create fsm.location.person, when has if territory has person_ids
         self.env.company.auto_populate_persons_on_location = True
-        person_ids = [
-            self.env.ref("fieldservice.person_1").id,
-            self.env.ref("fieldservice.person_2").id,
-            self.env.ref("fieldservice.person_3").id,
-        ]
+        person_ids = [self.person_1.id, self.person_2.id, self.person_3.id]
         self.test_territory.write({"person_ids": [(6, 0, person_ids)]})
         location.territory_id = self.test_territory
         self.assertEqual(len(location.person_ids), 0)
         location._onchange_territory_id()
         self.assertEqual(len(location.person_ids), 3)
         res = location.owner_id.action_open_owned_locations()
-        self.assertIn(location.id, res["domain"][0][2])
+        domain = self.normalize_domain(res["domain"])
+        self.assertIn(location.id, domain[0][2])
         self.location_1.parent_id = self.test_location
         self.location_1.ref = "Test Ref"
         self.location_3.ref = "Test Ref3"
@@ -104,10 +86,10 @@ class FSMLocation(TransactionCase):
         data = (
             self.env["fsm.location"]
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", location.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=Domain("id", "=", location.id),
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")
@@ -247,7 +229,6 @@ class FSMLocation(TransactionCase):
         like invoice addresses or delivery addresses.
         child of partner with type = fsm_location
         """
-        self.test_partner = self.env.ref("fieldservice.test_partner")
         # ensure no regression on classic types
         contact = self.env["res.partner"].create(
             {
@@ -285,7 +266,6 @@ class FSMLocation(TransactionCase):
         """
         Ensure behavior in create_multi
         """
-        self.test_partner = self.env.ref("fieldservice.test_partner")
         vals = [
             {"parent_id": self.test_partner.id, "type": "invoice", "name": "contact"},
             {
@@ -301,6 +281,6 @@ class FSMLocation(TransactionCase):
         children_loc.action_archive()
         self.assertTrue(
             self.env["res.partner"].search(
-                [("active", "=", False), ("id", "in", children_loc.ids)]
+                Domain("active", "=", False) & Domain("id", "in", children_loc.ids)
             )
         )

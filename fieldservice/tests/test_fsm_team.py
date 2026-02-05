@@ -3,16 +3,16 @@
 
 from odoo import fields
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from .test_fsm_common import FSMCommon
 
 
-class FSMTeam(TransactionCase):
+class FSMTeam(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Order = cls.env["fsm.order"]
         cls.Team = cls.env["fsm.team"]
-        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.test_team = cls.Team.create({"name": "Test Team"})
 
     def test_fsm_order(self):
@@ -26,7 +26,7 @@ class FSMTeam(TransactionCase):
         #   - 4 scheduled (1 unscheduled)
         todo = {"orders": 5, "assigned": [3, 4], "scheduled": [0, 1, 2, 3]}
         view_id = "fieldservice.fsm_order_form"
-        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_team")
+        self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_team")
         orders = self.Order
         for i in range(todo["orders"]):
             with Form(self.Order, view=view_id) as f:
@@ -34,9 +34,7 @@ class FSMTeam(TransactionCase):
                 f.team_id = self.test_team
             order = f.save()
             orders += order
-            order.person_id = (
-                i in todo["assigned"] and self.env.ref("fieldservice.person_1") or False
-            )
+            order.person_id = i in todo["assigned"] and self.person_1 or False
             order.scheduled_date_start = (
                 i in todo["scheduled"] and fields.Datetime.now() or False
             )

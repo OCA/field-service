@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
@@ -75,12 +76,12 @@
                             <field name="location_id" />
                             <field
                                 name="territory_id"
-                                invisible='1'
+                                invisible="1"
                                 groups="fieldservice.group_fsm_territory"
                             />
-                            <field name="branch_id" invisible='1' />
-                            <field name="district_id" invisible='1' />
-                            <field name="region_id" invisible='1' />
+                            <field name="branch_id" invisible="1" />
+                            <field name="district_id" invisible="1" />
+                            <field name="region_id" invisible="1" />
                             <field
                                 name="team_id"
                                 groups="fieldservice.group_fsm_team"
@@ -246,7 +247,7 @@
             <kanban default_group_by="stage_id" class="o_kanban_small_column">
                 <field
                     name="stage_id"
-                    options='{"group_by_tooltip": {"description": "Description"}}'
+                    options="{&quot;group_by_tooltip&quot;: {&quot;description&quot;: &quot;Description&quot;}}"
                 />
                 <field name="name" />
                 <field name="priority" />
@@ -258,11 +259,7 @@
                         <div class="container">
                             <div class="o_kanban_card_manage_settings row">
                                 <div role="menuitem" aria-haspopup="true" class="col-6">
-                                    <ul
-                                        class="oe_kanban_colorpicker"
-                                        data-field="color"
-                                        role="popup"
-                                    />
+                                    <field name="color" widget="kanban_color_picker" />
                                 </div>
                                 <div role="menuitem" class="col-4">
                                     <a
@@ -275,10 +272,7 @@
                         </div>
                     </t>
                     <t t-name="card">
-                        <div
-                            t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click"
-                            name="fsm_equipment"
-                        >
+                        <div name="fsm_equipment">
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
@@ -367,10 +361,7 @@
                 <separator />
                 <filter
                     string="Today Orders"
-                    domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))
-                    ]"
+                    domain="[                     ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),                     ('scheduled_date_start', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59))))                     ]"
                     name="order_today"
                 />
                 <filter
@@ -380,22 +371,16 @@
                 />
                 <filter
                     string="Due Within 7 Days"
-                    domain="[
-                    ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))
-                    ]"
+                    domain="[                     ('scheduled_date_start', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59))))                     ]"
                     name="order_upcoming_week"
                 />
                 <filter
                     string="Due Within 30 Days"
-                    domain="[
-                    ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
-                    ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))
-                    ]"
+                    domain="[                     ('scheduled_date_start', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),                     ('scheduled_date_start', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59))))                     ]"
                     name="order_upcoming_month"
                 />
                 <separator />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="territory_id"
                         string="Territory"

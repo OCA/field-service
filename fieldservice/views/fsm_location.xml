@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Location Tree View-->
     <record id="fsm_location_list_view" model="ir.ui.view">
@@ -105,6 +106,7 @@
                             <field
                                 name="partner_id"
                                 groups="base.group_no_one"
+                                required="0"
                                 readonly="1"
                             />
                             <field name="owner_id" />
@@ -299,7 +301,7 @@
                 <field name="tz" />
                 <field name="category_id" />
                 <field name="ref" />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="owner_id"
                         string="Owner"

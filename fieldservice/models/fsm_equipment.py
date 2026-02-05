@@ -57,9 +57,7 @@ class FSMEquipment(models.Model):
         help="Company related to this equipment",
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique (name)", "Equipment name already exists!")
-    ]
+    _name_uniq = models.Constraint("unique (name)", "Equipment name already exists!")
 
     @api.depends("location_id")
     def _compute_territory_id(self):

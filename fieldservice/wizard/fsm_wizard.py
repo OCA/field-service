@@ -1,8 +1,9 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
+from odoo.fields import Domain
 
 
 class FSMWizard(models.TransientModel):
@@ -19,7 +20,9 @@ class FSMWizard(models.TransientModel):
     )
 
     def action_convert(self):
-        partners = self.env["res.partner"].browse(self._context.get("active_ids", []))
+        partners = self.env["res.partner"].browse(
+            self.env.context.get("active_ids", [])
+        )
         for partner in partners:
             if self.fsm_record_type == "person":
                 self.action_convert_person(partner)
@@ -32,23 +35,27 @@ class FSMWizard(models.TransientModel):
 
     def action_convert_location(self, partner):
         fl_model = self.env["fsm.location"]
-        if fl_model.search_count([("partner_id", "=", partner.id)]) == 0:
+        if fl_model.search_count(Domain("partner_id", "=", partner.id)) == 0:
             fl_model.create(self._prepare_fsm_location(partner))
             partner.write({"fsm_location": True})
             self.action_other_address(partner)
         else:
             raise UserError(
-                _("A Field Service Location related to that partner already exists.")
+                self.env._(
+                    "A Field Service Location related to that partner already exists."
+                )
             )
 
     def action_convert_person(self, partner):
         fp_model = self.env["fsm.person"]
-        if fp_model.search_count([("partner_id", "=", partner.id)]) == 0:
+        if fp_model.search_count(Domain("partner_id", "=", partner.id)) == 0:
             fp_model.create({"partner_id": partner.id})
             partner.write({"fsm_person": True})
         else:
             raise UserError(
-                _("A Field Service Worker related to that partner already exists.")
+                self.env._(
+                    "A Field Service Worker related to that partner already exists."
+                )
             )
 
     def action_other_address(self, partner):

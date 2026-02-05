@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class FSMPerson(models.Model):
@@ -17,7 +18,14 @@ class FSMPerson(models.Model):
         required=True,
         ondelete="restrict",
         delegate=True,
-        auto_join=True,
+        bypass_search_access=True,
+    )
+    state_id = fields.Many2one(
+        related="partner_id.state_id",
+        store=True,
+        inherited=True,
+        readonly=False,
+        domain="[('country_id', '=?', country_id)]",
     )
     category_ids = fields.Many2many("fsm.category", string="Categories")
     calendar_id = fields.Many2one("resource.calendar", string="Working Schedule")
@@ -29,29 +37,30 @@ class FSMPerson(models.Model):
     )
     team_id = fields.Many2one("fsm.team", string="Team")
 
-    def toggle_active(self):
-        for person in self:
-            if not person.active and not person.partner_id.active:
-                person.partner_id.toggle_active()
-        return super().toggle_active()
+    def action_unarchive(self):
+        self.with_context(active_test=False).partner_id.action_unarchive()
+        return super().action_unarchive()
 
     @api.model
     def _search(
         self,
-        args,
+        domain,
         offset=0,
         limit=None,
         order=None,
+        *,
+        active_test: bool = True,
+        bypass_access: bool = False,
     ):
         res = super()._search(
-            args,
+            domain,
             offset=offset,
             limit=limit,
             order=order,
         )
         # Check for args first having location_ids as default filter
-        for arg in args:
-            if isinstance(args, (list)):
+        for arg in domain:
+            if isinstance(domain, (list, Domain)):
                 if arg[0] == "location_ids":
                     # If given int search ID, else search name
                     if isinstance(arg[2], int):
@@ -76,7 +85,9 @@ class FSMPerson(models.Model):
                                 "WHERE location_id in %s",
                                 [tuple(location_ids)],
                             )
-                    workers_ids = self.env.cr.fetchall()
+                    workers_ids = set()
+                    for id_ in self.env.cr.fetchall():
+                        workers_ids.add(id_[0])
                     return self.browse(workers_ids)._as_query()
         return res
 
