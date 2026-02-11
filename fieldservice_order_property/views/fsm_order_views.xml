@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Properties" name="fsm_order_properties_page">
-                    <field name="fsm_order_properties" columns="2" />
+                    <field name="fsm_order_properties" columns="2" showAddButton="1" />
                 </page>
             </notebook>
         </field>
@@ -20,7 +20,11 @@
             </field>
             <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
                 <div>
-                    <field name="fsm_order_properties" widget="properties" />
+                    <field
+                        name="fsm_order_properties"
+                        widget="properties"
+                        showAddButton="1"
+                    />
                 </div>
             </xpath>
         </field>
