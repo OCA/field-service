@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Properties" name="fsm_order_properties_page">
-                    <field name="fsm_order_properties" columns="2" />
+                    <field name="fsm_order_properties" columns="2" showAddButton="1" />
                 </page>
             </notebook>
         </field>
@@ -20,7 +20,11 @@
             </field>
             <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
                 <div>
-                    <field name="fsm_order_properties" widget="properties" />
+                    <field
+                        name="fsm_order_properties"
+                        widget="properties"
+                        showAddButton="1"
+                    />
                 </div>
             </xpath>
         </field>
@@ -29,13 +33,9 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
         <field name="arch" type="xml">
-            <filter name="fsm_person_id" position="after">
-                <filter
-                    name="group_by_fsm_order_properties"
-                    string="Properties"
-                    context="{'group_by': 'fsm_order_properties'}"
-                />
-            </filter>
+            <field name="person_ids" position="after">
+                <field name="fsm_order_properties" string="Properties" />
+            </field>
         </field>
     </record>
 </odoo>
