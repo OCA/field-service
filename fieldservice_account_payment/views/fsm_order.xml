@@ -12,7 +12,7 @@
                     name="action_view_payments"
                     type="object"
                     icon="fa-bars"
-                    invisible="payment_count == 0"
+                    invisible="not payment_count"
                 >
                     <field name="payment_count" widget="statinfo" string="Payments" />
                 </button>

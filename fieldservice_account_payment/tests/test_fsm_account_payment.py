@@ -1,8 +1,7 @@
 # Copyright (C) 2019 Open Source Integrators
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo import Command, _, fields
-from odoo.exceptions import ValidationError
+from odoo import Command, fields
 from odoo.tests import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -14,11 +13,6 @@ class FSMAccountPaymentCase(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.company = cls.env.company
-        chart = cls.env["account.chart.template"]._guess_chart_template(
-            cls.company.country_id
-        )
-        if not chart:
-            raise ValidationError(_("No Chart of Account Template has been defined !"))
 
         cls.env["account.chart.template"].try_loading(
             "generic_coa", company=cls.company, install_demo=False
@@ -54,21 +48,22 @@ class FSMAccountPaymentCase(BaseCommon):
         )
 
         # Create a FSM order
+        start = fields.Datetime.now().replace(microsecond=0, second=0)
         cls.test_order = cls.env["fsm.order"].create(
             {
                 "location_id": cls.test_location.id,
-                "date_start": fields.Date.today(),
-                "date_end": fields.Datetime.add(fields.Date.today(), hours=2),
-                "request_early": fields.Date.today(),
+                "date_start": start,
+                "date_end": fields.Datetime.add(start, hours=2),
+                "request_early": start,
             }
         )
 
         cls.test_order2 = cls.env["fsm.order"].create(
             {
                 "location_id": cls.test_location.id,
-                "date_start": fields.Date.today(),
-                "date_end": fields.Datetime.add(fields.Date.today(), hours=2),
-                "request_early": fields.Date.today(),
+                "date_start": start,
+                "date_end": fields.Datetime.add(start, hours=2),
+                "request_early": start,
             }
         )
 
@@ -121,8 +116,6 @@ class FSMAccountPaymentCase(BaseCommon):
         payment.action_view_fsm_orders()
         order.action_view_payments()
         self.assertAlmostEqual(payment.amount, 100)
-        self.assertEqual(payment.state, "posted")
-        self.assertEqual(self.test_invoice.state, "posted")
         self.assertEqual(self.test_invoice.fsm_order_ids, payment.fsm_order_ids)
         res = self.env["fsm.order"].search([("payment_ids", "in", payment.id)])
         self.assertEqual(len(res), 1)

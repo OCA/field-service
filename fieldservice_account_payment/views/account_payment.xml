@@ -10,7 +10,7 @@
                     name="action_view_fsm_orders"
                     type="object"
                     icon="fa-map"
-                    invisible="fsm_order_count == 0"
+                    invisible=" not fsm_order_count"
                 >
                     <field
                         name="fsm_order_count"
