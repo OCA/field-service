@@ -121,6 +121,5 @@ class TestFSMFleetWizard(BaseCommon):
         self.context = {
             "active_model": "fleet.vehicle",
             "active_ids": [self.fleet_vehicle_3.id],
-            "active_id": self.fleet_vehicle_3.id,
         }
         self.Wizard.with_context(**self.context).action_convert()

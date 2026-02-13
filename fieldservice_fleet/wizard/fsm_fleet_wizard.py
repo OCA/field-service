@@ -2,7 +2,7 @@
 # Copyright (C) 2019 Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -37,7 +37,7 @@ class FSMFleetWizard(models.TransientModel):
             vehicle.set_fsm_driver()
         else:
             raise UserError(
-                _(
+                self.env._(
                     "A Field Service Vehicle related to that"
                     " Fleet Vehicle already exists."
                 )

@@ -9,7 +9,7 @@ def pre_init_hook(env):
     vehicles = cr.dictfetchall()
     if vehicles:
         # Get a fleet vehicle model to set on the new Fleet vehicle(s)
-        model_id = env["fleet.vehicle.model"].search([], limit=1).id
+        model = env["fleet.vehicle.model"].search([], limit=1)
         # Create a new Fleet vehicle for each FSM vehicle
         for veh in vehicles:
             # Get the FSM worker to set as the Fleet driver
@@ -25,6 +25,7 @@ def pre_init_hook(env):
                             driver_id,
                             is_fsm_vehicle,
                             odometer_unit,
+                            power_unit,
                             active)
                         VALUES (
                             %s,
@@ -32,8 +33,14 @@ def pre_init_hook(env):
                             %s,
                             True,
                             'kilometers',
+                            %s,
                             True);""",
-                (veh.get("name"), model_id, driver_id),
+                (
+                    veh.get("name"),
+                    model.id,
+                    driver_id,
+                    model.power_unit,
+                ),
             )
             # Set this new Fleet vehicle on the existing FSM vehicle
             cr.execute(
