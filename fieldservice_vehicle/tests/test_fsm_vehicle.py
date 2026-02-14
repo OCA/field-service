@@ -42,3 +42,34 @@ class FSMVehicleCase(TransactionCase):
             }
         )
         self.test_order._onchange_person_id()
+
+    def test_vehicle_on_create(self):
+        other_vehicle = self.env["fsm.vehicle"].create({"name": "Other Vehicle"})
+        other_worker = self.env["fsm.person"].create(
+            {
+                "name": "Other Worker",
+                "email": "ow@email.com",
+                "vehicle_id": other_vehicle.id,
+            }
+        )
+        orders = self.env["fsm.order"].create(
+            [
+                {
+                    "location_id": self.test_location.id,
+                    "person_id": self.test_worker.id,
+                },
+                {
+                    "location_id": self.test_location.id,
+                    "person_id": self.test_worker.id,
+                    "vehicle_id": False,
+                },
+                {
+                    "location_id": self.test_location.id,
+                    "person_id": other_worker.id,
+                    "vehicle_id": self.test_vehicle.id,
+                },
+            ]
+        )
+        self.assertEqual(orders[0].vehicle_id, self.test_vehicle)
+        self.assertFalse(orders[1].vehicle_id)
+        self.assertEqual(orders[2].vehicle_id, self.test_vehicle)
