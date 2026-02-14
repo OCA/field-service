@@ -6,20 +6,23 @@ from odoo import api, fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    @api.model
-    def _get_default_vehicle(self):
-        return self.person_id.vehicle_id.id or False
+    vehicle_id = fields.Many2one("fsm.vehicle", string="Vehicle")
 
-    vehicle_id = fields.Many2one(
-        "fsm.vehicle", string="Vehicle", default=_get_default_vehicle
-    )
-
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        if not vals.get("vehicle_id") and vals.get("person_id"):
-            self._onchange_person_id()
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        person_ids = [
+            vals["person_id"]
+            for vals in vals_list
+            if "vehicle_id" not in vals and vals.get("person_id")
+        ]
+        vehicles = {
+            person.id: person.vehicle_id.id
+            for person in self.env["fsm.person"].browse(person_ids)
+        }
+        for vals in vals_list:
+            if "vehicle_id" not in vals and vals.get("person_id"):
+                vals["vehicle_id"] = vehicles.get(vals["person_id"]) or False
+        return super().create(vals_list)
 
     @api.onchange("person_id")
     def _onchange_person_id(self):
