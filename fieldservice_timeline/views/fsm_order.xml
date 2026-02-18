@@ -15,10 +15,104 @@
             />
         </field>
     </record>
+
+    <record id="fsm_order_view_request_late" model="ir.ui.view">
+        <field
+            name="name"
+        >Use Latest Request Date in Field Service Orders timeline view</field>
+        <field name="model">fsm.order</field>
+        <field name="type">timeline</field>
+        <field name="mode">primary</field>
+        <field name="priority">50</field>
+        <field name="inherit_id" ref="fieldservice_timeline.fsm_order_timeline_view" />
+        <field name="arch" type="xml">
+            <timeline position="attributes">
+                <attribute name="date_start">request_late</attribute>
+                <attribute name="date_stop" />
+            </timeline>
+        </field>
+    </record>
+
+    <record id="fsm_order_search_view_request_late" model="ir.ui.view">
+        <field
+            name="name"
+        >Use Latest Request Date in Field Service Orders search view</field>
+        <field name="model">fsm.order</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <!-- Overwrite the domain of date fields to use `request_late` instead of `scheduled_date_start`. -->
+            <filter name="unscheduled" position="attributes">
+                <attribute name="domain">
+                [
+                    ('request_late', '=', False),
+                    ('stage_id.is_closed', '=', False),
+                ]
+                </attribute>
+            </filter>
+            <filter name="order_today" position="attributes">
+                <attribute name="domain">
+                [
+                    ('request_late', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('request_late', '&lt;', (datetime.datetime.combine(datetime.date.today(), datetime.time(23,59,59)))),
+                ]
+                </attribute>
+            </filter>
+            <filter name="order_upcoming_all" position="attributes">
+                <attribute name="domain">
+                [
+                    ('request_late', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                ]
+                </attribute>
+            </filter>
+            <filter name="order_upcoming_week" position="attributes">
+                <attribute name="domain">
+                [
+                    ('request_late', '&gt;=', (datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('request_late', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=6)), datetime.time(23,59,59)))),
+                ]
+                </attribute>
+            </filter>
+            <filter name="order_upcoming_month" position="attributes">
+                <attribute name="domain">
+                [
+                    ('request_late', '&gt;=',(datetime.datetime.combine(datetime.date.today(), datetime.time(0,0,0)))),
+                    ('request_late', '&lt;=', (datetime.datetime.combine((datetime.date.today()+relativedelta(days=29)), datetime.time(23,59,59)))),
+                ]
+                </attribute>
+            </filter>
+        </field>
+    </record>
+
     <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
         <field name="view_mode">kanban,list,form,calendar,timeline</field>
     </record>
+
     <record id="fieldservice.action_fsm_operation_order" model="ir.actions.act_window">
         <field name="view_mode">list,form,calendar,timeline</field>
     </record>
+
+    <record id="fsm_order_action_request_late" model="ir.actions.act_window">
+        <field name="name">Orders by Latest Request</field>
+        <field name="res_model">fsm.order</field>
+        <field name="view_mode">timeline</field>
+        <field name="search_view_id" ref="fsm_order_search_view_request_late" />
+        <field
+            name="view_ids"
+            eval="[
+                Command.clear(),
+                Command.create({
+                    'view_mode': 'timeline',
+                    'view_id': ref('fsm_order_view_request_late'),
+                }),
+            ]"
+        />
+    </record>
+
+    <menuitem
+        id="fsm_order_menu_request_late"
+        name="Orders by Latest Request"
+        action="fsm_order_action_request_late"
+        parent="fieldservice.operations"
+    />
 </odoo>
