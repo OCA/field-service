@@ -14,3 +14,4 @@
   - Víctor Martínez
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
+- Christian Doñate \<<https://tesseratech.es>\>
