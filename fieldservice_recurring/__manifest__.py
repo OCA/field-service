@@ -4,7 +4,7 @@
 {
     "name": "Field Service Recurring Work Orders",
     "summary": "Manage recurring Field Service orders",
-    "version": "17.0.2.1.0",
+    "version": "17.0.2.1.1",
     "category": "Field Service",
     "author": "Brian McMaster, "
     "Open Source Integrators, "
