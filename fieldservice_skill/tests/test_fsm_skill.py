@@ -22,9 +22,31 @@ class TestFSMSkill(BaseCommon):
         cls.fsm_template = cls.env["fsm.template"]
         cls.fsm_category = cls.env["fsm.category"]
 
-        cls.skill_type_01 = cls.skill_type.create({"name": "Field Service Skills"})
+        cls.skill_type_01 = cls.skill_type.create(
+            {
+                "name": "Field Service Skills",
+                "skill_level_ids": [
+                    Command.create({"name": "Great", "level_progress": 100}),
+                    Command.create({"name": "GreatAlt", "level_progress": 100}),
+                ],
+                "skill_ids": [Command.create({"name": "__seed_skill_type_01__"})],
+            }
+        )
+        level_by_seq = cls.skill_type_01.skill_level_ids.sorted("id")
+        cls.skill_level_100 = level_by_seq[0]
+        cls.skill_level_101 = level_by_seq[1]
 
-        cls.skill_type_03 = cls.skill_type.create({"name": "Field Service Skills 3"})
+        cls.skill_type_03 = cls.skill_type.create(
+            {
+                "name": "Field Service Skills 3",
+                "skill_level_ids": [
+                    Command.create({"name": "Level T3", "level_progress": 100}),
+                ],
+                "skill_ids": [
+                    Command.create({"name": "Type three skill"}),
+                ],
+            }
+        )
 
         # Create some great skills
         cls.skill_01 = cls.skill.create(
@@ -54,21 +76,9 @@ class TestFSMSkill(BaseCommon):
         cls.skill_08 = cls.skill.create(
             {"name": "Computer Growing Skills", "skill_type_id": cls.skill_type_01.id}
         )
-
-        cls.skill_level_100 = cls.skill_level.create(
-            {
-                "name": "Great",
-                "skill_type_id": cls.skill_type_01.id,
-                "level_progress": 100,
-            }
-        )
-        cls.skill_level_101 = cls.skill_level.create(
-            {
-                "name": "Great",
-                "skill_type_id": cls.skill_type_01.id,
-                "level_progress": 100,
-            }
-        )
+        cls.skill_type_01.skill_ids.filtered(
+            lambda s: s.name == "__seed_skill_type_01__"
+        ).unlink()
 
         # Create some great workers with their own great skills
         # Our first worker, Napoleon, has nunchuck skills and bow hunting
@@ -138,12 +148,6 @@ class TestFSMSkill(BaseCommon):
         cls.category_02_skills = [cls.skill_05.id, cls.skill_06.id, cls.skill_07.id]
         cls.category_02 = cls.fsm_category.create(
             {"name": "Sales1", "skill_ids": [Command.set(cls.category_02_skills)]}
-        )
-        cls.skill_type_02 = cls.skill_type.create(
-            {
-                "name": "Field Service Skills 2",
-                "skill_ids": [Command.set(cls.category_02_skills)],
-            }
         )
         # Create a template that requires great skills
         cls.template_01_skills = [cls.skill_01.id, cls.skill_02.id]

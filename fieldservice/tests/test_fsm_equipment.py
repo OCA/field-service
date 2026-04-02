@@ -59,10 +59,10 @@ class FSMEquipment(TransactionCase):
         data = (
             self.env["fsm.equipment"]
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", equipment.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=[("id", "=", equipment.id)],
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")

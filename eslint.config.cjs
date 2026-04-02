@@ -200,6 +200,10 @@ const config = [{
         ecmaVersion: 2024,
         sourceType: "module",
     },
+
+    rules: {
+        "jsdoc/check-tag-names": ["warn", {definedTags: ["odoo-module"]}],
+    },
 }];
 
 module.exports = config

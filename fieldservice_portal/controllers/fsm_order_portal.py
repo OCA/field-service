@@ -1,10 +1,10 @@
 from collections import OrderedDict
 from operator import itemgetter
 
-from odoo import _, http
+from odoo import http
 from odoo.exceptions import AccessError
+from odoo.fields import Domain
 from odoo.http import request
-from odoo.osv.expression import OR
 from odoo.tools import groupby as groupbyelem
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -72,55 +72,56 @@ class CustomerPortal(CustomerPortal):
         FsmOrder = request.env["fsm.order"]
         domain = self._prepare_fsm_orders_domain()
 
+        _t = request.env._
         searchbar_sortings = {
-            "date": {"label": _("Newest"), "order": "request_early desc"},
-            "name": {"label": _("Name"), "order": "name"},
-            "stage": {"label": _("Stage"), "order": "stage_id"},
-            "location": {"label": _("Location"), "order": "location_id"},
-            "type": {"label": _("Type"), "order": "type"},
+            "date": {"label": _t("Newest"), "order": "request_early desc"},
+            "name": {"label": _t("Name"), "order": "name"},
+            "stage": {"label": _t("Stage"), "order": "stage_id"},
+            "location": {"label": _t("Location"), "order": "location_id"},
+            "type": {"label": _t("Type"), "order": "type"},
         }
 
         searchbar_groupby = {
-            "none": {"input": "none", "label": _("None")},
-            "location_id": {"input": "location", "label": _("Location")},
-            "ticket_id": {"input": "ticket", "label": _("Ticket")},
-            "stage_id": {"input": "stage", "label": _("Stage")},
-            "type": {"input": "type", "label": _("Type")},
+            "none": {"input": "none", "label": _t("None")},
+            "location_id": {"input": "location", "label": _t("Location")},
+            "ticket_id": {"input": "ticket", "label": _t("Ticket")},
+            "stage_id": {"input": "stage", "label": _t("Stage")},
+            "type": {"input": "type", "label": _t("Type")},
         }
 
         # search input (text)
         searchbar_inputs = OrderedDict(
             (
-                ("all", {"input": "all", "label": _("Search in All")}),
-                ("name", {"input": "name", "label": _("Search in WO Number")}),
+                ("all", {"input": "all", "label": _t("Search in All")}),
+                ("name", {"input": "name", "label": _t("Search in WO Number")}),
                 (
                     "description",
                     {
                         "input": "description",
-                        "label": _("Search in Description"),
+                        "label": _t("Search in Description"),
                     },
                 ),
                 (
                     "location_id.name",
                     {
                         "input": "location",
-                        "label": _("Search in Location Numbers"),
+                        "label": _t("Search in Location Numbers"),
                     },
                 ),
             )
         )
 
         if search and search_in:
-            search_domain = []
-            for search_property in [
+            inputs = [
                 k
                 for (k, v) in searchbar_inputs.items()
                 if search_in in (v["input"], "all") and k != "all"
-            ]:
-                search_domain = OR(
-                    [search_domain, [(search_property, "ilike", search)]]
+            ]
+            if inputs:
+                combined = Domain.OR(
+                    Domain([(prop, "ilike", search)]) for prop in inputs
                 )
-            domain += search_domain
+                domain += list(combined.optimize_full(FsmOrder))
 
         # search filters (by stage)
         searchbar_filters = OrderedDict(
@@ -140,8 +141,8 @@ class CustomerPortal(CustomerPortal):
         )
         searchbar_filters.update(
             {
-                "all": {"label": _("All"), "domain": []},
-                "open": {"label": _("Open"), "domain": [("is_closed", "=", False)]},
+                "all": {"label": _t("All"), "domain": []},
+                "open": {"label": _t("Open"), "domain": [("is_closed", "=", False)]},
             }
         )
 

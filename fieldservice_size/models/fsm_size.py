@@ -1,6 +1,6 @@
 # Copyright (C) 2020 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -26,4 +26,6 @@ class FSMSize(models.Model):
             [("type_id", "=", self.type_id.id), ("is_order_size", "=", True)]
         )
         if size_count >= 2:
-            raise ValidationError(_("Only one default order size per type is allowed."))
+            raise ValidationError(
+                self.env._("Only one default order size per type is allowed."),
+            )

@@ -30,14 +30,17 @@ class FSMOrder(models.Model):
         "stock.warehouse",
         string="Warehouse",
         required=True,
-        default=_default_warehouse_id,
+        default=lambda self: self._default_warehouse_id(),
         help="Warehouse used to ship the materials",
     )
     return_count = fields.Integer(
         string="Return Orders", compute="_compute_picking_ids"
     )
     move_ids = fields.One2many(
-        "stock.move", "fsm_order_id", string="Operations", domain=_get_move_domain
+        "stock.move",
+        "fsm_order_id",
+        string="Operations",
+        domain=lambda self: self._get_move_domain(),
     )
 
     @api.depends("picking_ids")

@@ -83,7 +83,7 @@ class TestFSMOrder(TransactionCase):
         evt = new.calendar_event_id
         self.assertTrue(
             len(evt.partner_ids) == 1,
-            "There should be no other attendees" " because there is no one assigned",
+            "There should be no other attendees because there is no one assigned",
         )
         # organiser is attendee
         new.person_id = self.person_id

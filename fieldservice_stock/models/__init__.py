@@ -8,5 +8,4 @@ from . import (
     stock_move,
     stock_rule,
     stock_picking,
-    fsm_wizard,
 )

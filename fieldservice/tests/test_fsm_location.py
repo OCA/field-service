@@ -30,7 +30,7 @@ class FSMLocation(TransactionCase):
         - Create fsm.location.person if auto_populate_persons_on_location
         """
         # Create an equipment
-        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_territory")
+        self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_territory")
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.Location, view=view_id) as f:
             f.name = "Child Location"
@@ -104,10 +104,10 @@ class FSMLocation(TransactionCase):
         data = (
             self.env["fsm.location"]
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", location.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=[("id", "=", location.id)],
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")

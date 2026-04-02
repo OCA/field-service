@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Sample FSM records for tests and optional reference (no base_territory demo required). -->
+<odoo noupdate="1">
+    <record id="test_partner" model="res.partner">
+        <field name="name">Test Partner</field>
+        <field name="phone">123</field>
+        <field name="email">tp@email.com</field>
+    </record>
+    <record id="test_loc_partner" model="res.partner">
+        <field name="name">Test Loc Partner</field>
+        <field name="phone">ABC</field>
+        <field name="email">tlp@email.com</field>
+    </record>
+    <record id="location_partner_1" model="res.partner">
+        <field name="name">Loc Partner 1</field>
+    </record>
+    <record id="location_partner_2" model="res.partner">
+        <field name="name">Loc Partner 1</field>
+    </record>
+    <record id="location_partner_3" model="res.partner">
+        <field name="name">Loc Partner 1</field>
+    </record>
+    <record id="s1" model="res.partner">
+        <field name="name">sub partner 1</field>
+        <field name="type">contact</field>
+    </record>
+    <record id="s2" model="res.partner">
+        <field name="name">sub partner 2</field>
+        <field name="type">invoice</field>
+    </record>
+    <record id="s3" model="res.partner">
+        <field name="name">sub partner 3</field>
+        <field name="type">delivery</field>
+    </record>
+    <record id="s4" model="res.partner">
+        <field name="name">sub partner 4</field>
+        <field name="type">other</field>
+    </record>
+    <record id="test_parent_partner" model="res.partner">
+        <field name="name">Parent Partner</field>
+        <field
+            name="child_ids"
+            eval="[(6, 0, [ref('s1'), ref('s2'), ref('s3'), ref('s4')])]"
+        />
+    </record>
+    <record id="test_person" model="fsm.person">
+        <field name="name">Test Person</field>
+        <field name="phone">123</field>
+        <field name="email">tp@email.com</field>
+    </record>
+    <record id="location_stage_1" model="fsm.stage">
+        <field name="name">Location-1</field>
+        <field name="sequence">1</field>
+        <field name="stage_type">location</field>
+    </record>
+    <record id="location_stage_2" model="fsm.stage">
+        <field name="name">Location-2</field>
+        <field name="sequence">2</field>
+        <field name="stage_type">location</field>
+    </record>
+    <record id="location_stage_3" model="fsm.stage">
+        <field name="name">Location-3</field>
+        <field name="sequence">3</field>
+        <field name="stage_type">location</field>
+    </record>
+    <record id="test_location" model="fsm.location">
+        <field name="name">Test Location</field>
+        <field name="phone">123</field>
+        <field name="email">tp@email.com</field>
+        <field name="partner_id" eval="ref('test_loc_partner')" />
+        <field name="owner_id" eval="ref('test_loc_partner')" />
+        <field name="direction">New the old inventory</field>
+        <field name="street">14 Tower A, main street</field>
+        <field name="street2">Bangkok, Thailand</field>
+    </record>
+    <record id="location_1" model="fsm.location">
+        <field name="name">Location 1</field>
+        <field name="partner_id" eval="ref('location_partner_1')" />
+        <field name="owner_id" eval="ref('location_partner_1')" />
+    </record>
+    <record id="location_2" model="fsm.location">
+        <field name="name">Location 2</field>
+        <field name="partner_id" eval="ref('location_partner_2')" />
+        <field name="owner_id" eval="ref('location_partner_2')" />
+    </record>
+    <record id="location_3" model="fsm.location">
+        <field name="name">Location 3</field>
+        <field name="partner_id" eval="ref('location_partner_3')" />
+        <field name="owner_id" eval="ref('location_partner_3')" />
+    </record>
+    <record id="worker_stage_1" model="fsm.stage">
+        <field name="name">Worker Stage 1</field>
+        <field name="sequence">1</field>
+        <field name="stage_type">worker</field>
+    </record>
+    <record id="worker_stage_2" model="fsm.stage">
+        <field name="name">Worker Stage 2</field>
+        <field name="sequence">2</field>
+        <field name="stage_type">worker</field>
+    </record>
+    <record id="worker_stage_3" model="fsm.stage">
+        <field name="name">Worker Stage 3</field>
+        <field name="sequence">3</field>
+        <field name="stage_type">worker</field>
+    </record>
+    <record id="person_1" model="fsm.person">
+        <field name="name">Worker 1</field>
+    </record>
+    <record id="person_2" model="fsm.person">
+        <field name="name">Worker 2</field>
+    </record>
+    <record id="person_3" model="fsm.person">
+        <field name="name">Worker 3</field>
+    </record>
+    <record id="equipment_stage_1" model="fsm.stage">
+        <field name="name">Equipment-1</field>
+        <field name="sequence">1</field>
+        <field name="stage_type">equipment</field>
+    </record>
+    <record id="equipment_stage_2" model="fsm.stage">
+        <field name="name">Equipment-2</field>
+        <field name="sequence">2</field>
+        <field name="stage_type">equipment</field>
+    </record>
+    <record id="equipment_stage_3" model="fsm.stage">
+        <field name="name">Equipment-3</field>
+        <field name="sequence">3</field>
+        <field name="stage_type">equipment</field>
+    </record>
+</odoo>

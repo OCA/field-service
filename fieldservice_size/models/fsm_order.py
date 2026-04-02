@@ -28,7 +28,10 @@ class FSMOrder(models.Model):
     size_uom = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
-        domain="['|', ('id', '=', size_uom_category), ('relative_uom_id', '=', size_uom_category)]",
+        domain=(
+            "['|', ('id', '=', size_uom_category), "
+            "('relative_uom_id', '=', size_uom_category)]"
+        ),
         compute="_compute_size_uom",
         precompute=True,
         readonly=False,

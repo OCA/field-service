@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 from markupsafe import Markup
 
-from odoo import Command, _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 from . import fsm_stage
@@ -29,7 +29,7 @@ class FSMOrder(models.Model):
         )
         if stage:
             return stage
-        raise ValidationError(_("You must create an FSM order stage first."))
+        raise ValidationError(self.env._("You must create an FSM order stage first."))
 
     def _default_team_id(self):
         team = self.env["fsm.team"].search(
@@ -39,7 +39,7 @@ class FSMOrder(models.Model):
         )
         if team:
             return team
-        raise ValidationError(_("You must create an FSM team first."))
+        raise ValidationError(self.env._("You must create an FSM team first."))
 
     @api.depends(
         "location_id",
@@ -130,7 +130,7 @@ class FSMOrder(models.Model):
         required=True,
         index=True,
         copy=False,
-        default=lambda self: _("New"),
+        default=lambda self: self.env._("New"),
     )
 
     location_id = fields.Many2one(
@@ -146,7 +146,6 @@ class FSMOrder(models.Model):
         string="Earliest Request Date",
         default=lambda self: self._default_request_early(),
     )
-    color = fields.Integer("Color Index")
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -200,7 +199,9 @@ class FSMOrder(models.Model):
     person_id = fields.Many2one("fsm.person", string="Assigned To", index=True)
     person_phone = fields.Char(related="person_id.phone", string="Worker Phone")
     scheduled_date_start = fields.Datetime(string="Scheduled Start (ETA)")
-    scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
+    scheduled_duration = fields.Float(
+        help="Scheduled duration of the work in hours",
+    )
     scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(default=10)
     todo = fields.Html(
@@ -217,7 +218,7 @@ class FSMOrder(models.Model):
     date_end = fields.Datetime(string="Actual End")
     duration = fields.Float(
         string="Actual duration",
-        compute=_compute_duration,
+        compute="_compute_duration",
         help="Actual duration in hours",
     )
     current_date = fields.Datetime(default=fields.Datetime.now, store=True)
@@ -326,11 +327,11 @@ class FSMOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        new_lbl = self.env._("New")
         for vals in vals_list:
-            if vals.get("name", _("New")) == _("New"):
-                vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _(
-                    "New"
-                )
+            if vals.get("name", new_lbl) == new_lbl:
+                seq = self.env["ir.sequence"].next_by_code("fsm.order")
+                vals["name"] = seq or new_lbl
             self._calc_scheduled_dates(vals)
             if not vals.get("request_late"):
                 vals = self._calc_request_late(vals)
@@ -342,7 +343,7 @@ class FSMOrder(models.Model):
             and (stage_id := vals.get("stage_id"))
             and stage_id == self.env.ref("fieldservice.fsm_stage_completed").id
         ):
-            raise UserError(_("Cannot move to completed from Kanban"))
+            raise UserError(self.env._("Cannot move to completed from Kanban"))
         self._calc_scheduled_dates(vals)
         res = super().write(vals)
         return res
@@ -351,10 +352,14 @@ class FSMOrder(models.Model):
         """:return True if the order can be deleted, False otherwise"""
         return self.stage_id == self._default_stage_id()
 
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_non_default_stage(self):
+        for order in self:
+            if not order.can_unlink():
+                raise ValidationError(order.env._("You cannot delete this order."))
+
     def unlink(self):
-        if all(order.can_unlink() for order in self):
-            return super().unlink()
-        raise ValidationError(_("You cannot delete this order."))
+        return super().unlink()
 
     def _calc_scheduled_dates(self, vals):
         """Calculate scheduled dates and duration"""
@@ -468,7 +473,7 @@ class FSMOrder(models.Model):
                 ]
             )
             if holidays:
-                msg = (
-                    f"{rec.scheduled_date_start.date()} is a holiday {holidays[0].name}"
+                raise ValidationError(
+                    rec.env._("%s is a holiday %s")
+                    % (rec.scheduled_date_start.date(), holidays[0].name)
                 )
-                raise ValidationError(_(msg))

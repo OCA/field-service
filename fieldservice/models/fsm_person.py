@@ -17,7 +17,6 @@ class FSMPerson(models.Model):
         required=True,
         ondelete="restrict",
         delegate=True,
-        auto_join=True,
     )
     category_ids = fields.Many2many("fsm.category", string="Categories")
     calendar_id = fields.Many2one("resource.calendar", string="Working Schedule")
@@ -31,7 +30,7 @@ class FSMPerson(models.Model):
     def toggle_active(self):
         for person in self:
             if not person.active and not person.partner_id.active:
-                person.partner_id.toggle_active()
+                person.partner_id.action_unarchive()
         return super().toggle_active()
 
     @api.model

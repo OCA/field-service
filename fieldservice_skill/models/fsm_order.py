@@ -4,6 +4,7 @@
 import logging
 
 from odoo import Command, api, fields, models
+from odoo.osv.expression import TRUE_DOMAIN
 
 _logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ class FSMOrder(models.Model):
         worker_ids = []
         req_skills = self.skill_ids.ids
         if not self.skill_ids:
-            worker_ids = self.env["fsm.person"].search([]).ids
+            worker_ids = self.env["fsm.person"].search(TRUE_DOMAIN).ids
         else:
             FPS = self.env["fsm.person.skill"]
             potential_workers = FPS.search(

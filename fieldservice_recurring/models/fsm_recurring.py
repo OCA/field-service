@@ -6,7 +6,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import rruleset
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class FSMRecurringOrder(models.Model):
@@ -25,7 +25,7 @@ class FSMRecurringOrder(models.Model):
         required=True,
         index=True,
         copy=False,
-        default=lambda self: _("New"),
+        default=lambda self: self.env._("New"),
     )
     state = fields.Selection(
         [
@@ -84,17 +84,15 @@ class FSMRecurringOrder(models.Model):
 
     @api.depends("fsm_order_ids")
     def _compute_order_count(self):
-        data = self.env["fsm.order"].read_group(
-            [
+        rows = self.env["fsm.order"]._read_group(
+            domain=[
                 ("fsm_recurring_id", "in", self.ids),
                 ("stage_id", "!=", self.env.ref("fieldservice.fsm_stage_cancelled").id),
             ],
-            ["fsm_recurring_id"],
-            ["fsm_recurring_id"],
+            groupby=["fsm_recurring_id"],
+            aggregates=["__count"],
         )
-        count_data = {
-            item["fsm_recurring_id"][0]: item["fsm_recurring_id_count"] for item in data
-        }
+        count_data = {rec.id if rec else False: int(cnt) for rec, cnt in rows}
         for recurring in self:
             recurring.fsm_order_count = count_data.get(recurring.id, 0)
 
@@ -118,11 +116,11 @@ class FSMRecurringOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        new_lbl = self.env._("New")
         for vals in vals_list:
-            if vals.get("name", _("New")) == _("New"):
-                vals["name"] = self.env["ir.sequence"].next_by_code(
-                    "fsm.recurring"
-                ) or _("New")
+            if vals.get("name", new_lbl) == new_lbl:
+                seq = self.env["ir.sequence"].next_by_code("fsm.recurring")
+                vals["name"] = seq or new_lbl
         return super().create(vals_list)
 
     def action_start(self):

@@ -1,7 +1,7 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -38,7 +38,9 @@ class FSMWizard(models.TransientModel):
             self.action_other_address(partner)
         else:
             raise UserError(
-                _("A Field Service Location related to that" " partner already exists.")
+                self.env._(
+                    "A Field Service Location related to that partner already exists.",
+                )
             )
 
     def action_convert_person(self, partner):
@@ -48,7 +50,9 @@ class FSMWizard(models.TransientModel):
             partner.write({"fsm_person": True})
         else:
             raise UserError(
-                _("A Field Service Worker related to that" " partner already exists.")
+                self.env._(
+                    "A Field Service Worker related to that partner already exists.",
+                )
             )
 
     def action_other_address(self, partner):

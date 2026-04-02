@@ -1,7 +1,7 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -199,7 +199,7 @@ class SaleOrder(models.Model):
                 f" <a href=# data-oe-model=fsm.order data-oe-id={fsm_order.id}>"
                 f"{fsm_order.name}</a>,"
             )
-        so_msg_body = _("Field Service Order(s) Created: %s", msg_fsm_links)
+        so_msg_body = self.env._("Field Service Order(s) Created: %s") % msg_fsm_links
         self.message_post(body=so_msg_body[:-1])
 
     def _action_confirm(self):
@@ -212,7 +212,7 @@ class SaleOrder(models.Model):
             )
         ):
             if not self.fsm_location_id:
-                raise ValidationError(_("FSM Location must be set"))
+                raise ValidationError(self.env._("FSM Location must be set"))
             self._field_service_generation()
         return result
 

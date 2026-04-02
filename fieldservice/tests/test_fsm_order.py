@@ -288,10 +288,10 @@ class TestFSMOrder(TransactionCase):
             self.env["fsm.order"]
             .with_context(**{"default_team_id": self.test_team.id})
             .with_user(self.env.user)
-            .read_group(
-                [("id", "=", location.id)],
-                fields=["stage_id"],
-                groupby="stage_id",
+            ._read_group(
+                domain=[("id", "=", location.id)],
+                groupby=["stage_id"],
+                aggregates=["__count"],
             )
         )
         self.assertTrue(data, "It should be able to read group")

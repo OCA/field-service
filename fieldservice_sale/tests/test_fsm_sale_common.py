@@ -1,10 +1,10 @@
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestFSMSale(TestSaleCommonBase):
+class TestFSMSale(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

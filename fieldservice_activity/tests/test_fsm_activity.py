@@ -24,7 +24,7 @@ class TestFSMActivity(TransactionCase):
                 "email": "e.e@example.com",
                 "signature": "--\nErnest",
                 "notification_type": "inbox",
-                "groups_id": [
+                "group_ids": [
                     (
                         6,
                         0,

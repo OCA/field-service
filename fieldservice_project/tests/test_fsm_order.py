@@ -20,7 +20,7 @@ class TestFsmOrder(Common):
 
     def test_onchange_team_id(self):
         project = self.project
-        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_team")
+        self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_team")
         team_with_project = self.env["fsm.team"].create(
             {"name": "test team", "project_id": project.id}
         )

@@ -13,40 +13,43 @@ class FSMTeam(models.Model):
         return self.env["fsm.stage"].search([("is_default", "=", True)])
 
     def _compute_order_count(self):
-        order_data = self.env["fsm.order"].read_group(
-            [("team_id", "in", self.ids), ("stage_id.is_closed", "=", False)],
-            ["team_id"],
-            ["team_id"],
+        rows = self.env["fsm.order"]._read_group(
+            domain=[
+                ("team_id", "in", self.ids),
+                ("stage_id.is_closed", "=", False),
+            ],
+            groupby=["team_id"],
+            aggregates=["__count"],
         )
-        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
+        result = {team.id if team else False: int(cnt) for team, cnt in rows}
         for team in self:
             team.order_count = result.get(team.id, 0)
 
     def _compute_order_need_assign_count(self):
-        order_data = self.env["fsm.order"].read_group(
-            [
+        rows = self.env["fsm.order"]._read_group(
+            domain=[
                 ("team_id", "in", self.ids),
                 ("person_id", "=", False),
                 ("stage_id.is_closed", "=", False),
             ],
-            ["team_id"],
-            ["team_id"],
+            groupby=["team_id"],
+            aggregates=["__count"],
         )
-        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
+        result = {team.id if team else False: int(cnt) for team, cnt in rows}
         for team in self:
             team.order_need_assign_count = result.get(team.id, 0)
 
     def _compute_order_need_schedule_count(self):
-        order_data = self.env["fsm.order"].read_group(
-            [
+        rows = self.env["fsm.order"]._read_group(
+            domain=[
                 ("team_id", "in", self.ids),
                 ("scheduled_date_start", "=", False),
                 ("stage_id.is_closed", "=", False),
             ],
-            ["team_id"],
-            ["team_id"],
+            groupby=["team_id"],
+            aggregates=["__count"],
         )
-        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
+        result = {team.id if team else False: int(cnt) for team, cnt in rows}
         for team in self:
             team.order_need_schedule_count = result.get(team.id, 0)
 
@@ -60,7 +63,7 @@ class FSMTeam(models.Model):
         "team_id",
         "stage_id",
         string="Stages",
-        default=_default_stages,
+        default=lambda self: self._default_stages(),
     )
     order_ids = fields.One2many(
         "fsm.order",

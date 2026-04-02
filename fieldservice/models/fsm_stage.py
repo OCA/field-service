@@ -1,8 +1,9 @@
 # Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv.expression import TRUE_DOMAIN
 
 AVAILABLE_PRIORITIES = [("0", "Normal"), ("1", "Low"), ("2", "High"), ("3", "Urgent")]
 
@@ -33,7 +34,8 @@ class FSMStage(models.Model):
         "there are no record in that stage to display.",
     )
     is_closed = fields.Boolean(
-        "Is a close stage", help="Services in this stage are considered " "as closed."
+        "Is a close stage",
+        help="Services in this stage are considered as closed.",
     )
     is_default = fields.Boolean("Is a default stage", help="Used a default stage")
     custom_color = fields.Char(
@@ -69,8 +71,8 @@ class FSMStage(models.Model):
     )
 
     def get_color_information(self):
-        # get stage ids
-        stage_ids = self.search([])
+        # get stage ids (all stages: needed for kanban color legend)
+        stage_ids = self.search(TRUE_DOMAIN)
         color_information_dict = []
         for stage in stage_ids:
             color_information_dict.append(
@@ -85,19 +87,23 @@ class FSMStage(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        stages = self.search([])
         for vals in vals_list:
-            for stage in stages:
-                if stage.stage_type == vals.get(
-                    "stage_type"
-                ) and stage.sequence == vals.get("sequence"):
-                    raise ValidationError(
-                        _(
-                            "Cannot create FSM Stage because "
-                            "it has the same Type and Sequence "
-                            "of an existing FSM Stage."
-                        )
+            stage_type = vals.get("stage_type")
+            sequence = vals.get("sequence")
+            if self.search_count(
+                [
+                    ("stage_type", "=", stage_type),
+                    ("sequence", "=", sequence),
+                ],
+                limit=1,
+            ):
+                raise ValidationError(
+                    self.env._(
+                        "Cannot create FSM Stage because "
+                        "it has the same Type and Sequence "
+                        "of an existing FSM Stage."
                     )
+                )
         return super().create(vals_list)
 
     @api.constrains("custom_color")
@@ -107,4 +113,6 @@ class FSMStage(models.Model):
             and not self.custom_color.startswith("#")
             or len(self.custom_color) != 7
         ):
-            raise ValidationError(_("Color code should be Hex Code. Ex:-#FFFFFF"))
+            raise ValidationError(
+                self.env._("Color code should be Hex Code. Ex:-#FFFFFF"),
+            )

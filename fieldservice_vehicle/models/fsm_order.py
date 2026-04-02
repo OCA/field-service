@@ -6,12 +6,13 @@ from odoo import api, fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    @api.model
     def _get_default_vehicle(self):
         return self.person_id.vehicle_id.id or False
 
     vehicle_id = fields.Many2one(
-        "fsm.vehicle", string="Vehicle", default=_get_default_vehicle
+        "fsm.vehicle",
+        string="Vehicle",
+        default=lambda self: self._get_default_vehicle(),
     )
 
     @api.model_create_multi
