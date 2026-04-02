@@ -40,7 +40,7 @@ class FSMOrder(models.Model):
         worker_ids = []
         req_skills = self.skill_ids.ids
         if not self.skill_ids:
-            worker_ids = self.env["fsm.person"].search([]).ids
+            worker_ids = self.env["fsm.person"].search([(1, "=", 1)]).ids
         else:
             FPS = self.env["fsm.person.skill"]
             potential_workers = FPS.search(

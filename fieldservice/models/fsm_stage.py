@@ -71,7 +71,7 @@ class FSMStage(models.Model):
 
     def get_color_information(self):
         # get stage ids (all stages: needed for kanban color legend)
-        stage_ids = self.search([])
+        stage_ids = self.search([(1, "=", 1)])
         color_information_dict = []
         for stage in stage_ids:
             color_information_dict.append(
