@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
+from odoo import Command
+
 from odoo.addons.fieldservice_sale.tests.test_fsm_sale_order import TestFSMSale
 
 
@@ -15,7 +17,8 @@ class TestFSMSaleRecurring(TestFSMSale):
         )
         if tmpl:
             return tmpl
-        freq = cls.env["fsm.frequency"].create(
+        sudo = cls.env.sudo()
+        freq = sudo["fsm.frequency"].create(
             {
                 "name": "Test Weekdays Freq",
                 "interval": 1,
@@ -28,7 +31,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "fr": True,
             }
         )
-        fset = cls.env["fsm.frequency.set"].create(
+        fset = sudo["fsm.frequency.set"].create(
             {
                 "name": "Test Weekdays Set",
                 "fsm_frequency_ids": [(6, 0, freq.ids)],
@@ -37,7 +40,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "buffer_late": 1,
             }
         )
-        return cls.env["fsm.recurring.template"].create(
+        return sudo["fsm.recurring.template"].create(
             {
                 "name": "Test Weekdays Template",
                 "fsm_frequency_set_id": fset.id,
@@ -132,7 +135,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "product_uom_id": cls.product_fsm_recur.uom_id.id,
                 "price_unit": cls.product_fsm_recur.list_price,
                 "order_id": cls.sale_order_recur.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sale_line_recurring2 = cls.env["sale.order.line"].create(
@@ -143,7 +146,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "product_uom_id": cls.product_fsm_recur2.uom_id.id,
                 "price_unit": cls.product_fsm_recur2.list_price,
                 "order_id": cls.sale_order_recur2.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sale_line_recurring3 = cls.env["sale.order.line"].create(
@@ -154,7 +157,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "product_uom_id": cls.product_fsm_recur.uom_id.id,
                 "price_unit": cls.product_fsm_recur.list_price,
                 "order_id": cls.sale_order_recur2.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sale_line_recurring4 = cls.env["sale.order.line"].create(
@@ -165,7 +168,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "product_uom_id": cls.product_fsm.uom_id.id,
                 "price_unit": cls.product_fsm.list_price,
                 "order_id": cls.sale_order.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
 

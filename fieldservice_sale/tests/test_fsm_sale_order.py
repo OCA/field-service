@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import datetime
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 
@@ -60,7 +60,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # cls.sol_service_per_order._compute_product_updatable()
@@ -79,7 +79,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_1.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with one product
@@ -99,7 +99,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_2.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with multiple products
@@ -119,7 +119,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_line_3 = cls.env["sale.order.line"].create(
@@ -130,7 +130,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with mixed products
@@ -151,7 +151,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_line_5 = cls.env["sale.order.line"].create(
@@ -162,7 +162,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_order_2 = cls.env["sale.order.line"].create(
@@ -173,7 +173,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_order_3 = cls.env["sale.order.line"].create(
@@ -184,7 +184,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_2.uom_id.id,
                 "price_unit": cls.fsm_per_order_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
 
@@ -510,7 +510,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": False,
                 "price_unit": 0,
                 "order_id": self.sale_order.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # confirm sale order: ValidationError shouldn't be raised
@@ -530,7 +530,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": False,
                 "price_unit": 0,
                 "order_id": self.sale_order.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # confirm sale order: ValidationError shouldn't be raised

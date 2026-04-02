@@ -1,7 +1,7 @@
 # Copyright (C) 2019 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields
+from odoo import Command, fields
 
 from odoo.addons.fieldservice_sale.tests.test_fsm_sale_common import TestFSMSale
 
@@ -57,7 +57,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_1.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with one product
@@ -77,7 +77,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_2.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with multiple products
@@ -97,7 +97,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_line_3 = cls.env["sale.order.line"].create(
@@ -108,7 +108,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         # create a generic Sale Order with mixed products
@@ -129,7 +129,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_line_5 = cls.env["sale.order.line"].create(
@@ -140,7 +140,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_order_2 = cls.env["sale.order.line"].create(
@@ -151,7 +151,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
         cls.sol_service_per_order_3 = cls.env["sale.order.line"].create(
@@ -162,7 +162,7 @@ class TestFSMSaleOrder(TestFSMSale):
                 "product_uom_id": cls.fsm_per_order_2.uom_id.id,
                 "price_unit": cls.fsm_per_order_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": [Command.clear()],
             }
         )
 
