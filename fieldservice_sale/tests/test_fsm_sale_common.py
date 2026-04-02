@@ -8,6 +8,9 @@ class TestFSMSale(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Give the sale test user Field Service access so SO confirmation
+        # can read FSM templates/locations without raising AccessError.
+        cls.env.user.group_ids += cls.env.ref("fieldservice.group_fsm_user")
 
     @classmethod
     def setUpFSMTemplates(cls):

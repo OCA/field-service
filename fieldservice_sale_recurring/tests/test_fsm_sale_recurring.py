@@ -17,8 +17,7 @@ class TestFSMSaleRecurring(TestFSMSale):
         )
         if tmpl:
             return tmpl
-        sudo = cls.env.sudo()
-        freq = sudo["fsm.frequency"].create(
+        freq = cls.env["fsm.frequency"].sudo().create(
             {
                 "name": "Test Weekdays Freq",
                 "interval": 1,
@@ -31,7 +30,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "fr": True,
             }
         )
-        fset = sudo["fsm.frequency.set"].create(
+        fset = cls.env["fsm.frequency.set"].sudo().create(
             {
                 "name": "Test Weekdays Set",
                 "fsm_frequency_ids": [(6, 0, freq.ids)],
@@ -40,7 +39,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "buffer_late": 1,
             }
         )
-        return sudo["fsm.recurring.template"].create(
+        return cls.env["fsm.recurring.template"].sudo().create(
             {
                 "name": "Test Weekdays Template",
                 "fsm_frequency_set_id": fset.id,
