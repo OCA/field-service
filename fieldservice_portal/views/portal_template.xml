@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <template
+        id="portal_breadcrumbs"
+        name="Portal layout: ticket and fsm order menu entry"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="55"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'fsm_order' or fsm_order"
+                t-attf-class="breadcrumb-item #{'active ' if not fsm_order else ''}"
+            >
+                <a
+                    t-if="fsm_order"
+                    t-attf-href="/my/fsm_orders?{{ keep_query() }}"
+                >Work Orders</a>
+                <t t-else="">Work Orders</t>
+            </li>
+            <li t-if="fsm_order" class="breadcrumb-item active">
+                <t t-out="fsm_order.name" />
+            </li>
+        </xpath>
+    </template>
+
+    <template
+        id="portal_my_home_fsm_order"
+        name="Portal My Home : fsm order entries"
+        inherit_id="portal.portal_my_home"
+        customize_show="True"
+        priority="50"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t
+                    t-set="icon"
+                    t-value="'/fieldservice_portal/static/src/img/fsmorder.svg'"
+                />
+                <t t-set="title">FSM Orders</t>
+                <t t-set="text">View your fieldservice orders</t>
+                <t t-set="url" t-value="'/my/fsm_orders'" />
+                <t t-set="placeholder_count" t-value="'fsm_order_count'" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_recurring_form_view_inherit_sale" model="ir.ui.view">
+        <field name="model">fsm.recurring</field>
+        <field name="inherit_id" ref="fieldservice_recurring.fsm_recurring_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='equipment_ids']" position="after">
+                <field name="agreement_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

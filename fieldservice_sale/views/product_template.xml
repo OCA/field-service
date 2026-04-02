@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_product_fieldservice_form" model="ir.ui.view">
+        <field name="name">product.template.fieldservice.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="sale" position="after">
+                <group groups="fieldservice.group_fsm_user">
+                    <field name="field_service_tracking" widget="radio" />
+                    <field
+                        name="fsm_order_template_id"
+                        invisible="field_service_tracking == 'no'"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

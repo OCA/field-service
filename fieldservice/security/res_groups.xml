@@ -1,0 +1,52 @@
+<odoo>
+    <!-- FSM groups -->
+    <record id="privilege_fsm_user_level" model="res.groups.privilege">
+        <field name="name">Field Service</field>
+        <field name="category_id" ref="fieldservice.fsm" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="group_fsm_user_own" model="res.groups">
+        <field name="name">User (only own documents)</field>
+        <field name="privilege_id" ref="fieldservice.privilege_fsm_user_level" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="group_fsm_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="privilege_id" ref="fieldservice.privilege_fsm_user_level" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('fieldservice.group_fsm_user_own'))]"
+        />
+    </record>
+    <record id="group_fsm_dispatcher" model="res.groups">
+        <field name="name">Dispatcher</field>
+        <field name="privilege_id" ref="fieldservice.privilege_fsm_user_level" />
+        <field name="implied_ids" eval="[(4, ref('group_fsm_user'))]" />
+    </record>
+    <record id="group_fsm_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="fieldservice.privilege_fsm_user_level" />
+        <field name="implied_ids" eval="[(4, ref('group_fsm_dispatcher'))]" />
+    </record>
+    <!-- Hidden groups -->
+    <record id="group_fsm_team" model="res.groups">
+        <field name="name">Manage Field Service Teams</field>
+    </record>
+    <record id="group_fsm_category" model="res.groups">
+        <field name="name">Manage Field Service Worker Categories</field>
+    </record>
+    <record id="group_fsm_tag" model="res.groups">
+        <field name="name">Manage Field Service Tags</field>
+    </record>
+    <record id="group_fsm_equipment" model="res.groups">
+        <field name="name">Manage Field Service Equipment</field>
+    </record>
+    <record id="group_fsm_template" model="res.groups">
+        <field name="name">Manage Field Service Order Templates</field>
+    </record>
+    <record id="group_fsm_territory" model="res.groups">
+        <field name="name">Manage Territories</field>
+    </record>
+</odoo>
