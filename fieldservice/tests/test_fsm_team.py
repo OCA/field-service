@@ -27,11 +27,13 @@ class FSMTeam(TransactionCase):
         todo = {"orders": 5, "assigned": [3, 4], "scheduled": [0, 1, 2, 3]}
         view_id = "fieldservice.fsm_order_form"
         self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_team")
+        # team_id on fsm.order is computed from location_id.team_id; Form treats
+        # it as readonly (no inverse). Drive team via the location.
+        self.test_location.team_id = self.test_team
         orders = self.Order
         for i in range(todo["orders"]):
             with Form(self.Order, view=view_id) as f:
                 f.location_id = self.test_location
-                f.team_id = self.test_team
             order = f.save()
             orders += order
             order.person_id = (

@@ -61,10 +61,11 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         )
 
         order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        # Lang uses %I:%M:%S %p but formatting may omit :00 seconds (e.g. 04:29 PM).
         self.assertRegex(
             order.schedule_time_range,
-            r"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}:\d{2} (AM|PM)"
-            r" - \d{1,2}:\d{2}:\d{2} (AM|PM)",
+            r"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}(?::\d{2})? (AM|PM)"
+            r" - \d{1,2}:\d{2}(?::\d{2})? (AM|PM)",
         )
 
     @freeze_time("2025-08-14 09:00:00")

@@ -54,12 +54,11 @@ class TestFSMSale(TestSaleCommon):
         cls.fsm_per_order_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 85.0,
                 "list_price": 90.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_1.id,
@@ -70,12 +69,11 @@ class TestFSMSale(TestSaleCommon):
         cls.fsm_per_order_2 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 125.0,
                 "list_price": 140.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_2.id,
@@ -85,12 +83,11 @@ class TestFSMSale(TestSaleCommon):
         cls.fsm_per_line_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per SO Line #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "line",
                 "fsm_order_template_id": cls.fsm_template_3.id,
@@ -100,12 +97,11 @@ class TestFSMSale(TestSaleCommon):
         cls.fsm_per_line_2 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per SO Line #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "line",
                 "fsm_order_template_id": cls.fsm_template_4.id,
@@ -115,12 +111,11 @@ class TestFSMSale(TestSaleCommon):
         cls.product_line = cls.env["product.template"].create(
             {
                 "name": "FSM Order per SO Line #2",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 75.0,
                 "list_price": 80.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "delivery",
                 "field_service_tracking": "no",
                 "fsm_order_template_id": cls.fsm_template_4.id,

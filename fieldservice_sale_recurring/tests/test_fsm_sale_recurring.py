@@ -50,12 +50,11 @@ class TestFSMSaleRecurring(TestFSMSale):
         cls.product_fsm_recur = cls.env["product.product"].create(
             {
                 "name": "FSM Recurring Order Product",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 425.0,
                 "list_price": 500.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "recurring",
                 "fsm_recurring_template_id": cls.env.ref(
@@ -66,12 +65,11 @@ class TestFSMSaleRecurring(TestFSMSale):
         cls.product_fsm_recur2 = cls.env["product.product"].create(
             {
                 "name": "FSM Recurring Order Product Test",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 425.0,
                 "list_price": 500.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "recurring",
                 "fsm_recurring_template_id": cls.env.ref(
@@ -82,12 +80,11 @@ class TestFSMSaleRecurring(TestFSMSale):
         cls.product_fsm = cls.env["product.product"].create(
             {
                 "name": "FSM Order Product",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_services").id,
                 "standard_price": 425.0,
                 "list_price": 500.0,
                 "type": "service",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "no",
             }

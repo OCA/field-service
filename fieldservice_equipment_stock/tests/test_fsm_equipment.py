@@ -76,14 +76,13 @@ class TestFSMEquipment(TransactionCase):
         self.assertTrue(equipment.current_stock_location_id == self.stock_location)
 
     def test_fsm_equipment(self):
-        # Create an equipment
-        view_id = "fieldservice.fsm_equipment_form_view"
-        with Form(self.Equipment, view=view_id) as f:
+        # Create an equipment (omit view= so get_views merges stock inherit with lot_id)
+        with Form(self.Equipment) as f:
             f.name = "Test Equipment 1"
             f.current_location_id = self.current_location
             f.location_id = self.test_location
-            f.lot_id = self.lot1
             f.product_id = self.product1
+            f.lot_id = self.lot1
         equipment = f.save()
 
-        self.assertEqual(f.id, equipment.lot_id.fsm_equipment_id.id)
+        self.assertEqual(equipment.id, equipment.lot_id.fsm_equipment_id.id)

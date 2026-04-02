@@ -26,14 +26,13 @@ class TestFSMSaleOrder(TestFSMSale):
         cls.fsm_per_order_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_goods").id,
                 "standard_price": 85.0,
                 "list_price": 90.0,
                 "type": "consu",
                 "is_storable": True,
                 "tracking": "none",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_1.id,

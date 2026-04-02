@@ -18,6 +18,9 @@ class FSMEquipment(TransactionCase):
         cls.test_branch = trefs["test_branch"]
         cls.test_district = trefs["test_district"]
         cls.test_region = trefs["test_region"]
+        # Install data does not set territory on test_location; equipment
+        # inherits territory from location.
+        cls.test_location.territory_id = cls.test_territory
         cls.current_location = cls.env.ref("fieldservice.location_1")
 
     def test_fsm_equipment(self):
