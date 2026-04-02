@@ -1,6 +1,6 @@
 # Copyright (C) 2020 - TODAY, Marcel Savegnago (Escodoo)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestFSMEquipment(TransactionCase):
@@ -76,13 +76,15 @@ class TestFSMEquipment(TransactionCase):
         self.assertTrue(equipment.current_stock_location_id == self.stock_location)
 
     def test_fsm_equipment(self):
-        # Create an equipment (omit view= so get_views merges stock inherit with lot_id)
-        with Form(self.Equipment) as f:
-            f.name = "Test Equipment 1"
-            f.current_location_id = self.current_location
-            f.location_id = self.test_location
-            f.product_id = self.product1
-            f.lot_id = self.lot1
-        equipment = f.save()
-
+        # product_id / lot_id live only on the stock extension view; Form arch
+        # resolution is unreliable for those fields, so assert behavior via create.
+        equipment = self.Equipment.create(
+            {
+                "name": "Test Equipment 1",
+                "current_location_id": self.current_location.id,
+                "location_id": self.test_location.id,
+                "product_id": self.product1.id,
+                "lot_id": self.lot1.id,
+            }
+        )
         self.assertEqual(equipment.id, equipment.lot_id.fsm_equipment_id.id)

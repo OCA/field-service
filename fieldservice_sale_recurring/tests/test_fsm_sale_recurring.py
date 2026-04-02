@@ -7,9 +7,48 @@ from odoo.addons.fieldservice_sale.tests.test_fsm_sale_order import TestFSMSale
 
 class TestFSMSaleRecurring(TestFSMSale):
     @classmethod
+    def _recurring_weekdays_template(cls):
+        """Demo XML is optional; tests need a template without demo data."""
+        tmpl = cls.env.ref(
+            "fieldservice_recurring.recur_template_weekdays",
+            raise_if_not_found=False,
+        )
+        if tmpl:
+            return tmpl
+        freq = cls.env["fsm.frequency"].create(
+            {
+                "name": "Test Weekdays Freq",
+                "interval": 1,
+                "interval_type": "daily",
+                "use_byweekday": True,
+                "mo": True,
+                "tu": True,
+                "we": True,
+                "th": True,
+                "fr": True,
+            }
+        )
+        fset = cls.env["fsm.frequency.set"].create(
+            {
+                "name": "Test Weekdays Set",
+                "fsm_frequency_ids": [(6, 0, freq.ids)],
+                "schedule_days": 14,
+                "buffer_early": 1,
+                "buffer_late": 1,
+            }
+        )
+        return cls.env["fsm.recurring.template"].create(
+            {
+                "name": "Test Weekdays Template",
+                "fsm_frequency_set_id": fset.id,
+            }
+        )
+
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.recur_template_weekdays = cls._recurring_weekdays_template()
 
         # Setup products that when sold will create some FSM orders
         cls.setUpFSMProducts()
@@ -57,9 +96,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "recurring",
-                "fsm_recurring_template_id": cls.env.ref(
-                    "fieldservice_recurring.recur_template_weekdays"
-                ).id,
+                "fsm_recurring_template_id": cls.recur_template_weekdays.id,
             }
         )
         cls.product_fsm_recur2 = cls.env["product.product"].create(
@@ -72,9 +109,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "recurring",
-                "fsm_recurring_template_id": cls.env.ref(
-                    "fieldservice_recurring.recur_template_weekdays"
-                ).id,
+                "fsm_recurring_template_id": cls.recur_template_weekdays.id,
             }
         )
         cls.product_fsm = cls.env["product.product"].create(
@@ -94,7 +129,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "name": cls.product_fsm_recur.name,
                 "product_id": cls.product_fsm_recur.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.product_fsm_recur.uom_id.id,
+                "product_uom_id": cls.product_fsm_recur.uom_id.id,
                 "price_unit": cls.product_fsm_recur.list_price,
                 "order_id": cls.sale_order_recur.id,
                 "tax_id": False,
@@ -105,7 +140,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "name": cls.product_fsm_recur2.name,
                 "product_id": cls.product_fsm_recur2.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.product_fsm_recur2.uom_id.id,
+                "product_uom_id": cls.product_fsm_recur2.uom_id.id,
                 "price_unit": cls.product_fsm_recur2.list_price,
                 "order_id": cls.sale_order_recur2.id,
                 "tax_id": False,
@@ -116,7 +151,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "name": cls.product_fsm_recur.name,
                 "product_id": cls.product_fsm_recur.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.product_fsm_recur.uom_id.id,
+                "product_uom_id": cls.product_fsm_recur.uom_id.id,
                 "price_unit": cls.product_fsm_recur.list_price,
                 "order_id": cls.sale_order_recur2.id,
                 "tax_id": False,
@@ -127,7 +162,7 @@ class TestFSMSaleRecurring(TestFSMSale):
                 "name": cls.product_fsm.name,
                 "product_id": cls.product_fsm.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.product_fsm.uom_id.id,
+                "product_uom_id": cls.product_fsm.uom_id.id,
                 "price_unit": cls.product_fsm.list_price,
                 "order_id": cls.sale_order.id,
                 "tax_id": False,
