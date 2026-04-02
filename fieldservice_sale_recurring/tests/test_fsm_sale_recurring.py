@@ -17,33 +17,45 @@ class TestFSMSaleRecurring(TestFSMSale):
         )
         if tmpl:
             return tmpl
-        freq = cls.env["fsm.frequency"].sudo().create(
-            {
-                "name": "Test Weekdays Freq",
-                "interval": 1,
-                "interval_type": "daily",
-                "use_byweekday": True,
-                "mo": True,
-                "tu": True,
-                "we": True,
-                "th": True,
-                "fr": True,
-            }
+        freq = (
+            cls.env["fsm.frequency"]
+            .sudo()
+            .create(
+                {
+                    "name": "Test Weekdays Freq",
+                    "interval": 1,
+                    "interval_type": "daily",
+                    "use_byweekday": True,
+                    "mo": True,
+                    "tu": True,
+                    "we": True,
+                    "th": True,
+                    "fr": True,
+                }
+            )
         )
-        fset = cls.env["fsm.frequency.set"].sudo().create(
-            {
-                "name": "Test Weekdays Set",
-                "fsm_frequency_ids": [(6, 0, freq.ids)],
-                "schedule_days": 14,
-                "buffer_early": 1,
-                "buffer_late": 1,
-            }
+        fset = (
+            cls.env["fsm.frequency.set"]
+            .sudo()
+            .create(
+                {
+                    "name": "Test Weekdays Set",
+                    "fsm_frequency_ids": [(6, 0, freq.ids)],
+                    "schedule_days": 14,
+                    "buffer_early": 1,
+                    "buffer_late": 1,
+                }
+            )
         )
-        return cls.env["fsm.recurring.template"].sudo().create(
-            {
-                "name": "Test Weekdays Template",
-                "fsm_frequency_set_id": fset.id,
-            }
+        return (
+            cls.env["fsm.recurring.template"]
+            .sudo()
+            .create(
+                {
+                    "name": "Test Weekdays Template",
+                    "fsm_frequency_set_id": fset.id,
+                }
+            )
         )
 
     @classmethod

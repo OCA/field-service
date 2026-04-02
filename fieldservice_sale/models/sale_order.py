@@ -78,9 +78,7 @@ class SaleOrder(models.Model):
         template_id = kwargs.get("template_id", False)
         template_ids = kwargs.get("template_ids", [template_id])
         # Templates are configured on products; sales users may not have FSM ACL.
-        templates = self.env["fsm.template"].sudo().search(
-            [("id", "in", template_ids)]
-        )
+        templates = self.env["fsm.template"].sudo().search([("id", "in", template_ids)])
         note = ""
         hours = 0.0
         categories = self.env["fsm.category"]
