@@ -13,7 +13,18 @@ class TestFSMStockCommon(TransactionCase):
         super().setUp()
         self.location = self.env["fsm.location"]
         self.FSMOrder = self.env["fsm.order"]
-        self.Product = self.env["product.product"].search([], limit=1)
+        self.Product = self.env["product.product"].search(
+            [("uom_id", "!=", False)], limit=1
+        )
+        if not self.Product:
+            self.Product = self.env["product.product"].create(
+                {
+                    "name": "FSM Stock Test Product",
+                    "is_storable": True,
+                    "uom_id": self.env.ref("uom.product_uom_unit").id,
+                    "uom_po_id": self.env.ref("uom.product_uom_unit").id,
+                }
+            )
         self.stock_cust_loc = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")

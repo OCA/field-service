@@ -15,14 +15,14 @@ class FSMPerson(TransactionCase):
         # Create a person
         test_worker_one = self.Worker.create({"name": "Worker One"})
         self.assertTrue(test_worker_one.fsm_person)
-        # Test toggle_active
-        test_worker_one.toggle_active()
+        # Test archive / unarchive
+        test_worker_one.action_archive()
         self.assertTrue(
             test_worker_one.partner_id.active,
             "Partner related to FSM Person should remain active",
         )
-        test_worker_one.partner_id.toggle_active()
-        test_worker_one.toggle_active()
+        test_worker_one.partner_id.action_archive()
+        test_worker_one.action_unarchive()
         self.assertTrue(
             test_worker_one.partner_id.active,
             "Activating FSM Person must make related partner active",
@@ -59,7 +59,7 @@ class FSMPerson(TransactionCase):
         # Test search using a location ID
         search_domain = [("location_ids", "=", location_2.id)]
         workers = self.Worker.search(search_domain)
-        self.assertEqual(workers.id[0], person_2.id)
+        self.assertEqual(workers.ids[0], person_2.id)
         # Test search using a location name
         search_domain = [("location_ids", "=", "Location")]
         workers = self.Worker.search(search_domain)

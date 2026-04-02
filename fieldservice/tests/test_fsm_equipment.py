@@ -4,6 +4,8 @@
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.fieldservice.tests.common import get_base_territory_test_records
+
 
 class FSMEquipment(TransactionCase):
     @classmethod
@@ -11,10 +13,11 @@ class FSMEquipment(TransactionCase):
         super().setUpClass()
         cls.Equipment = cls.env["fsm.equipment"]
         cls.test_location = cls.env.ref("fieldservice.test_location")
-        cls.test_territory = cls.env.ref("base_territory.test_territory")
-        cls.test_branch = cls.env.ref("base_territory.test_branch")
-        cls.test_district = cls.env.ref("base_territory.test_district")
-        cls.test_region = cls.env.ref("base_territory.test_region")
+        trefs = get_base_territory_test_records(cls.env)
+        cls.test_territory = trefs["test_territory"]
+        cls.test_branch = trefs["test_branch"]
+        cls.test_district = trefs["test_district"]
+        cls.test_region = trefs["test_region"]
         cls.current_location = cls.env.ref("fieldservice.location_1")
 
     def test_fsm_equipment(self):

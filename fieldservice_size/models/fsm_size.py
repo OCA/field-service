@@ -16,9 +16,10 @@ class FSMSize(models.Model):
         string="Is the Order Size?", help="The default size for orders of this type"
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique (name)", "Size name already exists!"),
-    ]
+    _fsm_size_name_uniq = models.Constraint(
+        "UNIQUE (name)",
+        "Size name already exists!",
+    )
 
     @api.constrains("is_order_size", "type_id")
     def _one_size_per_type(self):

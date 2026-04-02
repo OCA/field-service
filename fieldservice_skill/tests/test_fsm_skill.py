@@ -206,12 +206,14 @@ class TestFSMSkill(BaseCommon):
         )
 
     def test_constrains_skill_01(self):
+        skill_other_type = self.skill_type_03.skill_ids[0]
+        level_other_type = self.skill_type_03.skill_level_ids[0]
         with self.assertRaises(ValidationError):
             self.fsm_person_skill.create(
                 {
                     "person_id": self.person_01.id,
-                    "skill_id": self.skill_07.id,
-                    "skill_level_id": self.skill_level_100.id,
+                    "skill_id": skill_other_type.id,
+                    "skill_level_id": level_other_type.id,
                     "skill_type_id": self.skill_type_01.id,
                 }
             )

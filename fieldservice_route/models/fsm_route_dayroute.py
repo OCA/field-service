@@ -153,8 +153,9 @@ class FSMRouteDayRoute(models.Model):
                     raise ValidationError(
                         rec.env._(
                             "The route %(route_name)s does not run on %(name)s!",
+                            route_name=rec.route_id.name,
+                            name=day.name,
                         )
-                        % {"route_name": rec.route_id.name, "name": day.name}
                     )
 
     @api.constrains("route_id", "max_order", "order_count")

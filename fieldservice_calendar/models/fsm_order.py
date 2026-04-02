@@ -84,7 +84,7 @@ class FSMOrder(models.Model):
         self.calendar_event_id.unlink()
 
     def update_calendar_date(self, vals):
-        if self._context.get("recurse_order_calendar"):
+        if self.env.context.get("recurse_order_calendar"):
             # avoid recursion
             return
         to_apply = {}
@@ -104,7 +104,7 @@ class FSMOrder(models.Model):
         return f"{partner_id.name} {partner_id._display_address()}"
 
     def update_calendar_person(self, old_persons):
-        if self._context.get("recurse_order_calendar"):
+        if self.env.context.get("recurse_order_calendar"):
             # avoid recursion
             return
         for rec in self:

@@ -54,7 +54,7 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         """Test %m/%d/%Y %I:%M %p (US format with AM/PM)"""
         self.env.user.lang = "en_US"
         self.env["res.lang"]._lang_get("en_US").write(
-            {"date_format": "%m/%d/%Y", "time_format": "%I:%M %p"}
+            {"date_format": "%m/%d/%Y", "time_format": "%I:%M:%S %p"}
         )
         self.config_param.set_param(
             "fieldservice.schedule_time_range_format", "date_and_time"
@@ -63,7 +63,8 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         order = self._create_order(self.now, self.now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range,
-            r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} (AM|PM) - \d{2}:\d{2} (AM|PM)",
+            r"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}:\d{2} (AM|PM)"
+            r" - \d{1,2}:\d{2}:\d{2} (AM|PM)",
         )
 
     @freeze_time("2025-08-14 09:00:00")

@@ -5,6 +5,8 @@ from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.fieldservice.tests.common import get_base_territory_test_records
+
 
 class FSMLocation(TransactionCase):
     @classmethod
@@ -16,7 +18,7 @@ class FSMLocation(TransactionCase):
         cls.location_1 = cls.env.ref("fieldservice.location_1")
         cls.location_2 = cls.env.ref("fieldservice.location_2")
         cls.location_3 = cls.env.ref("fieldservice.location_3")
-        cls.test_territory = cls.env.ref("base_territory.test_territory")
+        cls.test_territory = get_base_territory_test_records(cls.env)["test_territory"]
         cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
         cls.location_partner_1 = cls.env.ref("fieldservice.location_partner_1")
         cls.location_partner_2 = cls.env.ref("fieldservice.location_partner_2")

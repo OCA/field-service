@@ -1,5 +1,6 @@
 import json
 
+from odoo import Command
 from odoo.exceptions import AccessError
 from odoo.http import Request
 from odoo.tests.common import HttpCase, TransactionCase, tagged
@@ -8,6 +9,59 @@ from odoo.tools import mute_logger
 
 @tagged("post_install", "-at_install")
 class TestUsersHttp(HttpCase, TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._fieldservice_portal_ensure_fixtures()
+
+    @classmethod
+    def _fieldservice_portal_ensure_fixtures(cls):
+        env = cls.env
+        portal_group = env.ref("base.group_portal")
+        portal_user = env["res.users"].search([("login", "=", "portal")], limit=1)
+        if not portal_user:
+            partner = env["res.partner"].create(
+                {
+                    "name": "Portal Test User",
+                    "email": "portal.ci@example.com",
+                }
+            )
+            portal_user = env["res.users"].create(
+                {
+                    "name": "Portal",
+                    "login": "portal",
+                    "password": "portal",
+                    "partner_id": partner.id,
+                    "group_ids": [Command.set([portal_group.id])],
+                }
+            )
+        portal_partner = portal_user.partner_id
+        test_location = env.ref("fieldservice.test_location", raise_if_not_found=False)
+        if test_location:
+            test_location.contact_id = portal_partner
+            if not env["fsm.order"].search_count(
+                [("location_id", "=", test_location.id)]
+            ):
+                env["fsm.order"].create(
+                    {
+                        "name": "Demo Order",
+                        "description": "Description for the new demo order",
+                        "location_id": test_location.id,
+                    }
+                )
+        demo_user = env["res.users"].search([("login", "=", "demo")], limit=1)
+        if not demo_user:
+            dpartner = env["res.partner"].create({"name": "Demo Internal"})
+            demo_user = env["res.users"].create(
+                {
+                    "name": "Demo",
+                    "login": "demo",
+                    "password": "demo",
+                    "partner_id": dpartner.id,
+                    "group_ids": [Command.set([env.ref("base.group_user").id])],
+                }
+            )
+
     @mute_logger("odoo.http")
     def test_fsm_order_portal(self):
         # Accessing work order of the portal user through route APIs available

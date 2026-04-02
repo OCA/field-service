@@ -21,7 +21,10 @@ class FSMCategory(models.Model):
         help="Company related to this category",
     )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Category name already exists!")]
+    _fsm_category_name_uniq = models.Constraint(
+        "UNIQUE (name)",
+        "Category name already exists!",
+    )
 
     def _compute_full_name(self):
         for record in self:

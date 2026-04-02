@@ -199,7 +199,9 @@ class SaleOrder(models.Model):
                 f" <a href=# data-oe-model=fsm.order data-oe-id={fsm_order.id}>"
                 f"{fsm_order.name}</a>,"
             )
-        so_msg_body = self.env._("Field Service Order(s) Created: %s") % msg_fsm_links
+        so_msg_body = self.env._(
+            "Field Service Order(s) Created: %(links)s", links=msg_fsm_links
+        )
         self.message_post(body=so_msg_body[:-1])
 
     def _action_confirm(self):

@@ -8,6 +8,7 @@ class TestFSMEquipment(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env.user.group_ids += cls.env.ref("stock.group_stock_user")
         cls.Equipment = cls.env["fsm.equipment"]
         cls.stock_location = cls.env.ref("stock.stock_location_customers")
         cls.current_location = cls.env.ref("fieldservice.location_1")

@@ -474,6 +474,9 @@ class FSMOrder(models.Model):
             )
             if holidays:
                 raise ValidationError(
-                    rec.env._("%s is a holiday %s")
-                    % (rec.scheduled_date_start.date(), holidays[0].name)
+                    rec.env._(
+                        "%(date)s is a holiday %(holiday)s",
+                        date=rec.scheduled_date_start.date(),
+                        holiday=holidays[0].name,
+                    )
                 )

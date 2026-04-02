@@ -53,14 +53,16 @@ class SaleOrderLine(models.Model):
             # post message on SO
             prefix = so_line.env._(
                 "Field Service recurring Created (%(product_name)s): ",
-            ) % {"product_name": product_name}
+                product_name=product_name,
+            )
             msg_body = prefix + fsm_recurring._get_html_link()
             so_line.order_id.message_post(body=msg_body)
 
             # post message on fsm_recurring
             recurring_prefix = so_line.env._(
                 "This recurring has been created (%(product_name)s) from: ",
-            ) % {"product_name": product_name}
+                product_name=product_name,
+            )
             fsm_recurring_msg = recurring_prefix + so_line.order_id._get_html_link()
             fsm_recurring.message_post(body=fsm_recurring_msg)
 

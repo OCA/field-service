@@ -56,8 +56,8 @@ class FSMOrder(models.Model):
                     self.env._(
                         "You must complete activity '%(name)s' before "
                         "completing this order.",
+                        name=activity.name,
                     )
-                    % {"name": activity.name}
                 )
         self.activity_ids._action_done()
         return res

@@ -19,7 +19,9 @@ class FSMWizard(models.TransientModel):
     )
 
     def action_convert(self):
-        partners = self.env["res.partner"].browse(self._context.get("active_ids", []))
+        partners = self.env["res.partner"].browse(
+            self.env.context.get("active_ids", [])
+        )
         for partner in partners:
             if self.fsm_record_type == "person":
                 self.action_convert_person(partner)

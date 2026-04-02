@@ -12,7 +12,7 @@ class TestFSMSale(TestSaleCommon):
     @classmethod
     def setUpFSMTemplates(cls):
         # Create some templates to use on the FSM products
-        FSMTemplate = cls.env["fsm.template"]
+        FSMTemplate = cls.env["fsm.template"].sudo()
 
         # Template 1
         cls.fsm_template_1 = FSMTemplate.create(

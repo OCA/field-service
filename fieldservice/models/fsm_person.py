@@ -27,11 +27,11 @@ class FSMPerson(models.Model):
         related="partner_id.active", readonly=True, string="Partner is Active"
     )
 
-    def toggle_active(self):
+    def action_unarchive(self):
         for person in self:
-            if not person.active and not person.partner_id.active:
+            if not person.partner_id.active:
                 person.partner_id.action_unarchive()
-        return super().toggle_active()
+        return super().action_unarchive()
 
     @api.model
     def _search(
@@ -66,9 +66,7 @@ class FSMPerson(models.Model):
                 else:
                     arg_2 = "%" + arg[2] + "%"
                     self.env.cr.execute(
-                        "SELECT id "
-                        "FROM fsm_location "
-                        "WHERE complete_name like %s",
+                        "SELECT id FROM fsm_location WHERE complete_name like %s",
                         (arg_2,),
                     )
                     location_ids = self.env.cr.fetchall()

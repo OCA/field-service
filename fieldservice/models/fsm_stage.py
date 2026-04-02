@@ -3,7 +3,6 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.osv.expression import TRUE_DOMAIN
 
 AVAILABLE_PRIORITIES = [("0", "Normal"), ("1", "Low"), ("2", "High"), ("3", "Urgent")]
 
@@ -72,7 +71,7 @@ class FSMStage(models.Model):
 
     def get_color_information(self):
         # get stage ids (all stages: needed for kanban color legend)
-        stage_ids = self.search(TRUE_DOMAIN)
+        stage_ids = self.search([])
         color_information_dict = []
         for stage in stage_ids:
             color_information_dict.append(
