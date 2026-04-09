@@ -1,14 +1,37 @@
+# Copyright 2025 APSL-Nagarro Bernat Obrador, Antoni Marroig
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import uuid
 
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
 
-from odoo import _, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class FsmOrder(models.Model):
     _inherit = "fsm.order"
+
+    show_geolocate_button = fields.Boolean(
+        compute="_compute_show_geolocate_button",
+        store=False,
+    )
+
+    @api.depends("template_id.use_current_location", "template_id")
+    def _compute_show_geolocate_button(self):
+        config_restrict = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice.restrict_current_location_in_templates", False)
+        )
+        for record in self:
+            if not config_restrict:
+                record.show_geolocate_button = True
+            elif not record.template_id:
+                record.show_geolocate_button = False
+            else:
+                record.show_geolocate_button = record.template_id.use_current_location
 
     def _get_geolocator(self):
         # Get Nominatim geolocator with user agent from system parameters

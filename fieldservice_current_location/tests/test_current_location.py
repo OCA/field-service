@@ -1,3 +1,6 @@
+# Copyright 2025 APSL-Nagarro Bernat Obrador, Antoni Marroig
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 import uuid
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -108,3 +111,65 @@ class TestFieldserviceCrm(common.TransactionCase):
             self.assertTrue(ua)
             _, kwargs = nom_ctor.call_args
             self.assertEqual(kwargs.get("user_agent"), ua)
+
+    def test_show_geolocate_button_no_restrict(self):
+        # Without restrict config, button should always show
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice.restrict_current_location_in_templates", False
+        )
+        fsm_order = self.env["fsm.order"].create({"location_id": self.location_1.id})
+        self.assertTrue(fsm_order.show_geolocate_button)
+
+    def test_show_geolocate_button_with_restrict_no_template(self):
+        # With restrict config, no template -> button hidden
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice.restrict_current_location_in_templates", True
+        )
+        fsm_order = self.env["fsm.order"].create({"location_id": self.location_1.id})
+        self.assertFalse(fsm_order.show_geolocate_button)
+
+    def test_show_geolocate_button_with_restrict_template_no_use_location(self):
+        # With restrict config, template without use_current_location -> button hidden
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice.restrict_current_location_in_templates", True
+        )
+        template = self.env["fsm.template"].create(
+            {"name": "Test Template", "use_current_location": False}
+        )
+        fsm_order = self.env["fsm.order"].create(
+            {"location_id": self.location_1.id, "template_id": template.id}
+        )
+        self.assertFalse(fsm_order.show_geolocate_button)
+
+    def test_show_geolocate_button_with_restrict_template_use_location(self):
+        # With restrict config, template with use_current_location -> button shown
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice.restrict_current_location_in_templates", True
+        )
+        template = self.env["fsm.template"].create(
+            {"name": "Test Template", "use_current_location": True}
+        )
+        fsm_order = self.env["fsm.order"].create(
+            {"location_id": self.location_1.id, "template_id": template.id}
+        )
+        self.assertTrue(fsm_order.show_geolocate_button)
+
+    def test_template_show_use_current_location_no_restrict(self):
+        # Without restrict config, field should be hidden
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice.restrict_current_location_in_templates", False
+        )
+        template = self.env["fsm.template"].create({"name": "Test Template"})
+        self.assertFalse(template.show_use_current_location)
+
+    def test_config_parameter(self):
+        # Test setting the config parameter
+        self.env["res.config.settings"].create(
+            {"restrict_current_location_in_templates": True}
+        ).execute()
+        param = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice.restrict_current_location_in_templates")
+        )
+        self.assertTrue(param)
