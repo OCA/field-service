@@ -12,6 +12,10 @@ export class GeolocateButtonController extends FormController {
         this.notification = useService("notification");
     }
 
+    showGeolocateButton() {
+        return this.model.root.data.show_geolocate_button;
+    }
+
     getCurrentPositionPromise(options = {}) {
         return new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject, options);

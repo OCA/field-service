@@ -10,7 +10,12 @@
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "base_geolocalize"],
     "external_dependencies": {"python": ["geopy"]},
-    "data": ["views/fsm_order.xml", "security/ir.model.access.csv"],
+    "data": [
+        "views/fsm_order.xml",
+        "views/fsm_template.xml",
+        "views/res_config_settings.xml",
+        "security/ir.model.access.csv",
+    ],
     "assets": {
         "web.assets_backend": [
             "fieldservice_current_location/static/src/js/geolocate_button.esm.js",
