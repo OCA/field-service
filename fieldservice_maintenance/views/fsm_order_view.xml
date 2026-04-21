@@ -10,11 +10,11 @@
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
         <field name="arch" type="xml">
             <field name="priority" position="before">
-                <field name="internal_type" invisible="1" />
                 <field
-                    name="request_id"
+                    name="request_ids"
                     readonly="1"
                     invisible="internal_type != 'maintenance'"
+                    widget="many2many_tags"
                 />
             </field>
         </field>
