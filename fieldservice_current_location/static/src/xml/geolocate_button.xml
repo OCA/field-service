@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-inherit="web.FormView" t-name="fieldservice_current_location.GeolocateButton">
-   <xpath expr="//t[@t-set-slot='layout-buttons']" position="inside">
-        <button
-                class="btn btn-primary"
+        <xpath expr="//t[@t-set-slot='layout-buttons']" position="inside">
+            <button
+                class="btn btn-primary d-none d-xl-inline-flex align-items-center"
                 t-on-click="geolocate"
                 t-if="showGeolocateButton()"
             >
-            <i class="control-button fa fa-map-marker" style="margin-right: 6px;" />
-            Use Current Location
-        </button>
+                <i class="control-button fa fa-map-marker me-1" />
+                Use Current Location
+            </button>
+        </xpath>
+        <xpath expr="//t[@t-set-slot='layout-actions']" position="inside">
+            <button
+                class="btn btn-primary d-xl-none d-inline-flex align-items-center"
+                t-on-click="geolocate"
+                t-if="showGeolocateButton()"
+            >
+                <i class="control-button fa fa-map-marker me-1" />
+                Use Current Location
+            </button>
         </xpath>
     </t>
 </templates>
