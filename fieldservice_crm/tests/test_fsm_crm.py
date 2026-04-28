@@ -28,3 +28,26 @@ class TestFieldserviceCrm(common.TransactionCase):
 
         location_1._compute_opportunity_count()
         self.assertEqual(location_1.opportunity_count, 1)
+
+    def test_action_create_fsm_order(self):
+        location = self.env["fsm.location"].create(
+            {
+                "name": "Test Location",
+                "owner_id": self.env["res.partner"].create({"name": "Test Owner"}).id,
+            }
+        )
+        lead = self.env["crm.lead"].create(
+            {
+                "name": "Test Opportunity",
+                "type": "opportunity",
+                "fsm_location_id": location.id,
+                "description": "<p>Test description</p>",
+                "priority": "1",
+            }
+        )
+        action = lead.action_create_fsm_order()
+        ctx = action.get("context", {})
+        self.assertEqual(ctx.get("default_opportunity_id"), lead.id)
+        self.assertEqual(ctx.get("default_location_id"), location.id)
+        self.assertEqual(ctx.get("default_description"), "<p>Test description</p>")
+        self.assertEqual(ctx.get("default_priority"), "1")
