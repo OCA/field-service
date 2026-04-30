@@ -260,6 +260,8 @@ class TestFSMSaleOrder(TestFSMSale):
         self.assertEqual(
             len(fsm_order.ids), 1, "FSM Sale: Sale Order not linked to FSM Order"
         )
+        self.assertEqual(fsm_order.template_id, self.fsm_template_1)
+        self.assertEqual(fsm_order.type, self.fsm_template_1.type_id)
 
         # Complete the FSM order
         if self._isp_account_installed():
