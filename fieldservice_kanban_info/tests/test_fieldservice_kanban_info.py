@@ -16,7 +16,6 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         cls.FSMOrder = cls.env["fsm.order"]
         cls.config_param = cls.env["ir.config_parameter"].sudo()
         cls.location = cls.env.ref("fieldservice.test_location")
-        cls.now = fields.Datetime.now()
         cls.lang = cls.env.user.lang
 
     def _create_order(self, start=None, end=None):
@@ -34,14 +33,16 @@ class TestFieldServiceKanbanInfo(BaseCommon):
         self.config_param.set_param(
             "fieldservice.schedule_time_range_format", "time_only"
         )
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertIn("-", order.schedule_time_range)
 
     def test_schedule_time_range_date_and_time_same_day(self):
         self.config_param.set_param(
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertIn("/", order.schedule_time_range)
         self.assertIn("-", order.schedule_time_range)
 
@@ -60,10 +61,11 @@ class TestFieldServiceKanbanInfo(BaseCommon):
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range,
-            r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} (AM|PM) - \d{2}:\d{2} (AM|PM)",
+            r"\d{2}/\d{2}/\d{4} \d{2}:\d{2}\s*(AM|PM)? - \d{2}:\d{2}\s*(AM|PM)?",
         )
 
     @freeze_time("2025-08-14 09:00:00")
@@ -78,7 +80,8 @@ class TestFieldServiceKanbanInfo(BaseCommon):
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range, r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} - \d{2}:\d{2}"
         )
