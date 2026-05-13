@@ -14,3 +14,5 @@
   - Víctor Martínez
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
+- [Binhex](https://www.binhex.cloud):
+  - Edilio Escalona Almira <e.escalona@binhex.cloud>
