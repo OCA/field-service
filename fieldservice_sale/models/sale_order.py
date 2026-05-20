@@ -116,7 +116,7 @@ class SaleOrder(models.Model):
                 vals = self._prepare_fsm_values(so_id=self.id, templates=templates)
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                 new_fsm_orders |= fsm_by_sale
-            new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
+            new_fsm_sol.fsm_order_id = fsm_by_sale.id
 
         return new_fsm_orders
 
@@ -132,7 +132,7 @@ class SaleOrder(models.Model):
         for line in new_fsm_sol:
             vals = self._prepare_line_fsm_values(line)
             fsm_by_line = self.env["fsm.order"].sudo().create(vals)
-            line.write({"fsm_order_id": fsm_by_line.id})
+            line.fsm_order_id = fsm_by_line.id
             new_fsm_orders |= fsm_by_line
 
         return new_fsm_orders
