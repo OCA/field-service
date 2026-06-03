@@ -259,7 +259,7 @@ class TestFieldServiceSaleStockRoute(TransactionCase):
             }
         )
 
-        self.sale_order.invalidate_cache()
+        self.sale_order.invalidate_recordset()
         self.assertEqual(self.sale_order.commitment_date, new_start)
         self.assertEqual(self.sale_order.commitment_date_end, new_end)
 

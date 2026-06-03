@@ -16,7 +16,7 @@
                     string="Postpone Delivery"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': [('show_postpone_button', '=', False)]}"
+                    invisible="not show_postpone_button"
                     groups="fieldservice.group_fsm_user_own"
                 />
             </xpath>

@@ -16,7 +16,6 @@ class SaleOrder(models.Model):
         inverse="_inverse_set_commitment_date_end",
         store=True,
         copy=False,
-        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
         help="This is the delivery deadline date promised to the customer. "
         "If set, the delivery order will be scheduled based on "
         "this date rather than product lead times.",
@@ -123,7 +122,8 @@ class SaleOrder(models.Model):
                         _(
                             "The selected delivery date (%(day)s) is "
                             "not available for route %(route)s. "
-                            "Please choose a valid date based on the available schedule, "
+                            "Please choose a valid date based on "
+                            "the available schedule, "
                             "or enable 'Force Schedule' on the route to override "
                             "this restriction."
                         )
