@@ -369,11 +369,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:22efe88b65f7a7989b5a8ac38b1394eda981b125a39867422c3b7fb4bb74db7b
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_sale_stock_route"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-15-0/field-service-15-0-fieldservice_sale_stock_route"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module integrates the <cite>fieldservice_sale_stock</cite> and <cite>fieldservice_route</cite> modules, enabling automatic generation of FSM order day routes from sales orders.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/field-service/tree/18.0/fieldservice_sale_stock_route"><img alt="OCA/field-service" src="https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_sale_stock_route"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/field-service&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module integrates the fieldservice_sale_stock and
+fieldservice_route modules, enabling automatic generation of FSM order
+day routes from sales orders.</p>
 <div class="section" id="requirements-for-confirming-a-sales-order">
 <h1>Requirements for Confirming a Sales Order</h1>
-<p>If a sales order contains a product that generates an FSM order, the following conditions must be met before confirmation:</p>
+<p>If a sales order contains a product that generates an FSM order, the
+following conditions must be met before confirmation:</p>
 <ul class="simple">
 <li>An FSM location must be set.</li>
 <li>The FSM location must have an assigned route.</li>
@@ -384,21 +387,25 @@ ul.auto-toc {
 <div class="section" id="automatic-scheduling-of-fsm-orders">
 <h1>Automatic Scheduling of FSM Orders</h1>
 <ul class="simple">
-<li>If the <cite>commitment_date</cite> and <cite>commitment_date_end</cite> fields <strong>are not set</strong> on the sale order upon confirmation, they will be automatically assigned to the next available route day based on the FSM location’s schedule.</li>
-<li>If these fields <strong>are set</strong>, the FSM order will be scheduled accordingly, with validation ensuring that the <cite>commitment_date</cite> falls on a valid route day. This validation can be overridden by enabling the <strong>“Force Schedule”</strong> option on the FSM route to allow scheduling on any day.</li>
+<li>If the commitment_date and commitment_date_end fields <strong>are not set</strong>
+on the sale order upon confirmation, they will be automatically
+assigned to the next available route day based on the FSM location’s
+schedule.</li>
+<li>If these fields <strong>are set</strong>, the FSM order will be scheduled
+accordingly, with validation ensuring that the commitment_date falls
+on a valid route day. This validation can be overridden by enabling
+the <strong>“Force Schedule”</strong> option on the FSM route to allow scheduling
+on any day.</li>
 </ul>
-<p>This module also introduces a <strong>“Postpone Delivery”</strong> button in the FSM order form view, allowing users to reschedule the order to the next available route day based on the FSM location’s schedule.</p>
+<p>This module also introduces a <strong>“Postpone Delivery”</strong> button in the FSM
+order form view, allowing users to reschedule the order to the next
+available route day based on the FSM location’s schedule.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
 <li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a></li>
 </ul>
 </div>
 <div class="section" id="usage">
@@ -407,47 +414,61 @@ ul.auto-toc {
 <ol class="arabic simple">
 <li>Navigate to Sales &gt; Orders.</li>
 <li>Create a new sales order.</li>
-<li>Add a product that generates an FSM order (Field Service Tracking set to “Create one FSM order per sale order” on the product form).</li>
+<li>Add a product that generates an FSM order (Field Service Tracking set
+to “Create one FSM order per sale order” on the product form).</li>
 <li>Set the Customer and FSM Location.</li>
-<li>Make sure the FSM Location has a route set and this route has a person assigned and route days set.</li>
-<li>In the sale order, navigate to the ‘Other Info’ tab and set the ‘Delivery Date’ and ‘Delivery End Date’ fields. You can also leave them empty to have the system automatically assign the next available route day.</li>
+<li>Make sure the FSM Location has a route set and this route has a
+person assigned and route days set.</li>
+<li>In the sale order, navigate to the ‘Other Info’ tab and set the
+‘Delivery Date’ and ‘Delivery End Date’ fields. You can also leave
+them empty to have the system automatically assign the next available
+route day.</li>
 <li>Confirm the sale order.</li>
-<li>If the ‘Delivery Date’ and ‘Delivery End Date’ fields were empty, the system will automatically assign the next available route day based on the FSM location’s schedule. If they were set, the FSM order will be scheduled accordingly. In case the ‘Delivery Date’ falls on a day that is not part of the route, the system will show an error message.</li>
+<li>If the ‘Delivery Date’ and ‘Delivery End Date’ fields were empty, the
+system will automatically assign the next available route day based
+on the FSM location’s schedule. If they were set, the FSM order will
+be scheduled accordingly. In case the ‘Delivery Date’ falls on a day
+that is not part of the route, the system will show an error message.</li>
 </ol>
-<p>If you navigate to the FSM order, you will see that the Schedule Details are based on the ‘Delivery Date’ and ‘Delivery End Date’ fields from the sale order.</p>
-<p>Additionally, you will find a ‘Postpone Delivery’ button in the FSM order form view, allowing you to reschedule the order to the next available route day based on the FSM location’s schedule. You can also manually reschedule the order by changing the ‘Delivery Date’ and ‘Delivery End Date’ fields in the sale order.</p>
+<p>If you navigate to the FSM order, you will see that the Schedule Details
+are based on the ‘Delivery Date’ and ‘Delivery End Date’ fields from the
+sale order.</p>
+<p>Additionally, you will find a ‘Postpone Delivery’ button in the FSM
+order form view, allowing you to reschedule the order to the next
+available route day based on the FSM location’s schedule. You can also
+manually reschedule the order by changing the ‘Delivery Date’ and
+‘Delivery End Date’ fields in the sale order.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/field-service/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale_stock_route%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_sale_stock_route%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
 <h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
+</div>
+</div>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
+<h1>Authors</h1>
 <ul class="simple">
 <li>APSL-Nagarro</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
+<h1>Contributors</h1>
 <blockquote>
-<dl class="docutils">
-<dt><a class="reference external" href="https://www.apsl.tech">APSL-Nagarro</a>:</dt>
-<dd><ul class="first last simple">
+<p><a class="reference external" href="https://www.apsl.tech">APSL-Nagarro</a>:</p>
+<ul class="simple">
 <li>Patryk Pyczko &lt;<a class="reference external" href="mailto:ppyczko&#64;apsl.net">ppyczko&#64;apsl.net</a>&gt;</li>
 <li>Bernat Obrador &lt;<a class="reference external" href="mailto:bobrador&#64;apsl.net">bobrador&#64;apsl.net</a>&gt;</li>
 </ul>
-</dd>
-</dl>
 </blockquote>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h3>
+<h1>Maintainers</h1>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
@@ -457,10 +478,8 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/ppyczko"><img alt="ppyczko" src="https://github.com/ppyczko.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/15.0/fieldservice_sale_stock_route">OCA/field-service</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/18.0/fieldservice_sale_stock_route">OCA/field-service</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
-</div>
-</div>
 </div>
 </div>
 </body>
