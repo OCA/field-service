@@ -6,67 +6,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
 msgid ""
 "Check this box for operation types that will be used\n"
 "        to load inventory on FSM Vehicles."
-msgstr ""
+msgstr "选中此框以获取将使用的操作类型\n        将库存装载到 FSM 车辆上。"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,help:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
 msgid ""
 "Check this box for operation types that will be used\n"
 "        to unload inventory from FSM Vehicles."
-msgstr ""
+msgstr "选中此框以获取将使用的操作类型\n        从 FSM 车辆卸载库存。"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_order
 msgid "Field Service Order"
-msgstr ""
+msgstr "外勤工单"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_fsm_vehicle
 msgid "Field Service Vehicle"
-msgstr ""
+msgstr "外勤车辆"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_fsm_vehicle__inventory_location_id
 msgid "Inventory Location"
-msgstr ""
+msgstr "库存位置"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_location
 msgid "Location Delivery"
-msgstr ""
+msgstr "地点交付"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_location_to_vehicle
 msgid "Location Pickup"
-msgstr ""
+msgstr "地点接送"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_location_return
 msgid "Location Return"
-msgstr ""
+msgstr "位置返回"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "拣货类型"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.location.route,name:fieldservice_vehicle_stock.route_stock_to_vehicle_to_location
 msgid "Stock to Vehicle to Location"
-msgstr ""
+msgstr "库存到车辆到地点"
 
 #. module: fieldservice_vehicle_stock
 #: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
@@ -74,56 +74,56 @@ msgstr ""
 msgid ""
 "The inventory location of the FSM vehicle must be a descendant of the "
 "Vehicles location."
-msgstr ""
+msgstr "FSM 车辆的库存位置必须是车辆位置的后代。"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model,name:fieldservice_vehicle_stock.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "调拨"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_in
 msgid "Used to load a Field Service Vehicle"
-msgstr ""
+msgstr "用于装载外勤服务车辆"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking_type__fsm_vehicle_out
 msgid "Used to unload a Field Service Vehicle"
-msgstr ""
+msgstr "用于卸载外勤服务车辆"
 
 #. module: fieldservice_vehicle_stock
 #: model:ir.model.fields,field_description:fieldservice_vehicle_stock.field_stock_picking__fsm_vehicle_id
 msgid "Vehicle"
-msgstr ""
+msgstr "车辆"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_output_to_vehicle
 msgid "Vehicle Loading"
-msgstr ""
+msgstr "车辆装载"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.picking.type,name:fieldservice_vehicle_stock.picking_type_vehicle_to_input
 msgid "Vehicle Returns"
-msgstr ""
+msgstr "车辆归还"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.rule,name:fieldservice_vehicle_stock.procurement_rule_vehicle_to_location
 msgid "Vehicle → Location"
-msgstr ""
+msgstr "车辆 → 地点"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.rule,name:fieldservice_vehicle_stock.stock_rule_vehicle_to_input
 msgid "Vehicle → Warehouse"
-msgstr ""
+msgstr "车辆 → 仓库"
 
 #. module: fieldservice_vehicle_stock
 #: model:stock.rule,name:fieldservice_vehicle_stock.procurement_rule_location_to_vehicle
 #: model:stock.rule,name:fieldservice_vehicle_stock.procurement_rule_output_to_vehicle
 msgid "Warehouse → Vehicle"
-msgstr ""
+msgstr "仓库 → 车辆"
 
 #. module: fieldservice_vehicle_stock
 #: code:addons/fieldservice_vehicle_stock/models/stock_picking.py:0
 #, python-format
 msgid "You must provide the vehicle for this picking type."
-msgstr ""
+msgstr "您必须为此提货类型提供车辆。"
