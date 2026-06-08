@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_fsm_order_form_inherit_stock_picking" model="ir.ui.view">
+        <field name="name">fsm.order.form.stock.picking</field>
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_stock.view_fsm_order_form_inherit_stock"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@id='stock']//group[@id='stock-right']"
+                position="inside"
+            >
+                <field name="outgoing_picking_type_id" options="{'no_create': True}" />
+                <field name="incoming_picking_type_id" options="{'no_create': True}" />
+            </xpath>
+            <xpath
+                expr="//page[@id='stock']//field[@name='move_ids']"
+                position="before"
+            >
+                <button
+                    name="action_create_transfers"
+                    type="object"
+                    string="Create Transfers"
+                    class="oe_highlight"
+                    groups="stock.group_stock_user"
+                />
+                <separator string="Outgoing Products" />
+                <field
+                    name="outgoing_line_ids"
+                    context="{'default_direction': 'outgoing'}"
+                >
+                    <tree editable="bottom">
+                        <field name="direction" invisible="1" />
+                        <field name="product_id" options="{'no_create': True}" />
+                        <field name="product_uom_qty" />
+                        <field
+                            name="product_uom_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            groups="uom.group_uom"
+                        />
+                        <field name="picking_id" readonly="1" />
+                        <field name="state" readonly="1" />
+                    </tree>
+                </field>
+                <separator string="Incoming Products" />
+                <field
+                    name="incoming_line_ids"
+                    context="{'default_direction': 'incoming'}"
+                >
+                    <tree editable="bottom">
+                        <field name="direction" invisible="1" />
+                        <field name="product_id" options="{'no_create': True}" />
+                        <field name="product_uom_qty" />
+                        <field
+                            name="product_uom_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            groups="uom.group_uom"
+                        />
+                        <field name="picking_id" readonly="1" />
+                        <field name="state" readonly="1" />
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>
