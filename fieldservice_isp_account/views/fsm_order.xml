@@ -7,6 +7,17 @@
             ref="fieldservice_account_analytic.fsm_order_form_analytic"
         />
         <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="accounting" string="Accounting">
+                    <group name="bill_to">
+                        <field
+                            name="bill_to"
+                            widget="radio"
+                            options="{'horizontal': true}"
+                        />
+                    </group>
+                </page>
+            </notebook>
             <group name="bill_to" position="before">
                 <header>
                     <button
