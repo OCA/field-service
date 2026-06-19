@@ -850,6 +850,12 @@ msgid "Current Location"
 msgstr "Località corrente"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Località cliente"
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.fsm_order_sign_wizard_action
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Customer Signature"
@@ -1997,6 +2003,12 @@ msgid "Message Delivery error"
 msgstr "Errore di consegna messaggio"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Messaggio per prelievo di magazzino"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2395,6 +2407,12 @@ msgid "Previous Stage"
 msgstr "Fase precedente"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
+msgstr "Listino prezzi"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_id
 msgid "Primary Assignment"
@@ -2725,6 +2743,12 @@ msgid "Signup Token Type"
 msgstr "Tipo token iscrizione"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__specific_property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__specific_property_product_pricelist
+msgid "Specific Property Product Pricelist"
+msgstr "Listino prodotto proprietà specifico"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__stage_id
@@ -2944,6 +2968,24 @@ msgstr ""
 "Deve essere univoco tra tutti i partner della stessa nazione"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+"L'ubicazione di magazzino utilizzata come destinazione quando si spedisce "
+"merce a questo contatto."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+"L'ubicazione di magazzino utilizzata quando si riceve merce da questo "
+"contatto."
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
 msgid "The worker is already linked to this location."
 msgstr "Il lavoratore è già collegato a questa località."
@@ -3084,6 +3126,12 @@ msgid "Used a default stage"
 msgstr "Utilizzato uno stadio predefinito"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Used for sales to the current partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__sequence
 msgid "Used to order stages. Lower is better."
 msgstr "Utilizzato per ordinare le fasi. Prima il più basso."
@@ -3113,6 +3161,12 @@ msgstr "Utenti"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Veicoli"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Località fornitore"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3310,9 +3364,6 @@ msgstr ""
 #~ msgid "Currency"
 #~ msgstr "Valuta"
 
-#~ msgid "Customer Location"
-#~ msgstr "Località cliente"
-
 #~ msgid "Customer Payment Terms"
 #~ msgstr "Termini pagamento cliente"
 
@@ -3450,9 +3501,6 @@ msgstr ""
 #~ msgid "Message for Sales Order"
 #~ msgstr "Messaggio per ordine di vendita"
 
-#~ msgid "Message for Stock Picking"
-#~ msgstr "Messaggio per prelievo di magazzino"
-
 #~ msgid "Next Activity Calendar Event"
 #~ msgstr "Evento calendario attività successiva"
 
@@ -3505,9 +3553,6 @@ msgstr ""
 #~ "impostato di default su tutti i pagamenti in entrata creati per questo "
 #~ "cliente"
 
-#~ msgid "Pricelist"
-#~ msgstr "Listino prezzi"
-
 #~ msgid "Property Inbound Payment Method Line"
 #~ msgstr "Riga del metodo di pagamento in entrata della proprietà"
 
@@ -3551,9 +3596,6 @@ msgstr ""
 #~ msgid "Show Credit Limit"
 #~ msgstr "Visualizza fido"
 
-#~ msgid "Specific Property Product Pricelist"
-#~ msgstr "Listino prodotto proprietà specifico"
-
 #~ msgid "Starred Message"
 #~ msgstr "Messaggio preferito"
 
@@ -3567,18 +3609,6 @@ msgstr ""
 #~ "The fiscal position determines the taxes/accounts used for this contact."
 #~ msgstr ""
 #~ "La posizione fiscale determina le tasse/conti utilizzati per questo "
-#~ "contatto."
-
-#~ msgid ""
-#~ "The stock location used as destination when sending goods to this contact."
-#~ msgstr ""
-#~ "L'ubicazione di magazzino utilizzata come destinazione quando si spedisce "
-#~ "merce a questo contatto."
-
-#~ msgid ""
-#~ "The stock location used as source when receiving goods from this contact."
-#~ msgstr ""
-#~ "L'ubicazione di magazzino utilizzata quando si riceve merce da questo "
 #~ "contatto."
 
 #~ msgid ""
@@ -3633,9 +3663,6 @@ msgstr ""
 
 #~ msgid "Total amount you have to pay to this vendor."
 #~ msgstr "Ammontare totale dovuto a questo fornitore."
-
-#~ msgid "Vendor Location"
-#~ msgstr "Località fornitore"
 
 #~ msgid "Vendor Payment Terms"
 #~ msgstr "Termini pagamento fornitore"

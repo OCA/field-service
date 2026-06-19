@@ -845,6 +845,12 @@ msgid "Current Location"
 msgstr "Geçerli Konum"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Müşteri Konumu"
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.fsm_order_sign_wizard_action
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Customer Signature"
@@ -1990,6 +1996,12 @@ msgid "Message Delivery error"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
@@ -2388,6 +2400,12 @@ msgid "Previous Stage"
 msgstr "Önceki Aşama"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
+msgstr "Fiyat Listesi"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
 #: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_id
 msgid "Primary Assignment"
@@ -2718,6 +2736,12 @@ msgid "Signup Token Type"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__specific_property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__specific_property_product_pricelist
+msgid "Specific Property Product Pricelist"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__stage_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__stage_id
@@ -2926,6 +2950,20 @@ msgid ""
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
 msgid "The worker is already linked to this location."
 msgstr ""
@@ -3062,6 +3100,12 @@ msgid "Used a default stage"
 msgstr "Bu varsayılan Aşamasımı"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Used for sales to the current partner"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__sequence
 msgid "Used to order stages. Lower is better."
 msgstr ""
@@ -3091,6 +3135,12 @@ msgstr "Kullanıcılar"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Vehicles"
 msgstr "Araçlar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3274,9 +3324,6 @@ msgstr ""
 #~ msgid "Currency"
 #~ msgstr "Para Birimi"
 
-#~ msgid "Customer Location"
-#~ msgstr "Müşteri Konumu"
-
 #~ msgid "Customer Payment Terms"
 #~ msgstr "Müşteri Ödeme Koşulları"
 
@@ -3382,9 +3429,6 @@ msgstr ""
 
 #~ msgid "Payable Limit"
 #~ msgstr "Borç Limit"
-
-#~ msgid "Pricelist"
-#~ msgstr "Fiyat Listesi"
 
 #~ msgid "Sanitized Number"
 #~ msgstr "Arındırılmış  Numarası"
