@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -69,6 +69,11 @@ msgid "Description"
 msgstr ""
 
 #. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_stage__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_portal
 #: model:ir.model.fields,help:fieldservice_portal.field_fsm_stage__portal_visible
 msgid ""
 "Enable to display field service orders based on it's stage in the portal"
@@ -87,6 +92,11 @@ msgstr ""
 #. module: fieldservice_portal
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
 msgid "History"
+msgstr ""
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_stage__id
+msgid "ID"
 msgstr ""
 
 #. module: fieldservice_portal
@@ -194,4 +204,28 @@ msgstr ""
 #. module: fieldservice_portal
 #: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
 msgid "Work Orders for"
+msgstr ""
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "description"
+msgstr ""
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "is_closed"
+msgstr ""
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "location_id.name"
+msgstr ""
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "name"
 msgstr ""
