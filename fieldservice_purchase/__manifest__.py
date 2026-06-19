@@ -16,6 +16,8 @@
     "data": [
         "security/ir.model.access.csv",
         "views/fsm_person.xml",
+        "views/fsm_order.xml",
+        "views/purchase_order.xml",
     ],
     "development_status": "Beta",
     "maintainers": [
