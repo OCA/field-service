@@ -16,7 +16,7 @@ class TestFieldServicePurchase(common.TransactionCase):
 
         # Test with 1 records Vendor Pricelist
         product_supplierinfo_vals = {
-            "name": fsm_person.partner_id.id,
+            "partner_id": fsm_person.partner_id.id,
             "min_qty": 1.0,
             "price": 100,
         }
