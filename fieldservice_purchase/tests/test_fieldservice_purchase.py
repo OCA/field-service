@@ -6,13 +6,12 @@ import odoo.tests.common as common
 
 class TestFieldServicePurchase(common.TransactionCase):
     def setUp(self):
-        super(TestFieldServicePurchase, self).setUp()
+        super().setUp()
 
         self.product_supplierinfo_obj = self.env["product.supplierinfo"]
         self.fsm_person_obj = self.env["fsm.person"]
 
     def test_fieldservice_purchase(self):
-
         fsm_person = self.fsm_person_obj.create({"name": "Test FSM Person"})
 
         # Test with 1 records Vendor Pricelist
