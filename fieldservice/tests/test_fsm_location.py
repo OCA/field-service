@@ -51,6 +51,14 @@ class FSMLocation(TransactionCase):
         ]:
             self.assertEqual(location[x], self.test_location[x])
 
+        # Check partner defaults.
+        self.assertTrue(location.fsm_location)
+        self.assertFalse(location.fsm_person)
+        self.assertFalse(location.is_company)
+        self.assertEqual(location.parent_id, self.test_loc_partner)
+        self.assertNotEqual(location.partner_id, self.test_loc_partner)
+        self.assertEqual(location.type, "fsm_location")
+
         # Test initial stage
         self.assertEqual(
             location.stage_id, self.env.ref("fieldservice.location_stage_1")
@@ -272,3 +280,13 @@ class FSMLocation(TransactionCase):
                 [("active", "=", False), ("id", "in", children_loc.ids)]
             )
         )
+
+    def test_create_root_fsm_location(self):
+        """Root locations can be created from the FSM location form."""
+        with Form(self.Location, view="fieldservice.fsm_location_form_view") as f:
+            f.name = "Root Location"
+        location = f.save()
+        self.assertTrue(location.fsm_location)
+        self.assertEqual(location.type, "fsm_location")
+        self.assertEqual(location.owner_id, self.env.company.partner_id)
+        self.assertEqual(location.parent_id, location.owner_id)
