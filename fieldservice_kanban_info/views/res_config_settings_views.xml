@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.fsm</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//block[@name='order_setting_container']" position="inside">
+        <setting
+                    title="Schedule Time Range Format"
+                    help="Choose if the time range in the kanban view should display only the time or both date and time."
+                >
+          <field name="schedule_time_range_format" widget="selection" />
+        </setting>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

@@ -75,14 +75,14 @@
                                         string="Complete order"
                                         type="object"
                                         icon="fa-check text-success"
-                                        attrs="{'invisible': [('stage_id', 'in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d])]}"
+                                        invisible="stage_id in [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]"
                                     />
                                     <button
                                         name="action_cancel"
                                         string="Cancel order"
                                         type="object"
                                         icon="fa-times-circle text-danger"
-                                        attrs="{'invisible': [('stage_id', 'in', [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d])]}"
+                                        invisible="stage_id in [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]"
                                     />
                                 </tree>
                             </field>

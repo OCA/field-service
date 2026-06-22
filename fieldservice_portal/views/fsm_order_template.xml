@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <template id="portal_my_fsm_orders" name="My Work Orders">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Work Orders</t>
+            </t>
+            <t t-if="not grouped_orders">
+                <p>There are no Work Orders in your account.</p>
+            </t>
+            <t t-else="">
+                <t t-call="portal.portal_table">
+                    <t t-foreach="grouped_orders" t-as="orders">
+                        <thead>
+                            <tr
+                                t-if="groupby != 'none'"
+                                t-attf-class="{{'thead-light'}}"
+                            >
+                                <!--
+                                careful: this does not work if groupby is not a relation
+                                        towards a model that has a 'name' field
+                                -->
+                                <th colspan="6" class="text-left text-muted">
+                                    <em class="font-weight-normal text-muted">
+                                        Work Orders for
+                                        <t
+                                            t-out="searchbar_groupby[groupby]['label']"
+                                        />:
+                                    </em>
+                                    <span
+                                        t-field="orders[0].sudo()[groupby].display_name"
+                                    />
+                                </th>
+                            </tr>
+                            <tr class="active">
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th>Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="orders" t-as="fsm_order">
+                                <tr>
+                                    <td>
+                                        <a t-attf-href="/my/fsm_order/#{fsm_order.id}">
+                                            <t t-out="fsm_order.name" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <t t-out="fsm_order.description" />
+                                    </td>
+                                    <td>
+                                        <t
+                                            t-out="fsm_order.sudo().location_id.display_name"
+                                        />
+                                    </td>
+                                    <td>
+                                        <t t-out="fsm_order.type.name" />
+                                    </td>
+                                    <td>
+                                        <t t-out="fsm_order.stage_id.name" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_fieldservice_order_page">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <h1>
+                        <t t-call='portal.record_pager' />
+                        <span t-field="fsm_order.name" />
+                    </h1>
+                </t>
+                <t t-set="card_body">
+                    <div class="mb8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Location:</strong>
+                                <span t-field="fsm_order.location_id" />
+                                <br />
+                                <strong>City:</strong>
+                                <span t-field="fsm_order.location_id.city" />
+                                <t t-if="fsm_order.location_id.state_id">
+                                    -
+                                    <span t-field="fsm_order.location_id.state_id" />
+                                </t>
+                                <t t-if="fsm_order.location_id.zip">
+                                    (
+                                    <span t-field="fsm_order.location_id.zip" />
+                                    )
+                                </t>
+                                <br />
+                                <strong>Country:</strong>
+                                <span t-field="fsm_order.location_id.country_id" />
+                                <br />
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Stage:</strong>
+                                <t t-out="fsm_order.stage_id.name" />
+                                <br />
+                                <strong>Work Type:</strong>
+                                <t t-if="fsm_order.type">
+                                    <span t-field="fsm_order.type.name" />
+                                </t>
+                                <t t-else="">
+                                    <span>N/A</span>
+                                </t>
+                                <br />
+                                <strong>Arrival On Site:</strong>
+                                <span
+                                    t-if="fsm_order.date_start"
+                                    t-field="fsm_order.date_start"
+                                />
+                                <span t-else="">Not started yet</span>
+                                <br />
+                            </div>
+                        </div>
+                        <t t-if="fsm_order.description">
+                            <div class="row mt8">
+                                <div class="col-md-12">
+                                    <h4 class="page-header">Description</h4>
+                                    <t t-out="fsm_order.description" />
+                                    <br />
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <h4 class="page-header">History</h4>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="fsm_order" />
+                    </t>
+                </t>
+            </t>
+            <div class="oe_structure mb32" />
+        </t>
+    </template>
+
+</odoo>

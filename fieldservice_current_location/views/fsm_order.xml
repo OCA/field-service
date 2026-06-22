@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- # Copyright 2025 Bernat Obrador, Antoni Marroig(APSL-Nagarro)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_crm_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="js_class">geolocate_button</attribute>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <field name="show_geolocate_button" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

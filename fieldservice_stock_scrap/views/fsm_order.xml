@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- # Copyright 2025 Antoni Marroig(APSL-Nagarro)<amarroig@apsl.net>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+     <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button
+                    string="Scrap"
+                    name="action_scrap_stock"
+                    type="object"
+                    class="oe_highlight"
+                    invisible="not stock_request_ids or is_closed"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_view_delivery']" position="after">
+                <button
+                    type="object"
+                    name="action_view_scraps"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="scrap_count == 0"
+                >
+                    <field name="scrap_count" widget="statinfo" string="Scraps" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

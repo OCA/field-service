@@ -1,0 +1,24 @@
+<odoo>
+    <record id="fsm_order_timeline_view" model="ir.ui.view">
+        <field name="name">fsm.order.timeline</field>
+        <field name="model">fsm.order</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline
+                date_start="scheduled_date_start"
+                date_stop="scheduled_date_end"
+                string="Orders"
+                default_group_by="person_id"
+                event_open_popup="true"
+                colors="#ffffff:stage_name=='New';"
+            >
+            </timeline>
+        </field>
+    </record>
+    <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form,calendar,timeline</field>
+    </record>
+    <record id="fieldservice.action_fsm_operation_order" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,calendar,timeline</field>
+    </record>
+</odoo>

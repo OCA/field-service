@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="view_fsm_blackout_day_tree" model="ir.ui.view">
+    <field name="name">fsm.blackout.day.tree</field>
+    <field name="model">fsm.blackout.day</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name" />
+        <field name="date" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_fsm_blackout_group_tree" model="ir.ui.view">
+    <field name="name">fsm.blackout.group.tree</field>
+    <field name="model">fsm.blackout.group</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_fsm_blackout_day_form" model="ir.ui.view">
+    <field name="name">fsm.blackout.day.form</field>
+    <field name="model">fsm.blackout.day</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="date" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_fsm_blackout_group_form" model="ir.ui.view">
+    <field name="name">fsm.blackout.group.form</field>
+    <field name="model">fsm.blackout.group</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="fsm_blackout_day_ids">
+              <tree>
+                <field name="name" />
+                <field name="date" />
+              </tree>
+            </field>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_fsm_blackout_days" model="ir.actions.act_window">
+    <field name="name">Blackout Days</field>
+    <field name="res_model">fsm.blackout.day</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Add a Field Service Blackout Day here.
+      </p>
+    </field>
+  </record>
+
+  <record id="action_fsm_blackout_groups" model="ir.actions.act_window">
+    <field name="name">Blackout Groups</field>
+    <field name="res_model">fsm.blackout.group</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Add a Field Service Blackout Group here.
+      </p>
+    </field>
+  </record>
+
+</odoo>

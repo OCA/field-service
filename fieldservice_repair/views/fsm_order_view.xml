@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Fields Service Orders Form View -->
+    <record id="fsm_order_maintenance_form" model="ir.ui.view">
+        <field name="name">fsm.order.maintenance.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="priority" position="before">
+                <field name="internal_type" invisible="1" />
+                <field
+                    name="repair_id"
+                    readonly="1"
+                    invisible="internal_type != 'repair'"
+                />
+
+            </field>
+        </field>
+    </record>
+
+</odoo>

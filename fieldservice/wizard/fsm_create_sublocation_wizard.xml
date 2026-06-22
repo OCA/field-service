@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_create_sub_location_wizard" model="ir.ui.view">
+        <field name="name">fsm.create.sub.location.wizard.form</field>
+        <field name="model">fsm.create.sub.location.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Sub Location">
+                <group>
+                    <field name="name" readonly="0" />
+                    <field name="parent_location_id" readonly="1" />
+                    <field name="related_owner_id" />
+
+                    <field name="email" widget="email" />
+                    <field name="phone" widget="phone" />
+                </group>
+                <group>
+                    <label for="street" string="Address" />
+                    <div class="o_address_format">
+                        <field
+                            name="street"
+                            placeholder="Street..."
+                            class="o_address_street"
+                        />
+                        <field
+                            name="street2"
+                            placeholder="Street 2..."
+                            class="o_address_street"
+                        />
+                        <field name="city" placeholder="City" class="o_address_city" />
+                        <field
+                            name="state_id"
+                            class="o_address_state"
+                            placeholder="State"
+                            options="{'no_open': True, 'no_quick_create': True}"
+                            context="{'default_country_id': country_id}"
+                        />
+                        <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                        <field
+                            name="country_id"
+                            placeholder="Country"
+                            class="o_address_country"
+                            options="{'no_open': True, 'no_create': True}"
+                        />
+                    </div>
+                </group>
+                <footer>
+                    <button
+                        name="create_sub_location"
+                        type="object"
+                        string="Create"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_sub_location" model="ir.actions.act_window">
+        <field name="name">Create Sub Location</field>
+        <field name="res_model">fsm.create.sub.location.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="fsm_location_form_inherit" model="ir.ui.view">
+        <field name="name">fsm.location.form.inherit.sub.location</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="%(action_create_sub_location)d"
+                    string="Create Sub-Location"
+                    type="action"
+                    context="{'default_parent_location_id': active_id}"
+                    class="oe_highlight"
+                    groups="fieldservice.group_fsm_manager,fieldservice.group_fsm_dispatcher"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <record id="inherit_fsm_order_kanban_view" model="ir.ui.view">
+    <field name="name">fsm.order.kanban.inherit</field>
+    <field name="model">fsm.order</field>
+    <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+        <div invisible="not schedule_time_range">
+          <i class="fa fa-clock-o text-dark me-1" title="Scheduled time" />
+          <field name="schedule_time_range" />
+        </div>
+
+        <div invisible="not street and not city and not zip">
+          <i class="fa fa-map-marker text-danger me-2" title="Address" />
+          <field name="street" class="o_address_street" />
+          <field name="street2" class="o_address_street" />
+          <field name="city" class="o_address_city" />
+          <field name="state_name" class="o_address_state" />
+          <field name="zip" class="o_address_zip" />
+          <field name="country_name" class="o_address_country" />
+        </div>
+
+        <div invisible="not mobile">
+          <i class="fa fa-mobile text-info me-2 fa-lg" title="Mobile" />
+          <field name="mobile" />
+        </div>
+
+        <div invisible="not phone">
+          <i class="fa fa-phone text-info me-1" title="Phone" />
+          <field name="phone" />
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

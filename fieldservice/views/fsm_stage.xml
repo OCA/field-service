@@ -44,6 +44,11 @@
                             <field name="is_default" />
                             <field
                                 name="company_id"
+                                invisible="1"
+                                groups="!base.group_multi_company"
+                            />
+                            <field
+                                name="company_id"
                                 groups="base.group_multi_company"
                             />
                         </group>

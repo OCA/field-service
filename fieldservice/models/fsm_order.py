@@ -3,8 +3,11 @@
 
 from datetime import datetime, timedelta
 
+import pytz
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import format_date
 
 from . import fsm_stage
 
@@ -13,6 +16,7 @@ class FSMOrder(models.Model):
     _name = "fsm.order"
     _description = "Field Service Order"
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    _check_company_auto = True
 
     def _default_stage_id(self):
         stage = self.env["fsm.stage"].search(
@@ -38,6 +42,24 @@ class FSMOrder(models.Model):
             return team
         raise ValidationError(_("You must create an FSM team first."))
 
+    @api.depends(
+        "location_id",
+    )
+    def _compute_team_id(self):
+        cached_teams = dict()
+        for order in self:
+            team = order.location_id.team_id
+            if not team:
+                order_key = order.env.company
+                team = cached_teams.get(order_key)
+                if not team:
+                    team = cached_teams[order_key] = order._default_team_id()
+
+            order.team_id = team
+
+    def _default_request_early(self):
+        return fields.Datetime.now().replace(second=0)
+
     @api.depends("date_start", "date_end")
     def _compute_duration(self):
         for rec in self:
@@ -48,11 +70,6 @@ class FSMOrder(models.Model):
                 delta = end - start
                 duration = delta.total_seconds() / 3600
             rec.duration = duration
-
-    @api.depends("stage_id")
-    def _get_stage_color(self):
-        """Get stage color"""
-        self.custom_color = self.stage_id.custom_color or "#FFFFFF"
 
     def _track_subtype(self, init_values):
         self.ensure_one()
@@ -71,6 +88,7 @@ class FSMOrder(models.Model):
         tracking=True,
         index=True,
         copy=False,
+        check_company=True,
         group_expand="_read_group_stage_ids",
         default=lambda self: self._default_stage_id(),
     )
@@ -90,15 +108,20 @@ class FSMOrder(models.Model):
         "tag_id",
         string="Tags",
         help="Classify and analyze your orders",
+        check_company=True,
     )
     color = fields.Integer("Color Index", default=0)
     team_id = fields.Many2one(
         "fsm.team",
         string="Team",
-        default=lambda self: self._default_team_id(),
+        compute="_compute_team_id",
+        precompute=True,
+        store=True,
+        readonly=False,
         index=True,
         required=True,
         tracking=True,
+        check_company=True,
     )
 
     # Request
@@ -112,9 +135,13 @@ class FSMOrder(models.Model):
     location_id = fields.Many2one(
         "fsm.location", string="Location", index=True, required=True
     )
-    location_directions = fields.Char()
+    location_owner_id = fields.Many2one(
+        related="location_id.owner_id", string="Location Related Owner"
+    )
+    location_directions = fields.Html()
     request_early = fields.Datetime(
-        string="Earliest Request Date", default=datetime.now()
+        string="Earliest Request Date",
+        default=lambda self: self._default_request_early(),
     )
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
@@ -153,7 +180,11 @@ class FSMOrder(models.Model):
     request_late = fields.Datetime(string="Latest Request Date")
     description = fields.Text()
 
-    person_ids = fields.Many2many("fsm.person", string="Field Service Workers")
+    person_ids = fields.Many2many(
+        "fsm.person",
+        string="Field Service Workers",
+        check_company=True,
+    )
 
     @api.onchange("location_id")
     def _onchange_location_id_customer(self):
@@ -176,7 +207,7 @@ class FSMOrder(models.Model):
     scheduled_duration = fields.Float(help="Scheduled duration of the work in" " hours")
     scheduled_date_end = fields.Datetime(string="Scheduled End")
     sequence = fields.Integer(default=10)
-    todo = fields.Text(string="Instructions")
+    todo = fields.Html(string="Instructions")
 
     # Execution
     resolution = fields.Text()
@@ -233,6 +264,22 @@ class FSMOrder(models.Model):
     type = fields.Many2one("fsm.order.type")
 
     internal_type = fields.Selection(related="type.internal_type")
+
+    date_today_order_tz = fields.Date(
+        string="Scheduled Date (User TZ)",
+        compute="_compute_date_today_order_tz",
+        store=True,
+    )
+
+    @api.depends("scheduled_date_start")
+    def _compute_date_today_order_tz(self):
+        tz = pytz.timezone(self.env.user.tz or "UTC")
+        for rec in self:
+            if rec.scheduled_date_start:
+                dt_user = rec.scheduled_date_start.astimezone(tz)
+                rec.date_today_order_tz = dt_user.date()
+            else:
+                rec.date_today_order_tz = False
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -317,7 +364,7 @@ class FSMOrder(models.Model):
                     self.scheduled_date_start != vals.get("scheduled_date_start", False)
                 )
             ):
-                hours = vals.get("scheduled_duration", False)
+                hours = vals.get("scheduled_duration", self.scheduled_duration)
                 start_date_val = vals.get(
                     "scheduled_date_start", self.scheduled_date_start
                 )
@@ -346,7 +393,7 @@ class FSMOrder(models.Model):
             date_to_with_delta = fields.Datetime.from_string(
                 self.scheduled_date_end
             ) - timedelta(hours=self.scheduled_duration)
-            self.date_start = str(date_to_with_delta)
+            self.scheduled_date_start = str(date_to_with_delta)
 
     @api.onchange("scheduled_date_start", "scheduled_duration")
     def onchange_scheduled_duration(self):
@@ -391,6 +438,17 @@ class FSMOrder(models.Model):
             if self.template_id.team_id:
                 self.team_id = self.template_id.team_id
 
+    @api.onchange("person_id")
+    def _onchange_person_id(self):
+        if self.person_id and self.person_id.team_id:
+            self.team_id = self.person_id.team_id
+            self._onchange_team_id()
+
+    @api.onchange("team_id")
+    def _onchange_team_id(self):
+        if not self.location_id and self.team_id and self.team_id.location_id:
+            self.location_id = self.team_id.location_id
+
     def _get_location_directions(self, location_id):
         self.location_directions = ""
         s = self.location_id.direction or ""
@@ -405,19 +463,25 @@ class FSMOrder(models.Model):
         return s
 
     @api.constrains("scheduled_date_start")
-    def check_day(self):
+    def _check_scheduled_date_calendar_leaves(self):
         for rec in self:
             if not rec.scheduled_date_start:
                 continue
-
             holidays = self.env["resource.calendar.leaves"].search(
                 [
                     ("date_from", ">=", rec.scheduled_date_start),
                     ("date_to", "<=", rec.scheduled_date_end),
+                    ("resource_id", "=", False),
                 ]
             )
             if holidays:
-                msg = "{} is a holiday {}".format(
-                    rec.scheduled_date_start.date(), holidays[0].name
+                raise ValidationError(
+                    _(
+                        "%(date)s is a holiday: %(holidays)s",
+                        date=format_date(
+                            self.env,
+                            fields.Date.context_today(self, rec.scheduled_date_start),
+                        ),
+                        holidays=", ".join(map(str, holidays.mapped("name"))),
+                    )
                 )
-                raise ValidationError(_(msg))

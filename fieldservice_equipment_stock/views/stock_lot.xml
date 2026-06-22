@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="stock_lot_extend_equipment" model="ir.ui.view">
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='main_group']/group[1]"
+                position="after"
+                sequence="0"
+            >
+                <group>
+                    <field name="fsm_equipment_id" readonly="True" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock.action_production_lot_form" model="ir.actions.act_window">
+        <field name="context">{'search_default_group_by_product': 1,
+            'default_product_id': context.get('product_id', False)}
+        </field>
+    </record>
+
+</odoo>

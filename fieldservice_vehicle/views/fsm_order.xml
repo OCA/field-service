@@ -1,0 +1,12 @@
+<odoo>
+    <record id="fsm_order_vehicle_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.vehicle.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="person_id" position="after">
+                <field name="vehicle_id" />
+            </field>
+        </field>
+    </record>
+</odoo>

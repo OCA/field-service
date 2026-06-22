@@ -8,6 +8,7 @@ class FSMTeam(models.Model):
     _name = "fsm.team"
     _description = "Field Service Team"
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    _check_company_auto = True
 
     def _default_stages(self):
         return self.env["fsm.stage"].search([("is_default", "=", True)])
@@ -52,6 +53,7 @@ class FSMTeam(models.Model):
 
     name = fields.Char(required=True, translate=True)
     description = fields.Text(translate=True)
+    active = fields.Boolean(default=True)
     color = fields.Integer("Color Index")
     stage_ids = fields.Many2many(
         "fsm.stage",
@@ -60,12 +62,14 @@ class FSMTeam(models.Model):
         "stage_id",
         string="Stages",
         default=_default_stages,
+        check_company=True,
     )
     order_ids = fields.One2many(
         "fsm.order",
         "team_id",
         string="Orders",
         domain=[("stage_id.is_closed", "=", False)],
+        check_company=True,
     )
     order_count = fields.Integer(compute="_compute_order_count", string="Orders Count")
     order_need_assign_count = fields.Integer(
@@ -82,6 +86,10 @@ class FSMTeam(models.Model):
         index=True,
         default=lambda self: self.env.company,
         help="Company related to this team",
+    )
+    location_id = fields.Many2one(
+        "fsm.location",
+        string="Default Location ",
     )
 
     _sql_constraints = [("name_uniq", "unique (name)", "Team name already exists!")]

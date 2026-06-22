@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_recurring_form_view_inherit_sale" model="ir.ui.view">
+        <field name="model">fsm.recurring</field>
+        <field name="inherit_id" ref="fieldservice_recurring.fsm_recurring_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    type="object"
+                    name="action_view_sales"
+                    class="oe_stat_button"
+                    icon="fa-credit-card"
+                    invisible="sale_line_id == False"
+                >
+                    <span class="o_stat_text">Sale Orders</span>
+                    <field name="sale_line_id" invisible="1" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -13,7 +13,7 @@ class FSMLocation(models.Model):
     _stage_type = "location"
     _rec_names_search = ["complete_name"]
 
-    direction = fields.Char()
+    direction = fields.Html()
     partner_id = fields.Many2one(
         "res.partner",
         string="Related Partner",
@@ -55,8 +55,12 @@ class FSMLocation(models.Model):
 
     calendar_id = fields.Many2one("resource.calendar", string="Office Hours")
     fsm_parent_id = fields.Many2one("fsm.location", string="Parent", index=True)
-    notes = fields.Text(string="Location Notes")
+    notes = fields.Html(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
+    team_id = fields.Many2one(
+        comodel_name="fsm.team",
+        help="Default team assigned to orders in this location",
+    )
     contact_count = fields.Integer(
         string="Contacts Count", compute="_compute_contact_ids"
     )
@@ -70,12 +74,30 @@ class FSMLocation(models.Model):
         compute="_compute_complete_name", recursive=True, store=True
     )
 
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        args = args or []
+        if name:
+            locations = self.search(
+                [
+                    "|",
+                    "|",
+                    ("name", operator, name),
+                    ("partner_id.vat", operator, name),
+                    ("email", operator, name),
+                ]
+                + args,
+                limit=limit,
+            )
+            return locations.name_get()
+        return super().name_search(name, args, operator, limit)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             # By default, create inherited partner as typed child of the location owner.
             vals.update({"fsm_location": True, "type": "fsm_location"})
-            if not vals.get("partner_id"):
+            if not vals.get("partner_id"):  # Don't change parent of existing partners.
                 if not vals.get("owner_id"):
                     vals["owner_id"] = self.env.company.partner_id.id
                 vals["parent_id"] = vals.get("owner_id")

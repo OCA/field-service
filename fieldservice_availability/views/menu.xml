@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+  <!-- Master Data Menu -->
+  <menuitem
+        id="menu_fsm_config_availability"
+        name="Availability"
+        parent="fieldservice.config"
+        sequence="100"
+    />
+
+  <menuitem
+        id="menu_fsm_delivery_time_range"
+        name="Delivery Time Ranges"
+        action="action_fsm_delivery_time_range"
+        parent="menu_fsm_config_availability"
+        sequence="999"
+    />
+
+  <menuitem
+        id="menu_fsm_blackout_days_root"
+        name="Blackout Days"
+        action="action_fsm_blackout_days"
+        parent="menu_fsm_config_availability"
+        sequence="999"
+    />
+
+  <menuitem
+        id="menu_fsm_blackout_group_root"
+        name="Blackout Groups"
+        action="action_fsm_blackout_groups"
+        parent="menu_fsm_config_availability"
+        sequence="999"
+    />
+
+  <menuitem
+        id="menu_fsm_stress_days_root"
+        name="Stress Days"
+        action="action_fsm_stress_days"
+        parent="menu_fsm_config_availability"
+        sequence="999"
+    />
+
+</odoo>

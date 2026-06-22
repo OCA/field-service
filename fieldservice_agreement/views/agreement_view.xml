@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="agreement_form" model="ir.ui.view">
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement.agreement_form" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button
+                    name="action_view_service_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-map"
+                >
+                    <field
+                        name="service_order_count"
+                        widget="statinfo"
+                        string="Service Orders"
+                    />
+                </button>
+                <button
+                    name="action_view_fsm_equipment"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-laptop"
+                    context="{'default_agreement_id': id}"
+                    groups="fieldservice.group_fsm_equipment"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field
+                                name="equipment_count"
+                                widget="statinfo"
+                                nolabel="1"
+                            />
+                        </span>
+                        <span class="o_stat_text">Equipments</span>
+                    </div>
+                </button>
+            </div>
+            <notebook position="inside">
+                <page string="Field Service">
+                    <group id="fsm">
+                        <group id="fsm-left">
+                            <field name="fsm_location_id" />
+                        </group>
+                        <group id="fsm-right" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="agreement_search" model="ir.ui.view">
+        <field name="model">agreement</field>
+        <field name="type">search</field>
+        <field name="inherit_id" ref="agreement.agreement_search" />
+        <field name="arch" type="xml">
+            <xpath expr="/search/filter[1]" position="before">
+                <field name="fsm_location_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_fsm_order_form_add_activity" model="ir.ui.view">
+        <field name="name">fsm.order.form.activity</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="Activities">
+                    <field name="order_activity_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="name" readonly="state != 'todo'" />
+                            <field name="required" readonly="state != 'todo'" />
+                            <field name="ref" readonly="state != 'todo'" />
+                            <field name="completed" column_invisible="1" />
+                            <field name="completed_on" />
+                            <field name="completed_by" />
+                            <button
+                                name="action_done"
+                                string="Complete"
+                                type="object"
+                                class="oe_highlight"
+                                invisible="state not in ['todo']"
+                            />
+                            <button
+                                name="action_cancel"
+                                string="Cancel"
+                                type="object"
+                                invisible="state not in ['todo']"
+                            />
+                            <field name="state" readonly="1" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="fsm_equipment_form_view" model="ir.ui.view">
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Agreement">
+                    <group>
+                        <group id="agreement-left">
+                            <field
+                                name="agreement_id"
+                                domain="[('fsm_location_id', '=', location_id)]"
+                            />
+                        </group>
+                        <group id="agreement-right" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="fsm_equipment_search_view" model="ir.ui.view">
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter
+                    name="agreement_id"
+                    string="Agreement"
+                    domain="[]"
+                    context="{'group_by': 'agreement_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <group id="get_locate" position="before">
+                <field name="shape" />
+            </group>
+            <xpath expr="//sheet/label" position="before">
+                <field name="partner_latitude" invisible="1" />
+                <field name="partner_longitude" invisible="1" />
+                <div
+                    class="alert alert-warning text-center"
+                    role="alert"
+                    invisible="(partner_latitude != 0) or (partner_longitude != 0)"
+                    style="margin-bottom:0px;"
+                >
+                    <p
+                        class="fa fa-warning"
+                    >&amp;nbsp;Update Latitude and Longitude details accordingly!</p>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <!-- GeoEngine views -->
+    <record id="ir_ui_view_fsm_location_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.location.map</field>
+        <field name="arch" type="xml">
+            <geoengine>
+                <!-- display_name field is necessary to display records
+                in the GeoEngine view RecordPanel -->
+                <field name="display_name" />
+                <field name="name" />
+                <field name="phone" />
+                <field name="mobile" />
+                <field name="street" />
+                <field name="street2" />
+                <field name="city" />
+                <field name="state_id" />
+                <field name="country_id" />
+                <field name="zip" />
+                <field name="stage_name" />
+                <field name="shape" />
+                <field name="custom_color" />
+                <templates>
+                    <t t-name="info_box">
+                        <b>
+                          Name: <field name="name" widget="badge" />
+                        </b>
+                        <ul>
+                            <t t-if="record.phone.value">
+                                <li>Phone: <field name="phone" />
+                                </li>
+                            </t>
+                            <t t-if="record.mobile.value">
+                                <li>Mobile: <field name="mobile" />
+                                </li>
+                            </t>
+                            <t t-if="record.street.value">
+                                <li>Street: <field name="street" />
+                                </li>
+                            </t>
+                            <t t-if="record.street2.value">
+                                <li>Street 2: <field name="street2" />
+                                </li>
+                            </t>
+                            <t t-if="record.city.value">
+                                <li>City: <field name="city" />
+                                </li>
+                            </t>
+                            <t t-if="record.state_id.value">
+                                <li>State: <field name="state_id" />
+                                </li>
+                            </t>
+                            <t t-if="record.country_id.value">
+                                <li>Country: <field name="country_id" />
+                                </li>
+                            </t>
+                            <t t-if="record.zip.value">
+                                <li>ZIP: <field name="zip" />
+                                </li>
+                            </t>
+                        </ul>
+                    </t>
+                </templates>
+            </geoengine>
+        </field>
+        <field name="priority" eval="16" />
+        <field name="model">fsm.location</field>
+    </record>
+    <record id="loc_geoengine_vector_layer_fsm0" model="geoengine.vector.layer">
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__shape"
+        />
+        <field name="name">FSM Location Point</field>
+        <field name="classification">unique</field>
+        <field name="sequence" eval="6" />
+        <field name="view_id" ref="ir_ui_view_fsm_location_map" />
+        <field name="geo_repr">colored</field>
+        <field name="active_on_startup">True</field>
+        <field
+            name="attribute_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__stage_name"
+        />
+        <field name="begin_color">#0AFF68</field>
+    </record>
+    <record
+        id="loc_geoengine_vector_layer_fsmordertatecoloredcustom0"
+        model="geoengine.vector.layer"
+    >
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__shape"
+        />
+        <field name="name">FSM Location State colored custom</field>
+        <field name="classification">custom</field>
+        <field name="sequence" eval="6" />
+        <field name="view_id" ref="ir_ui_view_fsm_location_map" />
+        <field name="geo_repr">colored</field>
+        <field name="nb_class" eval="1" />
+        <field
+            name="attribute_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__custom_color"
+        />
+        <field name="begin_color">#FFFFFF</field>
+    </record>
+    <record id="loc_geoengine_raster_layer_osm" model="geoengine.raster.layer">
+        <field name="raster_type">osm</field>
+        <field name="name">Open Street Map</field>
+        <field name="view_id" ref="ir_ui_view_fsm_location_map" />
+        <field name="overlay" eval="0" />
+    </record>
+</odoo>

@@ -61,6 +61,11 @@
                 <field name="location_id" />
                 <field name="current_location_id" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="company_id"
+                    column_invisible="1"
+                    groups="!base.group_multi_company"
+                />
                 <field name="stage_id" />
             </tree>
         </field>
@@ -112,6 +117,11 @@
                                 name="company_id"
                                 options="{'no_create': True}"
                                 groups="base.group_multi_company"
+                            />
+                            <field
+                                name="company_id"
+                                invisible="1"
+                                groups="!base.group_multi_company"
                             />
                         </group>
                     </group>

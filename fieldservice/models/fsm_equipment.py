@@ -9,9 +9,14 @@ class FSMEquipment(models.Model):
     _description = "Field Service Equipment"
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _stage_type = "equipment"
+    _check_company_auto = True
 
     name = fields.Char(required=True)
-    person_id = fields.Many2one("fsm.person", string="Assigned Operator")
+    person_id = fields.Many2one(
+        "fsm.person",
+        string="Assigned Operator",
+        check_company=True,
+    )
     location_id = fields.Many2one("fsm.location", string="Assigned Location")
     notes = fields.Text()
     territory_id = fields.Many2one("res.territory", string="Territory")
@@ -19,10 +24,27 @@ class FSMEquipment(models.Model):
     district_id = fields.Many2one("res.district", string="District")
     region_id = fields.Many2one("res.region", string="Region")
     current_location_id = fields.Many2one("fsm.location", string="Current Location")
-    managed_by_id = fields.Many2one("res.partner", string="Managed By")
-    owned_by_id = fields.Many2one("res.partner", string="Owned By")
-    parent_id = fields.Many2one("fsm.equipment", string="Parent")
-    child_ids = fields.One2many("fsm.equipment", "parent_id", string="Children")
+    managed_by_id = fields.Many2one(
+        "res.partner",
+        string="Managed By",
+        check_company=True,
+    )
+    owned_by_id = fields.Many2one(
+        "res.partner",
+        string="Owned By",
+        check_company=True,
+    )
+    parent_id = fields.Many2one(
+        "fsm.equipment",
+        string="Parent",
+        check_company=True,
+    )
+    child_ids = fields.One2many(
+        "fsm.equipment",
+        "parent_id",
+        string="Children",
+        check_company=True,
+    )
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
         "res.company",

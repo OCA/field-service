@@ -1,0 +1,25 @@
+<!--
+    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
+    @author: Italo Lopes <italo.lopes@camptocamp.com>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <!-- Fields Service Orders Form View -->
+    <record id="fsm_order_maintenance_form" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="equipment_id" position="attributes">
+                <!-- original invisible: internal_type not in ['repair', 'maintenance']" -->
+                <attribute
+                    name="invisible"
+                    separator=" and "
+                    add="internal_type not in ['return']"
+                />
+                <attribute name="required">internal_type in ['return']</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -11,13 +11,14 @@ class FSMStage(models.Model):
     _name = "fsm.stage"
     _description = "Field Service Stage"
     _order = "sequence, name, id"
+    _check_company_auto = True
 
     def _default_team_ids(self):
         default_team_id = self.env.context.get("default_team_id")
         return [default_team_id] if default_team_id else None
 
     active = fields.Boolean(default=True)
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, translate=True)
     sequence = fields.Integer(default=1, help="Used to order stages. Lower is better.")
     legend_priority = fields.Text(
         "Priority Management Explanation",
@@ -63,6 +64,7 @@ class FSMStage(models.Model):
         "team_id",
         string="Teams",
         default=lambda self: self._default_team_ids(),
+        check_company=True,
     )
 
     def get_color_information(self):

@@ -7,9 +7,10 @@ from odoo import fields, models
 class FSMTag(models.Model):
     _name = "fsm.tag"
     _description = "Field Service Tag"
+    _check_company_auto = True
 
     name = fields.Char(required=True)
-    parent_id = fields.Many2one("fsm.tag", string="Parent")
+    parent_id = fields.Many2one("fsm.tag", string="Parent", check_company=True)
     color = fields.Integer("Color Index", default=10)
     full_name = fields.Char(compute="_compute_full_name")
     company_id = fields.Many2one(

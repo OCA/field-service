@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--# Copyright (C) 2025 Bernat Obrador (APSL - Nagarro)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).-->
+<odoo>
+
+    <record id="fsm_location_form_view_address_autocomplete_inherit" model="ir.ui.view">
+        <field name="name">fsm_location_form_view_inherit</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="before">
+                <field
+                    name="zip_id"
+                    options="{'create_name_field': 'city', 'no_open': True, 'no_create': True}"
+                    placeholder="Location completion"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

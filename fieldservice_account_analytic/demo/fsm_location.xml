@@ -1,0 +1,46 @@
+<odoo>
+
+    <!-- fsm.location -->
+    <record id="analytic_account_test_location" model="account.analytic.account">
+        <field name="code">FSM-TEST</field>
+        <field name="name">FSM Test Location</field>
+        <field name="plan_id" ref="analytic.analytic_plan_internal" />
+    </record>
+    <record id="fieldservice.test_location" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.test_loc_partner')" />
+        <field name="analytic_account_id" ref="analytic_account_test_location" />
+    </record>
+
+    <!-- Other locations -->
+
+    <record id="analytic_account_location_1" model="account.analytic.account">
+        <field name="code">FSM-LOC1</field>
+        <field name="name">FSM Test Location 1</field>
+        <field name="plan_id" ref="analytic.analytic_plan_internal" />
+    </record>
+    <record id="fieldservice.location_1" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_1')" />
+        <field name="analytic_account_id" ref="analytic_account_location_1" />
+    </record>
+
+    <record id="analytic_account_location_2" model="account.analytic.account">
+        <field name="code">FSM-LOC2</field>
+        <field name="name">FSM Test Location 3</field>
+        <field name="plan_id" ref="analytic.analytic_plan_internal" />
+    </record>
+    <record id="fieldservice.location_2" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_2')" />
+        <field name="analytic_account_id" ref="analytic_account_location_2" />
+    </record>
+
+    <record id="analytic_account_location_3" model="account.analytic.account">
+        <field name="code">FSM-LOC3</field>
+        <field name="name">FSM Test Location 3</field>
+        <field name="plan_id" ref="analytic.analytic_plan_internal" />
+    </record>
+    <record id="fieldservice.location_3" model="fsm.location">
+        <field name="customer_id" eval="ref('fieldservice.location_partner_3')" />
+        <field name="analytic_account_id" ref="analytic_account_location_3" />
+    </record>
+
+</odoo>

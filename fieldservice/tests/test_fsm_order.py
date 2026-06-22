@@ -1,14 +1,15 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import timedelta
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import Form, TransactionCase
 
 
-class TestFSMOrder(TransactionCase):
+class TestFSMOrderBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -63,6 +64,25 @@ class TestFSMOrder(TransactionCase):
                 team.unlink()
             Form(self.Order, view=view_id)
 
+    def test_fsm_order_default_team_from_location(self):
+        """The default team for an order comes from its location."""
+        # Arrange
+        team_form = Form(self.env["fsm.team"])
+        team_form.name = "Test team"
+        team = team_form.save()
+        location = self.test_location
+        location.team_id = team
+        # pre-condition
+        self.assertNotEqual(team, self.Order._default_team_id())
+
+        # Act
+        order_form = Form(self.Order)
+        order_form.location_id = location
+        order = order_form.save()
+
+        # Assert
+        self.assertEqual(order.team_id, team)
+
     def test_fsm_order_create(self):
         priority_vs_late_days = {"0": 3, "1": 2, "2": 1, "3": 1 / 3}
         vals = {
@@ -115,6 +135,9 @@ class TestFSMOrder(TransactionCase):
             )
             self.assertRegex(str(res[0]), order.name)
 
+
+class TestFSMOrder(TestFSMOrderBase):
+    @freeze_time("2023-02-01")
     def test_fsm_order(self):
         """Test creating new workorders, and test following functions,
         - _compute_duration() in hrs
@@ -137,7 +160,6 @@ class TestFSMOrder(TransactionCase):
             f.date_end = f.date_start + timedelta(hours=80)
             f.request_early = fields.Datetime.today()
         order2 = f.save()
-        order._get_stage_color()
         view_id = "fieldservice.fsm_equipment_form_view"
         with Form(self.env["fsm.equipment"], view=view_id) as f:
             f.name = "Equipment 1"
@@ -190,7 +212,7 @@ class TestFSMOrder(TransactionCase):
                 order_test.request_late, order.request_early + timedelta(days=late_days)
             )
         # Test scheduled_date_start is not automatically set
-        self.assertEqual(order.scheduled_date_start, False)
+        self.assertFalse(order.scheduled_date_start)
         # Test scheduled_date_end = scheduled_date_start + duration (hrs)
         # Set date start
         order.scheduled_date_start = fields.Datetime.now().replace(
@@ -203,8 +225,7 @@ class TestFSMOrder(TransactionCase):
         order.onchange_scheduled_duration()
         # Check date end
         self.assertEqual(
-            order.scheduled_date_end,
-            order.scheduled_date_start + timedelta(hours=duration),
+            order.scheduled_date_end, fields.Datetime.from_string("2023-02-01 10:00:00")
         )
         # Set new date end
         order.scheduled_date_end = order.scheduled_date_end.replace(
@@ -214,7 +235,7 @@ class TestFSMOrder(TransactionCase):
         # Check date start
         self.assertEqual(
             order.scheduled_date_start,
-            order.scheduled_date_end - timedelta(hours=duration),
+            fields.Datetime.from_string("2023-01-31 15:01:00"),
         )
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.env["fsm.location"], view=view_id) as f:
@@ -287,3 +308,23 @@ class TestFSMOrder(TransactionCase):
             order.stage_id.stage_type = "location"
             order.can_unlink()
             order.unlink()
+
+    @freeze_time("2025-06-19 22:30:00")  # UTC
+    def test_date_today_order_tz_timezone_dependent(self):
+        self.env.user.tz = "Europe/Madrid"
+
+        dt_utc = fields.Datetime.from_string("2025-06-19 22:30:00")
+
+        order = self.Order.create(
+            {
+                "scheduled_date_start": dt_utc,
+                "location_id": self.test_location.id,
+                "stage_id": self.stage1.id,
+            }
+        )
+
+        self.assertEqual(
+            order.date_today_order_tz,
+            fields.Date.from_string("2025-06-20"),
+            "date_today_order_tz should reflect 2025-06-20 for Europe/Madrid",
+        )

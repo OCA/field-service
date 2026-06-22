@@ -15,4 +15,4 @@ class FSMStage(models.Model):
         by other criteria
         :return:
         """
-        return self.search(["is_invoiceable", "=", "True"])
+        return self.search([("is_invoiceable", "=", "True")])

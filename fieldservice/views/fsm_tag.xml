@@ -31,6 +31,11 @@
                                 options="{'no_create': True}"
                                 groups="base.group_multi_company"
                             />
+                            <field
+                                name="company_id"
+                                invisible="1"
+                                groups="!base.group_multi_company"
+                            />
                         </group>
                     </group>
                 </sheet>

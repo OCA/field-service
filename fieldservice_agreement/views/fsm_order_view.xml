@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+                <field
+                    name="agreement_id"
+                    domain="[('fsm_location_id', '=', location_id), ('is_template', '=', False)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter
+                    name="agreement_id"
+                    string="Agreement"
+                    domain="[]"
+                    context="{'group_by': 'agreement_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

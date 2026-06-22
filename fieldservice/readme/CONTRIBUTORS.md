@@ -14,3 +14,6 @@
   - Víctor Martínez
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
 - Alex Comba \<<alex.comba@agilebg.com>\>
+- [APSL-Nagarro](<https://apsl.tech>):
+  - Bernat Obrador \<<bobrador@apsl.net>\>
+  - Antoni Marroig \<<amarroig@apsl.net>\>

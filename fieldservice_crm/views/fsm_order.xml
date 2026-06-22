@@ -1,0 +1,76 @@
+<!-- Copyright 2019 Patrick Wilson <patrickraymondwilson@gmail.com
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_crm_list_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.list</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_tree_view" />
+        <field name="arch" type="xml">
+            <field name="person_id" position="before">
+                <field name="opportunity_id" />
+            </field>
+        </field>
+    </record>
+    <record id="fsm_order_crm_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.form</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="priority" position="before">
+                <field name="opportunity_id" />
+                <field
+                    name="sales_person_id"
+                    groups="fieldservice.group_fsm_dispatcher"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="fsm_order_crm_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.search</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <field name="person_ids" position="after">
+                <field name="opportunity_id" />
+                <field
+                    name="opportunity_customer_vat"
+                    filter_domain="[('opportunity_customer_vat', 'ilike', self)]"
+                />
+                <field
+                    name="sales_person_id"
+                    filter_domain="[('sales_person_id', 'ilike', self)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_crm_kanban_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.kanban</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div invisible="not sales_person_id">
+                    <i class="fa fa-dollar me-2 fa-lg" title="Salesperson" />
+                    <field name="sales_person_id" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_order_crm_calendar_view" model="ir.ui.view">
+        <field name="name">fsm.order.crm.calendar</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_calendar_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field
+                    name="sales_person_id"
+                    filters="1"
+                    invisible="not sales_person_id"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

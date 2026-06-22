@@ -1,0 +1,214 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_availability
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-16 12:05+0000\n"
+"PO-Revision-Date: 2025-04-16 12:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fieldservice_availability
+#: model:ir.model.constraint,message:fieldservice_availability.constraint_fsm_blackout_day_unique_blackout_day
+msgid "A blackout day with this date already exists!"
+msgstr "¡Ya existe un día de bloqueo con esta fecha!"
+
+#. module: fieldservice_availability
+#: model:ir.model.constraint,message:fieldservice_availability.constraint_fsm_stress_day_unique_stress_day
+msgid "A stress day with this date already exists!"
+msgstr "¡Ya existe un día de alta demanda con esta fecha!"
+
+#. module: fieldservice_availability
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_blackout_days
+msgid "Add a Field Service Blackout Day here."
+msgstr "Añade un día de bloqueo del servicio de campo aquí."
+
+#. module: fieldservice_availability
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_blackout_groups
+msgid "Add a Field Service Blackout Group here."
+msgstr "Añade un grupo de bloqueo del servicio de campo aquí."
+
+#. module: fieldservice_availability
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_delivery_time_range
+msgid "Add a Field Service Delivery Time Range here."
+msgstr "Añade un rango de tiempo de entrega de servicio de campo aquí."
+
+#. module: fieldservice_availability
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_stress_days
+msgid "Add a Field Service Stress Day here."
+msgstr "Añade un día de alta demanda del servicio de campo aquí."
+
+#. module: fieldservice_availability
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_config_availability
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__date
+msgid "Blackout Day"
+msgstr "Día de bloqueo"
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_blackout_days
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_blackout_days_root
+msgid "Blackout Days"
+msgstr "Días de bloqueo"
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_blackout_day
+msgid "Blackout Days (No Service)"
+msgstr "Días de bloqueo (Sin Servicio)"
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_blackout_group
+msgid "Blackout Group"
+msgstr "Grupo de bloqueo"
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_blackout_groups
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_blackout_group_root
+msgid "Blackout Groups"
+msgstr "Grupos de bloqueo"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__sequence
+msgid "Customize the order of time ranges. Lower numbers are shown first."
+msgstr ""
+"Personaliza el orden de los rangos de tiempo. Los números más bajos se "
+"muestran primero."
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__fsm_blackout_day_ids
+msgid "Days"
+msgstr "Días"
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_delivery_time_range
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.view_fsm_delivery_time_range_form
+msgid "Delivery Time Range"
+msgstr "Rango de Tiempo de Entrega"
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_delivery_time_range
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_delivery_time_range
+msgid "Delivery Time Ranges"
+msgstr "Rangos de Tiempo de Entrega"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__display_name
+msgid "Display Name"
+msgstr "Nombre para Mostrar"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__end_time
+msgid "End Time"
+msgstr "Hora de Fin"
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_stress_day
+msgid "High-Demand Days"
+msgstr "Días de Alta Demanda"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__route_id
+msgid "Route"
+msgstr "Ruta"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__route_id
+msgid ""
+"Specific route this time range applies to. Leave empty for global time "
+"ranges."
+msgstr ""
+"Ruta específica a la que se aplica este rango de tiempo. Dejar vacío para "
+"rangos de tiempo globales."
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__start_time
+msgid "Start Time"
+msgstr "Hora de Inicio"
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__date
+msgid "Stress Day"
+msgstr "Día de alta demanda"
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_stress_days
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_stress_days_root
+msgid "Stress Days"
+msgstr "Días de alta demanda"
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_time_range.py:0
+#, python-format
+msgid "The start time must be earlier than the end time."
+msgstr "La hora de inicio debe ser anterior a la hora de fin."
