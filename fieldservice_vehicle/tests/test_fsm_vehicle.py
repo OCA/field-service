@@ -14,12 +14,12 @@ class FSMVehicleCase(BaseCommon):
         cls.test_partner = cls.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
-        cls.test_vehicle = cls.env["fsm.vehicle"].create({"name": "Test Vehicle"})
+        cls.vehicle = cls.env["fsm.vehicle"].create({"name": "Test Vehicle"})
         cls.test_worker = cls.env["fsm.person"].create(
             {
                 "name": "Test Worker",
                 "email": "tw@email.com",
-                "vehicle_id": cls.test_vehicle.id,
+                "vehicle_id": cls.vehicle.id,
             }
         )
         cls.test_location = cls.env["fsm.location"].create(
@@ -32,7 +32,7 @@ class FSMVehicleCase(BaseCommon):
             }
         )
 
-    def test_vehicle(self):
+    def test_order_assigns_vehicle(self):
         test_order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
@@ -42,4 +42,4 @@ class FSMVehicleCase(BaseCommon):
                 "person_id": self.test_worker.id,
             }
         )
-        self.assertEqual(test_order.vehicle_id, self.test_vehicle)
+        self.assertEqual(test_order.vehicle_id, self.vehicle)
