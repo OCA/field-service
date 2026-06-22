@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ======================
 Field Service Vehicles
 ======================
@@ -13,17 +17,17 @@ Field Service Vehicles
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_vehicle
+    :target: https://github.com/OCA/field-service/tree/19.0/fieldservice_vehicle
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_vehicle
+    :target: https://translation.odoo-community.org/projects/field-service-19-0/field-service-19-0-fieldservice_vehicle
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -50,17 +54,17 @@ Configuration
 
 To configure this module, you need to:
 
--  Go to Field Service > Master Data > Vehicles
--  Create your vehicles and assign them to a worker
+- Go to Field Service > Master Data > Vehicles
+- Create your vehicles and assign them to a worker
 
 Usage
 =====
 
 To use this module, you need to:
 
--  Go to Field Service
--  Create or select an order and assign it
--  Follow the process
+- Go to Field Service
+- Create or select an order and assign it
+- Follow the process
 
 Known issues / Roadmap
 ======================
@@ -74,7 +78,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_vehicle%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -89,24 +93,28 @@ Authors
 Contributors
 ------------
 
--  Wolfgang Hall <whall@opensourceintegrators.com>
--  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
--  Steve Campbell <scampbell@opensourceintegrators.com>
--  Bhavesh Odedra <bodedra@opensourceintegrators.com>
--  Michael Allen <mallen@opensourceintegrators.com>
--  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
--  Brian McMaster <brian@mcmpest.com>
--  Vandan Pandeji <vpandeji@opensourceintegrators.com>
--  `APSL <https://apsl.tech>`__:
+- Wolfgang Hall <whall@graymatterlogic.com>
+- Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+- Steve Campbell <scampbell@graymatterlogic.com>
+- Bhavesh Odedra <bodedra@graymatterlogic.com>
+- Michael Allen <mallen@graymatterlogic.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Brian McMaster <brian@mcmpest.com>
+- Vandan Pandeji <vpandeji@graymatterlogic.com>
+- `APSL <https://apsl.tech>`__:
 
-   -  Antoni Marroig <amarroig@apsl.net>
+  - Antoni Marroig <amarroig@apsl.net>
+
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Open Source Integrators <https://opensourceintegrators.com>
+- Gray Matter Logic <https://www.graymatterlogic.com>
 
 Maintainers
 -----------
@@ -132,6 +140,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-wolfhall| |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_vehicle>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_vehicle>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

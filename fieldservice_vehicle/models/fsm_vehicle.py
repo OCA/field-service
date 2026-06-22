@@ -10,6 +10,4 @@ class FSMVehicle(models.Model):
     name = fields.Char(required=True)
     person_id = fields.Many2one("fsm.person", string="Assigned Driver")
 
-    _sql_constraints = [
-        ("name_uniq", "unique (name)", "Vehicle name already exists!"),
-    ]
+    _name_uniq = models.Constraint("unique (name)", "Vehicle name already exists!")
