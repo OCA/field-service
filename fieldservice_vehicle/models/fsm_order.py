@@ -20,7 +20,10 @@ class FSMOrder(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if not vals.get("vehicle_id") and vals.get("person_id"):
-                self._onchange_person_id()
+                person = self.env["fsm.person"].browse(vals["person_id"])
+                vals["vehicle_id"] = (
+                    person.vehicle_id.id if person.vehicle_id else False
+                )
         return super().create(vals_list)
 
     @api.onchange("person_id")

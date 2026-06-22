@@ -42,5 +42,4 @@ class FSMVehicleCase(BaseCommon):
                 "person_id": self.test_worker.id,
             }
         )
-        test_order._onchange_person_id()
         self.assertEqual(test_order.vehicle_id, self.test_vehicle)
