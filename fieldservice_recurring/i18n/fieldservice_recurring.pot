@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -176,6 +176,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__display_name
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -330,11 +331,6 @@ msgid "Friday"
 msgstr ""
 
 #. module: fieldservice_recurring
-#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
-msgid "Group By"
-msgstr ""
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__has_message
@@ -345,8 +341,10 @@ msgstr ""
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__id
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__id
 msgid "ID"
 msgstr ""
 
@@ -370,13 +368,9 @@ msgstr ""
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_error
-#: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -518,11 +512,6 @@ msgid "New"
 msgstr ""
 
 #. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
-msgstr ""
-
-#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -580,6 +569,11 @@ msgid "October"
 msgstr ""
 
 #. module: fieldservice_recurring
+#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_order_template_id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__fsm_order_template_id
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
@@ -601,14 +595,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
 msgid "Position must be between -366 and 366"
-msgstr ""
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__rating_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__rating_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__rating_ids
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__rating_ids
-msgid "Ratings"
 msgstr ""
 
 #. module: fieldservice_recurring
@@ -665,14 +651,6 @@ msgstr ""
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_user_id
 msgid "Responsible User"
-msgstr ""
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
-msgid "SMS Delivery error"
 msgstr ""
 
 #. module: fieldservice_recurring
