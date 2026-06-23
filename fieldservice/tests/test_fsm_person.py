@@ -1,7 +1,7 @@
 # Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class FSMPerson(TransactionCase):
@@ -27,6 +27,22 @@ class FSMPerson(TransactionCase):
             test_worker_one.partner_id.active,
             "Activating FSM Person must make related partner active",
         )
+
+    def test_create_fsm_worker_from_form(self):
+        """Workers can be saved from the UI without a related partner."""
+        with Form(self.Worker, view="fieldservice.fsm_person_form") as f:
+            f.name = "Worker From Form"
+        worker = f.save()
+        self.assertTrue(worker.partner_id)
+        self.assertTrue(worker.fsm_person)
+        self.assertTrue(worker.partner_id.fsm_person)
+
+    def test_fsm_person_create_multi(self):
+        workers = self.Worker.create([{"name": "Worker A"}, {"name": "Worker B"}])
+        self.assertEqual(len(workers), 2)
+        for worker in workers:
+            self.assertTrue(worker.fsm_person)
+            self.assertTrue(worker.partner_id)
 
     def test_fsm_person_search(self):
         # Setup locations

@@ -29,3 +29,28 @@ class FSMResPartner(TransactionCase):
         expected_domain = [("id", "in", [self.loc_1.id, self.loc_2.id])]
         action = self.parent_partner.action_open_owned_locations()
         self.assertEqual(action["domain"], expected_domain)
+
+    def test_partner_convert_to_location_action(self):
+        partner = self.env.ref("fieldservice.test_partner")
+        partner.action_fsm_convert_to_location()
+        self.assertTrue(partner.fsm_location)
+        self.assertTrue(partner.fsm_location_id)
+
+    def test_partner_convert_to_person_action(self):
+        partner = self.env["res.partner"].create({"name": "Convert To Worker"})
+        partner.action_fsm_convert_to_person()
+        self.assertTrue(partner.fsm_person)
+        self.assertTrue(
+            self.env["fsm.person"].search([("partner_id", "=", partner.id)])
+        )
+
+    def test_partner_write_type_fsm_location(self):
+        partner = self.env["res.partner"].create(
+            {
+                "parent_id": self.parent_partner.id,
+                "name": "Written As Location",
+                "type": "contact",
+            }
+        )
+        partner.write({"type": "fsm_location"})
+        self.assertTrue(partner.fsm_location_id)
