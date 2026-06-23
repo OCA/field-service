@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Réunions"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1602,6 +1608,12 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Dernière notification marquée comme lue depuis la base Calendrier"
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Lat:"
 msgstr ""
@@ -2005,6 +2017,12 @@ msgid "Me"
 msgstr "Moi"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Réunions"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2077,6 +2095,15 @@ msgstr "Besoin programmé"
 #: model:fsm.stage,name:fieldservice.fsm_stage_new
 msgid "New"
 msgstr "Nouveau"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -3310,9 +3337,6 @@ msgstr "Modèle"
 msgid "x"
 msgstr ""
 
-#~ msgid "# Meetings"
-#~ msgstr "# Réunions"
-
 #~ msgid "# Opportunities"
 #~ msgstr "# Opportunités"
 
@@ -3405,12 +3429,6 @@ msgstr ""
 
 #~ msgid "Journal Items"
 #~ msgstr "Articles de journal"
-
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Dernière notification marquée comme lue depuis la base Calendrier"
-
-#~ msgid "Meetings"
-#~ msgstr "Réunions"
 
 #~ msgid "Message for Invoice"
 #~ msgstr "Message pour la facturation"

@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "# Toplantılar"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
 #: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
@@ -1590,6 +1596,12 @@ msgid "Last Updated on"
 msgstr "Son Güncellenme"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Baz Takvimden gelen, okundu olarak işaretlenen son bildirim"
+
+#. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 #, fuzzy
 msgid "Lat:"
@@ -1987,6 +1999,12 @@ msgid "Me"
 msgstr "Ben"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Toplantılar"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
@@ -2059,6 +2077,15 @@ msgstr ""
 #: model:fsm.stage,name:fieldservice.fsm_stage_new
 msgid "New"
 msgstr "Yeni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
@@ -3274,9 +3301,6 @@ msgstr "şablon"
 msgid "x"
 msgstr ""
 
-#~ msgid "# Meetings"
-#~ msgstr "# Toplantılar"
-
 #~ msgid "# Opportunities"
 #~ msgstr "# Fırsatalar"
 
@@ -3417,12 +3441,6 @@ msgstr ""
 
 #~ msgid "Journal Items"
 #~ msgstr "Yevmiye Öğeleri"
-
-#~ msgid "Last notification marked as read from base Calendar"
-#~ msgstr "Baz Takvimden gelen, okundu olarak işaretlenen son bildirim"
-
-#~ msgid "Meetings"
-#~ msgstr "Toplantılar"
 
 #~ msgid "Opportunities"
 #~ msgstr "Fırsatlar"
