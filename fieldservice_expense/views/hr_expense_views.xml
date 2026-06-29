@@ -1,0 +1,40 @@
+<odoo>
+    <record id="fsm_hr_expense_inherit_view_form" model="ir.ui.view">
+        <field name="name">fsm.hr.expense.inherit.view.form</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="fsm_order_id" invisible="1" />
+                <button
+                    name="action_view_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-code-fork"
+                    invisible="not fsm_order_id"
+                >
+                    <span class="o_stat_text">FSM Order</span>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="fsm_order_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_expense_inherit_view_search" model="ir.ui.view">
+        <field name="name">hr.expense.inherit.view.search</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_upcoming_all']" position="after">
+                <separator />
+                <filter
+                    string="FSM Order"
+                    name="fsm_order"
+                    domain="[('fsm_order_id', '!=', False)]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
