@@ -1,0 +1,2 @@
+- Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Vincent Van Rossem \<<vincent.vanrossem@camptocamp.com>\> (original module on 18.0)
