@@ -10,26 +10,21 @@
         </xpath>
     </template>
     <template id="timesheet_table" inherit_id="hr_timesheet.timesheet_table">
-        <xpath expr="//table[hasclass('table-sm')]/thead/tr/th[3]" position="after">
+        <xpath expr="//th[span[normalize-space()='Description']]" position="before">
             <th
                 t-if="show_fsm_order"
+                class="text-start align-middle"
                 groups="fieldservice.group_fsm_user"
             >Field Service Order</th>
         </xpath>
-        <xpath expr="//table[hasclass('table-sm')]/tbody/tr[1]/td[3]" position="after">
-            <td t-if="show_fsm_order" groups="fieldservice.group_fsm_user">
-                <span t-field="line.fsm_order_id.number" /> - <span
-                t-field="line.fsm_order_id.name"
-            />
-            </td>
-        </xpath>
-        <xpath expr="//table[hasclass('table-sm')]/tbody/tr[2]/td" position="before">
-            <t
+        <xpath expr="//td[span[@t-field='line.name']]" position="before">
+            <td
                 t-if="show_fsm_order"
-                t-set="nbCols"
-                t-value="nbCols + 1"
+                class="align-middle"
                 groups="fieldservice.group_fsm_user"
-            />
+            >
+                <span t-field="line.fsm_order_id.name" />
+            </td>
         </xpath>
     </template>
 </odoo>

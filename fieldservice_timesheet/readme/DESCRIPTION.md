@@ -1,1 +1,1 @@
- Encode time spent on the different field service orders.
+Encode time spent on the different field service orders.
