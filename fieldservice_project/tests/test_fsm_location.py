@@ -6,7 +6,7 @@ from .common import Common
 
 class TestFsmLocation(Common):
     def test_project_count(self):
-        location = self.location
+        location = self.test_location
         project = self.project
         self.assertEqual(location.project_count, 0)
         project.write({"fsm_location_id": location.id})
@@ -14,7 +14,7 @@ class TestFsmLocation(Common):
         self.assertEqual(location.project_count, 1)
 
     def test_action_view_project(self):
-        location = self.location
+        location = self.test_location
         project = self.project
         action = location.action_view_project()
         action_domain = action.get("domain")

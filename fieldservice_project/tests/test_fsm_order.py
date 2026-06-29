@@ -13,14 +13,14 @@ class TestFsmOrder(Common):
         cls.FsmOrder = cls.env["fsm.order"]
 
     def test_action_view_order(self):
-        order = self.FsmOrder.create({"location_id": self.location.id})
+        order = self.FsmOrder.create({"location_id": self.test_location.id})
         action = order.action_view_order()
         res_id = action.get("res_id")
         self.assertEqual(res_id, order.id)
 
     def test_onchange_team_id(self):
         project = self.project
-        self.env.user.groups_id += self.env.ref("fieldservice.group_fsm_team")
+        self.env.user.group_ids += self.env.ref("fieldservice.group_fsm_team")
         team_with_project = self.env["fsm.team"].create(
             {"name": "test team", "project_id": project.id}
         )

@@ -1,2 +1,2 @@
 - Patrick Wilson \<<pwilson@pavlovmedia.com>\>
-- Open Source Integrators \<<contact@opensourceintegrators.com>\>
+- [Gray Matter Logic](https://www.graymatterlogic.com)

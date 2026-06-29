@@ -16,7 +16,7 @@ class ProjectTask(models.Model):
         This function returns an action that displays a full FSM Order
         form when creating an FSM Order from a project.
         """
-        action = self.env["ir.actions.actions"]._for_xml_id(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "fieldservice.action_fsm_operation_order"
         )
         # override the context to get rid of the default filtering
