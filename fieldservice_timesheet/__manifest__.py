@@ -11,8 +11,7 @@
     "maintainers": ["max3903"],
     "depends": [
         "hr_timesheet",
-        "project",
-        "fieldservice",
+        "fieldservice_project",
     ],
     "data": [
         "views/fsm_order.xml",
