@@ -3,3 +3,4 @@
 
 from . import test_fsm_stock
 from . import test_fsm_wizard
+from . import test_fsm_order_autovalidate
