@@ -1,0 +1,43 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.fieldservice</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_fsm_order"
+                    groups="fieldservice.group_fsm_user"
+                    type="object"
+                    icon="fa-map"
+                    invisible="not fsm_order_id"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">FSM Order</span>
+                    </div>
+                </button>
+            </div>
+            <field name="partner_ref" position="after">
+                <field name="fsm_order_id" groups="fieldservice.group_fsm_user" />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_purchase_order_list" model="ir.ui.view">
+        <field name="name">fsm.purchase.order.list</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="date_order" />
+                <field name="partner_id" />
+                <field name="user_id" optional="show" />
+                <field name="origin" optional="show" />
+                <field name="amount_total" />
+                <field name="state" />
+                <field name="date_planned" optional="hide" />
+            </list>
+        </field>
+    </record>
+</odoo>

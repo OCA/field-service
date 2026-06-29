@@ -1,0 +1,33 @@
+<odoo>
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form.view.purchase</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_purchases"
+                    groups="purchase.group_purchase_user"
+                    type="object"
+                    icon="fa-credit-card"
+                    invisible="purchase_count == 0"
+                >
+                    <field name="purchase_count" widget="statinfo" string="Purchases" />
+                </button>
+            </div>
+            <page name="execution_page" position="before">
+                <page
+                    string="Purchases"
+                    name="purchase_page"
+                    groups="purchase.group_purchase_user"
+                >
+                    <field
+                        name="purchase_ids"
+                        context="{'default_fsm_order_id': id, 'list_view_ref': 'fieldservice_purchase.fsm_purchase_order_list'}"
+                    />
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
