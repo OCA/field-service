@@ -1,0 +1,23 @@
+<odoo noupdate="1">
+    <record id="order_route_demo_1" model="fsm.order">
+        <field name="location_id" ref="fieldservice.location_1" />
+        <field name="person_id" ref="fieldservice.person_1" />
+        <field name="scheduled_date_start">2026-06-30 08:00:00</field>
+        <field name="dayroute_id" ref="fieldservice_route.dayroute_demo_north" />
+        <field name="description">North route demo order 1</field>
+    </record>
+    <record id="order_route_demo_2" model="fsm.order">
+        <field name="location_id" ref="fieldservice.location_2" />
+        <field name="person_id" ref="fieldservice.person_1" />
+        <field name="scheduled_date_start">2026-06-30 10:00:00</field>
+        <field name="dayroute_id" ref="fieldservice_route.dayroute_demo_north" />
+        <field name="description">North route demo order 2</field>
+    </record>
+    <record id="order_route_demo_3" model="fsm.order">
+        <field name="location_id" ref="fieldservice.location_3" />
+        <field name="person_id" ref="fieldservice.person_2" />
+        <field name="scheduled_date_start">2026-06-30 09:00:00</field>
+        <field name="dayroute_id" ref="fieldservice_route.dayroute_demo_south" />
+        <field name="description">South route demo order 1</field>
+    </record>
+</odoo>

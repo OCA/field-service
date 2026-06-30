@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_route_dayroute_portal_rule" model="ir.rule">
+        <field name="name">FSM Route DayRoutes Entry (portal own)</field>
+        <field name="model_id" ref="model_fsm_route_dayroute" />
+        <field
+            name="domain_force"
+        >[('person_id.partner_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>

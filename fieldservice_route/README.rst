@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ===================
 Field Service Route
 ===================
@@ -13,17 +17,17 @@ Field Service Route
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_route
+    :target: https://github.com/OCA/field-service/tree/19.0/fieldservice_route
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_route
+    :target: https://translation.odoo-community.org/projects/field-service-19-0/field-service-19-0-fieldservice_route
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -45,23 +49,22 @@ Configuration
 
 To use this module, you need to:
 
--  Go to Field Service > Configuration > Stages
--  Define the workflow of your routes by creating new stages whose type
-   is "Route"
--  Go to Field Service > Master Data > Routes
--  Create your routes by setting their name and selecting their
-   territory
+- Go to Field Service > Configuration > Stages
+- Define the workflow of your routes by creating new stages whose type
+  is "Route"
+- Go to Field Service > Master Data > Routes
+- Create your routes by setting their name, worker, days, and capacity
 
 Usage
 =====
 
 To use this module, you need to:
 
--  Go to Field Service
--  Create or select an order
--  Assign it to a worker and schedule it
--  Go to Field Service > Dashboard > Day Routes. A new record has been
-   created.
+- Go to Field Service
+- Create or select an order
+- Assign it to a worker and schedule it
+- Go to Field Service > Dashboard > Day Routes. A new record has been
+  created.
 
 Bug Tracker
 ===========
@@ -69,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_route%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_route%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -79,25 +82,25 @@ Credits
 Authors
 -------
 
-* Open Source Integrators
+* Gray Matter Logic
 
 Contributors
 ------------
 
--  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
--  Nikul Chaudhary <nikul.chaudhary.serpentcs@gmail.com>
--  Freni Patel <fpatel@opensourceintegrators.com>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
 
-   -  Víctor Martínez
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+
+- Nikul Chaudhary <nikul.chaudhary.serpentcs@gmail.com>
+- Freni Patel <fpatel@opensourceintegrators.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
+
+  - Víctor Martínez
 
 Other credits
 -------------
 
-The development of this module has been financially supported by:
 
--  Open Source Integrators <https://opensourceintegrators.com>
--  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainers
 -----------
@@ -120,6 +123,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_route>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_route>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

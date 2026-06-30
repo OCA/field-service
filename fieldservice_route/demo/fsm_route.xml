@@ -1,0 +1,32 @@
+<odoo noupdate="1">
+    <record id="route_demo_north" model="fsm.route">
+        <field name="name">North District Route</field>
+        <field name="fsm_person_id" ref="fieldservice.person_1" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [
+                ref('fieldservice_route.fsm_route_day_0'),
+                ref('fieldservice_route.fsm_route_day_1'),
+                ref('fieldservice_route.fsm_route_day_2'),
+                ref('fieldservice_route.fsm_route_day_3'),
+                ref('fieldservice_route.fsm_route_day_4'),
+            ])]"
+        />
+    </record>
+    <record id="route_demo_south" model="fsm.route">
+        <field name="name">South District Route</field>
+        <field name="fsm_person_id" ref="fieldservice.person_2" />
+        <field name="max_order">5</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [
+                ref('fieldservice_route.fsm_route_day_0'),
+                ref('fieldservice_route.fsm_route_day_1'),
+                ref('fieldservice_route.fsm_route_day_2'),
+                ref('fieldservice_route.fsm_route_day_3'),
+                ref('fieldservice_route.fsm_route_day_4'),
+            ])]"
+        />
+    </record>
+</odoo>
