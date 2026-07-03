@@ -17,11 +17,17 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #. module: fieldservice_isp_account
+#: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_order_form_isp_account
+msgid "Accounting"
+msgstr ""
+
+#. module: fieldservice_isp_account
 #: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order__account_stage
 msgid "Accounting Stage"
 msgstr "Fase contabilità"
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Contractor Costs' is filled in"
@@ -29,6 +35,7 @@ msgstr ""
 "Non si può impostare a Completo finché 'Costi terzista' non è compilato"
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "Cannot move to Complete until 'Employee Timesheets' is filled in"
@@ -139,13 +146,6 @@ msgid "Fully Invoiced"
 msgstr "Completamente fatturato"
 
 #. module: fieldservice_isp_account
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_overtime
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_regular_time
-#: model:product.template,uom_name:fieldservice_isp_account.field_service_travel_time
-msgid "Hours"
-msgstr "Ore"
-
-#. module: fieldservice_isp_account
 #: model:ir.model.fields,field_description:fieldservice_isp_account.field_fsm_order_cost__id
 msgid "ID"
 msgstr "ID"
@@ -228,6 +228,7 @@ msgid "Service Orders"
 msgstr "Ordini servizio"
 
 #. module: fieldservice_isp_account
+#. odoo-python
 #: code:addons/fieldservice_isp_account/models/fsm_order.py:0
 #, python-format
 msgid "The worker assigned to this order is not a supplier"
@@ -259,3 +260,6 @@ msgstr "Prezzo unitario"
 #: model_terms:ir.ui.view,arch_db:fieldservice_isp_account.fsm_person_form_isp_account
 msgid "Vendor Bills"
 msgstr "Fatture fornitore"
+
+#~ msgid "Hours"
+#~ msgstr "Ore"
