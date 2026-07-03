@@ -38,3 +38,34 @@ class TestFSMOrderRunAction(TransactionCase):
         tag = capture.records
         self.assertEqual(1, len(tag))
         self.assertEqual("New test tag", tag.name)
+
+    def test_stage_server_action_overrides_stale_active_ids(self):
+        action = self.env["ir.actions.server"].create(
+            {
+                "name": "Check active FSM order",
+                "model_id": self.env["ir.model"]._get_id("fsm.order"),
+                "state": "code",
+                "code": "record.message_post(body='Stage action executed')",
+            }
+        )
+        self.stage2.action_id = action
+        order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "stage_id": self.stage1.id,
+            }
+        )
+        order.with_context(
+            active_model="fsm.order",
+            active_id=order.id,
+            active_ids=[999999],
+        ).write({"stage_id": self.stage2.id})
+        self.assertTrue(
+            self.env["mail.message"].search(
+                [
+                    ("model", "=", "fsm.order"),
+                    ("res_id", "=", order.id),
+                    ("body", "ilike", "Stage action executed"),
+                ]
+            )
+        )
