@@ -376,6 +376,16 @@ msgid "Automatically post bills for this trusted partner"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__receipt_reminder_email
+msgid ""
+"Automatically send a confirmation email to the vendor X days before the "
+"expected receipt date, asking him to confirm the exact date."
+msgstr ""
+"Enviar automaticamente um e-mail de confirmação ao fornecedor X dias antes "
+"da data prevista de recebimento, solicitando a confirmação da data exata."
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__available_invoice_template_pdf_report_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__available_invoice_template_pdf_report_ids
 msgid "Available Invoice Template Pdf Report"
@@ -454,6 +464,12 @@ msgstr "Filial"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__branch_manager_id
 msgid "Branch Manager"
 msgstr "Gerente de Filial"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__buyer_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__buyer_id
+msgid "Buyer"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_crm
@@ -978,6 +994,12 @@ msgstr "Clientes"
 #: model:ir.ui.menu,name:fieldservice.dashboard
 msgid "Dashboard"
 msgstr "Painel"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Days Before Receipt"
+msgstr "Dias antes do recebimento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
@@ -2204,6 +2226,12 @@ msgid "Message Delivery error"
 msgstr "Erro de entrega de Mensagem"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
+msgid "Message for Purchase Order"
+msgstr "Mensagem para Ordem de Compra"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
 msgid "Message for Sales Order"
@@ -2344,6 +2372,14 @@ msgstr "Observações"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de ações"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Number of days to send reminder email before the promised receipt date"
+msgstr ""
+"Número de dias para enviar e-mail de lembrete com data de compromisso de "
+"recebimento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
@@ -2727,6 +2763,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Purchase Field Services"
 msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
+msgid "Purchase Order Count"
+msgstr "Contagem de Ordens de Compra"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
+msgid "Receipt Reminder"
+msgstr "Lembrete de recebimento"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -3138,6 +3186,12 @@ msgid "Sub-Locations"
 msgstr "Sub-Locais"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "Supplier Currency"
+msgstr "Moeda do Fornecedor"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
 msgid "Supplier Rank"
@@ -3297,6 +3351,12 @@ msgstr "O trabalhador já está vinculado a este local."
 msgid ""
 "There can be several users related to the same partner. When a single user "
 "is needed, this field attempts to find the most appropriate one."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "This currency will be used for purchases from the current partner"
 msgstr ""
 
 #. module: fieldservice
@@ -4003,19 +4063,8 @@ msgstr ""
 #~ msgid "All relations with current partner"
 #~ msgstr "Todas as relações com o parceiro atual"
 
-#~ msgid ""
-#~ "Automatically send a confirmation email to the vendor X days before the "
-#~ "expected receipt date, asking him to confirm the exact date."
-#~ msgstr ""
-#~ "Enviar automaticamente um e-mail de confirmação ao fornecedor X dias "
-#~ "antes da data prevista de recebimento, solicitando a confirmação da data "
-#~ "exata."
-
 #~ msgid "Count Payment Token"
 #~ msgstr "Contagem de Token de Pagamento"
-
-#~ msgid "Days Before Receipt"
-#~ msgstr "Dias antes do recebimento"
 
 #~ msgid "Default delivery method used in sales orders."
 #~ msgstr "Método de entrega padão usado nos pedidos de venda."
@@ -4045,15 +4094,6 @@ msgstr ""
 #~ "Os endereços de Entrega & Faturamento são usados em pedidos de vendas. "
 #~ "Endereços privados são visíveis apenas a usuários autorizados."
 
-#~ msgid "Message for Purchase Order"
-#~ msgstr "Mensagem para Ordem de Compra"
-
-#~ msgid ""
-#~ "Number of days to send reminder email before the promised receipt date"
-#~ msgstr ""
-#~ "Número de dias para enviar e-mail de lembrete com data de compromisso de "
-#~ "recebimento"
-
 #~ msgid "Number of unread messages"
 #~ msgstr "Número de mensagens não lidas"
 
@@ -4073,12 +4113,6 @@ msgstr ""
 #~ msgid "Purchase Order"
 #~ msgstr "Ordem de Compra"
 
-#~ msgid "Purchase Order Count"
-#~ msgstr "Contagem de Ordens de Compra"
-
-#~ msgid "Receipt Reminder"
-#~ msgstr "Lembrete de recebimento"
-
 #~ msgid "Relation Count"
 #~ msgstr "Contagem de Relações"
 
@@ -4087,9 +4121,6 @@ msgstr ""
 
 #~ msgid "Scheduled duration"
 #~ msgstr "Duração programada"
-
-#~ msgid "Supplier Currency"
-#~ msgstr "Moeda do Fornecedor"
 
 #~ msgid "The full name of the country."
 #~ msgstr "O nome completo do país."
