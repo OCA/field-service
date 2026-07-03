@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="purchase_order_form_view_subcontracting" model="ir.ui.view">
+        <field name="name">purchase.order.form.subcontracting</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_fsm_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                    invisible="fsm_order_count == 0"
+                >
+                    <field name="fsm_order_count" widget="statinfo" string="FSO" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

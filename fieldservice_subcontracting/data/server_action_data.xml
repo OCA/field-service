@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Create Subcontract PO on stage transition -->
+    <record id="action_create_subcontract_po" model="ir.actions.server">
+        <field name="name">FSO: Create Subcontract PO</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">(record or records)._create_subcontract_po()</field>
+    </record>
+
+    <!-- Update PO delivered qty on FSO Done -->
+    <record id="action_update_subcontract_po_qty" model="ir.actions.server">
+        <field name="name">FSO: Update Subcontract PO Delivered Qty</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="state">code</field>
+        <field name="code">(record or records)._update_subcontract_po_qty()</field>
+    </record>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_reassign_confirm_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.reassign.confirm.form</field>
+        <field name="model">fsm.order.reassign.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Worker Reassignment">
+                <group>
+                    <group>
+                        <field name="fsm_order_id" />
+                        <field name="purchase_order_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="new_person_id" />
+                    </group>
+                </group>
+                <separator />
+                <group>
+                    <field
+                        name="warning_message"
+                        widget="text"
+                        readonly="1"
+                        nolabel="1"
+                        colspan="2"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        string="Cancel POs and Reassign"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_order_reassign_confirm" model="ir.actions.act_window">
+        <field name="name">Confirm Worker Reassignment</field>
+        <field name="res_model">fsm.order.reassign.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

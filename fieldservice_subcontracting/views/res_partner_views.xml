@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_partner_form_view_subcontracting" model="ir.ui.view">
+        <field name="name">res.partner.form.subcontracting</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="fieldservice.fsm_partner_fields" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fsm_person']" position="after">
+                <field name="is_fsm_subcontractor" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
