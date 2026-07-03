@@ -18,10 +18,19 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 
 #. module: fieldservice_stage_server_action
-#: model:ir.actions.server,name:fieldservice_stage_server_action.fsm_order_parent_canceled
-#: model:ir.actions.server,name:fieldservice_stage_server_action.fsm_order_parent_completed
-msgid "Execute Existing Actions"
+#: model:ir.model.fields,field_description:fieldservice_stage_server_action.field_fsm_stage__display_name
+msgid "Display Name"
 msgstr ""
+
+#. module: fieldservice_stage_server_action
+#: model:ir.actions.server,name:fieldservice_stage_server_action.fsm_order_parent_canceled
+msgid "FSM Order Canceled Parent"
+msgstr "Übergeordnetes hat FSM-Auftrag storniert"
+
+#. module: fieldservice_stage_server_action
+#: model:ir.actions.server,name:fieldservice_stage_server_action.fsm_order_parent_completed
+msgid "FSM Order Completed Parent"
+msgstr "Übergeordnetes schliesst FSM-Auftrag ab"
 
 #. module: fieldservice_stage_server_action
 #: model:base.automation,name:fieldservice_stage_server_action.fsm_order_email_sender
@@ -39,12 +48,17 @@ msgid "Field Service Stage"
 msgstr "Field Service Stufe"
 
 #. module: fieldservice_stage_server_action
+#: model:ir.model.fields,field_description:fieldservice_stage_server_action.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_stage_server_action.field_fsm_stage__id
+msgid "ID"
+msgstr ""
+
+#. module: fieldservice_stage_server_action
+#: model:ir.model.fields,field_description:fieldservice_stage_server_action.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_stage_server_action
 #: model:ir.model.fields,field_description:fieldservice_stage_server_action.field_fsm_stage__action_id
 msgid "Server Action"
 msgstr "Serveraktion"
-
-#~ msgid "FSM Order Canceled Parent"
-#~ msgstr "Übergeordnetes hat FSM-Auftrag storniert"
-
-#~ msgid "FSM Order Completed Parent"
-#~ msgstr "Übergeordnetes schliesst FSM-Auftrag ab"
