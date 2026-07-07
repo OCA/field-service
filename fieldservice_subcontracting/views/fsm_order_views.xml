@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_form_view_subcontracting" model="ir.ui.view">
+        <field name="name">fsm.order.form.subcontracting</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_open_reassign_confirm"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-exchange"
+                    invisible="not reassign_worker"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Reassign</span>
+                        <span class="o_stat_text">Worker</span>
+                    </div>
+                </button>
+                <button
+                    name="action_view_purchase_order"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    invisible="purchase_order_count == 0"
+                >
+                    <field
+                        name="purchase_order_count"
+                        widget="statinfo"
+                        string="Purchase Order"
+                    />
+                </button>
+            </xpath>
+            <!-- Hidden fields for Purchase Order smart buttons -->
+            <xpath expr="//field[@name='person_id']" position="after">
+                <field name="purchase_order_ids" invisible="1" />
+                <field name="reassign_worker" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

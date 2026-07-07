@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_cancel_confirm_form_view" model="ir.ui.view">
+        <field name="name">fsm.order.cancel.confirm.form</field>
+        <field name="model">fsm.order.cancel.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Field Service Order">
+                <group>
+                    <field name="fsm_order_id" />
+                    <field name="purchase_order_ids" widget="many2many_tags" />
+                </group>
+                <group>
+                    <field
+                        name="warning_message"
+                        widget="text"
+                        readonly="1"
+                        nolabel="1"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_cancel_fsm_and_purchase_orders"
+                        string="Cancel Order and Purchase Orders"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_cancel_fsm_only"
+                        string="Cancel Order Only"
+                        type="object"
+                        class="btn-secondary"
+                    />
+                    <button string="Discard" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
