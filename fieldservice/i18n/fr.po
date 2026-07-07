@@ -373,6 +373,14 @@ msgid "Automatically post bills for this trusted partner"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__receipt_reminder_email
+msgid ""
+"Automatically send a confirmation email to the vendor X days before the "
+"expected receipt date, asking him to confirm the exact date."
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1920
 msgid "Avatar"
@@ -457,6 +465,12 @@ msgstr "Agence"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__branch_manager_id
 msgid "Branch Manager"
 msgstr "Directeur d'agence"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__buyer_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__buyer_id
+msgid "Buyer"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_crm
@@ -969,6 +983,12 @@ msgstr "Clients"
 #: model:ir.ui.menu,name:fieldservice.dashboard
 msgid "Dashboard"
 msgstr "Tableau de bord"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Days Before Receipt"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
@@ -2319,6 +2339,12 @@ msgid "Message for Invoice"
 msgstr "Message pour la facturation"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
+msgid "Message for Purchase Order"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
 msgid "Message for Sales Order"
@@ -2463,6 +2489,12 @@ msgid "Number of Actions"
 msgstr "Nombre d'actions"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Number of days to send reminder email before the promised receipt date"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error_counter
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error_counter
@@ -2493,6 +2525,12 @@ msgstr "Nombre de messages avec erreur de livraison"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_id
 msgid "Office Hours"
 msgstr "Heures de bureau"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
+msgid "On-Time Delivery Rate"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2658,6 +2696,15 @@ msgstr "Commandes à l'agenda"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Others"
 msgstr "Autres"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__on_time_rate
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__on_time_rate
+msgid ""
+"Over the past x days; the number of products received on time divided by the "
+"number of ordered products.x is either the System Parameter "
+"purchase_stock.on_time_delivery_days or the default 365"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
@@ -2885,12 +2932,36 @@ msgid "Purchase Field Services"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
+msgid "Purchase Lines"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
+msgid "Purchase Order Count"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
+msgid "Purchase Order Warning"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__rating_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__rating_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__rating_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__rating_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__rating_ids
 msgid "Ratings"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
+msgid "Receipt Reminder"
 msgstr ""
 
 #. module: fieldservice
@@ -3114,9 +3185,11 @@ msgstr ""
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__invoice_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__picking_warn
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__purchase_warn
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__sale_warn
 msgid ""
 "Selecting the \"Warning\" option will notify user with the message, "
@@ -3348,6 +3421,12 @@ msgid "Sub-Locations"
 msgstr "Sites secondaires"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "Supplier Currency"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
 msgid "Supplier Rank"
@@ -3509,6 +3588,14 @@ msgid ""
 msgstr ""
 "Ce compte sera utilisé à la place du compte par défaut comme compte débiteur "
 "pour le partenaire actuel"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid ""
+"This currency will be used, instead of the default one, for purchases from "
+"the current partner"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
