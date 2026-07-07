@@ -3365,18 +3365,6 @@ msgstr ""
 "Você pode usar este campo para uma pesquisa rápida."
 
 #. module: fieldservice
-#: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
-#: model:ir.model.fields,help:fieldservice.field_fsm_person__vat
-msgid ""
-"The Tax Identification Number. Values here will be validated based on the "
-"country format. You can use '/' to indicate that the partner is not subject "
-"to tax."
-msgstr ""
-"O Número de Identificação Fiscal. Os valores aqui serão validados com base "
-"no formato do país. Você pode usar '/' para indicar que o parceiro não está "
-"sujeito a impostos."
-
-#. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_position_id
 msgid ""
@@ -3738,6 +3726,12 @@ msgid "You can archive the contact"
 msgstr "Você pode arquivar o contato"
 
 #. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__vat
+msgid "You can use '/' to indicate that the customer has no Tax ID."
+msgstr ""
+
+#. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "You cannot delete this order."
@@ -3801,6 +3795,15 @@ msgstr "modelo"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "x"
 msgstr ""
+
+#~ msgid ""
+#~ "The Tax Identification Number. Values here will be validated based on the "
+#~ "country format. You can use '/' to indicate that the partner is not "
+#~ "subject to tax."
+#~ msgstr ""
+#~ "O Número de Identificação Fiscal. Os valores aqui serão validados com "
+#~ "base no formato do país. Você pode usar '/' para indicar que o parceiro "
+#~ "não está sujeito a impostos."
 
 #~ msgid "Check this box if this contact is an Employee."
 #~ msgstr "Marque esta caixa se este contato for um funcionário."
