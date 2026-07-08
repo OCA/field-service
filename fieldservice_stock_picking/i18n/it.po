@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2026-06-08 14:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,15 +20,24 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_order_stock_line__state
 msgid ""
 "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
-"* Nuovo: quando il movimento di magazzino viene creato e non è ancora confermato.\n"
-"* In attesa di altro movimento: questo stato può essere visualizzato quando un movimento è in attesa di un altro, ad esempio in un flusso concatenato.\n"
-"* In attesa di disponibilità: questo stato viene raggiunto quando la risoluzione dell'approvvigionamento non è immediata. Può richiedere l'esecuzione dell'utilità di pianificazione, la fabbricazione di un componente...\n"
-"* Disponibile: quando i prodotti sono prenotati, viene impostato su 'Disponibile'.\n"
+"* Nuovo: quando il movimento di magazzino viene creato e non è ancora "
+"confermato.\n"
+"* In attesa di altro movimento: questo stato può essere visualizzato quando "
+"un movimento è in attesa di un altro, ad esempio in un flusso concatenato.\n"
+"* In attesa di disponibilità: questo stato viene raggiunto quando la "
+"risoluzione dell'approvvigionamento non è immediata. Può richiedere "
+"l'esecuzione dell'utilità di pianificazione, la fabbricazione di un "
+"componente...\n"
+"* Disponibile: quando i prodotti sono prenotati, viene impostato su "
+"'Disponibile'.\n"
 "* Completato: quando la spedizione è elaborata, lo stato è 'Completato'."
 
 #. module: fieldservice_stock_picking
@@ -67,6 +77,12 @@ msgid "Field Service Order Material Line"
 msgstr "Riga materiale ordine assistenza sul campo"
 
 #. module: fieldservice_stock_picking
+#: model:ir.model,name:fieldservice_stock_picking.model_fsm_template
+#, fuzzy
+msgid "Field Service Order Template"
+msgstr "Ordine assistenza sul campo"
+
+#. module: fieldservice_stock_picking
 #: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_order_stock_line__id
 msgid "ID"
 msgstr "ID"
@@ -78,6 +94,7 @@ msgstr "In entrata"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_order__incoming_picking_type_id
+#: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_template__incoming_picking_type_id
 msgid "Incoming Operation Type"
 msgstr "Tipo di operazione in entrata"
 
@@ -103,10 +120,32 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: fieldservice_stock_picking
+#: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_template__incoming_picking_type_id
+#, fuzzy
+msgid ""
+"Operation type used by default on orders of this template to create the "
+"transfer that receives materials back from the field service location. When "
+"empty, the warehouse default is used."
+msgstr ""
+"Tipo di operazione utilizzato per creare il trasferimento che riceve i "
+"materiali di ritorno dalla località di assistenza sul campo."
+
+#. module: fieldservice_stock_picking
+#: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_template__outgoing_picking_type_id
+#, fuzzy
+msgid ""
+"Operation type used by default on orders of this template to create the "
+"transfer that sends materials out to the field service location. When empty, "
+"the warehouse default is used."
+msgstr ""
+"Tipo di operazione utilizzato per creare il trasferimento che invia i "
+"materiali alla località di assistenza sul campo."
+
+#. module: fieldservice_stock_picking
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_order__incoming_picking_type_id
 msgid ""
-"Operation type used to create the transfer that receives materials back from"
-" the field service location."
+"Operation type used to create the transfer that receives materials back from "
+"the field service location."
 msgstr ""
 "Tipo di operazione utilizzato per creare il trasferimento che riceve i "
 "materiali di ritorno dalla località di assistenza sul campo."
@@ -127,6 +166,7 @@ msgstr "In uscita"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_order__outgoing_picking_type_id
+#: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_template__outgoing_picking_type_id
 msgid "Outgoing Operation Type"
 msgstr "Tipo di operazione in uscita"
 
@@ -172,8 +212,8 @@ msgstr "Movimento di magazzino"
 #: code:addons/fieldservice_stock_picking/models/fsm_order.py:0
 #, python-format
 msgid ""
-"There is nothing to transfer. Add outgoing or incoming products that are not"
-" part of a transfer yet."
+"There is nothing to transfer. Add outgoing or incoming products that are not "
+"part of a transfer yet."
 msgstr ""
 "Non c'è nulla da trasferire. Aggiungere prodotti in uscita o in entrata che "
 "non fanno ancora parte di un trasferimento."
