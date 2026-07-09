@@ -8,9 +8,8 @@ from odoo import api, fields, models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    @api.depends("date_start", "date_end")
+    @api.depends("date_start", "date_end", "fsm_stage_history_ids")
     def _compute_duration(self):
-        res = super()._compute_duration()
         for rec in self:
             if rec.fsm_stage_history_ids and rec.date_end:
                 stage_rec = self.env["fsm.stage.history"].search(
@@ -19,7 +18,6 @@ class FSMOrder(models.Model):
                 rec.duration = stage_rec.total_duration
             elif not rec.date_end:
                 rec.duration = 0.0
-        return res
 
     @api.depends("sale_id.transaction_ids.state")
     def _compute_payment_state(self):
@@ -40,7 +38,7 @@ class FSMOrder(models.Model):
 
     duration = fields.Float(
         string="Actual duration",
-        compute=_compute_duration,
+        compute="_compute_duration",
         help="Actual duration in hours",
         store=True,
     )
@@ -69,6 +67,7 @@ class FSMOrder(models.Model):
                 )
             )
             return attachment.id
+        return False
 
     @api.model
     def generate_so_payment_link(self, fsm_order_id):
@@ -91,7 +90,6 @@ class FSMOrder(models.Model):
                     "amount": order.sale_id.amount_total,
                     "currency_id": order.sale_id.currency_id.id,
                     "partner_id": order.sale_id.partner_id.id,
-                    "description": order.sale_id.name,
                 }
             )
         )

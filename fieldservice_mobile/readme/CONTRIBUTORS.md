@@ -1,0 +1,6 @@
+- Wolfgang Hall \<<whall@graymatterlogic.com>\>
+- Sandip Mangukiya \<<smangukiya@graymatterlogic.com>\>
+- Ammar Officewala \<<aofficewala@graymatterlogic.com>\>
+- Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>

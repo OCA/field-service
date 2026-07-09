@@ -1,7 +1,7 @@
 # Copyright (C) 2022 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -34,51 +34,47 @@ class FSMMobileFeatureMapping(models.Model):
             record.display_name = record.name
 
     def set_to_draft(self):
-        """Set to draft state."""
         for rec in self:
             rec.state = "draft"
 
     def set_to_active(self):
-        """Set to active state."""
         record = self.search([("state", "=", "active")])
         if record:
             raise UserError(
-                _("Active record is already exits in FSM Mobile Feature Mapping!")
+                self.env._(
+                    "Active record is already exits in FSM Mobile Feature Mapping!"
+                )
             )
         for rec in self:
             rec.state = "active"
 
-    def unlink(self):
-        """Override unlink method for can't delete active FSM Mobile Feature Mapping."""
-        for rec in self:
-            if rec.state == "active":
-                raise UserError(
-                    _(
-                        "You can't delete FSM Mobile Feature Mapping which is in"
-                        " an active state!"
-                    )
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_not_active(self):
+        if any(rec.state == "active" for rec in self):
+            raise UserError(
+                self.env._(
+                    "You can't delete FSM Mobile Feature Mapping which is in"
+                    " an active state!"
                 )
-        return super().unlink()
+            )
 
     @api.model
     def get_fsm_mobile_feature_mapping_values(self, user_id):
-        fsm_feature_mapping_obj = self.env["fsm.mobile.feature.mapping"]
-        fsm_feature_mapping_rec = fsm_feature_mapping_obj.search(
+        user = self.env["res.users"].browse(user_id)
+        fsm_feature_mapping_rec = self.env["fsm.mobile.feature.mapping"].search(
             [("state", "=", "active")], limit=1
         )
         params_dict = {}
         feature_mapping_list = []
         installed_modules_list = []
+        user_groups = user.group_ids
         for f_line_rec in fsm_feature_mapping_rec.feature_line_ids:
-            group_ids = f_line_rec.group_ids.sudo().filtered(
-                lambda line: user_id in line.users.ids
-            )
-            if group_ids:
+            if f_line_rec.group_ids & user_groups:
                 feature_mapping_list.append(
                     {
                         "id": f_line_rec.id,
                         "name": f_line_rec.name,
-                        "group_ids": group_ids.ids,
+                        "group_ids": (f_line_rec.group_ids & user_groups).ids,
                         "code": f_line_rec.code,
                     }
                 )

@@ -1,12 +1,11 @@
 # Copyright (C) 2020 Open Source Integrators
 # Copyright (C) 2020 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 {
     "name": "Field Service - Mobile",
     "summary": "Field Service Mobile Backend Support.",
     "license": "AGPL-3",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -18,6 +17,7 @@
         "fieldservice_vehicle",
         "fieldservice_sale",
         "calendar",
+        "payment",
     ],
     "data": [
         "security/ir_rule.xml",
@@ -34,5 +34,5 @@
         "views/mobile_feature_line.xml",
     ],
     "development_status": "Beta",
-    "maintainers": ["wolfhall"],
+    "maintainers": ["wolfhall", "max3903"],
 }
