@@ -1608,10 +1608,15 @@ msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_sms_error
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Si cette case est cochée, certains messages présentent une erreur de "
@@ -2970,6 +2975,15 @@ msgid "Rtc Session"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur d'envoi de SMS"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
@@ -3828,9 +3842,6 @@ msgstr ""
 #~ "numéro de mobile. Permet de distinguer quel numéro est sur liste noire "
 #~ "lorsqu'il y a à la fois un champ mobile et un champ téléphone dans un "
 #~ "modèle."
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Erreur d'envoi de SMS"
 
 #~ msgid "Title"
 #~ msgstr "Titre"
