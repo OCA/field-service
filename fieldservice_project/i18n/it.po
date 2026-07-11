@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-17 22:59+0000\n"
+"PO-Revision-Date: 2026-07-11 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: fieldservice_project
 #: model:ir.model.fields,field_description:fieldservice_project.field_fsm_location__project_count
@@ -38,7 +38,7 @@ msgstr "Crea progetto"
 #: model:ir.model.fields,field_description:fieldservice_project.field_project_project__display_name
 #: model:ir.model.fields,field_description:fieldservice_project.field_project_task__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: fieldservice_project
 #: model:ir.model.fields,field_description:fieldservice_project.field_project_project__fsm_location_id
@@ -67,12 +67,12 @@ msgstr "Squadra assistenza sul campo"
 #: model:ir.model.fields,field_description:fieldservice_project.field_project_project__id
 #: model:ir.model.fields,field_description:fieldservice_project.field_project_task__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: fieldservice_project
 #: model:ir.model.fields,field_description:fieldservice_project.field_fsm_order__display_name
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: fieldservice_project
 #: model:ir.model,name:fieldservice_project.model_project_project
@@ -120,6 +120,17 @@ msgid ""
 "        Make sure to use the right format and order e.g. Improve the "
 "configuration screen 5h #feature #v16 @Mitchell !"
 msgstr ""
+"Usare queste parole chiave nel titolo per impostare nuove attività:\n"
+"\n"
+"        30h: assegna 30 ore all'attività\n"
+"        #tag: imposta i tag sull'attività\n"
+"        @user: assegna l'attività a un utente\n"
+"        !: imposta l'attività con priorità media\n"
+"        !!: imposta l'attività con priorità alta\n"
+"        !!!: imposta l'attività con priorità urgente\n"
+"\n"
+"        Assicurarsi di utilizzare il formato e l'ordine corretti, es. "
+"migliora la schermata di configurazione 5h #feature #v16 @Mitchell !"
 
 #. module: fieldservice_project
 #: model_terms:ir.ui.view,arch_db:fieldservice_project.fieldservice_project_task_view_form
