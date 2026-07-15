@@ -1,7 +1,7 @@
 # Copyright (C) 2019, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -53,11 +53,10 @@ class FSMOrder(models.Model):
         for activity in self.order_activity_ids:
             if activity.required and activity.state == "todo":
                 raise ValidationError(
-                    _(
-                        "You must complete activity '%s' before \
-                    completing this order."
+                    self.env._(
+                        "You must complete activity '%s' before completing this order.",
+                        activity.name,
                     )
-                    % activity.name
                 )
         self.activity_ids._action_done()
         return res

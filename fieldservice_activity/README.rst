@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ======================
 Field Service Activity
 ======================
@@ -13,17 +17,17 @@ Field Service Activity
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_activity
+    :target: https://github.com/OCA/field-service/tree/19.0/fieldservice_activity
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_activity
+    :target: https://translation.odoo-community.org/projects/field-service-19-0/field-service-19-0-fieldservice_activity
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -44,7 +48,8 @@ Configuration
 
 To use this module, you need to:
 
--  Go to Field Service > Configuration > Manage Order Activities
+1. Go to **Field Service > Configuration > Settings**.
+2. Activate **Manage Order Templates** and save.
 
 Usage
 =====
@@ -52,9 +57,9 @@ Usage
 Activities in a FSM Order
 -------------------------
 
--  Go to **Field Service** application.
--  Create or select an FSM Order.
--  Under the tab *Activities"*, add as many *Activities* as needed
+1. Go to the **Field Service** application.
+2. Create or select an FSM Order.
+3. Under the **Activities** tab, add as many activities as needed.
 
 `FSM Order Activities
 Tab <../static/description/fsm_order_activity_tab.png>`__
@@ -62,21 +67,20 @@ Tab <../static/description/fsm_order_activity_tab.png>`__
 Activities in a FSM Order Template
 ----------------------------------
 
--  As a user with Setting access, go to *Field Service > Configuration >
-   Settings*.
-
--  Activate the *Manage Order Templates* feature and **Save**.
+1. As a user with Settings access, go to **Field Service > Configuration
+   > Settings**.
+2. Activate **Manage Order Templates** and save.
 
 `Field Service Settings Manage
 Templates <../static/description/field_service_settings_manage_templates.png>`__
 
--  As a Field Service User, go to *Field Service > Master Data >
-   Templates*.
+3. As a Field Service User, go to **Field Service > Master Data >
+   Templates**.
 
 `Field Service
 Templates <../static/description/field_service_template.png>`__
 
--  Under the new *Activities* tab, create or add activities.
+4. Under the **Activities** tab, create or add activities.
 
 `Field Service Template
 Activities <../static/description/field_service_template_activities.png>`__
@@ -84,11 +88,10 @@ Activities <../static/description/field_service_template_activities.png>`__
 Using a template with activities for a FSM Order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  From the form view of a FSM Order, choose the template you created
+1. From the form view of an FSM Order, choose the template you created
    the activities for.
-
--  Under the tab *Activities*, you can noticed that the template
-   activities have been copied.
+2. Under the **Activities** tab, the template activities are copied onto
+   the order.
 
 Bug Tracker
 ===========
@@ -96,7 +99,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_activity%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_activity%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -111,24 +114,28 @@ Authors
 Contributors
 ------------
 
--  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+- Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
 
--  Steve Campbell <scampbells@opensourceintegrators.com>
+- Steve Campbell <scampbell@graymatterlogic.com>
 
--  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+- Bhavesh Odedra <bodedra@graymatterlogic.com>
 
--  Freni Patel <fpatel@opensourceintegrators.com>
+- Freni Patel <fpatel@graymatterlogic.com>
 
--  `Binhex Systems Solutions <https://binhex.cloud>`__:
+- `Binhex Systems Solutions <https://binhex.cloud>`__:
 
-   -  Deriman Alonso <d.alonso@binhex.cloud>
+  - Deriman Alonso <d.alonso@binhex.cloud>
+
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Open Source Integrators <https://opensourceintegrators.com>
+- Gray Matter Logic <https://www.graymatterlogic.com>
 
 Maintainers
 -----------
@@ -154,6 +161,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-max3903| |maintainer-osi-scampbell| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_activity>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_activity>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
