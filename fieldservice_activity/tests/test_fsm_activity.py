@@ -1,36 +1,39 @@
 # Copyright (C) 2019, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import datetime
 
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMActivity(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Order = self.env["fsm.order"]
-        self.test_location = self.env.ref("fieldservice.test_location")
-        self.Activity = self.env["fsm.activity"]
-        self.template_obj = self.env["fsm.template"]
-        self.activty_type = self.env["mail.activity.type"].create(
+class TestFSMActivity(FSMCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.Order = cls.env["fsm.order"]
+        cls.Activity = cls.env["fsm.activity"]
+        cls.template_obj = cls.env["fsm.template"]
+        cls.activty_type = cls.env["mail.activity.type"].create(
             {"name": "Meeting", "category": "phonecall"}
         )
-        self.user_employee = self.env["res.users"].create(
+        cls.user_employee = cls.env["res.users"].create(
             {
                 "name": "Ernest Employee",
                 "login": "emp",
                 "email": "e.e@example.com",
                 "signature": "--\nErnest",
                 "notification_type": "inbox",
-                "groups_id": [
+                "group_ids": [
                     (
                         6,
                         0,
                         [
-                            self.env.ref("base.group_user").id,
-                            self.env.ref("base.group_partner_manager").id,
+                            cls.env.ref("base.group_user").id,
+                            cls.env.ref("base.group_partner_manager").id,
                         ],
                     )
                 ],
@@ -91,9 +94,7 @@ class TestFSMActivity(TransactionCase):
         self.assertEqual(order.order_activity_ids[1].state, "cancel")
 
         # As per FSM order needs, end date may not be set
-        # stop tracking validation error
-        if not order.date_end:
-            order.date_end = datetime.now()
+        order.date_end = datetime.now()
 
         # Test required Activity
         with self.assertRaises(ValidationError):
@@ -141,3 +142,44 @@ class TestFSMActivity(TransactionCase):
         self.assertNotEqual(
             self.fso.order_activity_ids.ids, self.fso.template_id.temp_activity_ids.ids
         )
+        self.assertEqual(len(self.fso.order_activity_ids), 1)
+        self.assertEqual(self.fso.order_activity_ids.name, "Activity new")
+        self.assertTrue(self.fso.order_activity_ids.required)
+
+    def test_compute_order_activity_ids_without_template(self):
+        """Compute should leave activities unchanged when no template is set."""
+        order = self.Order.create({"location_id": self.test_location.id})
+        self.Activity.create(
+            self.get_activity_vals("Manual Activity", False, "M1", order.id)
+        )
+        order._compute_order_activity_ids()
+        self.assertEqual(len(order.order_activity_ids), 1)
+        self.assertEqual(order.order_activity_ids.name, "Manual Activity")
+
+    def test_create_with_template_copies_activities(self):
+        """create() should call onchange and keep template-driven activities."""
+        template = self.template_obj.create(
+            {
+                "name": "Create template",
+                "temp_activity_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "From create",
+                            "required": False,
+                            "ref": "C1",
+                            "state": "todo",
+                        },
+                    )
+                ],
+            }
+        )
+        order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "template_id": template.id,
+            }
+        )
+        self.assertEqual(len(order.order_activity_ids), 1)
+        self.assertEqual(order.order_activity_ids.name, "From create")
