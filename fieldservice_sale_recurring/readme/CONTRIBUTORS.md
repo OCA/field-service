@@ -6,3 +6,5 @@
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
 - Italo LOPES \<<italo.lopes@camptocamp.com>\>
+- CIT Services \<<cit-services.eu>\>
+- Prayag \<<prayag.k@cit-services.eu>\>

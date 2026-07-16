@@ -13,21 +13,21 @@ class SaleOrder(models.Model):
         compute="_compute_fsm_recurring_ids",
         string="Field Service Recurring orders associated to this sale",
     )
-    fsm_recurring_count = fields.Float(
+    fsm_recurring_count = fields.Integer(
         string="FSM Recurring Orders", compute="_compute_fsm_recurring_ids"
     )
 
-    @api.depends("order_line.product_id")
+    @api.depends("order_line.fsm_recurring_id")
     def _compute_fsm_recurring_ids(self):
         for order in self:
-            order.fsm_recurring_ids = self.env["fsm.recurring"].search(
-                [("sale_line_id", "in", order.order_line.ids)]
-            )
+            order.fsm_recurring_ids = order.order_line.fsm_recurring_id
             order.fsm_recurring_count = len(order.fsm_recurring_ids)
 
     def action_view_fsm_recurring(self):
         fsm_recurrings = self.mapped("fsm_recurring_ids")
-        action = self.env.ref("fieldservice_recurring.action_fsm_recurring").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice_recurring.action_fsm_recurring"
+        )
         if len(fsm_recurrings) > 1:
             action["domain"] = [("id", "in", fsm_recurrings.ids)]
         elif len(fsm_recurrings) == 1:
@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
         return action
 
     def _action_confirm(self):
-        """On SO confirmation, some lines generate field service recurrings."""
+        """On SO confirmation, some lines generate recurring field service."""
         result = super()._action_confirm()
         self.order_line.filtered(
             lambda line: line.product_id.field_service_tracking == "recurring"

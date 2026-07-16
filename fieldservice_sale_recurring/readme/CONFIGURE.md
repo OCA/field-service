@@ -6,7 +6,7 @@ To setup a product for quoting and selling field service orders:
 
 - Set the Product Type to 'Service' under General Information tab
 
-- Under Invoicing tab, set the Field Service Tracking option
+- Under Sales tab, set the Field Service Tracking option to 'Create a recurring order'
 
-- Select the FSM Order Template that will be used for creating FSM Orders when  
+- Select the FSM Recurring Template (and optionally the FSM Order Template) that will be used for creating FSM Recurring Orders when
   a Sale Order is confirmed with this product

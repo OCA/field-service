@@ -9,7 +9,8 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     field_service_tracking = fields.Selection(
-        selection_add=[("recurring", "Create a recurring order")]
+        selection_add=[("recurring", "Create a recurring order")],
+        ondelete={"recurring": "cascade"},
     )
     fsm_recurring_template_id = fields.Many2one(
         "fsm.recurring.template",
@@ -19,7 +20,7 @@ class ProductTemplate(models.Model):
 
     @api.onchange("field_service_tracking")
     def _onchange_field_service_tracking(self):
+        res = super()._onchange_field_service_tracking()
         if self.field_service_tracking != "recurring":
             self.fsm_recurring_template_id = False
-        else:
-            return super()._onchange_field_service_tracking()
+        return res

@@ -2,7 +2,7 @@
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command, _, fields, models
+from odoo import Command, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -52,8 +52,9 @@ class SaleOrderLine(models.Model):
 
             # post message on SO
             msg_body = (
-                _("Field Service recurring Created ({product_name}): ").format(
-                    product_name=product_name
+                self.env._(
+                    "Field Service recurring Created (%(product_name)s): ",
+                    product_name=product_name,
                 )
                 + fsm_recurring._get_html_link()
             )
@@ -61,8 +62,9 @@ class SaleOrderLine(models.Model):
 
             # post message on fsm_recurring
             fsm_recurring_msg = (
-                _("This recurring has been created ({product_name}) from: ").format(
-                    product_name=product_name
+                self.env._(
+                    "This recurring has been created (%(product_name)s) from: ",
+                    product_name=product_name,
                 )
                 + so_line.order_id._get_html_link()
             )
@@ -73,7 +75,7 @@ class SaleOrderLine(models.Model):
 
     def _get_invoiceable_fsm_order_domain(self):
         """
-        add  fsm_recurring_id to domain
+        Add  fsm_recurring_id to domain
         :return:
         """
         dom = super()._get_invoiceable_fsm_order_domain()
