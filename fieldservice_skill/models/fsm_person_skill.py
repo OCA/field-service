@@ -19,13 +19,10 @@ class FSMPersonSkill(models.Model):
     skill_type_id = fields.Many2one("hr.skill.type", required=True)
     level_progress = fields.Integer(related="skill_level_id.level_progress", store=True)
 
-    _sql_constraints = [
-        (
-            "person_skill_uniq",
-            "unique(person_id, skill_id)",
-            "This person already has that skill!",
-        ),
-    ]
+    _person_skill_uniq = models.Constraint(
+        "unique(person_id, skill_id)",
+        "This person already has that skill!",
+    )
 
     @api.constrains("skill_id", "skill_type_id")
     def _check_skill_type(self):

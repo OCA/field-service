@@ -11,7 +11,7 @@ class TestFSMSkill(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.skill = cls.env["hr.skill"]
         cls.skill_level = cls.env["hr.skill.level"]
         cls.skill_type = cls.env["hr.skill.type"]
@@ -143,6 +143,15 @@ class TestFSMSkill(BaseCommon):
             {
                 "name": "Field Service Skills 2",
                 "skill_ids": [Command.set(cls.category_02_skills)],
+                "skill_level_ids": [
+                    Command.create(
+                        {
+                            "name": "Great",
+                            "level_progress": 100,
+                            "default_level": True,
+                        }
+                    )
+                ],
             }
         )
         # Create a template that requires great skills
