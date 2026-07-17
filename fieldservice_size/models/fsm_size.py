@@ -1,7 +1,8 @@
 # Copyright (C) 2020 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class FSMSize(models.Model):
@@ -16,14 +17,18 @@ class FSMSize(models.Model):
         string="Is the Order Size?", help="The default size for orders of this type"
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique (name)", "Size name already exists!"),
-    ]
+    _name_uniq = models.Constraint(
+        "unique (name)",
+        "Size name already exists!",
+    )
 
     @api.constrains("is_order_size", "type_id")
     def _one_size_per_type(self):
-        size_count = self.search_count(
-            [("type_id", "=", self.type_id.id), ("is_order_size", "=", True)]
-        )
-        if size_count >= 2:
-            raise ValidationError(_("Only one default order size per type is allowed."))
+        for rec in self:
+            size_count = self.search_count(
+                Domain([("type_id", "=", rec.type_id.id), ("is_order_size", "=", True)])
+            )
+            if size_count >= 2:
+                raise ValidationError(
+                    self.env._("Only one default order size per type is allowed.")
+                )

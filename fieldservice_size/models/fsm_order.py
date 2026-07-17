@@ -1,6 +1,7 @@
 # Copyright (C) 2020 Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class FSMOrder(models.Model):
@@ -20,14 +21,14 @@ class FSMOrder(models.Model):
         readonly=False,
         store=True,
     )
-    size_uom_category = fields.Many2one(
-        string="Unit of Measure Category",
-        related="size_id.uom_id.category_id",
+    size_relative_uom_id = fields.Many2one(
+        string="Reference Unit",
+        related="size_id.uom_id.relative_uom_id",
     )
     size_uom = fields.Many2one(
         "uom.uom",
         string="Unit of Measure",
-        domain="[('category_id', '=?', size_uom_category)]",
+        domain="[('relative_uom_id', '=?', size_relative_uom_id)]",
         compute="_compute_size_uom",
         precompute=True,
         readonly=False,
@@ -38,26 +39,39 @@ class FSMOrder(models.Model):
     def _compute_size_id(self):
         for rec in self:
             if rec.type:
-                rec.size_id = self.env["fsm.size"].search(
-                    [("type_id", "=", rec.type.id), ("is_order_size", "=", True)],
-                    limit=1,
+                rec.size_id = (
+                    self.env["fsm.size"].search(
+                        Domain(
+                            [
+                                ("type_id", "=", rec.type.id),
+                                ("is_order_size", "=", True),
+                            ]
+                        ),
+                        limit=1,
+                    )
+                    or False
                 )
+            else:
+                rec.size_id = False
 
-    @api.depends("size_id", "location_id")
+    @api.depends("size_id", "location_id", "location_id.location_size_ids.quantity")
     def _compute_size_value(self):
         for rec in self:
             if not rec.size_id or not rec.location_id:
+                rec.size_value = 0.00
                 continue
             size = self.env["fsm.location.size"].search(
-                [
-                    ("location_id", "=", self.location_id.id),
-                    ("size_id", "=", self.size_id.id),
-                ],
+                Domain(
+                    [
+                        ("location_id", "=", rec.location_id.id),
+                        ("size_id", "=", rec.size_id.id),
+                    ]
+                ),
                 limit=1,
             )
-            rec.size_value = size.quantity
+            rec.size_value = size and size.quantity or 0.00
 
-    @api.depends("size_id")
+    @api.depends("size_id", "size_id.uom_id")
     def _compute_size_uom(self):
         for rec in self:
-            rec.size_uom = rec.size_id.uom_id
+            rec.size_uom = rec.size_id and rec.size_id.uom_id or False

@@ -1,13 +1,15 @@
 # Copyright (C) 2020 - Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMSize(TransactionCase):
+class TestFSMSize(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.Size = cls.env["fsm.size"]
         cls.Location_size = cls.env["fsm.location.size"]
         cls.Type = cls.env["fsm.order.type"]
@@ -22,7 +24,6 @@ class TestFSMSize(TransactionCase):
                 "is_order_size": True,
             }
         )
-        cls.test_location = cls.env.ref("fieldservice.test_location")
 
     def test_one_size_per_type(self):
         with self.assertRaises(ValidationError) as e:
@@ -52,6 +53,6 @@ class TestFSMSize(TransactionCase):
                 "location_id": self.test_location.id,
             }
         )
-        self.assertTrue(order.size_id, self.size_a.id)
-        self.assertTrue(order.size_value, 24.5)
-        self.assertTrue(order.size_uom, self.size_a.uom_id)
+        self.assertEqual(order.size_id, self.size_a)
+        self.assertEqual(order.size_value, 24.5)
+        self.assertEqual(order.size_uom, self.size_a.uom_id)

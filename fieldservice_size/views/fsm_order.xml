@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_fsm_order_form_inherit_size" model="ir.ui.view">
         <field name="model">fsm.order</field>
@@ -12,7 +13,7 @@
                         class="oe_inline"
                         style="text-align:right;"
                     />
-                    <field name="size_uom_category" invisible="1" />
+                    <field name="size_relative_uom_id" invisible="1" />
                     <field name="size_uom" class="oe_inline" />
                 </div>
             </field>
