@@ -11,23 +11,21 @@ class FSMRoute(models.Model):
     @api.constrains("scheduled_date_start", "location_id")
     def check_black_out_days(self):
         for order in self:
-            if order.fsm_route_id and order.scheduled_date_start:
-                for group in order.fsm_route_id.fsm_blackout_group_ids:
-                    match = group.fsm_blackout_day_ids.filtered(
-                        lambda x, order=order: (
-                            (not x.zip and x.date == order.scheduled_date_start.date())
-                            or (
-                                x.zip
-                                and x.date == order.scheduled_date_start.date()
-                                and x.zip == order.zip
-                            )
-                        )
+            if not (order.fsm_route_id and order.scheduled_date_start):
+                continue
+            order_date, order_zip = order.scheduled_date_start.date(), order.zip
+            blackout_days = (
+                order.fsm_route_id.fsm_blackout_group_ids.fsm_blackout_day_ids
+            )
+            match = blackout_days.filtered(
+                lambda x, d=order_date, z=order_zip: x.date == d
+                and (not x.zip or x.zip == z)
+            )
+            if match:
+                raise ValidationError(
+                    self.env._(
+                        "The date %(date)s is a blackout day for field"
+                        " service operations on this route.",
+                        date=format_date(order.env, order.scheduled_date_start),
                     )
-                    if match:
-                        raise ValidationError(
-                            self.env._(
-                                "The date %(date)s is a blackout day for field"
-                                " service operations on this route.",
-                                date=format_date(order.env, order.scheduled_date_start),
-                            )
-                        )
+                )

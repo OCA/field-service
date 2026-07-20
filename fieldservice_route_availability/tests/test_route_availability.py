@@ -5,16 +5,16 @@ from datetime import timedelta
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+
+from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestRouteAvailability(common.TransactionCase):
+class TestRouteAvailability(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.Order = cls.env["fsm.order"]
-        cls.test_person = cls.env.ref("fieldservice.test_person")
-        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.blackout_group = cls.env["fsm.blackout.group"].create(
             {
                 "name": "Test Blackout Group",
