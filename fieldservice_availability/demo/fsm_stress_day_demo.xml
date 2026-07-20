@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+    <record id="fsm_stress_day_01_demo" model="fsm.stress.day">
+        <field name="name">Stress Day 01</field>
+        <field name="date" eval="DateTime.today()" />
+    </record>
+
+    <record id="fsm_stress_day_02_demo" model="fsm.stress.day">
+        <field name="name">Stress Day 02</field>
+        <field name="date" eval="DateTime.today() + relativedelta(days=1)" />
+    </record>
+
+    <record id="fsm_stress_day_03_demo" model="fsm.stress.day">
+        <field name="name">Stress Day 03</field>
+        <field name="date" eval="DateTime.today() + relativedelta(days=2)" />
+    </record>
+</odoo>

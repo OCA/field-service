@@ -1,7 +1,7 @@
 # Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -36,5 +36,5 @@ class FSMDeliveryTimeRange(models.Model):
         for record in self:
             if record.start_time >= record.end_time:
                 raise ValidationError(
-                    _("The start time must be earlier than the end time.")
+                    self.env._("The start time must be earlier than the end time.")
                 )

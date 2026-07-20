@@ -9,6 +9,7 @@ class TestFSMDeliveryTimeRange(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.time_range_model = cls.env["fsm.delivery.time.range"]
 
     def test_create_valid_time_range(self):

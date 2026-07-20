@@ -1,0 +1,9 @@
+<odoo noupdate="1">
+    <record id="fsm_blackout_group_01_demo" model="fsm.blackout.group">
+        <field name="name">BlackOut Group 01</field>
+        <field
+            name="fsm_blackout_day_ids"
+            eval="[(6, 0, [ref('fsm_blackout_day_01_demo'), ref('fsm_blackout_day_02_demo'), ref('fsm_blackout_day_03_demo')])]"
+        />
+    </record>
+</odoo>

@@ -11,10 +11,7 @@ class FieldServiceBlackoutDay(models.Model):
     name = fields.Char(string="Description", required=True)
     date = fields.Date(string="Blackout Day", required=True)
 
-    _sql_constraints = [
-        (
-            "unique_blackout_day",
-            "unique(date)",
-            "A blackout day with this date already exists!",
-        )
-    ]
+    _unique_blackout_day = models.Constraint(
+        "unique(date)",
+        "A blackout day with this date already exists!",
+    )

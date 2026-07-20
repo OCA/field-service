@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+    <record id="fsm_blackout_day_01_demo" model="fsm.blackout.day">
+        <field name="name">BlackOut Day 01</field>
+        <field name="date" eval="DateTime.today()" />
+    </record>
+
+    <record id="fsm_blackout_day_02_demo" model="fsm.blackout.day">
+        <field name="name">BlackOut Day 02</field>
+        <field name="date" eval="DateTime.today() + relativedelta(days=1)" />
+    </record>
+
+    <record id="fsm_blackout_day_03_demo" model="fsm.blackout.day">
+        <field name="name">BlackOut Day 03</field>
+        <field name="date" eval="DateTime.today() + relativedelta(days=2)" />
+    </record>
+</odoo>
