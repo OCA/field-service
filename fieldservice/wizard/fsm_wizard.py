@@ -28,7 +28,13 @@ class FSMWizard(models.TransientModel):
         return {"type": "ir.actions.act_window_close"}
 
     def _prepare_fsm_location(self, partner):
-        return {"partner_id": partner.id, "owner_id": (partner.parent_id or partner).id}
+        owner = partner.parent_id or partner
+        vals = {"partner_id": partner.id, "owner_id": owner.id}
+        if partner.parent_id:
+            parent_location = partner.parent_id.fsm_location_id[:1]
+            if parent_location:
+                vals["fsm_parent_id"] = parent_location.id
+        return vals
 
     def action_convert_location(self, partner):
         fl_model = self.env["fsm.location"]

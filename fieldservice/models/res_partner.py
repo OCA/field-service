@@ -51,6 +51,14 @@ class ResPartner(models.Model):
                 action["res_id"] = owned_location_ids.ids[0]
             return action
 
+    def action_fsm_convert_to_location(self):
+        self.ensure_one()
+        self.env["fsm.wizard"].action_convert_location(self)
+
+    def action_fsm_convert_to_person(self):
+        self.ensure_one()
+        self.env["fsm.wizard"].action_convert_person(self)
+
     def _convert_fsm_location(self):
         """Build service location when adding child partner with type=fsm_location."""
         if self.env.context.get("creating_fsm_location"):
