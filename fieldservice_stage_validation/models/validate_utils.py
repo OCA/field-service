@@ -1,7 +1,6 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _
 from odoo.exceptions import ValidationError
 
 
@@ -15,7 +14,7 @@ def validate_stage_fields(records):
         for name in field_names:
             if not values[0][name]:
                 raise ValidationError(
-                    _(
+                    records.env._(
                         "Cannot move to stage %(stage_name)s "
                         "until the %(name)s field is set.",
                         stage_name=stage.name,
