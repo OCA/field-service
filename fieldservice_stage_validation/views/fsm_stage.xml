@@ -6,11 +6,11 @@
         <field name="inherit_id" ref="fieldservice.fsm_stage_form_view" />
         <field name="arch" type="xml">
             <field name="stage_type" position="after">
-                <field name="stage_type_model_id" invisible="True" />
+                <field name="stage_type_model_name" invisible="True" />
                 <field
                     name="validate_field_ids"
                     widget="many2many_tags"
-                    domain="[('model_id', '=', stage_type_model_id)]"
+                    domain="[('model', '=', stage_type_model_name)]"
                 />
             </field>
         </field>
