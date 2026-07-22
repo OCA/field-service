@@ -1,0 +1,48 @@
+<odoo>
+    <!--
+        Users with Analytic Accounting already read every analytic line (that
+        group has full access and no record rule): the rules below keep the
+        lines not linked to an FSM order visible to them.
+    -->
+    <record id="analytic_account_fsm_manager" model="ir.rule">
+        <field name="name">account.analytic.line.fsm.manager</field>
+        <field name="model_id" ref="model_account_analytic_line" />
+        <field
+            name="domain_force"
+        >[(1, '=', 1)] if user.has_group('analytic.group_analytic_accounting') else [('fsm_order_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[Command.link(ref('fieldservice.group_fsm_manager'))]"
+        />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+    <record id="analytic_account_fsm_dispatcher" model="ir.rule">
+        <field name="name">account.analytic.line.fsm.dispatcher</field>
+        <field name="model_id" ref="model_account_analytic_line" />
+        <field
+            name="domain_force"
+        >[(1, '=', 1)] if user.has_group('analytic.group_analytic_accounting') else [('fsm_order_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[Command.link(ref('fieldservice.group_fsm_dispatcher'))]"
+        />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="analytic_account_fsm_user" model="ir.rule">
+        <field name="name">account.analytic.line.fsm.user</field>
+        <field name="model_id" ref="model_account_analytic_line" />
+        <field
+            name="domain_force"
+        >['|', ('fsm_order_id', '=', False), ('user_id', '=', user.id)] if user.has_group('analytic.group_analytic_accounting') else [('fsm_order_id', '!=', False), ('user_id', '=', user.id)]</field>
+        <field
+            name="groups"
+            eval="[Command.link(ref('fieldservice.group_fsm_user'))]"
+        />
+    </record>
+</odoo>
