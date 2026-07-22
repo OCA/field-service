@@ -1,12 +1,12 @@
 # Copyright 2020, Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import fields
+from odoo import fields, tests
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tools.safe_eval import safe_eval
 
 
-class TestFSMStageValidation(TransactionCase):
+class TestFSMStageValidation(tests.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -198,3 +198,25 @@ class TestFSMStageValidation(TransactionCase):
             self.stage_order,
             "FSM Order did not progress to correct stage",
         )
+
+    def test_fields_domain(self):
+        """The fields available for selection in each stage type
+        must be of the correct model.
+        """
+        for record in [
+            self.equipment_01,
+            self.location_01,
+            self.order_01,
+            self.person_01,
+        ]:
+            stage = record.stage_id
+            stage_form = tests.Form(stage)
+            fields_node = stage_form._view["tree"].xpath(
+                ".//field[@name='validate_field_ids']"
+            )[0]
+            fields_domain = safe_eval(
+                fields_node.get("domain"),
+                globals_dict=stage.read(load=None)[0],
+            )
+            available_fields = self.env["ir.model.fields"].search(fields_domain)
+            self.assertEqual(available_fields.model_id.model, record._name)

@@ -2,6 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
+STAGE_TYPE_TO_MODEL = {
+    "order": "fsm.order",
+    "equipment": "fsm.equipment",
+    "location": "fsm.location",
+    "worker": "fsm.person",
+}
+
 
 class FSMStage(models.Model):
     _inherit = "fsm.stage"
@@ -23,7 +30,7 @@ class FSMStage(models.Model):
         Model = self.env["ir.model"]
         for rec in self:
             model_id = False
-            if rec.stage_type:
-                model_string = "fsm." + rec.stage_type
+            model_string = STAGE_TYPE_TO_MODEL.get(rec.stage_type)
+            if model_string:
                 model_id = Model.search([("model", "=", model_string)], limit=1).id
             rec.stage_type_model_id = model_id
