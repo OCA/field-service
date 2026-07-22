@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class FSMLocation(models.Model):
@@ -10,49 +11,36 @@ class FSMLocation(models.Model):
     analytic_account_id = fields.Many2one(
         "account.analytic.account", string="Analytic Account", company_dependent=True
     )
-
-    @api.model
-    def get_default_customer(self):
-        if self.fsm_parent_id:
-            return self.fsm_parent_id.customer_id.id
-        return self.owner_id.id
-
     customer_id = fields.Many2one(
         "res.partner",
         string="Billed Customer",
+        compute="_compute_customer_id",
+        store=True,
+        readonly=False,
+        precompute=True,
         required=True,
         ondelete="restrict",
         auto_join=True,
         tracking=True,
-        default=get_default_customer,
     )
 
-    @api.onchange("fsm_parent_id")
-    def _onchange_fsm_parent_id_account(self):
-        self.customer_id = self.fsm_parent_id.customer_id or False
+    @api.depends("fsm_parent_id", "owner_id")
+    def _compute_customer_id(self):
+        """Default the billed customer to the one of the parent location,
+        or to the location owner. A customer explicitly set by the user
+        is only overridden when the parent location provides one."""
+        for location in self:
+            location.customer_id = (
+                location.fsm_parent_id.customer_id
+                or location.customer_id
+                or location.owner_id
+            )
 
     @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        access_rights_uid=None,
-    ):
-        args = args or []
-        context = dict(self._context) or {}
-        if context.get("customer_id"):
-            partner = self.env["res.partner"].browse(context.get("customer_id"))
-            args.extend(
-                [
-                    ("partner_id", "=", partner.id),
-                ]
+    def _search(self, domain, offset=0, limit=None, order=None):
+        domain = domain or []
+        if self.env.context.get("customer_id"):
+            domain = expression.AND(
+                [domain, [("partner_id", "=", self.env.context["customer_id"])]]
             )
-        return super()._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            access_rights_uid=access_rights_uid,
-        )
+        return super()._search(domain, offset=offset, limit=limit, order=order)
