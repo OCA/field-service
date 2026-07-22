@@ -2,36 +2,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
+from odoo.osv import expression
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
     @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        access_rights_uid=None,
-    ):
-        args = args or []
-        context = dict(self._context) or {}
+    def _search(self, domain, offset=0, limit=None, order=None):
+        domain = domain or []
         if (
-            context.get("location_id")
-            and self.env.user.company_id.fsm_filter_location_by_contact
+            self.env.context.get("location_id")
+            and self.env.company.fsm_filter_location_by_contact
         ):
-            location = self.env["fsm.location"].browse(context.get("location_id"))
-            args.extend(
+            domain = expression.AND(
                 [
-                    ("service_location_id", "=", location.id),
+                    domain,
+                    [("service_location_id", "=", self.env.context["location_id"])],
                 ]
             )
-        return super()._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            access_rights_uid=access_rights_uid,
-        )
+        return super()._search(domain, offset=offset, limit=limit, order=order)
