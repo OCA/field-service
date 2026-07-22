@@ -20,7 +20,7 @@
                   'default_state': state}</attribute>
             </field>
             <xpath
-                expr="//field[@name='stock_request_ids']/tree/field[@name='product_id']"
+                expr="//field[@name='stock_request_ids']/list/field[@name='product_id']"
                 position="after"
             >
                 <field name="fsm_order_id" column_invisible="1" />
@@ -54,13 +54,6 @@
                     name="fsm_order_id"
                     domain="[]"
                     context="{'group_by': 'fsm_order_id'}"
-                />
-            </filter>
-            <filter name="cancel" position="after">
-                 <filter
-                    string="Today Orders"
-                    name="order_today"
-                    domain="[('fsm_order_id.date_today_order_tz', '=', context_today())]"
                 />
             </filter>
             <filter name="location" position="after">

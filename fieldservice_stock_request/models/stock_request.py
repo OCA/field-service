@@ -1,7 +1,7 @@
 # Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -30,6 +30,7 @@ class StockRequest(models.Model):
                     ("state", "=", "draft"),
                 ],
                 order="id asc",
+                limit=1,
             )
             self.order_id = order.id
 
@@ -70,77 +71,67 @@ class StockRequest(models.Model):
             "direction": vals["direction"],
             "location_id": vals["location_id"],
         }
-        if "fsm_order_id" in vals and vals["fsm_order_id"]:
+        if vals.get("fsm_order_id"):
             res.update({"fsm_order_id": vals["fsm_order_id"]})
         return res
 
-    @api.model
-    def create(self, vals):
-        if "fsm_order_id" in vals and vals["fsm_order_id"]:
-            fsm_order = self.env["fsm.order"].browse(vals["fsm_order_id"])
-            fsm_order.request_stage = "draft"
-            vals["warehouse_id"] = fsm_order.warehouse_id.id
-            picking_type_id = self.env["stock.picking.type"].search(
-                [
-                    ("code", "=", "stock_request_order"),
-                    ("warehouse_id", "=", vals["warehouse_id"]),
-                ],
-                limit=1,
-            )
-            if not picking_type_id:
-                raise UserError(
-                    _(
-                        "There is no any inventory Operations Type:"
-                        "stock_request_order record for %s Warehouse."
-                    )
-                    % fsm_order.warehouse_id.display_name
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("fsm_order_id"):
+                fsm_order = self.env["fsm.order"].browse(vals["fsm_order_id"])
+                fsm_order.request_stage = "draft"
+                vals["warehouse_id"] = fsm_order.warehouse_id.id
+                picking_type_id = self.env["stock.picking.type"].search(
+                    [
+                        ("code", "=", "stock_request_order"),
+                        ("warehouse_id", "=", vals["warehouse_id"]),
+                    ],
+                    limit=1,
                 )
-            order = self.env["stock.request.order"].search(
-                [
-                    ("fsm_order_id", "=", vals["fsm_order_id"]),
-                    ("warehouse_id", "=", vals["warehouse_id"]),
-                    ("picking_type_id", "=", picking_type_id.id),
-                    ("direction", "=", vals["direction"]),
-                    ("state", "=", "draft"),
-                ],
-                order="id asc",
-            )
+                if not picking_type_id:
+                    raise UserError(
+                        self.env._(
+                            "There is no any inventory Operations Type:"
+                            "stock_request_order record for %s Warehouse.",
+                            fsm_order.warehouse_id.display_name,
+                        )
+                    )
+                order = self.env["stock.request.order"].search(
+                    [
+                        ("fsm_order_id", "=", vals["fsm_order_id"]),
+                        ("warehouse_id", "=", vals["warehouse_id"]),
+                        ("picking_type_id", "=", picking_type_id.id),
+                        ("direction", "=", vals["direction"]),
+                        ("state", "=", "draft"),
+                    ],
+                    order="id asc",
+                )
 
-            # User created a new SRO Manually
-            if len(order) > 1:
-                raise UserError(
-                    _(
-                        "There is already a Stock Request Order \
-                                  with the same Field Service Order and \
-                                  Warehouse that is in Draft state. Please \
-                                  add this Stock Request there. \
-                                  (%s)"
+                # User created a new SRO Manually
+                if len(order) > 1:
+                    raise UserError(
+                        self.env._(
+                            "There is already a Stock Request Order with the same "
+                            "Field Service Order and Warehouse that is in Draft "
+                            "state. Please add this Stock Request there. (%s)",
+                            order[0].name,
+                        )
                     )
-                    % order[0].name
-                )
-            # Made from an FSO for the first time, create the SRO here
-            elif not order and vals.get("fsm_order_id"):
-                values = self.prepare_order_values(vals)
-                values.update(
-                    {
-                        "picking_type_id": picking_type_id.id,
-                        "warehouse_id": vals["warehouse_id"],
-                    }
-                )
-                if values["direction"] == "inbound":
-                    values.update(
-                        {
-                            "location_id": self.env["stock.warehouse"]
-                            .browse(vals["warehouse_id"])
-                            .lot_stock_id.id
-                        }
-                    )
-                vals["order_id"] = self.env["stock.request.order"].create(values).id
-            # There is an SRO made from FSO, assign here
-            elif len(order) == 1 and vals.get("fsm_order_id"):
-                vals["expected_date"] = order.expected_date
-                vals["order_id"] = order.id
-        return super().create(vals)
+                # Made from an FSO for the first time, create the SRO here
+                elif not order:
+                    values = self.prepare_order_values(vals)
+                    values.update({"picking_type_id": picking_type_id.id})
+                    if values["direction"] == "inbound":
+                        values.update(
+                            {"location_id": fsm_order.warehouse_id.lot_stock_id.id}
+                        )
+                    vals["order_id"] = self.env["stock.request.order"].create(values).id
+                # There is an SRO made from FSO, assign here
+                else:
+                    vals["expected_date"] = order.expected_date
+                    vals["order_id"] = order.id
+        return super().create(vals_list)
 
     def _prepare_procurement_values(self, group_id=False):
         res = super()._prepare_procurement_values(group_id=group_id)

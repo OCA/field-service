@@ -3,3 +3,4 @@
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - [APSL-Nagarro](<https://apsl.tech>):
   - Antoni Marroig \<<amarroig@apsl.net>\>
+- Jimmy SC94 <jimmysolizcejas1994@gmail.com>

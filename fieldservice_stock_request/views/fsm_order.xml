@@ -29,12 +29,12 @@
                         type="object"
                         string="Cancel"
                     />
-                    <field name='request_stage' widget="statusbar" readonly="1" />
+                    <field name="request_stage" widget="statusbar" readonly="1" />
                 </header>
             </xpath>
             <field name="move_ids" position="before">
                 <field name="stock_request_ids" nolabel="1">
-                    <tree editable="bottom">
+                    <list editable="bottom">
                         <field name="name" readonly="1" />
                         <field name="product_id" />
                         <field name="order_id" force_save="1" />
@@ -59,11 +59,11 @@
                         <field name="expected_date" />
                         <field name="picking_policy" column_invisible="1" />
                         <field name="warehouse_id" column_invisible="1" />
-                        <field name="location_id" invisible="0" />
+                        <field name="location_id" />
                         <field name="procurement_group_id" column_invisible="1" />
                         <field name="company_id" column_invisible="1" />
                         <field name="state" />
-                    </tree>
+                    </list>
                 </field>
             </field>
         </field>

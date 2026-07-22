@@ -17,7 +17,9 @@ class StockRequestOrder(models.Model):
         store=True,
     )
     actual_delivery_date = fields.Datetime(
-        string="Actual Delivery Date", related="fsm_order_id.date_end", store=True
+        related="fsm_order_id.date_end",
+        string="Actual Delivery Date",
+        store=True,
     )
 
     @api.onchange("warehouse_id", "direction", "fsm_order_id")
