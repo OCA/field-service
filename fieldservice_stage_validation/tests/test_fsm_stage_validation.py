@@ -5,12 +5,19 @@ from odoo import fields, tests
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
+from odoo.addons.mail.tests.common import mail_new_test_user
+
 
 class TestFSMStageValidation(tests.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.manager_user = mail_new_test_user(
+            cls.env,
+            login="test_fs_manager",
+            groups="fieldservice.group_fsm_manager",
+        )
         cls.stage = cls.env["fsm.stage"]
         cls.fsm_order = cls.env["fsm.order"]
         cls.fsm_person = cls.env["fsm.person"]
@@ -139,11 +146,14 @@ class TestFSMStageValidation(tests.TransactionCase):
         field_name = fields.first(stage.validate_field_ids).name
         return f"Cannot move to stage {stage_name} until the {field_name} field is set."
 
+    @tests.users(
+        "test_fs_manager",
+    )
     def test_fsm_stage_validation(self):
         # Validate the stage computes the correct model type
         self.assertEqual(
-            self.stage_order.stage_type_model_id,
-            self.env["ir.model"].search([("model", "=", "fsm.order")]),
+            self.stage_order.stage_type_model_name,
+            "fsm.order",
             "FSM Stage model is not computed correctly",
         )
         validate_message = self.get_validate_message(self.stage_equipment)

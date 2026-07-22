@@ -18,8 +18,7 @@ class FSMStage(models.Model):
         string="Fields to Validate",
         help="Select fields which must be set on the document in this stage",
     )
-    stage_type_model_id = fields.Many2one(
-        "ir.model",
+    stage_type_model_name = fields.Char(
         compute="_compute_stage_model",
         string="Model for Stage",
         help="Technical field to hold model type",
@@ -27,10 +26,5 @@ class FSMStage(models.Model):
 
     @api.depends("stage_type")
     def _compute_stage_model(self):
-        Model = self.env["ir.model"]
         for rec in self:
-            model_id = False
-            model_string = STAGE_TYPE_TO_MODEL.get(rec.stage_type)
-            if model_string:
-                model_id = Model.search([("model", "=", model_string)], limit=1).id
-            rec.stage_type_model_id = model_id
+            rec.stage_type_model_name = STAGE_TYPE_TO_MODEL.get(rec.stage_type)
