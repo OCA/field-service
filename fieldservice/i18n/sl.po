@@ -1,0 +1,3815 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-07-23 08:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_count
+msgid "# Meetings"
+msgstr "Št. sestankov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
+msgid "# Vendor Bills"
+msgstr "# prejetih računov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_count
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_count
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__owned_location_count
+msgid "# of Owned Locations"
+msgstr "Št. lastnih lokacij"
+
+#. module: fieldservice
+#: model:ir.actions.report,print_report_name:fieldservice.action_report_fsm_order
+msgid "'Service Order - %s' % (object.name)"
+msgstr "'Operativni nalog - %s' % (object.name)"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "<span>Reporting</span>"
+msgstr "<span>Poročanje</span>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "<span>View</span>"
+msgstr "<span>Prikaz</span>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "<strong>Assigned To:</strong>"
+msgstr "<strong>Zadolžen</strong>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "<strong>Date Completed:</strong>"
+msgstr "<strong>Datum dokončanja:</strong>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "<strong>ETA:</strong>"
+msgstr "<strong>ETA:</strong>"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "<strong>The contact linked to this user is still active</strong>"
+msgstr "<strong>Stik, povezan s tem uporabnikom, je še vedno aktiven</strong>"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/wizard/fsm_wizard.py:0
+msgid "A Field Service Location related to that partner already exists."
+msgstr "Lokacija izvajanja, povezana s tem partnerjem, že obstaja."
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/wizard/fsm_wizard.py:0
+msgid "A Field Service Worker related to that partner already exists."
+msgstr "Operativec, povezan s tem partnerjem, že obstaja."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__account_move_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__account_move_count
+msgid "Account Move Count"
+msgstr "Št. temeljnic"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_payable_id
+msgid "Account Payable"
+msgstr "Konto obveznosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_receivable_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_receivable_id
+msgid "Account Receivable"
+msgstr "Konto terjatev"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_needaction
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_needaction
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_needaction
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_needaction
+msgid "Action Needed"
+msgstr "Potrebno ukrepanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__active
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__active
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__active_lang_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_lang_count
+msgid "Active Lang Count"
+msgstr "Št. aktivnih jezikov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_ids
+msgid "Activities"
+msgstr "Aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_exception_decoration
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_exception_decoration
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_exception_decoration
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekoracija izjeme"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_state
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_state
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_state
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_state
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_state
+msgid "Activity State"
+msgstr "Stanje aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_type_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_type_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_type_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_type_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikona tipa aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_end
+msgid "Actual End"
+msgstr "Dejanski konec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__date_start
+msgid "Actual Start"
+msgstr "Dejanski začetek"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__duration
+msgid "Actual duration"
+msgstr "Dejansko trajanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__duration
+msgid "Actual duration in hours"
+msgstr "Dejansko trajanje v urah"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_person
+msgid "Add Field Service Workers here."
+msgstr "Tukaj dodajte operativce."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_dash_equipment
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_equipment
+msgid "Add a Field Service Equipment here."
+msgstr "Tukaj dodajte opremo za izvajanje."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_category
+msgid "Add a Field Service Worker Category here."
+msgstr "Tukaj dodajte kategorijo operativcev."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Add a description for the order..."
+msgstr "Dodajte opis za operativni nalog ..."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
+msgid "Add a description..."
+msgstr "Dodaj opis..."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Address"
+msgstr "Naslov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__type
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__type
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__type
+msgid "Address Type"
+msgstr "Tip naslova"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__type_address_label
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__type_address_label
+msgid "Address Type Description"
+msgstr "Opis tipa naslova"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__state_name
+msgid ""
+"Administrative divisions of a country. E.g. Fed. State, Department, Canton"
+msgstr "Upravne enote države. Npr. zvezna država, departma, kanton"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
+msgid "Agreements"
+msgstr "Sporazumi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreements_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreements_count
+msgid "Agreements Count"
+msgstr "Št. sporazumov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "All"
+msgstr "Vse"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_operation_order
+msgid "All Orders"
+msgstr "Vsi operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
+msgid ""
+"All the emails and documents sent to this contact will be translated in this"
+" language."
+msgstr ""
+"Vsa e-poštna sporočila in dokumenti, poslani tej kontaktni osebi, bodo "
+"prevedeni v ta jezik."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_google_map
+msgid "Allow Field Service Google Map"
+msgstr "Omogoči Google Zemljevide za operativo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Allow Field Service Google Maps"
+msgstr "Omogoči Google Zemljevide za operativo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Allow Field Service Web Timeline View"
+msgstr "Omogoči spletni pogled časovnice operative"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_search
+msgid "Archived"
+msgstr "Arhivirano"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__location_id
+msgid "Assigned Location"
+msgstr "Dodeljena lokacija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__person_id
+msgid "Assigned Operator"
+msgstr "Dodeljeni operativec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_id
+msgid "Assigned To"
+msgstr "Dodeljeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_attachment_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_attachment_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_attachment_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_attachment_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_attachment_count
+msgid "Attachment Count"
+msgstr "Št. priponk"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Auto-fill the equipments on the order"
+msgstr "Samodejno izpolni opremo na operativnem nalogu"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Auto-fill the workers on the location"
+msgstr "Samodejno izpolni operativce na lokaciji"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_equipments_on_order
+msgid "Auto-populate Equipments on Order based on Location"
+msgstr "Samodejno dopolni opremo na operativnem nalogu glede na lokacijo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__auto_populate_persons_on_location
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__auto_populate_persons_on_location
+msgid "Auto-populate Workers on Location based on Territory"
+msgstr "Samodejno dopolni operativce na lokaciji glede na območje izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__auto_populate_equipments_on_order
+msgid "Auto-populate equipments on Order based on the Location"
+msgstr "Samodejno dopolni opremo na operativnem nalogu glede na lokacijo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Auto-populate the equipments on the order based on the location content"
+msgstr ""
+"Samodejno dopolni opremo na operativnem nalogu glede na vsebino lokacije"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Auto-populate the preferred workers of a location based on the territory"
+msgstr ""
+"Samodejno dopolni prednostne operativce lokacije glede na območje izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__autopost_bills
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__autopost_bills
+msgid "Auto-post bills"
+msgstr "Samodejno knjiži prejete račune"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Automatically creates a day route when an order is assigned and scheduled"
+msgstr ""
+"Ob dodelitvi in razporeditvi operativnega naloga samodejno ustvari dnevno pot"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__autopost_bills
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__autopost_bills
+msgid "Automatically post bills for this trusted partner"
+msgstr "Samodejno knjiži prejete račune za tega zanesljivega partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__receipt_reminder_email
+msgid ""
+"Automatically send a confirmation email to the vendor X days before the "
+"expected receipt date, asking him to confirm the exact date."
+msgstr ""
+"X dni pred predvidenim datumom prejema samodejno pošlji dobavitelju "
+"potrditveno e-poštno sporočilo, v katerem ga prosiš, naj potrdi natančen "
+"datum."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__available_invoice_template_pdf_report_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__available_invoice_template_pdf_report_ids
+msgid "Available Invoice Template Pdf Report"
+msgstr "Razpoložljivo poročilo PDF predloge računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1920
+msgid "Avatar"
+msgstr "Avatar"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1024
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1024
+msgid "Avatar 1024"
+msgstr "Avatar 1024"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_128
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_128
+msgid "Avatar 128"
+msgstr "Avatar 128"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_256
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_256
+msgid "Avatar 256"
+msgstr "Avatar 256"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_512
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_512
+msgid "Avatar 512"
+msgstr "Avatar 512"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
+msgid "Bank"
+msgstr "Banka"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_ids
+msgid "Banks"
+msgstr "Banke"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__barcode
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__barcode
+msgid "Barcode"
+msgstr "Črtna koda"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_blacklisted
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_blacklisted
+msgid "Blacklist"
+msgstr "Črni seznam"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_blacklisted
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_blacklisted
+msgid "Blacklisted Phone is Phone"
+msgstr "Telefon na črnem seznamu je telefonska številka"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_bounce
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_bounce
+msgid "Bounce"
+msgstr "Odboj"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__branch_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__branch_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__branch_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Branch"
+msgstr "Enota"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__branch_manager_id
+msgid "Branch Manager"
+msgstr "Vodja enote"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__buyer_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__buyer_id
+msgid "Buyer"
+msgstr "Kupec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_crm
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "CRM"
+msgstr "CRM"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
+msgid "Cancel"
+msgstr "Prekliči"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Cancel Order"
+msgstr "Prekliči operativni nalog"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.fsm_stage_cancelled
+msgid "Cancelled"
+msgstr "Preklicano"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_stage.py:0
+msgid ""
+"Cannot create FSM Stage because it has the same Type and Sequence of an "
+"existing FSM Stage."
+msgstr ""
+"Stopnje operative ni mogoče ustvariti, ker ima enak tip in zaporedje kot "
+"obstoječa stopnja operative."
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+msgid "Cannot move to completed from Kanban"
+msgstr "Iz pogleda kanban ni mogoče premakniti v izvedeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__category_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__category_ids
+#: model:ir.ui.menu,name:fieldservice.menu_hr_skill
+msgid "Categories"
+msgstr "Kategorije"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_category_form_view
+msgid "Category"
+msgstr "Kategorija"
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_category_name_uniq
+msgid "Category name already exists!"
+msgstr "Naziv kategorije že obstaja!"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_change_management
+msgid "Change Management"
+msgstr "Upravljanje sprememb"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__channel_member_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__channel_member_ids
+msgid "Channel Member"
+msgstr "Član kanala"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__channel_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__channel_ids
+msgid "Channels"
+msgstr "Kanali"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check collected payments"
+msgstr "Preveri prejeta plačila"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__is_company
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr "Označi, če je stik pravna oseba, v nasprotnem primeru je fizična oseba"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check inventory"
+msgstr "Preveri zalogo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check the amount collected by the worker during the route"
+msgstr "Preveri znesek, ki ga je operativec zbral med potjo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_account
+msgid "Check the amount collected during the route"
+msgstr "Preveri znesek, zbran med potjo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route_stock
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Check the inventory of the vehicle at the end of the route"
+msgstr "Preveri zalogo v vozilu ob koncu poti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+msgid "Children"
+msgstr "Podrejeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__child_ids
+msgid "Children Locations"
+msgstr "Podrejene lokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
+msgid "Choose a team to be set on orders of this template"
+msgstr "Izberite ekipo, ki bo določena na operativnih nalogih te predloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__city
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__city
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__city
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "City"
+msgstr "Kraj"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__tag_ids
+msgid "Classify and analyze your orders"
+msgstr "Razvrščajte in analizirajte operativne naloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__custom_color
+msgid "Color Code"
+msgstr "Barvna koda"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__color
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__color
+msgid "Color Index"
+msgstr "Barvni indeks"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_stage.py:0
+msgid "Color code should be Hex Code. Ex:-#FFFFFF"
+msgstr "Barvna koda mora biti šestnajstiška koda. Primer: #FFFFFF"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Poslovni subjekt"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_res_company
+msgid "Companies"
+msgstr "Družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref_company_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref_company_ids
+msgid "Companies that refers to partner"
+msgstr "Družbe, ki so povezane s partnerjem"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__company_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__company_id
+msgid "Company"
+msgstr "Družba"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_registry
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_registry
+msgid "Company ID"
+msgstr "ID družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_registry_label
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_registry_label
+msgid "Company ID Label"
+msgstr "Etiketa ID družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_name
+msgid "Company Name"
+msgstr "Naziv družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_company_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__commercial_company_name
+msgid "Company Name Entity"
+msgstr "Naziv družbe subjekta"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_registry_placeholder
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_registry_placeholder
+msgid "Company Registry Placeholder"
+msgstr "Ograda registra podjetij"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_type
+msgid "Company Type"
+msgstr "Tip družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_category__company_id
+msgid "Company related to this category"
+msgstr "Podjetje, povezano s to kategorijo"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__company_id
+msgid "Company related to this equipment"
+msgstr "Podjetje, povezano s to opremo"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__company_id
+msgid "Company related to this order"
+msgstr "Družba, povezana s tem operativnim nalogom"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_tag__company_id
+msgid "Company related to this tag"
+msgstr "Podjetje, povezano s to oznako"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__company_id
+msgid "Company related to this team"
+msgstr "Podjetje, povezano s to ekipo"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_template__company_id
+msgid "Company related to this template"
+msgstr "Podjetje, povezano s to predlogo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Complete"
+msgstr "Zaključi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_address
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contact_address
+msgid "Complete Address"
+msgstr "Polni naslov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__complete_direction
+msgid "Complete Direction"
+msgstr "Celotna navodila za pot"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__complete_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__complete_name
+msgid "Complete Name"
+msgstr "Polni naziv"
+
+#. module: fieldservice
+#: model:fsm.stage,name:fieldservice.fsm_stage_completed
+msgid "Completed"
+msgstr "Izvedeno"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Compute Localization"
+msgstr "Izračunaj lokacijo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Compute based on address"
+msgstr "Izračunaj na podlagi naslova"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_res_config_settings
+msgid "Config Settings"
+msgstr "Nastavitve"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.config
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "Configuration"
+msgstr "Nastavitve"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_res_partner
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__contact_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__child_ids
+msgid "Contact"
+msgstr "Stik"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Contacts"
+msgstr "Stiki"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_count
+msgid "Contacts Count"
+msgstr "Št. stikov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
+msgid "Convert"
+msgstr "Pretvori"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.partner_fsm_action
+msgid "Convert to FSM Record"
+msgstr "Pretvori v zapis operative"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
+msgid "Convert to a Field Service Worker or Location"
+msgstr "Pretvori v operativca ali lokacijo izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_bounce
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_bounce
+msgid "Counter of the number of bounced emails for this contact"
+msgstr "Število neuspešno dostavljenih e-poštnih sporočil za ta stik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__country_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Country"
+msgstr "Država"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__country_code
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__country_code
+msgid "Country Code"
+msgstr "Koda države"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Create FSM Orders from Opportunities"
+msgstr "Ustvari operativne naloge iz priložnosti"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_customer
+msgid "Create a Customer."
+msgstr "Ustvari kupca."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location
+msgid "Create a Service Location"
+msgstr "Ustvari lokacijo izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_stage
+msgid "Create a Stage."
+msgstr "Ustvari stopnjo."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_team_settings
+msgid "Create a new team"
+msgstr "Ustvari novo ekipo"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_tag
+msgid "Create a tag."
+msgstr "Ustvari oznako."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_dash_order
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_operation_order
+msgid "Create an Order."
+msgstr "Ustvari operativni nalog."
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_template
+msgid "Create an order template"
+msgstr "Ustvari predlogo operativnega naloga"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Create multiple FSM Locations at once using Location Builder Wizard"
+msgstr "Z čarovnikom za gradnjo lokacij hkrati ustvarite več lokacij izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_location_person
+msgid "Create the linked locations of a worker."
+msgstr "Ustvari povezane lokacije operativca."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Create vendor bills and customer invoices when completing service orders."
+msgstr ""
+"Ob zaključku operativnih nalogov ustvarite prejete račune dobaviteljev in "
+"račune naročnikov."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__create_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__create_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_limit
+msgid "Credit Limit"
+msgstr "Kreditni limit"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_to_invoice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_to_invoice
+msgid "Credit To Invoice"
+msgstr "Kredit za izstavitev računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit_limit
+msgid "Credit limit specific to this partner."
+msgstr "Kreditni limit, specifičen za tega partnerja."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__current_date
+msgid "Current Date"
+msgstr "Trenutni datum"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__current_location_id
+msgid "Current Location"
+msgstr "Trenutna lokacija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
+msgid "Customer Location"
+msgstr "Lokacija kupca"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
+msgid "Customer Payment Terms"
+msgstr "Plačilni pogoji kupca"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__customer_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
+msgid "Customer Rank"
+msgstr "Rang kupca"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.fsm_order_sign_wizard_action
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Customer Signature"
+msgstr "Podpis kupca"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_customer
+msgid "Customers"
+msgstr "Kupci"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.dashboard
+msgid "Dashboard"
+msgstr "Nadzorna plošča"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Days Before Receipt"
+msgstr "Dni pred prejemom"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__days_sales_outstanding
+msgid "Days Sales Outstanding (DSO)"
+msgstr "Dnevi neporavnanih terjatev (DSO)"
+
+#. module: fieldservice
+#: model:fsm.team,name:fieldservice.fsm_team_default
+msgid "Default Team"
+msgstr "Privzeta ekipa"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_template__duration
+msgid "Default duration in hours"
+msgstr "Privzeto trajanje v urah"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
+msgid "Default team assigned to orders in this location"
+msgstr "Privzeta ekipa, dodeljena operativnim nalogom na tej lokaciji"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
+msgid "Degree of trust you have in this debtor"
+msgstr "Stopnja zaupanja v tega dolžnika"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__description
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__description
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__description
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__description
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "Description"
+msgstr "Opis"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__direction
+msgid "Direction"
+msgstr "Navodila za pot"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Directions"
+msgstr "Navodila za pot"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_dispatcher
+msgid "Dispatcher"
+msgstr "Dispečer operative"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_edi_format
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_edi_format
+msgid "Display Invoice Edi Format"
+msgstr "Prikaži EDI format računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_template_pdf_report_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_template_pdf_report_id
+msgid "Display Invoice Template Pdf Report"
+msgstr "Prikaži PDF poročilo predloge računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_territory__display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Display locations and orders on a map with Google Maps"
+msgstr "Prikaži lokacije in operativne naloge na zemljevidu Google Maps"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Display locations and orders on a map with OpenStreetMap"
+msgstr "Prikaži lokacije in operativne naloge na zemljevidu OpenStreetMap"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__district_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__district_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__district_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "District"
+msgstr "Območje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__district_manager_id
+msgid "District Manager"
+msgstr "Vodja območja"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "Done"
+msgstr "Opravljeno"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Due Within 30 Days"
+msgstr "Rok izvedbe v 30 dneh"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Due Within 7 Days"
+msgstr "Rok izvedbe v 7 dneh"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__duplicate_bank_partner_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__duplicate_bank_partner_ids
+msgid "Duplicate Bank Partner"
+msgstr "Podvoji bančnega partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__duration
+msgid "Duration"
+msgstr "Trajanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_early
+msgid "Earliest Request Date"
+msgstr "Najzgodnejši zahtevani datum"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_kanban_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_kanban_view
+msgid "Edit"
+msgstr "Uredi"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__partner_share
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__partner_share
+msgid ""
+"Either customer (not a user), either shared user. Indicated the current "
+"partner is a customer without access or with a limited access created for "
+"sharing data."
+msgstr ""
+"Bodisi kupec (ne uporabnik) bodisi deljeni uporabnik. Označuje, da je "
+"trenutni partner kupec brez dostopa ali z omejenim dostopom, ustvarjenim za "
+"deljenje podatkov."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__email
+msgid "Email"
+msgstr "E-pošta"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employee
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employee
+msgid "Employee"
+msgstr "Kader"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employee_ids
+msgid "Employees"
+msgstr "Kadri"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
+msgid "Employees Count"
+msgstr "Št. kadrov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Enter the resolution for the order..."
+msgstr "Vnesite odpravo za operativni nalog ..."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__equipment_count
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__equipment
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Equipment"
+msgstr "Oprema"
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_equipment_name_uniq
+msgid "Equipment name already exists!"
+msgstr "Naziv opreme že obstaja!"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_report_equipment
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__equipment_ids
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_equipment
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_equipment
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_report_equipment
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_graph_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_pivot_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Equipments"
+msgstr "Oprema"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_equipment
+msgid "Equipments Report"
+msgstr "Poročilo o opremi"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Execution"
+msgstr "Izvedba"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__legend_priority
+msgid ""
+"Explanation text to help users using the star and priority mechanism on "
+"stages or orders that are in this stage."
+msgstr ""
+"Pojasnilno besedilo za pomoč uporabnikom pri uporabi zvezdice in mehanizma "
+"prioritete na stopnjah ali nalogih v tej stopnji."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "FS Order #"
+msgstr "Operativni nalog št."
+
+#. module: fieldservice
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order_type__internal_type__fsm
+msgid "FSM"
+msgstr "FSM"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+msgid "FSM Equipment Name"
+msgstr "Naziv opreme za izvajanje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "FSM Location Builder"
+msgstr "Graditelj lokacij izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_graph_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_pivot_view
+msgid "FSM Locations"
+msgstr "Lokacije izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "FSM Order Name"
+msgstr "Naziv operativnega naloga"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_order_sign_wizard
+msgid "FSM Order Sign Wizard"
+msgstr "Čarovnik za podpis operativnega naloga"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_calendar_view
+msgid "FSM Orders"
+msgstr "Operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_person_calendar_filter
+msgid "FSM Person Calendar Filter"
+msgstr "Koledarski filter operativcev"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_wizard
+msgid "FSM Record Conversion"
+msgstr "Pretvorba zapisa operative"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_id
+msgid "FSM Worker"
+msgstr "Operativec"
+
+#. module: fieldservice
+#: model:ir.module.category,name:fieldservice.fsm
+#: model:ir.ui.menu,name:fieldservice.root
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Field Service"
+msgstr "Operativa"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_category
+msgid "Field Service Category"
+msgstr "Kategorija operative"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_dash_equipment
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_equipment
+#: model:ir.model,name:fieldservice.model_fsm_equipment
+msgid "Field Service Equipment"
+msgstr "Oprema za izvajanje"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_location
+msgid "Field Service Location"
+msgstr "Lokacija izvajanja"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_location_person
+msgid "Field Service Location Person Info"
+msgstr "Podatki o osebi na lokaciji izvajanja"
+
+#. module: fieldservice
+#: model:res.groups.privilege,name:fieldservice.privilege_fsm
+msgid "Field Service Management"
+msgstr "Upravljanje izvajalske operative"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_order
+msgid "Field Service Order"
+msgstr "Operativni nalog"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_template
+msgid "Field Service Order Template"
+msgstr "Predloga operativnega naloga"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_order_type
+msgid "Field Service Order Type"
+msgstr "Tip operativnega naloga"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_stage
+msgid "Field Service Stage"
+msgstr "Stopnja operative"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_tag
+msgid "Field Service Tag"
+msgstr "Oznaka operative"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_team
+msgid "Field Service Team"
+msgstr "Izvajalska ekipa"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_person
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Field Service Worker"
+msgstr "Operativec"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_category
+msgid "Field Service Worker Category"
+msgstr "Kategorija operativcev"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_person
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_ids
+#: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_territory_form_view_inherit
+msgid "Field Service Workers"
+msgstr "Operativci"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized
+msgid ""
+"Field used to store sanitized phone number. Helps speeding up searches and "
+"comparisons."
+msgstr ""
+"Polje za shranjevanje normalizirane telefonske številke. Pospešuje iskanje "
+"in primerjave."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fiscal_country_codes
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fiscal_country_codes
+msgid "Fiscal Country Codes"
+msgstr "Davčne kode držav"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fiscal_country_group_codes
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fiscal_country_group_codes
+msgid "Fiscal Country Group Codes"
+msgstr "Kode fiskalnih skupin držav"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
+msgid "Fiscal Position"
+msgstr "Fiskalni položaj"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__fold
+msgid "Folded in Kanban"
+msgstr "Prepognjeno v kanban"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_follower_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_follower_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_follower_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_follower_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_follower_ids
+msgid "Followers"
+msgstr "Sledilci"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_partner_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_partner_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_partner_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_partner_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Sledilci (partnerji)"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__activity_type_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__activity_type_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__activity_type_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__activity_type_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Font awesome ikona, npr. fa-tasks"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__email_formatted
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__email_formatted
+msgid "Format email address \"Name <email@domain>\""
+msgstr "Oblika e-poštnega naslova \"Ime <email@domain>\""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email_formatted
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__email_formatted
+msgid "Formatted Email"
+msgstr "Oblikovan e-poštni naslov"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_fsm_model_mixin
+msgid "Fsm Model Mixin"
+msgstr "Mešanica modela operative"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__full_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__full_name
+msgid "Full Name"
+msgstr "Polni naziv"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Future Orders"
+msgstr "Prihodnji operativni nalogi"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "General Notes"
+msgstr "Splošne opombe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_latitude
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_latitude
+msgid "Geo Latitude"
+msgstr "Geografska širina"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Geo Location"
+msgstr "Geolokacija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_longitude
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_longitude
+msgid "Geo Longitude"
+msgstr "Geografska dolžina"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Geolocation"
+msgstr "Geolokacija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__date_localization
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__date_localization
+msgid "Geolocation Date"
+msgstr "Datum geolokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__has_message
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__has_message
+msgid "Has Message"
+msgstr "Vsebuje sporočilo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__hide
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__hide
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__hide
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__hide
+msgid "Hide"
+msgstr "Skrij"
+
+#. module: fieldservice
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__2
+msgid "High"
+msgstr "Visoka"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_high
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_high
+msgid "Hours of Buffer for High Priority FS Orders"
+msgstr "Ure rezerve za operativne naloge z visoko prioriteto"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_low
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_low
+msgid "Hours of Buffer for Low Priority FS Orders"
+msgstr "Ure rezerve za operativne naloge z nizko prioriteto"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_lowest
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_lowest
+msgid "Hours of Buffer for Lowest Priority FS Orders"
+msgstr "Ure rezerve za operativne naloge z najnižjo prioriteto"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_medium
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_request_late_medium
+msgid "Hours of Buffer for Medium Priority FS Orders"
+msgstr "Ure rezerve za operativne naloge s srednjo prioriteto"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__id
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__id
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__id
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__id
+#: model:ir.model.fields,field_description:fieldservice.field_res_territory__id
+msgid "ID"
+msgstr "ID"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__im_status
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__im_status
+msgid "IM Status"
+msgstr "Status IM"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_exception_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_exception_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_exception_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_exception_icon
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_exception_icon
+msgid "Icon"
+msgstr "Ikona"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__activity_exception_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__activity_exception_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__activity_exception_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__activity_exception_icon
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikona za prikaz izjem pri aktivnostih."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_needaction
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_needaction
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_needaction
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_needaction
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Če je označeno, nova sporočila zahtevajo vašo pozornost."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_sms_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_sms_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_sms_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_sms_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+"Kadar je označeno, pomeni, da je pri nekaterih sporočilih prišlo do napake "
+"pri dostavi."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__is_blacklisted
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__is_blacklisted
+msgid ""
+"If the email address is on the blacklist, the contact won't receive mass "
+"mailing anymore, from any list"
+msgstr ""
+"Če je e-poštni naslov na črnem seznamu, stik ne bo več prejemal množične "
+"pošte z nobenega seznama"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
+msgid ""
+"If the sanitized phone number is on the blacklist, the contact won't receive"
+" mass mailing sms anymore, from any list"
+msgstr ""
+"Če je normalizirana telefonska številka na črnem seznamu, stik ne bo več "
+"prejemal SMS-sporočil za množično pošiljanje z nobenega seznama"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_amount
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_amount
+msgid "Ignore Abnormal Invoice Amount"
+msgstr "Prezri neobičajen znesek računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_date
+msgid "Ignore Abnormal Invoice Date"
+msgstr "Prezri neobičajen datum računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1920
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_1920
+msgid "Image"
+msgstr "Slika"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1024
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_1024
+msgid "Image 1024"
+msgstr "Slika 1024"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_128
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_128
+msgid "Image 128"
+msgstr "Slika 128"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_256
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_256
+msgid "Image 256"
+msgstr "Slika 256"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_512
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__image_512
+msgid "Image 512"
+msgstr "Slika 512"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_blacklisted
+msgid ""
+"Indicates if a blacklisted sanitized phone number is a phone number. Helps "
+"distinguish which number is blacklisted             when there is both a "
+"mobile and phone field in a model."
+msgstr ""
+"Določa, ali je normalizirana telefonska številka na črnem seznamu telefonska "
+"številka. Pomaga razlikovati, katera številka je na črnem seznamu, kadar "
+"model vsebuje polji za mobilni telefon in telefon."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__industry_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__industry_id
+msgid "Industry"
+msgstr "Sektor"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_address_inline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contact_address_inline
+msgid "Inlined Complete Address"
+msgstr "V vrstici celotni naslov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__todo
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__instructions
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "Instructions"
+msgstr "Navodila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__internal_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__internal_type
+msgid "Internal Type"
+msgstr "Notranji tip"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format_store
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format_store
+msgid "Invoice Edi Format Store"
+msgstr "Shranjeni EDI format računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
+msgid "Invoice report"
+msgstr "Poročilo računa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_sending_method
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_sending_method
+msgid "Invoice sending"
+msgstr "Pošiljanje računov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
+msgid "Invoice your FSM orders"
+msgstr "Zaračunajte operativne naloge"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Invoice your Service Orders"
+msgstr "Zaračunajte operativne naloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
+msgid "Invoices"
+msgstr "Računi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_is_follower
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_is_follower
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_is_follower
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_is_follower
+msgid "Is Follower"
+msgstr "Je sledilec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_in_call
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_in_call
+msgid "Is In Call"
+msgstr "Je v klicu"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_public
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_public
+msgid "Is Public"
+msgstr "Je javno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_company
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_company
+msgid "Is a Company"
+msgstr "Je družba"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_location
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fsm_location
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__fsm_location
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__fsm_location
+msgid "Is a FS Location"
+msgstr "Je lokacija izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_person
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fsm_person
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__fsm_person
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__fsm_person
+msgid "Is a FS Worker"
+msgstr "Je operativec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__is_closed
+msgid "Is a close stage"
+msgstr "Je zaključna stopnja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__is_default
+msgid "Is a default stage"
+msgstr "Je privzeta stopnja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__is_closed
+msgid "Is closed"
+msgstr "Je zaključeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__function
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__function
+msgid "Job Position"
+msgstr "Delovno mesto"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__lang
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__lang
+msgid "Language"
+msgstr "Jezik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__write_uid
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__write_date
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_last_notif_ack
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_last_notif_ack
+msgid "Last notification marked as read from base Calendar"
+msgstr "Zadnje obvestilo iz osnovnega koledarja označeno kot prebrano"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Lat:"
+msgstr "Šir.:"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
+msgid "Latest Request Date"
+msgstr "Najpoznejši zahtevani datum"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_repair
+msgid "Link FSM orders to MRP Repair orders"
+msgstr "Povežite operativne naloge z nalogi za popravilo MRP"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_maintenance
+msgid "Link FSM orders to maintenance requests"
+msgstr "Povežite operativne naloge z zahtevki za vzdrževanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_fleet
+msgid "Link FSM vehicles to Fleet vehicles"
+msgstr "Povežite operativna vozila z vozili voznega parka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link Field Service vehicles with Fleet vehicles"
+msgstr "Povežite operativna vozila z vozili voznega parka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link to Fleet Vehicles"
+msgstr "Povezava z vozili voznega parka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link your FSM orders to MRP repair orders"
+msgstr "Povežite svoje operativne naloge z nalogi za popravilo MRP"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link your FSM orders to Projects and Project Tasks"
+msgstr "Povežite svoje operativne naloge s projekti in projektnimi opravili"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Link your FSM orders to maintenance requests"
+msgstr "Povežite svoje operativne naloge z zahtevki za vzdrževanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__location_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Linked Locations"
+msgstr "Povezane lokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__location_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__location_id
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__location
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_wizard__fsm_record_type__location
+#: model:ir.model.fields.selection,name:fieldservice.selection__res_partner__type__fsm_location
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
+msgid "Location"
+msgstr "Lokacija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__location_directions
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Location Directions"
+msgstr "Navodila za pot do lokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__notes
+msgid "Location Notes"
+msgstr "Opombe o lokaciji"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_location_person
+msgid "Location Persons"
+msgstr "Osebe na lokaciji"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__phone
+msgid "Location Phone"
+msgstr "Telefon lokacije"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_location
+msgid "Location Reports."
+msgstr "Poročila o lokacijah."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_form_view
+msgid "Location Worker"
+msgstr "Operativec na lokaciji"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_location_person
+msgid "Location Workers"
+msgstr "Operativci na lokaciji"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_report_location
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_config_location
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_fsm_location
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_report_location
+msgid "Locations"
+msgstr "Lokacije"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Long:"
+msgstr "Dolž.:"
+
+#. module: fieldservice
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__1
+msgid "Low"
+msgstr "Nizka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "MRP Repair"
+msgstr "MRP Popravila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__main_user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__main_user_id
+msgid "Main User"
+msgstr "Glavni uporabnik"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Make sure to send the right worker with the appropriate skills"
+msgstr ""
+"Poskrbite, da pošljete ustreznega operativca z zahtevanimi usposobljenostmi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_agreement
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Agreements"
+msgstr "Upravljanje sporazumov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_category
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Categories"
+msgstr "Upravljanje kategorij"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_distribution
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Distribution"
+msgstr "Upravljaj distribucijo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_equipment
+msgid "Manage Equipment"
+msgstr "Upravljaj opremo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Equipments"
+msgstr "Upravljaj opremo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_activity
+msgid "Manage FSM Activities"
+msgstr "Upravljaj aktivnosti operative"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_equipment
+msgid "Manage Field Service Equipment"
+msgstr "Upravljaj opremo za izvajanje"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_template
+msgid "Manage Field Service Order Templates"
+msgstr "Upravljaj predloge operativnih nalogov"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_tag
+msgid "Manage Field Service Tags"
+msgstr "Upravljaj oznake operative"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_team
+msgid "Manage Field Service Teams"
+msgstr "Upravljaj izvajalske ekipe"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_category
+msgid "Manage Field Service Worker Categories"
+msgstr "Upravljaj kategorije operativcev"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Inventory Logistics"
+msgstr "Upravljaj logistiko zalog"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Maintenance Requests"
+msgstr "Upravljaj zahtevke za vzdrževanje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Order Activities"
+msgstr "Upravljaj aktivnosti operativnih nalogov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Order Sizes"
+msgstr "Upravljaj velikosti operativnih nalogov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Order Sub-Statuses"
+msgstr "Upravljaj podstanja operativnih nalogov"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Order Templates"
+msgstr "Upravljaj predloge operativnih nalogov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Recurring Orders"
+msgstr "Upravljaj ponavljajoče se operativne naloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_skill
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Skills"
+msgstr "Upravljaj usposobljenosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_substatus
+msgid "Manage Sub-Statuses"
+msgstr "Upravljaj podstanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_tag
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Tags"
+msgstr "Upravljaj oznake"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_team
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Teams"
+msgstr "Upravljanje ekip"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_template
+msgid "Manage Template"
+msgstr "Upravljaj predlogo"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_territory
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Territories"
+msgstr "Upravljaj območja izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__group_fsm_territory
+msgid "Manage Territory"
+msgstr "Upravljaj območje izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_vehicle
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage Vehicles"
+msgstr "Upravljaj vozila"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage activities"
+msgstr "Upravljaj aktivnosti"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage agreements and contracts"
+msgstr "Upravljaj sporazume in pogodbe"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage different categories of Field Service workers"
+msgstr "Upravljaj različne kategorije operativcev"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage different teams of Field Service workers"
+msgstr "Upravljaj različne ekipe operativcev"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage equipments at the service location"
+msgstr "Upravljaj opremo na lokaciji izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid ""
+"Manage materials and stock operations. Automatically activate Lots & Serial "
+"Numbers."
+msgstr ""
+"Upravljajte material in zalogovne operacije. Samodejno aktivirajte serije in "
+"serijske številke."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage recurrence of field service orders"
+msgstr "Upravljaj ponavljanje operativnih nalogov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
+msgid "Manage routes"
+msgstr "Upravljanje poti"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage routes of your workers"
+msgstr "Upravljaj poti operativcev"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_size
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage sizes for orders and locations"
+msgstr "Upravljaj velikosti operativnih nalogov in lokacij"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage sub-status of orders"
+msgstr "Upravljaj podstanja operativnih nalogov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_purchase
+msgid "Manage subcontractors and their pricelists"
+msgstr "Upravljaj podizvajalce in njihove cenike"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage subcontractors with pricelists"
+msgstr "Upravljaj podizvajalce s ceniki"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage tags on service orders"
+msgstr "Upravljaj oznake na operativnih nalogih"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage templates"
+msgstr "Upravljaj predloge"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage territories, branches, districts and regions"
+msgstr "Upravljaj območja izvajanja, enote, območja in regije"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage vehicles for Field Service operations"
+msgstr "Upravljaj vozila za izvajalsko operativo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Manage your distribution structure"
+msgstr "Upravljaj strukturo distribucije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__managed_by_id
+msgid "Managed By"
+msgstr "Upravlja"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_manager
+msgid "Manager"
+msgstr "Upravitelj"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Mapping Tools"
+msgstr "Orodja za kartiranje"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.data
+msgid "Master Data"
+msgstr "Matični podatki"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__user_id
+msgid "Me"
+msgstr "Jaz"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__meeting_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__meeting_ids
+msgid "Meetings"
+msgstr "Sestanki"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_error
+msgid "Message Delivery error"
+msgstr "Napaka ob dostavi sporočila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
+msgid "Message for Purchase Order"
+msgstr "Sporočilo za nabavni nalog"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
+msgid "Message for Sales Order"
+msgstr "Sporočilo za prodajni nalog"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
+msgid "Message for Stock Picking"
+msgstr "Sporočilo za dobavnico"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_ids
+msgid "Messages"
+msgstr "Sporočila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile
+msgid "Mobile"
+msgstr "Mobilni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__my_activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Rok mojih aktivnosti"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "My Orders"
+msgstr "Moji operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_type__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__name
+msgid "Name"
+msgstr "Naziv"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "Need Assigned"
+msgstr "Potrebna dodelitev"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "Need Scheduled"
+msgstr "Potrebno planiranje"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+#: model:fsm.stage,name:fieldservice.fsm_stage_new
+msgid "New"
+msgstr "Novo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_calendar_event_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Naslednji dogodek v koledarju aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_date_deadline
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Rok naslednje aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_summary
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_summary
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_summary
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_summary
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_summary
+msgid "Next Activity Summary"
+msgstr "Povzetek naslednje aktivnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_type_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tip naslednje aktivnosti"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Next Stage"
+msgstr "Naslednja stopnja"
+
+#. module: fieldservice
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__0
+msgid "Normal"
+msgstr "Običajna"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__email_normalized
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__email_normalized
+msgid "Normalized Email"
+msgstr "Normaliziran e-poštni naslov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__notes
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__comment
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__comment
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+msgid "Notes"
+msgstr "Opombe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_needaction_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_needaction_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_needaction_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Število ukrepov"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
+msgid "Number of days to send reminder email before the promised receipt date"
+msgstr ""
+"Število dni pred obljubljenim datumom prejema za pošiljanje opomnika po e-"
+"pošti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_error_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_error_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_error_counter
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_error_counter
+msgid "Number of errors"
+msgstr "Število napak"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_needaction_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_needaction_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_needaction_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_needaction_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Število sporočil, ki zahtevajo ukrepanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__message_has_error_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__message_has_error_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__message_has_error_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__message_has_error_counter
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Število sporočil, ki niso bila pravilno dostavljena"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__calendar_id
+msgid "Office Hours"
+msgstr "Delovni čas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__offline_since
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__offline_since
+msgid "Offline since"
+msgstr "Brez povezave od"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.operations
+msgid "Operations"
+msgstr "Operacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__order_id
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__order
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Order"
+msgstr "Operativni nalog"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_assigned
+msgid "Order Assigned"
+msgstr "Operativni nalog dodeljen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_cancelled
+msgid "Order Cancelled"
+msgstr "Operativni nalog preklican"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_completed
+msgid "Order Completed"
+msgstr "Operativni nalog izveden"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_confirmed
+msgid "Order Confirmed"
+msgstr "Operativni nalog potrjen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_new
+msgid "Order Created"
+msgstr "Operativni nalog ustvarjen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_enroute
+msgid "Order En Route"
+msgstr "Operativni nalog na poti"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_scheduled
+msgid "Order Scheduled"
+msgstr "Operativni nalog načrtovan"
+
+#. module: fieldservice
+#: model:mail.message.subtype,name:fieldservice.mt_order_started
+msgid "Order Started"
+msgstr "Operativni nalog začet"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
+msgid "Order Team"
+msgstr "Izvajalska ekipa operativnega naloga"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_template
+msgid "Order Templates"
+msgstr "Predloge operativnih nalogov"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_order_type
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_order_type
+msgid "Order Types"
+msgstr "Tipi operativnih nalogov"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_assigned
+msgid "Order assigned"
+msgstr "Operativni nalog dodeljen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_cancelled
+msgid "Order cancelled"
+msgstr "Operativni nalog preklican"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_completed
+msgid "Order completed"
+msgstr "Operativni nalog izveden"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_confirmed
+msgid "Order confirmed"
+msgstr "Operativni nalog potrjen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_new
+msgid "Order created"
+msgstr "Operativni nalog ustvarjen"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_enroute
+msgid "Order en route"
+msgstr "Operativni nalog na poti"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_scheduled
+msgid "Order scheduled"
+msgstr "Operativni nalog načrtovan"
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/wizard/fsm_order_sign_wizard.py:0
+msgid "Order signed by %s"
+msgstr "Operativni nalog podpisal %s"
+
+#. module: fieldservice
+#: model:mail.message.subtype,description:fieldservice.mt_order_started
+msgid "Order started"
+msgstr "Operativni nalog začet"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_dash_order
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_operation_order
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_report_order
+#: model:ir.actions.act_window,name:fieldservice.fsm_order_action_from_dashboard
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_ids
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_config_order
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_order
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_report_order
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "Orders"
+msgstr "Operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_count
+msgid "Orders Count"
+msgstr "Št. operativnih nalogov"
+
+#. module: fieldservice
+#: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_report_order
+msgid "Orders Reports."
+msgstr "Poročila o operativnih nalogih."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_need_assign_count
+msgid "Orders to Assign"
+msgstr "Operativni nalogi za dodelitev"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__order_need_schedule_count
+msgid "Orders to Schedule"
+msgstr "Operativni nalogi za planiranje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Others"
+msgstr "Drugo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
+msgid "Owned By"
+msgstr "V lasti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__owned_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__owned_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__owned_location_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
+msgid "Owned Locations"
+msgstr "Lastne lokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__owner_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
+msgid "Owner"
+msgstr "Lastnik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__parent_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__parent_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_tag__parent_id
+msgid "Parent"
+msgstr "Nadrejeni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_path
+msgid "Parent Path"
+msgstr "Nadrejena pot"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_name
+msgid "Parent name"
+msgstr "Nadrejeni naziv"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_company_registry_placeholder
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_company_registry_placeholder
+msgid "Partner Company Registry Placeholder"
+msgstr "Nadomestno besedilo registra družbe partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
+msgid "Partner Contracts"
+msgstr "Partnerjeve pogodbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__use_partner_credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__use_partner_credit_limit
+msgid "Partner Limit"
+msgstr "Limit partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_vat_placeholder
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_vat_placeholder
+msgid "Partner Vat Placeholder"
+msgstr "Nadomestno besedilo za davčno številko partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
+msgid "Partner is Active"
+msgstr "Partner je aktiven"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_company_registry_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_company_registry_partner_id
+msgid "Partner with same Company Registry"
+msgstr "Partner z enako registrsko številko družbe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__same_vat_partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__same_vat_partner_id
+msgid "Partner with same Tax ID"
+msgstr "Partner z enako davčno številko"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
+msgid "Payment Token Count"
+msgstr "Št. plačilnih žetonov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
+msgid "Payment Tokens"
+msgstr "Plačilni žetoni"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_checked
+msgid "Person Checked"
+msgstr "Oseba preverjena"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__phone
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized_blacklisted
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
+msgid "Phone Blacklisted"
+msgstr "Telefon na črnem seznamu"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
+msgid "Phone Number"
+msgstr "Telefonska številka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Planning"
+msgstr "Planiranje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Preferred Workers"
+msgstr "Prednostni operativci"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Previous Stage"
+msgstr "Prejšnja stopnja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Pricelist"
+msgstr "Cenik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_manager_id
+#: model:ir.model.fields,field_description:fieldservice.field_res_territory__person_id
+msgid "Primary Assignment"
+msgstr "Primarna dodelitev"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_id
+msgid "Primary Contact"
+msgstr "Primarni stik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__service_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__service_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__service_location_id
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__service_location_id
+msgid "Primary Service Location"
+msgstr "Primarna lokacija izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__priority
+msgid "Priority"
+msgstr "Prioriteta"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__legend_priority
+msgid "Priority Management Explanation"
+msgstr "Pojasnilo upravljanja prioritete"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_project
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Projects and Tasks"
+msgstr "Projekti in opravila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__properties
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__properties
+msgid "Properties"
+msgstr "Lastnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__properties_base_definition_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__properties_base_definition_id
+msgid "Properties Base Definition"
+msgstr "Osnovna definicija lastnosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_inbound_payment_method_line_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_inbound_payment_method_line_id
+msgid "Property Inbound Payment Method Line"
+msgstr "Postavka metode prejemnega plačila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_outbound_payment_method_line_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_outbound_payment_method_line_id
+msgid "Property Outbound Payment Method Line"
+msgstr "Postavka metode izhodnega plačila"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Purchase Field Services"
+msgstr "Nabava storitev operative"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
+msgid "Purchase Order Count"
+msgstr "Št. nabavnih nalogov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__rating_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__rating_ids
+msgid "Ratings"
+msgstr "Ocene"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
+msgid "Receipt Reminder"
+msgstr "Opomnik prejema"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
+msgid "Record Type"
+msgstr "Tip zapisa"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref
+msgid "Reference"
+msgstr "Sklic"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Refresh"
+msgstr "Osveži"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Refresh Localization"
+msgstr "Osveži lokacijo"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__region_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__region_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__region_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Region"
+msgstr "Regija"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__region_manager_id
+msgid "Region Manager"
+msgstr "Vodja regije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__parent_id
+msgid "Related Company"
+msgstr "Povezana družba"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fsm_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_res_partner__fsm_location_ids
+#: model:ir.model.fields,field_description:fieldservice.field_res_users__fsm_location_ids
+msgid "Related FS Location"
+msgstr "Povezana lokacija izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owner_id
+msgid "Related Owner"
+msgstr "Povezani lastnik"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_id
+msgid "Related Partner"
+msgstr "Povezani partner"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__employee_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__employee_ids
+msgid "Related employees based on their private address"
+msgstr "Povezani zaposleni glede na svoj zasebni naslov"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.reporting
+msgid "Reporting"
+msgstr "Poročanje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Request Workers"
+msgstr "Zahtevaj operativce"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__require_signature
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__require_signature
+msgid "Require Signature"
+msgstr "Zahtevaj podpis"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Requirements"
+msgstr "Zahteve"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__resolution
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Resolution"
+msgstr "Resolucija"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
+msgid "Resolution Notes"
+msgstr "Opombe o odpravi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__activity_user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__activity_user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__activity_user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__activity_user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__activity_user_id
+msgid "Responsible User"
+msgstr "Odgovorni uporabnik"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Routes"
+msgstr "Proge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__rtc_session_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__rtc_session_ids
+msgid "Rtc Session"
+msgstr "Seja RTC"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_sms_error
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Napaka pri dostavi SMS"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
+msgid "Sale Order Count"
+msgstr "Št. prodajnih nalogov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_id
+msgid "Salesperson"
+msgstr "Prodajalec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized
+msgid "Sanitized Number"
+msgstr "Normalizirana številka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+msgid "Schedule Details"
+msgstr "Podrobnosti razporeda"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_duration
+msgid "Scheduled Duration"
+msgstr "Načrtovano trajanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_end
+msgid "Scheduled End"
+msgstr "Načrtovani konec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__scheduled_date_start
+msgid "Scheduled Start (ETA)"
+msgstr "Načrtovani začetek (ETA)"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__scheduled_duration
+msgid "Scheduled duration of the work in hours"
+msgstr "Načrtovano trajanje dela v urah"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_search_view
+msgid "Search FSM Location"
+msgstr "Išči lokacijo izvajanja"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_search
+msgid "Search FSM Teams"
+msgstr "Išči izvajalske ekipe"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
+msgid "Search FSM Workers"
+msgstr "Išči operativce"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__search_on_complete_name
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__search_on_complete_name
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Search Location By Hierarchy"
+msgstr "Išči lokacijo po hierarhiji"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
+msgid "Search Location Worker"
+msgstr "Išči operativca na lokaciji"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Search Locations based on their full hierarchy name"
+msgstr "Išči lokacije po njihovem polnem hierarhičnem nazivu"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.partner_wizard_view
+msgid ""
+"Select whether you want to convert this record to a Field\n"
+"                    Service Worker or Location."
+msgstr ""
+"Izberite, ali želite ta zapis pretvoriti v operativca ali lokacijo\n"
+"                    izvajanja."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__self
+msgid "Self"
+msgstr "Sam"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_sale
+msgid "Sell FSM orders"
+msgstr "Prodajajte operativne naloge"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Sell Field Service Orders"
+msgstr "Prodajajte operativne naloge"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Sell products that generate field service orders"
+msgstr "Prodajajte izdelke, ki ustvarijo operativne naloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__sequence
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__sequence
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__sequence
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__sequence
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_location
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Service Locations"
+msgstr "Lokacije izvajanja"
+
+#. module: fieldservice
+#: model:ir.actions.report,name:fieldservice.action_report_fsm_order
+msgid "Service Order"
+msgstr "Operativni nalog"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_graph_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_pivot_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Service Orders"
+msgstr "Operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__is_closed
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_closed
+msgid "Services in this stage are considered as closed."
+msgstr "Storitve v tej stopnji se štejejo za zaključene."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__use_partner_credit_limit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__use_partner_credit_limit
+msgid "Set a value greater than 0.0 to activate a credit limit check"
+msgstr ""
+"Nastavite vrednost večjo od 0,0 za aktiviranje preverjanja kreditnega limita"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_config
+#: model:ir.ui.menu,name:fieldservice.settings
+msgid "Settings"
+msgstr "Nastavitve"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_share
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_share
+msgid "Share Partner"
+msgstr "Deljeni partner"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__show_credit_limit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
+msgid "Show Credit Limit"
+msgstr "Prikaži kreditni limit"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
+msgid "Sign"
+msgstr "Podpisovanje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signature
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signature
+msgid "Signature"
+msgstr "Podpis"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_by
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signed_by
+msgid "Signed By"
+msgstr "Podpisal"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_on
+msgid "Signed On"
+msgstr "Podpisano"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
+msgid "Signup Token Type"
+msgstr "Tip prijavnega žetona"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__specific_property_product_pricelist
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__specific_property_product_pricelist
+msgid "Specific Property Product Pricelist"
+msgstr "Specifična lastnost cenika izdelkov"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__stage_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_model_mixin__stage_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__stage_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__stage_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_list_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
+msgid "Stage"
+msgstr "Stopnja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__custom_color
+msgid "Stage Color"
+msgstr "Barva stopnje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
+msgid "Stage Description and Tooltips"
+msgstr "Opis stopnje in namigi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__stage_name
+msgid "Stage Name"
+msgstr "Naziv stopnje"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_stage
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__stage_ids
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_stage
+msgid "Stages"
+msgstr "Stopnje"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__state_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__state_name
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__state_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "State"
+msgstr "Zvezna država"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__application_statistics
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__application_statistics
+msgid "Stats"
+msgstr "Statistika"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__activity_state
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__activity_state
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__activity_state
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__activity_state
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status glede na aktivnosti\n"
+"Prekoračeno: rok izvedbe je že prekoračen\n"
+"Danes: Datum aktivnosti je današnji dan\n"
+"Planirano: Bodoče aktivnosti."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__street
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street
+msgid "Street"
+msgstr "Ulica"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Street 2..."
+msgstr "Ulica 2..."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Street..."
+msgstr "Ulica..."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street2
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__street2
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__street2
+msgid "Street2"
+msgstr "Ulica2"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sublocation_count
+msgid "Sub Locations"
+msgstr "Podlokacije"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Sub-Locations"
+msgstr "Podlokacije"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "Supplier Currency"
+msgstr "Valuta dobavitelja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
+msgid "Supplier Rank"
+msgstr "Rang dobavitelja"
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "Naziv oznake že obstaja!"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_fsm_tag
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__category_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__tag_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__category_id
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_tag
+msgid "Tags"
+msgstr "Oznake"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__vat
+msgid "Tax ID"
+msgstr "Davčna ID"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat_label
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__vat_label
+msgid "Tax ID Label"
+msgstr "Oznaka davčne ID"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__team_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__team_id
+msgid "Team"
+msgstr "Ekipa"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_form
+msgid "Team Name"
+msgstr "Naziv ekipe"
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_team_name_uniq
+msgid "Team name already exists!"
+msgstr "Naziv ekipe že obstaja!"
+
+#. module: fieldservice
+#: model:ir.actions.act_window,name:fieldservice.action_team_dashboard
+#: model:ir.actions.act_window,name:fieldservice.action_team_settings
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__team_ids
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_dash_team
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_team
+msgid "Teams"
+msgstr "Ekipe"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__template_id
+msgid "Template"
+msgstr "Predloga"
+
+#. module: fieldservice
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_template
+msgid "Templates"
+msgstr "Predloge"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__territory_ids
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "Territories"
+msgstr "Območja izvajanja"
+
+#. module: fieldservice
+#: model:ir.model,name:fieldservice.model_res_territory
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__territory_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__territory_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__territory_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Territory"
+msgstr "Območje izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__country_code
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
+"ISO koda države v dveh znakih. \n"
+"To polje lahko uporabite za hitro iskanje."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_position_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_account_position_id
+msgid ""
+"The fiscal position determines the taxes/accounts used for this contact."
+msgstr "Fiskalni položaj določa davke/konte, uporabljene za ta stik."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__user_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__user_id
+msgid "The internal user in charge of this contact."
+msgstr "Notranji uporabnik, zadolžen za ta stik."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__company_registry
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__company_registry
+msgid ""
+"The registry number of the company. Use it if it is different from the Tax "
+"ID. It must be unique across all partners of a same country"
+msgstr ""
+"Registrska številka družbe. Uporabite jo, če se razlikuje od davčne ID. Mora "
+"biti edinstvena med vsemi partnerji iste države"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_customer
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_customer
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr "Lokacija zaloge, uporabljena kot cilj pri pošiljanju blaga temu stiku."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_stock_supplier
+msgid ""
+"The stock location used as source when receiving goods from this contact."
+msgstr "Lokacija zaloge, uporabljena kot vir pri prejemu blaga od tega stika."
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
+msgid "The worker is already linked to this location."
+msgstr "Operativec je že povezan s to lokacijo."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__main_user_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__main_user_id
+msgid ""
+"There can be several users related to the same partner. When a single user "
+"is needed, this field attempts to find the most appropriate one."
+msgstr ""
+"Z istim partnerjem je lahko povezanih več uporabnikov. Kadar je potreben en "
+"uporabnik, to polje poskuša najti najprimernejšega."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_purchase_currency_id
+msgid "This currency will be used for purchases from the current partner"
+msgstr "Ta valuta bo uporabljena za nakupe od trenutnega partnerja"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
+msgid ""
+"This field is used to search on email address as the primary email field can"
+" contain more than strictly an email address."
+msgstr ""
+"To polje se uporablja za iskanje po e-poštnem naslovu, saj lahko primarno "
+"polje e-pošte vsebuje več kot le e-poštni naslov."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
+msgid ""
+"This stage is folded in the kanban view when there are no record in that "
+"stage to display."
+msgstr ""
+"Ta stopnja je v pogledu kanban zložena, kadar v tej stopnji ni zapisov za "
+"prikaz."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__tz
+msgid "Timezone"
+msgstr "Časovni pas"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__tz_offset
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__tz_offset
+msgid "Timezone offset"
+msgstr "Časovni razmak"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "To Assign"
+msgstr "Za dodelitev"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "To Do"
+msgstr "Za izvedbo"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
+msgid "To Schedule"
+msgstr "Za planiranje"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Today Orders"
+msgstr "Današnji operativni nalogi"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
+msgid "Total Invoiced"
+msgstr "Skupaj zaračunano"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
+msgid "Total Payable"
+msgstr "Skupaj obveznosti"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
+msgid "Total Receivable"
+msgstr "Skupaj terjatev"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
+msgid "Total amount this customer owes you."
+msgstr "Skupni znesek, ki vam ga ta kupec dolguje."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
+msgid "Total amount you have to pay to this vendor."
+msgstr "Skupni znesek, ki ga morate plačati temu dobavitelju."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__stage_type
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_template__type_id
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_type_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_search_view
+msgid "Type"
+msgstr "Tip"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__activity_exception_decoration
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__activity_exception_decoration
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__activity_exception_decoration
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__activity_exception_decoration
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tip izjeme pri aktivnosti na zapisu."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Unassigned"
+msgstr "Nedodeljeno"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
+msgid "Unscheduled"
+msgstr "Nenačrtovano"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+msgid "Updated on:"
+msgstr "Posodobljeno:"
+
+#. module: fieldservice
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__3
+msgid "Urgent"
+msgstr "Nujno"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_location_builder
+msgid "Use FSM Location Builder"
+msgstr "Uporabi graditelja lokacij izvajanja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_geoengine
+msgid "Use GeoEngine"
+msgstr "Uporabi GeoEngine"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Use GeoEngine with OpenStreetMap"
+msgstr "Uporabi GeoEngine z OpenStreetMap"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__custom_color
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__custom_color
+msgid "Use Hex Code only Ex:-#FFFFFF"
+msgstr "Uporabite samo šestnajstiško kodo. Primer: #FFFFFF"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_stock
+msgid "Use Odoo Logistics"
+msgstr "Uporabi logistiko Odoo"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__barcode
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__barcode
+msgid "Use a barcode to identify this contact."
+msgstr "Uporabite črtno kodo za identifikacijo tega stika."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__is_default
+msgid "Used a default stage"
+msgstr "Uporabi privzeto stopnjo"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__property_product_pricelist
+msgid "Used for sales to the current partner"
+msgstr "Uporablja se za prodajo trenutnemu partnerju"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__sequence
+msgid "Used to order stages. Lower is better."
+msgstr "Uporabljeno za vrstni red stopenj. Nižje je bolje."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__sequence
+msgid "Used to sort teams. Lower is better."
+msgstr "Uporablja se za razvrščanje ekip. Nižja vrednost je boljša."
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_user
+msgid "User"
+msgstr "Uporabnik"
+
+#. module: fieldservice
+#: model:res.groups,name:fieldservice.group_fsm_user_own
+msgid "User (only own documents)"
+msgstr "Uporabnik (le svoji dokumenti)"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__user_ids
+msgid "Users"
+msgstr "Uporabniki"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Vehicles"
+msgstr "Vozila"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
+msgid "Vendor Location"
+msgstr "Lokacija dobavitelja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
+msgid "Vendor Payment Terms"
+msgstr "Plačilni pogoji dobavitelja"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website
+msgid "Website Link"
+msgstr "Povezava do spletne strani"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
+msgid "Website Messages"
+msgstr "Sporočila spletne strani"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
+#: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
+msgid "Website communication history"
+msgstr "Kronologija komunikacij spletne strani"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
+msgid ""
+"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
+"Anywhere else, time values are computed according to the time offset of your web client."
+msgstr ""
+"Pri tiskanju dokumentov in izvozu/uvozu podatkov se časovne vrednosti "
+"izračunajo glede na ta časovni pas.\n"
+"Če časovni pas ni nastavljen, se uporablja UTC (koordinirani univerzalni čas)"
+".\n"
+"Drugod se časovne vrednosti izračunajo glede na časovni odmik vašega "
+"spletnega odjemalca."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__employee
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__employee
+msgid "Whether this contact is an Employee."
+msgstr "Ali je ta stik zaposleni."
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_order__require_signature
+#: model:ir.model.fields,help:fieldservice.field_fsm_stage__require_signature
+msgid ""
+"Whether to ask for a Customer Signature when the order is in this stage."
+msgstr ""
+"Ali je treba zahtevati podpis naročnika, ko je operativni nalog v tej "
+"stopnji."
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__person_id
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__worker
+#: model:ir.model.fields.selection,name:fieldservice.selection__fsm_wizard__fsm_record_type__person
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_person_search_view
+msgid "Worker"
+msgstr "Operativec"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__person_phone
+msgid "Worker Phone"
+msgstr "Telefon operativca"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__person_ids
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_config_person
+#: model:ir.ui.menu,name:fieldservice.menu_fsm_person
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Workers"
+msgstr "Operativci"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__calendar_id
+msgid "Working Schedule"
+msgstr "Delovni urnik"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_stage_form_view
+msgid ""
+"You can add a description to help your coworkers understand the meaning and "
+"purpose of the stage."
+msgstr ""
+"Dodate lahko opis, ki sodelavcem pomaga razumeti pomen in namen stopnje."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "You can archive the contact"
+msgstr "Stik lahko arhivirate"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__vat
+msgid "You can use '/' to indicate that the customer has no Tax ID."
+msgstr "Znak '/' lahko uporabite za označitev, da kupec nima davčne številke."
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+msgid "You cannot delete this order."
+msgstr "Tega operativnega naloga ne morete izbrisati."
+
+#. module: fieldservice
+#: model:ir.model.constraint,message:fieldservice.constraint_fsm_person_calendar_filter_user_id_fsm_person_id_unique
+msgid "You cannot have the same worker twice."
+msgstr "Isti operativec ne more biti naveden dvakrat."
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+msgid "You must create an FSM order stage first."
+msgstr "Najprej morate ustvariti stopnjo operativnega naloga."
+
+#. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+msgid "You must create an FSM team first."
+msgstr "Najprej morate ustvariti izvajalsko ekipo."
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "ZIP"
+msgstr "Poštna številka"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__zip
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_order__zip
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__zip
+msgid "Zip"
+msgstr "Poštna številka"
+
+#. module: fieldservice
+#: model:ir.model.fields,help:fieldservice.field_fsm_location__days_sales_outstanding
+#: model:ir.model.fields,help:fieldservice.field_fsm_person__days_sales_outstanding
+msgid ""
+"[(Total Receivable/Total Revenue) * number of days since the first invoice] "
+"for this customer"
+msgstr ""
+"[(Skupaj terjatve/Skupaj prihodkov) * število dni od prvega računa] za tega "
+"kupca"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format
+msgid "eInvoice format"
+msgstr "format e-računa"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
+msgid "tag"
+msgstr "oznaka"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_template_form_view
+msgid "template"
+msgstr "predloga"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
+msgid "x"
+msgstr "x"
