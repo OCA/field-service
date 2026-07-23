@@ -393,6 +393,8 @@ workforce).</li>
 <li><strong>Delivery Time Ranges (`fsm.delivery.time.range`)</strong>: Define
 available time slots for scheduling field service operations.</li>
 </ul>
+<p><strong>Restricts blackout days for Scheduled Start (ETA) orders with the same
+date</strong></p>
 <p>This is a technical module and does not provide functionality on its
 own. Extend this module to integrate availability management into field
 service workflows.</p>
@@ -414,6 +416,16 @@ service workflows.</p>
 <p>Navigate to Field Service &gt; Configuration &gt; Availability. Once there,
 you can select Delivery Time Ranges, Blackout Days, Blackout Groups or
 Stress Days to create new records.</p>
+<p>Steps to restrict blackout days for Scheduled Start (ETA) orders with
+the same date</p>
+<ol class="arabic simple">
+<li>Set up Blackout Days on Configuration &gt; Blackout Groups and create or
+edit one with blackout days</li>
+<li>Go to Field Service &gt; Master Data &gt; Routes &gt; Create or edit route and
+assign Blackout Group Days and a Person</li>
+<li>Create a Field Service order and set up Scheduled Start (ETA) with
+date that you put on blackout days and the Odoo will throw an error</li>
+</ol>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>

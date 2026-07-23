@@ -16,6 +16,8 @@ and workload adjustments.
 - **Delivery Time Ranges (\`fsm.delivery.time.range\`)**: Define
   available time slots for scheduling field service operations.
 
+**Restricts blackout days for Scheduled Start (ETA) orders with the same date**
+
 This is a technical module and does not provide functionality on its
 own. Extend this module to integrate availability management into field
 service workflows.

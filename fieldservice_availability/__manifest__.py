@@ -19,6 +19,7 @@
         "views/fsm_blackout_day_templates.xml",
         "views/fsm_delivery_time_range_templates.xml",
         "views/fsm_stress_day_templates.xml",
+        "views/fsm_route.xml",
         "views/menu.xml",
     ],
     "demo": [

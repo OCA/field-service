@@ -10,6 +10,9 @@ class FieldServiceBlackoutDay(models.Model):
 
     name = fields.Char(string="Description", required=True)
     date = fields.Date(string="Blackout Day", required=True)
+    zip = fields.Char(
+        help="Postal code of the blackout day.",
+    )
 
     _unique_blackout_day = models.Constraint(
         "unique(date)",
