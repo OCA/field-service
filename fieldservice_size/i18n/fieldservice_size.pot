@@ -19,13 +19,6 @@ msgid "Configure a Field Service Size here."
 msgstr ""
 
 #. module: fieldservice_size
-#: model:ir.model.fields,help:fieldservice_size.field_fsm_order__size_uom_category
-msgid ""
-"Conversion between Units of Measure can only occur if they belong to the "
-"same category. The conversion will be made based on the ratios."
-msgstr ""
-
-#. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__create_uid
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__create_uid
 msgid "Created by"
@@ -38,6 +31,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__display_name
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__display_name
 msgid "Display Name"
@@ -64,7 +58,9 @@ msgid "Field Service Sizes"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__id
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__id
 msgid "ID"
 msgstr ""
@@ -113,6 +109,11 @@ msgid "Only one size of same type allowed per location"
 msgstr ""
 
 #. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__display_name
+msgid "Order"
+msgstr ""
+
+#. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_value
 msgid "Order Size"
 msgstr ""
@@ -131,6 +132,11 @@ msgstr ""
 #. module: fieldservice_size
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_location_size__quantity
 msgid "Quantity"
+msgstr ""
+
+#. module: fieldservice_size
+#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_relative_uom_id
+msgid "Reference Unit"
 msgstr ""
 
 #. module: fieldservice_size
@@ -166,14 +172,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom
 #: model:ir.model.fields,field_description:fieldservice_size.field_fsm_size__uom_id
 msgid "Unit of Measure"
-msgstr ""
-
-#. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_uom_category
-msgid "Unit of Measure Category"
-msgstr ""
-
-#. module: fieldservice_size
-#: model:ir.model.fields,field_description:fieldservice_size.field_fsm_order__size_relative_uom_id
-msgid "Reference Unit"
 msgstr ""
