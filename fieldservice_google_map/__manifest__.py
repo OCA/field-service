@@ -3,10 +3,9 @@
 
 {
     "name": "Field Service Google Map",
-    "summary": "This module displays map views on the order and location using"
-    " Google Map View module.",
+    "summary": "Display map views on Field Service orders and locations",
     "license": "AGPL-3",
-    "version": "14.0.1.1.0",
+    "version": "19.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -18,6 +17,7 @@
         "views/fsm_order.xml",
         "views/fsm_location.xml",
     ],
+    "installable": True,
     "development_status": "Beta",
     "maintainers": [
         "wolfhall",
