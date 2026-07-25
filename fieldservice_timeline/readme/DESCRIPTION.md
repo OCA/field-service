@@ -1,2 +1,2 @@
-This module is the display timeline view of the Field Service
-application in Odoo.
+This module adds a timeline view for Field Service orders so you can
+see scheduled work across workers on a single interactive chart.

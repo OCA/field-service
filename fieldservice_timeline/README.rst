@@ -21,19 +21,19 @@ Field Service Web Timeline
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/17.0/fieldservice_timeline
+    :target: https://github.com/OCA/field-service/tree/19.0/fieldservice_timeline
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-17-0/field-service-17-0-fieldservice_timeline
+    :target: https://translation.odoo-community.org/projects/field-service-19-0/field-service-19-0-fieldservice_timeline
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module is the display timeline view of the Field Service
-application in Odoo.
+This module adds a timeline view for Field Service orders so you can see
+scheduled work across workers on a single interactive chart.
 
 **Table of contents**
 
@@ -55,13 +55,13 @@ of order stages comes pre-configured for use.
 
 1. Go to *Field Service > Configuration > Stages*
 2. Create or edit a stage
-3. Set the name for the stage.
-4. Set the sequence order for the stage.
-5. Select *Order* type to apply this stage to your orders.
-6. Additonally, you can set a color for the stage.
+3. Set the name for the stage
+4. Set the sequence order for the stage
+5. Select *Order* type to apply this stage to your orders
+6. Optionally, set a color for the stage
 
-You need to add attribute mention below with the tag <timeline> as base
-element.
+You need to add attributes mentioned below with the tag <timeline> as
+base element.
 
 - colors (optional): it allows to set certain specific colors if the
   expressed condition (JS syntax) is met.
@@ -69,6 +69,20 @@ element.
   example custom_color = "true". And there is minor condition to follow
   to implement this as. Define any one stage color condition like
   colors="#ffffff:stage_id=='New';"
+
+Usage
+=====
+
+To use this module:
+
+1. Go to *Field Service > Dashboard > Orders* or *Field Service >
+   Operations > All Orders*
+2. Open the timeline view from the view switcher
+3. Drag events to reschedule, or zoom with the mouse scroll
+
+Orders are grouped by the assigned worker (``person_id``) by default.
+You can also open the timeline from a team dashboard card that shows
+orders for that team.
 
 Known issues / Roadmap
 ======================
@@ -82,7 +96,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_timeline%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_timeline%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -98,7 +112,10 @@ Contributors
 ------------
 
 - Wolfgang Hall <whall@opensourceintegrators.com>
-- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+
 - Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 - Ammar Officewala <aofficewala@opensourceintegrators.com>
 - `XCG Consulting <https://xcg-consulting.fr>`__:
@@ -114,8 +131,8 @@ Other credits
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators
-  <`https://opensourceintegrators.com\\> <https://opensourceintegrators.com\>>`__
+- Gray Matter Logic
+  <`https://www.graymatterlogic.com\\> <https://www.graymatterlogic.com\>>`__
 
 Maintainers
 -----------
@@ -141,6 +158,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-wolfhall| |maintainer-max3903| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/17.0/fieldservice_timeline>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_timeline>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
