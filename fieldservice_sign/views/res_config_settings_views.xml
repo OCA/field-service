@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.fieldservice.sign</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='order_setting_container']" position="after">
+                <block title="Signatures" name="signature_setting_container">
+                    <setting
+                        string="On-site Signature Capture"
+                        help="Show customer signature capture on Field Service orders and optionally require it before completion."
+                    >
+                        <field name="fsm_signature_capture" />
+                        <div
+                            class="content-group"
+                            invisible="not fsm_signature_capture"
+                        >
+                            <div class="mt16">
+                                <field
+                                    name="fsm_require_signature_to_complete"
+                                    class="oe_inline"
+                                />
+                                <label
+                                    for="fsm_require_signature_to_complete"
+                                    class="o_light_label"
+                                />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting
+                        string="Document Signing"
+                        help="Launch sign_oca signature requests from Field Service orders."
+                        groups="sign_oca.sign_oca_group_admin"
+                    >
+                        <field name="fsm_document_signing" />
+                        <div class="content-group" invisible="not fsm_document_signing">
+                            <div class="mt16">
+                                <field
+                                    name="fsm_require_document_signed_to_complete"
+                                    class="oe_inline"
+                                />
+                                <label
+                                    for="fsm_require_document_signed_to_complete"
+                                    class="o_light_label"
+                                />
+                            </div>
+                            <div class="mt16">
+                                <label
+                                    for="fsm_order_sign_oca_template_id"
+                                    class="o_light_label"
+                                />
+                                <field
+                                    name="fsm_order_sign_oca_template_id"
+                                    options="{'no_create': True}"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

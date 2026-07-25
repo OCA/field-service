@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sign_oca_request_search_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.search.inherit.fieldservice.sign</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field name="arch" type="xml">
+            <field name="signer_ids" position="after">
+                <field name="fsm_order_id" groups="fieldservice.group_fsm_user" />
+            </field>
+            <filter name="group_by_state" position="after">
+                <filter
+                    string="Field Service Order"
+                    name="group_by_fsm_order_id"
+                    context="{'group_by': 'fsm_order_id'}"
+                    groups="fieldservice.group_fsm_user"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="sign_oca_request_form_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.form.inherit.fieldservice.sign</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field
+                    name="fsm_order_id"
+                    readonly="1"
+                    invisible="not fsm_order_id"
+                    groups="fieldservice.group_fsm_user"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="sign_oca_request_tree_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.list.inherit.fieldservice.sign</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_tree_view" />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field
+                    name="fsm_order_id"
+                    optional="hide"
+                    groups="fieldservice.group_fsm_user"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

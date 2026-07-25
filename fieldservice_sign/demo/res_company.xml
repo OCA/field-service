@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="base.main_company" model="res.company">
+        <field name="fsm_signature_capture" eval="True" />
+        <field name="fsm_document_signing" eval="True" />
+        <field
+            name="fsm_order_sign_oca_template_id"
+            ref="sign_oca_template_fsm_order_demo"
+        />
+    </record>
+</odoo>

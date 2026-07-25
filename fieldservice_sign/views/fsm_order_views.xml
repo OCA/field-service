@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_form_inherit_sign" model="ir.ui.view">
+        <field name="name">fsm.order.form.inherit.fieldservice.sign</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="fsm_signature_capture" invisible="1" />
+                <field name="fsm_document_signing" invisible="1" />
+                <field name="sign_request_state" invisible="1" />
+            </xpath>
+            <button id="action_sign_1" position="attributes">
+                <attribute
+                    name="invisible"
+                >not fsm_signature_capture or not require_signature or signature</attribute>
+            </button>
+            <button id="action_sign_2" position="attributes">
+                <attribute
+                    name="invisible"
+                >not fsm_signature_capture or not require_signature or not signature</attribute>
+            </button>
+            <button id="action_complete" position="after">
+                <button
+                    id="action_request_document_signature"
+                    name="action_request_document_signature"
+                    string="Request Signature"
+                    type="object"
+                    groups="sign_oca.sign_oca_group_user"
+                    invisible="not fsm_document_signing or is_closed"
+                />
+            </button>
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_sign_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    invisible="not fsm_document_signing or sign_request_count == 0"
+                    groups="sign_oca.sign_oca_group_user"
+                >
+                    <field
+                        name="sign_request_count"
+                        widget="statinfo"
+                        string="Sign Requests"
+                    />
+                </button>
+            </div>
+            <page name="customer_signature" position="attributes">
+                <attribute
+                    name="invisible"
+                >not fsm_signature_capture or (not require_signature and not signed_by and not signature and not signed_on)</attribute>
+            </page>
+            <page name="customer_signature" position="after">
+                <page
+                    string="Document Signing"
+                    name="document_signing"
+                    invisible="not fsm_document_signing"
+                    groups="sign_oca.sign_oca_group_user"
+                >
+                    <group>
+                        <field name="sign_request_id" readonly="1" />
+                        <field name="sign_request_state" readonly="1" />
+                    </group>
+                    <field name="sign_request_ids" readonly="1">
+                        <list>
+                            <field name="name" />
+                            <field name="state" />
+                            <field name="create_date" />
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

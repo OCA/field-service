@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sign_oca_template_fsm_order_demo_item" model="sign.oca.template.item">
+        <field name="template_id" ref="sign_oca_template_fsm_order_demo" />
+        <field name="field_id" ref="sign_oca.sign_field_signature" />
+        <field name="role_id" ref="sign_role_fsm_order_customer" />
+        <field name="page">1</field>
+        <field name="position_x">10</field>
+        <field name="position_y">10</field>
+        <field name="width">30</field>
+        <field name="height">4</field>
+        <field name="required" eval="True" />
+    </record>
+</odoo>

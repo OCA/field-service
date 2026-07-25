@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sign_oca_template_fsm_order_demo" model="sign.oca.template">
+        <field name="name">FSM Order Approval</field>
+        <field name="model_id" search="[('model', '=', 'fsm.order')]" />
+        <field name="data" type="base64" file="sign_oca/tests/empty.pdf" />
+    </record>
+</odoo>

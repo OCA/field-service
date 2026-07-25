@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_fsm_order_document_sign"
+        inherit_id="fieldservice.report_fsm_order_document"
+    >
+        <xpath expr="//div[hasclass('page')]" position="inside">
+            <div
+                t-if="doc.company_id.fsm_signature_capture and doc.signature"
+                class="mt32"
+                id="customer_signature"
+            >
+                <h3>Customer Signature</h3>
+                <p t-if="doc.signed_by">
+                    <strong>Signed By:</strong>
+                    <span t-field="doc.signed_by" />
+                </p>
+                <p t-if="doc.signed_on">
+                    <strong>Signed On:</strong>
+                    <span t-field="doc.signed_on" />
+                </p>
+                <img
+                    t-att-src="image_data_uri(doc.signature)"
+                    style="max-height: 120px;"
+                    alt="Customer Signature"
+                />
+            </div>
+        </xpath>
+    </template>
+</odoo>

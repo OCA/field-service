@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sign_role_fsm_order_customer" model="sign.oca.role">
+        <field name="name">FSM Order Customer</field>
+        <field name="partner_selection_policy">expression</field>
+        <field name="expression_partner">{{object.location_id.owner_id.id}}</field>
+    </record>
+</odoo>
