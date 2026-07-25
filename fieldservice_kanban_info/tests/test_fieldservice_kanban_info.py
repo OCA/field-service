@@ -59,7 +59,9 @@ class TestFieldServiceKanbanInfo(FSMCommon):
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        # Use Datetime.now() inside freeze_time; setUpClass.now is wall-clock.
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range,
             r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} (AM|PM) - \d{2}:\d{2} (AM|PM)",
@@ -77,7 +79,9 @@ class TestFieldServiceKanbanInfo(FSMCommon):
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        order = self._create_order(self.now, self.now + relativedelta(hours=2))
+        # Use Datetime.now() inside freeze_time; setUpClass.now is wall-clock.
+        now = fields.Datetime.now()
+        order = self._create_order(now, now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range, r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} - \d{2}:\d{2}"
         )
