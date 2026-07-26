@@ -112,7 +112,9 @@ patch(GeoengineRenderer.prototype, {
                         16
                     );
                 }
-                data.push(record);
+                if (record.data[vector.geo_field_id[1]] !== false) {
+                    data.push(record);
+                }
             }
             this.styleVectorLayerAndLegend(vector, data, layer);
             this.addSourceToLayer(data, vector, layer);
