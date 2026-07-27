@@ -24,6 +24,11 @@ msgid "# Meetings"
 msgstr "Št. sestankov"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
 msgid "# Vendor Bills"
@@ -260,8 +265,8 @@ msgstr "Vsi operativni nalogi"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 "Vsa e-poštna sporočila in dokumenti, poslani tej kontaktni osebi, bodo "
 "prevedeni v ta jezik."
@@ -277,7 +282,7 @@ msgid "Allow Field Service Google Maps"
 msgstr "Omogoči Google Zemljevide za operativo"
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_timeline
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Web Timeline View"
 msgstr "Omogoči spletni pogled časovnice operative"
@@ -343,8 +348,7 @@ msgstr "Samodejno dopolni opremo na operativnem nalogu glede na lokacijo"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr ""
 "Samodejno dopolni opremo na operativnem nalogu glede na vsebino lokacije"
 
@@ -1055,6 +1059,11 @@ msgid "Dispatcher"
 msgstr "Dispečer operative"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Display Field Service orders in a timeline view"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_edi_format
 msgid "Display Invoice Edi Format"
@@ -1631,8 +1640,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
+"If the sanitized phone number is on the blacklist, the contact won't receive "
+"mass mailing sms anymore, from any list"
 msgstr ""
 "Če je normalizirana telefonska številka na črnem seznamu, stik ne bo več "
 "prejemal SMS-sporočil za množično pošiljanje z nobenega seznama"
@@ -2478,6 +2487,17 @@ msgid "Operations"
 msgstr "Operacije"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+msgid "Opportunities"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity Count"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__order_id
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__order
@@ -3169,6 +3189,18 @@ msgid "Signed On"
 msgstr "Podpisano"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_ids
+msgid "Signer"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_count
+msgid "Signer Count"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
 msgid "Signup Token Type"
@@ -3445,8 +3477,8 @@ msgstr "Ta valuta bo uporabljena za nakupe od trenutnega partnerja"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 "To polje se uporablja za iskanje po e-poštnem naslovu, saj lahko primarno "
 "polje e-pošte vsebuje več kot le e-poštni naslov."
@@ -3675,14 +3707,16 @@ msgstr "Kronologija komunikacij spletne strani"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Pri tiskanju dokumentov in izvozu/uvozu podatkov se časovne vrednosti "
 "izračunajo glede na ta časovni pas.\n"
-"Če časovni pas ni nastavljen, se uporablja UTC (koordinirani univerzalni čas)"
-".\n"
+"Če časovni pas ni nastavljen, se uporablja UTC (koordinirani univerzalni "
+"čas).\n"
 "Drugod se časovne vrednosti izračunajo glede na časovni odmik vašega "
 "spletnega odjemalca."
 

@@ -23,6 +23,11 @@ msgid "# Meetings"
 msgstr "# Besprechungen"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
+msgid "# Opportunities"
+msgstr "# Verkaufschancen"
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
 msgid "# Vendor Bills"
@@ -275,7 +280,7 @@ msgid "Allow Field Service Google Maps"
 msgstr ""
 
 #. module: fieldservice
-#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_timeline
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Web Timeline View"
 msgstr "Verwendung der Timeline-View für Field-Service erlauben"
@@ -1041,6 +1046,11 @@ msgstr ""
 #. module: fieldservice
 #: model:res.groups,name:fieldservice.group_fsm_dispatcher
 msgid "Dispatcher"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "Display Field Service orders in a timeline view"
 msgstr ""
 
 #. module: fieldservice
@@ -2452,6 +2462,18 @@ msgid "Operations"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
+#, fuzzy
+msgid "Opportunities"
+msgstr "# Verkaufschancen"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
+msgid "Opportunity Count"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__order_id
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_stage__stage_type__order
@@ -3140,6 +3162,18 @@ msgid "Signed On"
 msgstr ""
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_ids
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_ids
+msgid "Signer"
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_count
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_count
+msgid "Signer Count"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signup_type
 msgid "Signup Token Type"
@@ -3761,13 +3795,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "x"
 msgstr ""
-
-#~ msgid "# Opportunities"
-#~ msgstr "# Verkaufschancen"
-
-#, fuzzy
-#~ msgid "Opportunities"
-#~ msgstr "# Verkaufschancen"
 
 #~ msgid "Additional info"
 #~ msgstr "Weitere Informationen"
