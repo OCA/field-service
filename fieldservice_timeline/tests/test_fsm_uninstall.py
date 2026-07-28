@@ -7,4 +7,4 @@ from odoo.addons.fieldservice_timeline import hooks
 
 class FSMUninstall(BaseCommon):
     def test_fsm_uninstall(self):
-        hooks.uninstall_hook(self.env.cr, False)
+        hooks.uninstall_hook(self.env)
