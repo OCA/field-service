@@ -1,7 +1,7 @@
 # Copyright 2020, Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import fields, tests
+from odoo import tests
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -143,7 +143,7 @@ class TestFSMStageValidation(tests.TransactionCase):
 
     def get_validate_message(self, stage):
         stage_name = stage.name
-        field_name = fields.first(stage.validate_field_ids).name
+        field_name = next(iter(stage.validate_field_ids)).name
         return f"Cannot move to stage {stage_name} until the {field_name} field is set."
 
     @tests.users(
@@ -226,7 +226,7 @@ class TestFSMStageValidation(tests.TransactionCase):
             )[0]
             fields_domain = safe_eval(
                 fields_node.get("domain"),
-                globals_dict=stage.read(load=None)[0],
+                context=stage.read(load=None)[0],
             )
             available_fields = self.env["ir.model.fields"].search(fields_domain)
             self.assertEqual(available_fields.model_id.model, record._name)
