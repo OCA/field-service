@@ -1,6 +1,6 @@
 - [Gray Matter Logic](https://www.graymatterlogic.com):
   - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
 - Nikul Chaudhary \<<nikul.chaudhary.serpentcs@gmail.com>\>
-- Freni Patel \<<fpatel@opensourceintegrators.com>\>
+- Freni Patel \<<fpatel@graymatterlogic.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
