@@ -21,7 +21,6 @@
     ],
     "development_status": "Beta",
     "maintainers": [
-        "osi-scampbell",
         "max3903",
     ],
     "installable": True,
