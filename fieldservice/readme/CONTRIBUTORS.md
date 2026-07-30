@@ -1,15 +1,17 @@
-- Wolfgang Hall \<<whall@opensourceintegrators.com>\>
-- Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>
-- Steve Campbell \<<scampbell@opensourceintegrators.com>\>
-- Bhavesh Odedra \<<bodedra@opensourceintegrators.com>\>
-- Michael Allen \<<mallen@opensourceintegrators.com>\>
-- Sandip Mangukiya \<<smangukiya@opensourceintegrators.com>\>
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Wolfgang Hall \<<whall@graymatterlogic.com>\>
+- Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Steve Campbell \<<scampbell@graymatterlogic.com>\>
+- Bhavesh Odedra \<<bodedra@graymatterlogic.com>\>
+- Michael Allen \<<mallen@graymatterlogic.com>\>
+- Sandip Mangukiya \<<smangukiya@graymatterlogic.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
 - Ammar Officewala \<<ammar.o.serpentcs@gmail.com>\>
 - Yves Goldberg \<<yves@ygol.com>\>
-- Freni Patel \<<fpatel@opensourceintegrators.com>\>
+- Freni Patel \<<fpatel@graymatterlogic.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Víctor Martínez
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
