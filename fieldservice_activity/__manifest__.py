@@ -17,5 +17,5 @@
         "security/ir.model.access.csv",
     ],
     "development_status": "Beta",
-    "maintainers": ["max3903", "osi-scampbell"],
+    "maintainers": ["max3903"],
 }

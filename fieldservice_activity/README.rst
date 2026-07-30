@@ -153,13 +153,10 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
-.. |maintainer-osi-scampbell| image:: https://github.com/osi-scampbell.png?size=40px
-    :target: https://github.com/osi-scampbell
-    :alt: osi-scampbell
 
-Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-max3903| |maintainer-osi-scampbell| 
+|maintainer-max3903| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_activity>`_ project on GitHub.
 
