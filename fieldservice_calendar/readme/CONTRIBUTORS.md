@@ -1,4 +1,6 @@
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
-- Freni Patel \<<fpatel@opensourceintegrators.com>\>
+- Freni Patel \<<fpatel@graymatterlogic.com>\>
 - [APSL](https://apsl.tech):
   - Antoni Marroig   \<<amarroig@apsl.net>\>
