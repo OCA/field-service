@@ -1,7 +1,7 @@
-- Open Source Integrators \<<https://www.opensourceintegrators.com>\>
-  - Steve Campbell \<<scampbell@opensourceintegrators.com>\>
-  - Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>
-  - Wolfgang Hall \<<whall@opensourceintegrators.com>\>
+- Gray Matter Logic \<<https://www.graymatterlogic.com>\>
+  - Steve Campbell \<<scampbell@graymatterlogic.com>\>
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+  - Wolfgang Hall \<<whall@graymatterlogic.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
