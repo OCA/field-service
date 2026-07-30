@@ -23,6 +23,5 @@
     "maintainers": [
         "brian10048",
         "max3903",
-        "smangukiya",
     ],
 }

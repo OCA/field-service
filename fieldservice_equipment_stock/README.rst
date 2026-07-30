@@ -140,13 +140,10 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
-.. |maintainer-smangukiya| image:: https://github.com/smangukiya.png?size=40px
-    :target: https://github.com/smangukiya
-    :alt: smangukiya
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-brian10048| |maintainer-max3903| |maintainer-smangukiya| 
+|maintainer-brian10048| |maintainer-max3903| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_equipment_stock>`_ project on GitHub.
 
