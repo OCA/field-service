@@ -1,11 +1,11 @@
-# Copyright (C) 2019, Open Source Integrators
+# Copyright (C) 2019, Gray Matter Logic
 # # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Field Service - Stage Server Action",
     "summary": "Execute server actions when reaching a Field Service stage",
     "version": "19.0.1.0.0",
     "category": "Field Service",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "base_automation"],
     "data": [
