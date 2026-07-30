@@ -13,6 +13,6 @@
     "depends": ["fieldservice", "web_timeline"],
     "data": ["views/fsm_order.xml", "views/fsm_team.xml"],
     "development_status": "Beta",
-    "maintainers": ["wolfhall", "max3903"],
+    "maintainers": ["max3903"],
     "uninstall_hook": "uninstall_hook",
 }
