@@ -392,12 +392,12 @@ service demand (e.g., peak business periods requiring additional
 workforce).</li>
 <li><strong>Delivery Time Ranges (`fsm.delivery.time.range`)</strong>: Define
 available time slots for scheduling field service operations.</li>
+<li><strong>Restricts blackout days for Scheduled Start (ETA) orders with the
+same date</strong></li>
 </ul>
-<p><strong>Restricts blackout days for Scheduled Start (ETA) orders with the same
-date</strong></p>
-<p>This is a technical module and does not provide functionality on its
-own. Extend this module to integrate availability management into field
-service workflows.</p>
+<p>This module validates Scheduled Start (ETA) dates on field service
+orders against blackout days configured on their route. Orders with an
+ETA that falls on a matching blackout day cannot be saved.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -449,9 +449,10 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li><a class="reference external" href="https://www.apsl.tech">APSL-Nagarro</a>:<ul>
 <li>Patryk Pyczko &lt;<a class="reference external" href="mailto:ppyczko&#64;apsl.net">ppyczko&#64;apsl.net</a>&gt;</li>
 <li>Antoni Marroig &lt;<a class="reference external" href="mailto:amarroig&#64;apsl.net">amarroig&#64;apsl.net</a>&gt;</li>
+<li>Bernat Obrador &lt;<a class="reference external" href="mailto:bobrador&#64;apsl.net">bobrador&#64;apsl.net</a>&gt;</li>
 </ul>
 </li>
-<li><a class="reference external" href="https://cit-services.in/">CIT Services</a>:<ul>
+<li><a class="reference external" href="https://cit-services.in/">CIT-Services</a>:<ul>
 <li>Linto Antony &lt;<a class="reference external" href="mailto:l.antony&#64;cit-services.eu">l.antony&#64;cit-services.eu</a>&gt;</li>
 </ul>
 </li>

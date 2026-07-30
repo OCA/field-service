@@ -1,7 +1,8 @@
 # Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class FieldServiceBlackoutDay(models.Model):
@@ -14,7 +15,22 @@ class FieldServiceBlackoutDay(models.Model):
         help="Postal code of the blackout day.",
     )
 
-    _unique_blackout_day = models.Constraint(
-        "unique(date)",
-        "A blackout day with this date already exists!",
+    _unique_blackout_day_zip = models.Constraint(
+        "unique(date, zip)",
+        "A blackout day for this date and ZIP code already exists!",
     )
+
+    @api.constrains("date", "zip")
+    def _check_unique_date_zip(self):
+        for record in self:
+            domain = [
+                ("id", "!=", record.id),
+                ("date", "=", record.date),
+                ("zip", "=", record.zip or False),
+            ]
+            if self.search_count(domain):
+                raise ValidationError(
+                    self.env._(
+                        "A blackout day for this date and ZIP code already exists!"
+                    )
+                )
