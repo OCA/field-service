@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Open Source Integrators
+# Copyright (C) 2019 Gray Matter Logic
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -8,7 +8,7 @@
     "version": "19.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice"],
     "data": [
