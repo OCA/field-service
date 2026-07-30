@@ -95,4 +95,6 @@ class FSMPerson(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             vals.update({"fsm_person": True})
-        return super().create(vals_list)
+        return super(FSMPerson, self.with_context(creating_fsm_person=True)).create(
+            vals_list
+        )

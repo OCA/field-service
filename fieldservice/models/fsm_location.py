@@ -92,10 +92,37 @@ class FSMLocation(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals):
-        res = super().create(vals)
-        res.write({"fsm_location": True})
-        return res
+    def create(self, vals_list):
+        auto_partner_indexes = []
+        root_indexes = []
+        for index, vals in enumerate(vals_list):
+            # By default, create inherited partner as typed child of the location owner.
+            vals.update({"fsm_location": True, "type": "fsm_location"})
+            if not vals.get("partner_id"):  # Don't change parent of existing partners.
+                auto_partner_indexes.append(index)
+                if not vals.get("owner_id"):
+                    if vals.get("parent_id"):
+                        parent = self.browse(vals["parent_id"])
+                        vals["owner_id"] = parent.owner_id.id
+                    else:
+                        root_indexes.append(index)
+                        vals["owner_id"] = self.env.company.partner_id.id
+                # Cannot set partner parent via vals["parent_id"]: that field is the
+                # location hierarchy on fsm.location (18.0+), not res.partner.parent_id.
+        locations = super(
+            FSMLocation, self.with_context(creating_fsm_location=True)
+        ).create(vals_list)
+        for index in root_indexes:
+            location = locations[index]
+            location.write({"owner_id": location.partner_id.id})
+            location.partner_id.parent_id = False
+        for index in auto_partner_indexes:
+            if index in root_indexes:
+                continue
+            location = locations[index]
+            if location.partner_id.parent_id != location.owner_id:
+                location.partner_id.parent_id = location.owner_id
+        return locations
 
     @api.depends("partner_id.name", "parent_id.complete_name", "ref")
     def _compute_complete_name(self):

@@ -87,9 +87,7 @@
                             <strong
                             >The contact linked to this user is still active</strong>
                         </div>
-                        <div>You can archive the contact
-                        <field name="partner_id" required="0" readonly="1" />
-                        </div>
+                        <div>You can archive the contact from the partner form.</div>
                     </div>
                     <label for="name" class="oe_edit_only" />
                     <h1>
@@ -98,12 +96,7 @@
                     </h1>
                     <group>
                         <group>
-                            <field
-                                name="partner_id"
-                                groups="base.group_no_one"
-                                required="0"
-                                readonly="1"
-                            />
+                            <field name="partner_id" invisible="1" required="0" />
                             <field
                                 name="category_ids"
                                 widget="many2many_tags"

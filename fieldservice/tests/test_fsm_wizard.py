@@ -100,6 +100,40 @@ class FSMWizard(FSMCommon):
             Domain("name", "=", "Parent Partner")
         )
 
-        # check all children were assigned type 'other'
-        for child in wiz_parent.child_ids:
+        # check all partner children were assigned type 'other'
+        for child in wiz_parent.partner_id.child_ids:
             self.assertEqual(child.type, "other")
+
+    def test_prepare_fsm_location_root_partner(self):
+        vals = self.Wizard._prepare_fsm_location(self.test_partner)
+        self.assertEqual(
+            vals,
+            {
+                "partner_id": self.test_partner.id,
+                "owner_id": self.test_partner.id,
+            },
+        )
+
+    def test_prepare_fsm_location_child_under_fsm_parent(self):
+        self.Wizard.action_convert_location(self.test_partner)
+        parent_location = self.test_partner.fsm_location_ids[:1]
+        child_partner = self.env["res.partner"].create(
+            {
+                "parent_id": self.test_partner.id,
+                "name": "Child Under FSM Parent",
+            }
+        )
+        vals = self.Wizard._prepare_fsm_location(child_partner)
+        self.assertEqual(vals["owner_id"], self.test_partner.id)
+        self.assertEqual(vals["parent_id"], parent_location.id)
+
+    def test_prepare_fsm_location_child_without_parent_location(self):
+        child_partner = self.env["res.partner"].create(
+            {
+                "parent_id": self.parent_partner.id,
+                "name": "Child No FSM Parent",
+            }
+        )
+        vals = self.Wizard._prepare_fsm_location(child_partner)
+        self.assertEqual(vals["owner_id"], self.parent_partner.id)
+        self.assertNotIn("parent_id", vals)
