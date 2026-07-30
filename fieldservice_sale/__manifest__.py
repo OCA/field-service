@@ -23,7 +23,6 @@
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": [
-        "wolfhall",
         "max3903",
         "brian10048",
     ],
