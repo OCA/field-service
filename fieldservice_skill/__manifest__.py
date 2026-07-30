@@ -20,6 +20,6 @@
         "views/fsm_template.xml",
     ],
     "development_status": "Beta",
-    "maintainers": ["osi-scampbell", "max3903"],
+    "maintainers": ["max3903"],
     "installable": True,
 }
