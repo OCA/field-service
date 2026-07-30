@@ -17,6 +17,6 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["osimallen", "brian10048", "bodedra"],
+    "maintainers": ["osimallen", "brian10048"],
     "installable": True,
 }

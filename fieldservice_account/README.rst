@@ -106,13 +106,10 @@ promote its widespread use.
 .. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
     :target: https://github.com/brian10048
     :alt: brian10048
-.. |maintainer-bodedra| image:: https://github.com/bodedra.png?size=40px
-    :target: https://github.com/bodedra
-    :alt: bodedra
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osimallen| |maintainer-brian10048| |maintainer-bodedra| 
+|maintainer-osimallen| |maintainer-brian10048| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_account>`_ project on GitHub.
 
