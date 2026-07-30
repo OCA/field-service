@@ -1,4 +1,4 @@
-# Copyright (C) 2024 Open Source Integrators (<https://www.graymatterlogic.com>).
+# Copyright (C) 2024 Gray Matter Logic (<https://www.graymatterlogic.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Field Service - Expenses",
@@ -6,7 +6,7 @@
     "version": "19.0.1.0.0",
     "license": "AGPL-3",
     "category": "Field Service",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "hr_expense"],
     "data": [

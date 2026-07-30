@@ -1,4 +1,4 @@
-# Copyright (C) 2024 Open Source Integrators (<https://www.graymatterlogic.com>).
+# Copyright (C) 2024 Gray Matter Logic (<https://www.graymatterlogic.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
