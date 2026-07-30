@@ -1,8 +1,8 @@
-- Wolfgang Hall \<whall@opensourceintegrators.com\>
+- Wolfgang Hall \<whall@graymatterlogic.com\>
 - [Gray Matter Logic](https://www.graymatterlogic.com):
   - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<support@serpentcs.com\>
-- Ammar Officewala \<aofficewala@opensourceintegrators.com\>
+- Ammar Officewala \<aofficewala@graymatterlogic.com\>
 - [XCG Consulting](https://xcg-consulting.fr):
   - Houzéfa Abbasbhay
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
