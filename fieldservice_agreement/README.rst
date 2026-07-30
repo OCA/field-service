@@ -83,15 +83,19 @@ Credits
 Authors
 -------
 
-* Open Source Integrators
+* Gray Matter Logic
 
 Contributors
 ------------
 
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+
+- Bhavesh Odedra <bodedra@graymatterlogic.com>
+- Sandip Mangukiya <smangukiya@graymatterlogic.com>
 - Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Patrick Wilson <pwilson@opensourceintegrators.com>
+- Patrick Wilson <pwilson@graymatterlogic.com>
 - Italo Lopes <italo.lopes@camptocamp.com>
 - Iván Todorovich <ivan.todorovich@camptocamp.com>
 - `Komit <https://komit-consulting.com>`__:
@@ -103,7 +107,7 @@ Other credits
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators
+- Gray Matter Logic
 
 Maintainers
 -----------

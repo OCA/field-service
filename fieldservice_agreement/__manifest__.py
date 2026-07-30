@@ -1,10 +1,10 @@
-# Copyright (C) 2018 - TODAY, Open Source Integrators
+# Copyright (C) 2018 - TODAY, Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service - Agreements",
     "summary": "Manage Field Service agreements and contracts",
-    "author": "Open Source Integrators, Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
     "license": "AGPL-3",
