@@ -22,7 +22,6 @@
         "max3903",
         "bodedra",
         "smangukiya",
-        "osi-scampbell",
         "patrickrwilson",
     ],
 }

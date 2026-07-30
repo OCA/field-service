@@ -131,16 +131,13 @@ promote its widespread use.
 .. |maintainer-smangukiya| image:: https://github.com/smangukiya.png?size=40px
     :target: https://github.com/smangukiya
     :alt: smangukiya
-.. |maintainer-osi-scampbell| image:: https://github.com/osi-scampbell.png?size=40px
-    :target: https://github.com/osi-scampbell
-    :alt: osi-scampbell
 .. |maintainer-patrickrwilson| image:: https://github.com/patrickrwilson.png?size=40px
     :target: https://github.com/patrickrwilson
     :alt: patrickrwilson
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-max3903| |maintainer-bodedra| |maintainer-smangukiya| |maintainer-osi-scampbell| |maintainer-patrickrwilson| 
+|maintainer-max3903| |maintainer-bodedra| |maintainer-smangukiya| |maintainer-patrickrwilson| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_agreement>`_ project on GitHub.
 
