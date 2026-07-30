@@ -137,9 +137,6 @@ promote its widespread use.
 .. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
     :target: https://github.com/brian10048
     :alt: brian10048
-.. |maintainer-wolfhall| image:: https://github.com/wolfhall.png?size=40px
-    :target: https://github.com/wolfhall
-    :alt: wolfhall
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
@@ -149,7 +146,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| |maintainer-smangukiya| 
+|maintainer-brian10048| |maintainer-max3903| |maintainer-smangukiya| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_equipment_stock>`_ project on GitHub.
 

@@ -22,7 +22,6 @@
     "development_status": "Beta",
     "maintainers": [
         "brian10048",
-        "wolfhall",
         "max3903",
         "smangukiya",
     ],
