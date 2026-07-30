@@ -92,8 +92,12 @@ Authors
 Contributors
 ------------
 
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+
 - Patrick Wilson <patrickraymondwilson@gmail.com>
-- Freni Patel <fpatel@opensourceintegrators.com>
+- Freni Patel <fpatel@graymatterlogic.com>
 - `APSL <https://apsl.tech>`__:
 
   - Antoni Marroig <amarroig@apsl.net>
