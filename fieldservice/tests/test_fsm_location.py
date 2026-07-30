@@ -45,6 +45,14 @@ class FSMLocation(FSMCommon):
         ]:
             self.assertEqual(location[x], self.test_location[x])
 
+        # Check partner defaults.
+        self.assertTrue(location.fsm_location)
+        self.assertFalse(location.fsm_person)
+        self.assertFalse(location.is_company)
+        self.assertEqual(location.partner_id.parent_id, self.test_loc_partner)
+        self.assertNotEqual(location.partner_id, self.test_loc_partner)
+        self.assertEqual(location.type, "fsm_location")
+
         # Test initial stage
         self.assertEqual(location.stage_id, self.location_stage_1)
         # Test change state
@@ -284,3 +292,66 @@ class FSMLocation(FSMCommon):
                 Domain("active", "=", False) & Domain("id", "in", children_loc.ids)
             )
         )
+
+    def test_create_root_fsm_location(self):
+        """Root locations can be created without an existing partner."""
+        location = self.Location.create({"name": "Root Location"})
+        self.assertTrue(location.fsm_location)
+        self.assertEqual(location.type, "fsm_location")
+        self.assertEqual(location.owner_id, location.partner_id)
+        self.assertFalse(location.partner_id.parent_id)
+
+    def test_create_root_fsm_location_from_form(self):
+        """Root locations can be saved from the UI without owner or partner."""
+        with Form(self.Location, view="fieldservice.fsm_location_form_view") as f:
+            f.name = "Root Location From Form"
+        location = f.save()
+        self.assertEqual(location.owner_id, location.partner_id)
+
+    def test_child_partner_location_gets_parent_fsm_location(self):
+        """Child location partners inherit the parent contact FSM location."""
+        self.env["fsm.wizard"].action_convert_location(self.test_partner)
+        parent_location = self.test_partner.fsm_location_ids[:1]
+        child_loc = self.env["res.partner"].create(
+            {
+                "parent_id": self.test_partner.id,
+                "name": "Child Location",
+                "type": "fsm_location",
+            }
+        )
+        child_fsm_location = child_loc.fsm_location_ids[:1]
+        self.assertEqual(child_fsm_location.parent_id, parent_location)
+        self.assertEqual(child_fsm_location.owner_id, self.test_partner)
+
+    def test_create_sublocation_inherits_owner_from_parent(self):
+        """Sub-locations without owner inherit it from the parent location."""
+        location = self.Location.create(
+            {
+                "name": "Sub Without Owner",
+                "parent_id": self.test_location.id,
+            }
+        )
+        self.assertEqual(location.owner_id, self.test_location.owner_id)
+        self.assertEqual(location.partner_id.parent_id, self.test_location.owner_id)
+
+    def test_create_sublocation_from_form(self):
+        """Sub-locations created from the form inherit owner and partner parent."""
+        with Form(self.Location, view="fieldservice.fsm_location_form_view") as f:
+            f.name = "Child From Form"
+            f.parent_id = self.test_location
+        location = f.save()
+        self.assertEqual(location.owner_id, self.test_location.owner_id)
+        self.assertEqual(location.partner_id.parent_id, self.test_location.owner_id)
+
+    def test_create_location_with_existing_partner(self):
+        """Creating with an existing partner must not overwrite partner parent."""
+        partner = self.env["res.partner"].create({"name": "Existing Loc Partner"})
+        location = self.Location.create(
+            {
+                "name": "Existing Partner Location",
+                "partner_id": partner.id,
+                "owner_id": partner.id,
+            }
+        )
+        self.assertEqual(location.partner_id, partner)
+        self.assertFalse(location.partner_id.parent_id)

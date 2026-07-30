@@ -4,7 +4,7 @@
 from datetime import timedelta
 from unittest.mock import patch
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.fields import Domain
 from odoo.tests import Form
@@ -194,9 +194,15 @@ class TestFSMOrder(FSMCommon):
         self.tag._compute_full_name()
         self.tag1._compute_full_name()
         config = self.env["res.config.settings"].create({})
-        config.module_fieldservice_repair = True
+        config.group_fsm_equipment = False
+        config.auto_populate_equipments_on_order = True
         config._onchange_group_fsm_equipment()
+        self.assertFalse(config.auto_populate_equipments_on_order)
+        config.module_fieldservice_repair = False
         config._onchange_module_fieldservice_repair()
+        config.module_fieldservice_repair = True
+        config._onchange_module_fieldservice_repair()
+        self.assertTrue(config.group_fsm_equipment)
         order3._track_subtype(self.init_values)
         order4._track_subtype(self.init_values)
         order3._track_subtype(self.init_values_2)
@@ -348,4 +354,35 @@ class TestFSMOrder(FSMCommon):
             wizard_form.record.action_sign()
         # Check that the signature has been updated
         self.assertEqual(order.signed_by, "Test Customer")
-        self.assertEqual(order.signed_on, fields.Datetime.now())
+        self.assertEqual(order.signed_on, now)
+
+    def test_equipment_removed_on_company_mismatch(self):
+        """Equipments from another company are dropped on company change."""
+        company2 = self.env["res.company"].create({"name": "FSM Other Company"})
+        equipment = self.env["fsm.equipment"].create(
+            {
+                "name": "Company Mismatch Equipment",
+                "current_location_id": self.test_location.id,
+                "location_id": self.test_location.id,
+                "company_id": self.env.company.id,
+            }
+        )
+        order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "equipment_ids": [Command.set(equipment.ids)],
+            }
+        )
+        self.assertIn(equipment, order.equipment_ids)
+        order.company_id = company2
+        self.assertFalse(order.equipment_ids)
+
+    def test_onchange_template_without_type_or_team(self):
+        template = self.env["fsm.template"].create(
+            {"name": "Bare Template", "duration": 2.5}
+        )
+        order = self.Order.new(
+            {"location_id": self.test_location.id, "template_id": template.id}
+        )
+        order._onchange_template_id()
+        self.assertEqual(order.scheduled_duration, 2.5)
