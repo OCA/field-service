@@ -1,5 +1,5 @@
 # Copyright (C) 2020, Brian McMaster
-# Copyright (C) 2021 - TODAY, Open Source Integrators
+# Copyright (C) 2021 - TODAY, Gray Matter Logic
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from datetime import timedelta

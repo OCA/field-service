@@ -96,24 +96,28 @@ Credits
 Authors
 -------
 
-* Open Source Integrators
+* Gray Matter Logic
 * Brian McMaster
 
 Contributors
 ------------
 
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
+
+  - Maxime Chambreuil <maxime.chambreuil@graymatterlogic.com>
+
 - Brian McMaster <brian@mcmpest.com>
-- Sandip Mangukiya <smangukiya@opensourceintegrators.com>
+- Sandip Mangukiya <smangukiya@graymatterlogic.com>
 - Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 - Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-- Freni Patel <fpatel@opensourceintegrators.com>
+- Freni Patel <fpatel@graymatterlogic.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+- Gray Matter Logic <https://www.graymatterlogic.com>
 
 Maintainers
 -----------

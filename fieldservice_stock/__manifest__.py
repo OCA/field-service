@@ -6,9 +6,7 @@
     "summary": "Integrate the logistics operations with Field Service",
     "version": "19.0.1.0.0",
     "category": "Field Service",
-    "author": "Open Source Integrators, "
-    "Brian McMaster, "
-    "Odoo Community Association (OCA)",
+    "author": "Gray Matter Logic, Brian McMaster, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "stock"],
     "data": [
