@@ -26,8 +26,8 @@ class SaleOrder(models.Model):
                     ("sale_line_id", "=", False),
                 ]
             )
-            if rec.procurement_group_id:
-                rec.procurement_group_id.fsm_order_id = fsm_order.id or False
+            if fsm_order and rec.stock_reference_ids:
+                fsm_order.reference_ids |= rec.stock_reference_ids
             for picking in rec.picking_ids:
                 picking.write(rec.prepare_fsm_values_for_stock_picking(fsm_order))
                 for move in picking.move_ids:

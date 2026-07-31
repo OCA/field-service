@@ -10,7 +10,15 @@ class TestFSMSaleOrder(TestFSMSale):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.test_loc_partner = cls.env["res.partner"].create(
+            {"name": "Test Location Partner"}
+        )
+        cls.test_location = cls.env["fsm.location"].create(
+            {
+                "name": "Test Location",
+                "owner_id": cls.test_loc_partner.id,
+            }
+        )
 
         # Setup products that when sold will create some FSM orders
         cls.setUpFSMProducts()
@@ -26,23 +34,19 @@ class TestFSMSaleOrder(TestFSMSale):
         cls.fsm_per_order_1 = cls.env["product.product"].create(
             {
                 "name": "FSM Order per Sale Order #1",
-                "categ_id": cls.env.ref("product.product_category_3").id,
+                "categ_id": cls.env.ref("product.product_category_goods").id,
                 "standard_price": 85.0,
                 "list_price": 90.0,
                 "type": "consu",
                 "is_storable": True,
                 "tracking": "none",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
                 "fsm_order_template_id": cls.fsm_template_1.id,
             }
         )
-        # Create some sale orders that will use the above products
         SaleOrder = cls.env["sale.order"].with_context(tracking_disable=True)
-        # create a generic Sale Order with one product
-        # set to create FSM service per sale order
         cls.sale_order_1 = SaleOrder.create(
             {
                 "partner_id": cls.partner_customer_usd.id,
@@ -55,14 +59,12 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_order_1.name,
                 "product_id": cls.fsm_per_order_1.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_order_1.uom_id.id,
+                "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_1.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
-        # create a generic Sale Order with one product
-        # set to create FSM service per sale order line
         cls.sale_order_2 = SaleOrder.create(
             {
                 "partner_id": cls.partner_customer_usd.id,
@@ -75,14 +77,12 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_line_1.name,
                 "product_id": cls.fsm_per_line_1.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_line_1.uom_id.id,
+                "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_2.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
-        # create a generic Sale Order with multiple products
-        # set to create FSM service per sale order line
         cls.sale_order_3 = SaleOrder.create(
             {
                 "partner_id": cls.partner_customer_usd.id,
@@ -95,10 +95,10 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_line_1.name,
                 "product_id": cls.fsm_per_line_1.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_line_1.uom_id.id,
+                "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
         cls.sol_service_per_line_3 = cls.env["sale.order.line"].create(
@@ -106,15 +106,12 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_line_2.name,
                 "product_id": cls.fsm_per_line_2.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_line_2.uom_id.id,
+                "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_3.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
-        # create a generic Sale Order with mixed products
-        # 2 lines based on service per sale order line
-        # 2 lines based on service per sale order
         cls.sale_order_4 = SaleOrder.create(
             {
                 "partner_id": cls.partner_customer_usd.id,
@@ -127,10 +124,10 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_line_1.name,
                 "product_id": cls.fsm_per_line_1.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_line_1.uom_id.id,
+                "product_uom_id": cls.fsm_per_line_1.uom_id.id,
                 "price_unit": cls.fsm_per_line_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
         cls.sol_service_per_line_5 = cls.env["sale.order.line"].create(
@@ -138,10 +135,10 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_line_2.name,
                 "product_id": cls.fsm_per_line_2.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_line_2.uom_id.id,
+                "product_uom_id": cls.fsm_per_line_2.uom_id.id,
                 "price_unit": cls.fsm_per_line_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
         cls.sol_service_per_order_2 = cls.env["sale.order.line"].create(
@@ -149,10 +146,10 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_order_1.name,
                 "product_id": cls.fsm_per_order_1.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_order_1.uom_id.id,
+                "product_uom_id": cls.fsm_per_order_1.uom_id.id,
                 "price_unit": cls.fsm_per_order_1.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
         cls.sol_service_per_order_3 = cls.env["sale.order.line"].create(
@@ -160,14 +157,14 @@ class TestFSMSaleOrder(TestFSMSale):
                 "name": cls.fsm_per_order_2.name,
                 "product_id": cls.fsm_per_order_2.id,
                 "product_uom_qty": 1,
-                "product_uom": cls.fsm_per_order_2.uom_id.id,
+                "product_uom_id": cls.fsm_per_order_2.uom_id.id,
                 "price_unit": cls.fsm_per_order_2.list_price,
                 "order_id": cls.sale_order_4.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
 
-    def _isp_account_installed(self):
+    def _isp_account_installed(self):  # pragma: no cover
         """Checks if module is installed which will require more
         logic for the tests.
         :return Boolean indicating the installed status of the module
@@ -180,7 +177,7 @@ class TestFSMSaleOrder(TestFSMSale):
             result = True
         return result
 
-    def _fulfill_order(self, order):
+    def _fulfill_order(self, order):  # pragma: no cover
         """Extra logic required to fulfill FSM order status and prevent
         validation error when attempting to complete the FSM order
         :return FSM Order with additional fields set
@@ -210,9 +207,7 @@ class TestFSMSaleOrder(TestFSMSale):
         - One FSM order linked to the Sale Order should be created.
         - One Invoice linked to the FSM Order should be created.
         """
-        # Confirm the sale order
         self.sale_order_1.action_confirm()
-        # 1 FSM order created
         self.assertEqual(
             len(self.sale_order_1.fsm_order_ids.ids),
             1,
@@ -222,14 +217,35 @@ class TestFSMSaleOrder(TestFSMSale):
         fsm_order = FSM_Order.search(
             [("id", "=", self.sale_order_1.fsm_order_ids[0].id)]
         )
-        # Sale Order linked to FSM order
         self.assertEqual(
             len(fsm_order.ids), 1, "FSM Sale: Sale Order not linked to FSM Order"
         )
+        self.assertTrue(
+            self.sale_order_1.picking_ids,
+            "FSM Sale: Sale Order 1 should create stock pickings",
+        )
+        for picking in self.sale_order_1.picking_ids:
+            self.assertEqual(
+                picking.fsm_order_id,
+                fsm_order,
+                "FSM Sale: Stock Picking should be linked to FSM Order",
+            )
+            for move in picking.move_ids:
+                self.assertEqual(
+                    move.fsm_order_id,
+                    fsm_order,
+                    "FSM Sale: Stock Move should be linked to FSM Order",
+                )
+        if self.sale_order_1.stock_reference_ids:
+            self.assertTrue(
+                set(self.sale_order_1.stock_reference_ids.ids).issubset(
+                    set(fsm_order.reference_ids.ids)
+                ),
+                "FSM Sale: Stock References should be linked to FSM Order",
+            )
 
-        # Complete the FSM order
-        if self._isp_account_installed():
-            fsm_order = self._fulfill_order(fsm_order)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order = self._fulfill_order(fsm_order)  # pragma: no cover
         fsm_order.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -237,10 +253,7 @@ class TestFSMSaleOrder(TestFSMSale):
             }
         )
         fsm_order.action_complete()
-
-        # Invoice the order
         invoice = self.sale_order_1._create_invoices()
-        # 1 invoices created
         self.assertEqual(
             len(invoice.ids), 1, "FSM Sale: Sale Order 1 should create 1 invoice"
         )
@@ -256,9 +269,7 @@ class TestFSMSaleOrder(TestFSMSale):
         - One Invoice linked to the FSM Order should be created.
         """
         sol = self.sol_service_per_line_1
-        # Confirm the sale order
         self.sale_order_2.action_confirm()
-        # 1 order created
         self.assertEqual(
             len(self.sale_order_2.fsm_order_ids.ids),
             1,
@@ -272,9 +283,8 @@ class TestFSMSaleOrder(TestFSMSale):
             "FSM Sale: Sale Order 2 Line not linked to FSM Order",
         )
 
-        # Complete the FSM order
-        if self._isp_account_installed():
-            fsm_order = self._fulfill_order(fsm_order)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order = self._fulfill_order(fsm_order)  # pragma: no cover
         fsm_order.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -282,15 +292,12 @@ class TestFSMSaleOrder(TestFSMSale):
             }
         )
         fsm_order.action_complete()
-        # qty delivered should be updated
         self.assertTrue(
             sol.qty_delivered == sol.product_uom_qty,
             "FSM Sale: Sale Order Line qty delivered not equal to qty ordered",
         )
 
-        # Invoice the order
         invoice = self.sale_order_2._create_invoices()
-        # 1 invoice created
         self.assertEqual(
             len(invoice.ids), 1, "FSM Sale: Sale Order 2 should create 1 invoice"
         )
@@ -308,9 +315,7 @@ class TestFSMSaleOrder(TestFSMSale):
         sol1 = self.sol_service_per_line_2
         sol2 = self.sol_service_per_line_3
 
-        # Confirm the sale order
         self.sale_order_3.action_confirm()
-        # 2 orders created and SOLs linked to FSM orders
         self.assertEqual(
             len(self.sale_order_3.fsm_order_ids.ids),
             2,
@@ -328,9 +333,8 @@ class TestFSMSaleOrder(TestFSMSale):
             "FSM Sale: Sale Order Line 3 not linked to FSM Order",
         )
 
-        # Complete the FSM orders
-        if self._isp_account_installed():
-            fsm_order_1 = self._fulfill_order(fsm_order_1)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order_1 = self._fulfill_order(fsm_order_1)  # pragma: no cover
         fsm_order_1.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -342,8 +346,8 @@ class TestFSMSaleOrder(TestFSMSale):
             sol1.qty_delivered == sol1.product_uom_qty,
             "FSM Sale: Sale Order Line qty delivered not equal to qty ordered",
         )
-        if self._isp_account_installed():
-            fsm_order_2 = self._fulfill_order(fsm_order_2)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order_2 = self._fulfill_order(fsm_order_2)  # pragma: no cover
         fsm_order_2.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -356,9 +360,7 @@ class TestFSMSaleOrder(TestFSMSale):
             "FSM Sale: Sale Order Line qty delivered not equal to qty ordered",
         )
 
-        # Invoice the sale order
         invoices = self.sale_order_3._create_invoices()
-        # 2 invoices created
         self.assertEqual(
             len(invoices.ids), 1, "FSM Sale: Sale Order 3 should create 1 invoices"
         )
@@ -382,12 +384,8 @@ class TestFSMSaleOrder(TestFSMSale):
         """
         sol1 = self.sol_service_per_line_4
         sol2 = self.sol_service_per_line_5
-        # sol3 = self.sol_service_per_order_2
-        # sol4 = self.sol_service_per_order_3
 
-        # Confirm the sale order
         self.sale_order_4.action_confirm()
-        # 3 orders created
         self.assertEqual(
             len(self.sale_order_4.fsm_order_ids.ids),
             3,
@@ -413,10 +411,8 @@ class TestFSMSaleOrder(TestFSMSale):
         self.assertEqual(
             len(fsm_order_3.ids), 1, "FSM Sale: FSM Order not linked to Sale Order"
         )
-
-        # Complete the FSM order
-        if self._isp_account_installed():
-            fsm_order_1 = self._fulfill_order(fsm_order_1)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order_1 = self._fulfill_order(fsm_order_1)  # pragma: no cover
         fsm_order_1.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -428,8 +424,8 @@ class TestFSMSaleOrder(TestFSMSale):
             sol1.qty_delivered == sol1.product_uom_qty,
             "FSM Sale: Sale Order Line qty delivered not equal to qty ordered",
         )
-        if self._isp_account_installed():
-            fsm_order_2 = self._fulfill_order(fsm_order_2)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order_2 = self._fulfill_order(fsm_order_2)  # pragma: no cover
         fsm_order_2.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -441,8 +437,8 @@ class TestFSMSaleOrder(TestFSMSale):
             sol2.qty_delivered == sol2.product_uom_qty,
             "FSM Sale: Sale Order Line qty delivered not equal to qty ordered",
         )
-        if self._isp_account_installed():
-            fsm_order_3 = self._fulfill_order(fsm_order_3)
+        if self._isp_account_installed():  # pragma: no cover
+            fsm_order_3 = self._fulfill_order(fsm_order_3)  # pragma: no cover
         fsm_order_3.write(
             {
                 "date_end": fields.Datetime.today(),
@@ -450,11 +446,21 @@ class TestFSMSaleOrder(TestFSMSale):
             }
         )
         fsm_order_3.action_complete()
-        # qty_delivered does not update for FSM orders linked only to the sale
-
-        # Invoice the sale order
         invoices = self.sale_order_4._create_invoices()
-        # 3 invoices created
         self.assertEqual(
             len(invoices.ids), 1, "FSM Sale: Sale Order 4 should create 1 invoice"
         )
+
+    def test_prepare_fsm_values_methods(self):
+        """Test helper methods prepare_fsm_values_for_stock_picking and
+        prepare_fsm_values_for_stock_move."""
+        fsm_order = self.env["fsm.order"].create(
+            {
+                "name": "Test FSM Order",
+                "location_id": self.test_location.id,
+            }
+        )
+        picking_vals = self.sale_order_1.prepare_fsm_values_for_stock_picking(fsm_order)
+        move_vals = self.sale_order_1.prepare_fsm_values_for_stock_move(fsm_order)
+        self.assertEqual(picking_vals, {"fsm_order_id": fsm_order.id})
+        self.assertEqual(move_vals, {"fsm_order_id": fsm_order.id})

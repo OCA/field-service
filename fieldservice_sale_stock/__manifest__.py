@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Sale Stock",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Sell stockable items linked to field service orders.",
     "category": "Field Service",
     "author": "Brian McMaster, Odoo Community Association (OCA)",
@@ -11,6 +11,7 @@
     "depends": [
         "fieldservice_sale",
         "fieldservice_stock",
+        "sale_stock",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",

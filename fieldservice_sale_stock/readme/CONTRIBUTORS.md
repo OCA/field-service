@@ -2,3 +2,5 @@
 - Ammar Officewala \<<aofficewala@opensourceintegrators.com>\>
 - Freni Patel \<<fpatel@opensourceintegrators.com>\>
 - Italo LOPES \<<italo.lopes@camptocamp.com>\>
+- CIT-Services \<<cit-services.eu>\>
+  - Prayag \<<prayag.k@cit-services.eu>\>
