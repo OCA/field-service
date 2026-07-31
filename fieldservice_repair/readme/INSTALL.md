@@ -1,5 +1,5 @@
-To install Field Service and have the mapping features, you need to
-install fieldservice_stock and mrp_repair
+To install Field Service - Repair, you need to install the
+`fieldservice_equipment_stock` and `repair` modules.
 
 Please refer to the installation instructions available at:
-<https://github.com/OCA/field-service/tree/12.0/fieldservice_stock>
+<https://github.com/OCA/field-service/tree/19.0/fieldservice_equipment_stock>

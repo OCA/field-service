@@ -106,7 +106,7 @@ class FSMOrder(models.Model):
                 self.repair_ids.action_repair_cancel()
                 self.repair_ids = False
             # If the internal type is changed to a repair order, create them
-            elif fsm_order_type.internal_type == "repair":
+            else:
                 self._create_repair_orders()
         return res
 
