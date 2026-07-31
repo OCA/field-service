@@ -4,18 +4,7 @@
         <field name="name">ir.ui.view.fsm.location.map</field>
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
-            <!-- TODO [MIG] v19.0: restore marker popup templates when
-                 web_view_google_map is migrated to 19.0 (Odoo 19 forbids
-                 t-name owl directives in server arch).
-                 Reference: OCA/geospatial web_view_google_map -->
-            <google_map
-                class="o_res_partner_map"
-                library="geometry"
-                string="Map"
-                lat="partner_latitude"
-                lng="partner_longitude"
-                color="marker_color"
-            >
+            <google_map string="Map" lat="partner_latitude" lng="partner_longitude">
                 <field name="name" />
                 <field name="display_name" />
                 <field name="contact_id" />
@@ -28,7 +17,6 @@
                 <field name="district_id" />
                 <field name="region_id" />
                 <field name="stage_id" />
-                <field name="marker_color" />
             </google_map>
         </field>
     </record>
