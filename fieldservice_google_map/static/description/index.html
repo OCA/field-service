@@ -407,12 +407,15 @@ using the Google Map View module (<tt class="docutils literal">web_view_google_m
 <h2><a class="toc-backref" href="#toc-entry-2">Configuration</a></h2>
 <p>To configure this module, you need to:</p>
 <ol class="arabic simple">
-<li>Install and configure <tt class="docutils literal">base_google_map</tt> / <tt class="docutils literal">web_view_google_map</tt>
-(Google Maps API key and libraries) as documented in OCA/geospatial.</li>
-<li>Go to <strong>Field Service &gt; Configuration &gt; Stages</strong>.</li>
-<li>Optionally set a <strong>Custom Color</strong> on each stage (used by related
-marker color fields; map marker icons use named colors via the view
-<tt class="docutils literal">colors</tt> attribute).</li>
+<li>Obtain a Google Maps API key with <strong>Maps JavaScript API</strong> (and
+ideally Geocoding / Places) enabled in Google Cloud Console.</li>
+<li>Go to <strong>Settings &gt; General Settings</strong>, open the <strong>Google Maps View</strong>
+section, and set <strong>API key</strong>. Without a valid key the map view opens
+but Google shows “This page didn’t load Google Maps correctly”.</li>
+<li>Optionally set map theme, language and region in the same section.</li>
+<li>Go to <strong>Field Service &gt; Configuration &gt; Stages</strong> and set stage names
+used by the order map colors (<tt class="docutils literal">New</tt>, <tt class="docutils literal">Completed</tt>, <tt class="docutils literal">Cancelled</tt>
+by default).</li>
 </ol>
 </div>
 <div class="section" id="usage">
