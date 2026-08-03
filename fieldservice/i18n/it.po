@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-27 09:27+0000\n"
+"PO-Revision-Date: 2026-08-17 10:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -807,6 +807,16 @@ msgid "Convert"
 msgstr "Converti"
 
 #. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
+msgid "Convert to FS Location"
+msgstr "Converti in ubicazione FS"
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
+msgid "Convert to FS Worker"
+msgstr "Converti in worker FS"
+
+#. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.partner_fsm_action
 msgid "Convert to FSM Record"
 msgstr "Converti in record FSM"
@@ -1066,6 +1076,7 @@ msgstr "Controllore"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Display Field Service orders in a timeline view"
 msgstr ""
+"Visualizza gli ordini di assistenza sul campo nella vista sequenza temporale"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_edi_format
@@ -3192,13 +3203,13 @@ msgstr "Firmato il"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_ids
 msgid "Signer"
-msgstr ""
+msgstr "Firmatario"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signer_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__signer_count
 msgid "Signer Count"
-msgstr ""
+msgstr "Conteggio firmatari"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
@@ -3776,8 +3787,8 @@ msgstr ""
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
-msgid "You can archive the contact"
-msgstr "Si può archiviare il contatto"
+msgid "You can archive the contact from the partner form."
+msgstr "Si può attivare il contatto dalla maschera partner."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__vat
@@ -3851,6 +3862,9 @@ msgstr "modello"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "x"
 msgstr "x"
+
+#~ msgid "You can archive the contact"
+#~ msgstr "Si può archiviare il contatto"
 
 #~ msgid ""
 #~ "The Tax Identification Number. Values here will be validated based on the "
