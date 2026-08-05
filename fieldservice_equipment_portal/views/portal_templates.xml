@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_my_home_menu_equipment"
+        name="Portal layout : Equipment menu entries"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="35"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'Equipments'"
+                t-attf-class="breadcrumb-item #{'active ' if not equipment else ''}"
+            >
+                <a
+                    t-if="equipment"
+                    t-attf-href="/my/equipments?{{ keep_query() }}"
+                >Equipments</a>
+                <t t-else="">Equipments</t>
+            </li>
+            <li t-if="equipment" class="breadcrumb-item active">
+                <t t-esc="equipment.name" />
+            </li>
+        </xpath>
+    </template>
+    <template
+        id="portal_my_home_equipment"
+        name="Portal My Home : Equipment entries"
+        inherit_id="portal.portal_my_home"
+        priority="30"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Equipments</t>
+                <t t-set="url" t-value="'/my/equipments'" />
+                <t t-set="placeholder_count" t-value="'equipment_count'" />
+            </t>
+        </xpath>
+    </template>
+    <template id="portal_my_equipments" name="My Equipments">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Equipments</t>
+            </t>
+            <t t-if="equipments" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Equipment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="equipments" t-as="equipment">
+                        <tr>
+                            <td>
+                                <a
+                                    t-att-href="equipment.get_portal_url()"
+                                    t-att-title="equipment.name"
+                                >
+                                    <t t-esc="equipment.name" />
+                                </a>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+    <template id="portal_equipment_page" name="My Equipment">
+        <t t-call="portal.portal_layout">
+            <div class="card" id="equipment_portal_card">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">
+                        <span>
+                            Equipment - <span t-field="equipment.name" />
+                        </span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 mb-1" t-if="equipment.product_id">
+                            <strong>Product:</strong>
+                            <span t-esc="equipment.product_id.display_name" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-1" t-if="equipment.location_id">
+                            <strong>Location:</strong>
+                            <span t-esc="equipment.location_id.display_name" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-1" t-if="equipment.owned_by_id">
+                            <strong>Owner:</strong>
+                            <span t-esc="equipment.owned_by_id.display_name" />
+                        </div>
+                        <div class="col-12 col-md-6 mb-1" t-if="equipment.notes">
+                            <strong>Notes:</strong>
+                            <span t-field="equipment.notes" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
