@@ -22,5 +22,6 @@
     "development_status": "Beta",
     "maintainers": [
         "osi-scampbell",
+        "marcos-mendez",
     ],
 }
