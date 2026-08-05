@@ -41,13 +41,29 @@ Usage
 
 To use this module, you need to:
 
-- Go to Purchases > Purchase > Vendor Pricelist
-- Select or create a Vendor Pricelist and set the Vendor to an FSM
-  Worker
-- Go to Field Service > Master Data > Workers
-- Open the Worker that was selected on your Vendor Pricelist
-- Click on the smart button "Pricelists" to see the list of related
-  Vendor Pricelists
+**Worker vendor pricelists**
+
+-  Go to Purchases > Purchase > Vendor Pricelist
+-  Select or create a Vendor Pricelist and set the Vendor to an FSM
+   Worker
+-  Go to Field Service > Master Data > Workers
+-  Open the Worker that was selected on your Vendor Pricelist
+-  Click on the smart button "Pricelists" to see the list of related
+   Vendor Pricelists
+
+**Link purchase orders and field service orders**
+
+-  Open a Field Service order and fill the "Purchase Orders" field with
+   the purchase orders related to the job (requires the Purchase user
+   group), or open a purchase order and fill the "Field Service Orders"
+   field in the "Other Information" tab (requires the Field Service user
+   group). The link is shared, so it shows on both documents.
+-  The smart button "Purchases" on the Field Service order lists the
+   linked purchase orders. A purchase order created from that list is
+   linked to the Field Service order automatically.
+-  The smart button "FSM Orders" on the purchase order lists the linked
+   Field Service orders. A Field Service order created from that list is
+   linked to the purchase order automatically.
 
 Known issues / Roadmap
 ======================
@@ -76,16 +92,16 @@ Authors
 Contributors
 ------------
 
-- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-- Steve Campbell <scampbell@opensourceintegrators.com>
-- Mohammad Khalid <mkhalid@opensourceintegrators.com>
+-  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+-  Steve Campbell <scampbell@opensourceintegrators.com>
+-  Mohammad Khalid <mkhalid@opensourceintegrators.com>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Open Source Integrators <https://opensourceintegrators.com>
+-  Open Source Integrators <https://opensourceintegrators.com>
 
 Maintainers
 -----------
@@ -103,10 +119,13 @@ promote its widespread use.
 .. |maintainer-osi-scampbell| image:: https://github.com/osi-scampbell.png?size=40px
     :target: https://github.com/osi-scampbell
     :alt: osi-scampbell
+.. |maintainer-marcos-mendez| image:: https://github.com/marcos-mendez.png?size=40px
+    :target: https://github.com/marcos-mendez
+    :alt: marcos-mendez
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osi-scampbell| 
+|maintainer-osi-scampbell| |maintainer-marcos-mendez| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_purchase>`_ project on GitHub.
 

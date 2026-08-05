@@ -1,13 +1,13 @@
 # Copyright (C) 2026 - Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    purchase_ids = fields.Many2many("purchase.order")
+    purchase_ids = fields.Many2many("purchase.order", string="Purchase Orders")
     purchase_count = fields.Integer(
         compute="_compute_purchase_count", string="# Purchases"
     )
@@ -22,4 +22,5 @@ class FSMOrder(models.Model):
             "purchase.purchase_form_action"
         )
         action["domain"] = [("id", "in", self.purchase_ids.ids)]
+        action["context"] = {"default_fsm_order_ids": [Command.set(self.ids)]}
         return action

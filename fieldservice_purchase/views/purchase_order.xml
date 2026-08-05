@@ -19,6 +19,14 @@
                     />
                 </button>
             </div>
+            <group name="other_info" position="inside">
+                <field
+                    name="fsm_order_ids"
+                    widget="many2many_tags"
+                    groups="fieldservice.group_fsm_user"
+                    options="{'no_create': True}"
+                />
+            </group>
         </field>
     </record>
 </odoo>

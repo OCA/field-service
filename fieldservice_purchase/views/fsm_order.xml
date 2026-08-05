@@ -16,6 +16,14 @@
                     <field name="purchase_count" widget="statinfo" string="Purchases" />
                 </button>
             </div>
+            <field name="tag_ids" position="after">
+                <field
+                    name="purchase_ids"
+                    widget="many2many_tags"
+                    groups="purchase.group_purchase_user"
+                    options="{'no_create': True}"
+                />
+            </field>
         </field>
     </record>
 </odoo>
