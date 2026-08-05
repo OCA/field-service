@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_form_view_calibration" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.calibration</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Calibration" name="calibration">
+                    <field name="fsm_calibration_certificate_ids">
+                        <list>
+                            <field name="name" />
+                            <field name="initial_date" />
+                            <field name="expiration_date" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
