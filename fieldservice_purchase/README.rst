@@ -103,10 +103,13 @@ promote its widespread use.
 .. |maintainer-osi-scampbell| image:: https://github.com/osi-scampbell.png?size=40px
     :target: https://github.com/osi-scampbell
     :alt: osi-scampbell
+.. |maintainer-marcos-mendez| image:: https://github.com/marcos-mendez.png?size=40px
+    :target: https://github.com/marcos-mendez
+    :alt: marcos-mendez
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osi-scampbell| 
+|maintainer-osi-scampbell| |maintainer-marcos-mendez| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_purchase>`_ project on GitHub.
 

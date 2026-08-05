@@ -40,3 +40,22 @@ class TestFieldServicePurchase(common.TransactionCase):
             fsm_person.pricelist_count, 2, "Wrong no of vendors pricelist!"
         )
         fsm_person.action_view_pricelists()
+
+    def test_fsm_order_purchase_link(self):
+        fsm_order = self.env["fsm.order"].create(
+            {"location_id": self.env.ref("fieldservice.test_location").id}
+        )
+        purchase = self.env["purchase.order"].create(
+            {"partner_id": self.env.ref("base.res_partner_1").id}
+        )
+        self.assertEqual(fsm_order.purchase_count, 0)
+        self.assertEqual(purchase.fsm_order_count, 0)
+
+        fsm_order.purchase_ids = [(4, purchase.id)]
+        self.assertEqual(fsm_order.purchase_count, 1)
+        self.assertEqual(purchase.fsm_order_count, 1)
+
+        action = fsm_order.action_view_purchases()
+        self.assertEqual(action["domain"], [("id", "in", [purchase.id])])
+        action = purchase.action_view_fsm_orders()
+        self.assertEqual(action["domain"], [("id", "in", [fsm_order.id])])
