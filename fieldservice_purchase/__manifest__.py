@@ -15,6 +15,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/purchase_order_security.xml",
         "views/fsm_person.xml",
         "views/fsm_order.xml",
         "views/purchase_order.xml",

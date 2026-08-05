@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2026 Pop Solutions
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!--
+        The read right granted to FSM users on purchase orders only covers the
+        orders linked to a field service order. This rule also applies to FSM
+        users who read purchase orders through another group (purchase,
+        invoicing, inventory), so the domain lets those users read every
+        order, as they did before.
+    -->
+    <record id="purchase_order_fsm_user_rule" model="ir.rule">
+        <field name="name">Purchase Order: FSM user reads linked orders</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="groups" eval="[(4, ref('fieldservice.group_fsm_user'))]" />
+        <field name="domain_force">[
+            '|',
+            ('fsm_order_ids', '!=', False),
+            (1 if user.has_groups(
+                'purchase.group_purchase_user,'
+                'account.group_account_readonly,'
+                'account.group_account_invoice,'
+                'stock.group_stock_user'
+            ) else 0, '=', 1),
+        ]</field>
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+</odoo>
