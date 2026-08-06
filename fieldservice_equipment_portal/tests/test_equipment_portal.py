@@ -82,6 +82,38 @@ class TestEquipmentPortal(HttpCase):
         )
         self.assertEqual(result["equipment_count"], 0)
 
+    def test_anonymous_denied_when_public_access_disabled(self):
+        response = self.url_open(f"/my/equipments/{self.equipment.id}")
+        self.assertNotIn(b"My Portal Equipment", response.content)
+
+    def test_anonymous_allowed_when_public_access_enabled(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice_equipment_portal.public_access", "True"
+        )
+        response = self.url_open(f"/my/equipments/{self.equipment.id}")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"My Portal Equipment", response.content)
+
+    def test_anonymous_unknown_equipment_redirects_when_public(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice_equipment_portal.public_access", "True"
+        )
+        response = self.url_open("/my/equipments/99999999")
+        self.assertTrue(
+            "/web/login" in response.url or response.url.rstrip("/").endswith("/my")
+        )
+
+    def test_public_setting_roundtrip(self):
+        settings = self.env["res.config.settings"].create(
+            {"fsm_equipment_portal_public": True}
+        )
+        settings.execute()
+        self.assertTrue(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice_equipment_portal.public_access")
+        )
+
     def test_sort_by_name(self):
         self.authenticate("portal-equipment@test.example.com", "portal-equipment")
         response = self.url_open("/my/equipments?sortby=name")

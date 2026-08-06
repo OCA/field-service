@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Equipment Portal",
     "summary": "Let portal users see their field service equipments",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.2.0",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/field-service",
     "category": "Field Service",
@@ -14,5 +14,6 @@
         "security/ir.model.access.csv",
         "security/fsm_equipment_security.xml",
         "views/portal_templates.xml",
+        "views/res_config_settings.xml",
     ],
 }

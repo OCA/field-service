@@ -26,9 +26,18 @@ class PortalEquipment(CustomerPortal):
         values = {
             "page_name": "Equipments",
             "equipment": equipment,
+            # fsm.equipment only gains product_id with fieldservice_equipment_stock
+            "equipment_has_product": "product_id" in equipment._fields,
         }
         return self._get_page_view_values(
             equipment, access_token, values, "my_equipments_history", False, **kwargs
+        )
+
+    def _equipment_public_access_enabled(self):
+        return bool(
+            request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice_equipment_portal.public_access")
         )
 
     def _get_filter_domain(self, kw):
@@ -90,7 +99,15 @@ class PortalEquipment(CustomerPortal):
                 "fsm.equipment", equipment_id, access_token
             )
         except (AccessError, MissingError):
-            return request.redirect("/my")
+            # Printed QR codes carry no access token: when the public access
+            # option is enabled, the page is readable without logging in.
+            if not self._equipment_public_access_enabled():
+                return request.redirect("/my")
+            equipment_sudo = (
+                request.env["fsm.equipment"].sudo().browse(equipment_id).exists()
+            )
+            if not equipment_sudo:
+                return request.redirect("/my")
         values = self._equipment_get_page_view_values(
             equipment_sudo, access_token, **kw
         )

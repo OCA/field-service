@@ -77,7 +77,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
-                        <div class="col-12 col-md-6 mb-1" t-if="equipment.product_id">
+                        <div
+                            class="col-12 col-md-6 mb-1"
+                            t-if="equipment_has_product and equipment.product_id"
+                        >
                             <strong>Product:</strong>
                             <span t-esc="equipment.product_id.display_name" />
                         </div>
