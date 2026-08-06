@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_order_form_stock_consume" model="ir.ui.view">
+        <field name="name">fsm.order.form.stock.consume</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="%(action_fsm_stock_consume)d"
+                    type="action"
+                    string="Consume from Stock"
+                    class="btn-secondary"
+                    groups="fieldservice.group_fsm_user"
+                />
+            </header>
+        </field>
+    </record>
+</odoo>
