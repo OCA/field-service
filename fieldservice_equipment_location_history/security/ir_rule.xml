@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_location_history_company_rule" model="ir.rule">
+        <field name="name">Equipment location history: multi-company</field>
+        <field name="model_id" ref="model_fsm_equipment_location_history" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+</odoo>
