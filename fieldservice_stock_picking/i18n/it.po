@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-08 14:08+0000\n"
-"PO-Revision-Date: 2026-06-08 14:08+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-08-11 11:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_order_stock_line__state
@@ -78,9 +79,8 @@ msgstr "Riga materiale ordine assistenza sul campo"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model,name:fieldservice_stock_picking.model_fsm_template
-#, fuzzy
 msgid "Field Service Order Template"
-msgstr "Ordine assistenza sul campo"
+msgstr "Modello ordine assistenza sul campo"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,field_description:fieldservice_stock_picking.field_fsm_order_stock_line__id
@@ -121,25 +121,25 @@ msgstr "Ultimo aggiornamento il"
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_template__incoming_picking_type_id
-#, fuzzy
 msgid ""
 "Operation type used by default on orders of this template to create the "
 "transfer that receives materials back from the field service location. When "
 "empty, the warehouse default is used."
 msgstr ""
-"Tipo di operazione utilizzato per creare il trasferimento che riceve i "
-"materiali di ritorno dalla località di assistenza sul campo."
+"Tipo di operazione predefinito utilizzato negli ordini di questo modello per "
+"creare il trasferimento che riceve i materiali di ritorno dalla sede di "
+"assistenza sul campo. Se vuoto, viene utilizzato il magazzino predefinito."
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_template__outgoing_picking_type_id
-#, fuzzy
 msgid ""
 "Operation type used by default on orders of this template to create the "
 "transfer that sends materials out to the field service location. When empty, "
 "the warehouse default is used."
 msgstr ""
-"Tipo di operazione utilizzato per creare il trasferimento che invia i "
-"materiali alla località di assistenza sul campo."
+"Tipo di operazione predefinito utilizzato negli ordini di questo modello per "
+"creare il trasferimento che invia i materiali alla sede di assistenza sul "
+"campo. Se vuoto, viene utilizzato il magazzino predefinito."
 
 #. module: fieldservice_stock_picking
 #: model:ir.model.fields,help:fieldservice_stock_picking.field_fsm_order__incoming_picking_type_id
