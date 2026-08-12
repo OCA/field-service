@@ -5,7 +5,7 @@
     "name": "Field Service Web Timeline",
     "summary": "This module is a display timeline view of the Field Service"
     " order in Odoo.",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
