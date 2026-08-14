@@ -3,7 +3,7 @@
 {
     "name": "Field Service",
     "summary": "Manage Field Service Locations, Workers and Orders",
-    "version": "19.0.1.2.0",
+    "version": "19.0.1.2.1",
     "license": "AGPL-3",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
