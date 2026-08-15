@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 /**
  * Copyright 2024 APSL-Nagarro
  */
@@ -34,6 +32,23 @@ patch(GeoengineRenderer.prototype, {
             case "unique":
             case "custom":
                 vals = serie.getClassUniqueValues();
+                if (
+                    cfg.classification === "custom" &&
+                    vals.some((item) => item === 0)
+                ) {
+                    this.notification.add(
+                        this.env._t(
+                            "Could not generate " +
+                                cfg.classification +
+                                " range for selected Attribute Field: " +
+                                indicator
+                        ),
+                        {
+                            type: "warning",
+                        }
+                    );
+                    return false;
+                }
                 // "RdYlBu" is a set of colors
                 scale = chroma.scale("RdYlBu").domain([0, vals.length], vals.length);
                 break;
@@ -45,6 +60,18 @@ patch(GeoengineRenderer.prototype, {
             case "interval":
                 serie.getClassEqInterval(nb_class);
                 vals = serie.getRanges();
+                if (vals.some((item) => item === "0 - 0")) {
+                    this.notification.add(
+                        this.env._t(
+                            "Could not generate interval range for selected Attribute Field: " +
+                                indicator
+                        ),
+                        {
+                            type: "warning",
+                        }
+                    );
+                    return false;
+                }
                 scale = scale.domain([0, vals.length], vals.length);
                 break;
         }
@@ -79,7 +106,13 @@ patch(GeoengineRenderer.prototype, {
                 } else if (label_text !== "") {
                     label_text = feature.values_.attributes.stage_name;
                 }
-                styles_map[colors[color_idx]][0].text_.text_ = label_text.toString();
+                try {
+                    styles_map[colors[color_idx]][0].text_.text_ =
+                        label_text.toString();
+                } catch {
+                    // Do nothing to restore history
+                    return;
+                }
                 return styles_map[colors[color_idx]];
             },
             legend,
@@ -134,8 +167,42 @@ patch(GeoengineRenderer.prototype, {
             }
             aux.push(data[i]);
         }
-        const styleInfo = this.styleVectorLayer(cfg, aux);
-        this.initLegend(styleInfo, cfg);
-        lv.setStyle(styleInfo.style);
+        if (this.checkAttributeFieldUsage(cfg, aux)) {
+            const styleInfo = this.styleVectorLayer(cfg, aux);
+            if (styleInfo) {
+                this.initLegend(styleInfo, cfg);
+                lv.setStyle(styleInfo.style);
+            }
+        }
+    },
+    /**
+     * Allows you to find the index of the color to be used according to its value.
+     * @param {*} val
+     * @param {*} a
+     * @returns {Number}
+     */
+    getClass(val, a) {
+        if (a.some((item) => item === 0)) {
+            return false;
+        }
+        // Classification uniqueValues
+        var idx = a.indexOf(val);
+        if (idx > -1) {
+            return idx;
+        }
+        // Range classification
+        var separator = " - ";
+        for (var i = 0; i < a.length; i++) {
+            // All classification except uniqueValues
+            if (typeof val !== "object" && a[i].indexOf(separator) !== -1) {
+                var item = a[i].split(separator);
+                if (val <= parseFloat(item[1])) {
+                    return i;
+                }
+            } else if (val === a[i]) {
+                // Classification uniqueValues
+                return i;
+            }
+        }
     },
 });
