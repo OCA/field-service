@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-from odoo.fields import Domain
 
 
 class Meeting(models.Model):
@@ -16,7 +15,7 @@ class Meeting(models.Model):
 
     def _update_fsm_order_date(self):
         self.ensure_one()
-        if self.env.context.get("recurse_order_calendar"):
+        if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
         to_apply = {}
@@ -27,7 +26,7 @@ class Meeting(models.Model):
     def _update_fsm_assigned(self):
         # update back fsm_order when an attenndee is member of a team
         self.ensure_one()
-        if self.env.context.get("recurse_order_calendar"):
+        if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
         person_id = None
@@ -35,7 +34,7 @@ class Meeting(models.Model):
             if partner.fsm_person:
                 person_id = (
                     self.env["fsm.person"]
-                    .search(domain=Domain("partner_id", "=", partner.id), limit=1)
+                    .search([["partner_id", "=", partner.id]], limit=1)
                     .id
                 )
                 break

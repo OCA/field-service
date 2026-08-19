@@ -1,8 +1,6 @@
-- [Gray Matter Logic](https://www.graymatterlogic.com):
-  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Kitti Upariphutthiphone \<<kittiu@ecosoft.co.th>\>
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
-- Freni Patel \<<fpatel@graymatterlogic.com>\>
+- Freni Patel \<<fpatel@opensourceintegrators.com>\>
 - [APSL](https://apsl.tech):
   - Antoni Marroig  \<<amarroig@apsl.net>\>

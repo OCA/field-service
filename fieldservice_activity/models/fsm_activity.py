@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Gray Matter Logic
+# Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -11,6 +11,7 @@ class FSMActivity(models.Model):
     name = fields.Char(
         required=True,
         readonly=True,
+        translate=True,
     )
     required = fields.Boolean(
         default=False,

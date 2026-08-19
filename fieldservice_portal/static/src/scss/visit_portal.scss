@@ -1,0 +1,70 @@
+#vbf { font-family: inherit; max-width: 680px; }
+#vbf #district_display { background: #f8f9fa; }
+
+/* Progress stepper */
+#vbf .vbf-stepper { display: flex; align-items: center; gap: 0; margin-bottom: 2rem; }
+#vbf .vbf-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+#vbf .vbf-step-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; border: 2px solid #dee2e6; background: #fff; color: #adb5bd; transition: all 0.3s; }
+#vbf .vbf-step.active .vbf-step-circle { background: var(--primary); border-color: var(--primary); color: #fff; }
+#vbf .vbf-step.done .vbf-step-circle { background: var(--primary); border-color: var(--primary); color: #fff; }
+#vbf .vbf-step-label { font-size: 0.75rem; color: #6c757d; text-align: center; }
+#vbf .vbf-step.active .vbf-step-label { color: var(--primary); font-weight: 600; }
+#vbf .vbf-step.done .vbf-step-label { color: var(--primary); font-weight: 600; }
+#vbf .vbf-step-line { flex: 1; height: 2px; background: #dee2e6; margin-bottom: 22px; transition: background 0.3s; }
+#vbf .vbf-step-line.done { background: var(--primary); }
+
+/* Sections */
+#vbf .vbf-section { display: none; }
+#vbf .vbf-section.active { display: block; }
+
+/* Map */
+#vbf #visitLocationMap { height: 400px; border-radius: 12px; border: 1px solid #dee2e6; overflow: hidden; z-index: 1; }
+
+/* Address box */
+#vbf .vbf-address-box { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; margin-top: 12px; min-height: 36px; }
+#vbf .vbf-address-box i { color: #0d6efd; margin-top: 2px; flex-shrink: 0; }
+
+/* Buttons */
+#vbf #toStep2Btn:disabled,
+#vbf #toStep3Btn:disabled,
+#vbf #submitVisitBtn:disabled { opacity: 0.4 !important; cursor: not-allowed !important; pointer-events: none !important; background-color: #6c757d !important; border-color: #6c757d !important; color: #fff !important; }
+#vbf .btn-edge-icon { position: relative; padding-inline: 2.75rem !important; }
+#vbf .btn-edge-icon > i { position: absolute; top: 50%; transform: translateY(-50%); margin: 0 !important; }
+#vbf .btn-edge-icon-start > i { inset-inline-start: 0.875rem; }
+#vbf .btn-edge-icon-end > i { inset-inline-end: 0.875rem; }
+html[dir="rtl"] #vbf .btn-edge-icon > i { transform: translateY(-50%) scaleX(-1); }
+
+/* Day cards */
+#vbf .booking-days { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x proximity; scrollbar-width: thin; overscroll-behavior-inline: contain; }
+#vbf .booking-day { flex: 0 0 auto; scroll-snap-align: start; }
+#vbf .day-card { padding: 14px 10px; border: 2px solid #dee2e6; border-radius: 12px; background: #fff; min-width: 105px; text-align: center; }
+#vbf .day-card.has-routes { cursor: pointer; }
+#vbf .day-card.has-routes:hover { border-color: #0d6efd; box-shadow: 0 2px 10px rgba(13,110,253,0.12); }
+#vbf .day-card.selected { border-color: #0d6efd; background: #eff6ff; }
+#vbf .day-name { font-size: 0.75rem; color: #6c757d; }
+#vbf .day-num { font-size: 1.5rem; font-weight: 700; line-height: 1.1; margin: 4px 0; }
+#vbf .day-no-routes { font-size: 0.68rem; color: #ced4da; margin-top: 6px; }
+#vbf .route-tag { padding: 4px 10px; border: 1.5px solid #dee2e6; border-radius: 6px; background: #fff; cursor: pointer; display: inline-block; margin: 3px 2px; font-size: 0.8rem; transition: all 0.15s; }
+#vbf .route-tag:hover { border-color: #0d6efd; background: #eff6ff; }
+#vbf .route-tag.selected { background: #0d6efd; color: #fff; border-color: #0d6efd; }
+
+/* Address fields in step 2 */
+#vbf .vbf-coords-badge { font-size: 0.72rem; color: #6c757d; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 6px; }
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+    #vbf { padding: 12px !important; }
+    #vbf #visitLocationMap { height: 250px; }
+    #vbf .vbf-step-circle { width: 30px; height: 30px; font-size: 0.8rem; }
+    #vbf .vbf-step-label { font-size: 0.65rem; }
+    #vbf .vbf-step-line { margin-bottom: 18px; }
+    #vbf .day-card { min-width: 85px; padding: 10px 8px; }
+    #vbf .day-num { font-size: 1.2rem; }
+    #vbf .route-tag { font-size: 0.72rem; padding: 3px 8px; }
+    #vbf .btn { font-size: 0.85rem; }
+    #vbf .vbf-btn-row { flex-direction: column; gap: 10px; }
+    #vbf .vbf-btn-row > .btn { width: 100%; }
+}
+@media (min-width: 577px) {
+    #vbf .vbf-btn-row { gap: 0; }
+}

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Recurring Order -->
     <record id="fsm_recurring_list_view" model="ir.ui.view">
@@ -83,7 +82,7 @@
                         </group>
                     </group>
                     <group string="Orders">
-                        <field name="fsm_order_ids" nolabel="1" colspan="2">
+                        <field name="fsm_order_ids" nolabel="1">
                             <list create="false">
                                 <field name="name" />
                                 <field name="stage_id" />
@@ -136,44 +135,37 @@
                     name="suspended"
                 />
                 <separator />
-                <group>
-                    <filter
-                        name="fsm_recurring_template_id"
-                        string="Recurring Template"
-                        domain=""
-                        context="{'group_by':'fsm_recurring_template_id'}"
-                    />
-                    <filter
-                        name="fsm_order_template_id"
-                        string="Order Template"
-                        domain=""
-                        context="{'group_by':'fsm_order_template_id'}"
-                    />
-                    <filter
-                        name="location_id"
-                        string="Location"
-                        domain=""
-                        context="{'group_by':'location_id'}"
-                    />
-                    <filter
-                        name="person_id"
-                        string="Assigned To"
-                        domain=""
-                        context="{'group_by':'person_id'}"
-                    />
-                    <filter
-                        name="state"
-                        string="State"
-                        domain=""
-                        context="{'group_by':'state'}"
-                    />
-                    <filter
-                        name="team_id"
-                        string="Team"
-                        groups="fieldservice.group_fsm_team"
-                        context="{'group_by':'team_id'}"
-                    />
-                </group>
+                <filter
+                    name="fsm_recurring_template_id"
+                    string="Group By Recurring Template"
+                    context="{'group_by':'fsm_recurring_template_id'}"
+                />
+                <filter
+                    name="fsm_order_template_id"
+                    string="Group By Order Template"
+                    context="{'group_by':'fsm_order_template_id'}"
+                />
+                <filter
+                    name="location_id"
+                    string="Group By Location"
+                    context="{'group_by':'location_id'}"
+                />
+                <filter
+                    name="person_id"
+                    string="Group By Assigned To"
+                    context="{'group_by':'person_id'}"
+                />
+                <filter
+                    name="state"
+                    string="Group By State"
+                    context="{'group_by':'state'}"
+                />
+                <filter
+                    name="team_id"
+                    string="Group By Team"
+                    groups="fieldservice.group_fsm_team"
+                    context="{'group_by':'team_id'}"
+                />
             </search>
         </field>
     </record>

@@ -6,7 +6,7 @@
         <field name="model">fsm.template</field>
         <field name="inherit_id" ref="fieldservice.fsm_template_form_view" />
         <field name="arch" type="xml">
-            <field name="category_ids" position="after">
+            <field name="duration" position="after">
                 <field
                     name="skill_ids"
                     widget="many2many_tags"

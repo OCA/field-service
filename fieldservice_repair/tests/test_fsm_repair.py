@@ -5,17 +5,17 @@ from datetime import timedelta
 
 from odoo import Command, fields
 from odoo.exceptions import ValidationError
-from odoo.tests import Form
+from odoo.tests import Form, TransactionCase
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
-class TestFSMRepairCommon(FSMCommon):
+class TestFSMRepairCommon(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.stock_location = cls.env.ref("stock.stock_location_customers")
         cls.repair_type = cls.env.ref("fieldservice_repair.fsm_order_type_repair")
         cls.fsm_type = cls.env["fsm.order.type"].create(
@@ -36,15 +36,6 @@ class TestFSMRepairCommon(FSMCommon):
                 "company_id": cls.env.company.id,
             }
         )
-        # Create some stocks so that the current stock location is properly computed
-        cls.env["stock.quant"].create(
-            {
-                "product_id": cls.product.id,
-                "location_id": cls.stock_location.id,
-                "lot_id": cls.lot.id,
-                "quantity": 100,
-            }
-        )
         cls.equipment_1 = cls.env["fsm.equipment"].create(
             {
                 "name": "Equipment 1",
@@ -59,6 +50,15 @@ class TestFSMRepairCommon(FSMCommon):
                 "lot_id": cls.lot.id,
             }
         )
+        # Create some stocks so that the current stock location is properly computed
+        cls.env["stock.quant"].create(
+            {
+                "product_id": cls.product.id,
+                "location_id": cls.stock_location.id,
+                "lot_id": cls.lot.id,
+                "quantity": 100,
+            }
+        )
 
     def _prepare_fsm_order_vals(self, equipments):
         return {
@@ -69,6 +69,10 @@ class TestFSMRepairCommon(FSMCommon):
             "request_early": fields.Datetime.today(),
             "equipment_ids": [Command.link(eq.id) for eq in equipments],
         }
+
+    def test_repair_order_type_arabic_name(self):
+        self.assertTrue(self.repair_type._fields["name"].translate)
+        self.assertEqual(self.repair_type.with_context(lang="ar_001").name, "إصلاح")
 
     def test_fsm_repair_order_fails_if_no_equipment(self):
         with self.assertRaisesRegex(
@@ -159,9 +163,8 @@ class TestFSMRepairCommon(FSMCommon):
             self._prepare_fsm_order_vals([self.equipment_1, self.equipment_2])
         )
         self.assertEqual(len(order.repair_ids), 2)
-        repairs = order.repair_ids
         order.type = self.fsm_type
-        for repair in repairs:
+        for repair in order.repair_ids:
             self.assertEqual(repair.state, "cancel")
         self.assertFalse(
             order.repair_ids, "All repairs should be unlinked after cancel"

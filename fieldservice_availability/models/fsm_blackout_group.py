@@ -8,7 +8,7 @@ class FieldServiceBlackoutGroup(models.Model):
     _name = "fsm.blackout.group"
     _description = "Blackout Group"
 
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, translate=True)
     fsm_blackout_day_ids = fields.Many2many(
         "fsm.blackout.day",
         "fsm_blackout_group_ids",

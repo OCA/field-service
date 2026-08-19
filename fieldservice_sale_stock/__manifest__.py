@@ -11,7 +11,6 @@
     "depends": [
         "fieldservice_sale",
         "fieldservice_stock",
-        "sale_stock",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",

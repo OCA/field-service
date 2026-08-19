@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Portal Home Entry -->
+    <template id="portal_my_home_requests" inherit_id="portal.portal_my_home" priority="65">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/fieldservice_portal/static/src/img/maintenance.png'"/>
+                <t t-set="title">Maintenance Requests</t>
+                <t t-set="url" t-value="'/my/requests'"/>
+                <t t-set="text">Request maintenance for your installed locations</t>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Breadcrumbs -->
+    <template id="portal_requests_breadcrumbs" inherit_id="portal.portal_breadcrumbs" priority="65">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <t t-if="page_name == 'requests'">
+                <li class="breadcrumb-item">
+                    <a href="/my/requests">Maintenance Requests</a>
+                </li>
+                <li t-if="location" class="breadcrumb-item active" t-out="location.name"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- No Location -->
+    <template id="portal_requests_no_location" name="No Locations">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">Maintenance Requests</t>
+            <div class="container py-5 text-center" style="max-width:600px;">
+                <i class="fa fa-map-marker fa-4x text-muted mb-3 d-block"/>
+                <h5 class="text-muted">No installed locations are linked to your account.</h5>
+                <p class="text-muted small">Please contact us to add your location.</p>
+                <a href="/my" class="btn btn-outline-secondary mt-2">Back to Home</a>
+            </div>
+        </t>
+    </template>
+
+    <!-- Location Picker (multiple locations) -->
+    <template id="portal_requests_location_picker" name="Select Location">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">Maintenance Requests</t>
+            <div class="container py-4" style="max-width:780px;">
+                <h4 class="fw-bold mb-1">Maintenance Requests</h4>
+                <p class="text-muted mb-4">Choose the location that needs maintenance.</p>
+                <div class="row g-3">
+                    <t t-foreach="locations" t-as="loc">
+                        <div class="col-12 col-md-6">
+                            <a t-att-href="'/my/requests/%d' % loc.id" class="text-decoration-none">
+                                <div class="card h-100 shadow-sm border-0 p-3 d-flex flex-row align-items-center gap-3"
+                                     style="border-radius:12px; transition: box-shadow 0.2s;"
+                                     onmouseover="this.style.boxShadow='0 4px 16px rgba(13,110,253,0.15)'"
+                                     onmouseout="this.style.boxShadow=''">
+                                    <div style="width:48px;height:48px;border-radius:50%;background:#eff6ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                        <i class="fa fa-map-marker text-primary fa-lg"/>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold text-dark" t-out="loc.name"/>
+                                        <small class="text-muted" t-out="loc.street or ''"/>
+                                        <small t-if="loc.city" class="text-muted"> - <t t-out="loc.city"/></small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Location Page: details + orders + request button -->
+    <template id="portal_requests_location" name="Location Maintenance">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title" t-value="location.name"/>
+            <div class="container py-4" style="max-width:780px;">
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
+                    <div>
+                        <h4 class="fw-bold mb-1" t-out="location.name"/>
+                        <p class="text-muted mb-0">
+                            <i class="fa fa-map-pin me-1"/>
+                            <t t-out="location.street or ''"/>
+                            <t t-if="location.city"> - <t t-out="location.city"/></t>
+                        </p>
+                    </div>
+                    <a t-att-href="'/my/requests/%d/new' % location.id" class="btn btn-primary">
+                        <i class="fa fa-plus me-1"/>New Maintenance Request
+                    </a>
+                </div>
+
+                <!-- Past Orders -->
+                <h6 class="fw-semibold text-muted mb-3">Previous Requests</h6>
+                <t t-if="orders">
+                    <div class="card border-0 shadow-sm" style="border-radius:12px;overflow:hidden;">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Request Number</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="orders" t-as="fsm_ord">
+                                    <tr>
+                                        <td>
+                                            <a t-att-href="'/my/fsm_order/%d' % fsm_ord.id" class="fw-semibold text-primary" t-out="fsm_ord.name"/>
+                                        </td>
+                                        <td class="text-muted small">
+                                            <t t-if="fsm_ord.request_early" t-out="fsm_ord.request_early.strftime('%Y-%m-%d')"/>
+                                        </td>
+                                        <td>
+                                            <span class="badge rounded-pill"
+                                                  t-attf-style="background:{{ fsm_ord.stage_id.custom_color or '#6c757d' }};color:#fff;"
+                                                  t-out="fsm_ord.stage_id.name"/>
+                                        </td>
+                                        <td class="text-muted small text-truncate" style="max-width:200px;"
+                                            t-out="fsm_ord.description or ''"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="text-center py-5 text-muted">
+                        <i class="fa fa-clipboard fa-3x mb-3 d-block"/>
+                        <p>There are no previous requests for this location.</p>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- New Request: Slot Picker -->
+    <template id="portal_requests_new" name="New Maintenance Request">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">New Maintenance Request</t>
+
+            <style>
+                #req-form { font-family: inherit; }
+                #req-form .day-card { padding: 14px 10px; border: 2px solid #dee2e6; border-radius: 12px; background: #fff; min-width: 105px; text-align: center; }
+                #req-form .day-card.has-routes { cursor: pointer; }
+                #req-form .day-card.has-routes:hover { border-color: #0d6efd; box-shadow: 0 2px 10px rgba(13,110,253,0.12); }
+                #req-form .day-card.selected { border-color: #0d6efd; background: #eff6ff; }
+                #req-form .day-name { font-size: 0.75rem; color: #6c757d; }
+                #req-form .day-num { font-size: 1.5rem; font-weight: 700; line-height: 1.1; margin: 4px 0; }
+                #req-form .day-no-routes { font-size: 0.68rem; color: #ced4da; margin-top: 6px; }
+                #req-form .route-tag { padding: 4px 10px; border: 1.5px solid #dee2e6; border-radius: 6px; background: #fff; cursor: pointer; display: inline-block; margin: 3px 2px; font-size: 0.8rem; transition: all 0.15s; }
+                #req-form .route-tag:hover { border-color: #0d6efd; background: #eff6ff; }
+                #req-form .route-tag.selected { background: #0d6efd; color: #fff; border-color: #0d6efd; }
+                #req-form .booking-days { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x proximity; scrollbar-width: thin; overscroll-behavior-inline: contain; }
+                #req-form .booking-day { flex: 0 0 auto; scroll-snap-align: start; }
+                #req-form #submitReqBtn:disabled { opacity: 0.4 !important; cursor: not-allowed !important; pointer-events: none !important; background-color: #6c757d !important; border-color: #6c757d !important; }
+                #req-form .btn-edge-icon { position: relative; padding-inline: 2.75rem !important; }
+                #req-form .btn-edge-icon > i { position: absolute; top: 50%; transform: translateY(-50%); margin: 0 !important; }
+                #req-form .btn-edge-icon-start > i { inset-inline-start: 0.875rem; }
+                html[dir="rtl"] #req-form .btn-edge-icon > i { transform: translateY(-50%) scaleX(-1); }
+            </style>
+
+            <div id="req-form" class="container py-4" style="max-width:680px;">
+
+                <div class="mb-3">
+                    <a t-att-href="'/my/requests/%d' % location.id" class="text-muted small">
+                        <i class="fa fa-arrow-right me-1"/>Back to <t t-out="location.name"/>
+                    </a>
+                </div>
+
+                <h4 class="fw-bold mb-1">New Maintenance Request</h4>
+                <p class="text-muted mb-4">
+                    <i class="fa fa-map-pin me-1"/>
+                    <t t-out="location.name"/>
+                    <t t-if="location.street"> — <t t-out="location.street"/></t>
+                </p>
+
+                <div class="card border-0 shadow-sm p-4" style="border-radius:14px;">
+
+                    <!-- Description -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Problem Description <span class="text-muted fw-normal">(optional)</span></label>
+                        <textarea id="reqDescription" class="form-control" rows="3" placeholder="Describe the problem or required service..."/>
+                    </div>
+
+                    <!-- Slot Picker -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Choose a visit appointment</label>
+
+                        <div id="routeLoading" class="text-center py-4">
+                            <div class="spinner-border text-primary spinner-border-sm"/>
+                            <span class="ms-2 text-muted small">Loading appointments...</span>
+                        </div>
+
+                        <div id="routesContainer" class="d-none">
+                            <div class="booking-days" id="requestBookingDays" dir="rtl"/>
+                            <div id="selectedSlotDisplay" class="alert alert-success mt-3 py-2 d-none">
+                                <i class="fa fa-check-circle me-2"/>
+                                <span id="selectedSlotInfo"/>
+                            </div>
+                        </div>
+
+                        <div id="routeEmpty" class="text-center py-4 d-none">
+                            <i class="fa fa-calendar-times-o fa-2x text-muted mb-2 d-block"/>
+                            <p class="text-muted small mb-0">No appointments are currently available.</p>
+                        </div>
+                    </div>
+
+                    <div id="reqInlineError" class="alert alert-danger mb-3 d-none" role="alert" aria-live="polite" tabindex="-1">
+                        <i class="fa fa-exclamation-circle me-2"/>
+                        <span id="reqInlineErrorMessage"/>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <a t-att-href="'/my/requests/%d' % location.id" class="btn btn-outline-secondary px-4 btn-edge-icon btn-edge-icon-start">
+                            <i class="fa fa-arrow-right"/>Cancel
+                        </a>
+                        <button type="button" class="btn btn-success px-5" id="submitReqBtn" disabled="disabled">
+                            <i class="fa fa-check me-2"/>Confirm Request and Pay
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-none" id="requestTranslations">
+                    <div id="reqSunday">Sunday</div>
+                    <div id="reqMonday">Monday</div>
+                    <div id="reqTuesday">Tuesday</div>
+                    <div id="reqWednesday">Wednesday</div>
+                    <div id="reqThursday">Thursday</div>
+                    <div id="reqFriday">Friday</div>
+                    <div id="reqSaturday">Saturday</div>
+                    <div id="reqJanuary">January</div>
+                    <div id="reqFebruary">February</div>
+                    <div id="reqMarch">March</div>
+                    <div id="reqApril">April</div>
+                    <div id="reqMay">May</div>
+                    <div id="reqJune">June</div>
+                    <div id="reqJuly">July</div>
+                    <div id="reqAugust">August</div>
+                    <div id="reqSeptember">September</div>
+                    <div id="reqOctober">October</div>
+                    <div id="reqNovember">November</div>
+                    <div id="reqDecember">December</div>
+                    <div id="reqAppointment">Appointment</div>
+                    <div id="reqNone">No availability</div>
+                    <div id="reqBooking">Booking...</div>
+                    <div id="reqConfirm">Confirm Request and Pay</div>
+                    <div id="reqLoadError">Unable to load appointments. Please refresh the page and try again.</div>
+                    <div id="reqSubmitError">Unable to complete the maintenance request. Please try again.</div>
+                </div>
+
+            </div>
+
+            <script t-att-data-location-id="location.id">
+                var _reqScript = document.currentScript;
+                var _maintenanceBookingInitialized = false;
+                function initMaintenanceBooking() {
+                    if (_maintenanceBookingInitialized) return;
+                    if (!document.getElementById('reqSubmitError')) {
+                        setTimeout(initMaintenanceBooking, 10);
+                        return;
+                    }
+                    _maintenanceBookingInitialized = true;
+                    try {
+                    var locationId = parseInt(_reqScript.getAttribute('data-location-id'));
+                    var selectedRouteId = null;
+                    var rpc = odoo.loader.modules.get("@web/core/network/rpc").rpc;
+                    function translatedText(id) {
+                        return document.getElementById(id).textContent.trim();
+                    }
+                    var dayNames = ['reqSunday','reqMonday','reqTuesday','reqWednesday','reqThursday','reqFriday','reqSaturday'].map(translatedText);
+                    var monthNames = ['reqJanuary','reqFebruary','reqMarch','reqApril','reqMay','reqJune','reqJuly','reqAugust','reqSeptember','reqOctober','reqNovember','reqDecember'].map(translatedText);
+
+                    function dateStr(d) {
+                        return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+                    }
+
+                    function showRouteError() {
+                        var empty = document.getElementById('routeEmpty');
+                        empty.querySelector('p').textContent = translatedText('reqLoadError');
+                        empty.classList.remove('d-none');
+                    }
+
+                    async function loadRoutes() {
+                        try {
+                            var data = await rpc('/my/requests/routes', {});
+                            document.getElementById('routeLoading').classList.add('d-none');
+                            if (data.success &amp;&amp; data.routes &amp;&amp; data.routes.length) {
+                                renderWeek(data.routes);
+                                document.getElementById('routesContainer').classList.remove('d-none');
+                            } else {
+                                document.getElementById('routeEmpty').classList.remove('d-none');
+                            }
+                        } catch {
+                            document.getElementById('routeLoading').classList.add('d-none');
+                            showRouteError();
+                        }
+                    }
+
+                    function renderWeek(routes) {
+                        var today = new Date(); today.setHours(0,0,0,0);
+                        var byDate = {};
+                        routes.forEach(function(r){ if (!byDate[r.date]) byDate[r.date] = []; byDate[r.date].push(r); });
+                        var lastSlotDate = null;
+                        routes.forEach(function(r){ if (!lastSlotDate || r.date &gt; lastSlotDate) lastSlotDate = r.date; });
+                        var maxDays = 28;
+                        var days = [];
+                        for (var i = 0; i &lt;= maxDays; i++) {
+                            var d = new Date(today); d.setDate(today.getDate() + i);
+                            var ds = dateStr(d);
+                            if (lastSlotDate &amp;&amp; ds &gt; lastSlotDate) break;
+                            days.push(d);
+                        }
+
+                        var wrapper = document.getElementById('requestBookingDays');
+                        wrapper.replaceChildren();
+                        days.forEach(function(d) {
+                            var ds = dateStr(d);
+                            var slots = byDate[ds] || [];
+                            var slide = document.createElement('div');
+                            slide.className = 'booking-day';
+                            var card = document.createElement('div');
+                            card.className = 'day-card' + (slots.length ? ' has-routes' : '');
+                            var dayName = document.createElement('div');
+                            dayName.className = 'day-name';
+                            dayName.textContent = dayNames[d.getDay()];
+                            var dayNumber = document.createElement('div');
+                            dayNumber.className = 'day-num';
+                            dayNumber.textContent = String(d.getDate());
+                            card.append(dayName, dayNumber);
+                            if (slots.length) {
+                                slots.forEach(function(slot){
+                                    var tag = document.createElement('button');
+                                    var routeName = slot.route_name || translatedText('reqAppointment');
+                                    tag.type = 'button';
+                                    tag.className = 'route-tag';
+                                    tag.dataset.routeId = String(slot.id);
+                                    tag.dataset.routeName = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + monthNames[d.getMonth()] + ' - ' + routeName;
+                                    var label = document.createElement('small');
+                                    label.textContent = routeName;
+                                    tag.appendChild(label);
+                                    tag.addEventListener('click', function(){
+                                        document.querySelectorAll('#req-form .route-tag').forEach(function(item){ item.classList.remove('selected'); });
+                                        tag.classList.add('selected');
+                                        selectedRouteId = tag.dataset.routeId;
+                                        document.getElementById('selectedSlotInfo').textContent = tag.dataset.routeName;
+                                        document.getElementById('selectedSlotDisplay').classList.remove('d-none');
+                                        document.getElementById('submitReqBtn').removeAttribute('disabled');
+                                    });
+                                    card.appendChild(tag);
+                                });
+                            } else {
+                                var noRoutes = document.createElement('div');
+                                noRoutes.className = 'day-no-routes mt-2';
+                                noRoutes.textContent = translatedText('reqNone');
+                                card.appendChild(noRoutes);
+                            }
+                            slide.appendChild(card);
+                            wrapper.appendChild(slide);
+                        });
+                    }
+
+                    function setSubmitButton(button, loading) {
+                        var icon = document.createElement('i');
+                        icon.className = loading ? 'fa fa-spinner fa-spin me-2' : 'fa fa-check me-2';
+                        button.replaceChildren(icon, document.createTextNode(loading ? translatedText('reqBooking') : translatedText('reqConfirm')));
+                    }
+
+                    function showSubmitError(message) {
+                        var errorPanel = document.getElementById('reqInlineError');
+                        document.getElementById('reqInlineErrorMessage').textContent = message;
+                        errorPanel.classList.remove('d-none');
+                        errorPanel.focus();
+                    }
+
+                    function clearSubmitError() {
+                        document.getElementById('reqInlineError').classList.add('d-none');
+                    }
+
+                    document.getElementById('submitReqBtn').addEventListener('click', async function(){
+                        var btn = this;
+                        clearSubmitError();
+                        btn.setAttribute('disabled','disabled');
+                        setSubmitButton(btn, true);
+                        try {
+                            var data = await rpc('/my/requests/submit', {
+                                location_id: locationId,
+                                route_id: selectedRouteId,
+                                description: document.getElementById('reqDescription').value,
+                            });
+                            if (data.success) {
+                                window.location.href = data.redirect;
+                            } else {
+                                showSubmitError(data.error || translatedText('reqSubmitError'));
+                                btn.removeAttribute('disabled');
+                                setSubmitButton(btn, false);
+                            }
+                        } catch {
+                            showSubmitError(translatedText('reqSubmitError'));
+                            btn.removeAttribute('disabled');
+                            setSubmitButton(btn, false);
+                        }
+                    });
+
+                    loadRoutes();
+                    } catch (error) {
+                        _maintenanceBookingInitialized = false;
+                        setTimeout(initMaintenanceBooking, 50);
+                    }
+                }
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initMaintenanceBooking);
+                } else {
+                    initMaintenanceBooking();
+                }
+                setTimeout(initMaintenanceBooking, 0);
+            </script>
+        </t>
+    </template>
+
+</odoo>

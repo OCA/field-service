@@ -1,0 +1,1570 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-11 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid ""
+"\n"
+"\n"
+"Available appointments:\n"
+"%(slots)s"
+msgstr ""
+"\n"
+"\n"
+"المواعيد المتاحة:\n"
+"%(slots)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid ""
+"\n"
+"[Notice: This location is outside automatic coverage. Please review it and contact the customer manually.]"
+msgstr ""
+"\n"
+"[تنبيه: هذا الموقع خارج نطاق التغطية التلقائية. يرجى مراجعته والتواصل مع العميل يدوياً.]"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid " (outside coverage)"
+msgstr " (خارج نطاق التغطية)"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/notification.py:0
+msgid "%(date)s - %(route)s"
+msgstr "%(date)s - %(route)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid ""
+"%(person)s is on the way.\n"
+"Work order: %(order)s"
+msgstr ""
+"%(person)s في الطريق.\n"
+"أمر العمل: %(order)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "%(product)s - %(amount)s"
+msgstr "%(product)s - %(amount)s"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid ""
+"<br/>\n"
+"                                <strong>Arrival On Site:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>الوصول إلى الموقع:</strong>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid ""
+"<br/>\n"
+"                                <strong>City:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>المدينة:</strong>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid ""
+"<br/>\n"
+"                                <strong>Country:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>الدولة:</strong>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid ""
+"<br/>\n"
+"                                <strong>Work Type:</strong>"
+msgstr ""
+"<br/>\n"
+"                                <strong>نوع العمل:</strong>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_installation_completed
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>Installation is complete. The installed equipment is ready for use.</p>\n"
+"    <p>You can submit future maintenance requests from your account:</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/requests')\" style=\"background-color: #007BFF; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            Request Maintenance\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>اكتمل التركيب بنجاح. المعدات المركبة جاهزة للعمل.</p>\n"
+"    <p>للصيانة المستقبلية، يمكنك طلبها من حسابك:</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/requests')\" style=\"background-color: #007BFF; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            طلب صيانة\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_maintenance_completed
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>The service has been completed successfully. The installed equipment is operating normally.</p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>اكتملت الخدمة بنجاح. المعدات المركبة تعمل الآن بصورة طبيعية.</p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_installation_quote
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>Your installation quotation is ready.</p>\n"
+"    <p>Please visit your portal account to review it and complete payment.</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/orders')\" style=\"background-color: #007BFF; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            View Quotation\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>عرض سعر التركيب جاهز.</p>\n"
+"    <p>للاطلاع والدفع، يرجى زيارة حسابك في البوابة.</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/orders')\" style=\"background-color: #007BFF; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            عرض السعر\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_installation_paid
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>Your payment has been received successfully.</p>\n"
+"    <p>Please choose a suitable installation appointment:</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/installation')\" style=\"background-color: #28a745; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            Schedule Installation\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>تم استلام الدفعة بنجاح.</p>\n"
+"    <p>يرجى اختيار موعد التركيب المناسب لك:</p>\n"
+"    <p style=\"margin: 16px 0;\">\n"
+"        <a t-att-href=\"ctx.get('portal_url', '/my/installation')\" style=\"background-color: #28a745; color: white; padding: 10px 20px;                   text-decoration: none; border-radius: 5px; font-weight: bold;\">\n"
+"            اختر موعد التركيب\n"
+"        </a>\n"
+"    </p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_inspection_completed
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>Your site survey has been completed successfully.</p>\n"
+"    <p>We will send your installation quotation shortly.</p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>اكتملت معاينة الموقع بنجاح.</p>\n"
+"    <p>سيتم إرسال عرض سعر التركيب قريباً.</p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model:mail.template,body_html:fieldservice_portal.email_visit_booked
+msgid ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>Hello <t t-out=\"object.name\" />,</p>\n"
+"    <p>Your site visit has been booked successfully.</p>\n"
+"    <p>We will confirm the appointment shortly and notify you through WhatsApp.</p>\n"
+"    <p>Thank you for choosing <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0; padding: 0; font-size: 13px;\">\n"
+"    <p>مرحباً <t t-out=\"object.name\" />,</p>\n"
+"    <p>تم حجز زيارة معاينة الموقع بنجاح.</p>\n"
+"    <p>سيتم تحديد موعد الزيارة قريباً وسنقوم بإشعارك عبر الواتساب.</p>\n"
+"    <p>شكراً لاختيارك <t t-out=\"object.env.company.name\" />.</p>\n"
+"</div>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid "<span>N/A</span>"
+msgstr "<span>غير متاح</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid "<strong>Location:</strong>"
+msgstr "<strong>الموقع:</strong>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid "<strong>Stage:</strong>"
+msgstr "<strong>المرحلة:</strong>"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/requests_portal.py:0
+msgid "Access denied"
+msgstr "تم رفض الوصول"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "All"
+msgstr "الكل"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_sale_order__portal_dayroute_id
+msgid "Appointment selected in the customer portal before payment."
+msgstr "الموعد الذي حدده العميل في البوابة قبل الدفع."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+#: code:addons/fieldservice_portal/controllers/requests_portal.py:0
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Appointments are temporarily unavailable."
+msgstr "المواعيد غير متاحة مؤقتاً."
+
+#. module: fieldservice_portal
+#: model:ir.module.module,summary:fieldservice_portal
+msgid "Bridge module between fieldservice and portal."
+msgstr "وحدة ربط بين الخدمة الميدانية والبوابة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Coverage information is temporarily unavailable."
+msgstr "معلومات نطاق التغطية غير متاحة مؤقتاً."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "CRM Team"
+msgstr "فريق إدارة علاقات العملاء"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_res_config_settings__visit_crm_team_id
+msgid "CRM team assigned to site-survey requests."
+msgstr "فريق إدارة علاقات العملاء المعيّن لطلبات معاينة المواقع."
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_fsm_stage__notification_event
+msgid "Customer notification triggered when an order enters this stage."
+msgstr "إشعار العميل الذي يتم تشغيله عند انتقال الأمر إلى هذه المرحلة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "Description"
+msgstr "الوصف"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_fsm_stage__portal_visible
+msgid "Enable to display field service orders based on it's stage in the portal"
+msgstr "فعّل هذا الخيار لعرض أوامر الخدمة الميدانية في البوابة بناءً على مرحلتها"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_fsm_stage__portal_visible
+msgid "Enable to display field service orders based on their stage in the portal."
+msgstr "فعّل هذا الخيار لعرض أوامر الخدمة الميدانية في البوابة بناءً على مرحلتها."
+
+#. module: fieldservice_portal
+#: model:ir.module.module,name:fieldservice_portal
+msgid "Field Service - Portal"
+msgstr "الخدمة الميدانية - البوابة"
+
+#. module: fieldservice_portal
+#: model:ir.model,name:fieldservice_portal.model_fieldservice_notification
+msgid "Field Service Notification Helper"
+msgstr "مساعد إشعارات الخدمة الميدانية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Field Service Portal"
+msgstr "بوابة الخدمة الميدانية"
+
+#. module: fieldservice_portal
+#: model:ir.model,name:fieldservice_portal.model_fsm_stage
+msgid "Field Service Stage"
+msgstr "مرحلة الخدمة الميدانية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_fsm_order
+msgid "FSM Orders"
+msgstr "أوامر الخدمة الميدانية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid "History"
+msgstr "السجل"
+
+#. module: fieldservice_portal
+#: model:mail.template,name:fieldservice_portal.email_inspection_completed
+msgid "Inspection Completed"
+msgstr "اكتملت المعاينة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_route__route_type__installation
+msgid "Installation"
+msgstr "التركيب"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_installation_completed
+msgid "Installation Completed"
+msgstr "اكتمل التركيب"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid ""
+"Installation is complete. The installed equipment is ready for use.\n"
+"Future service requests: %(url)s/my/requests"
+msgstr ""
+"اكتمل التركيب. المعدات المركبة جاهزة للاستخدام.\n"
+"طلبات الخدمة المستقبلية: %(url)s/my/requests"
+
+#. module: fieldservice_portal
+#: model:mail.template,name:fieldservice_portal.email_installation_paid
+msgid "Installation Paid - Schedule"
+msgstr "تم دفع تكلفة التركيب - جدولة الموعد"
+
+#. module: fieldservice_portal
+#: model:mail.template,name:fieldservice_portal.email_installation_quote
+msgid "Installation Quote"
+msgstr "عرض سعر التركيب"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_installation_slot_picker
+msgid "Installation Slot Picker"
+msgstr "اختيار موعد التركيب"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Location"
+msgstr "الموقع"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_requests_location
+msgid "Location Maintenance"
+msgstr "صيانة الموقع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_route__route_type__maintenance
+msgid "Maintenance"
+msgstr "الصيانة"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_maintenance_completed
+msgid "Maintenance Completed"
+msgstr "اكتملت الصيانة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_res_config_settings__requests_sale_order_template_id
+msgid "Maintenance Request Template"
+msgstr "قالب طلب الصيانة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Maintenance Requests (/my/requests)"
+msgstr "طلبات الصيانة (/my/requests)"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_my_fsm_orders
+msgid "My Work Orders"
+msgstr "أوامر العمل الخاصة بي"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Name"
+msgstr "الاسم"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "New Maintenance Request"
+msgstr "طلب صيانة جديد"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "New site survey booking"
+msgstr "حجز جديد لمعاينة موقع"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "New site survey for %(partner)s"
+msgstr "معاينة موقع جديدة للعميل %(partner)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Newest"
+msgstr "الأحدث"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/requests_portal.py:0
+msgid "No location specified"
+msgstr "لم يتم تحديد موقع"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_requests_no_location
+msgid "No Locations"
+msgstr "لا توجد مواقع"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "No sale order specified"
+msgstr "لم يتم تحديد أمر بيع"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_stage__notification_event__none
+msgid "None"
+msgstr "لا شيء"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_fieldservice_order_page
+msgid "Not started yet"
+msgstr "لم يبدأ بعد"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_stage__notification_event
+msgid "Notification Event"
+msgstr "حدث الإشعار"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_order_type__service_type__other
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__sale_order_template__service_type__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "Payment received (%(amount)s). Choose an installation appointment: %(url)s"
+msgstr "تم استلام الدفعة (%(amount)s). اختر موعداً للتركيب: %(url)s"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_installation_paid
+msgid "Payment Received - Schedule Installation"
+msgstr "تم استلام الدفعة - اختر موعد التركيب"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_sale_order__portal_dayroute_id
+msgid "Portal Appointment"
+msgstr "موعد البوابة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_sale_order__portal_service_description
+msgid "Portal Service Description"
+msgstr "وصف خدمة البوابة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_order_type__service_type__repair
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__sale_order_template__service_type__repair
+msgid "Repair"
+msgstr "الإصلاح"
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_visit_form
+msgid "Request Site Visit"
+msgstr "طلب زيارة موقع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_route__route_type
+msgid "Route Type"
+msgstr "نوع المسار"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "Sale order is not ready for installation"
+msgstr "أمر البيع غير جاهز للتركيب"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Sale Order Template"
+msgstr "قالب أمر البيع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_res_config_settings__visit_sale_order_template_id
+msgid "Sale order template used when a customer books a site visit (/my/visit)"
+msgstr "قالب أمر البيع المستخدم عندما يحجز العميل زيارة موقع (/my/visit)"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_res_config_settings__requests_sale_order_template_id
+msgid "Sale order template used when a customer submits a maintenance request (/my/requests)"
+msgstr "قالب أمر البيع المستخدم عندما يقدّم العميل طلب صيانة (/my/requests)"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Search in All"
+msgstr "البحث في الكل"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Search in Description"
+msgstr "البحث في الوصف"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Search in Location Numbers"
+msgstr "البحث في أرقام المواقع"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Search in WO Number"
+msgstr "البحث في رقم أمر العمل"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+msgid "Select a valid appointment."
+msgstr "يرجى اختيار موعد صالح."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Select a valid service district."
+msgstr "يرجى اختيار حي خدمة صالح."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "Select an appointment."
+msgstr "يرجى اختيار موعد."
+
+#. module: fieldservice_portal
+#: model:ir.ui.view,name:fieldservice_portal.portal_requests_location_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Select Location"
+msgstr "اختيار الموقع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_order_type__service_type
+#: model:ir.model.fields,field_description:fieldservice_portal.field_sale_order_template__service_type
+msgid "Service Type"
+msgstr "نوع الخدمة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_order_type__service_type__survey
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__sale_order_template__service_type__survey
+msgid "Site Survey"
+msgstr "معاينة الموقع"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_inspection_completed
+msgid "Site Survey Completed"
+msgstr "اكتملت معاينة الموقع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_route__route_type__visit
+msgid "Site Visit"
+msgstr "زيارة الموقع"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_sale_order_template__service_type
+msgid "Stable field-service purpose used independently of the translated name."
+msgstr "غرض ثابت للخدمة الميدانية يُستخدم بصورة مستقلة عن الاسم المترجم."
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,help:fieldservice_portal.field_fsm_order_type__service_type
+msgid "Stable workflow purpose used independently of the translated name."
+msgstr "غرض ثابت لمسار العمل يُستخدم بصورة مستقلة عن الاسم المترجم."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Stage"
+msgstr "المرحلة"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid "Technician"
+msgstr "الفني"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "The appointment could not be saved. Please try again."
+msgstr "تعذر حفظ الموعد. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "The booking could not be created. Please try again."
+msgstr "تعذر إنشاء الحجز. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "The booking details are invalid."
+msgstr "بيانات الحجز غير صالحة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "The installation details are invalid."
+msgstr "بيانات التركيب غير صالحة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "The installation work orders are only partly scheduled."
+msgstr "تمت جدولة بعض أوامر عمل التركيب فقط."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/installation_portal.py:0
+msgid "The installation work orders have conflicting appointments."
+msgstr "توجد مواعيد متعارضة لأوامر عمل التركيب."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/requests_portal.py:0
+msgid "The request could not be created. Please try again."
+msgstr "تعذر إنشاء الطلب. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/requests_portal.py:0
+msgid "The request details are invalid."
+msgstr "بيانات الطلب غير صالحة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "The selected appointment does not match this service."
+msgstr "الموعد المحدد لا يتوافق مع هذه الخدمة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "The selected appointment has no remaining capacity."
+msgstr "لا توجد سعة متبقية في الموعد المحدد."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "The selected appointment is no longer available."
+msgstr "الموعد المحدد لم يعد متاحاً."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "The selected appointment is not available for this company."
+msgstr "الموعد المحدد غير متاح لهذه الشركة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid "The service is complete and the installed equipment is operational."
+msgstr "اكتملت الخدمة والمعدات المركبة قيد التشغيل."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid "The site survey is complete. Your quotation will follow shortly."
+msgstr "اكتملت معاينة الموقع. سيصلك عرض السعر قريباً."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+msgid "The site-survey team has no internal user."
+msgstr "لا يوجد مستخدم داخلي لفريق معاينة الموقع."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+msgid "The site-survey team is not configured yet."
+msgstr "لم يتم إعداد فريق معاينة الموقع بعد."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/fsm_order.py:0
+msgid "The work has been completed."
+msgstr "اكتمل العمل."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "There are no Work Orders in your account."
+msgstr "لا توجد أوامر عمل في حسابك."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+msgid "This service is not configured yet."
+msgstr "لم يتم إعداد هذه الخدمة بعد."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/_booking.py:0
+msgid "This service quotation is not configured yet."
+msgstr "لم يتم إعداد عرض سعر هذه الخدمة بعد."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+msgid "Ticket"
+msgstr "التذكرة"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/fsm_order_portal.py:0
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Type"
+msgstr "النوع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_fsm_order
+msgid "View your fieldservice orders"
+msgstr "اعرض أوامر الخدمة الميدانية الخاصة بك"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_fsm_stage__portal_visible
+msgid "Visible in Portal"
+msgstr "ظاهر في البوابة"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Visit appointment: %(date)s - %(route)s"
+msgstr "موعد الزيارة: %(date)s - %(route)s"
+
+#. module: fieldservice_portal
+#: model:mail.template,name:fieldservice_portal.email_visit_booked
+msgid "Visit Booked"
+msgstr "تم حجز الزيارة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Visit Booking (/my/visit)"
+msgstr "حجز الزيارة (/my/visit)"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_res_config_settings__visit_sale_order_template_id
+msgid "Visit Booking Template"
+msgstr "قالب حجز الزيارة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields,field_description:fieldservice_portal.field_res_config_settings__visit_crm_team_id
+msgid "Visit CRM Team"
+msgstr "فريق إدارة علاقات العملاء للزيارة"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_stage__notification_event__completed
+msgid "Work Completed"
+msgstr "اكتمل العمل"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_breadcrumbs
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Work Orders"
+msgstr "أوامر العمل"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_fsm_orders
+msgid "Work Orders for"
+msgstr "أوامر العمل لـ"
+
+#. module: fieldservice_portal
+#: model:ir.model.fields.selection,name:fieldservice_portal.selection__fsm_stage__notification_event__started
+msgid "Work Started"
+msgstr "بدأ العمل"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_installation_quote
+msgid "Your Installation Quotation Is Ready"
+msgstr "عرض سعر التركيب جاهز"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid ""
+"Your installation quotation is ready.\n"
+"%(lines)s\n"
+"Total: %(total)s\n"
+"%(url)s"
+msgstr ""
+"عرض سعر التركيب جاهز.\n"
+"%(lines)s\n"
+"الإجمالي: %(total)s\n"
+"%(url)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "Your service request and payment are confirmed. Amount: %(amount)s"
+msgstr "تم تأكيد طلب الخدمة والدفع. المبلغ: %(amount)s"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/models/sale_order.py:0
+msgid "Your site survey is confirmed. Amount: %(amount)s"
+msgstr "تم تأكيد معاينة موقعك. المبلغ: %(amount)s"
+
+#. module: fieldservice_portal
+#: model:mail.template,subject:fieldservice_portal.email_visit_booked
+msgid "Your Site Visit Is Booked"
+msgstr "تم حجز زيارة معاينة الموقع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "<i class=\"fa fa-arrow-right me-1\"/>Cancel"
+msgstr "<i class=\"fa fa-arrow-right me-1\"/>إلغاء"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "<i class=\"fa fa-arrow-right me-1\"/>Back to"
+msgstr "<i class=\"fa fa-arrow-right me-1\"/>العودة إلى"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-arrow-left ms-2\"/>Previous"
+msgstr "<i class=\"fa fa-arrow-left ms-2\"/>السابق"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-check me-2\"/>Confirm Booking and Pay"
+msgstr "<i class=\"fa fa-check me-2\"/>تأكيد الحجز والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "<i class=\"fa fa-check me-2\"/>Confirm Appointment and Pay"
+msgstr "<i class=\"fa fa-check me-2\"/>تأكيد الموعد والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "<i class=\"fa fa-check me-2\"/>Confirm Request and Pay"
+msgstr "<i class=\"fa fa-check me-2\"/>تأكيد الطلب والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-crosshairs me-1\"/>My Location"
+msgstr "<i class=\"fa fa-crosshairs me-1\"/>موقعي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-home me-1\"/>Home"
+msgstr "<i class=\"fa fa-home me-1\"/>الرئيسية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "<i class=\"fa fa-plus me-1\"/>New Maintenance Request"
+msgstr "<i class=\"fa fa-plus me-1\"/>طلب صيانة جديد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        Verify the address details, make any necessary changes, then continue to the next step."
+msgstr ""
+"<i class=\"fa fa-info-circle me-1\"/>\n"
+"                        تحقّق من بيانات العنوان، وعدّل ما يلزم، ثم انتقل إلى الخطوة التالية."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"<i class=\"fa fa-exclamation-triangle me-2\"/>\n"
+"                        <strong>Note:</strong> Enter the full address, including the district, street, and building number, so the technician can locate you accurately."
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-2\"/>\n"
+"                        <strong>ملاحظة:</strong> أدخل العنوان كاملاً، بما في ذلك الحي والشارع ورقم المبنى، حتى يتمكن الفني من الوصول إلى موقعك بدقة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-info-circle me-2\"/>You may currently be outside the service area. Our team will review your request and contact you by WhatsApp or phone."
+msgstr "<i class=\"fa fa-info-circle me-2\"/>قد تكون خارج نطاق الخدمة حالياً. سيراجع فريقنا طلبك ويتواصل معك عبر واتساب أو الهاتف."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"<i class=\"fa fa-map-pin\"/>\n"
+"                        <small id=\"locationLabel\" class=\"text-muted\">The address will appear after you select a location...</small>"
+msgstr ""
+"<i class=\"fa fa-map-pin\"/>\n"
+"                        <small id=\"locationLabel\" class=\"text-muted\">سيظهر العنوان بعد تحديد الموقع...</small>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "<span class=\"ms-2 text-muted small\">Loading appointments...</span>"
+msgstr "<span class=\"ms-2 text-muted small\">جارٍ تحميل المواعيد...</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"<span class=\"vbf-coords-badge\">\n"
+"                            <i class=\"fa fa-map-marker text-primary\"/>\n"
+"                            <span id=\"coordsDisplay\">—</span>\n"
+"                        </span>"
+msgstr ""
+"<span class=\"vbf-coords-badge\">\n"
+"                            <i class=\"fa fa-map-marker text-primary\"/>\n"
+"                            <span id=\"coordsDisplay\">—</span>\n"
+"                        </span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Appointment"
+msgstr "موعد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_no_location
+msgid "Back to Home"
+msgstr "العودة إلى الرئيسية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Book a Technical Visit"
+msgstr "حجز زيارة فنية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_visit
+msgid "Book a technical visit to your location"
+msgstr "احجز زيارة فنية إلى موقعك"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Booking Confirmed!"
+msgstr "تم تأكيد الحجز!"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Booking..."
+msgstr "جارٍ الحجز..."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "City"
+msgstr "المدينة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Choose Appointment"
+msgstr "اختيار الموعد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "Choose an installation appointment"
+msgstr "اختر موعداً للتركيب"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "Choose a visit appointment"
+msgstr "اختر موعداً للزيارة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location_picker
+msgid "Choose the location that needs maintenance."
+msgstr "اختر الموقع الذي يحتاج إلى الصيانة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Click the map or drag the marker to select your location."
+msgstr "انقر على الخريطة أو اسحب العلامة لتحديد موقعك."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Confirm Address"
+msgstr "تأكيد العنوان"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "Confirm Appointment and Pay"
+msgstr "تأكيد الموعد والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Confirm Booking and Pay"
+msgstr "تأكيد الحجز والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "Confirm Request and Pay"
+msgstr "تأكيد الطلب والدفع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Detected automatically"
+msgstr "يُحدَّد تلقائياً"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "District"
+msgstr "حي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "For example: House 12, Building 5"
+msgstr "مثال: منزل 12، مبنى 5"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Google Maps API key is not configured."
+msgstr "لم تتم تهيئة مفتاح واجهة برمجة تطبيقات خرائط Google."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Enter the address manually to continue."
+msgstr "أدخل العنوان يدويًا للمتابعة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "House / Building Number <span class=\"text-danger\">*</span>"
+msgstr "رقم المنزل / المبنى <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Loading appointments..."
+msgstr "جارٍ تحميل المواعيد..."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Locating..."
+msgstr "جارٍ تحديد الموقع..."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_requests
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_breadcrumbs
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_no_location
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location_picker
+msgid "Maintenance Requests"
+msgstr "طلبات الصيانة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "My Location"
+msgstr "موقعي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Next<i class=\"fa fa-arrow-right me-2\"/>"
+msgstr "التالي<i class=\"fa fa-arrow-right me-2\"/>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Next<i class=\"fa fa-arrow-right\"/>"
+msgstr "التالي<i class=\"fa fa-arrow-right\"/>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<i class=\"fa fa-arrow-left\"/>Previous"
+msgstr "<i class=\"fa fa-arrow-left\"/>السابق"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Submit Booking Request"
+msgstr "إرسال طلب الحجز"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "No installation appointments are currently available."
+msgstr "لا توجد مواعيد تركيب متاحة حالياً."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "No appointments are currently available."
+msgstr "لا توجد مواعيد متاحة حالياً."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_no_location
+msgid "No installed locations are linked to your account."
+msgstr "لا توجد مواقع مركبة مرتبطة بحسابك."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "No availability"
+msgstr "لا توجد مواعيد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Our team will contact you to confirm the appointment."
+msgstr "سيتواصل معك فريقنا لتأكيد الموعد."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_no_location
+msgid "Please contact us to add your location."
+msgstr "يرجى التواصل معنا لإضافة موقعك."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Postal Code"
+msgstr "الرمز البريدي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Postal code"
+msgstr "الرمز البريدي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "Previous Requests"
+msgstr "الطلبات السابقة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "Problem Description <span class=\"text-muted fw-normal\">(optional)</span>"
+msgstr "وصف المشكلة <span class=\"text-muted fw-normal\">(اختياري)</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Region / District"
+msgstr "المنطقة / الحي"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_requests
+msgid "Request maintenance for your installed locations"
+msgstr "اطلب صيانة لمواقعك المركبة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "Request Number"
+msgstr "رقم الطلب"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_my_home_visit
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_breadcrumbs
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Request a Site Survey"
+msgstr "طلب معاينة موقع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.sale_order_portal_title
+msgid "Sales Order"
+msgstr "أمر بيع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                        Enter the complete service address so our team can confirm coverage and find your site."
+msgstr ""
+"<i class=\"fa fa-info-circle me-2\"/>\n"
+"                        أدخل عنوان الخدمة كاملاً حتى يتمكن فريقنا من تأكيد نطاق التغطية والوصول إلى موقعك."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<option value=\"\">Select state</option>"
+msgstr "<option value=\"\">اختر المحافظة أو الولاية</option>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<option value=\"\">Select region</option>"
+msgstr "<option value=\"\">اختر المنطقة</option>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "City <span class=\"text-danger\">*</span>"
+msgstr "المدينة <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "District <span class=\"text-danger\">*</span>"
+msgstr "الحي <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "<option value=\"\">Select district</option>"
+msgstr "<option value=\"\">اختر الحي</option>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"The selected appointment will remain reserved on a draft quotation until its"
+" expiration date. Our staff will call you, verify the request, and then "
+"confirm the visit."
+msgstr ""
+"سيبقى الموعد المحدد محجوزاً في عرض سعر مبدئي حتى تاريخ انتهائه. سيتصل بك "
+"فريقنا للتحقق من الطلب ثم تأكيد الزيارة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid ""
+"The selected appointment will remain reserved on a draft quotation while you"
+" complete the standard online payment. Full payment confirms the visit."
+msgstr ""
+"سيبقى الموعد المحدد محجوزاً في عرض سعر مبدئي أثناء إتمام الدفع الإلكتروني. "
+"يؤكد السداد الكامل موعد الزيارة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "Schedule Installation"
+msgstr "جدولة التركيب"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "Describe the problem or required service..."
+msgstr "صِف المشكلة أو الخدمة المطلوبة..."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Street <span class=\"text-danger\">*</span>"
+msgstr "الشارع <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Street name"
+msgstr "اسم الشارع"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "Status"
+msgstr "الحالة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_location
+msgid "There are no previous requests for this location."
+msgstr "لا توجد طلبات سابقة لهذا الموقع."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+msgid "Unable to confirm the installation appointment. Please try again."
+msgstr "تعذر تأكيد موعد التركيب. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+msgid "Unable to complete the maintenance request. Please try again."
+msgstr "تعذر إكمال طلب الصيانة. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Unable to complete the visit booking. Please try again."
+msgstr "تعذر إكمال حجز الزيارة. يرجى المحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Unable to load appointments. Please refresh the page and try again."
+msgstr "تعذر تحميل المواعيد. يرجى تحديث الصفحة والمحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Unable to load the map. Please refresh the page and try again."
+msgstr "تعذر تحميل الخريطة. يرجى تحديث الصفحة والمحاولة مرة أخرى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Sunday"
+msgstr "الأحد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Monday"
+msgstr "الاثنين"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Thursday"
+msgstr "الخميس"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Friday"
+msgstr "الجمعة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Saturday"
+msgstr "السبت"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "January"
+msgstr "يناير"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "February"
+msgstr "فبراير"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "March"
+msgstr "مارس"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "April"
+msgstr "أبريل"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "May"
+msgstr "مايو"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "June"
+msgstr "يونيو"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "July"
+msgstr "يوليو"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "August"
+msgstr "أغسطس"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "September"
+msgstr "سبتمبر"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "October"
+msgstr "أكتوبر"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "November"
+msgstr "نوفمبر"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_installation_slot_picker
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_requests_new
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "December"
+msgstr "ديسمبر"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Enter Address"
+msgstr "إدخال العنوان"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Enter the complete service address so our team can confirm coverage and find your site."
+msgstr "أدخل عنوان الخدمة كاملاً حتى يتمكن فريقنا من تأكيد نطاق التغطية والوصول إلى موقعك."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "State / Governorate <span class=\"text-danger\">*</span>"
+msgstr "المحافظة / الولاية <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Select state"
+msgstr "اختر المحافظة أو الولاية"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Region <span class=\"text-danger\">*</span>"
+msgstr "المنطقة <span class=\"text-danger\">*</span>"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Select region"
+msgstr "اختر المنطقة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.portal_visit_form
+msgid "Enter region"
+msgstr "أدخل المنطقة"
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Select a valid state."
+msgstr "اختر محافظة أو ولاية صالحة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Select a valid region."
+msgstr "اختر منطقة صالحة."
+
+#. module: fieldservice_portal
+#. odoo-python
+#: code:addons/fieldservice_portal/controllers/visit_portal.py:0
+msgid "Enter the state, region, city, street, and building number."
+msgstr "أدخل المحافظة أو الولاية والمنطقة والمدينة والشارع ورقم المبنى."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Assigns new site-survey leads and quotations to this sales team."
+msgstr "يُعيّن طلبات معاينة الموقع الجديدة وعروض الأسعار لفريق المبيعات هذا."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Quotation Template"
+msgstr "قالب عرض السعر"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Creates the draft quotation that reserves the selected visit appointment."
+msgstr "ينشئ عرض السعر المبدئي الذي يحجز موعد الزيارة المحدد."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Confirmation Policy"
+msgstr "سياسة التأكيد"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Choose how a reserved site-survey quotation becomes a confirmed visit."
+msgstr "اختر كيفية تحويل عرض سعر معاينة الموقع المحجوز إلى زيارة مؤكدة."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Phone Verification keeps the quotation in draft until staff call the customer and confirm it. Online Payment uses the standard quotation payment flow and confirms only after full payment."
+msgstr "يُبقي التحقق الهاتفي عرض السعر في حالة مسودة حتى يتصل الموظفون بالعميل ويؤكدوه. يستخدم الدفع الإلكتروني مسار دفع عرض السعر القياسي ولا يؤكد الزيارة إلا بعد السداد الكامل."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Installation Scheduling"
+msgstr "جدولة التركيب"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Release Policy"
+msgstr "سياسة الإتاحة"
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Choose when a customer may open the installation slot picker."
+msgstr "اختر متى يمكن للعميل فتح أداة اختيار موعد التركيب."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Approval releases scheduling when the installation quotation is confirmed. Online Payment releases it only when the confirmed quotation is fully paid."
+msgstr "تتيح الموافقة الجدولة عند تأكيد عرض سعر التركيب. ولا يتيحها الدفع الإلكتروني إلا بعد سداد عرض السعر المؤكد بالكامل."
+
+#. module: fieldservice_portal
+#: model_terms:ir.ui.view,arch_db:fieldservice_portal.res_config_settings_view_fieldservice_portal
+msgid "Creates the maintenance quotation from a portal request."
+msgstr "ينشئ عرض سعر الصيانة من طلب البوابة."

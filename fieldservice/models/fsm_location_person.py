@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Gray Matter Logic
+# Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -22,7 +22,10 @@ class FSMLocationPerson(models.Model):
     owner_id = fields.Many2one(related="location_id.owner_id", string="Owner")
     contact_id = fields.Many2one(related="location_id.contact_id", string="Contact")
 
-    _location_person_uniq = models.Constraint(
-        "unique(location_id,person_id)",
-        "The worker is already linked to this location.",
-    )
+    _sql_constraints = [
+        (
+            "location_person_uniq",
+            "unique(location_id,person_id)",
+            "The worker is already linked to this location.",
+        )
+    ]

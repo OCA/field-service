@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_skill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-11 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,help:fieldservice_skill.field_fsm_order__skill_worker_ids
+msgid "Available workers based on skill requirements"
+msgstr "العمال المتاحون بناء على متطلبات المهارات"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_hr_skill__color
+msgid "Color Index"
+msgstr "مؤشر اللون"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_fsm_order
+msgid "Field Service Order"
+msgstr "طلب خدمة ميدانية"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_fsm_template
+msgid "Field Service Order Template"
+msgstr "قالب طلب خدمة ميدانية"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_fsm_person
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__person_id
+msgid "Field Service Worker"
+msgstr "عامل خدمة ميدانية"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_fsm_category
+msgid "Field Service Worker Category"
+msgstr "فئة عمال الخدمة الميدانية"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_fsm_person_skill
+msgid "Field Service Worker Skill"
+msgstr "مهارة عامل الخدمة الميدانية"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__level_progress
+msgid "Progress"
+msgstr "مدى التقدم"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,help:fieldservice_skill.field_fsm_person_skill__level_progress
+msgid "Progress from zero knowledge (0%) to fully mastered (100%)."
+msgstr "التقدم من معرفة بنسبة (0%) إلى الإتقان كلياً (100%)."
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_category__skill_ids
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_order__skill_ids
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_template__skill_ids
+msgid "Required Skills"
+msgstr "المهارات المطلوبة"
+
+#. module: fieldservice_skill
+#: model:ir.model,name:fieldservice_skill.model_hr_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_id
+msgid "Skill"
+msgstr "المهارة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_level_id
+msgid "Skill Level"
+msgstr "مستوى المهارة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person_skill__skill_type_id
+msgid "Skill Type"
+msgstr "نوع المهارة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_order__skill_worker_ids
+msgid "Skill Worker"
+msgstr "العامل ذو المهارة"
+
+#. module: fieldservice_skill
+#: model:ir.model.fields,field_description:fieldservice_skill.field_fsm_person__skill_ids
+#: model:ir.ui.menu,name:fieldservice_skill.menu_hr_skill
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_category_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_person_form
+msgid "Skills"
+msgstr "المهارات"
+
+#. module: fieldservice_skill
+#. odoo-python
+#: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
+msgid "The skill '%(skill)s'                         and skill type '%(skilltype)s' doesn't match"
+msgstr "المهارة '%(skill)s' ونوع المهارة '%(skilltype)s' غير متطابقين"
+
+#. module: fieldservice_skill
+#. odoo-python
+#: code:addons/fieldservice_skill/models/fsm_person_skill.py:0
+msgid "The skill level '%(skilllevel)s'                         is not valid for skill type: '%(skilltype)s' "
+msgstr "مستوى المهارة '%(skilllevel)s' غير صالح لنوع المهارة: '%(skilltype)s' "
+
+#. module: fieldservice_skill
+#: model:ir.model.constraint,message:fieldservice_skill.constraint_fsm_person_skill_person_skill_uniq
+msgid "This person already has that skill!"
+msgstr "يمتلك هذا الشخص هذه المهارة بالفعل!"
+
+#. module: fieldservice_skill
+#: model:ir.actions.act_window,name:fieldservice_skill.action_fsm_person_skill_report
+#: model:ir.ui.menu,name:fieldservice_skill.menu_fsm_person_skill_reporting
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.fsm_person_skill_form
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.view_fsm_person_skill_graph
+#: model_terms:ir.ui.view,arch_db:fieldservice_skill.view_fsm_person_skill_pivot
+msgid "Worker Skills"
+msgstr "مهارات العمال"
+
+#. module: fieldservice_skill
+#: model_terms:ir.actions.act_window,help:fieldservice_skill.action_fsm_person_skill_report
+msgid "Worker Skills Report"
+msgstr "تقرير مهارات العمال"

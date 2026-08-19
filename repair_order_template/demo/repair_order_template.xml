@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="repair_order_template_demo" model="repair.order.template">
+        <field name="name">General Repair</field>
+        <field name="name@ar_001">إصلاح عام</field>
+    </record>
+
+    <record id="repair_order_template_demo__line_1" model="repair.order.template.line">
+        <field
+            name="template_id"
+            ref="repair_order_template.repair_order_template_demo"
+        />
+        <field name="type">add</field>
+        <field name="product_id" ref="product.product_product_3" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+    </record>
+
+    <record id="repair_order_template_demo__line_2" model="repair.order.template.line">
+        <field
+            name="template_id"
+            ref="repair_order_template.repair_order_template_demo"
+        />
+        <field name="type">add</field>
+        <field name="product_id" ref="product.product_product_4" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+    </record>
+</odoo>

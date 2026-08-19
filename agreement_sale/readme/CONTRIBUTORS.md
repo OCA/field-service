@@ -1,0 +1,5 @@
+- Alexis de Lattre \<<alexis.delattre@akretion.com>\>
+- Italo LOPES \<<italo.lopes@camptocamp.com>\>
+- Nhan Tran \<<nhant@trobz.com>\>
+- [Komit](https://komit-consulting.com):
+  - Vang Nguyen Phu

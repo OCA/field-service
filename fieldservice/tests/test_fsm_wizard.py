@@ -1,13 +1,11 @@
-# Copyright (C) 2019 - TODAY, Gray Matter Logic
+# Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.fields import Domain
-
-from .test_fsm_common import FSMCommon
+from odoo.tests.common import TransactionCase
 
 
-class FSMWizard(FSMCommon):
+class FSMWizard(TransactionCase):
     """
     Test used to check that the base functionalities of Field Service.
     - test_convert_location: tests that a res.partner can be converted
@@ -22,12 +20,17 @@ class FSMWizard(FSMCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.Wizard = cls.env["fsm.wizard"]
+        cls.test_partner = cls.env.ref("fieldservice.test_partner")
+        cls.test_parent_partner = cls.env.ref("fieldservice.test_parent_partner")
+        cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
+        cls.test_location = cls.env.ref("fieldservice.test_location")
+        cls.test_person = cls.env.ref("fieldservice.test_person")
 
     def test_convert_location(self):
         ctx = {
             "active_model": "res.partner",
-            "active_id": self.parent_partner.id,
-            "active_ids": self.parent_partner.ids,
+            "active_id": self.test_parent_partner.id,
+            "active_ids": self.test_parent_partner.ids,
         }
         ctx1 = {
             "active_model": "res.partner",
@@ -60,7 +63,7 @@ class FSMWizard(FSMCommon):
 
         # check if there is a new FSM Location with name 'Test Partner'
         self.wiz_location = self.env["fsm.location"].search(
-            Domain("name", "=", "Test Partner")
+            [("name", "=", "Test Partner")]
         )
 
         # check if 'Test Partner' creation successful and fields copied over
@@ -84,56 +87,18 @@ class FSMWizard(FSMCommon):
             self.Wizard.action_convert_person(self.test_partner)
 
         # check if there is a new FSM Person with name 'Test Partner'
-        self.wiz_person = self.env["fsm.person"].search(
-            Domain("name", "=", "Test Partner")
-        )
+        self.wiz_person = self.env["fsm.person"].search([("name", "=", "Test Partner")])
         # check if 'Test Partner' creation successful and fields copied over
         self.assertEqual(self.test_person.phone, self.wiz_person.phone)
         self.assertEqual(self.test_person.email, self.wiz_person.email)
 
     def test_convert_sublocation(self):
         # convert Parent Partner to FSM Location
-        self.Wizard.action_convert_location(self.parent_partner)
+        self.Wizard.action_convert_location(self.test_parent_partner)
 
         # check if 'Parent Partner' creation successful and fields copied over
-        wiz_parent = self.env["fsm.location"].search(
-            Domain("name", "=", "Parent Partner")
-        )
+        wiz_parent = self.env["fsm.location"].search([("name", "=", "Parent Partner")])
 
-        # check all partner children were assigned type 'other'
-        for child in wiz_parent.partner_id.child_ids:
+        # check all children were assigned type 'other'
+        for child in wiz_parent.child_ids:
             self.assertEqual(child.type, "other")
-
-    def test_prepare_fsm_location_root_partner(self):
-        vals = self.Wizard._prepare_fsm_location(self.test_partner)
-        self.assertEqual(
-            vals,
-            {
-                "partner_id": self.test_partner.id,
-                "owner_id": self.test_partner.id,
-            },
-        )
-
-    def test_prepare_fsm_location_child_under_fsm_parent(self):
-        self.Wizard.action_convert_location(self.test_partner)
-        parent_location = self.test_partner.fsm_location_ids[:1]
-        child_partner = self.env["res.partner"].create(
-            {
-                "parent_id": self.test_partner.id,
-                "name": "Child Under FSM Parent",
-            }
-        )
-        vals = self.Wizard._prepare_fsm_location(child_partner)
-        self.assertEqual(vals["owner_id"], self.test_partner.id)
-        self.assertEqual(vals["parent_id"], parent_location.id)
-
-    def test_prepare_fsm_location_child_without_parent_location(self):
-        child_partner = self.env["res.partner"].create(
-            {
-                "parent_id": self.parent_partner.id,
-                "name": "Child No FSM Parent",
-            }
-        )
-        vals = self.Wizard._prepare_fsm_location(child_partner)
-        self.assertEqual(vals["owner_id"], self.parent_partner.id)
-        self.assertNotIn("parent_id", vals)

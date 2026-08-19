@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Gray Matter Logic
+# Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -70,7 +70,7 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_stock = fields.Boolean(string="Use Odoo Logistics")
     module_fieldservice_vehicle = fields.Boolean(string="Manage Vehicles")
     module_fieldservice_substatus = fields.Boolean(string="Manage Sub-Statuses")
-    module_fieldservice_timeline = fields.Boolean(
+    module_fieldservice_web_timeline_view = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
 
@@ -79,36 +79,43 @@ class ResConfigSettings(models.TransientModel):
         string="Auto-populate Workers on Location based on Territory",
         related="company_id.auto_populate_persons_on_location",
         readonly=False,
+        store=False,
     )
     auto_populate_equipments_on_order = fields.Boolean(
         string="Auto-populate equipments on Order based on the Location",
         related="company_id.auto_populate_equipments_on_order",
         readonly=False,
+        store=False,
     )
     search_on_complete_name = fields.Boolean(
         string="Search Location By Hierarchy",
         related="company_id.search_on_complete_name",
         readonly=False,
+        store=False,
     )
     fsm_order_request_late_lowest = fields.Float(
         string="Hours of Buffer for Lowest Priority FS Orders",
         related="company_id.fsm_order_request_late_lowest",
         readonly=False,
+        store=False,
     )
     fsm_order_request_late_low = fields.Float(
         string="Hours of Buffer for Low Priority FS Orders",
         related="company_id.fsm_order_request_late_low",
         readonly=False,
+        store=False,
     )
     fsm_order_request_late_medium = fields.Float(
         string="Hours of Buffer for Medium Priority FS Orders",
         related="company_id.fsm_order_request_late_medium",
         readonly=False,
+        store=False,
     )
     fsm_order_request_late_high = fields.Float(
         string="Hours of Buffer for High Priority FS Orders",
         related="company_id.fsm_order_request_late_high",
         readonly=False,
+        store=False,
     )
 
     # Dependencies

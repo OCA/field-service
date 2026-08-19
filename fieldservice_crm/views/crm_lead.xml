@@ -5,18 +5,8 @@
         <field name="name">fieldservice.crm.form</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form" />
-        <field eval="20" name="priority" />
+        <field eval="1" name="priority" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
-                <button
-                    name="action_create_fsm_order"
-                    string="Create FSM Order"
-                    type="object"
-                    class="oe_highlight"
-                    groups="fieldservice.group_fsm_user"
-                    invisible="type == 'lead'"
-                />
-            </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     class="oe_stat_button o_res_partner_tip_opp"
@@ -46,6 +36,20 @@
                 position="after"
             >
                 <field name="fsm_location_id" groups="fieldservice.group_fsm_user" />
+            </xpath>
+            <!-- Place district/region inside the address format, before city -->
+            <xpath expr="//div[hasclass('o_address_format')]//field[@name='city']" position="before">
+                <field name="district_id" placeholder="District" />
+                <field name="region_id" placeholder="Region" />
+            </xpath>
+            <!-- Geolocation section -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Geolocation" name="territory_geolocation">
+                    <group>
+                        <field name="partner_latitude" />
+                        <field name="partner_longitude" />
+                    </group>
+                </group>
             </xpath>
         </field>
     </record>

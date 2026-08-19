@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  © 2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="agreement_form" model="ir.ui.view">
+        <field name="name">agreement.form</field>
+        <field name="model">agreement</field>
+        <field name="arch" type="xml">
+            <form string="Agreement">
+                <header />
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="Agreement Name"
+                                options="{'line_breaks': False}"
+                                widget="text"
+                            />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group name="left">
+                            <field name="code" />
+                            <field name="partner_id" required="not is_template" />
+                            <field
+                                name="agreement_type_id"
+                                groups="agreement.group_use_agreement_type"
+                            />
+                            <field name="domain" widget="radio" />
+                            <field
+                                name="is_template"
+                                groups="agreement.group_use_agreement_template"
+                            />
+                        </group>
+                        <group name="right">
+                            <field name="signature_date" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="config" string="Configuration" invisible="True" />
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+    <record id="agreement_tree" model="ir.ui.view">
+        <field name="name">agreement.list</field>
+        <field name="model">agreement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id" />
+                <field name="code" />
+                <field name="name" />
+                <field name="signature_date" />
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="domain" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+    <record id="agreement_search" model="ir.ui.view">
+        <field name="name">agreement.search</field>
+        <field name="model">agreement</field>
+        <field name="arch" type="xml">
+            <search string="Search Agreements">
+                <field
+                    name="name"
+                    filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"
+                    string="Name or Number"
+                />
+                <field name="partner_id" />
+                <separator />
+                <filter name="sale" string="Sale" domain="[('domain', '=', 'sale')]" />
+                <filter
+                    name="purchase"
+                    string="Purchase"
+                    domain="[('domain', '=', 'purchase')]"
+                />
+                <separator />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group name="groupby">
+                    <filter
+                        name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="signature_date_groupby"
+                        string="Signature Date"
+                        context="{'group_by': 'signature_date'}"
+                    />
+                    <filter
+                        name="domain_groupby"
+                        string="Domain"
+                        context="{'group_by': 'domain'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Agreement Kanban View -->
+    <record id="agreement_kanban" model="ir.ui.view">
+        <field name="name">Agreement Kanban</field>
+        <field name="model">agreement</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="menu">
+                        <t t-if="widget.editable">
+                            <a
+                                role="menuitem"
+                                type="open"
+                                class="dropdown-item"
+                            >Edit</a>
+                        </t>
+                    </t>
+                    <t t-name="card">
+                        <strong>
+                            <field class="fw-bold fs-5" name="name" />
+                        </strong>
+                        <field name="partner_id" />
+                        <i
+                            t-attf-class="text-muted {{ record.end_date.raw_value and record.end_date.raw_value &lt; new Date() ? 'text-danger' : '' }}"
+                        >
+                            <field name="end_date" />
+                        </i>
+                        <footer class="pt-1">
+                            <div class="d-flex mt-auto align-items-center">
+                                <field name="activity_ids" widget="kanban_activity" />
+                            </div>
+                            <div class="ms-auto d-flex">
+                                <field name="agreement_type_id" class="d-flex" />
+                            </div>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="agreement_action" model="ir.actions.act_window">
+        <field name="name">Agreements</field>
+        <field name="res_model">agreement</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_template', '=', False)]</field>
+    </record>
+    <record id="agreement_template_action" model="ir.actions.act_window">
+        <field name="name">Agreement Templates</field>
+        <field name="res_model">agreement</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_template', '=', True)]</field>
+        <field name="context">{'default_is_template': True}</field>
+    </record>
+</odoo>

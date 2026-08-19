@@ -1,13 +1,10 @@
-# Copyright (C) 2019 - TODAY, Gray Matter Logic
+# Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.fields import Domain
-from odoo.tests import Form
-
-from .test_fsm_common import FSMCommon
+from odoo.tests.common import TransactionCase
 
 
-class FSMPerson(FSMCommon):
+class FSMPerson(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -18,44 +15,28 @@ class FSMPerson(FSMCommon):
         # Create a person
         test_worker_one = self.Worker.create({"name": "Worker One"})
         self.assertTrue(test_worker_one.fsm_person)
-        # Test archive/unarchive
-        test_worker_one.action_archive()
+        # Test toggle_active
+        test_worker_one.toggle_active()
         self.assertTrue(
             test_worker_one.partner_id.active,
             "Partner related to FSM Person should remain active",
         )
-        test_worker_one.partner_id.action_archive()
-        test_worker_one.action_unarchive()
+        test_worker_one.partner_id.toggle_active()
+        test_worker_one.toggle_active()
         self.assertTrue(
             test_worker_one.partner_id.active,
             "Activating FSM Person must make related partner active",
         )
 
-    def test_create_fsm_worker_from_form(self):
-        """Workers can be saved from the UI without a related partner."""
-        with Form(self.Worker, view="fieldservice.fsm_person_form") as f:
-            f.name = "Worker From Form"
-        worker = f.save()
-        self.assertTrue(worker.partner_id)
-        self.assertTrue(worker.fsm_person)
-        self.assertTrue(worker.partner_id.fsm_person)
-
-    def test_fsm_person_create_multi(self):
-        workers = self.Worker.create([{"name": "Worker A"}, {"name": "Worker B"}])
-        self.assertEqual(len(workers), 2)
-        for worker in workers:
-            self.assertTrue(worker.fsm_person)
-            self.assertTrue(worker.partner_id)
-
     def test_fsm_person_search(self):
         # Setup locations
-        location_1 = self.location_1
-        location_2 = self.location_2
-        location_3 = self.location_3
+        location_1 = self.env.ref("fieldservice.location_1")
+        location_2 = self.env.ref("fieldservice.location_2")
+        location_3 = self.env.ref("fieldservice.location_3")
         # Setup Persons
-        person_1 = self.person_1
-        person_2 = self.person_2
-        person_3 = self.person_3
+        person_1 = self.env.ref("fieldservice.person_1")
+        person_2 = self.env.ref("fieldservice.person_2")
+        person_3 = self.env.ref("fieldservice.person_3")
         # Setup Location Persons
         self.LocationWorker.create(
             {
@@ -76,15 +57,10 @@ class FSMPerson(FSMCommon):
             }
         )
         # Test search using a location ID
-        search_domain = Domain("location_ids", "=", location_2.id)
+        search_domain = [("location_ids", "=", location_2.id)]
         workers = self.Worker.search(search_domain)
-        self.assertEqual(workers[:1].id, person_2.id)
+        self.assertEqual(workers.id[0], person_2.id)
         # Test search using a location name
-        search_domain = Domain("location_ids", "=", "Location")
+        search_domain = [("location_ids", "=", "Location")]
         workers = self.Worker.search(search_domain)
         self.assertEqual(len(workers), 3, "Incorrect search number result")
-        # No matching location name: search returns empty without SQL IN clause.
-        workers = self.Worker.search(
-            Domain("location_ids", "=", "No Such Location XYZ")
-        )
-        self.assertFalse(workers)

@@ -1,0 +1,134 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.agreement</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Agreements" string="Agreements" name="agreement">
+                    <block title="Advanced Features">
+                        <setting id="sales_settings_agreement_type_group">
+                            <field name="group_use_agreement_type" />
+                            <div class="text-muted">
+                                Manage agreements by types
+                            </div>
+                            <div
+                                class="content-group"
+                                invisible="not group_use_agreement_type"
+                            >
+                                <div class="mt16">
+                                    <button
+                                        name="%(agreement.agreement_type_action)d"
+                                        icon="fa-arrow-right"
+                                        type="action"
+                                        string="Agreement types"
+                                        class="btn-link"
+                                    />
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="sales_settings_agreement_template_group">
+                            <field name="group_use_agreement_template" />
+                            <div class="text-muted">
+                                Have a special kind of agreements which act as templates
+                            </div>
+                            <div
+                                class="content-group"
+                                invisible="not group_use_agreement_template"
+                            >
+                                <div class="mt16">
+                                    <button
+                                        name="%(agreement.agreement_template_action)d"
+                                        icon="fa-arrow-right"
+                                        type="action"
+                                        string="Agreement templates"
+                                        class="btn-link"
+                                    />
+                                </div>
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_signature" />
+                            <div class="text-muted">
+                                Track signatories and the signed document of agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_termination" />
+                            <div class="text-muted">
+                                Term dates, notices and termination tracking for agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_stage" />
+                            <div class="text-muted">
+                                Add a stage workflow to legal agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_type" />
+                            <div class="text-muted">
+                                Hierarchical agreement types (with sub-types) and review reminders
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_revision" />
+                            <div class="text-muted">
+                                Track versions and revisions of legal agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_legal" />
+                            <div class="text-muted
+">
+                                Manage legal aspects of agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_legal_content" />
+                            <div class="text-muted">
+                                Add legal content to agreements
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Connections">
+                        <setting>
+                            <field name="module_agreement_project" />
+                            <div class="text-muted">
+                                Link projects to an agreement
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_sale" />
+                            <div class="text-muted">
+                                Agreement on sales
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_rebate" />
+                            <div class="text-muted">
+                                Rebate in agreements
+                            </div>
+                        </setting>
+                        <setting>
+                            <field name="module_agreement_product" />
+                            <div class="text-muted">
+                                Agreement on products
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_agreement_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form" />
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'agreement'}</field>
+    </record>
+</odoo>

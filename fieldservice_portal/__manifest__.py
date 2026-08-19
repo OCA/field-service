@@ -1,12 +1,20 @@
 {
     "name": "Field Service - Portal",
-    "version": "19.0.1.0.0",
+    "version": "19.0.3.0.2",
     "summary": """
     Bridge module between fieldservice and portal.
     """,
     "depends": [
         "fieldservice",
+        "fieldservice_crm",
+        "fieldservice_route",
+        "fieldservice_sale",
+        "base_territory",
         "portal",
+        "crm",
+        "sale_crm",
+        "sale_management",
+        "website",
     ],
     "author": "PyTech SRL, Odoo Community Association (OCA)",
     "maintainers": ["aleuffre", "renda-dev"],
@@ -14,11 +22,20 @@
     "category": "Field Service",
     "license": "AGPL-3",
     "data": [
+        "data/notification_data.xml",
         "security/ir.model.access.csv",
         "security/portal_security.xml",
         "views/fsm_order_template.xml",
+        "views/fsm_location.xml",
         "views/portal_template.xml",
         "views/fsm_stage.xml",
+        "views/workflow_semantics.xml",
+        "views/fsm_route.xml",
+        "views/visit_portal_template.xml",
+        "views/requests_portal_template.xml",
+        "views/installation_portal_template.xml",
+        "views/sale_order_portal_template.xml",
+        "views/res_config_settings.xml",
     ],
     "demo": [
         "demo/fsm_location_demo.xml",
@@ -26,7 +43,9 @@
     ],
     "assets": {
         "web.assets_frontend": [
-            "fieldservice_portal/static/src/js/fsm_order_portal.esm.js",
+            "fieldservice_portal/static/src/css/portal.css",
+            "fieldservice_portal/static/src/scss/visit_portal.scss",
+            "fieldservice_portal/static/src/js/visit_portal.js",
         ],
     },
     "installable": True,

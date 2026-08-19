@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Portal Home Entry -->
+    <template id="portal_my_home_visit" inherit_id="portal.portal_my_home" priority="60">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/fieldservice_portal/static/src/img/visit.png'"/>
+                <t t-set="title">Request a Site Survey</t>
+                <t t-set="url" t-value="'/my/visit'"/>
+                <t t-set="text">Book a technical visit to your location</t>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Breadcrumbs -->
+    <template id="portal_visit_breadcrumbs" inherit_id="portal.portal_breadcrumbs" priority="60">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'visit'" class="breadcrumb-item active">
+                Request a Site Survey
+            </li>
+        </xpath>
+    </template>
+
+    <!-- Visit Form -->
+    <template id="portal_visit_form" name="Request Site Visit">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">Request a Site Survey</t>
+
+
+
+            <div id="vbf" class="container py-4"
+                 t-att-data-country-code="map_country_code"
+                 t-att-data-default-city="map_city"
+                 t-att-data-default-latitude="map_latitude"
+                 t-att-data-default-longitude="map_longitude"
+                 t-att-data-map-language="map_language">
+
+                <h4 class="text-center mb-4 fw-bold">Book a Technical Visit</h4>
+
+                <!-- Stepper: 3 steps -->
+                <div class="vbf-stepper">
+                    <div t-attf-class="vbf-step #{'done d-none' if manual_location else 'active'}" id="vstep1">
+                        <div class="vbf-step-circle">1</div>
+                        <div class="vbf-step-label">Select Location</div>
+                    </div>
+                    <div t-attf-class="vbf-step-line #{'done d-none' if manual_location else ''}" id="vstepLine1"/>
+                    <div t-attf-class="vbf-step #{'active' if manual_location else ''}" id="vstep2">
+                        <div class="vbf-step-circle"><t t-if="manual_location">1</t><t t-else="">2</t></div>
+                        <div class="vbf-step-label"><t t-if="manual_location">Enter Address</t><t t-else="">Confirm Address</t></div>
+                    </div>
+                    <div class="vbf-step-line" id="vstepLine2"/>
+                    <div class="vbf-step" id="vstep3">
+                        <div class="vbf-step-circle"><t t-if="manual_location">2</t><t t-else="">3</t></div>
+                        <div class="vbf-step-label">Choose Appointment</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Map -->
+                <div t-attf-class="vbf-section #{'' if manual_location else 'active'}" id="vSection1">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p class="text-muted mb-0 small">Click the map or drag the marker to select your location.</p>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="locateMeBtn">
+                            <i class="fa fa-crosshairs me-1"/>My Location
+                        </button>
+                    </div>
+
+                    <div id="visitLocationMap"/>
+
+                    <div class="vbf-address-box">
+                        <i class="fa fa-map-pin"/>
+                        <small id="locationLabel" class="text-muted">The address will appear after you select a location...</small>
+                    </div>
+
+                    <div class="mt-2" id="coordsDisplayWrap">
+                        <span class="vbf-coords-badge">
+                            <i class="fa fa-location-arrow text-primary"/>
+                            <span id="coordsDisplay">—</span>
+                        </span>
+                    </div>
+
+                    <div id="districtWarning" class="alert alert-info d-none mt-3 mb-0 py-2">
+                        <i class="fa fa-info-circle me-2"/>You may currently be outside the service area. Our team will review your request and contact you by WhatsApp or phone.
+                    </div>
+
+                    <!-- Hidden state fields -->
+                    <input type="hidden" id="lat_field"/>
+                    <input type="hidden" id="lng_field"/>
+                    <input type="hidden" id="street_field"/>
+                    <input type="hidden" id="city_field" t-att-value="map_city"/>
+                    <input type="hidden" id="zip_field"/>
+
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="button" class="btn btn-primary px-5 btn-edge-icon btn-edge-icon-end" id="toStep2Btn" disabled="disabled">
+                            Next<i class="fa fa-arrow-right"/>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Verify Address -->
+                <div t-attf-class="vbf-section #{'active' if manual_location else ''}" id="vSection2">
+                    <div class="alert alert-info py-2 mb-3 small">
+                        <i class="fa fa-info-circle me-2"/>
+                        Enter the complete service address so our team can confirm coverage and find your site.
+                    </div>
+
+                    <div class="row g-3">
+                        <div t-attf-class="col-12 col-md-6 manual-location-only #{'' if manual_location else 'd-none'}">
+                            <label class="form-label fw-semibold small">State / Governorate <span class="text-danger">*</span></label>
+                            <select class="form-select" id="state_select">
+                                <option value="">Select state</option>
+                                <option t-foreach="states" t-as="state" t-att-value="state.id" t-out="state.name"/>
+                            </select>
+                        </div>
+                        <div t-attf-class="col-12 col-md-6 manual-location-only #{'' if manual_location else 'd-none'}">
+                            <label class="form-label fw-semibold small">Region <span class="text-danger">*</span></label>
+                            <select class="form-select" id="region_select">
+                                <option value="">Select region</option>
+                                <option t-foreach="regions" t-as="region" t-att-value="region.id" t-att-data-state-id="region.state_id.id" t-out="region.name"/>
+                            </select>
+                            <input type="text" class="form-control d-none" id="region_input" placeholder="Enter region"/>
+                        </div>
+                        <div class="col-12 col-md-6 manual-location-only d-none">
+                            <label class="form-label fw-semibold small">City <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="manual_city_input" placeholder="City"/>
+                        </div>
+                        <div class="col-12 col-md-6 manual-location-only d-none">
+                            <label class="form-label fw-semibold small">District <span class="text-danger">*</span></label>
+                            <select class="form-select" id="district_select">
+                                <option value="">Select district</option>
+                                <option t-foreach="districts" t-as="district" t-att-value="district.id" t-att-data-region-id="district.region_id.id" t-out="district.name"/>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold small">Street <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="street_input" placeholder="Street name" required="required"/>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold small">House / Building Number <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="unit_input" placeholder="For example: House 12, Building 5" required="required"/>
+                        </div>
+                        <div class="col-6 map-address-only">
+                            <label class="form-label fw-semibold small">City</label>
+                            <input type="text" class="form-control" id="city_input" placeholder="City" t-att-value="map_city"/>
+                        </div>
+                        <div class="col-6 map-address-only">
+                            <label class="form-label fw-semibold small">Postal Code</label>
+                            <input type="text" class="form-control" id="zip_input" placeholder="Postal code"/>
+                        </div>
+                        <div class="col-12 map-address-only">
+                            <label class="form-label fw-semibold small">Region / District</label>
+                            <input type="text" class="form-control" id="district_display" placeholder="Detected automatically" readonly="readonly"/>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4 vbf-btn-row">
+                        <button type="button" class="btn btn-outline-secondary px-4 btn-edge-icon btn-edge-icon-start" id="backToStep1Btn">
+                            <i class="fa fa-arrow-left"/>Previous
+                        </button>
+                        <button type="button" class="btn btn-primary px-5 btn-edge-icon btn-edge-icon-end" id="toStep3Btn" disabled="disabled">
+                            Next<i class="fa fa-arrow-right"/>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Slot -->
+                <div class="vbf-section" id="vSection3">
+                    <div id="routeLoading" class="text-center py-5">
+                        <div class="spinner-border text-primary"/>
+                        <p class="mt-2 text-muted small">Loading appointments...</p>
+                    </div>
+
+                    <div id="routesContainer" class="d-none">
+                        <div class="booking-days" id="visitBookingDays" dir="rtl"/>
+                        <div id="selectedSlotDisplay" class="alert alert-success mt-3 py-2 d-none">
+                            <i class="fa fa-check-circle me-2"/>
+                            <span id="selectedSlotInfo"/>
+                        </div>
+                    </div>
+
+                    <div t-if="visit_confirmation_policy == 'phone'" class="alert alert-info mt-3 mb-0 small">
+                        The selected appointment will remain reserved on a draft quotation until its expiration date. Our staff will call you, verify the request, and then confirm the visit.
+                    </div>
+                    <div t-else="" class="alert alert-info mt-3 mb-0 small">
+                        The selected appointment will remain reserved on a draft quotation while you complete the standard online payment. Full payment confirms the visit.
+                    </div>
+
+                    <div id="routeEmpty" class="text-center py-5 d-none">
+                        <i class="fa fa-calendar-times-o fa-3x text-muted mb-3 d-block"/>
+                        <p class="text-muted">No appointments are currently available.</p>
+                    </div>
+
+                    <div id="visitInlineError" class="alert alert-danger mt-3 mb-0 d-none" role="alert" aria-live="polite" tabindex="-1">
+                        <i class="fa fa-exclamation-circle me-2"/>
+                        <span id="visitInlineErrorMessage"/>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4 vbf-btn-row">
+                        <button type="button" class="btn btn-outline-secondary px-4 btn-edge-icon btn-edge-icon-start" id="backToStep2Btn">
+                            <i class="fa fa-arrow-left"/>Previous
+                        </button>
+                        <button type="button" class="btn btn-success px-5" id="submitVisitBtn" disabled="disabled">
+                            <i class="fa fa-check me-2"/>
+                            <t t-if="visit_confirmation_policy == 'phone'">Submit Booking Request</t>
+                            <t t-else="">Continue to Quotation and Payment</t>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Success (fallback) -->
+                <div class="d-none text-center py-5" id="successSection">
+                    <i class="fa fa-check-circle fa-4x text-success mb-3"/>
+                    <h5 class="text-success">Booking Request Submitted</h5>
+                    <p class="text-muted">Open the quotation to complete the configured confirmation step.</p>
+                    <a href="/" class="btn btn-primary mt-2"><i class="fa fa-home me-1"/>Home</a>
+                </div>
+
+                <div class="d-none" id="visitTranslations">
+                    <div id="visitSunday">Sunday</div>
+                    <div id="visitMonday">Monday</div>
+                    <div id="visitTuesday">Tuesday</div>
+                    <div id="visitWednesday">Wednesday</div>
+                    <div id="visitThursday">Thursday</div>
+                    <div id="visitFriday">Friday</div>
+                    <div id="visitSaturday">Saturday</div>
+                    <div id="visitJanuary">January</div>
+                    <div id="visitFebruary">February</div>
+                    <div id="visitMarch">March</div>
+                    <div id="visitApril">April</div>
+                    <div id="visitMay">May</div>
+                    <div id="visitJune">June</div>
+                    <div id="visitJuly">July</div>
+                    <div id="visitAugust">August</div>
+                    <div id="visitSeptember">September</div>
+                    <div id="visitOctober">October</div>
+                    <div id="visitNovember">November</div>
+                    <div id="visitDecember">December</div>
+                    <div id="visitAppointment">Appointment</div>
+                    <div id="visitNone">No availability</div>
+                    <div id="visitLocating">Locating...</div>
+                    <div id="visitMyLocation">My Location</div>
+                    <div id="visitBooking">Booking...</div>
+                    <div id="visitConfirm">
+                        <t t-if="visit_confirmation_policy == 'phone'">Submit Booking Request</t>
+                        <t t-else="">Continue to Quotation and Payment</t>
+                    </div>
+                    <div id="visitMapKeyMissing">Google Maps API key is not configured.</div>
+                    <div id="visitManualAddress">Enter the address manually to continue.</div>
+                    <div id="visitManualStepAddress">Enter Address</div>
+                    <div id="visitManualStepAppointment">Choose Appointment</div>
+                    <div id="visitMapLoadError">Unable to load the map. Please refresh the page and try again.</div>
+                    <div id="visitRouteLoadError">Unable to load appointments. Please refresh the page and try again.</div>
+                    <div id="visitSubmitError">Unable to complete the visit booking. Please try again.</div>
+                    <div id="visitDistrictPrefix">District</div>
+                </div>
+
+            </div>
+
+
+
+
+        </t>
+    </template>
+
+</odoo>

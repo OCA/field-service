@@ -1,12 +1,14 @@
-# Copyright (C) 2019 Brian McMaster, Gray Matter Logic
+# Copyright (C) 2019 Brian McMaster, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service Recurring Work Orders",
     "summary": "Manage recurring Field Service orders",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.3.0",
     "category": "Field Service",
-    "author": "Brian McMaster, Gray Matter Logic, Odoo Community Association (OCA)",
+    "author": "Brian McMaster, "
+    "Open Source Integrators, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice"],
     "data": [
@@ -29,5 +31,5 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["max3903", "brian10048"],
+    "maintainers": ["wolfhall", "max3903", "brian10048"],
 }

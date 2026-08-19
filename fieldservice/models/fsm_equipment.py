@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Gray Matter Logic
+# Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -13,7 +13,7 @@ class FSMEquipment(models.Model):
     name = fields.Char(required=True)
     person_id = fields.Many2one("fsm.person", string="Assigned Operator")
     location_id = fields.Many2one("fsm.location", string="Assigned Location")
-    notes = fields.Html()
+    notes = fields.Text()
     territory_id = fields.Many2one(
         "res.territory",
         string="Territory",
@@ -57,7 +57,9 @@ class FSMEquipment(models.Model):
         help="Company related to this equipment",
     )
 
-    _name_uniq = models.Constraint("unique (name)", "Equipment name already exists!")
+    _sql_constraints = [
+        ("name_uniq", "unique (name)", "Equipment name already exists!")
+    ]
 
     @api.depends("location_id")
     def _compute_territory_id(self):

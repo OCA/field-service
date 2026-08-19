@@ -1,10 +1,6 @@
-- [Gray Matter Logic](https://www.graymatterlogic.com):
-  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
-- Bhavesh Odedra \<<bodedra@graymatterlogic.com>\>
-- Sandip Mangukiya \<<smangukiya@graymatterlogic.com>\>
+- Bhavesh Odedra \<<bodedra@opensourceintegrators.com>\>
+- Sandip Mangukiya \<<smangukiya@opensourceintegrators.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
-- Patrick Wilson \<<pwilson@graymatterlogic.com>\>
+- Patrick Wilson \<<pwilson@opensourceintegrators.com>\>
 - Italo Lopes \<<italo.lopes@camptocamp.com>\>
 - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
-- [Komit](https://komit-consulting.com):
-  - Vang Nguyen Phu

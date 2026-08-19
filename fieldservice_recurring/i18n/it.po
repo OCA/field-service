@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-07-11 11:46+0000\n"
+"PO-Revision-Date: 2024-11-21 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: fieldservice_recurring
 #. odoo-python
@@ -184,7 +184,6 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__display_name
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
@@ -339,6 +338,11 @@ msgid "Friday"
 msgstr "Venerdì"
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "Group By"
+msgstr "Raggruppa per"
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__has_message
@@ -349,10 +353,8 @@ msgstr "Ha un messaggio"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__id
 msgid "ID"
 msgstr "ID"
 
@@ -584,11 +586,6 @@ msgstr "Numero di messaggi con errore di consegna"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__oct
 msgid "October"
 msgstr "Ottobre"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__display_name
-msgid "Order"
-msgstr "Ordine"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_order_template_id
@@ -904,9 +901,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
 msgid "Yearly"
 msgstr "Annuale"
-
-#~ msgid "Group By"
-#~ msgstr "Raggruppa per"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Ultima modifica il"

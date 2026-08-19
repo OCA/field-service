@@ -1,9 +1,8 @@
-# Copyright (C) 2018 - TODAY, Gray Matter Logic
+# Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
-from odoo.api import Self
-from odoo.fields import Domain
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class FSMLocation(models.Model):
@@ -11,38 +10,33 @@ class FSMLocation(models.Model):
     _inherits = {"res.partner": "partner_id"}
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _description = "Field Service Location"
-    _parent_name = "parent_id"
-    _parent_store = True
     _stage_type = "location"
     _rec_names_search = ["complete_name"]
 
-    direction = fields.Html()
+    direction = fields.Char()
     partner_id = fields.Many2one(
         "res.partner",
         string="Related Partner",
         required=True,
         ondelete="restrict",
-        delegate=True,
-        bypass_search_access=True,
+        auto_join=True,
     )
     owner_id = fields.Many2one(
         "res.partner",
         string="Related Owner",
         required=True,
         ondelete="restrict",
-        bypass_search_access=True,
+        auto_join=True,
     )
     contact_id = fields.Many2one(
         "res.partner",
         string="Primary Contact",
-        domain=Domain("is_company", "=", False) & Domain("fsm_location", "=", False),
+        domain="[('is_company', '=', False)," " ('fsm_location', '=', False)]",
         index=True,
     )
     description = fields.Char()
     territory_id = fields.Many2one("res.territory", string="Territory")
     branch_id = fields.Many2one("res.branch", string="Branch")
-    district_id = fields.Many2one("res.district", string="District")
-    region_id = fields.Many2one("res.region", string="Region")
     territory_manager_id = fields.Many2one(
         string="Primary Assignment", related="territory_id.person_id"
     )
@@ -57,103 +51,72 @@ class FSMLocation(models.Model):
     )
 
     calendar_id = fields.Many2one("resource.calendar", string="Office Hours")
-    parent_id = fields.Many2one("fsm.location", string="Parent", index=True)
-    parent_path = fields.Char(index=True)
-    child_ids = fields.One2many(
-        string="Children Locations",
-        comodel_name="fsm.location",
-        inverse_name="parent_id",
-        readonly=True,
-    )
-    notes = fields.Html(string="Location Notes")
+    fsm_parent_id = fields.Many2one("fsm.location", string="Parent", index=True)
+    notes = fields.Text(string="Location Notes")
     person_ids = fields.One2many("fsm.location.person", "location_id", string="Workers")
-    team_id = fields.Many2one(
-        comodel_name="fsm.team",
-        help="Default team assigned to orders in this location",
-    )
     contact_count = fields.Integer(
-        string="Contacts Count", compute="_compute_contact_count"
+        string="Contacts Count", compute="_compute_contact_ids"
     )
     equipment_count = fields.Integer(
-        string="Equipment", compute="_compute_equipment_count"
+        string="Equipment", compute="_compute_equipment_ids"
     )
     sublocation_count = fields.Integer(
-        string="Sub Locations", compute="_compute_sublocation_count"
+        string="Sub Locations", compute="_compute_sublocation_ids"
     )
     complete_name = fields.Char(
-        compute="_compute_complete_name",
-        recursive=True,
-        store=True,
+        compute="_compute_complete_name", recursive=True, store=True
     )
-    complete_direction = fields.Html(
+    complete_direction = fields.Char(
         compute="_compute_complete_direction",
         store=True,
         recursive=True,
     )
 
     @api.model_create_multi
-    def create(self, vals_list):
-        auto_partner_indexes = []
-        root_indexes = []
-        for index, vals in enumerate(vals_list):
-            # By default, create inherited partner as typed child of the location owner.
-            vals.update({"fsm_location": True, "type": "fsm_location"})
-            if not vals.get("partner_id"):  # Don't change parent of existing partners.
-                auto_partner_indexes.append(index)
-                if not vals.get("owner_id"):
-                    if vals.get("parent_id"):
-                        parent = self.browse(vals["parent_id"])
-                        vals["owner_id"] = parent.owner_id.id
-                    else:
-                        root_indexes.append(index)
-                        vals["owner_id"] = self.env.company.partner_id.id
-                # Cannot set partner parent via vals["parent_id"]: that field is the
-                # location hierarchy on fsm.location (18.0+), not res.partner.parent_id.
-        locations = super(
-            FSMLocation, self.with_context(creating_fsm_location=True)
-        ).create(vals_list)
-        for index in root_indexes:
-            location = locations[index]
-            location.write({"owner_id": location.partner_id.id})
-            location.partner_id.parent_id = False
-        for index in auto_partner_indexes:
-            if index in root_indexes:
-                continue
-            location = locations[index]
-            if location.partner_id.parent_id != location.owner_id:
-                location.partner_id.parent_id = location.owner_id
-        return locations
+    def create(self, vals):
+        res = super().create(vals)
+        res.write({"fsm_location": True})
+        return res
 
-    @api.depends("partner_id.name", "parent_id.complete_name", "ref")
+    @api.depends("partner_id.name", "fsm_parent_id.complete_name", "ref")
     def _compute_complete_name(self):
         for loc in self:
-            name = loc.partner_id.name
-            if loc.ref:
-                name = f"[{loc.ref}] {name}"
-            if loc.parent_id:
-                name = f"{loc.parent_id.complete_name} / {name}"
-            loc.complete_name = name
+            if loc.fsm_parent_id:
+                if loc.ref:
+                    loc.complete_name = (
+                        f"{loc.fsm_parent_id.complete_name} / "
+                        f"[{loc.ref}] {loc.partner_id.name}"
+                    )
+                else:
+                    loc.complete_name = (
+                        f"{loc.fsm_parent_id.complete_name} / {loc.partner_id.name}"
+                    )
+            else:
+                if loc.ref:
+                    loc.complete_name = f"[{loc.ref}] {loc.partner_id.name}"
+                else:
+                    loc.complete_name = loc.partner_id.name
 
-    @api.depends("direction", "parent_id.complete_direction")
+    @api.depends("direction", "fsm_parent_id.complete_direction")
     def _compute_complete_direction(self):
         for rec in self:
-            parent_direction = rec.parent_id.complete_direction
+            parent_direction = rec.fsm_parent_id.complete_direction
             complete_direction = (parent_direction or "") + (rec.direction or "")
             rec.complete_direction = complete_direction or False
 
-    @api.onchange("parent_id")
-    def _onchange_parent_id(self):
-        self.owner_id = self.parent_id.owner_id
-        self.contact_id = self.parent_id.contact_id
-        self.direction = self.parent_id.direction
-        self.street = self.parent_id.street
-        self.street2 = self.parent_id.street2
-        self.city = self.parent_id.city
-        self.zip = self.parent_id.zip
-        self.state_id = self.parent_id.state_id
-        self.country_id = self.parent_id.country_id
-        self.tz = self.parent_id.tz
-        self.territory_id = self.parent_id.territory_id
+    @api.onchange("fsm_parent_id")
+    def _onchange_fsm_parent_id(self):
+        self.owner_id = self.fsm_parent_id.owner_id or False
+        self.contact_id = self.fsm_parent_id.contact_id or False
+        self.direction = self.fsm_parent_id.direction or False
+        self.street = self.fsm_parent_id.street or False
+        self.street2 = self.fsm_parent_id.street2 or False
+        self.city = self.fsm_parent_id.city or False
+        self.zip = self.fsm_parent_id.zip or False
+        self.state_id = self.fsm_parent_id.state_id or False
+        self.country_id = self.fsm_parent_id.country_id or False
+        self.tz = self.fsm_parent_id.tz or False
+        self.territory_id = self.fsm_parent_id.territory_id or False
 
     @api.onchange("territory_id")
     def _onchange_territory_id(self):
@@ -172,14 +135,111 @@ class FSMLocation(models.Model):
         self.branch_manager_id = self.territory_id.branch_id.partner_id or False
         self.district_id = self.branch_id.district_id or False
 
-    @api.onchange("district_id")
-    def _onchange_district_id(self):
+    @api.onchange('district_id')
+    def _onchange_district_id_fsm(self):
         self.district_manager_id = self.branch_id.district_id.partner_id or False
-        self.region_id = self.district_id.region_id or False
 
-    @api.onchange("region_id")
-    def _onchange_region_id(self):
+    @api.onchange('region_id')
+    def _onchange_region_id_fsm(self):
         self.region_manager_id = self.region_id.partner_id or False
+        domain = {}
+        if self.region_id:
+            domain['district_id'] = [('region_id', '=', self.region_id.id)]
+        else:
+            domain['district_id'] = []
+        return {'domain': domain}
+
+    @api.onchange('state_id')
+    def _onchange_state_id_fsm(self):
+        domain = {}
+        if self.state_id:
+            domain['region_id'] = [('state_id', '=', self.state_id.id)]
+        else:
+            domain['region_id'] = []
+        return {'domain': domain}
+
+    @api.onchange('country_id')
+    def _onchange_country_id_fsm(self):
+        domain = {}
+        if self.country_id:
+            domain['state_id'] = [('country_id', '=', self.country_id.id)]
+        else:
+            domain['state_id'] = []
+        return {'domain': domain}
+
+    def comp_count(self, contact, equipment, loc):
+        if equipment:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                equip = self.env["fsm.equipment"].search_count(
+                    [("location_id", "=", child.id)]
+                )
+            if child_locs:
+                for loc in child_locs:
+                    equip += loc.comp_count(0, 1, loc)
+            return equip
+        elif contact:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                con = self.env["res.partner"].search_count(
+                    [("service_location_id", "=", child.id)]
+                )
+            if child_locs:
+                for loc in child_locs:
+                    con += loc.comp_count(1, 0, loc)
+            return con
+        else:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                subloc = self.env["fsm.location"].search_count(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+            if child_locs:
+                for loc in child_locs:
+                    subloc += loc.comp_count(0, 0, loc)
+            return subloc
+
+    def get_action_views(self, contact, equipment, loc):
+        if equipment:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                equip = self.env["fsm.equipment"].search(
+                    [("location_id", "=", child.id)]
+                )
+            if child_locs:
+                for loc in child_locs:
+                    equip += loc.get_action_views(0, 1, loc)
+            return equip
+        elif contact:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                con = self.env["res.partner"].search(
+                    [("service_location_id", "=", child.id)]
+                )
+            if child_locs:
+                for loc in child_locs:
+                    con += loc.get_action_views(1, 0, loc)
+            return con
+        else:
+            for child in loc:
+                child_locs = self.env["fsm.location"].search(
+                    [("fsm_parent_id", "=", child.id)]
+                )
+                subloc = child_locs
+            if child_locs:
+                for loc in child_locs:
+                    subloc += loc.get_action_views(0, 0, loc)
+            return subloc
 
     def action_view_contacts(self):
         """
@@ -188,36 +248,27 @@ class FSMLocation(models.Model):
         either be a in a list or in a form view, if there is only one
         contact to show.
         """
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "contacts.action_contacts"
-        )
-        action["context"] = dict(self.env.context, default_service_location_id=self.id)
-        domain = Domain("service_location_id", "child_of", self.ids)
-        contacts = self.env["res.partner"].search(domain)
-        if len(contacts) == 1:
-            action["views"] = [(None, "form")]
-            action["res_id"] = contacts.id
-        else:
-            action["domain"] = domain
-        return action
+        for location in self:
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "contacts.action_contacts"
+            )
+            contacts = self.get_action_views(1, 0, location)
+            action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
+            action["context"].update({"default_service_location_id": self.id})
+            if len(contacts) == 0 or len(contacts) > 1:
+                action["domain"] = [("id", "in", contacts.ids)]
+            else:
+                action["views"] = [
+                    (self.env.ref("base." + "view_partner_form").id, "form")
+                ]
+                action["res_id"] = contacts.id
+            return action
 
-    def _compute_contact_count(self):
-        if not self.ids:  # pragma: no cover
-            self.contact_count = 0
-            return
-        count_by_location = dict[Self, int](
-            self.env["res.partner"]._read_group(
-                domain=Domain("service_location_id", "child_of", self.ids),
-                groupby=["service_location_id"],
-                aggregates=["__count"],
-            )
-        )
+    def _compute_contact_ids(self):
         for loc in self:
-            loc.contact_count = sum(
-                contact_count
-                for location, contact_count in count_by_location.items()
-                if location.parent_path.startswith(loc.parent_path)
-            )
+            contacts = self.comp_count(1, 0, loc)
+            loc.contact_count = contacts
 
     def action_view_equipment(self):
         """
@@ -225,40 +276,29 @@ class FSMLocation(models.Model):
         equipment of given fsm location id. It can either be a in
         a list or in a form view, if there is only one equipment to show.
         """
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "fieldservice.action_fsm_equipment"
-        )
-        domain = Domain("location_id", "child_of", self.ids)
-        equipment = self.env["fsm.equipment"].search(domain)
-        if len(equipment) == 1:
-            action["views"] = [(None, "form")]
-            action["res_id"] = equipment.id
-        else:
-            action["domain"] = domain
-        return action
+        for location in self:
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_equipment"
+            )
+            equipment = self.get_action_views(0, 1, location)
+            action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
+            action["context"].update({"default_location_id": self.id})
+            if len(equipment) == 0 or len(equipment) > 1:
+                action["domain"] = [("id", "in", equipment.ids)]
+            else:
+                action["views"] = [
+                    (
+                        self.env.ref("fieldservice." + "fsm_equipment_form_view").id,
+                        "form",
+                    )
+                ]
+                action["res_id"] = equipment.id
+            return action
 
-    def _compute_sublocation_count(self):
-        if not self.ids:  # pragma: no cover
-            self.sublocation_count = 0
-            return
-        count_by_location = dict[Self, int](
-            self.env["fsm.location"]._read_group(
-                domain=Domain.AND(
-                    [
-                        Domain("parent_id", "child_of", self.ids),
-                        Domain("parent_id", "!=", False),
-                    ]
-                ),
-                groupby=["parent_id"],
-                aggregates=["__count"],
-            )
-        )
+    def _compute_sublocation_ids(self):
         for loc in self:
-            loc.sublocation_count = sum(
-                child_count
-                for location, child_count in count_by_location.items()
-                if location.parent_path.startswith(loc.parent_path)
-            )
+            loc.sublocation_count = self.comp_count(0, 0, loc)
 
     def action_view_sublocation(self):
         """
@@ -266,43 +306,38 @@ class FSMLocation(models.Model):
         sub-locations of a given fsm location id. It can either be a in
         a list or in a form view, if there is only one sub-location to show.
         """
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "fieldservice.action_fsm_location"
-        )
-        domain = Domain.AND(
-            [
-                Domain("parent_id", "child_of", self.ids),
-                Domain("id", "not in", self.ids),
-            ]
-        )
-        sublocations = self.env["fsm.location"].search(domain)
-        if len(sublocations) == 1:
-            action["views"] = [(None, "form")]
-            action["res_id"] = sublocations.id
-        else:
-            action["domain"] = domain
-        return action
+        for location in self:
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "fieldservice.action_fsm_location"
+            )
+            sublocation = self.get_action_views(0, 0, location)
+            action["context"] = self.env.context.copy()
+            action["context"].update({"group_by": ""})
+            action["context"].update({"default_fsm_parent_id": self.id})
+            if len(sublocation) > 1 or len(sublocation) == 0:
+                action["domain"] = [("id", "in", sublocation.ids)]
+            else:
+                action["views"] = [
+                    (
+                        self.env.ref("fieldservice." + "fsm_location_form_view").id,
+                        "form",
+                    )
+                ]
+                action["res_id"] = sublocation.id
+            return action
 
     def geo_localize(self):
         return self.partner_id.geo_localize()
 
-    def _compute_equipment_count(self):
-        if not self.ids:  # pragma: no cover
-            self.equipment_count = 0
-            return
-        count_by_location = dict[Self, int](
-            self.env["fsm.equipment"]._read_group(
-                domain=Domain("location_id", "child_of", self.ids),
-                groupby=["location_id"],
-                aggregates=["__count"],
-            )
-        )
+    def _compute_equipment_ids(self):
         for loc in self:
-            loc.equipment_count = sum(
-                equipment_count
-                for location, equipment_count in count_by_location.items()
-                if location.parent_path.startswith(loc.parent_path)
-            )
+            loc.equipment_count = self.comp_count(0, 1, loc)
+
+    @api.constrains("fsm_parent_id")
+    def _check_location_recursion(self):
+        if self._has_cycle("fsm_parent_id"):
+            raise ValidationError(_("You cannot create recursive location."))
+        return True
 
     @api.onchange("country_id")
     def _onchange_country_id(self):

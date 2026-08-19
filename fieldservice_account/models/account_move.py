@@ -1,4 +1,4 @@
-# Copyright (C) 2018, Gray Matter Logic
+# Copyright (C) 2018, Open Source Integrators
 # Copyright 2019 Akretion <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -12,21 +12,19 @@ class AccountMove(models.Model):
         "fsm.order",
         compute="_compute_fsm_order_ids",
         string="Field Service orders associated to this invoice",
-        store=True,
     )
     fsm_order_count = fields.Integer(
-        string="FSM Orders",
-        compute="_compute_fsm_order_ids",
-        store=True,
+        string="FSM Orders", compute="_compute_fsm_order_ids"
     )
 
     @api.depends("line_ids")
     def _compute_fsm_order_ids(self):
-        FSMOrder = self.env["fsm.order"]
         for record in self:
-            orders = FSMOrder.search([("invoice_lines", "in", record.line_ids.ids)])
+            orders = self.env["fsm.order"].search(
+                [("invoice_lines", "in", record.line_ids.ids)]
+            )
             record.fsm_order_ids = orders
-            record.fsm_order_count = len(orders)
+            record.fsm_order_count = len(record.fsm_order_ids)
 
     def action_view_fsm_orders(self):
         self.ensure_one()

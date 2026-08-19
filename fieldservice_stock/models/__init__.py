@@ -6,8 +6,8 @@ from . import (
     fsm_location,
     fsm_order,
     stock_move,
-    stock_reference,
+    # procurement_group,  # Removed: procurement module doesn't exist in Odoo 19
     stock_rule,
     stock_picking,
-    fsm_person,
+    fsm_wizard,
 )

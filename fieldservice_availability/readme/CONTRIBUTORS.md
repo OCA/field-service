@@ -1,6 +1,3 @@
 - [APSL-Nagarro](https://www.apsl.tech):
   - Patryk Pyczko \<<ppyczko@apsl.net>\>
   - Antoni Marroig \<<amarroig@apsl.net>\>
-  - Bernat Obrador \<<bobrador@apsl.net>\>
-- [CIT-Services](https://cit-services.in/):
-  - Linto Antony \<<l.antony@cit-services.eu>\>

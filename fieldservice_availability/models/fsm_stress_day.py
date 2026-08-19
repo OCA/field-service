@@ -11,7 +11,10 @@ class FieldServiceStressDay(models.Model):
     name = fields.Char(string="Description", required=True)
     date = fields.Date(string="Stress Day", required=True)
 
-    _unique_stress_day = models.Constraint(
-        "unique(date)",
-        "A stress day with this date already exists!",
-    )
+    _sql_constraints = [
+        (
+            "unique_stress_day",
+            "unique(date)",
+            "A stress day with this date already exists!",
+        )
+    ]

@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-from odoo.fields import Domain
 
 
 class FSMLocation(models.Model):
@@ -15,5 +14,5 @@ class FSMLocation(models.Model):
     def _compute_opportunity_count(self):
         for fsm_location in self:
             fsm_location.opportunity_count = self.env["crm.lead"].search_count(
-                Domain("fsm_location_id", "=", fsm_location.id)
+                [("fsm_location_id", "=", fsm_location.id)]
             )

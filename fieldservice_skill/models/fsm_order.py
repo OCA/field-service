@@ -1,10 +1,9 @@
-# Copyright (C) 2018, Gray Matter Logic
+# Copyright (C) 2018, Open Source Integrators
 # Copyright (C) 2020, Brian McMaster
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
 from odoo import Command, api, fields, models
-from odoo.fields import Domain
 
 _logger = logging.getLogger(__name__)
 
@@ -41,14 +40,14 @@ class FSMOrder(models.Model):
         worker_ids = []
         req_skills = self.skill_ids.ids
         if not self.skill_ids:
-            worker_ids = self.env["fsm.person"].search(Domain([])).ids
+            worker_ids = self.env["fsm.person"].search([]).ids
         else:
             FPS = self.env["fsm.person.skill"]
             potential_workers = FPS.search(
-                Domain("skill_id", "in", self.skill_ids.ids)
+                [("skill_id", "in", self.skill_ids.ids)]
             ).mapped("person_id")
             for w in potential_workers:
-                worker_skills = FPS.search(Domain("person_id", "=", w.id)).mapped(
+                worker_skills = FPS.search([("person_id", "=", w.id)]).mapped(
                     "skill_id"
                 )
                 if set(worker_skills.ids) >= set(req_skills):

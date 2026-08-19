@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Move district_id and region_id to appear right after the address block -->
+    <record id="fsm_location_form_inherit_territory_placement" model="ir.ui.view">
+        <field name="name">fsm.location.form.territory.placement</field>
+        <field name="model">fsm.location</field>
+        <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add district/region inside the address format, before city -->
+            <xpath expr="//div[hasclass('o_address_format')]//field[@name='city']" position="before">
+                <field name="district_id" placeholder="District"/>
+                <field name="region_id" placeholder="Region"/>
+            </xpath>
+            <!-- Hide district/region from the Territory notebook page to avoid duplication -->
+            <xpath expr="//page[@name='territory']//field[@name='district_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='territory']//field[@name='region_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

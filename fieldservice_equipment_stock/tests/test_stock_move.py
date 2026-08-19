@@ -1,4 +1,4 @@
-# Copyright (C) 2021 Gray Matter Logic
+# Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import TransactionCase
@@ -46,6 +46,7 @@ class TestStockMove(TransactionCase):
             {
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
+                "name": "MOVE INCOMING -> STOCK ",
                 "product_id": productA.id,
                 "product_uom": productA.uom_id.id,
                 "product_uom_qty": 2,

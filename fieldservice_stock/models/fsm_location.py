@@ -9,6 +9,7 @@ class FSMLocation(models.Model):
 
     inventory_location_id = fields.Many2one(
         "stock.location",
+        string="Inventory Location",
         compute="_compute_inventory_location_id",
         store=True,
         readonly=False,
@@ -18,8 +19,8 @@ class FSMLocation(models.Model):
     )
     shipping_address_id = fields.Many2one("res.partner", string="Shipping Location")
 
-    @api.depends("parent_id", "parent_id.inventory_location_id")
+    @api.depends("fsm_parent_id", "fsm_parent_id.inventory_location_id")
     def _compute_inventory_location_id(self):
         for rec in self:
-            if rec.parent_id:
-                rec.inventory_location_id = rec.parent_id.inventory_location_id
+            if rec.fsm_parent_id:
+                rec.inventory_location_id = rec.fsm_parent_id.inventory_location_id

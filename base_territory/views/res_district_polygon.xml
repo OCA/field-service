@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit district form to add polygon editor -->
+    <record id="res_district_form_view_polygon" model="ir.ui.view">
+        <field name="name">res.district.form.polygon</field>
+        <field name="model">res.district</field>
+        <field name="inherit_id" ref="res_district_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="District Boundary" name="polygon_boundary">
+                        <p class="text-muted">
+                            Click on the map to add polygon boundary points.
+                            The booking form will alert users whose location is outside all district boundaries.
+                            Save the form after making changes.
+                        </p>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="district_polygon_map" style="height: 420px; border: 1px solid #dee2e6; border-radius: 4px;"/>
+                                <div style="margin-top: 6px; display: flex; gap: 8px; align-items: center;">
+                                    <button type="button" class="btn btn-sm btn-danger" id="btn_polygon_undo">
+                                        Undo last point
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary" id="btn_polygon_clear">
+                                        Clear all
+                                    </button>
+                                    <span id="polygon_status" class="text-muted small ms-2"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="polygon_ids" class="o_form_label">Boundary points</label>
+                                <field name="polygon_ids" nolabel="1">
+                                    <list editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="lat" string="Latitude"/>
+                                        <field name="lng" string="Longitude"/>
+                                    </list>
+                                </field>
+                            </div>
+                        </div>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

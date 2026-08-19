@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_order_portal_installation_button" inherit_id="sale.sale_order_portal_content" priority="99">
+        <xpath expr="//div[@id='intro_row']" position="inside">
+            <t t-if="sale_order._is_installation_released()">
+                <a t-attf-href="/my/installation/#{sale_order.id}"
+                   class="btn btn-primary btn-sm ms-auto">
+                    <i class="fa fa-calendar me-1"/>Schedule Installation
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="sale_order_portal_title" inherit_id="sale.sale_order_portal_template" priority="100">
+        <xpath expr="//t[@t-call='portal.portal_layout']" position="inside">
+            <t t-set="additional_title">Sales Order</t>
+        </xpath>
+    </template>
+
+</odoo>

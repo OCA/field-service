@@ -57,6 +57,10 @@ class TestResTerritory(TransactionCase):
         self.assertEqual(self.territory.type, "state", "Territory type mismatch")
         self.assertEqual(self.territory.zip_codes, "12345, 67890", "ZIP codes mismatch")
 
+    def test_territory_name_is_translatable(self):
+        self.assertTrue(self.territory._fields["name"].translate)
+        self.assertFalse(self.territory._fields["zip_codes"].translate)
+
     def test_update_territory(self):
         new_branch = self.env["res.branch"].create({"name": "New Test Branch"})
         self.territory.write({"branch_id": new_branch.id, "type": "zip"})

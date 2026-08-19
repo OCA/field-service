@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_partner_form_territory" model="ir.ui.view">
+        <field name="name">res.partner.form.territory</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_address_format')]//field[@name='city']" position="before">
+                <field name="district_id" placeholder="District" />
+                <field name="region_id" placeholder="Region" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

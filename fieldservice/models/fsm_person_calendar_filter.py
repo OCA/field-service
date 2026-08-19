@@ -20,7 +20,10 @@ class FSMPersonCalendarFilter(models.Model):
     active = fields.Boolean(default=True)
     person_checked = fields.Boolean(default=True)
 
-    _user_id_fsm_person_id_unique = models.Constraint(
-        "UNIQUE(user_id,person_id)",
-        "You cannot have the same worker twice.",
-    )
+    _sql_constraints = [
+        (
+            "user_id_fsm_person_id_unique",
+            "UNIQUE(user_id,person_id)",
+            "You cannot have the same worker twice.",
+        )
+    ]

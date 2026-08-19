@@ -24,14 +24,14 @@
         <field name="model">fsm.equipment</field>
         <field name="inherit_id" ref="fieldservice.fsm_equipment_search_view" />
         <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
+            <filter name="person_id" position="after">
                 <filter
                     name="agreement_id"
                     string="Agreement"
                     domain="[]"
                     context="{'group_by': 'agreement_id'}"
                 />
-            </xpath>
+            </filter>
         </field>
     </record>
 </odoo>

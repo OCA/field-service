@@ -1,36 +1,17 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import Command, fields
+from odoo import Command
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-from odoo.addons.sale.tests.common import SaleCommon
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestFieldServiceSaleAgreement(SaleCommon):
+class TestFieldServiceSaleAgreement(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
-        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
-        cls.test_location = cls.env["fsm.location"].create(
-            {
-                "name": "Test Location",
-                "owner_id": cls.partner.id,
-            }
-        )
-        cls.agreement_type = cls.env["agreement.type"].create(
-            {"name": "Test Agreement Type"}
-        )
-        cls.agreement = cls.env["agreement"].create(
-            {
-                "name": "Test Agreement",
-                "agreement_type_id": cls.agreement_type.id,
-                "code": "TestAgreement",
-                "start_date": fields.Date.today(),
-                "end_date": fields.Date.today(),
-            }
-        )
         cls.fsm_template = cls.env["fsm.template"].create(
             {
                 "name": "Test FSM Template",
@@ -49,9 +30,9 @@ class TestFieldServiceSaleAgreement(SaleCommon):
         )
         cls.order = cls.env["sale.order"].create(
             {
-                "partner_id": cls.partner.id,
-                "agreement_id": cls.agreement.id,
-                "fsm_location_id": cls.test_location.id,
+                "partner_id": cls.env.ref("base.main_partner").id,
+                "agreement_id": cls.env.ref("agreement.market1").id,
+                "fsm_location_id": cls.env.ref("fieldservice.test_location").id,
                 "order_line": [
                     Command.create(
                         {

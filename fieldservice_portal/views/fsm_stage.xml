@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <field name="is_default" position="after">
                 <field name="portal_visible" />
+                <field name="notification_event" invisible="stage_type != 'order'" />
             </field>
         </field>
     </record>

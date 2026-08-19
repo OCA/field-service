@@ -1,10 +1,10 @@
 from collections import OrderedDict
 from operator import itemgetter
 
-from odoo import http
+from odoo import _, http
 from odoo.exceptions import AccessError
-from odoo.fields import Domain
 from odoo.http import request
+from odoo.osv.expression import OR
 from odoo.tools import groupby as groupbyelem
 
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -17,7 +17,6 @@ class CustomerPortal(CustomerPortal):
         if "fsm_order_count" in counters:
             fsm_order_count = (
                 request.env["fsm.order"]
-                .sudo()
                 .search_count(self._prepare_fsm_orders_domain())
             )
             values["fsm_order_count"] = fsm_order_count
@@ -73,38 +72,38 @@ class CustomerPortal(CustomerPortal):
         domain = self._prepare_fsm_orders_domain()
 
         searchbar_sortings = {
-            "date": {"label": self.env._("Newest"), "order": "request_early desc"},
-            "name": {"label": self.env._("Name"), "order": "name"},
-            "stage": {"label": self.env._("Stage"), "order": "stage_id"},
-            "location": {"label": self.env._("Location"), "order": "location_id"},
-            "type": {"label": self.env._("Type"), "order": "type"},
+            "date": {"label": _("Newest"), "order": "request_early desc"},
+            "name": {"label": _("Name"), "order": "name"},
+            "stage": {"label": _("Stage"), "order": "stage_id"},
+            "location": {"label": _("Location"), "order": "location_id"},
+            "type": {"label": _("Type"), "order": "type"},
         }
 
         searchbar_groupby = {
-            "none": {"input": "none", "label": self.env._("None")},
-            "location_id": {"input": "location", "label": self.env._("Location")},
-            "ticket_id": {"input": "ticket", "label": self.env._("Ticket")},
-            "stage_id": {"input": "stage", "label": self.env._("Stage")},
-            "type": {"input": "type", "label": self.env._("Type")},
+            "none": {"input": "none", "label": _("None")},
+            "location_id": {"input": "location", "label": _("Location")},
+            "ticket_id": {"input": "ticket", "label": _("Ticket")},
+            "stage_id": {"input": "stage", "label": _("Stage")},
+            "type": {"input": "type", "label": _("Type")},
         }
 
         # search input (text)
         searchbar_inputs = OrderedDict(
             (
-                ("all", {"input": "all", "label": self.env._("Search in All")}),
-                ("name", {"input": "name", "label": self.env._("Search in WO Number")}),
+                ("all", {"input": "all", "label": _("Search in All")}),
+                ("name", {"input": "name", "label": _("Search in WO Number")}),
                 (
                     "description",
                     {
                         "input": "description",
-                        "label": self.env._("Search in Description"),
+                        "label": _("Search in Description"),
                     },
                 ),
                 (
                     "location_id.name",
                     {
                         "input": "location",
-                        "label": self.env._("Search in Location Numbers"),
+                        "label": _("Search in Location Numbers"),
                     },
                 ),
             )
@@ -117,7 +116,7 @@ class CustomerPortal(CustomerPortal):
                 for (k, v) in searchbar_inputs.items()
                 if search_in in (v["input"], "all") and k != "all"
             ]:
-                search_domain = Domain.OR(
+                search_domain = OR(
                     [search_domain, [(search_property, "ilike", search)]]
                 )
             domain += search_domain
@@ -125,7 +124,7 @@ class CustomerPortal(CustomerPortal):
         # search filters (by stage)
         searchbar_filters = OrderedDict(
             (
-                str(stage.name),
+                f"stage_{stage.id}",
                 {
                     "label": stage.name,
                     "domain": [("stage_id", "=", stage.id)],
@@ -140,23 +139,20 @@ class CustomerPortal(CustomerPortal):
         )
         searchbar_filters.update(
             {
-                "all": {"label": self.env._("All"), "domain": []},
-                "open": {
-                    "label": self.env._("Open"),
-                    "domain": [("is_closed", "=", False)],
-                },
+                "all": {"label": _("All"), "domain": []},
+                "open": {"label": _("Open"), "domain": [("is_closed", "=", False)]},
             }
         )
 
         # default group by value
-        if not groupby:
+        if groupby not in searchbar_groupby:
             groupby = "location_id"
         # default sort by order
-        if not sortby:
+        if sortby not in searchbar_sortings:
             sortby = "date"
         order = searchbar_sortings[sortby]["order"]
         # default filter by value
-        if not filterby:
+        if filterby not in searchbar_filters:
             filterby = "open"
         domain += searchbar_filters[filterby]["domain"]
 
@@ -208,6 +204,7 @@ class CustomerPortal(CustomerPortal):
     @http.route(
         ["/my/fsm_order/<int:order_id>"],
         type="http",
+        auth="user",
         website=True,
     )
     def portal_my_fsm_order(self, order_id=None, **kw):

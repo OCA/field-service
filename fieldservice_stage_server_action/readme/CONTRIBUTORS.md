@@ -1,7 +1,7 @@
-- [Gray Matter Logic](https://www.graymatterlogic.com):
-  - Wolfgang Hall \<<whall@graymatterlogic.com>\>
-  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
-  - Steve Campbell \<<scampbell@graymatterlogic.com>\>
-  - Mohammad Khalid \<<mkhalid@graymatterlogic.com>\>
+- Open Source Integrators \<<https://www.opensourceintegrators.com>\>
+  - Wolfgang Hall \<<whall@opensourceintegrators.com>\>
+  - Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>
+  - Steve Campbell \<<scampbell@opensourceintegrators.com>\>
+  - Mohammad Khalid \<<mkhalid@opensourceintegrators.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Italo Lopes \<<italo.lopes@camptocamp.com>\>

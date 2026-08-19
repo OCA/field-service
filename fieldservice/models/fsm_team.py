@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-from odoo.fields import Domain
 
 
 class FSMTeam(models.Model):
@@ -11,58 +10,48 @@ class FSMTeam(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     def _default_stages(self):
-        return self.env["fsm.stage"].search(Domain("is_default", "=", True))
+        return self.env["fsm.stage"].search([("is_default", "=", True)])
 
     def _compute_order_count(self):
-        order_data = self.env["fsm.order"]._read_group(
-            domain=Domain.AND(
-                [
-                    Domain("team_id", "in", self.ids),
-                    Domain("stage_id.is_closed", "=", False),
-                ]
-            ),
-            groupby=["team_id"],
-            aggregates=["__count"],
+        order_data = self.env["fsm.order"].read_group(
+            [("team_id", "in", self.ids), ("stage_id.is_closed", "=", False)],
+            ["team_id"],
+            ["team_id"],
         )
-        result = {team.id: count for team, count in order_data}
+        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
         for team in self:
             team.order_count = result.get(team.id, 0)
 
     def _compute_order_need_assign_count(self):
-        order_data = self.env["fsm.order"]._read_group(
-            domain=Domain.AND(
-                [
-                    Domain("team_id", "in", self.ids),
-                    Domain("person_id", "=", False),
-                    Domain("stage_id.is_closed", "=", False),
-                ]
-            ),
-            groupby=["team_id"],
-            aggregates=["__count"],
+        order_data = self.env["fsm.order"].read_group(
+            [
+                ("team_id", "in", self.ids),
+                ("person_id", "=", False),
+                ("stage_id.is_closed", "=", False),
+            ],
+            ["team_id"],
+            ["team_id"],
         )
-        result = {team.id: count for team, count in order_data}
+        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
         for team in self:
             team.order_need_assign_count = result.get(team.id, 0)
 
     def _compute_order_need_schedule_count(self):
-        order_data = self.env["fsm.order"]._read_group(
-            domain=Domain.AND(
-                [
-                    Domain("team_id", "in", self.ids),
-                    Domain("scheduled_date_start", "=", False),
-                    Domain("stage_id.is_closed", "=", False),
-                ]
-            ),
-            groupby=["team_id"],
-            aggregates=["__count"],
+        order_data = self.env["fsm.order"].read_group(
+            [
+                ("team_id", "in", self.ids),
+                ("scheduled_date_start", "=", False),
+                ("stage_id.is_closed", "=", False),
+            ],
+            ["team_id"],
+            ["team_id"],
         )
-        result = {team.id: count for team, count in order_data}
+        result = {data["team_id"][0]: int(data["team_id_count"]) for data in order_data}
         for team in self:
             team.order_need_schedule_count = result.get(team.id, 0)
 
     name = fields.Char(required=True, translate=True)
     description = fields.Text(translate=True)
-    active = fields.Boolean(default=True)
     color = fields.Integer("Color Index")
     stage_ids = fields.Many2many(
         "fsm.stage",
@@ -70,13 +59,13 @@ class FSMTeam(models.Model):
         "team_id",
         "stage_id",
         string="Stages",
-        default=lambda self: self._default_stages(),
+        default=_default_stages,
     )
     order_ids = fields.One2many(
         "fsm.order",
         "team_id",
         string="Orders",
-        domain=Domain("stage_id.is_closed", "=", False),
+        domain=[("stage_id.is_closed", "=", False)],
     )
     order_count = fields.Integer(compute="_compute_order_count", string="Orders Count")
     order_need_assign_count = fields.Integer(
@@ -95,7 +84,4 @@ class FSMTeam(models.Model):
         help="Company related to this team",
     )
 
-    _name_uniq = models.Constraint(
-        "unique (name)",
-        "Team name already exists!",
-    )
+    _sql_constraints = [("name_uniq", "unique (name)", "Team name already exists!")]

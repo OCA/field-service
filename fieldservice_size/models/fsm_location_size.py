@@ -15,7 +15,10 @@ class FSMLocationSize(models.Model):
         "fsm.location", string="Location", required=True, index=True
     )
 
-    _one_size_per_location = models.Constraint(
-        "unique(location_id, size_id)",
-        "Only one size of same type allowed per location",
-    )
+    _sql_constraints = [
+        (
+            "one_size_per_location",
+            "unique(location_id, size_id)",
+            "Only one size of same type allowed per location",
+        )
+    ]

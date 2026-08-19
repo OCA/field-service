@@ -17,14 +17,14 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
         <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
+            <filter name="group_by_location" position="after">
                 <filter
                     name="agreement_id"
                     string="Agreement"
                     domain="[]"
                     context="{'group_by': 'agreement_id'}"
                 />
-            </xpath>
+            </filter>
         </field>
     </record>
 </odoo>

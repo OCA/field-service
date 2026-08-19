@@ -1,12 +1,12 @@
-# Copyright (C) 2018 Gray Matter Logic
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Field Service",
     "summary": "Manage Field Service Locations, Workers and Orders",
-    "version": "19.0.1.2.1",
+    "version": "19.0.1.2.0",
     "license": "AGPL-3",
     "category": "Field Service",
-    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["base_territory", "base_geolocalize", "resource", "contacts"],
     "data": [
@@ -15,6 +15,7 @@
         "data/module_category.xml",
         "data/fsm_stage.xml",
         "data/fsm_team.xml",
+        "data/fsm_order_type.xml",
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
@@ -27,7 +28,6 @@
         "views/fsm_location.xml",
         "views/fsm_location_person.xml",
         "views/fsm_person.xml",
-        "wizard/fsm_order_sign_wizard.xml",
         "views/fsm_order.xml",
         "views/fsm_order_type.xml",
         "views/fsm_category.xml",

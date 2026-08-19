@@ -1,4 +1,4 @@
-# Copyright (C) 2018 - TODAY, Gray Matter Logic
+# Copyright (C) 2018 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -8,8 +8,8 @@ class FSMTemplate(models.Model):
     _name = "fsm.template"
     _description = "Field Service Order Template"
 
-    name = fields.Char(required=True)
-    instructions = fields.Html()
+    name = fields.Char(required=True, translate=True)
+    instructions = fields.Text(translate=True)
     category_ids = fields.Many2many("fsm.category", string="Categories")
     duration = fields.Float(help="Default duration in hours")
     company_id = fields.Many2one(

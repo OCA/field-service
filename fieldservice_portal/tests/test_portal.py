@@ -1,56 +1,70 @@
 import json
 
-from odoo.tests.common import HttpCase, TransactionCase, new_test_user, tagged
+from odoo.http import Request
+from odoo.tests.common import HttpCase, TransactionCase, tagged
 from odoo.tools import mute_logger
 
 
 @tagged("post_install", "-at_install")
 class TestUsersHttp(HttpCase, TransactionCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.user_portal = new_test_user(
-            cls.env, login="portal", groups="base.group_portal"
+    def test_visit_routes_require_login_and_render_for_portal_user(self):
+        self.logout()
+        response = self.url_open("/my/visit", allow_redirects=False)
+        self.assertIn(response.status_code, (302, 303))
+
+        self.authenticate("portal", "portal")
+        response = self.url_open("/my/visit")
+        self.assertEqual(response.status_code, 200)
+        response = self.url_open(
+            "/my/visit/routes",
+            json={"jsonrpc": "2.0", "method": "call", "params": {}},
         )
-        cls.user_demo = new_test_user(
-            cls.env, login="demouser", groups="base.group_user"
-        )
-        cls.portal_location = cls.env["fsm.location"].create(
-            {
-                "name": "Test Portal Location",
-                "phone": "123",
-                "email": "tpl@email.com",
-                "partner_id": cls.user_portal.partner_id.id,
-                "owner_id": cls.user_portal.partner_id.id,
-            }
-        )
-        cls.test_order = cls.env["fsm.order"].create(
-            {
-                "name": "Demo Order",
-                "description": "Description for the new demo order",
-                "location_id": cls.portal_location.id,
-            }
-        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["result"]["success"])
 
     @mute_logger("odoo.http")
     def test_fsm_order_portal(self):
         # Accessing work order of the portal user through route APIs available
-        self.authenticate(self.user_portal.login, self.user_portal.password)
-        response = self.url_open("/my/fsm_orders")
+        login = "portal"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/fsm_orders",
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
+        )
 
         # Check successful response from API
         self.assertEqual(response.status_code, 200)
 
-        self.authenticate(self.user_demo.login, self.user_demo.password)
-        response = self.url_open("/my/fsm_orders")
+        login = "demo"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/fsm_orders",
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
+        )
 
         # Check Forbidden response from API
         self.assertEqual(response.status_code, 403)
 
     def test_fsm_order_access(self):
         order_id = self.env["fsm.order"].search([])[0].id
-        self.authenticate(self.user_portal.login, self.user_portal.password)
-        response = self.url_open("/my/fsm_order/" + str(order_id))
+        login = "portal"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/fsm_order/" + str(order_id),
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_fsm_order_access_denied(self):
@@ -76,26 +90,57 @@ class TestUsersHttp(HttpCase, TransactionCase):
 
         # Trying to access fsm_order which is not
         # assigned to Portal User to check access error
-        expected_url = self.base_url() + "/my"
-        self.authenticate(self.user_portal.login, self.user_portal.password)
-        res = self.url_open("/my/fsm_order/" + str(order.id))
-        self.assertEqual(res.url, expected_url)
+        login = "portal"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/fsm_order/" + str(order.id),
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
+            allow_redirects=False,
+        )
+        self.assertIn(response.status_code, (302, 303))
+        self.assertTrue(response.headers["Location"].endswith("/my"))
+
+    def test_invalid_search_keys_use_safe_defaults(self):
+        login = "portal"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/fsm_orders?sortby=invalid&filterby=invalid&groupby=invalid"
+        )
+        self.assertEqual(response.status_code, 200)
 
     def test_fsm_order_kw_usage(self):
         order_id = self.env["fsm.order"].search([])[0].id
         # Trying to access fsm_order url
         # with query parameters
-        self.authenticate(self.user_portal.login, self.user_portal.password)
+        login = "portal"
+        self.authenticate(login, login)
         response = self.url_open(
-            "/my/fsm_order/" + str(order_id) + "?success='success'"
+            "/my/fsm_order/" + str(order_id) + "?success='success'",
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
         )
         self.assertEqual(response.status_code, 200)
 
     def test_fsm_no_fsm_order_present(self):
         # Trying to filter fsm_orders based on filter
-        self.authenticate(self.user_portal.login, self.user_portal.password)
+        login = "portal"
+        self.authenticate(login, login)
+        completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
         response = self.url_open(
-            "/my/fsm_orders?groupby=none&filterby=Completed&page=1&search_in=&search=",
+            "/my/fsm_orders?groupby=none&filterby=stage_%d&page=1&search_in=&search="
+            % completed_stage.id,
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
         )
         self.assertEqual(response.status_code, 200)
         self.assertNotIn("<tbody>", response.text)
@@ -103,25 +148,59 @@ class TestUsersHttp(HttpCase, TransactionCase):
 
     def test_fsm_order_filter_usage(self):
         # Trying to filter fsm_orders based on filter, group and sort
-        self.authenticate(self.user_portal.login, self.user_portal.password)
+        login = "portal"
+        self.authenticate(login, login)
+        stage_id = self.env.ref("fieldservice.fsm_stage_new").id
         response = self.url_open(
-            "/my/fsm_orders?groupby=stage_id&filterby=New&sortby=location",
+            "/my/fsm_orders?groupby=stage_id&filterby=stage_%d&sortby=location"
+            % stage_id,
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn("<tbody>", response.text)
         self.assertIn("Demo Order", response.text)
 
     def test_fsm_orders_portal_home(self):
-        self.authenticate(self.user_portal.login, self.user_portal.password)
-        response = self.url_open("/my/home")
+        login = "portal"
+        self.authenticate(login, login)
+        response = self.url_open(
+            "/my/home",
+            data={
+                "validation": login,
+                "password": login,
+                "csrf_token": Request.csrf_token(self),
+            },
+        )
         self.assertEqual(response.status_code, 200)
         self.assertIn("FSM Orders", response.text)
 
     def test_fsm_orders_count(self):
-        self.authenticate(self.user_portal.login, self.user_portal.password)
+        unrelated_partner = self.env["res.partner"].create({"name": "Other Customer"})
+        unrelated_location = self.env["fsm.location"].create(
+            {
+                "partner_id": unrelated_partner.id,
+                "owner_id": unrelated_partner.id,
+            }
+        )
+        self.env["fsm.order"].create({"location_id": unrelated_location.id})
+        login = "portal"
+        self.authenticate(login, login)
         response = self.url_open(
             "/my/counters",
-            data=json.dumps({"params": {"counters": "fsm_order_count"}}).encode(),
+            data=json.dumps(
+                {
+                    "validation": login,
+                    "password": login,
+                    "csrf_token": Request.csrf_token(self),
+                    "params": {
+                        "counters": "fsm_order_count",
+                    },
+                }
+            ).encode(),
             headers={"Content-Type": "application/json"},
         ).json()
         self.assertEqual(response["result"]["fsm_order_count"], 1)

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2024 Camptocamp SA (https://www.camptocamp.com).
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_repair_order_form" model="ir.ui.view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="priority" eval="90" />
+        <field name="arch" type="xml">
+            <!-- At the bottom of the first group -->
+            <xpath expr="//sheet/group[1]/group[1]" position="inside">
+                <field name="repair_order_template_id" readonly="state != 'draft'" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

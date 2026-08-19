@@ -1,0 +1,287 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_warranty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-11 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__active_supplier
+msgid "Active Supplier"
+msgstr "المورّد النشط"
+
+#. module: product_warranty
+#: model:ir.model,name:product_warranty.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_supplierinfo__warranty_return_partner__company
+msgid "Company"
+msgstr "الشركة"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: product_warranty
+#: model_terms:ir.ui.view,arch_db:product_warranty.company_form
+msgid "CRM Product Return Address"
+msgstr "عنوان إرجاع المنتج في إدارة علاقات العملاء"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_template__warranty_type__day
+msgid "Day(s)"
+msgstr "يوم (أيام)"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_res_company__crm_return_address_id
+msgid "Default address where the customers has to send back the returned product. If empty, the address is the company address."
+msgstr "العنوان الافتراضي الذي يتعين على العملاء إرسال المنتج المرتجع إليه. إذا تُرك فارغا، فسيُستخدم عنوان الشركة."
+
+#. module: product_warranty
+#: model:return.instruction,name:product_warranty.return_instruction_1
+msgid "Default Instruction"
+msgstr "التعليمات الافتراضية"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:product_warranty.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_warranty.field_res_company__display_name
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:product_warranty.field_product_template__id
+#: model:ir.model.fields,field_description:product_warranty.field_res_company__id
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_return_instruction__is_default
+msgid "If is default, will be use to set the default value in supplier info's. Be careful to have only one default."
+msgstr "إذا كان افتراضيا، فسيُستخدم لتعيين القيمة الافتراضية في معلومات المورّد. احرص على وجود قيمة افتراضية واحدة فقط."
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__return_instructions
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__instructions
+#: model_terms:ir.ui.view,arch_db:product_warranty.product_return_instructions_form_view
+msgid "Instructions"
+msgstr "التعليمات"
+
+#. module: product_warranty
+#: model:ir.model,name:product_warranty.model_return_instruction
+msgid "Instructions for product return"
+msgstr "تعليمات إرجاع المنتج"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__return_instructions
+#: model:ir.model.fields,help:product_warranty.field_return_instruction__instructions
+msgid "Instructions for product return."
+msgstr "تعليمات إرجاع المنتج."
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__is_default
+msgid "Is Default"
+msgstr "افتراضي"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__active_supplier
+msgid "Is this supplier still active, only for information."
+msgstr "هل ما زال هذا المورّد نشطا؟ هذا الحقل للمعلومات فقط."
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_template__warranty_type__month
+msgid "Month(s)"
+msgstr "شهر (أشهر)"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_supplierinfo__warranty_return_partner__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__warranty_duration
+msgid "Period"
+msgstr "المدة"
+
+#. module: product_warranty
+#: model:ir.model,name:product_warranty.model_product_template
+msgid "Product"
+msgstr "المنتج"
+
+#. module: product_warranty
+#: model:ir.module.module,name:product_warranty
+msgid "Product Warranty"
+msgstr "ضمان المنتج"
+
+#. module: product_warranty
+#: model:ir.actions.act_window,name:product_warranty.product_return_instructions_action
+#: model:ir.ui.menu,name:product_warranty.menu_product_return_instructions_action
+msgid "Products Return Instructions"
+msgstr "تعليمات إرجاع المنتجات"
+
+#. module: product_warranty
+#: model:return.instruction,name:product_warranty.return_instruction_2
+msgid "Provisional Instruction"
+msgstr "تعليمات مؤقتة"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__warranty_return_address
+#: model:ir.model.fields,field_description:product_warranty.field_res_company__crm_return_address_id
+msgid "Return address"
+msgstr "عنوان الإرجاع"
+
+#. module: product_warranty
+#: model_terms:ir.ui.view,arch_db:product_warranty.product_return_instructions_form_view
+msgid "Return instructions"
+msgstr "تعليمات الإرجاع"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__warranty_return_other_address
+msgid "Return other address"
+msgstr "عنوان إرجاع آخر"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_supplierinfo__warranty_return_partner
+msgid "Return type"
+msgstr "نوع الإرجاع"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_supplierinfo__warranty_return_partner__supplier
+msgid "Supplier"
+msgstr "المورّد"
+
+#. module: product_warranty
+#: model:ir.model,name:product_warranty.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "قائمة أسعار المورّد"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_return_instruction__name
+msgid "Title"
+msgstr "العنوان"
+
+#. module: product_warranty
+#: model:return.instruction,instructions:product_warranty.return_instruction_1
+msgid ""
+"To return a product purchased through our\n"
+"            platform vendor Marketplace access our online Returns Center and\n"
+"            click Return products to begin the application process for the\n"
+"            return.\n"
+"            Select the product you want to return and the reason for the\n"
+"            return. You will need you to provide detailed information to enable\n"
+"            the seller to handle your request. Once the seller has reviewed\n"
+"            your application, it will respond by e-mail within 3 working days."
+msgstr ""
+"لإرجاع منتج تم شراؤه من خلال سوق\n"
+"            البائعين على منصتنا، يرجى الدخول إلى مركز الإرجاع الإلكتروني والنقر\n"
+"            على «إرجاع المنتجات» لبدء تقديم طلب الإرجاع. اختر المنتج الذي ترغب\n"
+"            في إرجاعه وحدد سبب الإرجاع. يجب تقديم معلومات مفصلة لتمكين البائع\n"
+"            من معالجة طلبك. وبعد مراجعة البائع للطلب، سيرد عبر البريد الإلكتروني\n"
+"            خلال ثلاثة أيام عمل."
+
+#. module: product_warranty
+#: model:return.instruction,instructions:product_warranty.return_instruction_2
+msgid ""
+"Under the provisions of these Conditions of\n"
+"            Sale, you may return the products received once you have contacted\n"
+"            our customer service department adidas Mexico and the request is\n"
+"            authorized. If you choose to return your order, we will refund: the\n"
+"            full purchase price, as long as we have previously returned the\n"
+"            products you order in perfect condition: (i) new product unused,\n"
+"            (ii) with packaging, original box and tags (iii) be in the period\n"
+"            of 30 calendar days after receiving the product. If you do not\n"
+"            return the products to fulfill the above conditions, we are\n"
+"            entitled to charge the products or the costs of recovery."
+msgstr ""
+"وفقًا لأحكام شروط البيع هذه، يجوز لك\n"
+"            إرجاع المنتجات المستلمة بعد التواصل مع قسم خدمة العملاء لدى أديداس\n"
+"            المكسيك والحصول على الموافقة على الطلب. إذا اخترت إرجاع طلبك، فسنعيد\n"
+"            إليك كامل سعر الشراء، شريطة أن تكون المنتجات قد أُعيدت إلينا مسبقًا\n"
+"            بحالة سليمة تمامًا: (1) أن يكون المنتج جديدًا وغير مستخدم، و(2) أن\n"
+"            يكون في عبوته وصندوقه الأصليين ومرفقًا ببطاقاته، و(3) أن تتم الإعادة\n"
+"            خلال ثلاثين يومًا تقويميًا من تاريخ استلام المنتج. إذا لم تُعَد\n"
+"            المنتجات مستوفيةً للشروط المذكورة أعلاه، فيحق لنا تحصيل ثمن المنتجات\n"
+"            أو تكاليف استردادها."
+
+#. module: product_warranty
+#: model_terms:ir.ui.view,arch_db:product_warranty.product_template_extend_warranty
+msgid "Warranty"
+msgstr "الضمان"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_product__warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_template__warranty
+msgid "Warranty Duration"
+msgstr "مدة الضمان"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__warranty_duration
+msgid "Warranty in month for this product/supplier relation. Only for company/supplier relation (purchase order) ; the  customer/company relation (sale order) always use the product main warranty field."
+msgstr "مدة الضمان بالأشهر لعلاقة المنتج بالمورّد. تُستخدم فقط لعلاقة الشركة بالمورّد (أمر الشراء)؛ أما علاقة العميل بالشركة (أمر البيع) فتستخدم دائما حقل الضمان الرئيسي للمنتج."
+
+#. module: product_warranty
+#: model_terms:ir.ui.view,arch_db:product_warranty.product_supplierinfo_warranty_form_view
+msgid "Warranty informations"
+msgstr "معلومات الضمان"
+
+#. module: product_warranty
+#: model:ir.model.fields,field_description:product_warranty.field_product_product__warranty_type
+#: model:ir.model.fields,field_description:product_warranty.field_product_template__warranty_type
+msgid "Warranty Type"
+msgstr "نوع الضمان"
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_template__warranty_type__week
+msgid "Week(s)"
+msgstr "أسبوع (أسابيع)"
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__warranty_return_other_address
+msgid "Where the customer has to send back the product(s) if warranty return is set to 'other'."
+msgstr "العنوان الذي يتعين على العميل إرسال المنتج أو المنتجات إليه إذا عُيّن إرجاع الضمان على 'other'."
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__warranty_return_address
+msgid "Where the goods should be returned  (computed field based on other infos.)"
+msgstr "العنوان الذي ينبغي إرجاع البضائع إليه (حقل محسوب استنادا إلى معلومات أخرى)."
+
+#. module: product_warranty
+#: model:ir.model.fields,help:product_warranty.field_product_supplierinfo__warranty_return_partner
+msgid "Who is in charge of the warranty return treatment toward the end customer. Company will use the current company delivery or default address and so on for supplier and brand manufacturer. Doesn't necessarily mean that the warranty to be applied is the one of the return partner (ie: can be returned to the company and be under the brand warranty)."
+msgstr "الجهة المسؤولة عن معالجة إرجاع الضمان للعميل النهائي. ستستخدم الشركة عنوان التسليم الحالي للشركة أو عنوانها الافتراضي، وينطبق الأمر نفسه على المورّد والشركة المصنّعة للعلامة التجارية. لا يعني ذلك بالضرورة أن الضمان المطبق هو ضمان شريك الإرجاع (فقد يُعاد المنتج إلى الشركة ويظل خاضعا لضمان العلامة التجارية)."
+
+#. module: product_warranty
+#: model:ir.model.fields.selection,name:product_warranty.selection__product_template__warranty_type__year
+msgid "Year(s)"
+msgstr "سنة (سنوات)"

@@ -4,10 +4,9 @@
 {
     "name": "Field Service - Repair",
     "summary": "Integrate Field Service orders with MRP repair orders",
-    "version": "19.0.1.0.0",
+    "version": "19.0.3.0.1",
     "category": "Field Service",
-    "author": "Gray Matter Logic, Open Source Integrators,"
-    " Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": [
         "repair",

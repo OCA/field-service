@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_fieldservice_portal" model="ir.ui.view">
+        <field name="name">res.config.settings.view.fieldservice.portal</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='fieldservice']" position="inside">
+                <block title="Visit Booking (/my/visit)">
+                    <setting id="visit_crm_team" string="CRM Team" company_dependent="1"
+                             help="Assigns new site-survey leads and quotations to this sales team.">
+                        <field name="visit_crm_team_id"
+                               domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                    </setting>
+                    <setting id="visit_sale_order_template" string="Quotation Template" company_dependent="1"
+                             help="Creates the draft quotation that reserves the selected visit appointment.">
+                        <field name="visit_sale_order_template_id"
+                               domain="[('service_type', '=', 'survey'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                    </setting>
+                    <setting id="visit_confirmation_policy" string="Confirmation Policy" company_dependent="1"
+                             help="Choose how a reserved site-survey quotation becomes a confirmed visit.">
+                        <field name="visit_confirmation_policy" widget="radio"/>
+                        <div class="text-muted mt8">
+                            Phone Verification keeps the quotation in draft until staff call the customer and confirm it. Online Payment uses the standard quotation payment flow and confirms only after full payment.
+                        </div>
+                    </setting>
+                </block>
+                <block title="Installation Scheduling">
+                    <setting id="installation_release_policy" string="Release Policy" company_dependent="1"
+                             help="Choose when a customer may open the installation slot picker.">
+                        <field name="installation_release_policy" widget="radio"/>
+                        <div class="text-muted mt8">
+                            Approval releases scheduling when the installation quotation is confirmed. Online Payment releases it only when the confirmed quotation is fully paid.
+                        </div>
+                    </setting>
+                </block>
+                <block title="Maintenance Requests (/my/requests)">
+                    <setting id="requests_sale_order_template" string="Quotation Template" company_dependent="1"
+                             help="Creates the maintenance quotation from a portal request.">
+                        <field name="requests_sale_order_template_id"
+                               domain="[('service_type', '=', 'maintenance'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

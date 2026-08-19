@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- supplier info tree view -->
+    <record id="product_supplierinfo_warranty_tree_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.warranty.tree</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+        <field name="arch" type="xml">
+            <field name="min_qty" position="before">
+                <field name="warranty_duration" />
+                <field name="warranty_return_partner" />
+                <field name="warranty_return_address" />
+                <field name="active_supplier" />
+                <field name="return_instructions" />
+            </field>
+        </field>
+    </record>
+    <!-- supplier info form view -->
+    <record id="product_supplierinfo_warranty_form_view" model="ir.ui.view">
+        <field name="name">product.supplierinfo.warranty.form</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <group name="waranty_group" string="Warranty informations" col="4">
+                    <field name="active_supplier" />
+                    <field name="warranty_duration" />
+                    <field name="return_instructions" />
+                </group>
+                <group col="4">
+                    <field name="warranty_return_partner" />
+                    <field
+                        name="warranty_return_other_address"
+                        invisible="warranty_return_partner != 'other'"
+                        required="warranty_return_partner == 'other'"
+                        class="oe_inline"
+                    />
+                    <field
+                        name="warranty_return_address"
+                        invisible="warranty_return_partner == 'other'"
+                        class="oe_inline"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

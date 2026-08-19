@@ -52,7 +52,7 @@ class FSMEquipment(models.Model):
                     years=self.product_id.warranty
                 )
             else:
-                warranty_end_date = self.warranty_start_date + relativedelta(
+                warranty_end_date = fields.Date.today() + relativedelta(
                     days=self.product_id.warranty
                 )
         return warranty_end_date

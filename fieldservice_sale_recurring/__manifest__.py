@@ -1,12 +1,12 @@
-# Copyright (C) 2018 Gray Matter Logic
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Field Service - Sales - Recurring",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "summary": "Sell recurring field services.",
     "category": "Field Service",
-    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": [
         "fieldservice_recurring",
@@ -22,6 +22,7 @@
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": [
+        "wolfhall",
         "max3903",
         "brian10048",
     ],

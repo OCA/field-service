@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+        <record id="email_visit_booked" model="mail.template">
+            <field name="name">Visit Booked</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Your Site Visit Is Booked</field>
+            <field name="subject@ar_001">تم حجز زيارة معاينة الموقع</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>Your site visit has been booked successfully.</p>
+    <p>We will confirm the appointment shortly and notify you through WhatsApp.</p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>تم حجز زيارة معاينة الموقع بنجاح.</p>
+    <p>سيتم تحديد موعد الزيارة قريباً وسنقوم بإشعارك عبر الواتساب.</p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+        <record id="email_inspection_completed" model="mail.template">
+            <field name="name">Inspection Completed</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Site Survey Completed</field>
+            <field name="subject@ar_001">اكتملت معاينة الموقع</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>Your site survey has been completed successfully.</p>
+    <p>We will send your installation quotation shortly.</p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>اكتملت معاينة الموقع بنجاح.</p>
+    <p>سيتم إرسال عرض سعر التركيب قريباً.</p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+        <record id="email_installation_quote" model="mail.template">
+            <field name="name">Installation Quote</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Your Installation Quotation Is Ready</field>
+            <field name="subject@ar_001">عرض سعر التركيب جاهز</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>Your installation quotation is ready.</p>
+    <p>Please visit your portal account to review it and complete payment.</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/orders')"
+           style="background-color: #007BFF; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            View Quotation
+        </a>
+    </p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>عرض سعر التركيب جاهز.</p>
+    <p>للاطلاع والدفع، يرجى زيارة حسابك في البوابة.</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/orders')"
+           style="background-color: #007BFF; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            عرض السعر
+        </a>
+    </p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+        <record id="email_installation_paid" model="mail.template">
+            <field name="name">Installation Paid - Schedule</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Payment Received - Schedule Installation</field>
+            <field name="subject@ar_001">تم استلام الدفعة - اختر موعد التركيب</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>Your payment has been received successfully.</p>
+    <p>Please choose a suitable installation appointment:</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/installation')"
+           style="background-color: #28a745; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Schedule Installation
+        </a>
+    </p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>تم استلام الدفعة بنجاح.</p>
+    <p>يرجى اختيار موعد التركيب المناسب لك:</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/installation')"
+           style="background-color: #28a745; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            اختر موعد التركيب
+        </a>
+    </p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+        <record id="email_installation_completed" model="mail.template">
+            <field name="name">Installation Completed</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Installation Completed</field>
+            <field name="subject@ar_001">اكتمل التركيب بنجاح</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>Installation is complete. The installed equipment is ready for use.</p>
+    <p>You can submit future maintenance requests from your account:</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/requests')"
+           style="background-color: #007BFF; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Request Maintenance
+        </a>
+    </p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>اكتمل التركيب بنجاح. المعدات المركبة جاهزة للعمل.</p>
+    <p>للصيانة المستقبلية، يمكنك طلبها من حسابك:</p>
+    <p style="margin: 16px 0;">
+        <a t-att-href="ctx.get('portal_url', '/my/requests')"
+           style="background-color: #007BFF; color: white; padding: 10px 20px;
+                  text-decoration: none; border-radius: 5px; font-weight: bold;">
+            طلب صيانة
+        </a>
+    </p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+        <record id="email_maintenance_completed" model="mail.template">
+            <field name="name">Maintenance Completed</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Maintenance Completed</field>
+            <field name="subject@ar_001">اكتملت الصيانة بنجاح</field>
+            <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>Hello <t t-out="object.name"/>,</p>
+    <p>The service has been completed successfully. The installed equipment is operating normally.</p>
+    <p>Thank you for choosing <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+            <field name="body_html@ar_001" type="html">
+<div style="margin: 0; padding: 0; font-size: 13px;">
+    <p>مرحباً <t t-out="object.name"/>,</p>
+    <p>اكتملت الخدمة بنجاح. المعدات المركبة تعمل الآن بصورة طبيعية.</p>
+    <p>شكراً لاختيارك <t t-out="object.env.company.name"/>.</p>
+</div>
+            </field>
+        </record>
+
+</odoo>

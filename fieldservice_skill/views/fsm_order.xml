@@ -6,7 +6,7 @@
         <field name="model">fsm.order</field>
         <field name="inherit_id" ref="fieldservice.fsm_order_form" />
         <field name="arch" type="xml">
-            <field name="category_ids" position="after">
+            <field name="team_id" position="after">
                 <field
                     name="skill_ids"
                     widget="many2many_tags"

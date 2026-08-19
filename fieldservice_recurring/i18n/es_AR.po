@@ -184,7 +184,6 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__display_name
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__display_name
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -339,6 +338,11 @@ msgid "Friday"
 msgstr "Viernes"
 
 #. module: fieldservice_recurring
+#: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__has_message
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__has_message
@@ -349,10 +353,8 @@ msgstr "Tiene un Mensaje"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency_set__id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__id
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__id
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_team__id
 msgid "ID"
 msgstr "ID"
 
@@ -584,11 +586,6 @@ msgstr "Número de mensajes con error de entrega"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__oct
 msgid "October"
 msgstr "Octubre"
-
-#. module: fieldservice_recurring
-#: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_order__display_name
-msgid "Order"
-msgstr "Pedido"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__fsm_order_template_id
@@ -906,9 +903,6 @@ msgstr ""
 msgid "Yearly"
 msgstr "Anual"
 
-#~ msgid "Group By"
-#~ msgstr "Agrupar por"
-
 #~ msgid "Last Modified on"
 #~ msgstr "Última Modificación el"
 
@@ -944,6 +938,9 @@ msgstr "Anual"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (Canales)"
+
+#~ msgid "Order"
+#~ msgstr "Pedido"
 
 #~ msgid "Scheduled duration"
 #~ msgstr "Duración Programada"

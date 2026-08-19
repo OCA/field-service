@@ -2,6 +2,8 @@
 <odoo>
     <template id="portal_my_fsm_orders" name="My Work Orders">
         <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
             <t t-set="breadcrumbs_searchbar" t-value="True" />
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Work Orders</t>
@@ -10,8 +12,9 @@
                 <p>There are no Work Orders in your account.</p>
             </t>
             <t t-else="">
-                <t t-call="portal.portal_table">
-                    <t t-foreach="grouped_orders" t-as="orders">
+                <div style="overflow-x: auto;">
+                    <t t-call="portal.portal_table">
+                        <t t-foreach="grouped_orders" t-as="orders">
                         <thead>
                             <tr
                                 t-if="groupby != 'none'"
@@ -21,7 +24,7 @@
                                 careful: this does not work if groupby is not a relation
                                         towards a model that has a 'name' field
                                 -->
-                                <th colspan="6" class="text-left text-muted">
+                                <th colspan="5" class="text-left text-muted">
                                     <em class="font-weight-normal text-muted">
                                         Work Orders for
                                         <t
@@ -49,7 +52,7 @@
                                             <t t-out="fsm_order.name" />
                                         </a>
                                     </td>
-                                    <td>
+                                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                         <t t-out="fsm_order.description" />
                                     </td>
                                     <td>
@@ -67,13 +70,16 @@
                             </t>
                         </tbody>
                     </t>
-                </t>
+                    </t>
+                </div>
             </t>
         </t>
     </template>
 
     <template id="portal_fieldservice_order_page">
         <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
             <div class="card">
                 <div class="card-header">
                     <h1>

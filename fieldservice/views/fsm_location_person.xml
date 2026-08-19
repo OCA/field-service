@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Location Person Tree View-->
     <record id="fsm_location_person_list_view" model="ir.ui.view">
@@ -43,20 +42,9 @@
             <search string="Search Location Worker">
                 <field name="location_id" />
                 <field name="person_id" />
-                <group>
-                    <filter
-                        name="location_id"
-                        string="Location"
-                        domain="[]"
-                        context="{'group_by': 'location_id'}"
-                    />
-                    <filter
-                        name="person_id"
-                        string="Worker"
-                        domain="[]"
-                        context="{'group_by': 'person_id'}"
-                    />
-                </group>
+                <separator />
+                <filter string="Group By Location" name="group_location" context="{'group_by': 'location_id'}" />
+                <filter string="Group By Worker" name="group_worker" context="{'group_by': 'person_id'}" />
             </search>
         </field>
     </record>

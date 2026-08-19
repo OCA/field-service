@@ -1,11 +1,11 @@
-# Copyright (C) 2018 Gray Matter Logic
+# Copyright (C) 2018 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Field Service Vehicles",
     "summary": "Manage Field Service vehicles and assign drivers",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Field Service",
-    "author": "Gray Matter Logic, Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice"],
     "data": [
@@ -18,5 +18,5 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["max3903"],
+    "maintainers": ["wolfhall", "max3903"],
 }

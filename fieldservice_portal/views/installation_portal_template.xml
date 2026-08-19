@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Installation Slot Picker -->
+    <template id="portal_installation_slot_picker" name="Installation Slot Picker">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">Schedule Installation</t>
+
+            <style>
+                #inst-form { font-family: inherit; }
+                #inst-form .day-card { padding: 14px 10px; border: 2px solid #dee2e6; border-radius: 12px; background: #fff; min-width: 105px; text-align: center; }
+                #inst-form .day-card.has-routes { cursor: pointer; }
+                #inst-form .day-card.has-routes:hover { border-color: #0d6efd; box-shadow: 0 2px 10px rgba(13,110,253,0.12); }
+                #inst-form .day-card.selected { border-color: #0d6efd; background: #eff6ff; }
+                #inst-form .day-name { font-size: 0.75rem; color: #6c757d; }
+                #inst-form .day-num { font-size: 1.5rem; font-weight: 700; line-height: 1.1; margin: 4px 0; }
+                #inst-form .day-no-routes { font-size: 0.68rem; color: #ced4da; margin-top: 6px; }
+                #inst-form .route-tag { padding: 4px 10px; border: 1.5px solid #dee2e6; border-radius: 6px; background: #fff; cursor: pointer; display: inline-block; margin: 3px 2px; font-size: 0.8rem; transition: all 0.15s; }
+                #inst-form .route-tag:hover { border-color: #0d6efd; background: #eff6ff; }
+                #inst-form .route-tag.selected { background: #0d6efd; color: #fff; border-color: #0d6efd; }
+                #inst-form .booking-days { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x proximity; scrollbar-width: thin; overscroll-behavior-inline: contain; }
+                #inst-form .booking-day { flex: 0 0 auto; scroll-snap-align: start; }
+                #inst-form #submitInstBtn:disabled { opacity: 0.4 !important; cursor: not-allowed !important; pointer-events: none !important; background-color: #6c757d !important; border-color: #6c757d !important; }
+                #inst-form .btn-edge-icon { position: relative; padding-inline: 2.75rem !important; }
+                #inst-form .btn-edge-icon > i { position: absolute; top: 50%; transform: translateY(-50%); margin: 0 !important; }
+                #inst-form .btn-edge-icon-start > i { inset-inline-start: 0.875rem; }
+                html[dir="rtl"] #inst-form .btn-edge-icon > i { transform: translateY(-50%) scaleX(-1); }
+            </style>
+
+            <div id="inst-form" class="container py-4" style="max-width:680px;">
+
+                <h4 class="fw-bold mb-1">Schedule Installation</h4>
+                <p class="text-muted mb-4">
+                    <i class="fa fa-map-pin me-1"/>
+                    <t t-if="location" t-out="location.name"/>
+                    <t t-if="location and location.street"> — <t t-out="location.street"/></t>
+                </p>
+
+                <div t-if="so.company_id.installation_release_policy == 'approval'" class="alert alert-info small">
+                    The installation quotation has been approved. Select an appointment to schedule the work.
+                </div>
+                <div t-else="" class="alert alert-info small">
+                    Full payment has been received. Select an appointment to schedule the work.
+                </div>
+
+                <div class="card border-0 shadow-sm p-4" style="border-radius:14px;">
+
+                    <!-- Slot Picker -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Choose an installation appointment</label>
+
+                        <div id="routeLoading" class="text-center py-4">
+                            <div class="spinner-border text-primary spinner-border-sm"/>
+                            <span class="ms-2 text-muted small">Loading appointments...</span>
+                        </div>
+
+                        <div id="routesContainer" class="d-none">
+                            <div class="booking-days" id="installationBookingDays" dir="rtl"/>
+                            <div id="selectedSlotDisplay" class="alert alert-success mt-3 py-2 d-none">
+                                <i class="fa fa-check-circle me-2"/>
+                                <span id="selectedSlotInfo"/>
+                            </div>
+                        </div>
+
+                        <div id="routeEmpty" class="text-center py-4 d-none">
+                            <i class="fa fa-calendar-times-o fa-2x text-muted mb-2 d-block"/>
+                            <p class="text-muted small mb-0">No installation appointments are currently available.</p>
+                        </div>
+                    </div>
+
+                    <div id="instInlineError" class="alert alert-danger mb-3 d-none" role="alert" aria-live="polite" tabindex="-1">
+                        <i class="fa fa-exclamation-circle me-2"/>
+                        <span id="instInlineErrorMessage"/>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <a href="/my" class="btn btn-outline-secondary px-4 btn-edge-icon btn-edge-icon-start">
+                            <i class="fa fa-arrow-right"/>Cancel
+                        </a>
+                        <button type="button" class="btn btn-success px-5" id="submitInstBtn" disabled="disabled">
+                            <i class="fa fa-check me-2"/>Confirm Appointment
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-none" id="installationTranslations">
+                    <div id="instSunday">Sunday</div>
+                    <div id="instMonday">Monday</div>
+                    <div id="instTuesday">Tuesday</div>
+                    <div id="instWednesday">Wednesday</div>
+                    <div id="instThursday">Thursday</div>
+                    <div id="instFriday">Friday</div>
+                    <div id="instSaturday">Saturday</div>
+                    <div id="instJanuary">January</div>
+                    <div id="instFebruary">February</div>
+                    <div id="instMarch">March</div>
+                    <div id="instApril">April</div>
+                    <div id="instMay">May</div>
+                    <div id="instJune">June</div>
+                    <div id="instJuly">July</div>
+                    <div id="instAugust">August</div>
+                    <div id="instSeptember">September</div>
+                    <div id="instOctober">October</div>
+                    <div id="instNovember">November</div>
+                    <div id="instDecember">December</div>
+                    <div id="instAppointment">Appointment</div>
+                    <div id="instNone">No availability</div>
+                    <div id="instBooking">Booking...</div>
+                    <div id="instConfirm">Confirm Appointment</div>
+                    <div id="instLoadError">Unable to load appointments. Please refresh the page and try again.</div>
+                    <div id="instSubmitError">Unable to confirm the installation appointment. Please try again.</div>
+                </div>
+
+            </div>
+
+            <script t-att-data-so-id="so.id">
+                var _instScript = document.currentScript;
+                var _installationBookingInitialized = false;
+                function initInstallationBooking() {
+                    if (_installationBookingInitialized) return;
+                    if (!document.getElementById('instSubmitError')) {
+                        setTimeout(initInstallationBooking, 10);
+                        return;
+                    }
+                    _installationBookingInitialized = true;
+                    try {
+                    var soId = parseInt(_instScript.getAttribute('data-so-id'));
+                    var selectedRouteId = null;
+                    var rpc = odoo.loader.modules.get("@web/core/network/rpc").rpc;
+                    function translatedText(id) {
+                        return document.getElementById(id).textContent.trim();
+                    }
+                    var dayNames = ['instSunday','instMonday','instTuesday','instWednesday','instThursday','instFriday','instSaturday'].map(translatedText);
+                    var monthNames = ['instJanuary','instFebruary','instMarch','instApril','instMay','instJune','instJuly','instAugust','instSeptember','instOctober','instNovember','instDecember'].map(translatedText);
+
+                    function dateStr(d) {
+                        return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+                    }
+
+                    function showRouteError() {
+                        var empty = document.getElementById('routeEmpty');
+                        empty.querySelector('p').textContent = translatedText('instLoadError');
+                        empty.classList.remove('d-none');
+                    }
+
+                    async function loadRoutes() {
+                        try {
+                            var data = await rpc('/my/installation/routes', {});
+                            document.getElementById('routeLoading').classList.add('d-none');
+                            if (data.success &amp;&amp; data.routes &amp;&amp; data.routes.length) {
+                                renderWeek(data.routes);
+                                document.getElementById('routesContainer').classList.remove('d-none');
+                            } else {
+                                document.getElementById('routeEmpty').classList.remove('d-none');
+                            }
+                        } catch {
+                            document.getElementById('routeLoading').classList.add('d-none');
+                            showRouteError();
+                        }
+                    }
+
+                    function renderWeek(routes) {
+                        var today = new Date(); today.setHours(0,0,0,0);
+                        var byDate = {};
+                        routes.forEach(function(r){ if (!byDate[r.date]) byDate[r.date] = []; byDate[r.date].push(r); });
+                        var lastSlotDate = null;
+                        routes.forEach(function(r){ if (!lastSlotDate || r.date &gt; lastSlotDate) lastSlotDate = r.date; });
+                        var maxDays = 28;
+                        var days = [];
+                        for (var i = 0; i &lt;= maxDays; i++) {
+                            var d = new Date(today); d.setDate(today.getDate() + i);
+                            var ds = dateStr(d);
+                            if (lastSlotDate &amp;&amp; ds &gt; lastSlotDate) break;
+                            days.push(d);
+                        }
+
+                        var wrapper = document.getElementById('installationBookingDays');
+                        wrapper.replaceChildren();
+                        days.forEach(function(d) {
+                            var ds = dateStr(d);
+                            var slots = byDate[ds] || [];
+                            var slide = document.createElement('div');
+                            slide.className = 'booking-day';
+                            var card = document.createElement('div');
+                            card.className = 'day-card' + (slots.length ? ' has-routes' : '');
+                            var dayName = document.createElement('div');
+                            dayName.className = 'day-name';
+                            dayName.textContent = dayNames[d.getDay()];
+                            var dayNumber = document.createElement('div');
+                            dayNumber.className = 'day-num';
+                            dayNumber.textContent = String(d.getDate());
+                            card.append(dayName, dayNumber);
+                            if (slots.length) {
+                                slots.forEach(function(slot){
+                                    var tag = document.createElement('button');
+                                    var routeName = slot.route_name || translatedText('instAppointment');
+                                    tag.type = 'button';
+                                    tag.className = 'route-tag';
+                                    tag.dataset.routeId = String(slot.id);
+                                    tag.dataset.routeName = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + monthNames[d.getMonth()] + ' - ' + routeName;
+                                    var label = document.createElement('small');
+                                    label.textContent = routeName;
+                                    tag.appendChild(label);
+                                    tag.addEventListener('click', function(){
+                                        document.querySelectorAll('#inst-form .route-tag').forEach(function(item){ item.classList.remove('selected'); });
+                                        tag.classList.add('selected');
+                                        selectedRouteId = tag.dataset.routeId;
+                                        document.getElementById('selectedSlotInfo').textContent = tag.dataset.routeName;
+                                        document.getElementById('selectedSlotDisplay').classList.remove('d-none');
+                                        document.getElementById('submitInstBtn').removeAttribute('disabled');
+                                    });
+                                    card.appendChild(tag);
+                                });
+                            } else {
+                                var noRoutes = document.createElement('div');
+                                noRoutes.className = 'day-no-routes mt-2';
+                                noRoutes.textContent = translatedText('instNone');
+                                card.appendChild(noRoutes);
+                            }
+                            slide.appendChild(card);
+                            wrapper.appendChild(slide);
+                        });
+                    }
+
+                    function setSubmitButton(button, loading) {
+                        var icon = document.createElement('i');
+                        icon.className = loading ? 'fa fa-spinner fa-spin me-2' : 'fa fa-check me-2';
+                        button.replaceChildren(icon, document.createTextNode(loading ? translatedText('instBooking') : translatedText('instConfirm')));
+                    }
+
+                    function showSubmitError(message) {
+                        var errorPanel = document.getElementById('instInlineError');
+                        document.getElementById('instInlineErrorMessage').textContent = message;
+                        errorPanel.classList.remove('d-none');
+                        errorPanel.focus();
+                    }
+
+                    function clearSubmitError() {
+                        document.getElementById('instInlineError').classList.add('d-none');
+                    }
+
+                    document.getElementById('submitInstBtn').addEventListener('click', async function(){
+                        var btn = this;
+                        clearSubmitError();
+                        btn.setAttribute('disabled','disabled');
+                        setSubmitButton(btn, true);
+                        try {
+                            var data = await rpc('/my/installation/submit', {
+                                sale_order_id: soId,
+                                route_id: selectedRouteId,
+                            });
+                            if (data.success) {
+                                window.location.href = data.redirect;
+                            } else {
+                                showSubmitError(data.error || translatedText('instSubmitError'));
+                                btn.removeAttribute('disabled');
+                                setSubmitButton(btn, false);
+                            }
+                        } catch {
+                            showSubmitError(translatedText('instSubmitError'));
+                            btn.removeAttribute('disabled');
+                            setSubmitButton(btn, false);
+                        }
+                    });
+
+                    loadRoutes();
+                    } catch (error) {
+                        _installationBookingInitialized = false;
+                        setTimeout(initInstallationBooking, 50);
+                    }
+                }
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initInstallationBooking);
+                } else {
+                    initInstallationBooking();
+                }
+                setTimeout(initInstallationBooking, 0);
+            </script>
+        </t>
+    </template>
+
+</odoo>

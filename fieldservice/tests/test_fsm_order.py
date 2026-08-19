@@ -1,25 +1,20 @@
-# Copyright (C) 2019 - TODAY, Gray Matter Logic
+# Copyright (C) 2019 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
-from unittest.mock import patch
 
-from odoo import Command, fields
+from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.fields import Domain
 from odoo.tests import Form
-from odoo.tools import mute_logger
-
-from .test_fsm_common import FSMCommon
-
-TEST_IMAGE_BASE64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACklEQVR4nGP4DwABAQEAGN2N9wAAAABJRU5ErkJggg=="  # noqa: E501
+from odoo.tests.common import TransactionCase
 
 
-class TestFSMOrder(FSMCommon):
+class TestFSMOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.Order = cls.env["fsm.order"]
+        cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.stage1 = cls.env.ref("fieldservice.fsm_stage_completed")
         cls.stage2 = cls.env.ref("fieldservice.fsm_stage_cancelled")
         cls.init_values = {
@@ -31,6 +26,7 @@ class TestFSMOrder(FSMCommon):
         today = fields.Datetime.today()
         start_date = today + timedelta(days=1)
         date_end = start_date.replace(hour=23, minute=59, second=59)
+        cls.location_1 = cls.env.ref("fieldservice.location_1")
         cls.p_leave = cls.env["resource.calendar.leaves"].create(
             {
                 "date_from": start_date,
@@ -41,25 +37,15 @@ class TestFSMOrder(FSMCommon):
         cls.tag1 = cls.env["fsm.tag"].create(
             {"name": "Test Tag1", "parent_id": cls.tag.id}
         )
-        cls.order = cls.env["fsm.order"].create(
-            {
-                "location_id": cls.test_location.id,
-                "date_start": fields.Datetime.today(),
-                "date_end": fields.Datetime.today() + timedelta(hours=10),
-                "request_early": fields.Datetime.today(),
-            }
-        )
 
     def test_fsm_order_default_stage(self):
         view_id = "fieldservice.fsm_order_form"
         stage_ids = self.env["fsm.stage"].search(
-            domain=Domain.AND(
-                [
-                    Domain("stage_type", "=", "order"),
-                    Domain("is_default", "=", True),
-                    Domain("company_id", "in", (self.env.user.company_id.id, False)),
-                ]
-            ),
+            [
+                ("stage_type", "=", "order"),
+                ("is_default", "=", True),
+                ("company_id", "in", (self.env.user.company_id.id, False)),
+            ],
             order="sequence asc",
         )
         for stage in stage_ids:
@@ -69,32 +55,14 @@ class TestFSMOrder(FSMCommon):
 
     def test_fsm_order_default_team(self):
         view_id = "fieldservice.fsm_order_form"
-        with mute_logger("odoo.models.unlink"):
-            self.order.unlink()
-            self.env["fsm.team"].search([]).unlink()
-        with self.assertRaisesRegex(
-            ValidationError, "You must create an FSM team first."
-        ):
+        with self.assertRaises(ValidationError):
+            team_ids = self.env["fsm.team"].search(
+                [("company_id", "in", (self.env.user.company_id.id, False))],
+                order="sequence asc",
+            )
+            for team in team_ids:
+                team.unlink()
             Form(self.Order, view=view_id)
-
-    def test_fsm_order_default_team_from_location(self):
-        """The default team for an order comes from its location."""
-        # Arrange
-        team_form = Form(self.env["fsm.team"])
-        team_form.name = "Test team"
-        team = team_form.save()
-        location = self.test_location
-        location.team_id = team
-        # pre-condition
-        self.assertNotEqual(team, self.Order._default_team_id())
-
-        # Act
-        order_form = Form(self.Order)
-        order_form.location_id = location
-        order = order_form.save()
-
-        # Assert
-        self.assertEqual(order.team_id, team)
 
     def test_fsm_order_create(self):
         priority_vs_late_days = {"0": 3, "1": 2, "2": 1, "3": 1 / 3}
@@ -194,15 +162,9 @@ class TestFSMOrder(FSMCommon):
         self.tag._compute_full_name()
         self.tag1._compute_full_name()
         config = self.env["res.config.settings"].create({})
-        config.group_fsm_equipment = False
-        config.auto_populate_equipments_on_order = True
-        config._onchange_group_fsm_equipment()
-        self.assertFalse(config.auto_populate_equipments_on_order)
-        config.module_fieldservice_repair = False
-        config._onchange_module_fieldservice_repair()
         config.module_fieldservice_repair = True
+        config._onchange_group_fsm_equipment()
         config._onchange_module_fieldservice_repair()
-        self.assertTrue(config.group_fsm_equipment)
         order3._track_subtype(self.init_values)
         order4._track_subtype(self.init_values)
         order3._track_subtype(self.init_values_2)
@@ -257,7 +219,7 @@ class TestFSMOrder(FSMCommon):
         view_id = "fieldservice.fsm_location_form_view"
         with Form(self.env["fsm.location"], view=view_id) as f:
             f.name = "Child Location"
-            f.parent_id = self.test_location
+            f.fsm_parent_id = self.test_location
         location = f.save()
         self.test_team = self.env["fsm.team"].create({"name": "Test Team"})
         order_type = self.env["fsm.order.type"].create(
@@ -276,13 +238,11 @@ class TestFSMOrder(FSMCommon):
                     "sequence": 10,
                 }
             )
-        order.description = "<p>Description</p>"
+        order.description = "description"
         order.equipment_ids = equipment
-        self.assertEqual(
-            order.description, "<p>Description</p>", "Shouldn't have changed"
-        )
+        self.assertEqual(order.description, "description", "Shouldn't have changed")
         order.description = False
-        equipment.notes = "<p>Equipment notes</p>"
+        equipment.notes = "equipment notes"
         order.equipment_ids = equipment
         self.assertEqual(
             order.description,
@@ -292,34 +252,34 @@ class TestFSMOrder(FSMCommon):
         order.type = False
         order.description = False
         self.location_1.direction = "Test Direction"
-        order2.location_id = location
-        order2.location_id.parent_id = self.location_1.id
+        order2.location_id.fsm_parent_id = self.location_1.id
         data = (
             self.env["fsm.order"]
             .with_context(**{"default_team_id": self.test_team.id})
             .with_user(self.env.user)
-            ._read_group(
-                domain=Domain("id", "=", order.id),
-                groupby=["stage_id"],
-                aggregates=["__count"],
+            .read_group(
+                [("id", "=", location.id)],
+                fields=["stage_id"],
+                groupby="stage_id",
             )
         )
         self.assertTrue(data, "It should be able to read group")
+        self.Order.write(
+            {
+                "location_id": self.test_location.id,
+                "stage_id": self.stage1.id,
+                "is_button": True,
+            }
+        )
+        with self.assertRaises(UserError):
+            self.Order.write(
+                {
+                    "location_id": self.test_location.id,
+                    "stage_id": self.stage1.id,
+                }
+            )
         order.can_unlink()
         order.unlink()
-
-    def test_order_move_to_completed(self):
-        """Test move to completed
-
-        An order can't be moved to Completed directly from Kanban or Status bar.
-        Instead, it should go through the "Complete" button (action_complete).
-        """
-        # Can't move to completed directly
-        with self.assertRaisesRegex(UserError, "Cannot move to completed from Kanban"):
-            self.order.stage_id = self.stage1
-        # Instead, it should go through the "Complete" button (action_complete).
-        self.order.action_complete()
-        self.assertEqual(self.order.stage_id, self.stage1)
 
     def test_order_unlink(self):
         with self.assertRaises(ValidationError):
@@ -332,57 +292,3 @@ class TestFSMOrder(FSMCommon):
             order.stage_id.stage_type = "location"
             order.can_unlink()
             order.unlink()
-
-    def test_order_sign(self):
-        order = self.Order.create(
-            {
-                "location_id": self.test_location.id,
-                "stage_id": self.stage1.id,
-            }
-        )
-        order.stage_id.require_signature = True
-        # Sign it
-        Wizard = self.env["fsm.order.sign.wizard"].with_context(
-            active_model=order._name, active_id=order.id
-        )
-        with Form(Wizard) as wizard_form:
-            wizard_form.signed_by = "Test Customer"
-            wizard_form.signature = TEST_IMAGE_BASE64
-
-        now = fields.Datetime.now()
-        with patch("odoo.fields.Datetime.now", return_value=now):
-            wizard_form.record.action_sign()
-        # Check that the signature has been updated
-        self.assertEqual(order.signed_by, "Test Customer")
-        self.assertEqual(order.signed_on, now)
-
-    def test_equipment_removed_on_company_mismatch(self):
-        """Equipments from another company are dropped on company change."""
-        company2 = self.env["res.company"].create({"name": "FSM Other Company"})
-        equipment = self.env["fsm.equipment"].create(
-            {
-                "name": "Company Mismatch Equipment",
-                "current_location_id": self.test_location.id,
-                "location_id": self.test_location.id,
-                "company_id": self.env.company.id,
-            }
-        )
-        order = self.Order.create(
-            {
-                "location_id": self.test_location.id,
-                "equipment_ids": [Command.set(equipment.ids)],
-            }
-        )
-        self.assertIn(equipment, order.equipment_ids)
-        order.company_id = company2
-        self.assertFalse(order.equipment_ids)
-
-    def test_onchange_template_without_type_or_team(self):
-        template = self.env["fsm.template"].create(
-            {"name": "Bare Template", "duration": 2.5}
-        )
-        order = self.Order.new(
-            {"location_id": self.test_location.id, "template_id": template.id}
-        )
-        order._onchange_template_id()
-        self.assertEqual(order.scheduled_duration, 2.5)

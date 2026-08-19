@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.fields import Domain
 
 
 class FSMOrder(models.Model):
@@ -12,43 +11,59 @@ class FSMOrder(models.Model):
     def _default_warehouse_id(self):
         company = self.env.user.company_id
         warehouse_ids = self.env["stock.warehouse"].search(
-            domain=Domain("company_id", "=", company.id), limit=1
+            [("company_id", "=", company.id)], limit=1
         )
         return warehouse_ids and warehouse_ids.id
 
     @api.model
     def _get_move_domain(self):
-        return Domain("picking_id.picking_type_id.code", "in", ("outgoing", "incoming"))
+        return [("picking_id.picking_type_id.code", "in", ("outgoing", "incoming"))]
 
     picking_ids = fields.One2many("stock.picking", "fsm_order_id", string="Transfers")
     delivery_count = fields.Integer(
         string="Delivery Orders", compute="_compute_picking_ids"
     )
-    reference_ids = fields.Many2many(
-        "stock.reference",
-        "stock_reference_fsm_order_rel",
-        "fsm_order_id",
-        "reference_id",
-        string="Stock References",
-    )
+    # procurement_group_id field removed: procurement.group model doesn't exist in Odoo 19
     inventory_location_id = fields.Many2one(
         related="location_id.inventory_location_id",
     )
     warehouse_id = fields.Many2one(
         "stock.warehouse",
+        string="Warehouse",
         required=True,
-        default=lambda self: self._default_warehouse_id(),
+        default=_default_warehouse_id,
         help="Warehouse used to ship the materials",
     )
     return_count = fields.Integer(
         string="Return Orders", compute="_compute_picking_ids"
     )
     move_ids = fields.One2many(
-        "stock.move",
-        "fsm_order_id",
-        string="Operations",
-        domain=lambda self: self._get_move_domain(),
+        "stock.move", "fsm_order_id", string="Operations"
     )
+
+    def action_consume_materials(self):
+        """
+        Finalize draft stock moves created manually on the FSM order.
+        """
+        for order in self:
+            draft_moves = order.move_ids.filtered(lambda m: m.state == 'draft')
+            if not draft_moves:
+                continue
+
+            for move in draft_moves:
+                if not move.location_id:
+                    move.location_id = order.warehouse_id.lot_stock_id.id
+                if not move.location_dest_id:
+                    move.location_dest_id = order.inventory_location_id.id or order.partner_id.property_stock_customer.id
+
+                if not move.product_uom:
+                    move.product_uom = move.product_id.uom_id.id
+
+            draft_moves._action_confirm()
+            draft_moves._action_assign()
+            draft_moves.picked = True
+            draft_moves._action_done()
+        return True
 
     @api.depends("picking_ids")
     def _compute_picking_ids(self):
@@ -61,18 +76,6 @@ class FSMOrder(models.Model):
                 lambda p: p.picking_type_id.code == "incoming"
             )
             order.return_count = len(incoming_pickings.ids)
-            order.move_ids = order.picking_ids.mapped("move_ids")
-
-    @api.onchange("person_id")
-    def _onchange_person_id(self):
-        # Autofill the worker default warehouse if has one
-        completed_stage = self.env.ref("fieldservice.fsm_stage_completed")
-        for order in self:
-            if order.stage_id.id == completed_stage.id:
-                continue
-            if order.person_id and order.person_id.default_warehouse_id:
-                order.warehouse_id = order.person_id.default_warehouse_id
-        return super()._onchange_person_id()
 
     def action_view_delivery(self):
         """
@@ -88,7 +91,7 @@ class FSMOrder(models.Model):
             lambda p: p.picking_type_id.code == "outgoing"
         ).ids
         if len(delivery_ids) > 1:
-            action["domain"] = Domain("id", "in", delivery_ids)
+            action["domain"] = [("id", "in", delivery_ids)]
         elif pickings:
             action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = delivery_ids[0]
@@ -108,7 +111,7 @@ class FSMOrder(models.Model):
             lambda p: p.picking_type_id.code == "incoming"
         ).ids
         if len(return_ids) > 1:
-            action["domain"] = Domain("id", "in", return_ids)
+            action["domain"] = [("id", "in", return_ids)]
         elif pickings:
             action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
             action["res_id"] = return_ids[0]

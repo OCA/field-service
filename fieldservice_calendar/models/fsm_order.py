@@ -84,14 +84,12 @@ class FSMOrder(models.Model):
         self.calendar_event_id.unlink()
 
     def update_calendar_date(self, vals):
-        if self.env.context.get("recurse_order_calendar"):
+        if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
         to_apply = {}
-        if "scheduled_date_start" in vals:
-            to_apply["start"] = vals["scheduled_date_start"]
-        if "scheduled_date_end" in vals:
-            to_apply["stop"] = vals["scheduled_date_end"]
+        to_apply["start"] = self.scheduled_date_start
+        to_apply["stop"] = self.scheduled_date_end
         # always write start and stop in order to calc duration
         self.mapped("calendar_event_id").with_context(
             recurse_order_calendar=True
@@ -106,7 +104,7 @@ class FSMOrder(models.Model):
         return f"{partner_id.name} {partner_id._display_address()}"
 
     def update_calendar_person(self, old_persons):
-        if self.env.context.get("recurse_order_calendar"):
+        if self._context.get("recurse_order_calendar"):
             # avoid recursion
             return
         for rec in self:

@@ -6,15 +6,16 @@ from freezegun import freeze_time
 
 from odoo import fields
 
-from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestFieldServiceKanbanInfo(FSMCommon):
+class TestFieldServiceKanbanInfo(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.FSMOrder = cls.env["fsm.order"]
         cls.config_param = cls.env["ir.config_parameter"].sudo()
+        cls.location = cls.env.ref("fieldservice.test_location")
         cls.now = fields.Datetime.now()
         cls.lang = cls.env.user.lang
 
@@ -23,7 +24,7 @@ class TestFieldServiceKanbanInfo(FSMCommon):
             {
                 "scheduled_date_start": start,
                 "scheduled_date_end": end,
-                "location_id": self.test_location.id,
+                "location_id": self.location.id,
             }
         )
         order._compute_schedule_time_range()
@@ -53,15 +54,13 @@ class TestFieldServiceKanbanInfo(FSMCommon):
         """Test %m/%d/%Y %I:%M %p (US format with AM/PM)"""
         self.env.user.lang = "en_US"
         self.env["res.lang"]._lang_get("en_US").write(
-            {"date_format": "%m/%d/%Y", "time_format": "%I:%M:%S %p"}
+            {"date_format": "%m/%d/%Y", "time_format": "%I:%M %p"}
         )
         self.config_param.set_param(
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        # Use Datetime.now() inside freeze_time; setUpClass.now is wall-clock.
-        now = fields.Datetime.now()
-        order = self._create_order(now, now + relativedelta(hours=2))
+        order = self._create_order(self.now, self.now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range,
             r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} (AM|PM) - \d{2}:\d{2} (AM|PM)",
@@ -79,9 +78,7 @@ class TestFieldServiceKanbanInfo(FSMCommon):
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
-        # Use Datetime.now() inside freeze_time; setUpClass.now is wall-clock.
-        now = fields.Datetime.now()
-        order = self._create_order(now, now + relativedelta(hours=2))
+        order = self._create_order(self.now, self.now + relativedelta(hours=2))
         self.assertRegex(
             order.schedule_time_range, r"\d{2}/\d{2}/\d{4} \d{2}:\d{2} - \d{2}:\d{2}"
         )

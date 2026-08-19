@@ -4,9 +4,11 @@
 {
     "name": "Field Service - Stock",
     "summary": "Integrate the logistics operations with Field Service",
-    "version": "19.0.1.0.0",
+    "version": "19.0.2.1.9",
     "category": "Field Service",
-    "author": "Gray Matter Logic, Brian McMaster, Odoo Community Association (OCA)",
+    "author": "Open Source Integrators, "
+    "Brian McMaster, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "stock"],
     "data": [
@@ -17,9 +19,9 @@
         "views/fsm_order.xml",
         "views/stock.xml",
         "views/stock_picking.xml",
-        "views/fsm_person.xml",
     ],
+    "pre_init_hook": "_pre_init_hook",
     "license": "AGPL-3",
     "development_status": "Beta",
-    "maintainers": ["brian10048", "max3903"],
+    "maintainers": ["brian10048", "wolfhall", "max3903", "smangukiya"],
 }

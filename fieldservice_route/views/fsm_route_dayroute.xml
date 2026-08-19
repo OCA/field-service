@@ -60,8 +60,8 @@
                             <field
                                 name="order_ids"
                                 nolabel="1"
-                                widget="many2many"
-                                domain="[('dayroute_id', '=', False), ('fsm_route_id', '=', route_id)]"
+                                widget="one2many"
+                                domain="[('fsm_route_id', '=', route_id)]"
                             >
                                 <list>
                                     <field name="sequence" widget="handle" />

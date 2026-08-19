@@ -9,7 +9,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-pencil-square-o"
-                    invisible="not invoice_count"
+                    invisible="invoice_count == 0"
                     groups="account.group_account_invoice"
                 >
                     <field

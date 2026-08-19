@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Gray Matter Logic
+# Copyright (C) 2020 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -8,7 +8,7 @@ class ResTerritory(models.Model):
     _name = "res.territory"
     _description = "Territory"
 
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, translate=True)
     branch_id = fields.Many2one("res.branch", string="Branch")
     district_id = fields.Many2one(related="branch_id.district_id", string="District")
     region_id = fields.Many2one(

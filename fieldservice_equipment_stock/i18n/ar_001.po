@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fieldservice_equipment_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-11 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_stock_picking_type__create_fsm_equipment
+msgid "Create Fsm Equipment"
+msgstr "إنشاء معدة خدمة ميدانية"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,help:fieldservice_equipment_stock.field_product_product__create_fsm_equipment
+#: model:ir.model.fields,help:fieldservice_equipment_stock.field_product_template__create_fsm_equipment
+msgid "Creates a Field Service Equipment when a stock move is done. It requires the 'Create FSM Equipment' option to be enabled on the picking type, too."
+msgstr "ينشئ معدة خدمة ميدانية عند تنفيذ حركة مخزون. ويتطلب ذلك أيضًا تمكين خيار 'إنشاء معدة خدمة ميدانية' في نوع الاستلام."
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_product_product__create_fsm_equipment
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_product_template__create_fsm_equipment
+msgid "Creates a FSM Equipment"
+msgstr "ينشئ معدة خدمة ميدانية"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_fsm_equipment__current_stock_location_id
+msgid "Current Inventory Location"
+msgstr "موقع المخزون الحالي"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_stock_lot__fsm_equipment_id
+msgid "Equipment"
+msgstr "المعدة"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model,name:fieldservice_equipment_stock.model_fsm_equipment
+msgid "Field Service Equipment"
+msgstr "معدة الخدمة الميدانية"
+
+#. module: fieldservice_equipment_stock
+#: model_terms:ir.ui.view,arch_db:fieldservice_equipment_stock.fsm_equipment_form_view_stock
+msgid "Inventory"
+msgstr "المخزون"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model,name:fieldservice_equipment_stock.model_stock_lot
+msgid "Lot/Serial"
+msgstr "الدفعة/الرقم التسلسلي"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model,name:fieldservice_equipment_stock.model_stock_picking_type
+msgid "Picking Type"
+msgstr "نوع العملية"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model,name:fieldservice_equipment_stock.model_product_template
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_fsm_equipment__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,help:fieldservice_equipment_stock.field_stock_picking_type__create_fsm_equipment
+msgid "Products with the 'Creates a FSM Equipment' flag will automatically be converted to an FSM Equipment."
+msgstr "ستُحوَّل المنتجات التي تحمل علامة 'ينشئ معدة خدمة ميدانية' تلقائيًا إلى معدة خدمة ميدانية."
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model.fields,field_description:fieldservice_equipment_stock.field_fsm_equipment__lot_id
+msgid "Serial #"
+msgstr "الرقم التسلسلي"
+
+#. module: fieldservice_equipment_stock
+#: model:ir.model,name:fieldservice_equipment_stock.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"

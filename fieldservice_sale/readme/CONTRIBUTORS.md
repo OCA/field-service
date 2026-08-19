@@ -1,13 +1,11 @@
-- Gray Matter Logic \<<https://www.graymatterlogic.com>\>
-  - Steve Campbell \<<scampbell@graymatterlogic.com>\>
-  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
-  - Wolfgang Hall \<<whall@graymatterlogic.com>\>
-  - Raphael Lee \<<rlee@graymatterlogic.com>\>
+- Open Source Integrators \<<https://opensourceintegrators.com>\>
+  - Steve Campbell \<<scampbell@opensourceintegrators.com>\>
+  - Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>
+  - Wolfgang Hall \<<whall@opensourceintegrators.com>\>
+  - Raphael Lee \<<rlee@opensourceintegrators.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Brian McMaster \<<brian@mcmpest.com>\>
 - Rapha??l Reverdy \<<raphael.reverdy@akretion.com>\>
 - Cl??ment Mombereau \<<clement.mombereau@akretion.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Stefan Ungureanu
-- [Komit](https://komit-consulting.com):
-  - Vang Nguyen Phu

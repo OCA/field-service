@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Field Service Equipment -->
     <record id="fsm_equipment_search_view" model="ir.ui.view">
@@ -13,42 +12,36 @@
                 <field name="district_id" />
                 <field name="region_id" />
                 <field name="person_id" />
-                <group>
-                    <filter
-                        name="person_id"
-                        string="Worker"
-                        domain=""
-                        context="{'group_by':'person_id'}"
-                    />
-                    <filter
-                        name="territory_id"
-                        string="Territory"
-                        domain=""
-                        context="{'group_by':'territory_id'}"
-                        groups="fieldservice.group_fsm_territory"
-                    />
-                    <filter
-                        name="branch_id"
-                        string="Branch"
-                        domain=""
-                        context="{'group_by':'branch_id'}"
-                        groups="fieldservice.group_fsm_territory"
-                    />
-                    <filter
-                        name="district_id"
-                        string="District"
-                        domain=""
-                        context="{'group_by':'district_id'}"
-                        groups="fieldservice.group_fsm_territory"
-                    />
-                    <filter
-                        name="region_id"
-                        string="Region"
-                        domain=""
-                        context="{'group_by':'region_id'}"
-                        groups="fieldservice.group_fsm_territory"
-                    />
-                </group>
+                <separator />
+                <filter
+                    name="person_id"
+                    string="Group By Worker"
+                    context="{'group_by':'person_id'}"
+                />
+                <filter
+                    name="territory_id"
+                    string="Group By Territory"
+                    context="{'group_by':'territory_id'}"
+                    groups="fieldservice.group_fsm_territory"
+                />
+                <filter
+                    name="branch_id"
+                    string="Group By Branch"
+                    context="{'group_by':'branch_id'}"
+                    groups="fieldservice.group_fsm_territory"
+                />
+                <filter
+                    name="district_id"
+                    string="Group By District"
+                    context="{'group_by':'district_id'}"
+                    groups="fieldservice.group_fsm_territory"
+                />
+                <filter
+                    name="region_id"
+                    string="Group By Region"
+                    context="{'group_by':'region_id'}"
+                    groups="fieldservice.group_fsm_territory"
+                />
             </search>
         </field>
     </record>
@@ -166,18 +159,16 @@
         <field name="name">fsm.equipment.kanban</field>
         <field name="model">fsm.equipment</field>
         <field name="arch" type="xml">
-            <kanban
-                highlight_color="color"
-                default_group_by="person_id"
-                class="o_kanban_small_column"
-            >
+            <kanban default_group_by="person_id" class="o_kanban_small_column">
                 <field name="name" />
                 <field name="location_id" />
                 <field name="person_id" />
                 <field name="color" />
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_card">
+                        <div
+                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
+                        >
                             <div class="oe_kanban_content">
                                 <div>
                                     <strong class="o_kanban_record_title">
@@ -198,7 +189,11 @@
                         <div class="container">
                             <div class="o_kanban_card_manage_settings row">
                                 <div role="menuitem" aria-haspopup="true" class="col-6">
-                                    <field name="color" widget="kanban_color_picker" />
+                                    <ul
+                                        class="oe_kanban_colorpicker"
+                                        data-field="color"
+                                        role="popup"
+                                    />
                                 </div>
                                 <div role="menuitem" class="col-4">
                                     <a

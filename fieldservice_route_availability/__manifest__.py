@@ -15,5 +15,8 @@
     "depends": [
         "fieldservice_availability",
     ],
-    "data": [],
+    "data": [
+        "views/fsm_route.xml",
+        "views/fsm_blackout_day_templates.xml",
+    ],
 }

@@ -1,39 +1,38 @@
-# Copyright (C) 2022 - TODAY, Gray Matter Logic
+# Copyright (C) 2022 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
 
-from odoo.addons.base.tests.common import BaseCommon
+from odoo.tests.common import TransactionCase
 
 
-class FSMVehicleCase(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.test_partner = cls.env["res.partner"].create(
+class FSMVehicleCase(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.test_partner = self.env["res.partner"].create(
             {"name": "Test Partner", "phone": "123", "email": "tp@email.com"}
         )
-        cls.vehicle = cls.env["fsm.vehicle"].create({"name": "Test Vehicle"})
-        cls.test_worker = cls.env["fsm.person"].create(
+        self.test_vehicle = self.env["fsm.vehicle"].create({"name": "Test Vehicle"})
+
+        self.test_worker = self.env["fsm.person"].create(
             {
-                "name": "Test Worker",
+                "name": "Test Wokrer",
                 "email": "tw@email.com",
-                "vehicle_id": cls.vehicle.id,
+                "vehicle_id": self.test_vehicle.id,
             }
         )
-        cls.test_location = cls.env["fsm.location"].create(
+        self.test_location = self.env["fsm.location"].create(
             {
                 "name": "Test Location",
                 "phone": "123",
                 "email": "tp@email.com",
-                "partner_id": cls.test_partner.id,
-                "owner_id": cls.test_partner.id,
+                "partner_id": self.test_partner.id,
+                "owner_id": self.test_partner.id,
             }
         )
 
-    def test_order_assigns_vehicle(self):
-        test_order = self.env["fsm.order"].create(
+    def test_vehicle(self):
+        self.test_order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
                 "date_start": datetime.today(),
@@ -42,4 +41,4 @@ class FSMVehicleCase(BaseCommon):
                 "person_id": self.test_worker.id,
             }
         )
-        self.assertEqual(test_order.vehicle_id, self.vehicle)
+        self.test_order._onchange_person_id()

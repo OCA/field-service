@@ -1,0 +1,638 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* agreement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-08-11 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: agreement
+#. odoo-python
+#: code:addons/agreement/models/agreement.py:0
+msgid "%(code)s (copy)"
+msgstr "%(code)s (نسخة)"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__active
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "تنسيق استثناء النشاط"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_stage
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Add a stage workflow to legal agreements"
+msgstr "إضافة سير عمل بالمراحل إلى الاتفاقيات القانونية"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_legal_content
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Add legal content to agreements"
+msgstr "إضافة محتوى قانوني إلى الاتفاقيات"
+
+#. module: agreement
+#: model:ir.module.module,summary:agreement
+msgid "Adds an agreement object"
+msgstr "يضيف كائناً لإدارة الاتفاقيات"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Advanced Features"
+msgstr "الميزات المتقدمة"
+
+#. module: agreement
+#: model:ir.model,name:agreement.model_agreement
+#: model:res.groups.privilege,name:agreement.res_groups_privilege_agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_form
+msgid "Agreement"
+msgstr "اتفاقية"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_form
+msgid "Agreement Name"
+msgstr "اسم الاتفاقية"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_product
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Agreement on products"
+msgstr "ربط الاتفاقيات بالمنتجات"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_project
+msgid "Agreement on projects"
+msgstr "ربط الاتفاقيات بالمشروعات"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_sale
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Agreement on sales"
+msgstr "ربط الاتفاقيات بالمبيعات"
+
+#. module: agreement
+#: model:ir.actions.act_window,name:agreement.agreement_template_action
+msgid "Agreement Templates"
+msgstr "قوالب الاتفاقيات"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Agreement templates"
+msgstr "قوالب الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__agreement_type_id
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_form_view
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_search
+msgid "Agreement Type"
+msgstr "نوع الاتفاقية"
+
+#. module: agreement
+#: model:ir.actions.act_window,name:agreement.agreement_type_action
+#: model:ir.model,name:agreement.model_agreement_type
+msgid "Agreement Types"
+msgstr "أنواع الاتفاقيات"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Agreement types"
+msgstr "أنواع الاتفاقيات"
+
+#. module: agreement
+#: model:ir.actions.act_window,name:agreement.agreement_action
+#: model:ir.model.fields,field_description:agreement.field_res_partner__agreement_ids
+#: model:ir.model.fields,field_description:agreement.field_res_users__agreement_ids
+#: model:ir.module.module,name:agreement
+#: model:ir.ui.menu,name:agreement.agreement_menu
+#: model:ir.ui.menu,name:agreement.agreement_menu_root
+#: model_terms:ir.ui.view,arch_db:agreement.partner_form
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Agreements"
+msgstr "الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_partner__agreements_count
+#: model:ir.model.fields,field_description:agreement.field_res_users__agreements_count
+msgid "Agreements Count"
+msgstr "عدد الاتفاقيات"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_form
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_form_view
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "الكيان التجاري"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: agreement
+#: model:ir.model,name:agreement.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: agreement
+#: model:ir.ui.menu,name:agreement.agreement_setting_menu
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_form
+msgid "Configuration"
+msgstr "التهيئة"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Connections"
+msgstr "الارتباطات"
+
+#. module: agreement
+#: model:ir.model,name:agreement.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__create_uid
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__create_date
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__display_name
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__display_name
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:agreement.field_res_partner__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__domain
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__domain
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_search
+msgid "Domain"
+msgstr "النطاق"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_kanban
+msgid "Edit"
+msgstr "تحرير"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__end_date
+msgid "End Date"
+msgstr "تاريخ الانتهاء"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__has_message
+msgid "Has Message"
+msgstr "لديه رسالة"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Have a special kind of agreements which act as templates"
+msgstr "إنشاء نوع خاص من الاتفاقيات يُستخدم كقوالب"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_type
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Hierarchical agreement types (with sub-types) and review reminders"
+msgstr "أنواع اتفاقيات هرمية (مع أنواع فرعية) وتذكيرات بالمراجعة"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثنائي."
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__id
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__id
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__id
+#: model:ir.model.fields,field_description:agreement.field_res_partner__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حُدد، فستتطلب الرسائل الجديدة انتباهك."
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا حُدد، فبعض الرسائل بها خطأ في التسليم."
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__is_template
+msgid "Is a Template?"
+msgstr "هل هي قالب؟"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__write_uid
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__write_date
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Link projects to an agreement"
+msgstr "ربط المشروعات باتفاقية"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Manage agreements by types"
+msgstr "إدارة الاتفاقيات حسب النوع"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_legal
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Manage legal aspects of agreements"
+msgstr "إدارة الجوانب القانونية للاتفاقيات"
+
+#. module: agreement
+#: model:res.groups,name:agreement.group_agreement_manager
+msgid "Manager"
+msgstr "المدير"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_legal
+msgid "Module Agreement Legal"
+msgstr "وحدة الجوانب القانونية للاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_legal_content
+msgid "Module Agreement Legal Content"
+msgstr "وحدة المحتوى القانوني للاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_product
+msgid "Module Agreement Product"
+msgstr "وحدة اتفاقيات المنتجات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_project
+msgid "Module Agreement Project"
+msgstr "وحدة اتفاقيات المشروعات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_rebate
+msgid "Module Agreement Rebate"
+msgstr "وحدة الخصومات في الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_revision
+msgid "Module Agreement Revision"
+msgstr "وحدة مراجعات الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_sale
+msgid "Module Agreement Sale"
+msgstr "وحدة اتفاقيات المبيعات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_signature
+msgid "Module Agreement Signature"
+msgstr "وحدة توقيعات الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_stage
+msgid "Module Agreement Stage"
+msgstr "وحدة مراحل الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_termination
+msgid "Module Agreement Termination"
+msgstr "وحدة إنهاء الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__module_agreement_type
+msgid "Module Agreement Type"
+msgstr "وحدة أنواع الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__name
+#: model:ir.model.fields,field_description:agreement.field_agreement_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+msgid "Name or Number"
+msgstr "الاسم أو الرقم"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__partner_id
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: agreement
+#. odoo-python
+#: code:addons/agreement/models/agreement.py:0
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_search
+msgid "Purchase"
+msgstr "شراء"
+
+#. module: agreement
+#. odoo-python
+#: code:addons/agreement/models/agreement.py:0
+msgid "purchase"
+msgstr "شراء"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: agreement
+#: model:res.groups,name:agreement.group_agreement_readonly
+msgid "Read-Only Users"
+msgstr "مستخدمون للقراءة فقط"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_rebate
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Rebate in agreements"
+msgstr "إدارة الخصومات في الاتفاقيات"
+
+#. module: agreement
+#: model:ir.ui.menu,name:agreement.agreement_reporting_menu
+msgid "Reporting"
+msgstr "التقارير"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: agreement
+#. odoo-python
+#: code:addons/agreement/models/agreement.py:0
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_search
+msgid "Sale"
+msgstr "بيع"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+msgid "Search Agreements"
+msgstr "البحث في الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__agreement_type_id
+msgid "Select the type of agreement"
+msgstr "حدد نوع الاتفاقية"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__is_template
+msgid "Set if the agreement is a template. Template agreements don't require a partner."
+msgstr "حدد هذا الخيار إذا كانت الاتفاقية قالبا. لا تتطلب اتفاقيات القوالب شريكا."
+
+#. module: agreement
+#: model:ir.actions.act_window,name:agreement.action_agreement_config
+#: model:ir.ui.menu,name:agreement.agreement_settings
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__signature_date
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_search
+msgid "Signature Date"
+msgstr "تاريخ التوقيع"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__start_date
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناء على الأنشطة\n"
+"متأخر: انقضى تاريخ الاستحقاق\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
+
+#. module: agreement
+#: model:ir.ui.menu,name:agreement.agreement_template
+msgid "Templates"
+msgstr "القوالب"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_termination
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Term dates, notices and termination tracking for agreements"
+msgstr "تتبع تواريخ المدد والإشعارات وإنهاء الاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.constraint,message:agreement.constraint_agreement_code_uniq
+msgid "This agreement code already exists for this commercial entity!"
+msgstr "رمز الاتفاقية هذا موجود بالفعل لهذا الكيان التجاري!"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_signature
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Track signatories and the signed document of agreements"
+msgstr "تتبع الموقّعين والمستند الموقّع للاتفاقيات"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_res_config_settings__module_agreement_revision
+#: model_terms:ir.ui.view,arch_db:agreement.res_config_settings_view_form
+msgid "Track versions and revisions of legal agreements"
+msgstr "تتبع إصدارات الاتفاقيات القانونية ومراجعاتها"
+
+#. module: agreement
+#: model_terms:ir.ui.view,arch_db:agreement.agreement_type_list_view
+msgid "Type Name"
+msgstr "اسم النوع"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: agreement
+#: model:ir.ui.menu,name:agreement.agreement_type
+msgid "Types"
+msgstr "الأنواع"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__group_use_agreement_template
+#: model:res.groups,name:agreement.group_use_agreement_template
+msgid "Use agreement template"
+msgstr "استخدام قالب اتفاقية"
+
+#. module: agreement
+#: model:res.groups,name:agreement.group_use_agreement_type
+msgid "Use agreement type"
+msgstr "استخدام نوع اتفاقية"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_res_config_settings__group_use_agreement_type
+msgid "Use agreement types"
+msgstr "استخدام أنواع الاتفاقيات"
+
+#. module: agreement
+#: model:res.groups,name:agreement.group_agreement_user
+msgid "User"
+msgstr "المستخدم"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__website_message_ids
+msgid "Website communication history"
+msgstr "سجل مراسلات الموقع الإلكتروني"
+
+#. module: agreement
+#: model:ir.model.fields,field_description:agreement.field_agreement__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__end_date
+msgid "When the agreement ends."
+msgstr "تاريخ انتهاء الاتفاقية."
+
+#. module: agreement
+#: model:ir.model.fields,help:agreement.field_agreement__start_date
+msgid "When the agreement starts."
+msgstr "تاريخ بدء الاتفاقية."

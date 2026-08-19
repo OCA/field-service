@@ -1,9 +1,7 @@
 # Copyright (C) 2019 Brian McMaster
-# Copyright (C) 2019 Gray Matter Logic
+# Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from markupsafe import Markup
-
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -30,9 +28,8 @@ class SaleOrder(models.Model):
 
     @api.depends("order_line")
     def _compute_fsm_order_ids(self):
-        FSMOrder = self.env["fsm.order"]
         for sale in self:
-            fsm = FSMOrder.search(
+            fsm = self.env["fsm.order"].search(
                 [
                     "|",
                     ("sale_id", "in", sale.ids),
@@ -49,7 +46,6 @@ class SaleOrder(models.Model):
         the partner_shipping_id or the partner_id.commercial_partner_id if
         they are FS locations.
         """
-        FSMLocation = self.env["fsm.location"]
         for so in self:
             if so.partner_id.fsm_location:
                 domain = [("partner_id", "=", so.partner_id.id)]
@@ -61,7 +57,7 @@ class SaleOrder(models.Model):
                     ("partner_id", "=", so.partner_shipping_id.id),
                     ("partner_id", "=", so.partner_id.commercial_partner_id.id),
                 ]
-            so.fsm_location_id = FSMLocation.search(domain, limit=1)
+            so.fsm_location_id = self.env["fsm.location"].search(domain, limit=1)
 
     def _prepare_line_fsm_values(self, line):
         """
@@ -81,10 +77,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         template_id = kwargs.get("template_id", False)
         template_ids = kwargs.get("template_ids", [template_id])
-        template_ids = [tid for tid in template_ids if tid]
         templates = self.env["fsm.template"].search([("id", "in", template_ids)])
-        if not template_id and len(templates) == 1:
-            template_id = templates.id
         note = ""
         hours = 0.0
         categories = self.env["fsm.category"]
@@ -92,7 +85,7 @@ class SaleOrder(models.Model):
             note += template.instructions or ""
             hours += template.duration
             categories |= template.category_ids
-        return {
+        vals = {
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
             "request_early": self.expected_date,
@@ -105,6 +98,14 @@ class SaleOrder(models.Model):
             "template_id": template_id,
             "company_id": self.company_id.id,
         }
+        service_type = getattr(self.sale_order_template_id, "service_type", "other")
+        if service_type and service_type != "other":
+            order_type = self.env["fsm.order.type"].search(
+                [("service_type", "=", service_type)], limit=1
+            )
+            if order_type:
+                vals["type"] = order_type.id
+        return vals
 
     def _field_service_generate_sale_fsm_orders(self, new_fsm_sol):
         """
@@ -135,12 +136,11 @@ class SaleOrder(models.Model):
         Override this method to filter lines to generate FSM Orders for.
         """
         self.ensure_one()
-        FSMOrder = self.env["fsm.order"]
         new_fsm_orders = self.env["fsm.order"]
 
         for line in new_fsm_sol:
             vals = self._prepare_line_fsm_values(line)
-            fsm_by_line = FSMOrder.sudo().create(vals)
+            fsm_by_line = self.env["fsm.order"].sudo().create(vals)
             line.write({"fsm_order_id": fsm_by_line.id})
             new_fsm_orders |= fsm_by_line
 
@@ -191,33 +191,24 @@ class SaleOrder(models.Model):
         return created_fsm_orders
 
     def _post_fsm_message(self, fsm_orders):
+        """
+        Post messages to the Sale Order and the newly created FSM Orders
+        """
         self.ensure_one()
-
-        MessageSubtype = self.env.ref("mail.mt_note")
-        author_id = self.env.user.partner_id.id
-
-        def _fsm_link(fsm):
-            return Markup(
-                '<a href="#" data-oe-model="fsm.order" data-oe-id="%s">%s</a>'
-            ) % (fsm.id, fsm.name)
-
-        links = []
+        msg_fsm_links = ""
         for fsm_order in fsm_orders:
             fsm_order.message_mail_with_source(
                 "mail.message_origin_link",
                 render_values={"self": fsm_order, "origin": self},
-                subtype_id=MessageSubtype.id,
-                author_id=author_id,
+                subtype_id=self.env.ref("mail.mt_note").id,
+                author_id=self.env.user.partner_id.id,
             )
-            links.append(_fsm_link(fsm_order))
-
-        if not links:
-            return
-
-        body = Markup(self.env._("Field Service Order(s) Created: %s")) % Markup(
-            ", "
-        ).join(links)
-        self.message_post(body=body)
+            msg_fsm_links += (
+                f" <a href=# data-oe-model=fsm.order data-oe-id={fsm_order.id}>"
+                f"{fsm_order.name}</a>,"
+            )
+        so_msg_body = _("Field Service Order(s) Created: %s", msg_fsm_links)
+        self.message_post(body=so_msg_body[:-1])
 
     def _action_confirm(self):
         """On SO confirmation, some lines generate field service orders."""
@@ -229,7 +220,7 @@ class SaleOrder(models.Model):
             )
         ):
             if not self.fsm_location_id:
-                raise ValidationError(self.env._("FSM Location must be set"))
+                raise ValidationError(_("FSM Location must be set"))
             self._field_service_generation()
         return result
 

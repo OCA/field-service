@@ -8,8 +8,6 @@
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "category": "Project",
     "website": "https://github.com/OCA/field-service",
-    "maintainers": ["max3903"],
-    "development_status": "Beta",
     "depends": [
         # odoo
         "hr_timesheet",

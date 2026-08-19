@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="return_instruction_1" model="return.instruction">
+        <field name="name">Default Instruction</field>
+        <field name="name@ar_001">التعليمات الافتراضية</field>
+        <field name="instructions">To return a product purchased through our
+            platform vendor Marketplace access our online Returns Center and
+            click Return products to begin the application process for the
+            return.
+            Select the product you want to return and the reason for the
+            return. You will need you to provide detailed information to enable
+            the seller to handle your request. Once the seller has reviewed
+            your application, it will respond by e-mail within 3 working days.
+        </field>
+        <field name="instructions@ar_001">لإرجاع منتج تم شراؤه من خلال سوق
+            البائعين على منصتنا، يرجى الدخول إلى مركز الإرجاع الإلكتروني والنقر
+            على «إرجاع المنتجات» لبدء تقديم طلب الإرجاع. اختر المنتج الذي ترغب
+            في إرجاعه وحدد سبب الإرجاع. يجب تقديم معلومات مفصلة لتمكين البائع
+            من معالجة طلبك. وبعد مراجعة البائع للطلب، سيرد عبر البريد الإلكتروني
+            خلال ثلاثة أيام عمل.
+        </field>
+        <field name="is_default">1</field>
+    </record>
+    <record id="return_instruction_2" model="return.instruction">
+        <field name="name">Provisional Instruction</field>
+        <field name="name@ar_001">تعليمات مؤقتة</field>
+        <field name="instructions">Under the provisions of these Conditions of
+            Sale, you may return the products received once you have contacted
+            our customer service department adidas Mexico and the request is
+            authorized. If you choose to return your order, we will refund: the
+            full purchase price, as long as we have previously returned the
+            products you order in perfect condition: (i) new product unused,
+            (ii) with packaging, original box and tags (iii) be in the period
+            of 30 calendar days after receiving the product. If you do not
+            return the products to fulfill the above conditions, we are
+            entitled to charge the products or the costs of recovery.
+        </field>
+        <field name="instructions@ar_001">وفقًا لأحكام شروط البيع هذه، يجوز لك
+            إرجاع المنتجات المستلمة بعد التواصل مع قسم خدمة العملاء لدى أديداس
+            المكسيك والحصول على الموافقة على الطلب. إذا اخترت إرجاع طلبك، فسنعيد
+            إليك كامل سعر الشراء، شريطة أن تكون المنتجات قد أُعيدت إلينا مسبقًا
+            بحالة سليمة تمامًا: (1) أن يكون المنتج جديدًا وغير مستخدم، و(2) أن
+            يكون في عبوته وصندوقه الأصليين ومرفقًا ببطاقاته، و(3) أن تتم الإعادة
+            خلال ثلاثين يومًا تقويميًا من تاريخ استلام المنتج. إذا لم تُعَد
+            المنتجات مستوفيةً للشروط المذكورة أعلاه، فيحق لنا تحصيل ثمن المنتجات
+            أو تكاليف استردادها.
+        </field>
+    </record>
+    <!-- Warranty Information of PC Assemble SC234 Product in Supplier Info -->
+    <record id="product.product_product_3_product_template" model="product.template">
+        <field name="warranty">5</field>
+    </record>
+    <record id="product_supplierinfo_warranty_31" model="product.supplierinfo">
+        <field name="return_instructions" ref="return_instruction_2" />
+        <field name="warranty_return_partner">other</field>
+        <field name="warranty_return_other_address" ref="base.res_partner_address_7" />
+        <field name="warranty_duration">8</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_3_product_template"
+        />
+        <field name="partner_id" ref="base.res_partner_4" />
+        <field name="delay">5</field>
+        <field name="min_qty">1</field>
+    </record>
+    <record id="product_supplierinfo_warranty_32" model="product.supplierinfo">
+        <field name="return_instructions" ref="return_instruction_1" />
+        <field name="warranty_return_partner">supplier</field>
+        <field name="warranty_duration">12</field>
+        <field
+            name="product_tmpl_id"
+            ref="product.product_product_3_product_template"
+        />
+        <field name="partner_id" ref="base.res_partner_3" />
+        <field name="delay">5</field>
+        <field name="min_qty">1</field>
+    </record>
+    <!-- Warranty Information of iMac Product in Supplier Info -->
+    <record id="product.product_product_8_product_template" model="product.template">
+        <field name="warranty">5</field>
+    </record>
+    <record id="product.product_supplierinfo_5" model="product.supplierinfo">
+        <field name="return_instructions" ref="return_instruction_1" />
+        <field name="warranty_return_partner">supplier</field>
+        <field name="warranty_duration">10</field>
+    </record>
+    <record id="product.product_supplierinfo_6" model="product.supplierinfo">
+        <field name="return_instructions" ref="return_instruction_2" />
+        <field name="warranty_return_partner">supplier</field>
+        <field name="warranty_duration">6</field>
+    </record>
+</odoo>
