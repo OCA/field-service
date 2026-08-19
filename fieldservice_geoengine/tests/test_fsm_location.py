@@ -166,3 +166,16 @@ class TestFsmLocation(TransactionCase):
         self.assertTrue(test_location.shape)
         test_location.partner_longitude = False
         self.assertFalse(test_location.shape)
+
+    def test_multi_create(self):
+        """Locations can be created in batch."""
+        locations = self.FSMLocation.create(
+            [
+                {
+                    "name": f"Test location {loc_index}",
+                    "owner_id": self.location_partner_1.id,
+                }
+                for loc_index in range(2)
+            ]
+        )
+        self.assertTrue(locations)
