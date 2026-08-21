@@ -1,3 +1,4 @@
-Integrates the Field Service, Sale Agreements, and Stock Equipment modules, to:
+Integrates Field Service, Sale Agreements, and Stock Equipment so that:
 
-* Propagate the `agreement_id` field from the Sales Order to the FSM Equipment
+* When stock delivery creates FSM Equipment from a Sale Order line, the
+  Sale Order's `agreement_id` is copied onto the new FSM Equipment.
