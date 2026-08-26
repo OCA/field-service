@@ -10,6 +10,12 @@ class FSMLocation(models.Model):
     _inherits = {"res.partner": "partner_id"}
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _description = "Field Service Location"
+    # Aligned with searching by `name` in the search view,
+    # is overridden by search_on_complete_name (see `name_search`)
+    _rec_names_search = [
+        "name",
+        "ref",
+    ]
     _stage_type = "location"
 
     direction = fields.Html()
@@ -107,15 +113,18 @@ class FSMLocation(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):
-        args = args or []
         recs = self.browse()
-        if name:
-            recs = self.search([("ref", "ilike", name)] + args, limit=limit)
-        if not recs and self.env.company.search_on_complete_name:
+        if self.env.company.search_on_complete_name:
+            args = args or []
             recs = self.search([("complete_name", operator, name)] + args, limit=limit)
-        if not recs and not self.env.company.search_on_complete_name:
-            recs = self.search([("name", operator, name)] + args, limit=limit)
-        return recs.name_get()
+
+        if recs:
+            result = recs.name_get()
+        else:
+            result = super().name_search(
+                name=name, args=args, operator=operator, limit=limit
+            )
+        return result
 
     @api.onchange("fsm_parent_id")
     def _onchange_fsm_parent_id(self):

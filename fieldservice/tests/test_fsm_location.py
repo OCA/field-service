@@ -283,3 +283,24 @@ class FSMLocation(TransactionCase):
                 [("active", "=", False), ("id", "in", children_loc.ids)]
             )
         )
+
+    def test_search_no_ref(self):
+        """
+        Quick search finds locations with no reference too.
+        """
+        # Arrange
+        no_ref_location = self.test_location.copy(
+            default={
+                "name": "Test ref location",
+                "ref": False,
+            }
+        )
+        ref_location = no_ref_location.copy(default={"ref": "Some ref"})
+
+        # Act
+        quick_search_results = self.Location.name_search("ref")
+
+        # Assert
+        found_ids = [result[0] for result in quick_search_results]
+        self.assertIn(no_ref_location.id, found_ids)
+        self.assertIn(ref_location.id, found_ids)
