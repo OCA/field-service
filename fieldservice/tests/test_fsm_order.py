@@ -3,6 +3,8 @@
 
 from datetime import timedelta
 
+from freezegun import freeze_time
+
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
@@ -332,13 +334,14 @@ class TestFSMOrder(TransactionCase):
         )
         order.stage_id.require_signature = True
         # Sign it
-        Wizard = self.env["fsm.order.sign.wizard"].with_context(
-            active_model=order._name, active_id=order.id
-        )
-        with Form(Wizard) as wizard_form:
-            wizard_form.signed_by = "Test Customer"
-            wizard_form.signature = TEST_IMAGE_BASE64
-        wizard_form.record.action_sign()
-        # Check that the signature has been updated
-        self.assertEqual(order.signed_by, "Test Customer")
-        self.assertEqual(order.signed_on, fields.Datetime.now())
+        with freeze_time(fields.Datetime.now()):
+            Wizard = self.env["fsm.order.sign.wizard"].with_context(
+                active_model=order._name, active_id=order.id
+            )
+            with Form(Wizard) as wizard_form:
+                wizard_form.signed_by = "Test Customer"
+                wizard_form.signature = TEST_IMAGE_BASE64
+            wizard_form.record.action_sign()
+            # Check that the signature has been updated
+            self.assertEqual(order.signed_by, "Test Customer")
+            self.assertEqual(order.signed_on, fields.Datetime.now())

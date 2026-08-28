@@ -66,7 +66,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         templates = line.product_id.fsm_order_template_id
         vals = self._prepare_fsm_values(
-            so_id=self.id, sol_id=line.id, template_id=templates.id
+            so_id=self.id, sol_id=line.id, templates=templates
         )
         return vals
 
@@ -75,9 +75,8 @@ class SaleOrder(models.Model):
         Prepare the values to create a new FSM Order from a sale order.
         """
         self.ensure_one()
-        template_id = kwargs.get("template_id", False)
-        template_ids = kwargs.get("template_ids", [template_id])
-        templates = self.env["fsm.template"].search([("id", "in", template_ids)])
+        templates = kwargs.get("templates", self.env["fsm.template"])
+        template_id = templates.id if len(templates) == 1 else False
         note = ""
         hours = 0.0
         categories = self.env["fsm.category"]
@@ -85,6 +84,7 @@ class SaleOrder(models.Model):
             note += template.instructions or ""
             hours += template.duration
             categories |= template.category_ids
+        order_types = templates.mapped("type_id")
         return {
             "location_id": self.fsm_location_id.id,
             "location_directions": self.fsm_location_id.direction,
@@ -96,6 +96,7 @@ class SaleOrder(models.Model):
             "sale_id": kwargs.get("so_id", False),
             "sale_line_id": kwargs.get("sol_id", False),
             "template_id": template_id,
+            "type": order_types.id if len(order_types) == 1 else False,
             "company_id": self.company_id.id,
         }
 
@@ -112,12 +113,10 @@ class SaleOrder(models.Model):
             )
             if not fsm_by_sale:
                 templates = new_fsm_sol.product_id.fsm_order_template_id
-                vals = self._prepare_fsm_values(
-                    so_id=self.id, template_ids=templates.ids
-                )
+                vals = self._prepare_fsm_values(so_id=self.id, templates=templates)
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
                 new_fsm_orders |= fsm_by_sale
-            new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
+            new_fsm_sol.fsm_order_id = fsm_by_sale.id
 
         return new_fsm_orders
 
@@ -133,7 +132,7 @@ class SaleOrder(models.Model):
         for line in new_fsm_sol:
             vals = self._prepare_line_fsm_values(line)
             fsm_by_line = self.env["fsm.order"].sudo().create(vals)
-            line.write({"fsm_order_id": fsm_by_line.id})
+            line.fsm_order_id = fsm_by_line.id
             new_fsm_orders |= fsm_by_line
 
         return new_fsm_orders

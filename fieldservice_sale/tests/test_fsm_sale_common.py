@@ -13,6 +13,11 @@ class TestFSMSale(TestSaleCommonBase):
     def setUpFSMTemplates(cls):
         # Create some templates to use on the FSM products
         FSMTemplate = cls.env["fsm.template"]
+        cls.fsm_order_type = cls.env["fsm.order.type"].create(
+            {
+                "name": "Test FSM Order Type",
+            }
+        )
 
         # Template 1
         cls.fsm_template_1 = FSMTemplate.create(
@@ -20,6 +25,7 @@ class TestFSMSale(TestSaleCommonBase):
                 "name": "Test FSM Template #1",
                 "instructions": "These are the instructions for Template #1",
                 "duration": 2.25,
+                "type_id": cls.fsm_order_type.id,
             }
         )
         # Template 2
