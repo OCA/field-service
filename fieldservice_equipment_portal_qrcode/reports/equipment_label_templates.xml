@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_equipment_qr_label">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div style="width: 50%; float: left;">
+                        <h1
+                            style="font-size: 3mm; font-weight: bold; margin-bottom: 2mm;"
+                        >
+                            <t t-esc="o.company_id.name" />
+                        </h1>
+                        <p style="margin: 1mm 0 0; font-size: 1.8mm;" t-if="o.lot_id">
+                            <b>Serial:</b>
+                            <t t-esc="o.lot_id.name" />
+                        </p>
+                        <p style="margin: 1mm 0 0; font-size: 1.8mm;">
+                            <b>
+                                <t t-esc="o.name" />
+                            </b>
+                        </p>
+                    </div>
+                    <div style="width: 50%; float: right; text-align: center;">
+                        <img
+                            t-if="o.company_id.labels_logo or o.company_id.logo"
+                            t-att-src="image_data_uri(o.company_id.labels_logo or o.company_id.logo)"
+                            style="height: 12mm; margin-bottom: 1mm;"
+                        />
+                        <img
+                            t-att-src="image_data_uri(o.qrcode)"
+                            style="height: 22mm; margin-top: 1mm;"
+                        />
+                    </div>
+                    <div
+                        style="display: block; clear: both; page-break-after: avoid;"
+                    />
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
