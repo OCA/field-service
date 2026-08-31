@@ -14,10 +14,14 @@ class FSMLocation(models.Model):
     custom_color = fields.Char(related="stage_id.custom_color", string="Stage Color")
 
     @api.model_create_multi
-    def create(self, vals):
-        res = super(FSMLocation, self).create(vals)
-        if not res.partner_latitude or not res.partner_longitude:
-            res.with_context(force_geo_localize=True).geo_localize()
+    def create(self, vals_list):
+        res = super(FSMLocation, self).create(vals_list)
+        not_localized_locations = res.filtered(
+            lambda location: not location.partner_latitude
+            or not location.partner_longitude
+        )
+        if not_localized_locations:
+            not_localized_locations.with_context(force_geo_localize=True).geo_localize()
         return res
 
     def geo_localize(self):
