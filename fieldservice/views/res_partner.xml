@@ -47,7 +47,24 @@
                                 context="{'default_contact_id': id}"
                             />
                         </group>
-                        <group />
+                        <group>
+                            <button
+                                name="action_fsm_convert_to_location"
+                                type="object"
+                                string="Convert to FS Location"
+                                class="btn-link"
+                                invisible="fsm_location"
+                                groups="fieldservice.group_fsm_dispatcher"
+                            />
+                            <button
+                                name="action_fsm_convert_to_person"
+                                type="object"
+                                string="Convert to FS Worker"
+                                class="btn-link"
+                                invisible="fsm_person"
+                                groups="fieldservice.group_fsm_dispatcher"
+                            />
+                        </group>
                     </group>
                 </page>
             </notebook>
