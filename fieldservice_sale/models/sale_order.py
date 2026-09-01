@@ -79,6 +79,10 @@ class SaleOrder(models.Model):
         self.ensure_one()
         template_id = kwargs.get("template_id", False)
         template_ids = kwargs.get("template_ids", [template_id])
+        # If only 1 template_ids is given, use it as template_id
+        # As it's the only template to consider
+        if len(template_ids) == 1 and not template_id:
+            template_id = template_ids[0]
         templates = self.env["fsm.template"].search([("id", "in", template_ids)])
         note = ""
         hours = 0.0
@@ -118,6 +122,9 @@ class SaleOrder(models.Model):
                     so_id=self.id, template_ids=templates.ids
                 )
                 fsm_by_sale = self.env["fsm.order"].sudo().create(vals)
+                # Update the FSM Order based on the template
+                if len(templates.ids) == 1:
+                    fsm_by_sale._onchange_template_id()
                 new_fsm_orders |= fsm_by_sale
             new_fsm_sol.write({"fsm_order_id": fsm_by_sale.id})
 
