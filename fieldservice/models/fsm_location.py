@@ -10,8 +10,15 @@ class FSMLocation(models.Model):
     _inherits = {"res.partner": "partner_id"}
     _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
     _description = "Field Service Location"
+    # Is overridden by search_on_complete_name (see `name_search`)
+    _rec_names_search = [
+        "email",
+        "name",
+        "partner_id.vat",
+        "ref",
+    ]
     _stage_type = "location"
-    _rec_names_search = ["complete_name"]
+    _rec_name = "complete_name"
 
     direction = fields.Html()
     partner_id = fields.Many2one(
@@ -75,22 +82,19 @@ class FSMLocation(models.Model):
     )
 
     @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        args = args or []
-        if name:
-            locations = self.search(
-                [
-                    "|",
-                    "|",
-                    ("name", operator, name),
-                    ("partner_id.vat", operator, name),
-                    ("email", operator, name),
-                ]
-                + args,
-                limit=limit,
+    def name_search(self, name, args=None, operator="ilike", limit=100):
+        recs = self.browse()
+        if self.env.company.search_on_complete_name:
+            args = args or []
+            recs = self.search([("complete_name", operator, name)] + args, limit=limit)
+
+        if recs:
+            result = recs.name_get()
+        else:
+            result = super().name_search(
+                name=name, args=args, operator=operator, limit=limit
             )
-            return locations.name_get()
-        return super().name_search(name, args, operator, limit)
+        return result
 
     @api.model_create_multi
     def create(self, vals_list):
