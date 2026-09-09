@@ -111,6 +111,12 @@ class FSMLocation(FSMCommon):
         self.location_3.parent_id = self.location_2
         self.location_2.parent_id = self.location_1
         self.location_1.parent_id = self.test_location
+        # parent_path must include full ancestor chain (collation-safe store)
+        self.assertEqual(
+            self.location_3.parent_path,
+            f"{self.test_location.id}/{self.location_1.id}/"
+            f"{self.location_2.id}/{self.location_3.id}/",
+        )
         # Test sublocation_count of each level
         self.assertEqual(
             (
