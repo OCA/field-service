@@ -3,7 +3,9 @@
 
 from odoo import api, fields, models
 from odoo.api import Self
+from odoo.exceptions import UserError
 from odoo.fields import Domain
+from odoo.tools import SQL
 
 
 class FSMLocation(models.Model):
@@ -154,6 +156,48 @@ class FSMLocation(models.Model):
         self.country_id = self.parent_id.country_id
         self.tz = self.parent_id.tz
         self.territory_id = self.parent_id.territory_id
+
+    def _parent_store_update(self):
+        """Update parent_path using LIKE, not ASCII range bounds.
+
+        Odoo core matches descendants with
+        ``parent_path < left(parent_path, -1) || '0'``, which assumes
+        ``'/' < '0'``. That is false under common DB collations such as
+        ``en_US.utf8``, so descendant paths are left stale and
+        ``child_of`` / sublocation counts break.
+        """
+        for parent, records in self.grouped(self._parent_name).items():
+            prefix = parent.parent_path or ""
+            if prefix:
+                parent_ids = {int(label) for label in prefix.split("/")[:-1]}
+                if not parent_ids.isdisjoint(records._ids):
+                    raise UserError(self.env._("Recursion Detected."))
+            updated = dict(
+                self.env.execute_query(
+                    SQL(
+                        """ UPDATE %(table)s child
+                            SET parent_path = concat(%(prefix)s, substr(
+                                child.parent_path,
+                                length(node.parent_path)
+                                - length(node.id || '/') + 1))
+                            FROM %(table)s node
+                            WHERE node.id IN %(ids)s
+                            AND (
+                                child.id = node.id
+                                OR child.parent_path LIKE
+                                    concat(node.parent_path, chr(37))
+                            )
+                            RETURNING child.id, child.parent_path """,
+                        table=SQL.identifier(self._table),
+                        prefix=prefix,
+                        ids=tuple(records.ids),
+                    )
+                )
+            )
+            field = self._fields["parent_path"]
+            for id_, path in updated.items():
+                field._update_cache(self.browse(id_), path)
+            self.browse(updated).modified(["parent_path"])
 
     @api.onchange("territory_id")
     def _onchange_territory_id(self):
