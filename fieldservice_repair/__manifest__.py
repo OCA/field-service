@@ -17,7 +17,6 @@
     "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": [
-        "smangukiya",
         "max3903",
     ],
     "installable": True,
