@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class FSMLocation(TransactionCase):
@@ -344,3 +345,24 @@ class FSMLocation(TransactionCase):
         )
         self.assertEqual(location.partner_id, partner)
         self.assertFalse(location.partner_id.parent_id)
+
+    def test_search_no_ref(self):
+        """
+        Quick search finds locations with no reference too.
+        """
+        # Arrange
+        no_ref_location = self.test_location.copy(
+            default={
+                "name": "Test ref location",
+                "ref": False,
+            }
+        )
+        ref_location = no_ref_location.copy(default={"ref": "Some ref"})
+
+        # Act
+        quick_search_results = self.Location.name_search("ref")
+
+        # Assert
+        found_ids = [result[0] for result in quick_search_results]
+        self.assertIn(no_ref_location.id, found_ids)
+        self.assertIn(ref_location.id, found_ids)
