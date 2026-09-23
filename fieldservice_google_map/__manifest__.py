@@ -27,7 +27,6 @@
     "installable": True,
     "development_status": "Beta",
     "maintainers": [
-        "wolfhall",
         "max3903",
     ],
 }
