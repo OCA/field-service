@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="rule_fsm_equipment_portal" model="ir.rule">
+        <field name="name">Equipment: portal users see their own</field>
+        <field name="model_id" ref="fieldservice.model_fsm_equipment" />
+        <field name="domain_force">
+            ['|', '|',
+                ('owned_by_id', 'child_of', user.partner_id.commercial_partner_id.id),
+                ('managed_by_id', 'child_of', user.partner_id.commercial_partner_id.id),
+                ('message_partner_ids', 'in', [user.partner_id.id]),
+            ]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>
