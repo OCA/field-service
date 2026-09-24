@@ -1,0 +1,41 @@
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="fsm_partial_delivery_wizard_form" model="ir.ui.view">
+        <field name="name">fsm.partial.delivery.wizard.form</field>
+        <field name="model">fsm.partial.delivery.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Adjust Delivery">
+                <sheet>
+                    <group>
+                        <notebook>
+                            <page string="Delivery Adjustments">
+                                <field name="sale_line_ids">
+                                    <list editable="bottom">
+                                        <field
+                                            name="product_id"
+                                            options="{'no_create': True, 'no_create_edit': True}"
+                                        />
+                                        <field name="requested_quantity" readonly="1" />
+                                        <field name="quantity_done" />
+                                        <field name="discount" />
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        string="Confirm"
+                        type="object"
+                        name="action_confirm_partial_delivery"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
