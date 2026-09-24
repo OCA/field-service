@@ -1,0 +1,24 @@
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form.fieldservice</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_fsm_orders"
+                    groups="fieldservice.group_fsm_user"
+                    type="object"
+                    icon="fa-map"
+                >
+                    <field
+                        name="fsm_order_count"
+                        widget="statinfo"
+                        string="FSM Orders"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
