@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 Fieldservice Availability
 =========================
@@ -17,7 +13,7 @@ Fieldservice Availability
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -32,27 +28,46 @@ Fieldservice Availability
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module defines blackout days (non-operational days), stress days
-(high-demand periods), and delivery time ranges for field service
-operations. It provides the necessary models to store this information,
-which can be used by other modules to manage scheduling, availability,
-and workload adjustments.
+This module defines blackout days (non-operational days), blackout
+groups, stress days (high-demand periods), and delivery time ranges for
+field service operations. It provides the necessary models and
+hierarchical resolution methods used by other modules to manage
+scheduling, availability, and workload adjustments.
 
-- **Blackout Days (\`fsm.blackout.day\`)**: Represent dates when field
-  service operations are unavailable (e.g., holidays, company-wide
-  closures).
-- **Blackout Groups (\`fsm.blackout.group\`)**: Represent groups of days
+- **Blackout Days (``fsm.blackout.day``)**: Represent specific dates
   when field service operations are unavailable (e.g., holidays,
   company-wide closures).
-- **Stress Days (\`fsm.stress.day\`)**: Indicate dates with increased
+- **Blackout Groups (``fsm.blackout.group``)**: Allow grouping blackout
+  days by geographical regions or postal codes (ZIPs).
+- **Stress Days (``fsm.stress.day``)**: Indicate dates with increased
   service demand (e.g., peak business periods requiring additional
   workforce).
-- **Delivery Time Ranges (\`fsm.delivery.time.range\`)**: Define
-  available time slots for scheduling field service operations.
+- **Delivery Time Ranges (``fsm.delivery.time.range``)**: Reusable
+  master schedules defining available time slots for field service
+  operations. Time ranges can be defined as **Default** (year-round) or
+  **Seasonal** (recurring date intervals with start/end month and day).
 
-This is a technical module and does not provide functionality on its
-own. Extend this module to integrate availability management into field
-service workflows.
+Hierarchical Schedule Resolution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Delivery time ranges are linked via ``Many2many`` relationships to
+Locations (``fsm.location``) and Routes (``fsm.route``). When requesting
+the active delivery schedule for a location on a specific date, the
+system resolves the active time window using the following hierarchy:
+
+1. **Location Seasonal Schedule**: Active recurring date window on the
+   target date assigned to the location.
+2. **Location Default Schedule**: Year-round default schedule assigned
+   to the location.
+3. **Route Seasonal Schedule**: Active recurring date window on the
+   target date assigned to the location's route.
+4. **Route Default Schedule**: Year-round default schedule assigned to
+   the location's route.
+5. **Global Fallback**: Default system-wide delivery time range.
+
+This is a technical module and does not provide standalone order
+processing on its own. Extend this module to integrate availability
+management into field service sale and stock workflows.
 
 **Table of contents**
 
@@ -62,9 +77,44 @@ service workflows.
 Usage
 =====
 
-Navigate to Field Service > Configuration > Scheduling. Once there, you
-can select Delivery Time Ranges, Blackout Days, Blackout Groups or
-Festive Days to create new records.
+1. Defining Delivery Time Ranges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Navigate to **Field Service > Configuration > Availability > Delivery
+   Time Ranges**.
+2. Click **New** to create a time range.
+3. Set the **Start Time** and **End Time** (e.g., ``08:00`` to
+   ``14:00``).
+4. To create a **Default Schedule** (active year-round), leave the
+   *Seasonal Validity* section empty.
+5. To create a **Seasonal Schedule** (e.g., summer hours):
+
+   - Select the **Start Month** and **Start Day** (e.g., June 1).
+   - Select the **End Month** and **End Day** (e.g., September 30).
+
+2. Assigning Schedules to Routes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Navigate to **Field Service > Master Data > Routes**.
+2. Select a route and navigate to the **Default Delivery Schedule**
+   section.
+3. Select one or more **Delivery Time Ranges** (allowing 1 default
+   year-round schedule and optional seasonal schedules).
+
+3. Assigning Schedules to Locations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Navigate to **Field Service > Master Data > Locations**.
+2. Select a location and select specific **Delivery Time Ranges** for
+   this location. Any schedule assigned directly to the location will
+   override route-level defaults.
+
+4. Configuring Blackout and Stress Days
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Navigate to **Field Service > Configuration > Availability**.
+2. Select **Blackout Days**, **Blackout Groups**, or **Stress Days** to
+   add operational exceptions or demand surges.
 
 Bug Tracker
 ===========

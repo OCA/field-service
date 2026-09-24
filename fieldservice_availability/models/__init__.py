@@ -3,4 +3,6 @@
 from . import fsm_blackout_day
 from . import fsm_blackout_group
 from . import fsm_delivery_time_range
+from . import fsm_location
+from . import fsm_route
 from . import fsm_stress_day

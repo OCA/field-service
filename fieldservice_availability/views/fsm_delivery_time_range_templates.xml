@@ -7,11 +7,15 @@
         <field name="model">fsm.delivery.time.range</field>
         <field name="arch" type="xml">
             <list name="Delivery Time Ranges">
+                <field name="sequence" widget="handle" />
                 <field name="name" readonly="1" />
                 <field name="start_time" widget="float_time" />
                 <field name="end_time" widget="float_time" />
-                <field name="route_id" />
-                <field name="sequence" />
+                <field name="is_seasonal" />
+                <field name="day_start" optional="show" />
+                <field name="month_start" optional="show" />
+                <field name="day_end" optional="show" />
+                <field name="month_end" optional="show" />
             </list>
         </field>
     </record>
@@ -23,11 +27,24 @@
             <form string="Delivery Time Range">
                 <sheet>
                     <group>
-                        <field name="name" />
-                        <field name="start_time" widget="float_time" />
-                        <field name="end_time" widget="float_time" />
-                        <field name="route_id" />
-                        <field name="sequence" />
+                        <group string="Hours">
+                            <field name="start_time" widget="float_time" />
+                            <field name="end_time" widget="float_time" />
+                        </group>
+                        <group string="Seasonal Validity (Recurring)">
+                            <field name="month_start" required="month_end" />
+                            <field
+                                name="day_start"
+                                invisible="not month_start"
+                                required="month_start"
+                            />
+                            <field name="month_end" required="month_start" />
+                            <field
+                                name="day_end"
+                                invisible="not month_end"
+                                required="month_end"
+                            />
+                        </group>
                     </group>
                 </sheet>
             </form>
