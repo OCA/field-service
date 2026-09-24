@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_preventive_type_list_view" model="ir.ui.view">
+        <field name="name">fsm.preventive.type.list</field>
+        <field name="model">fsm.preventive.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="code" />
+                <field name="order_type_id" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+    <record id="action_fsm_preventive_type" model="ir.actions.act_window">
+        <field name="name">Preventive Visit Types</field>
+        <field name="res_model">fsm.preventive.type</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+    <menuitem
+        id="menu_fsm_preventive_type"
+        name="Preventive Visit Types"
+        action="action_fsm_preventive_type"
+        parent="fieldservice.menu_fsm_config_order"
+        groups="fieldservice.group_fsm_manager"
+        sequence="50"
+    />
+</odoo>
