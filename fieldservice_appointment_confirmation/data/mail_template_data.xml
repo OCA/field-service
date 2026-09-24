@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="mail_template_appointment_request" model="mail.template">
+        <field name="name">FSM Appointment: Confirmation Request</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="subject">Please confirm your appointment {{ object.name }}</field>
+        <field
+            name="email_from"
+        >{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+        <field name="partner_to">{{ object.location_id.partner_id.id }}</field>
+        <field name="lang">{{ object.location_id.partner_id.lang }}</field>
+        <field name="body_html" type="html">
+            <div
+                style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#333;"
+            >
+                <p>Dear <t t-out="object.location_id.partner_id.name or ''" />,</p>
+                <p>We would like to confirm the details of your upcoming
+                        service appointment. Please review the information below
+                        and let us know whether it works for you.</p>
+                <table
+                    style="border-collapse:collapse;margin:16px 0;width:100%;max-width:520px;"
+                >
+                    <tr>
+                        <td style="padding:6px 12px;font-weight:bold;">Order</td>
+                        <td style="padding:6px 12px;">
+                            <t t-out="object.name or ''" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding:6px 12px;font-weight:bold;"
+                        >Date &amp; time</td>
+                        <td style="padding:6px 12px;">
+                            <t
+                                t-out="format_datetime(object.scheduled_date_start) or ''"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding:6px 12px;font-weight:bold;"
+                        >Estimated duration</td>
+                        <td style="padding:6px 12px;">
+                                <t t-out="object.scheduled_duration or 0" /> h
+                            </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 12px;font-weight:bold;">Address</td>
+                        <td style="padding:6px 12px;">
+                            <t t-out="object.street or ''" />
+                            <t t-out="object.city and (', ' + object.city) or ''" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding:6px 12px;font-weight:bold;"
+                        >Assigned worker</td>
+                        <td style="padding:6px 12px;">
+                            <t t-out="object.person_id.name or ''" />
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin:24px 0;">
+                    <a
+                        t-att-href="object._get_appointment_url('confirm')"
+                        style="background-color:#875A7B;color:#fff;text-decoration:none;padding:12px 22px;border-radius:4px;font-weight:bold;display:inline-block;margin-right:8px;"
+                    >Confirm Appointment</a>
+                    <a
+                        t-att-href="object._get_appointment_url('reschedule')"
+                        style="background-color:#E7E9ED;color:#374151;text-decoration:none;padding:12px 22px;border-radius:4px;font-weight:bold;display:inline-block;"
+                    >Reschedule</a>
+                </div>
+                <p style="color:#888;font-size:12px;">If the buttons do not work,
+                        please contact us and we will be happy to help.</p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_appointment_confirmed" model="mail.template">
+        <field name="name">FSM Appointment: Confirmed Notification</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field name="subject">Appointment {{ object.name }} confirmed</field>
+        <field name="body_html" type="html">
+            <div
+                style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#333;"
+            >
+                <p>The customer has <strong>confirmed</strong> the appointment.</p>
+                <ul>
+                    <li>Order: <t t-out="object.name or ''" /></li>
+                    <li>Confirmed on:
+                            <t
+                        t-out="format_datetime(object.appointment_confirmed_date) or ''"
+                    />
+                        </li>
+                    <li>Scheduled for:
+                            <t
+                        t-out="format_datetime(object.scheduled_date_start) or ''"
+                    />
+                        </li>
+                    <li>Assigned worker: <t t-out="object.person_id.name or ''" /></li>
+                </ul>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_appointment_rescheduled" model="mail.template">
+        <field name="name">FSM Appointment: Rescheduled (customer)</field>
+        <field name="model_id" ref="fieldservice.model_fsm_order" />
+        <field
+            name="subject"
+        >Your appointment {{ object.name }} has been rescheduled and confirmed</field>
+        <field
+            name="email_from"
+        >{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+        <field name="partner_to">{{ object.location_id.partner_id.id }}</field>
+        <field name="lang">{{ object.location_id.partner_id.lang }}</field>
+        <field name="body_html" type="html">
+            <div
+                style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#333;"
+            >
+                <p>Dear <t t-out="object.location_id.partner_id.name or ''" />,</p>
+                <p>Your service appointment has been <strong>rescheduled and
+                        confirmed</strong>. Here are the new details:</p>
+                <table
+                    style="border-collapse:collapse;margin:16px 0;width:100%;max-width:520px;"
+                >
+                    <tr>
+                        <td style="padding:6px 12px;font-weight:bold;">Order</td>
+                        <td style="padding:6px 12px;">
+                            <t t-out="object.name or ''" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding:6px 12px;font-weight:bold;"
+                        >New date &amp; time</td>
+                        <td style="padding:6px 12px;">
+                            <t
+                                t-out="format_datetime(object.scheduled_date_start) or ''"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="padding:6px 12px;font-weight:bold;"
+                        >Assigned worker</td>
+                        <td style="padding:6px 12px;">
+                            <t t-out="object.person_id.name or ''" />
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin:24px 0;">
+                    <a
+                        t-att-href="object._get_appointment_url('reschedule')"
+                        style="background-color:#E7E9ED;color:#374151;text-decoration:none;padding:12px 22px;border-radius:4px;font-weight:bold;display:inline-block;"
+                    >Change date again</a>
+                </div>
+                <p style="color:#888;font-size:12px;">If you did not request this
+                        change, please contact us.</p>
+            </div>
+        </field>
+    </record>
+</odoo>
