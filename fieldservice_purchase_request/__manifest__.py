@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Purchase Request",
     "summary": "Request parts (purchase requests) from field service orders",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "license": "AGPL-3",
     "development_status": "Beta",
     "website": "https://github.com/OCA/field-service",
@@ -11,5 +11,5 @@
     "author": "Pop Solutions, Odoo Community Association (OCA)",
     "maintainers": ["marcos-mendez"],
     "depends": ["fieldservice", "purchase_request"],
-    "data": ["views/fsm_order_views.xml"],
+    "data": ["views/fsm_order_views.xml", "views/fsm_equipment_views.xml"],
 }
