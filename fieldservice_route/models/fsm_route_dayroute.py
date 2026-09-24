@@ -88,7 +88,7 @@ class FSMRouteDayRoute(models.Model):
             [("stage_type", "=", "route"), ("is_default", "=", True)], limit=1
         )
 
-    @api.depends("route_id", "order_ids")
+    @api.depends("route_id", "order_ids", "max_order")
     def _compute_order_count(self):
         for rec in self:
             rec.order_count = len(rec.order_ids)
@@ -154,10 +154,29 @@ class FSMRouteDayRoute(models.Model):
     @api.constrains("route_id", "max_order", "order_count")
     def check_capacity(self):
         for rec in self:
-            if rec.route_id and rec.order_count > rec.max_order:
+            # max_order = 0 means "no limit" (the field's default): see
+            # _get_dayroute_domain in fsm_order.py, which treats it the
+            # same way when looking for a dayroute with free capacity.
+            if rec.route_id and rec.max_order and rec.order_count > rec.max_order:
                 raise ValidationError(
                     _(
                         "The day route is exceeding the maximum number of "
                         "orders of the route."
                     )
                 )
+
+    def _is_removable(self):
+        """Whether this (now possibly empty) dayroute can be deleted.
+
+        A separate, overridable hook instead of inlining the check where
+        it's used: extensions that hang other content off a dayroute
+        besides ``order_ids`` (e.g. assignments of helper technicians)
+        can override this to keep it alive without having to re-implement
+        the cleanup call sites.
+        """
+        self.ensure_one()
+        return not self.order_ids
+
+    def _unlink_removable(self):
+        """Delete the subset of ``self`` that ``_is_removable()``."""
+        return self.exists().filtered(lambda r: r._is_removable()).unlink()

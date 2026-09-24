@@ -45,23 +45,24 @@ Configuration
 
 To use this module, you need to:
 
--  Go to Field Service > Configuration > Stages
--  Define the workflow of your routes by creating new stages whose type
-   is "Route"
--  Go to Field Service > Master Data > Routes
--  Create your routes by setting their name and selecting their
-   territory
+- Go to Field Service > Configuration > Stages
+- Define the workflow of your routes by creating new stages whose type
+  is "Route"
+- Go to Field Service > Master Data > Routes
+- Create your routes by setting their name and selecting their territory
+- Set "Maximum Orders" on a route to cap how many orders a day route for
+  it can hold; leave it at its default of 0 for no limit
 
 Usage
 =====
 
 To use this module, you need to:
 
--  Go to Field Service
--  Create or select an order
--  Assign it to a worker and schedule it
--  Go to Field Service > Dashboard > Day Routes. A new record has been
-   created.
+- Go to Field Service
+- Create or select an order
+- Assign it to a worker and schedule it
+- Go to Field Service > Dashboard > Day Routes. A new record has been
+  created.
 
 Bug Tracker
 ===========
@@ -84,20 +85,20 @@ Authors
 Contributors
 ------------
 
--  Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
--  Nikul Chaudhary <nikul.chaudhary.serpentcs@gmail.com>
--  Freni Patel <fpatel@opensourceintegrators.com>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+- Nikul Chaudhary <nikul.chaudhary.serpentcs@gmail.com>
+- Freni Patel <fpatel@opensourceintegrators.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Víctor Martínez
+  - Víctor Martínez
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Open Source Integrators <https://opensourceintegrators.com>
--  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Open Source Integrators <https://opensourceintegrators.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainers
 -----------

@@ -57,6 +57,8 @@ class FSMOrder(models.Model):
         return [
             ("person_id", "=", values["person_id"]),
             ("date", "=", values["date"]),
+            "|",
+            ("max_order", "=", 0),
             ("order_remaining", ">", 0),
         ]
 
@@ -74,11 +76,20 @@ class FSMOrder(models.Model):
             if self._can_create_dayroute(values):
                 dayroute = dayroute_obj.create(self.prepare_dayroute_values(values))
                 vals.update({"dayroute_id": dayroute.id})
-        # If this was the last order of the dayroute,
-        # delete the dayroute
-        if self.dayroute_id and not self.dayroute_id.order_ids:
-            self.dayroute_id.unlink()
         return vals
+
+    @api.model
+    def _dayroute_trigger_fields(self):
+        """Fields whose write must re-evaluate the order's dayroute.
+
+        Any other field changing on an already assigned/scheduled order is
+        irrelevant to routing and must not touch ``dayroute_id`` at all
+        (see ``write()``): re-running the search unconditionally on every
+        write was the root cause of the duplicated/orphaned dayroutes seen
+        in production, since a route already at capacity would no longer
+        match its own dayroute and a new one would be created for nothing.
+        """
+        return {"person_id", "scheduled_date_start"}
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -92,16 +103,26 @@ class FSMOrder(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
+        if not self._dayroute_trigger_fields() & vals.keys():
+            return super().write(vals)
+
+        old_dayroutes = self.dayroute_id
         for rec in self:
-            if vals.get("route_id", False):
-                route = self.env["fsm.route"].browse(vals.get("route_id"))
-                vals.update(
-                    {
-                        "scheduled_date_start": route.date,
-                    }
-                )
-            if (vals.get("person_id", False) or rec.person_id) and (
-                vals.get("scheduled_date_start", False) or rec.scheduled_date_start
+            rec_vals = dict(vals)
+            unassigning = any(
+                field in vals and not vals[field]
+                for field in ("person_id", "scheduled_date_start")
+            )
+            if unassigning:
+                rec_vals["dayroute_id"] = False
+            elif (rec_vals.get("person_id") or rec.person_id) and (
+                rec_vals.get("scheduled_date_start") or rec.scheduled_date_start
             ):
-                vals = rec._manage_fsm_route(vals)
-        return super().write(vals)
+                rec_vals = rec._manage_fsm_route(rec_vals)
+            super(FSMOrder, rec).write(rec_vals)
+        # Now that the orders have actually moved, delete the dayroutes
+        # left empty behind them (doing this before the write above ran,
+        # as the previous implementation did, left orphaned dayroutes
+        # since `order_ids` hadn't been updated yet).
+        old_dayroutes._unlink_removable()
+        return True
