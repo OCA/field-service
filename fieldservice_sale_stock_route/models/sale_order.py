@@ -1,9 +1,12 @@
 # Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+import calendar
+from datetime import datetime, time, timedelta
 
-from odoo import _, api, fields, models
+import pytz
+
+from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -12,72 +15,101 @@ class SaleOrder(models.Model):
 
     commitment_date_end = fields.Datetime(
         string="Delivery End Date",
-        compute="_compute_commitment_date_end",
-        inverse="_inverse_set_commitment_date_end",
-        store=True,
+        readonly=True,
         copy=False,
-        help="This is the delivery deadline date promised to the customer. "
-        "If set, the delivery order will be scheduled based on "
-        "this date rather than product lead times.",
+        help="Expected delivery end time calculated based on location/route schedule.",
     )
 
-    @api.depends("commitment_date")
-    def _compute_commitment_date_end(self):
-        for order in self:
-            order.commitment_date_end = (
-                max(
-                    order.commitment_date,
-                    order.commitment_date_end or order.commitment_date,
-                )
-                if order.commitment_date
-                else False
-            )
+    def _apply_time_range_to_dates(self, target_date):
+        """Standardize start and end hours on a target date using
+        the active fsm.location delivery schedule hierarchy."""
+        self.ensure_one()
+        if not target_date or not self.fsm_location_id:
+            return False, False
 
-    def _inverse_set_commitment_date_end(self):
-        for order in self:
-            order.commitment_date_end = (
-                max(order.commitment_date, order.commitment_date_end)
-                if order.commitment_date_end and order.commitment_date
-                else False
-            )
+        date_val = fields.Date.to_date(target_date)
+        start_time, end_time = self.fsm_location_id.get_delivery_time_ranges(date_val)
+
+        sh, sm = divmod(int(start_time * 60), 60)
+        eh, em = divmod(int(end_time * 60), 60)
+
+        dt_start = datetime.combine(date_val, time(sh, sm))
+        dt_end = datetime.combine(date_val, time(eh, em))
+
+        tz_name = self.env.context.get("tz") or self.env.user.tz or "UTC"
+        local_tz = pytz.timezone(tz_name)
+
+        dt_start = local_tz.localize(dt_start).astimezone(pytz.utc).replace(tzinfo=None)
+        dt_end = local_tz.localize(dt_end).astimezone(pytz.utc).replace(tzinfo=None)
+
+        return dt_start, dt_end
+
+    def _sync_fsm_and_picking_dates(self, dt_start, dt_end):
+        """Centralized synchronization across Sale Order, FSM Order,
+        and Stock Pickings."""
+        self.ensure_one()
+        res = super(SaleOrder, self.with_context(skip_fsm_sync=True)).write(
+            {
+                "commitment_date": dt_start,
+                "commitment_date_end": dt_end,
+            }
+        )
+
+        picking_date = (
+            dt_start or self.expected_date or self.date_order or fields.Datetime.now()
+        )
+        self.picking_ids.filtered(
+            lambda p: p.state not in ("done", "cancel")
+        ).with_context(skip_fsm_sync=True).write({"scheduled_date": picking_date})
+
+        fsm_orders = self.env["fsm.order"].search(
+            [
+                ("sale_id", "=", self.id),
+                ("sale_line_id", "=", False),
+                ("is_closed", "=", False),
+            ]
+        )
+        fsm_vals = {
+            "scheduled_date_start": dt_start,
+            "scheduled_date_end": dt_end,
+        }
+        if not dt_start:
+            fsm_vals["scheduled_duration"] = 0.0
+
+        fsm_orders.with_context(skip_fsm_sync=True).write(fsm_vals)
+        return res
 
     def _prepare_fsm_values(self, **kwargs):
         res = super()._prepare_fsm_values(**kwargs)
-        next_route_day = self._get_next_route_day()
+        target_dt = self.commitment_date or self._get_next_route_day(
+            from_date=fields.Datetime.now() + timedelta(days=1)
+        )
+        dt_start, dt_end = self._apply_time_range_to_dates(target_dt)
 
-        fsm_date_values = {
-            "request_early": self.commitment_date or next_route_day,
-            "scheduled_date_start": self.commitment_date or next_route_day,
-            "scheduled_date_end": self.commitment_date_end or next_route_day,
-        }
-        res.update(fsm_date_values)
+        res.update(
+            {
+                "request_early": dt_start,
+                "scheduled_date_start": dt_start,
+                "scheduled_date_end": dt_end,
+            }
+        )
         return res
 
-    def write(self, values):
-        res = super().write(values)
-        for order in self:
-            commitment_date = order.commitment_date or order._get_next_route_day()
+    def write(self, vals):
+        has_commitment_date = "commitment_date" in vals
+        raw_commitment_date = vals.get("commitment_date")
 
-            picking_values = {
-                "scheduled_date": commitment_date,
-            }
-            fsm_order_values = {
-                "request_early": commitment_date,
-                "scheduled_date_start": commitment_date,
-                "scheduled_date_end": order.commitment_date_end or commitment_date,
-            }
+        res = super().write(vals)
 
-            order.picking_ids.filtered(
-                lambda r: r.state not in ["done", "cancel"]
-            ).write(picking_values)
-            fsm_orders = self.env["fsm.order"].search(
-                [
-                    ("sale_id", "=", order.id),
-                    ("sale_line_id", "=", False),
-                    ("is_closed", "=", False),
-                ]
-            )
-            fsm_orders.write(fsm_order_values)
+        if has_commitment_date and not self.env.context.get("skip_fsm_sync"):
+            for order in self:
+                if raw_commitment_date:
+                    new_dt = fields.Datetime.to_datetime(raw_commitment_date)
+                    dt_start, dt_end = order._apply_time_range_to_dates(new_dt)
+                else:
+                    dt_start, dt_end = False, False
+
+                order._sync_fsm_and_picking_dates(dt_start, dt_end)
 
         return res
 
@@ -89,68 +121,52 @@ class SaleOrder(models.Model):
                     lambda x: x.display_type not in ("line_section", "line_note")
                 )
             ):
-                fsm_route = (
-                    order.fsm_location_id.fsm_route_id
-                    if order.fsm_location_id
-                    else None
+                target_dt = order.commitment_date or order._get_next_route_day(
+                    from_date=fields.Datetime.now() + timedelta(days=1)
                 )
+                dt_start, dt_end = order._apply_time_range_to_dates(target_dt)
 
-                # Validate FSM route requirements
-                if not fsm_route:
-                    raise ValidationError(_("FSM Location must have a route set."))
-                if not fsm_route.fsm_person_id:
-                    raise ValidationError(_("FSM Route must have a person set."))
-                if not fsm_route.day_ids:
-                    raise ValidationError(_("FSM Route must have days set."))
+                if order.fsm_location_id and order.fsm_location_id.fsm_route_id:
+                    fsm_route = order.fsm_location_id.fsm_route_id
+                    if fsm_route.day_ids and not fsm_route.force_schedule:
+                        allowed_day_names = fsm_route.day_ids.mapped("name")
+                        day_name = calendar.day_name[dt_start.weekday()]
 
-                # Get allowed FSM days (1=Monday, 7=Sunday)
-                allowed_days = fsm_route.day_ids.mapped("id")
+                        if day_name not in allowed_day_names:
+                            raise ValidationError(
+                                _(
+                                    "The selected delivery date "
+                                    "(%(day)s) is not allowed "
+                                    "for route %(route)s based on "
+                                    "its schedule settings. Please "
+                                    "choose a valid day or enable Force Schedule."
+                                )
+                                % {"route": fsm_route.name, "day": day_name}
+                            )
 
-                if not order.commitment_date:
-                    tomorrow = fields.Datetime.now() + timedelta(days=1)
-                    order.commitment_date = order._get_next_route_day(
-                        from_date=tomorrow
-                    )
-
-                # Convert weekday() days (0-6) to FSM days (1-7)
-                scheduled_day = order.commitment_date.weekday() + 1
-                if (
-                    scheduled_day not in allowed_days
-                    and not order.fsm_location_id.fsm_route_id.force_schedule
-                ):
-                    raise ValidationError(
-                        _(
-                            "The selected delivery date (%(day)s) is "
-                            "not available for route %(route)s. "
-                            "Please choose a valid date based on "
-                            "the available schedule, "
-                            "or enable 'Force Schedule' on the route to override "
-                            "this restriction."
-                        )
-                        % {
-                            "route": fsm_route.name,
-                            "day": order.commitment_date.strftime("%A"),
-                        }
-                    )
+                order.commitment_date = dt_start
+                order.commitment_date_end = dt_end
 
         return super()._action_confirm()
 
     def _get_next_route_day(self, from_date=None):
-        """Calculate the next available FSM route day based on a given date."""
+        """Calculate the next available delivery day based on allowed days."""
         self.ensure_one()
-
-        fsm_route = self.fsm_location_id.fsm_route_id if self.fsm_location_id else None
-        if not fsm_route or not fsm_route.day_ids:
-            return fields.Datetime.now()
-
-        route_days = sorted(map(int, fsm_route.day_ids))
         base_date = from_date or self.commitment_date or fields.Datetime.now()
-        base_day = base_date.weekday() + 1  # Convert (0-6) to FSM days (1-7)
 
-        # Find the next available route day or wrap around to the next week
-        days_until_next = next(
-            (d - base_day for d in route_days if d >= base_day),
-            7 - base_day + route_days[0],
-        )
+        if not self.fsm_location_id:
+            return base_date
 
-        return base_date + timedelta(days=days_until_next)
+        allowed_days = self.fsm_location_id.get_allowed_route_days()
+        if not allowed_days:
+            return base_date
+
+        allowed_day_names = allowed_days.mapped("name")
+
+        for i in range(7):
+            test_date = base_date + timedelta(days=i)
+            day_name = calendar.day_name[test_date.weekday()]
+            if day_name in allowed_day_names:
+                return test_date
+
+        return base_date
