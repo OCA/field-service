@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Copyright 2026 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="fsm_route_form_inherit_availability" model="ir.ui.view">
+        <field name="name">fsm.route.form.inherit.availability</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Default Delivery Schedule">
+                    <field
+                        name="delivery_time_range_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
