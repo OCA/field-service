@@ -9,3 +9,5 @@
 - Cl??ment Mombereau \<<clement.mombereau@akretion.com>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Stefan Ungureanu
+- [APSL](https://apsl.tech):
+  - Antoni Marroig   \<<antoni.marroig@nagarro.com>\>
