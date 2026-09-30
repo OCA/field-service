@@ -23,10 +23,25 @@
         </field>
     </record>
 
+    <record id="fsm_route_day_search_view" model="ir.ui.view">
+        <field name="name">fsm.route.day.search.view</field>
+        <field name="model">fsm.route.day</field>
+        <field name="arch" type="xml">
+            <search string="Route Day">
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
     <record id="action_fsm_route_day" model="ir.actions.act_window">
         <field name="name">Route Day</field>
         <field name="res_model">fsm.route.day</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="fsm_route_day_search_view" />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a Route Day.

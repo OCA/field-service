@@ -200,3 +200,10 @@ class FSMOrderRouteCase(common.TransactionCase):
         order.write({"person_id": False, "scheduled_date_start": False})
         self.assertFalse(order.dayroute_id)
         self.assertFalse(dayroute.exists())
+
+    def test_archived_day_rejects_order_dayroute(self):
+        day = self.env.ref("fieldservice_route.fsm_route_day_0")
+        day.active = False
+
+        with self.assertRaises(ValidationError):
+            self._create_order(date=datetime(2026, 10, 12))

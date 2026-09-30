@@ -20,3 +20,4 @@ class FSMRouteDay(models.Model):
             ("Sunday", "Sunday"),
         ],
     )
+    active = fields.Boolean(default=True)

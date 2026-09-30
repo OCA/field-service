@@ -145,7 +145,7 @@ class FSMRouteDayRoute(models.Model):
                 # Get the day of the week: Monday -> 0, Sunday -> 6
                 day_index = rec.date.weekday()
                 day = self.env.ref("fieldservice_route.fsm_route_day_" + str(day_index))
-                if day.id not in rec.route_id.day_ids.ids:
+                if day.id not in rec.route_id.day_ids.ids or not day.active:
                     raise ValidationError(
                         _("The route %(route_name)s does not run on %(name)s!")
                         % {"route_name": rec.route_id.name, "name": day.name}
