@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 Fieldservice Availability
 =========================
@@ -17,7 +13,7 @@ Fieldservice Availability
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -32,27 +28,66 @@ Fieldservice Availability
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module defines blackout days (non-operational days), stress days
-(high-demand periods), and delivery time ranges for field service
-operations. It provides the necessary models to store this information,
-which can be used by other modules to manage scheduling, availability,
-and workload adjustments.
+Field Service Availability
+==========================
 
-- **Blackout Days (\`fsm.blackout.day\`)**: Represent dates when field
-  service operations are unavailable (e.g., holidays, company-wide
-  closures).
-- **Blackout Groups (\`fsm.blackout.group\`)**: Represent groups of days
+This module defines blackout days (non-operational days), blackout
+groups, stress days (high-demand periods), and delivery time ranges for
+field service operations. It provides the necessary models and
+hierarchical resolution methods used by other modules to manage
+scheduling, availability, and workload adjustments.
+
+Core Concepts
+-------------
+
+- **Blackout Days (``fsm.blackout.day``)**: Represent specific dates
   when field service operations are unavailable (e.g., holidays,
   company-wide closures).
-- **Stress Days (\`fsm.stress.day\`)**: Indicate dates with increased
+- **Blackout Groups (``fsm.blackout.group``)**: Allow grouping blackout
+  days by geographical regions or postal codes (ZIPs).
+- **Stress Days (``fsm.stress.day``)**: Indicate dates with increased
   service demand (e.g., peak business periods requiring additional
   workforce).
-- **Delivery Time Ranges (\`fsm.delivery.time.range\`)**: Define
-  available time slots for scheduling field service operations.
+- **Global Delivery Time Ranges (``fsm.delivery.time.range``)**:
+  Reusable global fallback schedules defining available time slots for
+  field service operations when no specific location or route schedule
+  exists.
 
-This is a technical module and does not provide functionality on its
-own. Extend this module to integrate availability management into field
-service workflows.
+Hierarchical Schedule Resolution
+--------------------------------
+
+Delivery schedules are managed directly on **Locations**
+(``fsm.location``) and **Routes** (``fsm.route``) via a comprehensive
+inline configuration. When requesting the active delivery schedule for a
+location on a specific date, the system resolves the active time window
+using a strict 5-tier hierarchy:
+
+1. **Location Seasonal Schedule**: Active recurring date window on the
+   target date (allows day-specific overrides).
+2. **Location Default Schedule**: Year-round default schedule assigned
+   to the location (allows day-specific overrides).
+3. **Route Seasonal Schedule**: Active recurring date window on the
+   target date assigned to the location's route.
+4. **Route Default Schedule**: Year-round default schedule assigned to
+   the location's route.
+5. **Global Fallback**: The highest-priority active global delivery time
+   range in the system.
+
+Operational Delivery Days
+-------------------------
+
+Operational days (e.g., Monday-Friday) are resolved seamlessly through
+the following hierarchy:
+
+1. **Location Override**: Days selected directly on ``fsm.location``.
+2. **Route Default**: Days selected on the assigned ``fsm.route``.
+3. **Company Default**: Days selected in the Field Service Global
+   Settings (``res.company``).
+4. **System Fallback**: If none of the above are set, defaults to all
+   active ``fsm.route.day`` records in the system (Monday–Sunday).
+
+*Note: This is a technical base module. Extend this module to integrate
+availability management into field service sale and stock workflows.*
 
 **Table of contents**
 
@@ -62,9 +97,79 @@ service workflows.
 Usage
 =====
 
-Navigate to Field Service > Configuration > Scheduling. Once there, you
-can select Delivery Time Ranges, Blackout Days, Blackout Groups or
-Festive Days to create new records.
+Field Service Availability
+==========================
+
+1. Configuring Company Default Operational Days
+-----------------------------------------------
+
+1. Navigate to **Field Service > Configuration > Settings**.
+2. Scroll to the **Routes** section.
+3. In the **Default Operational Days** field, select the standard
+   working days for your company (e.g., Monday through Friday). These
+   days will apply to all locations and routes automatically unless
+   specifically overridden.
+
+2. Configuring Global Fallback Schedules
+----------------------------------------
+
+1. Navigate to **Field Service > Configuration > Availability > Global
+   Delivery Time Ranges**.
+2. Click **New** to create a fallback time range.
+3. Set the **Start Time** and **End Time** (e.g., ``07:00`` to
+   ``15:00``). Hours must strictly be between ``00:00`` and ``23:59``.
+4. Adjust the **Sequence** to ensure your primary fallback is at the top
+   of the list.
+
+3. Assigning Schedules to Routes
+--------------------------------
+
+1. Navigate to **Field Service > Master Data > Routes**.
+2. Select a route and navigate to the **Route Delivery Schedule**
+   section.
+3. **Operational Days:** Override the company default by selecting
+   specific allowed days for this route.
+4. **Default Schedule:** Enable ``Has custom default schedule`` to
+   define standard working hours (e.g., ``08:00`` to ``16:00``). You can
+   also differentiate hours by specific days of the week.
+5. **Seasonal Schedule:** Enable ``Has seasonal schedule`` to define
+   temporary overriding hours (e.g., Summer hours from June 1 to Sept
+   30).
+
+4. Assigning Schedules to Locations (Customer Specific)
+-------------------------------------------------------
+
+1. Navigate to **Field Service > Master Data > Locations**.
+2. Select a location and navigate to the **Delivery Schedule** tab.
+3. Set specific **Operational Days** or custom schedules for this
+   location. Any schedule assigned directly to the location will
+   strictly override the route-level and company-level defaults.
+
+5. Configuring Blackout and Stress Days
+---------------------------------------
+
+1. Navigate to **Field Service > Configuration > Availability**.
+2. Select **Blackout Days**, **Blackout Groups**, or **Stress Days** to
+   add operational exceptions or demand surges to specific calendar
+   dates.
+
+🧪 Developer Testing / Validation
+---------------------------------
+
+To verify schedule resolution is working as expected from the Odoo shell
+or custom code:
+
+.. code:: python
+
+   location = env["fsm.location"].browse(1)
+
+   # Get the allowed operational days for the location
+   # Evaluates hierarchy: Location -> Route -> Company Setting -> All Active Days
+   allowed_days = location.get_allowed_route_days()
+
+   # Get the exact delivery hours (start, end) for a specific date
+   # Evaluates hierarchy: Loc Seasonal -> Loc Default -> Route Seasonal -> Route Default -> Global
+   hours = location.get_delivery_time_ranges(target_date="2026-07-15")
 
 Bug Tracker
 ===========
