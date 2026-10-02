@@ -1,0 +1,32 @@
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="fsm_partial_delivery_action" model="ir.actions.act_window">
+        <field name="name">Partial Delivery</field>
+        <field name="res_model">fsm.partial.delivery.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="fsm_partial_delivery_wizard_form" />
+        <field name="target">new</field>
+    </record>
+
+    <record id="fsm_order_form_inherit_partial_delivery" model="ir.ui.view">
+        <field name="name">fsm.order.form.inherit.partial.delivery</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="show_partial_delivery_button" invisible="1" />
+                <button
+                    id="action_partial_delivery"
+                    name="%(fsm_partial_delivery_action)d"
+                    type="action"
+                    string="Adjust Delivery"
+                    class="oe_highlight"
+                    invisible="not show_partial_delivery_button"
+                    groups="fieldservice.group_fsm_user_own"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

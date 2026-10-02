@@ -1,0 +1,17 @@
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="view_product_fieldservice_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.fieldservice.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="sale" position="after">
+                <group groups="fieldservice.group_fsm_user">
+                    <field name="create_backorder_sale" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
