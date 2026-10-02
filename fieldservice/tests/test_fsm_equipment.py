@@ -66,3 +66,21 @@ class FSMEquipment(TransactionCase):
             )
         )
         self.assertTrue(data, "It should be able to read group")
+
+    def test_order_smart_button(self):
+        equipment = self.Equipment.create({"name": "Equipment with orders"})
+        other = self.Equipment.create({"name": "Equipment without orders"})
+        orders = self.env["fsm.order"].create(
+            [
+                {
+                    "location_id": self.test_location.id,
+                    "equipment_ids": [(4, equipment.id)],
+                }
+                for _i in range(2)
+            ]
+        )
+        self.assertEqual(equipment.order_count, 2)
+        self.assertEqual(other.order_count, 0)
+        action = equipment.action_view_orders()
+        self.assertEqual(self.env["fsm.order"].search(action["domain"]), orders)
+        self.assertEqual(action["context"]["default_equipment_ids"], equipment.ids)
