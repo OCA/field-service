@@ -252,7 +252,6 @@ class FSMOrder(models.Model):
     def create(self, vals):
         if vals.get("name", _("New")) == _("New"):
             vals["name"] = self.env["ir.sequence"].next_by_code("fsm.order") or _("New")
-        self._calc_scheduled_dates(vals)
         if not vals.get("request_late"):
             vals = self._calc_request_late(vals)
         return super().create(vals)
@@ -266,7 +265,6 @@ class FSMOrder(models.Model):
             stage_id = self.env["fsm.stage"].browse(vals.get("stage_id"))
             if stage_id == self.env.ref("fieldservice.fsm_stage_completed"):
                 raise UserError(_("Cannot move to completed from Kanban"))
-        self._calc_scheduled_dates(vals)
         res = super().write(vals)
         return res
 
@@ -279,54 +277,60 @@ class FSMOrder(models.Model):
             return super().unlink()
         raise ValidationError(_("You cannot delete this order."))
 
-    def _calc_scheduled_dates(self, vals):
-        """Calculate scheduled dates and duration"""
+    def _with_onchange_guard(self):
+        return self.with_context(_fsm_sched_onchange_guard=True)
 
-        if (
-            vals.get("scheduled_duration") is not None
-            or vals.get("scheduled_date_start")
-            or vals.get("scheduled_date_end")
-        ):
-            if vals.get("scheduled_date_start") and vals.get("scheduled_date_end"):
-                new_date_start = fields.Datetime.from_string(
-                    vals.get("scheduled_date_start", False)
-                )
-                new_date_end = fields.Datetime.from_string(
-                    vals.get("scheduled_date_end", False)
-                )
-                hours = new_date_end.replace(second=0) - new_date_start.replace(
-                    second=0
-                )
-                hrs = hours.total_seconds() / 3600
-                vals["scheduled_duration"] = float(hrs)
+    def _onchange_guarded(self):
+        return bool(self.env.context.get("_fsm_sched_onchange_guard"))
 
-            elif vals.get("scheduled_date_end"):
-                hrs = (
-                    vals.get("scheduled_duration", False)
-                    or self.scheduled_duration
-                    or 0
-                )
-                date_to_with_delta = fields.Datetime.from_string(
-                    vals.get("scheduled_date_end", False)
-                ) - timedelta(hours=hrs)
-                vals["scheduled_date_start"] = str(date_to_with_delta)
+    @api.onchange("scheduled_date_start", "scheduled_date_end")
+    def _onchange_duration_from_dates(self):
+        for rec in self:
+            if rec._onchange_guarded():
+                continue
 
-            elif (
-                vals.get("scheduled_duration", False) is not None
-                and vals.get("scheduled_date_start", self.scheduled_date_start)
-                and (
-                    self.scheduled_date_start != vals.get("scheduled_date_start", False)
-                )
-            ):
-                hours = vals.get("scheduled_duration", False)
-                start_date_val = vals.get(
-                    "scheduled_date_start", self.scheduled_date_start
-                )
-                start_date = fields.Datetime.from_string(start_date_val)
-                date_to_with_delta = start_date + timedelta(hours=hours)
-                vals["scheduled_date_end"] = str(date_to_with_delta)
-        elif vals.get("scheduled_date_start") is not None:
-            vals["scheduled_date_end"] = False
+            if rec.scheduled_date_start and rec.scheduled_date_end:
+                if rec.scheduled_date_end < rec.scheduled_date_start:
+                    rec.scheduled_date_end = rec.scheduled_date_start
+                delta = rec.scheduled_date_end.replace(
+                    second=0, microsecond=0
+                ) - rec.scheduled_date_start.replace(second=0, microsecond=0)
+                rec.scheduled_duration = delta.total_seconds() / 3600.0
+
+    @api.onchange("scheduled_date_end")
+    def _onchange_start_from_end_keep_duration(self):
+        for rec in self:
+            if rec._onchange_guarded():
+                continue
+
+            if not rec.scheduled_date_end:
+                rec.scheduled_date_end = rec.scheduled_date_start
+                rec._onchange_duration_from_dates()
+
+            if rec.scheduled_date_end and not rec.scheduled_date_start:
+                hrs = rec.scheduled_duration or 0.0
+                start = rec.scheduled_date_end - timedelta(hours=hrs)
+                rec._with_onchange_guard().scheduled_date_start = start
+
+    @api.onchange("scheduled_duration", "scheduled_date_start")
+    def _onchange_end_from_duration_and_start(self):
+        for rec in self:
+            if rec._onchange_guarded():
+                continue
+
+            if rec.scheduled_date_start and rec.scheduled_duration is not None:
+                hrs = rec.scheduled_duration or 0.0
+                end = rec.scheduled_date_start + timedelta(hours=hrs)
+                rec._with_onchange_guard().scheduled_date_end = end
+
+    @api.onchange("scheduled_date_start")
+    def _onchange_clear_end_when_start_cleared(self):
+        for rec in self:
+            if rec._onchange_guarded():
+                continue
+
+            if rec.scheduled_date_start is False:
+                rec._with_onchange_guard().scheduled_date_end = False
 
     def action_complete(self):
         return self.write(
