@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="rule_fsm_location_portal" model="ir.rule">
+        <field name="name">Location: portal users see/create their own</field>
+        <field name="model_id" ref="fieldservice.model_fsm_location" />
+        <field name="domain_force">
+            [('owner_id', 'child_of', user.partner_id.commercial_partner_id.id)]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>
