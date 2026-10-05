@@ -1,5 +1,3 @@
-/** @odoo-module */
-
 /**
  * Copyright 2024 APSL-Nagarro
  */
@@ -7,7 +5,7 @@
 /* global chroma, geostats  */
 
 import {GeoengineRenderer} from "@base_geoengine/js/views/geoengine/geoengine_renderer/geoengine_renderer.esm";
-import {_t} from "web.core";
+import {_t} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
 import {sprintf} from "@web/core/utils/strings";
 
@@ -38,7 +36,7 @@ patch(GeoengineRenderer.prototype, {
                 vals = serie.getClassUniqueValues();
                 if (
                     cfg.classification === "custom" &&
-                    vals.some((item) => item === 0)
+                    vals.some((item) => item === 0 || typeof item === "string")
                 ) {
                     this.notification.add(
                         sprintf(
@@ -115,7 +113,7 @@ patch(GeoengineRenderer.prototype, {
                 try {
                     styles_map[colors[color_idx]][0].text_.text_ =
                         label_text.toString();
-                } catch (error) {
+                } catch {
                     // Do nothing to restore history
                     return;
                 }
