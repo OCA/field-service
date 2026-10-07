@@ -48,6 +48,7 @@ class FSMEquipment(models.Model):
     parent_id = fields.Many2one("fsm.equipment", string="Parent")
     child_ids = fields.One2many("fsm.equipment", "parent_id", string="Children")
     color = fields.Integer("Color Index")
+    order_count = fields.Integer(compute="_compute_order_count", string="# Orders")
     company_id = fields.Many2one(
         "res.company",
         string="Company",
@@ -80,3 +81,23 @@ class FSMEquipment(models.Model):
     def _compute_region_id(self):
         for rec in self:
             rec.region_id = rec.district_id.region_id
+
+    def _compute_order_count(self):
+        groups = self.env["fsm.order"]._read_group(
+            [("equipment_ids", "in", self.ids)], ["equipment_ids"], ["__count"]
+        )
+        counts = {equipment.id: count for equipment, count in groups}
+        for equipment in self:
+            equipment.order_count = counts.get(equipment.id, 0)
+
+    def action_view_orders(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "fieldservice.action_fsm_operation_order"
+        )
+        action["domain"] = [("equipment_ids", "in", self.ids)]
+        action["context"] = {
+            "default_equipment_ids": self.ids,
+            "default_location_id": self.current_location_id.id,
+        }
+        return action
