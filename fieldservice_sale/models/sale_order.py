@@ -186,17 +186,19 @@ class SaleOrder(models.Model):
         Post messages to the Sale Order and the newly created FSM Orders
         """
         self.ensure_one()
+        fsm_links = []
         for fsm_order in fsm_orders:
             fsm_order.message_post_with_source(
                 "mail.message_origin_link",
                 render_values={"self": fsm_order, "origin": self},
                 subtype_xmlid="mail.mt_note",
             )
+            fsm_links.append(fsm_order._get_html_link(title=fsm_order.name))
         so_msg_body = _(
             "Field Service Order(s) Created: %s",
-            fsm_order._get_html_link(title=fsm_order.name),
+            "<br/>".join(fsm_links),
         )
-        self.message_post(body=so_msg_body[:-1])
+        self.message_post(body=so_msg_body)
 
     def _action_confirm(self):
         """On SO confirmation, some lines generate field service orders."""
