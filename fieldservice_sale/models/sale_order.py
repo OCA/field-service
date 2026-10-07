@@ -1,6 +1,8 @@
 # Copyright (C) 2019 Brian McMaster
 # Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from markupsafe import Markup
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -192,11 +194,10 @@ class SaleOrder(models.Model):
                 render_values={"self": fsm_order, "origin": self},
                 subtype_xmlid="mail.mt_note",
             )
-        so_msg_body = _(
-            "Field Service Order(s) Created: %s",
-            fsm_order._get_html_link(title=fsm_order.name),
+        fsm_links = Markup("<br/>").join(
+            fsm_order._get_html_link(title=fsm_order.name) for fsm_order in fsm_orders
         )
-        self.message_post(body=so_msg_body[:-1])
+        self.message_post(body=_("Field Service Order(s) Created: %s", fsm_links))
 
     def _action_confirm(self):
         """On SO confirmation, some lines generate field service orders."""
