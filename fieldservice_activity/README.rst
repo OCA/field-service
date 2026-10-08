@@ -123,7 +123,7 @@ Contributors
 
 - Freni Patel <fpatel@opensourceintegrators.com>
 
-- `Binhex Systems Solutions <https://binhex.cloud>`__:
+- `Binhex <https://binhex.cloud>`__:
 
   - Deriman Alonso <d.alonso@binhex.cloud>
 
