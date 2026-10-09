@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Antoni Marroig (APSL-Nagarro) <antoni.marroig@nagarro.com>
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="dayroute_location_cards" name="Day Route Delivery Breakdown">
+        <div class="o_fsm_dayroute_load_sheet">
+            <div t-if="not stops" class="alert alert-info mb-0" role="status">
+        <i class="fa fa-info-circle me-1" />
+        There are no orders to deliver in this day route.
+      </div>
+            <div t-else="" class="row g-3">
+                <div t-foreach="stops" t-as="stop" class="col-12 col-md-6 col-xl-4">
+                    <div
+                        t-attf-class="card h-100 shadow-sm border-start border-4 #{'border-success' if stop['is_completed'] else 'border-primary'}"
+                    >
+                        <div
+                            class="card-header d-flex justify-content-between align-items-center gap-2"
+                        >
+                            <a
+                                t-att-href="stop['url']"
+                                class="text-decoration-none text-body fw-bold"
+                            >
+                #<t t-out="stop['index']" /> -
+                <t t-out="stop['location'].name or stop['order'].name" />
+                <i class="fa fa-external-link text-muted small ms-1" />
+              </a>
+                            <div class="d-flex gap-1 flex-shrink-0">
+                                <span
+                                    t-if="stop['is_completed']"
+                                    class="badge text-bg-success"
+                                >
+                  <i class="fa fa-check me-1" />Completed
+                </span>
+                                <a
+                                    t-att-href="stop['url']"
+                                    class="badge text-bg-secondary text-decoration-none"
+                                    t-out="stop['order'].name"
+                                />
+                            </div>
+                        </div>
+                        <div class="card-body p-2">
+                            <div t-if="stop['address']" class="small">
+                                <a
+                                    t-att-href="stop['map_url']"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-muted text-decoration-none"
+                                >
+                                    <i class="fa fa-map-marker me-1" />
+                                    <t t-out="stop['address']" />
+                                </a>
+                            </div>
+                            <div
+                                t-if="stop['phone'] or stop['mobile']"
+                                class="small mt-1"
+                            >
+                                <a
+                                    t-if="stop['phone']"
+                                    t-att-href="'tel:%s' % stop['phone']"
+                                    class="fw-bold text-decoration-none me-3"
+                                >
+                                    <i class="fa fa-phone me-1" />
+                                    <t t-out="stop['phone']" />
+                                </a>
+                                <a
+                                    t-if="stop['mobile']"
+                                    t-att-href="'tel:%s' % stop['mobile']"
+                                    class="fw-bold text-decoration-none"
+                                >
+                                    <i class="fa fa-mobile me-1" />
+                                    <t t-out="stop['mobile']" />
+                                </a>
+                            </div>
+                            <div
+                                t-if="stop['note']"
+                                class="d-flex small mt-1 text-info fst-italic"
+                            >
+                                <i class="fa fa-info-circle me-1 mt-1" />
+                                <span
+                                    style="white-space: pre-line;"
+                                    t-out="stop['note']"
+                                />
+                            </div>
+                            <ul class="list-group list-group-flush mt-2">
+                                <li
+                                    t-foreach="stop['lines']"
+                                    t-as="line"
+                                    class="list-group-item d-flex justify-content-between align-items-start gap-2 px-1 py-1"
+                                >
+                                    <span
+                                        class="text-wrap"
+                                        t-out="line['product'].display_name"
+                                    />
+                                    <span
+                                        t-attf-class="badge rounded-pill flex-shrink-0 text-nowrap #{'text-bg-warning' if line['is_pickup'] else 'text-bg-danger' if line['is_missing_stock'] else 'text-bg-primary'}"
+                                    >
+                                        <t t-if="line['is_pickup']">
+                      <i class="fa fa-undo me-1" />Pick up
+                    </t>
+                                        <t
+                                            t-out="line['quantity']"
+                                            t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+                                        />
+                                        <t t-out="line['uom'].name" />
+                                    </span>
+                                </li>
+                                <li
+                                    t-if="not stop['lines']"
+                                    class="list-group-item text-muted px-1 py-1"
+                                >
+                  No products to deliver or pick up.
+                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
