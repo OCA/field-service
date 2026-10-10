@@ -1,0 +1,2 @@
+- Rafnix Guzman \<rafnixg@gmail.com\>
+- Marcos Mendez \<m@pop.coop\>
