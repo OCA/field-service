@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Antoni Marroig (APSL-Nagarro) <antoni.marroig@nagarro.com>
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- The internal layout header is a single line: the default A4 top
+         margin, made for the company logo, leaves a gap on every page -->
+    <record id="paperformat_dayroute_load_sheet" model="report.paperformat">
+        <field name="name">Load Sheet A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">25</field>
+        <field name="dpi">90</field>
+        <field name="css_margins" eval="True" />
+    </record>
+
+    <record id="action_report_dayroute_load_sheet" model="ir.actions.report">
+        <field name="name">Load Sheet</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >fieldservice_route_dayroute_summary.report_dayroute_load_sheet</field>
+        <field
+            name="report_file"
+        >fieldservice_route_dayroute_summary.report_dayroute_load_sheet</field>
+        <field name="print_report_name">'Load Sheet - %s' % object.name</field>
+        <field
+            name="binding_model_id"
+            ref="fieldservice_route.model_fsm_route_dayroute"
+        />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_dayroute_load_sheet" />
+    </record>
+
+    <template id="report_dayroute_load_sheet_document">
+        <t t-call="web.internal_layout">
+            <div class="page">
+                <h2>
+          Load Sheet: <span t-field="dayroute.name" />
+        </h2>
+                <table class="table table-sm table-borderless mb-4">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">Route</td>
+                            <td>
+                                <span t-field="dayroute.route_id" />
+                            </td>
+                            <td class="fw-bold">Date</td>
+                            <td>
+                                <span t-field="dayroute.date" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Person</td>
+                            <td>
+                                <span t-field="dayroute.person_id" />
+                            </td>
+                            <td class="fw-bold">Planned Start Time</td>
+                            <td>
+                                <span t-field="dayroute.date_start_planned" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Team</td>
+                            <td>
+                                <span t-field="dayroute.team_id" />
+                            </td>
+                            <td class="fw-bold">Stops</td>
+                            <td>
+                                <t t-out="len(stops)" />
+                            </td>
+                        </tr>
+                        <tr
+                            t-if="dayroute.start_location_id or dayroute.end_location_id"
+                        >
+                            <td class="fw-bold">Start Location</td>
+                            <td>
+                                <span t-field="dayroute.start_location_id" />
+                            </td>
+                            <td class="fw-bold">End Location</td>
+                            <td>
+                                <span t-field="dayroute.end_location_id" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Product Totals</h4>
+                <table class="table table-sm mb-4">
+                    <thead>
+                        <tr class="text-uppercase">
+                            <th class="text-start fw-bold">Product</th>
+                            <th class="text-end fw-bold">Quantity</th>
+                            <th class="text-start fw-bold">Unit</th>
+                            <th class="text-end fw-bold">
+                Weight (<span t-field="dayroute.weight_uom_name" />)
+              </th>
+                            <th class="text-center fw-bold">Loaded</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="summary_lines" t-as="line">
+                            <td>
+                                <span t-field="line.product_id" />
+                            </td>
+                            <td
+                                t-attf-class="text-end #{'text-danger fw-bold' if line.reserved_quantity &lt; line.quantity else ''}"
+                            >
+                                <span t-field="line.quantity" />
+                            </td>
+                            <td>
+                                <span t-field="line.uom_id" />
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.weight" />
+                            </td>
+                            <td class="text-center">
+                                &#9744;
+                            </td>
+                        </tr>
+                        <tr t-if="not summary_lines">
+                            <td colspan="5" class="text-muted">
+                There are no products to load.
+              </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="fw-bold">
+                            <td colspan="3" class="text-end">Total Weight</td>
+                            <td class="text-end">
+                                <span
+                                    t-out="sum(summary_lines.mapped('weight'))"
+                                    t-options="{'widget': 'float', 'decimal_precision': 'Stock Weight'}"
+                                />
+                                <span t-field="dayroute.weight_uom_name" />
+                            </td>
+                            <td />
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <h4>Delivery Breakdown</h4>
+                <p t-if="not stops" class="text-muted">
+          There are no orders to deliver in this day route.
+        </p>
+                <div
+                    t-foreach="stops"
+                    t-as="stop"
+                    class="mb-3"
+                    style="page-break-inside: avoid; border: 1px solid #adb5bd; border-radius: 4px;"
+                >
+                    <table class="table table-sm table-bordered mb-0">
+                        <thead>
+                            <tr class="table-light">
+                                <th colspan="2">
+                  #<t t-out="stop['index']" /> -
+                  <t t-out="stop['location'].name or stop['order'].name" />
+                  <span class="float-end">
+                                    <span
+                                        t-if="stop['is_completed']"
+                                        class="text-success me-2"
+                                    >
+                      &#10003; Completed
+                    </span>
+                                    <t t-out="stop['order'].name" />
+                                </span>
+                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-if="stop['address']">
+                                <td class="fw-bold" style="width: 20%;">Address</td>
+                                <td t-out="stop['address']" />
+                            </tr>
+                            <tr t-if="stop['phone'] or stop['mobile']">
+                                <td class="fw-bold">Phone</td>
+                                <td>
+                                    <t
+                                        t-out="' / '.join(filter(None, [stop['phone'], stop['mobile']]))"
+                                    />
+                                </td>
+                            </tr>
+                            <tr t-if="stop['note']">
+                                <td class="fw-bold">Notes</td>
+                                <td
+                                    style="white-space: pre-line;"
+                                    t-out="stop['note']"
+                                />
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-0">
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                            <tr class="text-uppercase">
+                                                <th
+                                                    class="text-start fw-bold"
+                                                >Product</th>
+                                                <th
+                                                    class="text-end fw-bold"
+                                                >Deliver</th>
+                                                <th
+                                                    class="text-end fw-bold"
+                                                >Pick up</th>
+                                                <th class="text-start fw-bold">Unit</th>
+                                                <th
+                                                    class="text-center fw-bold"
+                                                >Done</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="stop['lines']" t-as="line">
+                                                <td
+                                                    t-out="line['product'].display_name"
+                                                />
+                                                <td
+                                                    t-attf-class="text-end #{'text-danger fw-bold' if line['is_missing_stock'] else ''}"
+                                                >
+                                                    <t
+                                                        t-if="not line['is_pickup']"
+                                                        t-out="line['quantity']"
+                                                        t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+                                                    />
+                                                </td>
+                                                <td class="text-end">
+                                                    <t
+                                                        t-if="line['is_pickup']"
+                                                        t-out="line['quantity']"
+                                                        t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"
+                                                    />
+                                                </td>
+                                                <td t-out="line['uom'].name" />
+                                                <td class="text-center">
+                                                    &#9744;
+                                                </td>
+                                            </tr>
+                                            <tr t-if="not stop['lines']">
+                                                <td colspan="5" class="text-muted">
+                          No products to deliver or pick up.
+                        </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_dayroute_load_sheet">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="dayroute">
+                <t
+                    t-call="fieldservice_route_dayroute_summary.report_dayroute_load_sheet_document"
+                >
+                    <t t-set="stops" t-value="dayroute._get_load_sheet_stops()" />
+                    <t
+                        t-set="summary_lines"
+                        t-value="dayroute._get_load_sheet_summary_lines()"
+                    />
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
