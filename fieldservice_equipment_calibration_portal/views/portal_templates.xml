@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_equipment_page_calibration"
+        name="Equipment Portal: Calibration Certificates"
+        inherit_id="fieldservice_equipment_portal.portal_equipment_page"
+    >
+        <xpath
+            expr="//div[@id='equipment_portal_card']/div[hasclass('card-body')]"
+            position="inside"
+        >
+            <div class="mb-4" t-if="equipment.fsm_calibration_certificate_ids">
+                <h6>Calibration Certificates</h6>
+                <div class="list-group list-group-flush mb-4">
+                    <t
+                        t-foreach="equipment.fsm_calibration_certificate_ids"
+                        t-as="equipment_certificate"
+                    >
+                        <a
+                            t-attf-href="/my/equipments/calibration/#{equipment_certificate.id}/download"
+                            class="list-group-item list-group-item-action"
+                        >
+                            <span class="fa fa-download" />
+                            <t t-esc="equipment_certificate.name" />
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
