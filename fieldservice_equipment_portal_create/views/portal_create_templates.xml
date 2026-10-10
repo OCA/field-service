@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="portal_create_location" name="Register Location">
+        <t t-call="portal.portal_layout">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Register a Location</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/my/locations/submit" method="POST" class="mt-2">
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                required="required"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input type="text" class="form-control" name="phone" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" class="form-control" name="email" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="street">Address</label>
+                            <input type="text" class="form-control" name="street" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" class="form-control" name="city" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="zip">Zip Code</label>
+                            <input type="text" class="form-control" name="zip" />
+                        </div>
+                        <button class="btn btn-primary">Register Location</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="portal_create_equipment" name="Register Equipment">
+        <t t-call="portal.portal_layout">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Register an Equipment</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/my/equipments/submit" method="POST" class="mt-2">
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="name"
+                                required="required"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="location_id">Location</label>
+                            <select
+                                class="form-select"
+                                name="location_id"
+                                required="required"
+                            >
+                                <t t-foreach="locations" t-as="location">
+                                    <option t-att-value="location.id">
+                                        <t t-esc="location.display_name" />
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="product_id">Product</label>
+                            <select
+                                class="form-select"
+                                name="product_id"
+                                required="required"
+                            >
+                                <t t-foreach="products" t-as="product">
+                                    <option t-att-value="product.id">
+                                        <t t-esc="product.display_name" />
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="serial">Serial Number</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="serial"
+                                required="required"
+                            />
+                        </div>
+                        <button class="btn btn-primary">Register Equipment</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
