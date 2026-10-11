@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.fsm.equipment.portal</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='fieldservice']" position="inside">
+                <block
+                    title="Equipment Portal"
+                    name="equipment_portal_setting_container"
+                >
+                    <setting
+                        string="Public Equipment Pages"
+                        help="Allow anyone with an equipment page link (e.g. scanned from a printed QR code) to view it without logging in"
+                    >
+                        <field name="fsm_equipment_portal_public" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
