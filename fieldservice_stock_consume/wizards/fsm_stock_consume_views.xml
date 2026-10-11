@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_stock_consume_form" model="ir.ui.view">
+        <field name="name">fsm.stock.consume.form</field>
+        <field name="model">fsm.stock.consume</field>
+        <field name="arch" type="xml">
+            <form string="Consume Parts from Stock">
+                <group>
+                    <field name="order_id" readonly="1" />
+                    <field name="warehouse_id" />
+                </group>
+                <field name="line_ids">
+                    <list editable="bottom">
+                        <field name="product_id" />
+                        <field name="product_qty" />
+                        <field name="product_uom_id" />
+                    </list>
+                </field>
+                <footer>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        string="Create Delivery"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fsm_stock_consume" model="ir.actions.act_window">
+        <field name="name">Consumir do Estoque</field>
+        <field name="res_model">fsm.stock.consume</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
