@@ -32,6 +32,16 @@ class SubcontractingCommon(BaseCommon):
                 .id,
             }
         )
+        if "analytic_account_id" in cls.location._fields:
+            # fieldservice_account_analytic (optional in the addons graph)
+            # requires the order's location to carry an analytic account
+            # before analytic lines can be linked to its orders.
+            plan = cls.env["account.analytic.plan"].create({"name": "FSM Test Plan"})
+            cls.location.analytic_account_id = (
+                cls.env["account.analytic.account"]
+                .create({"name": "FSM Test Analytic", "plan_id": plan.id})
+                .id
+            )
         cls.service_product = cls.env["product.product"].create(
             {
                 "name": "Subcontracted Service",
