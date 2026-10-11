@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_order_form_purchase_request" model="ir.ui.view">
+        <field name="name">fsm.order.form.purchase.request</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_create_purchase_request"
+                    type="object"
+                    string="Request Parts"
+                    class="btn-secondary"
+                    groups="fieldservice.group_fsm_user"
+                />
+            </header>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_purchase_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    invisible="purchase_request_count == 0"
+                >
+                    <field
+                        name="purchase_request_count"
+                        widget="statinfo"
+                        string="Purchase Requests"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
