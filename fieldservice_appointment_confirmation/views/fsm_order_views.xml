@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form.appointment.confirmation</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <button
+                    name="action_request_appointment_confirmation"
+                    type="object"
+                    string="Request Confirmation"
+                    class="oe_highlight"
+                    invisible="not can_request_confirmation"
+                    groups="fieldservice.group_fsm_user"
+                />
+                <field name="can_request_confirmation" invisible="1" />
+            </field>
+            <xpath expr="//sheet/*[1]" position="before">
+                <widget
+                    name="web_ribbon"
+                    title="Confirmed"
+                    bg_color="text-bg-success"
+                    invisible="appointment_state != 'confirmed'"
+                />
+            </xpath>
+            <field name="scheduled_date_start" position="after">
+                <field name="appointment_state" invisible="1" />
+                <field
+                    name="appointment_state_label"
+                    string="Appointment Status"
+                    widget="badge"
+                    decoration-muted="appointment_state == 'pending'"
+                    decoration-info="appointment_state == 'requested'"
+                    decoration-success="appointment_state == 'confirmed'"
+                />
+                <field
+                    name="appointment_reschedule_count"
+                    invisible="appointment_reschedule_count == 0"
+                />
+                <field
+                    name="appointment_confirmed_date"
+                    invisible="not appointment_confirmed_date"
+                />
+                <field
+                    name="appointment_confirmed_by"
+                    invisible="not appointment_confirmed_by"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_list_view" model="ir.ui.view">
+        <field name="name">fsm.order.list.appointment.confirmation</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute
+                    name="decoration-success"
+                >appointment_state == 'confirmed'</attribute>
+            </list>
+            <field name="stage_id" position="after">
+                <field name="appointment_state" column_invisible="1" />
+                <field
+                    name="appointment_state_label"
+                    string="Appointment Status"
+                    widget="badge"
+                    optional="show"
+                    decoration-muted="appointment_state == 'pending'"
+                    decoration-info="appointment_state == 'requested'"
+                    decoration-success="appointment_state == 'confirmed'"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_search_view" model="ir.ui.view">
+        <field name="name">fsm.order.search.appointment.confirmation</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_search_view" />
+        <field name="arch" type="xml">
+            <filter name="done" position="after">
+                <separator />
+                <filter
+                    name="appointment_confirmed"
+                    string="Confirmed Appointments"
+                    domain="[('appointment_state', '=', 'confirmed')]"
+                />
+                <filter
+                    name="appointment_pending"
+                    string="Pending Confirmation"
+                    domain="[('appointment_state', 'in', ['pending', 'requested'])]"
+                />
+                <filter
+                    name="appointment_rescheduled"
+                    string="Rescheduled Appointments"
+                    domain="[('appointment_reschedule_count', '&gt;', 0)]"
+                />
+            </filter>
+            <filter name="fsm_person_id" position="after">
+                <filter
+                    name="group_appointment_state"
+                    string="Appointment Status"
+                    context="{'group_by': 'appointment_state'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="fsm_order_calendar_view" model="ir.ui.view">
+        <field name="name">fsm.order.calendar.appointment.confirmation</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_calendar_view" />
+        <field name="arch" type="xml">
+            <calendar position="attributes">
+                <attribute name="color">appointment_state</attribute>
+                <attribute
+                    name="create_name_field"
+                >appointment_calendar_label</attribute>
+            </calendar>
+            <field name="stage_id" position="after">
+                <field name="appointment_state" />
+                <field name="appointment_calendar_label" />
+            </field>
+        </field>
+    </record>
+</odoo>
