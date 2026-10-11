@@ -7,17 +7,15 @@ from odoo.exceptions import ValidationError
 
 class FSMDeliveryTimeRange(models.Model):
     _name = "fsm.delivery.time.range"
-    _description = "Delivery Time Range"
+    _description = "Global Fallback Delivery Time Range"
     _order = "sequence, start_time asc"
 
     name = fields.Char(compute="_compute_name", store=True)
-    start_time = fields.Float(required=True)
-    end_time = fields.Float(required=True)
-    route_id = fields.Many2one(
-        "fsm.route",
-        string="Route",
-        help="Specific route this time range applies to. "
-        "Leave empty for global time ranges.",
+    start_time = fields.Float(
+        required=True, default=7.0, help="Start hour (e.g. 7.0 for 07:00)"
+    )
+    end_time = fields.Float(
+        required=True, default=15.0, help="End hour (e.g. 15.0 for 15:00)"
     )
     sequence = fields.Integer(
         default=10,
@@ -27,13 +25,17 @@ class FSMDeliveryTimeRange(models.Model):
     @api.depends("start_time", "end_time")
     def _compute_name(self):
         for record in self:
-            start = "{:02d}:{:02d}".format(*divmod(int(record.start_time * 60), 60))
-            end = "{:02d}:{:02d}".format(*divmod(int(record.end_time * 60), 60))
-            record.name = f"{start} - {end}"
+            start_str = "{:02d}:{:02d}".format(*divmod(int(record.start_time * 60), 60))
+            end_str = "{:02d}:{:02d}".format(*divmod(int(record.end_time * 60), 60))
+            record.name = f"{start_str} - {end_str}"
 
     @api.constrains("start_time", "end_time")
     def _check_time_range(self):
         for record in self:
+            if not (0.0 <= record.start_time < 24.0) or not (
+                0.0 <= record.end_time < 24.0
+            ):
+                raise ValidationError(_("Hours must be between 00:00 and 23:59."))
             if record.start_time >= record.end_time:
                 raise ValidationError(
                     _("The start time must be earlier than the end time.")
