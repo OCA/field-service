@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form.equipment.line</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <page name="equipements_page" position="inside">
+                <separator string="Checklist" />
+                <field name="equipment_line_pending_count" invisible="1" />
+                <field name="equipment_line_ids">
+                    <list
+                        editable="bottom"
+                        decoration-success="state == 'done'"
+                        decoration-muted="state == 'not_found'"
+                    >
+                        <field name="sequence" widget="handle" />
+                        <field name="equipment_id" options="{'no_create': True}" />
+                        <field name="current_location_id" />
+                        <field
+                            name="template_id"
+                            optional="hide"
+                            groups="fieldservice.group_fsm_template"
+                        />
+                        <field name="note" />
+                        <field name="date_done" optional="hide" />
+                        <field name="state" widget="badge" />
+                        <button
+                            name="action_done"
+                            type="object"
+                            icon="fa-check"
+                            title="Done"
+                            invisible="state == 'done'"
+                        />
+                        <button
+                            name="action_not_found"
+                            type="object"
+                            icon="fa-question"
+                            title="Not Found"
+                            invisible="state != 'pending'"
+                        />
+                        <button
+                            name="action_pending"
+                            type="object"
+                            icon="fa-undo"
+                            title="Back to Pending"
+                            invisible="state == 'pending'"
+                        />
+                    </list>
+                </field>
+            </page>
+        </field>
+    </record>
+</odoo>
