@@ -378,8 +378,9 @@ order</strong> (see <em>Field Service - Sale</em>): the recorded work is pushed 
 to that same sale order. It builds on <tt class="docutils literal">fsm.order</tt>:</p>
 <ul class="simple">
 <li>timesheets are the <tt class="docutils literal">account.analytic.line</tt> records linked to the
-order (from <em>Field Service - Analytic Accounting</em>), grouped by their
-<em>Time Type</em> product;</li>
+order, grouped by their <em>Time Type</em> product. They are recorded in the
+<strong>Timesheets</strong> tab of <em>Field Service - Timesheet</em>, which this module
+shows on every order, not only on orders with a project;</li>
 <li>materials are the consumed stock moves of the order (from <em>Field
 Service - Stock</em>), grouped by product. <tt class="docutils literal">fieldservice_stock</tt> only
 displays these moves read-only, so creating them requires a companion

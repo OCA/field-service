@@ -4,6 +4,7 @@
 from datetime import timedelta
 
 from odoo import fields
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -30,21 +31,21 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         cls.time_product = cls.env["product.product"].create(
             {
                 "name": "Labor",
-                "detailed_type": "service",
+                "type": "service",
                 "invoice_policy": "order",
                 "uom_id": cls.env.ref("uom.product_uom_hour").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_hour").id,
             }
         )
         cls.material = cls.env["product.product"].create(
-            {"name": "Spare Part", "detailed_type": "consu"}
+            {"name": "Spare Part", "type": "consu"}
         )
         # A "per sale order" tracking product makes the sale order generate a
         # field service order on confirmation.
         cls.service = cls.env["product.product"].create(
             {
                 "name": "Call-out fee",
-                "detailed_type": "service",
+                "type": "service",
                 "field_service_tracking": "sale",
             }
         )
@@ -73,6 +74,18 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             vals["product_uom_id"] = uom.id
         return self.env["account.analytic.line"].create(vals)
 
+    def test_timesheet_from_form_without_project(self):
+        # Time is recorded from the order form even when the order has no
+        # project: the timesheets list must not require one.
+        self.assertFalse(self.order.project_id)
+        with Form(self.order) as order_form:
+            with order_form.timesheet_ids.new() as line:
+                line.name = "Travel"
+                line.product_id = self.time_product
+                line.unit_amount = 1.0
+        self.assertEqual(self.order.timesheet_ids.name, "Travel")
+        self.assertFalse(self.order.timesheet_ids.project_id)
+
     def _add_consumed_move(self, qty, uom=None):
         warehouse = self.env["stock.warehouse"].search(
             [("company_id", "=", self.env.company.id)], limit=1
@@ -97,7 +110,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
                 "location_dest_id": picking.location_dest_id.id,
             }
         )
-        move.quantity_done = qty
+        move.quantity = qty
         move.state = "done"
         return move
 
@@ -125,7 +138,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
                 "location_dest_id": picking.location_dest_id.id,
             }
         )
-        move.quantity_done = qty
+        move.quantity = qty
         move.state = "done"
         return move
 
