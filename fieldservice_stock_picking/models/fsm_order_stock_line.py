@@ -29,7 +29,7 @@ class FSMOrderStockLine(models.Model):
         "product.product",
         string="Product",
         required=True,
-        domain="[('type', 'in', ['product', 'consu'])]",
+        domain="[('type', '=', 'consu')]",
     )
     product_uom_qty = fields.Float(
         string="Quantity",
