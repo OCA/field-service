@@ -10,13 +10,16 @@ class FSMPerson(models.Model):
     bill_count = fields.Integer(string="Vendor Bills", compute="_compute_vendor_bills")
 
     def _compute_vendor_bills(self):
-        self.bill_count = self.env["account.move"].search_count(
-            [("partner_id", "=", self.partner_id.id)]
-        )
+        for person in self:
+            person.bill_count = self.env["account.move"].search_count(
+                [("partner_id", "=", person.partner_id.id)]
+            )
 
     def action_view_bills(self):
         for bill in self:
-            action = self.env.ref("account.action_move_out_invoice_type").read()[0]
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "account.action_move_in_invoice_type"
+            )
             vendor_bills = self.env["account.move"].search(
                 [("partner_id", "=", bill.partner_id.id)]
             )
