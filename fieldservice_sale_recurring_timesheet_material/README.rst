@@ -93,7 +93,7 @@ Credits
 Authors
 ~~~~~~~
 
-* Lorenzo Carta
+* Innovyou
 
 Contributors
 ~~~~~~~~~~~~
@@ -114,6 +114,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-LorenzoC0| image:: https://github.com/LorenzoC0.png?size=40px
+    :target: https://github.com/LorenzoC0
+    :alt: LorenzoC0
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-LorenzoC0| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_sale_recurring_timesheet_material>`_ project on GitHub.
 

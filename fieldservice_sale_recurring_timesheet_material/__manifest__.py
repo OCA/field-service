@@ -18,6 +18,8 @@
         "views/fsm_recurring.xml",
     ],
     "license": "AGPL-3",
+    "development_status": "Beta",
+    "maintainers": ["LorenzoC0"],
     "installable": True,
     "auto_install": True,
 }
