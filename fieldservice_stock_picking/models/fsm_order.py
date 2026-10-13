@@ -1,7 +1,7 @@
 # Copyright (C) 2026 Innovyou
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -126,13 +126,17 @@ class FSMOrder(models.Model):
             else self.incoming_picking_type_id
         )
         if not picking_type:
-            label = _("outgoing") if direction == "outgoing" else _("incoming")
+            label = (
+                self.env._("outgoing")
+                if direction == "outgoing"
+                else self.env._("incoming")
+            )
             raise UserError(
-                _(
+                self.env._(
                     "Please set the %s operation type on the "
-                    "field service order before creating transfers."
+                    "field service order before creating transfers.",
+                    label,
                 )
-                % label
             )
         location_id, location_dest_id = self._get_transfer_locations(
             direction, picking_type
@@ -162,7 +166,7 @@ class FSMOrder(models.Model):
             pickings |= order._create_transfer("incoming")
         if not pickings:
             raise UserError(
-                _(
+                self.env._(
                     "There is nothing to transfer. Add outgoing or incoming "
                     "products that are not part of a transfer yet."
                 )

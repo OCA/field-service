@@ -31,8 +31,7 @@
                     name="outgoing_line_ids"
                     context="{'default_direction': 'outgoing'}"
                 >
-                    <tree editable="bottom">
-                        <field name="direction" invisible="1" />
+                    <list editable="bottom">
                         <field name="product_id" options="{'no_create': True}" />
                         <field name="product_uom_qty" />
                         <field
@@ -42,15 +41,14 @@
                         />
                         <field name="picking_id" readonly="1" />
                         <field name="state" readonly="1" />
-                    </tree>
+                    </list>
                 </field>
                 <separator string="Incoming Products" />
                 <field
                     name="incoming_line_ids"
                     context="{'default_direction': 'incoming'}"
                 >
-                    <tree editable="bottom">
-                        <field name="direction" invisible="1" />
+                    <list editable="bottom">
                         <field name="product_id" options="{'no_create': True}" />
                         <field name="product_uom_qty" />
                         <field
@@ -60,7 +58,7 @@
                         />
                         <field name="picking_id" readonly="1" />
                         <field name="state" readonly="1" />
-                    </tree>
+                    </list>
                 </field>
             </xpath>
         </field>

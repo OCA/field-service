@@ -2,18 +2,21 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo.exceptions import UserError
+from odoo.tests.common import TransactionCase
 
-from odoo.addons.fieldservice_stock.tests.test_fsm_stock import TestFSMStockCommon
 
-
-class TestFSMStockPicking(TestFSMStockCommon):
+class TestFSMStockPicking(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.Product = cls.env["product.product"]
-        cls.product_1 = cls.Product.create({"name": "Material 1", "type": "product"})
-        cls.product_2 = cls.Product.create({"name": "Material 2", "type": "product"})
+        cls.product_1 = cls.Product.create(
+            {"name": "Material 1", "type": "consu", "is_storable": True}
+        )
+        cls.product_2 = cls.Product.create(
+            {"name": "Material 2", "type": "consu", "is_storable": True}
+        )
         cls.test_location = cls.env.ref("fieldservice.test_location")
         cls.warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.user.company_id.id)], limit=1
@@ -159,7 +162,27 @@ class TestFSMStockPicking(TestFSMStockCommon):
         # Picking is created in draft and processed via the standard flow
         self.assertEqual(picking.state, "draft")
         picking.action_confirm()
-        for move_line in picking.move_ids:
-            move_line.quantity_done = move_line.product_uom_qty
+        for move in picking.move_ids:
+            move.quantity = move.product_uom_qty
+            move.picked = True
         picking._action_done()
         self.assertEqual(picking.state, "done")
+
+    def test_recreate_for_cancelled_move(self):
+        order = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "outgoing_line_ids": [
+                    (0, 0, {"product_id": self.product_1.id, "product_uom_qty": 1}),
+                ],
+            }
+        )
+        order.action_create_transfers()
+        first_picking = order.picking_ids
+        first_picking.action_cancel()
+        self.assertEqual(order.outgoing_line_ids.state, "cancel")
+        # A line whose move was cancelled is transferred again
+        order.action_create_transfers()
+        new_picking = order.picking_ids - first_picking
+        self.assertEqual(len(new_picking), 1)
+        self.assertEqual(order.outgoing_line_ids.move_id, new_picking.move_ids)

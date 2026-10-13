@@ -20,6 +20,11 @@ class FSMOrderStockLine(models.Model):
         ondelete="cascade",
         index=True,
     )
+    company_id = fields.Many2one(
+        related="fsm_order_id.company_id",
+        store=True,
+        index=True,
+    )
     direction = fields.Selection(
         DIRECTIONS,
         required=True,
@@ -29,7 +34,7 @@ class FSMOrderStockLine(models.Model):
         "product.product",
         string="Product",
         required=True,
-        domain="[('type', 'in', ['product', 'consu'])]",
+        domain="[('type', '=', 'consu')]",
     )
     product_uom_qty = fields.Float(
         string="Quantity",
