@@ -25,10 +25,18 @@
                             t-foreach="doc.timesheet_ids.sorted(key=lambda t: t.date or '')"
                             t-as="line"
                         >
-                            <td><span t-field="line.date" /></td>
-                            <td><span t-field="line.user_id" /></td>
-                            <td><span t-field="line.product_id" /></td>
-                            <td><span t-field="line.name" /></td>
+                            <td>
+                                <span t-field="line.date" />
+                            </td>
+                            <td>
+                                <span t-field="line.user_id" />
+                            </td>
+                            <td>
+                                <span t-field="line.product_id" />
+                            </td>
+                            <td>
+                                <span t-field="line.name" />
+                            </td>
                             <td class="text-end">
                                 <span
                                     t-field="line.unit_amount"
@@ -39,7 +47,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4" class="text-end"><strong>Total</strong></td>
+                            <td colspan="4" class="text-end">
+                                <strong>Total</strong>
+                            </td>
                             <td class="text-end">
                                 <strong>
                                     <span
@@ -67,7 +77,9 @@
                     </thead>
                     <tbody>
                         <tr t-foreach="material_lines" t-as="material">
-                            <td><span t-esc="material['product'].display_name" /></td>
+                            <td>
+                                <span t-esc="material['product'].display_name" />
+                            </td>
                             <td>
                                 <span t-if="material['direction'] == 'out'">Used</span>
                                 <span t-else="">Returned</span>
@@ -78,7 +90,9 @@
                                     t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'
                                 />
                             </td>
-                            <td><span t-esc="material['uom'].name" /></td>
+                            <td>
+                                <span t-esc="material['uom'].name" />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
