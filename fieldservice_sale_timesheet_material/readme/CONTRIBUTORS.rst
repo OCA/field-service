@@ -1,1 +1,0 @@
-* Lorenzo Battistini
