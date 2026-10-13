@@ -5,7 +5,7 @@
     "name": "Field Service - Sale Recurring Timesheet & Material",
     "summary": "Add the timesheets and materials of the field service orders "
     "of a recurring order to the sale order that sold it",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Field Service",
     "author": "Innovyou, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",

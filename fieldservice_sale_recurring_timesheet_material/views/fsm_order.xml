@@ -9,9 +9,7 @@
         />
         <field name="arch" type="xml">
             <button name="action_create_sale_lines" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('sale_id', '=', False), ('sale_line_id', '=', False)]}</attribute>
+                <attribute name="invisible">not sale_id and not sale_line_id</attribute>
             </button>
         </field>
     </record>

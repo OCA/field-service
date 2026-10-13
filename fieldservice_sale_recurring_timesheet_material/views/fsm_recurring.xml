@@ -11,7 +11,7 @@
                     string="Add to Sale Order"
                     type="object"
                     groups="sales_team.group_sale_salesman"
-                    attrs="{'invisible': ['|', ('sale_line_id', '=', False), ('state', '=', 'draft')]}"
+                    invisible="not sale_line_id or state == 'draft'"
                     help="Add the timesheets and consumed materials recorded on the orders of this recurring order as lines on the sale order that sold it."
                 />
             </button>
