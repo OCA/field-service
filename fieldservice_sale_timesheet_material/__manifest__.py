@@ -5,7 +5,7 @@
     "name": "Field Service - Sale Timesheet & Material",
     "summary": "Invoice field service timesheets and consumed materials "
     "by adding them to the sale order",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Field Service",
     "author": "Innovyou, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",

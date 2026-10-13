@@ -12,14 +12,14 @@
                     type="object"
                     class="oe_highlight"
                     groups="sales_team.group_sale_salesman"
-                    attrs="{'invisible': [('sale_id', '=', False)]}"
+                    invisible="not sale_id"
                     help="Add the recorded timesheets and consumed materials as lines on the order's sale order."
                 />
             </header>
             <xpath expr="//notebook/page[@name='planning_page']" position="after">
                 <page string="Timesheets" name="fsm_timesheet_page">
                     <field name="timesheet_ids">
-                        <tree editable="bottom" default_order="date">
+                        <list editable="bottom" default_order="date">
                             <field name="date" />
                             <field name="user_id" />
                             <field
@@ -33,14 +33,14 @@
                                 string="Duration"
                                 widget="float_time"
                             />
-                            <field name="company_id" invisible="1" />
-                            <field name="account_id" invisible="1" />
+                            <field name="company_id" column_invisible="1" />
+                            <field name="account_id" column_invisible="1" />
                             <field
                                 name="fsm_sale_line_id"
                                 readonly="1"
                                 optional="hide"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

@@ -30,21 +30,21 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         cls.time_product = cls.env["product.product"].create(
             {
                 "name": "Labor",
-                "detailed_type": "service",
+                "type": "service",
                 "invoice_policy": "order",
                 "uom_id": cls.env.ref("uom.product_uom_hour").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_hour").id,
             }
         )
         cls.material = cls.env["product.product"].create(
-            {"name": "Spare Part", "detailed_type": "consu"}
+            {"name": "Spare Part", "type": "consu"}
         )
         # A "per sale order" tracking product makes the sale order generate a
         # field service order on confirmation.
         cls.service = cls.env["product.product"].create(
             {
                 "name": "Call-out fee",
-                "detailed_type": "service",
+                "type": "service",
                 "field_service_tracking": "sale",
             }
         )
@@ -97,7 +97,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
                 "location_dest_id": picking.location_dest_id.id,
             }
         )
-        move.quantity_done = qty
+        move.quantity = qty
         move.state = "done"
         return move
 
@@ -125,7 +125,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
                 "location_dest_id": picking.location_dest_id.id,
             }
         )
-        move.quantity_done = qty
+        move.quantity = qty
         move.state = "done"
         return move
 
