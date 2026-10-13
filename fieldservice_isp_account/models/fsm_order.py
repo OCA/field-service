@@ -85,7 +85,7 @@ class FSMOrder(models.Model):
                     + "'Employee Timesheets' is filled in"
                 )
             )
-        return super(FSMOrder, self).action_complete()
+        return super().action_complete()
 
     def prepare_bills(self):
         jrnl = self.env["account.journal"].search(

@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class FsmOrderCost(models.Model):
-
     _name = "fsm.order.cost"
     _description = "Fsm Order Cost"
 
