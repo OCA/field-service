@@ -87,8 +87,14 @@ class FSMOrder(models.Model):
     def _create_sale_lines_from_materials(self):
         self.ensure_one()
         SaleLine = self.env["sale.order.line"]
+        # Moves already linked to a sale order line (e.g. deliveries of
+        # products sold on the sale order) are billed there: overwriting their
+        # ``sale_line_id`` would detach them from the original line and bill
+        # the same goods twice.
         moves = self.move_ids.filtered(
-            lambda m: m.state == "done" and not m.fsm_sale_line_id
+            lambda m: m.state == "done"
+            and not m.fsm_sale_line_id
+            and not m.sale_line_id
         )
         grouped = defaultdict(lambda: self.env["stock.move"])
         for move in moves:
@@ -107,6 +113,11 @@ class FSMOrder(models.Model):
                 self._prepare_sale_line_vals(product, qty, uom)
             )
             prod_moves.write({"sale_line_id": sol.id, "fsm_sale_line_id": sol.id})
+            # Returned materials must lower the delivered quantity too, which
+            # sale_stock only does for incoming moves flagged as refunds.
+            prod_moves.filtered(
+                lambda m: m.picking_id.picking_type_id.code != "outgoing"
+            ).write({"to_refund": True})
 
     # ------------------------------------------------------------------
     # Action

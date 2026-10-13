@@ -12,8 +12,8 @@ sale order. It builds on ``fsm.order``:
 * materials are the consumed stock moves of the order (from
   *Field Service - Stock*), grouped by product. ``fieldservice_stock`` only
   displays these moves read-only, so creating them requires a companion module
-  such as **Field Service - Stock Request** (``fieldservice_stock_request``),
-  or deliveries coming from the sale order.
+  such as **Field Service - Stock Request** (``fieldservice_stock_request``).
+  Deliveries that are already linked to a sale order line are left on it.
 
 A single **Add to Sale Order** button on the field service order pushes both
 timesheets and materials onto the linked sale order. The button is only shown

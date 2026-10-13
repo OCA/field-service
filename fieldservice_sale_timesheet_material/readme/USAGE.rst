@@ -9,8 +9,9 @@
    **Field Service - Stock Request** (``fieldservice_stock_request``) and enter
    the products in the **Stock Requests** list of the order's *Inventory* tab,
    then process them through that module's flow until the moves reach the
-   *Done* state. Materials delivered from the sale order appear here too. Only
-   *Done* moves are billed.
+   *Done* state. Only *Done* moves are billed. Deliveries that already belong
+   to a sale order line (e.g. products sold on the sale order itself) stay on
+   that line and are not added again.
 #. Click **Add to Sale Order**. A line is added to the linked sale order for
    each *Time Type* product (with the total hours) and for each consumed
    product (with the net delivered quantity). The button is hidden when the
