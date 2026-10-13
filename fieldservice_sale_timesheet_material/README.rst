@@ -46,8 +46,8 @@ sale order. It builds on ``fsm.order``:
 * materials are the consumed stock moves of the order (from
   *Field Service - Stock*), grouped by product. ``fieldservice_stock`` only
   displays these moves read-only, so creating them requires a companion module
-  such as **Field Service - Stock Request** (``fieldservice_stock_request``),
-  or deliveries coming from the sale order.
+  such as **Field Service - Stock Request** (``fieldservice_stock_request``).
+  Deliveries that are already linked to a sale order line are left on it.
 
 A single **Add to Sale Order** button on the field service order pushes both
 timesheets and materials onto the linked sale order. The button is only shown
@@ -73,8 +73,9 @@ Usage
    **Field Service - Stock Request** (``fieldservice_stock_request``) and enter
    the products in the **Stock Requests** list of the order's *Inventory* tab,
    then process them through that module's flow until the moves reach the
-   *Done* state. Materials delivered from the sale order appear here too. Only
-   *Done* moves are billed.
+   *Done* state. Only *Done* moves are billed. Deliveries that already belong
+   to a sale order line (e.g. products sold on the sale order itself) stay on
+   that line and are not added again.
 #. Click **Add to Sale Order**. A line is added to the linked sale order for
    each *Time Type* product (with the total hours) and for each consumed
    product (with the net delivered quantity). The button is hidden when the
@@ -148,6 +149,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-eLBati| image:: https://github.com/eLBati.png?size=40px
+    :target: https://github.com/eLBati
+    :alt: eLBati
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-eLBati| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_sale_timesheet_material>`_ project on GitHub.
 

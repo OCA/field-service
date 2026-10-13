@@ -62,17 +62,18 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         cls.sale.action_confirm()
         cls.order = cls.sale.fsm_order_ids
 
-    def _add_timesheet(self, hours):
-        return self.env["account.analytic.line"].create(
-            {
-                "name": "Work done",
-                "fsm_order_id": self.order.id,
-                "product_id": self.time_product.id,
-                "unit_amount": hours,
-            }
-        )
+    def _add_timesheet(self, hours, uom=None):
+        vals = {
+            "name": "Work done",
+            "fsm_order_id": self.order.id,
+            "product_id": self.time_product.id,
+            "unit_amount": hours,
+        }
+        if uom:
+            vals["product_uom_id"] = uom.id
+        return self.env["account.analytic.line"].create(vals)
 
-    def _add_consumed_move(self, qty):
+    def _add_consumed_move(self, qty, uom=None):
         warehouse = self.env["stock.warehouse"].search(
             [("company_id", "=", self.env.company.id)], limit=1
         )
@@ -88,7 +89,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             {
                 "name": self.material.name,
                 "product_id": self.material.id,
-                "product_uom": self.material.uom_id.id,
+                "product_uom": (uom or self.material.uom_id).id,
                 "product_uom_qty": qty,
                 "picking_id": picking.id,
                 "fsm_order_id": self.order.id,
@@ -100,7 +101,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         move.state = "done"
         return move
 
-    def _add_returned_move(self, qty):
+    def _add_returned_move(self, qty, uom=None):
         warehouse = self.env["stock.warehouse"].search(
             [("company_id", "=", self.env.company.id)], limit=1
         )
@@ -116,7 +117,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             {
                 "name": self.material.name,
                 "product_id": self.material.id,
-                "product_uom": self.material.uom_id.id,
+                "product_uom": (uom or self.material.uom_id).id,
                 "product_uom_qty": qty,
                 "picking_id": picking.id,
                 "fsm_order_id": self.order.id,
@@ -251,3 +252,59 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
 
         self.assertFalse(order.sale_id)
         self.assertFalse(order.timesheet_ids.mapped("fsm_sale_line_id"))
+
+    def test_timesheet_uom_conversion(self):
+        # A timesheet recorded in days is billed in the product's UoM (hours)
+        day = self.env.ref("uom.product_uom_day")
+        self._add_timesheet(1.0, uom=day)
+        self.order.action_create_sale_lines()
+        expected = day._compute_quantity(1.0, self.time_product.uom_id)
+        self.assertEqual(self._time_lines().product_uom_qty, expected)
+        self.assertEqual(self._time_lines().qty_delivered, expected)
+
+    def test_material_uom_conversion(self):
+        # A move done in dozens is billed in the product's UoM (units)
+        self._add_consumed_move(1.0, uom=self.env.ref("uom.product_uom_dozen"))
+        self.order.action_create_sale_lines()
+        self.assertEqual(self._material_lines().product_uom_qty, 12.0)
+        self.assertEqual(self._material_lines().product_uom, self.material.uom_id)
+
+    def test_return_lowers_billed_quantity(self):
+        # 4 consumed and 1 returned: only the net 3 are billed, and both
+        # moves are marked as billed on the same line
+        self._add_consumed_move(4.0)
+        self._add_returned_move(1.0)
+        self.order.action_create_sale_lines()
+        material_lines = self._material_lines()
+        self.assertEqual(len(material_lines), 1)
+        self.assertEqual(material_lines.product_uom_qty, 3.0)
+        self.assertEqual(material_lines.qty_delivered, 3.0)
+        self.assertEqual(self.order.move_ids.fsm_sale_line_id, material_lines)
+
+    def test_zero_quantity_skipped(self):
+        # Nothing to bill: no time recorded and everything consumed came back
+        self._add_timesheet(0.0)
+        self._add_consumed_move(2.0)
+        self._add_returned_move(2.0)
+        self.order.action_create_sale_lines()
+        self.assertFalse(self._time_lines())
+        self.assertFalse(self._material_lines())
+        self.assertFalse(self.order.timesheet_ids.fsm_sale_line_id)
+        self.assertFalse(self.order.move_ids.fsm_sale_line_id)
+
+    def test_skip_moves_already_on_sale_line(self):
+        # A delivery that already belongs to a sale order line stays there and
+        # is not billed a second time
+        move = self._add_consumed_move(2.0)
+        sold_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale.id,
+                "product_id": self.material.id,
+                "product_uom_qty": 2.0,
+            }
+        )
+        move.sale_line_id = sold_line
+        self.order.action_create_sale_lines()
+        self.assertEqual(self._material_lines(), sold_line)
+        self.assertEqual(move.sale_line_id, sold_line)
+        self.assertFalse(move.fsm_sale_line_id)

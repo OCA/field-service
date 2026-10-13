@@ -388,8 +388,8 @@ product;</li>
 <li>materials are the consumed stock moves of the order (from
 <em>Field Service - Stock</em>), grouped by product. <tt class="docutils literal">fieldservice_stock</tt> only
 displays these moves read-only, so creating them requires a companion module
-such as <strong>Field Service - Stock Request</strong> (<tt class="docutils literal">fieldservice_stock_request</tt>),
-or deliveries coming from the sale order.</li>
+such as <strong>Field Service - Stock Request</strong> (<tt class="docutils literal">fieldservice_stock_request</tt>).
+Deliveries that are already linked to a sale order line are left on it.</li>
 </ul>
 <p>A single <strong>Add to Sale Order</strong> button on the field service order pushes both
 timesheets and materials onto the linked sale order. The button is only shown
@@ -422,8 +422,9 @@ read-only — so a companion module is required to create them. Install
 <strong>Field Service - Stock Request</strong> (<tt class="docutils literal">fieldservice_stock_request</tt>) and enter
 the products in the <strong>Stock Requests</strong> list of the order’s <em>Inventory</em> tab,
 then process them through that module’s flow until the moves reach the
-<em>Done</em> state. Materials delivered from the sale order appear here too. Only
-<em>Done</em> moves are billed.</li>
+<em>Done</em> state. Only <em>Done</em> moves are billed. Deliveries that already belong
+to a sale order line (e.g. products sold on the sale order itself) stay on
+that line and are not added again.</li>
 <li>Click <strong>Add to Sale Order</strong>. A line is added to the linked sale order for
 each <em>Time Type</em> product (with the total hours) and for each consumed
 product (with the net delivered quantity). The button is hidden when the
@@ -490,6 +491,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/eLBati"><img alt="eLBati" src="https://github.com/eLBati.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/field-service/tree/16.0/fieldservice_sale_timesheet_material">OCA/field-service</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>

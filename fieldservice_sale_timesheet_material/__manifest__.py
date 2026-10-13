@@ -20,5 +20,6 @@
     ],
     "license": "AGPL-3",
     "development_status": "Beta",
+    "maintainers": ["eLBati"],
     "installable": True,
 }
