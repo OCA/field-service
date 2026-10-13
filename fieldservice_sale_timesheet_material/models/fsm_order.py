@@ -3,18 +3,12 @@
 
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import models
 from odoo.tools import float_compare
 
 
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
-
-    timesheet_ids = fields.One2many(
-        "account.analytic.line",
-        "fsm_order_id",
-        string="Timesheets",
-    )
 
     # ------------------------------------------------------------------
     # Sale order
@@ -65,8 +59,8 @@ class FSMOrder(models.Model):
     # ------------------------------------------------------------------
     @staticmethod
     def _move_qty_in_uom(move, uom):
-        """``move.quantity_done`` converted to ``uom`` when compatible."""
-        qty = move.quantity_done
+        """``move.quantity`` converted to ``uom`` when compatible."""
+        qty = move.quantity
         if move.product_uom.category_id == uom.category_id and move.product_uom != uom:
             qty = move.product_uom._compute_quantity(qty, uom)
         return qty
