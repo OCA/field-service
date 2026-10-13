@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Field Service - Stock Picking
 =============================
@@ -17,42 +13,45 @@ Field Service - Stock Picking
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
-    :target: https://github.com/OCA/field-service/tree/16.0/fieldservice_stock_picking
+    :target: https://github.com/OCA/field-service/tree/18.0/fieldservice_stock_picking
     :alt: OCA/field-service
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/field-service-16-0/field-service-16-0-fieldservice_stock_picking
+    :target: https://translation.odoo-community.org/projects/field-service-18-0/field-service-18-0-fieldservice_stock_picking
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/field-service&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module lets you send materials out to a Field Service location and
-receive materials back from it directly from the Field Service Order, using
-standard stock transfers (pickings).
+receive materials back from it directly from the Field Service Order,
+using standard stock transfers (pickings).
 
 On the Field Service Order you can:
 
-* list the outgoing and the incoming products;
-* choose the operation type (``stock.picking.type``) used for the outgoing
-  and for the incoming transfer;
-* create the outgoing and/or incoming transfer in a single click; a transfer
-  is only created when there are products that are not part of a transfer yet.
+-  list the outgoing and the incoming products;
+-  choose the operation type (``stock.picking.type``) used for the
+   outgoing and for the incoming transfer;
+-  create the outgoing and/or incoming transfer in a single click; a
+   transfer is only created when there are products that are not part of
+   a transfer yet.
 
-The outgoing and incoming operation types can be pre-set on the Field Service
-Order Template. When a template is selected on an order, its operation types
-are applied and take precedence over the warehouse defaults.
+The outgoing and incoming operation types can be pre-set on the Field
+Service Order Template. When a template is selected on an order, its
+operation types are applied and take precedence over the warehouse
+defaults.
 
-The created transfers are left in draft and are processed by the user through
-the standard transfer flow (mark as todo, check availability, validate).
+The created transfers are left in draft and are processed by the user
+through the standard transfer flow (mark as todo, check availability,
+validate).
 
-Outgoing and incoming transfers are reachable from the Field Service Order
-through the *Deliveries* and *Returns* smart buttons provided by
+Outgoing and incoming transfers are reachable from the Field Service
+Order through the *Deliveries* and *Returns* smart buttons provided by
 ``fieldservice_stock``.
 
 **Table of contents**
@@ -65,28 +64,31 @@ Configuration
 
 To pre-set the operation types used by Field Service Orders:
 
-#. Go to *Field Service > Configuration > Templates* and open (or create) a
-   template.
-#. Set the *Outgoing Operation Type* and/or the *Incoming Operation Type*.
+1. Go to *Field Service > Configuration > Templates* and open (or
+   create) a template.
+2. Set the *Outgoing Operation Type* and/or the *Incoming Operation
+   Type*.
 
-When this template is selected on a Field Service Order, the operation types
-are copied onto the order, taking precedence over the warehouse defaults.
+When this template is selected on a Field Service Order, the operation
+types are copied onto the order, taking precedence over the warehouse
+defaults.
 
 Usage
 =====
 
-#. Open a Field Service Order and go to the *Inventory* tab.
-#. Set the *Outgoing Operation Type* and/or the *Incoming Operation Type*
-   (they default to the warehouse delivery and receipt operation types, or to
-   the ones pre-set on the order template, see *Configuration*).
-#. List the products to send under *Outgoing Products* and the products to
-   receive under *Incoming Products*.
-#. Click *Create Transfers*. The system creates an outgoing transfer for the
-   outgoing products and an incoming transfer for the incoming products, when
-   there is something to transfer.
-#. Process each transfer with the standard flow (validate it from its own
-   form view).
-#. Use the *Deliveries* and *Returns* smart buttons to navigate to the
+1. Open a Field Service Order and go to the *Inventory* tab.
+2. Set the *Outgoing Operation Type* and/or the *Incoming Operation
+   Type* (they default to the warehouse delivery and receipt operation
+   types, or to the ones pre-set on the order template, see
+   *Configuration*).
+3. List the products to send under *Outgoing Products* and the products
+   to receive under *Incoming Products*.
+4. Click *Create Transfers*. The system creates an outgoing transfer for
+   the outgoing products and an incoming transfer for the incoming
+   products, when there is something to transfer.
+5. Process each transfer with the standard flow (validate it from its
+   own form view).
+6. Use the *Deliveries* and *Returns* smart buttons to navigate to the
    related transfers.
 
 Bug Tracker
@@ -95,7 +97,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/field-service/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_stock_picking%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/field-service/issues/new?body=module:%20fieldservice_stock_picking%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -103,17 +105,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Innovyou
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lorenzo Battistini <https://github.com/eLBati>
+-  Lorenzo Battistini <https://github.com/eLBati>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -133,6 +135,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-eLBati| 
 
-This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/16.0/fieldservice_stock_picking>`_ project on GitHub.
+This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_stock_picking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
