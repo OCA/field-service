@@ -10,15 +10,11 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        if not cls.env.company.chart_template_id:
+        if not cls.env.company.chart_template:
             # Load a CoA if there's none in current company
-            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
-            if not coa:
-                # Load the first available CoA
-                coa = cls.env["account.chart.template"].search(
-                    [("visible", "=", True)], limit=1
-                )
-            coa.try_loading(company=cls.env.company, install_demo=False)
+            cls.env["account.chart.template"].try_loading(
+                "generic_coa", company=cls.env.company, install_demo=False
+            )
         cls.customer = cls.env["res.partner"].create({"name": "FSM Customer"})
         cls.analytic_plan = cls.env["account.analytic.plan"].create(
             {"name": "FSM Plan"}
@@ -38,14 +34,14 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         cls.time_product = cls.env["product.product"].create(
             {
                 "name": "Labor",
-                "detailed_type": "service",
+                "type": "service",
                 "invoice_policy": "order",
                 "uom_id": cls.env.ref("uom.product_uom_hour").id,
                 "uom_po_id": cls.env.ref("uom.product_uom_hour").id,
             }
         )
         cls.material = cls.env["product.product"].create(
-            {"name": "Spare Part", "detailed_type": "consu"}
+            {"name": "Spare Part", "type": "consu"}
         )
         # A recurring order is sold, and generates the field service orders
         # from its frequency rules.
@@ -69,7 +65,7 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         cls.service = cls.env["product.product"].create(
             {
                 "name": "Maintenance contract",
-                "detailed_type": "service",
+                "type": "service",
                 "field_service_tracking": "recurring",
                 "fsm_recurring_template_id": cls.recurring_template.id,
             }
@@ -122,7 +118,7 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
                 "location_dest_id": picking.location_dest_id.id,
             }
         )
-        move.quantity_done = qty
+        move.quantity = qty
         move.state = "done"
         return move
 
