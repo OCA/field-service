@@ -19,8 +19,8 @@
         <xpath expr="//table[hasclass('table-sm')]/tbody/tr[1]/td[3]" position="after">
             <td t-if="show_fsm_order" groups="fieldservice.group_fsm_user">
                 <span t-field="line.fsm_order_id.number" /> - <span
-                t-field="line.fsm_order_id.name"
-            />
+                    t-field="line.fsm_order_id.name"
+                />
             </td>
         </xpath>
         <xpath expr="//table[hasclass('table-sm')]/tbody/tr[2]/td" position="before">
