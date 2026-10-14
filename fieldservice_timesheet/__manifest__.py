@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Timesheet",
     "summary": "Timesheet on Field Service Orders",
-    "version": "18.0.1.0.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "category": "Project",
@@ -20,4 +20,6 @@
         "report/report_timesheet_templates.xml",
     ],
     "installable": True,
+    "development_status": "Beta",
+    "maintainers": ["wolfhall", "max3903"],
 }
