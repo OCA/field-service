@@ -13,7 +13,14 @@ class FSMLocation(models.Model):
     _parent_name = "parent_id"
     _parent_store = True
     _stage_type = "location"
-    _rec_names_search = ["complete_name"]
+    # Is overridden by search_on_complete_name (see `name_search`)
+    _rec_names_search = [
+        "email",
+        "name",
+        "partner_id.vat",
+        "ref",
+    ]
+    _rec_name = "complete_name"
 
     direction = fields.Char()
     partner_id = fields.Many2one(
@@ -94,6 +101,21 @@ class FSMLocation(models.Model):
     # Use `parent_id` instead.
     # TODO: Remove this field in the 19.0 migration.
     fsm_parent_id = fields.Many2one(string="Deprecated Parent", related="parent_id")
+
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        recs = self.browse()
+        if self.env.company.search_on_complete_name:
+            args = args or []
+            recs = self.search([("complete_name", operator, name)] + args, limit=limit)
+
+        if recs:
+            result = recs.name_get()
+        else:
+            result = super().name_search(
+                name=name, args=args, operator=operator, limit=limit
+            )
+        return result
 
     @api.model_create_multi
     def create(self, vals_list):
