@@ -1,8 +1,11 @@
 # Copyright 2020, Brian McMaster <brian@mcmpest.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+import psycopg2
+
 from odoo import Command
 from odoo.exceptions import ValidationError
+from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -55,6 +58,21 @@ class TestFSMSkill(BaseCommon):
             {"name": "Computer Growing Skills", "skill_type_id": cls.skill_type_01.id}
         )
 
+        cls.skill_level_10 = cls.skill_level.create(
+            {
+                "name": "Beginner",
+                "skill_type_id": cls.skill_type_01.id,
+                "level_progress": 100,
+                "default_level": True,
+            }
+        )
+        cls.skill_level_55 = cls.skill_level.create(
+            {
+                "name": "Above Intermediate",
+                "skill_type_id": cls.skill_type_03.id,
+                "level_progress": 55,
+            }
+        )
         cls.skill_level_100 = cls.skill_level.create(
             {
                 "name": "Great",
@@ -220,5 +238,38 @@ class TestFSMSkill(BaseCommon):
                     "skill_id": self.skill_08.id,
                     "skill_level_id": self.skill_level_101.id,
                     "skill_type_id": self.skill_type_03.id,
+                }
+            )
+
+    def test_compute_default_skill_and_level(self):
+        person_skill = self.fsm_person_skill.new(
+            {
+                "person_id": self.person_02.id,
+                "skill_type_id": self.skill_type_01.id,
+            }
+        )
+        self.assertEqual(person_skill.skill_id, self.skill_02)
+        self.assertEqual(person_skill.skill_level_id, self.skill_level_10)
+
+    def test_sql_constraint_unique_person_skill(self):
+        with self.assertRaises(psycopg2.IntegrityError):
+            with mute_logger("odoo.sql_db"), self.cr.savepoint():
+                self.fsm_person_skill.create(
+                    {
+                        "person_id": self.person_01.id,
+                        "skill_id": self.skill_01.id,
+                        "skill_level_id": self.skill_level_100.id,
+                        "skill_type_id": self.skill_type_01.id,
+                    }
+                )
+
+    def test_check_skill_level_mismatch(self):
+        with self.assertRaises(ValidationError):
+            self.fsm_person_skill.create(
+                {
+                    "person_id": self.person_01.id,
+                    "skill_id": self.skill_03.id,
+                    "skill_level_id": self.skill_level_55.id,
+                    "skill_type_id": self.skill_type_01.id,
                 }
             )
