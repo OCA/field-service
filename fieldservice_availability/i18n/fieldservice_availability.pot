@@ -6,12 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-01 12:55+0000\n"
+"PO-Revision-Date: 2026-10-01 12:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid ""
+"%(label)s for %(month)s must be between 1 and %(max_days)s. Got %(day)s."
+msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.constraint,message:fieldservice_availability.constraint_fsm_blackout_day_unique_blackout_day
@@ -34,13 +43,33 @@ msgid "Add a Field Service Blackout Group here."
 msgstr ""
 
 #. module: fieldservice_availability
-#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_delivery_time_range
-msgid "Add a Field Service Delivery Time Range here."
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_stress_days
+msgid "Add a Field Service Stress Day here."
 msgstr ""
 
 #. module: fieldservice_availability
-#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_stress_days
-msgid "Add a Field Service Stress Day here."
+#: model_terms:ir.actions.act_window,help:fieldservice_availability.action_fsm_delivery_time_range
+msgid "Add a Global Fallback Delivery Time Range here."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__4
+msgid "April"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__8
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__8
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__8
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__8
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__8
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__8
+msgid "August"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -76,9 +105,35 @@ msgid "Blackout Groups"
 msgstr ""
 
 #. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Both start and end month/day must be provided for a seasonal schedule."
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid ""
+"Cannot set a schedule for %(day)s because it is not listed in the "
+"operational delivery days for this location/route."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__create_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__create_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_uid
 msgid "Created by"
 msgstr ""
@@ -87,6 +142,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__create_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__create_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__create_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__create_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__create_date
 msgid "Created on"
 msgstr ""
@@ -97,20 +154,119 @@ msgid "Customize the order of time ranges. Lower numbers are shown first."
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_line_mixin__day_of_week
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__day_of_week
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__day_of_week
+msgid "Day of Week"
+msgstr ""
+
+#. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__fsm_blackout_day_ids
 msgid "Days"
 msgstr ""
 
 #. module: fieldservice_availability
-#: model:ir.model,name:fieldservice_availability.model_fsm_delivery_time_range
-#: model_terms:ir.ui.view,arch_db:fieldservice_availability.view_fsm_delivery_time_range_form
-msgid "Delivery Time Range"
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__12
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__12
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__12
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__12
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__12
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__12
+msgid "December"
 msgstr ""
 
 #. module: fieldservice_availability
-#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_delivery_time_range
-#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_delivery_time_range
-msgid "Delivery Time Ranges"
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__default_schedule_line_ids
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__default_schedule_line_ids
+msgid "Default Day Schedules"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__default_end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__default_end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__default_end_time
+msgid "Default End Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_res_company__fsm_default_route_day_ids
+#: model:ir.model.fields,field_description:fieldservice_availability.field_res_config_settings__fsm_default_route_day_ids
+msgid "Default FSM Operational Days"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Default Hours"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.res_config_settings_view_form_inherit_fsm_availability
+msgid "Default Operational Days"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Default Schedule"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__default_start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__default_start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__default_start_time
+msgid "Default Start Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_schedule_mixin__default_end_time
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_location__default_end_time
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_route__default_end_time
+msgid "Default delivery end hour (00:00 - 23:59)"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_schedule_mixin__default_start_time
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_location__default_start_time
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_route__default_start_time
+msgid "Default delivery start hour (00:00 - 23:59)"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.res_config_settings_view_form_inherit_fsm_availability
+msgid ""
+"Default delivery/service days applied across all locations and routes unless"
+" overridden."
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Default hours must be between 00:00 and 23:59."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_res_company__fsm_default_route_day_ids
+#: model:ir.model.fields,help:fieldservice_availability.field_res_config_settings__fsm_default_route_day_ids
+msgid ""
+"Default operational days used when no days are specified on the location or "
+"route."
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Default start time must be earlier than end time."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__day_ids
+msgid "Delivery Days"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+msgid "Delivery Schedule"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -120,16 +276,142 @@ msgid "Description"
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__has_day_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__has_day_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__has_day_schedule
+msgid "Differentiate schedule by day of week"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__has_seasonal_day_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__has_seasonal_day_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__has_seasonal_day_schedule
+msgid "Differentiate seasonal schedule by day"
+msgstr ""
+
+#. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__display_name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__display_name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__display_name
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__display_name
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_day_end
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_day_end
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_day_end
+msgid "End Day"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_month_end
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_month_end
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_month_end
+msgid "End Month"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_line_mixin__end_time
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__end_time
 msgid "End Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "End day"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__end_time
+msgid "End hour (e.g. 15.0 for 15:00)"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_delivery_schedule_line_mixin
+msgid "FSM Delivery Schedule Line Mixin"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_delivery_schedule_mixin
+msgid "FSM Delivery Schedule Mixin"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_location_delivery_schedule_line
+msgid "FSM Location Delivery Schedule Line"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_route_delivery_schedule_line
+msgid "FSM Route Delivery Schedule Line"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__2
+msgid "February"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_location
+msgid "Field Service Location"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_route
+msgid "Field Service Route"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__4
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__4
+msgid "Friday"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.view_fsm_delivery_time_range_form
+msgid "Global Delivery Time Range"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.actions.act_window,name:fieldservice_availability.action_fsm_delivery_time_range
+#: model:ir.ui.menu,name:fieldservice_availability.menu_fsm_delivery_time_range
+msgid "Global Delivery Time Ranges"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model,name:fieldservice_availability.model_fsm_delivery_time_range
+msgid "Global Fallback Delivery Time Range"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.view_fsm_delivery_time_range_form
+msgid "Global Fallback Hours"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__has_default_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__has_default_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__has_default_schedule
+msgid "Has custom default schedule"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__has_seasonal_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__has_seasonal_schedule
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__has_seasonal_schedule
+msgid "Has seasonal schedule"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -138,17 +420,65 @@ msgid "High-Demand Days"
 msgstr ""
 
 #. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+#: code:addons/fieldservice_availability/models/fsm_delivery_time_range.py:0
+msgid "Hours must be between 00:00 and 23:59."
+msgstr ""
+
+#. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__id
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__id
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__id
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__id
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__id
 msgid "ID"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_line_mixin__is_seasonal
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__is_seasonal
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__is_seasonal
+msgid "Is Seasonal"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__1
+msgid "January"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__7
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__7
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__7
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__7
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__7
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__7
+msgid "July"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__6
+msgid "June"
 msgstr ""
 
 #. module: fieldservice_availability
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__write_uid
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__write_uid
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -157,8 +487,42 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_day__write_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_blackout_group__write_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__write_date
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__write_date
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_stress_day__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__location_id
+msgid "Location"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__3
+msgid "March"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__5
+msgid "May"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__0
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__0
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__0
+msgid "Monday"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -168,8 +532,110 @@ msgid "Name"
 msgstr ""
 
 #. module: fieldservice_availability
-#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__route_id
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__11
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__11
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__11
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__11
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__11
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__11
+msgid "November"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__10
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__10
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__10
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__10
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__10
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__10
+msgid "October"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+msgid "Operational Days"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__route_id
 msgid "Route"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Route Delivery Schedule"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__5
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__5
+msgid "Saturday"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Season Window"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_schedule_line_ids
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_schedule_line_ids
+msgid "Seasonal Day Schedules"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_end_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_end_time
+msgid "Seasonal End Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Seasonal Hours"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_location_form_inherit_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.fsm_route_form_inherit_availability
+msgid "Seasonal Schedule"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_start_time
+msgid "Seasonal Start Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Seasonal hours must be between 00:00 and 23:59."
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Seasonal start time must be earlier than end time."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model_terms:ir.ui.view,arch_db:fieldservice_availability.res_config_settings_view_form_inherit_fsm_availability
+msgid "Select operational days..."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_end__9
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_mixin__seasonal_month_start__9
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_end__9
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location__seasonal_month_start__9
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_end__9
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route__seasonal_month_start__9
+msgid "September"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -178,15 +644,43 @@ msgid "Sequence"
 msgstr ""
 
 #. module: fieldservice_availability
-#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__route_id
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_location__day_ids
 msgid ""
-"Specific route this time range applies to. Leave empty for global time "
-"ranges."
+"Specific operational delivery days for this location. If empty, inherits the"
+" route's delivery days, company defaults, or system active days."
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_day_start
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_day_start
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_day_start
+msgid "Start Day"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_mixin__seasonal_month_start
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location__seasonal_month_start
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route__seasonal_month_start
+msgid "Start Month"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_schedule_line_mixin__start_time
 #: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_delivery_time_range__start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_location_delivery_schedule_line__start_time
+#: model:ir.model.fields,field_description:fieldservice_availability.field_fsm_route_delivery_schedule_line__start_time
 msgid "Start Time"
+msgstr ""
+
+#. module: fieldservice_availability
+#. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
+msgid "Start day"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields,help:fieldservice_availability.field_fsm_delivery_time_range__start_time
+msgid "Start hour (e.g. 7.0 for 07:00)"
 msgstr ""
 
 #. module: fieldservice_availability
@@ -201,7 +695,36 @@ msgid "Stress Days"
 msgstr ""
 
 #. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__6
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__6
+msgid "Sunday"
+msgstr ""
+
+#. module: fieldservice_availability
 #. odoo-python
+#: code:addons/fieldservice_availability/models/fsm_delivery_schedule_mixin.py:0
 #: code:addons/fieldservice_availability/models/fsm_delivery_time_range.py:0
 msgid "The start time must be earlier than the end time."
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__3
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__3
+msgid "Thursday"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__1
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__1
+msgid "Tuesday"
+msgstr ""
+
+#. module: fieldservice_availability
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_delivery_schedule_line_mixin__day_of_week__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_location_delivery_schedule_line__day_of_week__2
+#: model:ir.model.fields.selection,name:fieldservice_availability.selection__fsm_route_delivery_schedule_line__day_of_week__2
+msgid "Wednesday"
 msgstr ""
