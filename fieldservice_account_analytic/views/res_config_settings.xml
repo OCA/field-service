@@ -1,0 +1,18 @@
+<odoo>
+    <record id="res_config_settings_view_form_filter" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.fsm.filter</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="fieldservice.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='order_setting_container']" position="inside">
+                <setting
+                    string="Filter Contacts with Location"
+                    help="Filter the Location on an FSM Order by the Contact"
+                >
+                    <field name="fsm_filter_location_by_contact" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
