@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Field Service - Stock Request
 =============================
@@ -17,7 +13,7 @@ Field Service - Stock Request
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -65,20 +61,32 @@ need to create a new procurement rule for that route:
 Usage
 =====
 
-To use this module, you need to:
+To request stock from a field service order:
 
-- Create a new service order
-- Under the Inventory tab, select the warehouse and add products with
-  quantity
-- Confirm the order to create the delivery orders
-- Validate the transfers in the Inventory app. Quantities delivered on
-  FSM Order Line will be updated.
+- Create a field service order and set its location. The warehouse of
+  the order is the one the stock is requested from.
+- In the Inventory tab, add a line per product with its quantity, the
+  expected date and the direction: *Outbound* to bring the products to
+  the service location, *Inbound* to return them to the warehouse.
+- The first line creates a stock request order linked to the field
+  service order. The next lines with the same warehouse and direction
+  are added to that stock request order while it is in draft.
+- Click *Submit* to submit the stock requests for approval. *Cancel* and
+  *Set to Draft* cancel them or bring them back to draft. The request
+  state of the field service order follows them.
+- Once a stock request is confirmed, its transfers are created in the
+  Inventory app. Validating them updates the quantities done on the
+  lines of the field service order.
 
 Known issues / Roadmap
 ======================
 
 The roadmap of the Field Service application is documented on
 `Github <https://github.com/OCA/field-service/issues/1>`__.
+
+- Depend again on ``stock_request_picking_type`` once it is released on
+  18.0, to use the operation type of stock request orders
+  (``OCA/stock-logistics-request#100``).
 
 Bug Tracker
 ===========
@@ -108,6 +116,8 @@ Contributors
 - `APSL-Nagarro <https://apsl.tech>`__:
 
   - Antoni Marroig <amarroig@apsl.net>
+
+- Jimmy SC94 jimmysolizcejas1994@gmail.com
 
 Other credits
 -------------
