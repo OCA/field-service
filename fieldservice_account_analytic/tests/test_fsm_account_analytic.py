@@ -190,6 +190,8 @@ class FSMAccountAnalyticCase(TransactionCase):
         """The order's customer is taken from the location when not set,
         and the location follows the customer's service location."""
         order = self._create_order(self.test_location2)
+        # other modules may already write on the order when it is created
+        order.customer_id = False
         self.assertFalse(order.customer_id)
         order.write({"description": "Test description"})
         self.assertEqual(order.customer_id, self.test_location2.customer_id)
