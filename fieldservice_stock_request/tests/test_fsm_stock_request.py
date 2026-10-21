@@ -37,6 +37,10 @@ class TestFSMStockRequest(TestFSMStockCommon):
         cls.warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.user.company_id.id)], limit=1
         )
+        if "buy_to_resupply" in cls.warehouse._fields:
+            # purchase_stock may be installed by another module: the tests
+            # replenish from the stock rules below, not from a purchase.
+            cls.warehouse.buy_to_resupply = False
         cls.ressuply_loc = cls.env["stock.location"].create(
             {
                 "name": "Ressuply",
