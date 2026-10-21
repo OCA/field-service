@@ -14,18 +14,10 @@ class StockRequest(models.Model):
 
     def _update_stock_request_order_data(self):
         if self.order_id and self.direction and self.state == "draft":
-            picking_type_id = self.env["stock.picking.type"].search(
-                [
-                    ("code", "=", "stock_request_order"),
-                    ("warehouse_id", "=", self.warehouse_id.id),
-                ],
-                limit=1,
-            )
             order = self.env["stock.request.order"].search(
                 [
                     ("fsm_order_id", "=", self.fsm_order_id.id),
                     ("warehouse_id", "=", self.warehouse_id.id),
-                    ("picking_type_id", "=", picking_type_id.id),
                     ("direction", "=", self.direction),
                     ("state", "=", "draft"),
                 ],
@@ -82,26 +74,10 @@ class StockRequest(models.Model):
                 fsm_order = self.env["fsm.order"].browse(vals["fsm_order_id"])
                 fsm_order.request_stage = "draft"
                 vals["warehouse_id"] = fsm_order.warehouse_id.id
-                picking_type_id = self.env["stock.picking.type"].search(
-                    [
-                        ("code", "=", "stock_request_order"),
-                        ("warehouse_id", "=", vals["warehouse_id"]),
-                    ],
-                    limit=1,
-                )
-                if not picking_type_id:
-                    raise UserError(
-                        self.env._(
-                            "There is no any inventory Operations Type:"
-                            "stock_request_order record for %s Warehouse.",
-                            fsm_order.warehouse_id.display_name,
-                        )
-                    )
                 order = self.env["stock.request.order"].search(
                     [
                         ("fsm_order_id", "=", vals["fsm_order_id"]),
                         ("warehouse_id", "=", vals["warehouse_id"]),
-                        ("picking_type_id", "=", picking_type_id.id),
                         ("direction", "=", vals["direction"]),
                         ("state", "=", "draft"),
                     ],
@@ -121,7 +97,6 @@ class StockRequest(models.Model):
                 # Made from an FSO for the first time, create the SRO here
                 elif not order:
                     values = self.prepare_order_values(vals)
-                    values.update({"picking_type_id": picking_type_id.id})
                     if values["direction"] == "inbound":
                         values.update(
                             {"location_id": fsm_order.warehouse_id.lot_stock_id.id}

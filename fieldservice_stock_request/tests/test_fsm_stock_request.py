@@ -18,7 +18,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
         # Setup for Stock Request
         cls.StockRequest = cls.env["stock.request"]
         cls.StockRequestOrder = cls.env["stock.request.order"]
-        cls.StockPickingType = cls.env["stock.picking.type"]
         cls.Product = cls.env["product.product"]
 
         cls.product_1 = cls.Product.create(
@@ -105,15 +104,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
         FSO = self.FSMOrder.create({"location_id": self.test_location.id})
         fsm_order = self.FSMOrder.create({"location_id": self.test_location.id})
 
-        self.StockPickingType.create(
-            {
-                "name": "Stock Request wh",
-                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
-                "code": "stock_request_order",
-                "sequence_code": "SRO",
-                "warehouse_id": FSO.warehouse_id.id,
-            }
-        )
         SR_1 = self.StockRequest.create(
             {
                 "warehouse_id": FSO.warehouse_id.id,
@@ -203,15 +193,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
         expected_date = fields.Datetime.now()
         FSO = self.FSMOrder.create({"location_id": self.test_location.id})
         procurement_group = self.env["procurement.group"].create({"name": "TEST"})
-        self.StockPickingType.create(
-            {
-                "name": "Stock Request wh",
-                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
-                "code": "stock_request_order",
-                "sequence_code": "SRO",
-                "warehouse_id": FSO.warehouse_id.id,
-            }
-        )
         vals = {
             "company_id": self.env.user.company_id.id,
             "warehouse_id": self.warehouse.id,
@@ -285,15 +266,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
     def test_08_stock_request(self):
         expected_date = fields.Datetime.now()
         FSO = self.FSMOrder.create({"location_id": self.test_location.id})
-        self.StockPickingType.create(
-            {
-                "name": "Stock Request wh",
-                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
-                "code": "stock_request_order",
-                "sequence_code": "SRO",
-                "warehouse_id": FSO.warehouse_id.id,
-            }
-        )
         stock_request = self.StockRequest.create(
             {
                 "product_id": self.product_1.id,
@@ -316,15 +288,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
         expected_date = fields.Datetime.now()
         FSO = self.FSMOrder.create({"location_id": self.test_location.id})
         procurement_group = self.env["procurement.group"].create({"name": "TEST"})
-        self.StockPickingType.create(
-            {
-                "name": "Stock Request wh",
-                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
-                "code": "stock_request_order",
-                "sequence_code": "SRO",
-                "warehouse_id": FSO.warehouse_id.id,
-            }
-        )
         vals = {
             "company_id": self.env.user.company_id.id,
             "warehouse_id": self.warehouse.id,
@@ -390,15 +353,6 @@ class TestFSMStockRequest(TestFSMStockCommon):
     def test_stock_request_confirm_with_FSM(self):
         expected_date = fields.Datetime.now()
         FSO = self.FSMOrder.create({"location_id": self.test_location.id})
-        self.StockPickingType.create(
-            {
-                "name": "Stock Request wh",
-                "sequence_id": self.env.ref("stock_request.seq_stock_request_order").id,
-                "code": "stock_request_order",
-                "sequence_code": "SRO",
-                "warehouse_id": FSO.warehouse_id.id,
-            }
-        )
         self.env["stock.rule"].create(
             {
                 "name": "Rule Supplier",
