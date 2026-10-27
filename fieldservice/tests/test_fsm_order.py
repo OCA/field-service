@@ -351,6 +351,11 @@ class TestFSMOrder(TransactionCase):
             # Check that the signature has been updated
             self.assertEqual(order.signed_by, "Test Customer")
             self.assertEqual(order.signed_on, fields.Datetime.now())
+        # The printed order shows the signer
+        html = self.env["ir.actions.report"]._render_qweb_html(
+            "fieldservice.report_fsm_order", order.ids
+        )[0]
+        self.assertIn(b"Test Customer", html)
 
     def test_equipment_removed_on_company_mismatch(self):
         """Equipments from another company are dropped on company change."""

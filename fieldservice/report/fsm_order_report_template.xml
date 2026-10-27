@@ -47,6 +47,29 @@
                     <h3>Resolution Notes</h3>
                     <p t-field="doc.resolution" />
                 </div>
+                <div t-if="doc.signature" id="signature" class="mt-4">
+                    <div class="offset-8">
+                        <strong>Signature</strong>
+                    </div>
+                    <div class="offset-8">
+                        <img
+                            t-att-src="image_data_uri(doc.signature)"
+                            style="max-height: 4cm; max-width: 8cm;"
+                            alt="Signature"
+                        />
+                    </div>
+                    <div t-if="doc.signed_by" class="offset-8 text-center">
+                        <span t-field="doc.signed_by" />
+                    </div>
+                    <div t-if="doc.signed_on" class="offset-8 text-center text-muted">
+                        <small>
+                            <span
+                                t-field="doc.signed_on"
+                                t-options="{'widget': 'datetime', 'tz': doc.location_id.tz}"
+                            />
+                        </small>
+                    </div>
+                </div>
                 <div class="oe_structure" id="oe_structure_1" />
             </div>
         </t>
