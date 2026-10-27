@@ -43,6 +43,14 @@
                     <h3>Instructions</h3>
                     <p t-field="doc.todo" />
                 </div>
+                <div t-if="doc.equipment_ids" id="equipment">
+                    <h3>Equipment</h3>
+                    <ul>
+                        <li t-foreach="doc.equipment_ids" t-as="equipment">
+                            <span t-field="equipment.name" />
+                        </li>
+                    </ul>
+                </div>
                 <div t-if="doc.resolution" id="resolution">
                     <h3>Resolution Notes</h3>
                     <p t-field="doc.resolution" />
