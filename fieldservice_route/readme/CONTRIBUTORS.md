@@ -5,4 +5,4 @@
   - Víctor Martínez
 - [APSL-Nagarro](https://apsl.tech):
     - Patryk Pyczko \<<ppyczko@apsl.net>\>
-    - Antoni Marroig \<<amarroig@apsl.net>\>
+    - Antoni Marroig \<<antoni.marroig@nagarro.com>\>
