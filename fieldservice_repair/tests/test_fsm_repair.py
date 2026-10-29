@@ -99,10 +99,34 @@ class TestFSMRepairCommon(TransactionCase):
         self.assertEqual(repair_order.name, f"{order.name} - {self.equipment_1.name}")
         self.assertEqual(repair_order.product_id, self.equipment_1.product_id)
         self.assertEqual(repair_order.product_uom, self.equipment_1.product_id.uom_id)
-        self.assertEqual(repair_order.location_id, self.stock_location)
+        self.assertEqual(repair_order.product_location_src_id, self.stock_location)
+        self.assertEqual(repair_order.product_location_dest_id, self.stock_location)
         self.assertEqual(repair_order.lot_id, self.equipment_1.lot_id)
         self.assertEqual(repair_order.product_qty, 1)
         self.assertEqual(repair_order.internal_notes, order.description)
+
+    def test_fsm_repair_order_parts_from_warehouse(self):
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)], limit=1
+        )
+        part = self.env["product.product"].create(
+            {"name": "Part", "type": "consu", "is_storable": True}
+        )
+        order = self.env["fsm.order"].create(
+            self._prepare_fsm_order_vals(self.equipment_1)
+        )
+        repair_order = order.repair_ids
+        repair_order.move_ids = [
+            Command.create(
+                {
+                    "repair_line_type": "add",
+                    "product_id": part.id,
+                    "product_uom_qty": 1,
+                }
+            )
+        ]
+        self.assertEqual(repair_order.location_id, warehouse.lot_stock_id)
+        self.assertEqual(repair_order.move_ids.location_id, warehouse.lot_stock_id)
 
     def test_fsm_repair_order_is_created_when_type_is_switched_to_repair(self):
         order_vals = self._prepare_fsm_order_vals(self.equipment_1)
