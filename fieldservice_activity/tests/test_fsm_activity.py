@@ -141,3 +141,25 @@ class TestFSMActivity(TransactionCase):
         self.assertNotEqual(
             self.fso.order_activity_ids.ids, self.fso.template_id.temp_activity_ids.ids
         )
+
+    def test_create_order_keeps_values(self):
+        template = self.template_obj.create(
+            {
+                "name": "Template with duration",
+                "duration": 1.5,
+                "temp_activity_ids": [
+                    (0, 0, {"name": "Activity new", "ref": "Ref new", "state": "todo"})
+                ],
+            }
+        )
+        order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "template_id": template.id,
+                "scheduled_duration": 2.0,
+            }
+        )
+        # Activities come from the template...
+        self.assertEqual(order.order_activity_ids.mapped("name"), ["Activity new"])
+        # ...but the values given at creation are kept
+        self.assertEqual(order.scheduled_duration, 2.0)
