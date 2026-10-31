@@ -57,6 +57,8 @@ class FSMPerson(models.Model):
             offset=offset,
             limit=limit,
             order=order,
+            active_test=active_test,
+            bypass_access=bypass_access,
         )
         # Check for args first having location_ids as default filter
         for arg in domain:
