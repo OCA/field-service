@@ -50,8 +50,8 @@ class FSMOrder(models.Model):
                 continue
             size = self.env["fsm.location.size"].search(
                 [
-                    ("location_id", "=", self.location_id.id),
-                    ("size_id", "=", self.size_id.id),
+                    ("location_id", "=", rec.location_id.id),
+                    ("size_id", "=", rec.size_id.id),
                 ],
                 limit=1,
             )
