@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-02 18:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -21,12 +23,14 @@ msgid ""
 "%(count)d draft vendor bill(s) cancelled before cancelling the subcontract "
 "Purchase Order."
 msgstr ""
+"%(count)d fatture fornitore in bozza annullate prima dell'annullamento "
+"dell'ordine di acquisto in subappalto."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "(none)"
-msgstr ""
+msgstr "(nessuno)"
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_form_view_subcontracting
@@ -34,18 +38,20 @@ msgid ""
 "<span class=\"o_stat_text\">Reassign</span>\n"
 "                        <span class=\"o_stat_text\">Worker</span>"
 msgstr ""
+"<span class=\"o_stat_text\">Riassegna</span>\n"
+"                        <span class=\"o_stat_text\">lavoratore</span>"
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_reassign_confirm_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_cancel_confirm_form_view
 msgid "Cancel Field Service Order"
-msgstr ""
+msgstr "Annulla ordine di assistenza sul campo"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -54,21 +60,23 @@ msgid ""
 "Cancel Field Service Orders with active subcontract Purchase Orders one at a"
 " time."
 msgstr ""
+"Annulla un ordine di assistenza sul campo alla volta se è collegato a ordini "
+"di acquisto in subappalto attivi."
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_cancel_confirm_form_view
 msgid "Cancel Order Only"
-msgstr ""
+msgstr "Annulla solo l'ordine"
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_cancel_confirm_form_view
 msgid "Cancel Order and Purchase Orders"
-msgstr ""
+msgstr "Annulla l'ordine e gli ordini di acquisto"
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_reassign_confirm_form_view
 msgid "Cancel POs and Reassign"
-msgstr ""
+msgstr "Annulla gli ordini di acquisto e riassegna"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -77,16 +85,22 @@ msgid ""
 "Cannot cancel Purchase Orders because they have %(count)d posted vendor "
 "bill(s). Please manage the POs manually first."
 msgstr ""
+"Impossibile annullare gli ordini di acquisto perché sono presenti %(count)d "
+"fatture fornitore contabilizzate. Gestisci prima manualmente gli ordini di "
+"acquisto."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_fsm_order_cancel_confirm
 msgid "Confirm FSO Cancellation with PO Cancellation"
 msgstr ""
+"Conferma l'annullamento dell'ordine di assistenza e dell'ordine di acquisto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_fsm_order_reassign_confirm
 msgid "Confirm FSO Worker Reassignment with PO Cancellation"
 msgstr ""
+"Conferma la riassegnazione del lavoratore dell'ordine di assistenza e "
+"l'annullamento dell'ordine di acquisto"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -94,66 +108,70 @@ msgstr ""
 #: model:ir.actions.act_window,name:fieldservice_subcontracting.action_fsm_order_reassign_confirm
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_reassign_confirm_form_view
 msgid "Confirm Worker Reassignment"
-msgstr ""
+msgstr "Conferma la riassegnazione del lavoratore"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__create_uid
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__create_date
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "Delivered quantity updated to %(hours).2f hours from FSO %(fso)s."
 msgstr ""
+"Quantità consegnata aggiornata a %(hours).2f ore in base all'ordine di "
+"assistenza %(fso)s."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,help:fieldservice_subcontracting.field_fsm_order__reassign_worker
 msgid "Determine if a worker reassignment can be performed."
-msgstr ""
+msgstr "Indica se è possibile riassegnare il lavoratore."
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_cancel_confirm_form_view
 msgid "Discard"
-msgstr ""
+msgstr "Scarta"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__display_name
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: fieldservice_subcontracting
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.purchase_order_form_view_subcontracting
 msgid "FSO"
-msgstr ""
+msgstr "Ordine di assistenza"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_purchase_order__fsm_order_count
 msgid "FSO Count"
-msgstr ""
+msgstr "Numero di ordini di assistenza"
 
 #. module: fieldservice_subcontracting
 #: model:ir.actions.server,name:fieldservice_subcontracting.action_create_subcontract_po
 msgid "FSO: Create Subcontract PO"
-msgstr ""
+msgstr "Ordine di assistenza: crea ordine di acquisto in subappalto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.actions.server,name:fieldservice_subcontracting.action_update_subcontract_po_qty
 msgid "FSO: Update Subcontract PO Delivered Qty"
 msgstr ""
+"Ordine di assistenza: aggiorna la quantità consegnata nell'ordine di "
+"acquisto in subappalto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_fsm_order
@@ -161,18 +179,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__fsm_order_id
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_purchase_order__fsm_order_id
 msgid "Field Service Order"
-msgstr ""
+msgstr "Ordine di assistenza sul campo"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_fsm_template
 msgid "Field Service Order Template"
-msgstr ""
+msgstr "Modello di ordine di assistenza sul campo"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__id
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_location__is_fsm_subcontractor
@@ -180,30 +198,30 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_res_partner__is_fsm_subcontractor
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_res_users__is_fsm_subcontractor
 msgid "Is Subcontractor?"
-msgstr ""
+msgstr "È un subappaltatore?"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "It does not have an assigned worker."
-msgstr ""
+msgstr "Non ha un lavoratore assegnato."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__write_uid
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__write_date
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__new_person_id
 msgid "New Worker"
-msgstr ""
+msgstr "Nuovo lavoratore"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -212,6 +230,8 @@ msgid ""
 "No subcontract Purchase Order was created because the assigned worker "
 "'%(worker)s' is an internal worker."
 msgstr ""
+"Non è stato creato alcun ordine di acquisto in subappalto perché il "
+"lavoratore assegnato '%(worker)s' è un lavoratore interno."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -221,6 +241,9 @@ msgid ""
 " automatically. You must manage the POs manually before reassigning the "
 "worker."
 msgstr ""
+"Uno o più ordini di acquisto hanno fatture fornitore contabilizzate e non "
+"possono essere annullati automaticamente. Gestire manualmente gli ordini di "
+"acquisto prima di riassegnare il lavoratore."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -229,17 +252,19 @@ msgid ""
 "One or more related Purchase Orders have posted vendor bills and cannot be "
 "cancelled automatically."
 msgstr ""
+"Uno o più ordini di acquisto collegati hanno fatture fornitore "
+"contabilizzate e non possono essere annullati automaticamente."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model,name:fieldservice_subcontracting.model_purchase_order
 #: model_terms:ir.ui.view,arch_db:fieldservice_subcontracting.fsm_order_form_view_subcontracting
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine di acquisto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order__purchase_order_count
 msgid "Purchase Order Count"
-msgstr ""
+msgstr "Numero di ordini di acquisto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,help:fieldservice_subcontracting.field_fsm_order__purchase_order_ids
@@ -247,17 +272,19 @@ msgid ""
 "Purchase Order auto-created when this FSO was assigned to a subcontractor "
 "worker."
 msgstr ""
+"Ordine di acquisto creato automaticamente quando questo ordine di assistenza "
+"è stato assegnato a un lavoratore subappaltatore."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__purchase_order_ids
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__purchase_order_ids
 msgid "Purchase Orders"
-msgstr ""
+msgstr "Ordini di acquisto"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order__reassign_worker
 msgid "Reassign Worker"
-msgstr ""
+msgstr "Riassegna lavoratore"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -266,6 +293,8 @@ msgid ""
 "Reassigning the worker will cancel Purchase Orders %(purchase_orders)s. Do "
 "you want to proceed?"
 msgstr ""
+"La riassegnazione del lavoratore annullerà gli ordini di acquisto %"
+"(purchase_orders)s. Vuoi continuare?"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,help:fieldservice_subcontracting.field_fsm_template__subcontract_product_id
@@ -275,11 +304,16 @@ msgid ""
 "policy 'Based on Received Quantities' and supplierinfo configured for each "
 "vendor."
 msgstr ""
+"Prodotto di tipo servizio utilizzato nella riga dell'ordine di acquisto "
+"quando un ordine di assistenza di questo tipo viene affidato in subappalto a "
+"un lavoratore esterno. Il prodotto deve avere la politica di fatturazione "
+"'In base alle quantità ricevute' e le informazioni fornitore configurate per "
+"ciascun fornitore."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order__purchase_order_ids
 msgid "Subcontract POs"
-msgstr ""
+msgstr "Ordini di acquisto in subappalto"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -288,28 +322,31 @@ msgid ""
 "Subcontract Purchase Order:  %(link_purchase_order)s created for vendor "
 "%(vendor)s."
 msgstr ""
+"Ordine di acquisto in subappalto: creato %(link_purchase_order)s per il "
+"fornitore %(vendor)s."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "Subcontracted service: %(fso)s"
-msgstr ""
+msgstr "Servizio in subappalto: %(fso)s"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_template__subcontract_product_id
 msgid "Subcontracting Service Product"
-msgstr ""
+msgstr "Prodotto servizio per il subappalto"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "Subcontractor '%(partner)s' is not associated as a supplier."
-msgstr ""
+msgstr "Il subappaltatore '%(partner)s' non è configurato come fornitore."
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,help:fieldservice_subcontracting.field_purchase_order__fsm_order_id
 msgid "The Field Service Order that generated this Purchase Order."
 msgstr ""
+"L'ordine di assistenza sul campo che ha generato questo ordine di acquisto."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -318,12 +355,14 @@ msgid ""
 "The outsourcing product '%(product)s' has no vendor price configured for "
 "'%(vendor)s'."
 msgstr ""
+"Per il prodotto in subappalto '%(product)s' non è stato configurato un "
+"prezzo fornitore per '%(vendor)s'."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "The outsourcing product '%(product)s' must be a service."
-msgstr ""
+msgstr "Il prodotto in subappalto '%(product)s' deve essere un servizio."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -332,6 +371,8 @@ msgid ""
 "The outsourcing product '%(product)s' must bill based on received "
 "quantities."
 msgstr ""
+"Il prodotto in subappalto '%(product)s' deve essere fatturato in base alle "
+"quantità ricevute."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -340,18 +381,19 @@ msgid ""
 "The outsourcing product is not configured in the template "
 "'%(template_name)s'."
 msgstr ""
+"Il prodotto in subappalto non è configurato nel modello '%(template_name)s'."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "The subcontracting purchase order cannot be created:"
-msgstr ""
+msgstr "Impossibile creare l'ordine di acquisto in subappalto:"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
 #: code:addons/fieldservice_subcontracting/models/fsm_order.py:0
 msgid "There is no subcontract Purchase Order."
-msgstr ""
+msgstr "Non è presente alcun ordine di acquisto in subappalto."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -360,12 +402,14 @@ msgid ""
 "This Field Service Order has active Purchase Orders %(purchase_orders)s. Do "
 "you want to cancel them too?"
 msgstr ""
+"Questo ordine di assistenza sul campo ha ordini di acquisto attivi %"
+"(purchase_orders)s. Vuoi annullare anche questi?"
 
 #. module: fieldservice_subcontracting
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_cancel_confirm__warning_message
 #: model:ir.model.fields,field_description:fieldservice_subcontracting.field_fsm_order_reassign_confirm__warning_message
 msgid "Warning Message"
-msgstr ""
+msgstr "Messaggio di avviso"
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -375,6 +419,9 @@ msgid ""
 "'%(partner)s' is not configured as a vendor. Please set the partner as a "
 "vendor first."
 msgstr ""
+"Il lavoratore '%(worker)s' è contrassegnato come subappaltatore, ma il "
+"relativo contatto '%(partner)s' non è configurato come fornitore. Configura "
+"prima il contatto come fornitore."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -383,6 +430,8 @@ msgid ""
 "You cannot directly reassign an order with a subcontract Purchase Order. Use"
 " the Reassign Worker button instead."
 msgstr ""
+"Non puoi riassegnare direttamente un ordine associato a un ordine di "
+"acquisto in subappalto. Usa invece il pulsante «Riassegna lavoratore»."
 
 #. module: fieldservice_subcontracting
 #. odoo-python
@@ -391,3 +440,5 @@ msgid ""
 "You cannot reassign the worker because the Field Service Order is in a "
 "closed stage."
 msgstr ""
+"Non si può riassegnare il lavoratore perché l'ordine di assistenza sul campo "
+"si trova in una fase chiusa."
