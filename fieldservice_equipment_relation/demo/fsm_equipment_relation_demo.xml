@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="demo_ipbx" model="fsm.equipment">
+        <field name="name">Demo IPBX</field>
+    </record>
+    <record id="demo_sip_account" model="fsm.equipment">
+        <field name="name">Demo SIP Account</field>
+        <field name="parent_id" ref="demo_ipbx" />
+    </record>
+    <record id="demo_phone" model="fsm.equipment">
+        <field name="name">Demo Phone</field>
+    </record>
+    <record id="demo_sip_provides" model="fsm.equipment.relation">
+        <field name="equipment_id" ref="demo_ipbx" />
+        <field
+            name="relation_type_id"
+            ref="fieldservice_equipment_relation.relation_type_provides"
+        />
+        <field name="related_equipment_id" ref="demo_sip_account" />
+    </record>
+    <record id="demo_sip_uses" model="fsm.equipment.relation">
+        <field name="equipment_id" ref="demo_phone" />
+        <field
+            name="relation_type_id"
+            ref="fieldservice_equipment_relation.relation_type_uses"
+        />
+        <field name="related_equipment_id" ref="demo_sip_account" />
+    </record>
+</odoo>
