@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fsm_appointment_confirmation_wizard_form" model="ir.ui.view">
+        <field name="name">fsm.appointment.confirmation.wizard.form</field>
+        <field name="model">fsm.appointment.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Request Appointment Confirmation">
+                <field name="model" invisible="1" />
+                <field name="composition_mode" invisible="1" />
+                <field name="subtype_id" invisible="1" />
+                <field
+                    name="template_id"
+                    options="{'no_create': True}"
+                    domain="[('model', '=', 'fsm.order')]"
+                />
+                <group>
+                    <field
+                        name="partner_ids"
+                        widget="many2many_tags_email"
+                        context="{'force_email': True}"
+                    />
+                    <field name="subject" placeholder="Subject..." />
+                </group>
+                <field name="body" class="oe-bordered-editor" />
+                <field name="attachment_ids" widget="many2many_binary" />
+                <footer>
+                    <button
+                        string="Send"
+                        name="action_send_mail"
+                        type="object"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
