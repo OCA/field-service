@@ -9,5 +9,6 @@ class ResRegion(models.Model):
     _description = "Region"
 
     name = fields.Char(required=True)
+    state_id = fields.Many2one("res.country.state", string="State")
     description = fields.Char()
     partner_id = fields.Many2one("res.partner", string="Region Manager")
