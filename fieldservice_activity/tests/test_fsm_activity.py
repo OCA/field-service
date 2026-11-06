@@ -157,7 +157,7 @@ class TestFSMActivity(FSMCommon):
         self.assertEqual(order.order_activity_ids.name, "Manual Activity")
 
     def test_create_with_template_copies_activities(self):
-        """create() should call onchange and keep template-driven activities."""
+        """create() should copy the template-driven activities."""
         template = self.template_obj.create(
             {
                 "name": "Create template",
@@ -183,3 +183,25 @@ class TestFSMActivity(FSMCommon):
         )
         self.assertEqual(len(order.order_activity_ids), 1)
         self.assertEqual(order.order_activity_ids.name, "From create")
+
+    def test_create_order_keeps_values(self):
+        template = self.template_obj.create(
+            {
+                "name": "Template with duration",
+                "duration": 1.5,
+                "temp_activity_ids": [
+                    (0, 0, {"name": "Activity new", "ref": "Ref new", "state": "todo"})
+                ],
+            }
+        )
+        order = self.Order.create(
+            {
+                "location_id": self.test_location.id,
+                "template_id": template.id,
+                "scheduled_duration": 2.0,
+            }
+        )
+        # Activities come from the template...
+        self.assertEqual(order.order_activity_ids.mapped("name"), ["Activity new"])
+        # ...but the values given at creation are kept
+        self.assertEqual(order.scheduled_duration, 2.0)
