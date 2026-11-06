@@ -1,0 +1,3 @@
+- [APSL-Nagarro](https://apsl.tech):
+  - Antoni Marroig \<<antoni.marroig@nagarro.com>\>
+  - Patryk Pyczko \<<ppyczko@apsl.net>\>
