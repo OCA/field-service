@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_equipment_page_order_history"
+        name="Equipment Portal: Service Order History"
+        inherit_id="fieldservice_equipment_portal.portal_equipment_page"
+    >
+        <xpath
+            expr="//div[@id='equipment_portal_card']/div[hasclass('card-body')]"
+            position="inside"
+        >
+            <div class="mb-4" t-if="equipment_orders">
+                <h6>Service Orders</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Scheduled</th>
+                                <th>Type</th>
+                                <th>Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="equipment_orders" t-as="equipment_order">
+                                <td>
+                                    <span t-esc="equipment_order.name" />
+                                </td>
+                                <td>
+                                    <span
+                                        t-field="equipment_order.scheduled_date_start"
+                                    />
+                                </td>
+                                <td>
+                                    <span t-esc="equipment_order.type.name or ''" />
+                                </td>
+                                <td>
+                                    <span t-esc="equipment_order.stage_id.name" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
