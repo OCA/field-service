@@ -1,0 +1,1 @@
+Install the module: the equipment portal page gains a "Calibration Certificates" section with download links. Downloads honor the same access rules as the page (portal user, access token or the Public Equipment Pages setting).
