@@ -167,14 +167,18 @@ class FSMAccountAnalyticCase(TransactionCase):
                 }
             )
 
-        self.analytic_line.create(
+        analytic_line = self.analytic_line.create(
             {
                 "fsm_order_id": order2.id,
                 "name": "Test01",
                 "product_id": self.product1.id,
             }
         )
-        self.analytic_line.onchange_product_id()
+        analytic_line.onchange_product_id()
+        self.assertEqual(analytic_line.name, self.product1.name)
+        self.assertEqual(
+            analytic_line.account_id, self.test_location2.analytic_account_id
+        )
         with self.assertRaises(ValidationError):
             self.analytic_line.create(
                 {
