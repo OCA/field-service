@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="preventive_type_maintenance" model="fsm.preventive.type">
+        <field name="name">Preventive Maintenance</field>
+        <field name="code">PM</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="preventive_type_calibration" model="fsm.preventive.type">
+        <field name="name">Calibration</field>
+        <field name="code">CAL</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="preventive_type_certification" model="fsm.preventive.type">
+        <field name="name">Certification</field>
+        <field name="code">CERT</field>
+        <field name="sequence">30</field>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_recurring_form_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.form.preventive</field>
+        <field name="model">fsm.recurring</field>
+        <field name="inherit_id" ref="fieldservice_recurring.fsm_recurring_form_view" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-warning mb-0"
+                    role="alert"
+                    invisible="not is_preventive or not preventive_no_template_count"
+                >
+                    <field name="preventive_no_template_count" class="fw-bold" />
+                    equipment(s) of this location have a preventive visit without a
+                    template: their checklist lines will have no sheet.
+                    <button
+                    name="action_view_preventive_no_template"
+                    type="object"
+                    string="See Equipments"
+                    class="btn-link p-0 align-baseline"
+                />
+                </div>
+            </sheet>
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_preventive_equipments"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-cubes"
+                    invisible="not is_preventive"
+                >
+                    <field
+                        name="preventive_equipment_count"
+                        widget="statinfo"
+                        string="Equipments"
+                    />
+                </button>
+            </div>
+            <field name="equipment_ids" position="before">
+                <field name="is_preventive" />
+                <field
+                    name="preventive_type_ids"
+                    widget="many2many_tags"
+                    invisible="not is_preventive"
+                    options="{'no_create': True}"
+                />
+            </field>
+            <field name="equipment_ids" position="attributes">
+                <attribute name="invisible">is_preventive</attribute>
+                <attribute
+                    name="domain"
+                >[('current_location_id', 'child_of', location_id)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
