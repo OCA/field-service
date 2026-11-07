@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_relation_list_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.relation.list</field>
+        <field name="model">fsm.equipment.relation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="equipment_id" />
+                <field name="relation_type_id" />
+                <field name="related_equipment_id" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="active" />
+            </list>
+        </field>
+    </record>
+    <record id="fsm_equipment_relation_search_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.relation.search</field>
+        <field name="model">fsm.equipment.relation</field>
+        <field name="arch" type="xml">
+            <search string="Equipment Relations">
+                <field name="equipment_id" />
+                <field name="related_equipment_id" />
+                <field name="relation_type_id" />
+                <filter
+                    name="active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_relation_type"
+                        string="Relation Type"
+                        context="{'group_by': 'relation_type_id'}"
+                    />
+                    <filter
+                        name="group_equipment"
+                        string="Equipment"
+                        context="{'group_by': 'equipment_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="fsm_equipment_relation_form_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.relation.form</field>
+        <field name="model">fsm.equipment.relation</field>
+        <field name="arch" type="xml">
+            <form string="Equipment Relation">
+                <sheet>
+                    <group>
+                        <field name="equipment_id" />
+                        <field name="relation_type_id" />
+                        <field name="related_equipment_id" />
+                        <field name="date_start" />
+                        <field name="date_end" />
+                        <field name="active" />
+                    </group>
+                    <field name="notes" placeholder="Describe the relation..." />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_fsm_equipment_relation" model="ir.actions.act_window">
+        <field name="name">Equipment Relations</field>
+        <field name="res_model">fsm.equipment.relation</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="fsm_equipment_relation_search_view" />
+    </record>
+</odoo>

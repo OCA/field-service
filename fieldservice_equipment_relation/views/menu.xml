@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_fsm_equipment_relation_root"
+        name="Equipment Relations"
+        parent="fieldservice.config"
+        sequence="80"
+        groups="fieldservice.group_fsm_manager"
+    />
+    <menuitem
+        id="menu_fsm_equipment_relation"
+        name="Relations"
+        parent="menu_fsm_equipment_relation_root"
+        action="action_fsm_equipment_relation"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_fsm_equipment_relation_type"
+        name="Relation Types"
+        parent="menu_fsm_equipment_relation_root"
+        action="action_fsm_equipment_relation_type"
+        sequence="20"
+    />
+</odoo>
