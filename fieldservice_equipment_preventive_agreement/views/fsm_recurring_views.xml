@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_recurring_form_view" model="ir.ui.view">
+        <field name="name">fsm.recurring.form.preventive.agreement</field>
+        <field name="model">fsm.recurring</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_equipment_preventive.fsm_recurring_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="is_preventive" position="after">
+                <field name="preventive_available_agreement_ids" invisible="1" />
+                <field name="preventive_agreement_required" invisible="1" />
+                <field
+                    name="preventive_agreement_id"
+                    invisible="not is_preventive"
+                    required="is_preventive and preventive_agreement_required"
+                    domain="[('id', 'in', preventive_available_agreement_ids)]"
+                    options="{'no_create': True}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

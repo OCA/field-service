@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="agreement_form" model="ir.ui.view">
+        <field name="name">agreement.form.preventive</field>
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement.agreement_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    name="preventive"
+                    string="Preventive Visits"
+                    groups="fieldservice.group_fsm_user_own"
+                >
+                    <field name="preventive_rule_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="type_id" />
+                            <field name="interval" />
+                            <field
+                                name="template_id"
+                                groups="fieldservice.group_fsm_template"
+                            />
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
