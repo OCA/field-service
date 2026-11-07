@@ -572,3 +572,32 @@ class TestFSMSaleOrder(TestFSMSale):
             "FSM Sale: FSM Orders should have the same scheduled start date "
             "as the Sale Order expected date",
         )
+
+    def _assert_fsm_links_in_so_message(self, sale_order):
+        """The SO chatter message must contain real links to each FSM order"""
+        message = self.env["mail.message"].search(
+            [
+                ("model", "=", "sale.order"),
+                ("res_id", "=", sale_order.id),
+                ("body", "ilike", "Field Service Order(s) Created"),
+            ],
+            limit=1,
+        )
+        self.assertTrue(message, "FSM Sale: Sale Order should have an FSM message")
+        body = str(message.body)
+        self.assertNotIn("&lt;a", body, "FSM Sale: FSM order links are escaped")
+        for fsm_order in sale_order.fsm_order_ids:
+            self.assertIn(f'data-oe-id="{fsm_order.id}"', body)
+            self.assertIn('data-oe-model="fsm.order"', body)
+
+    def test_sale_order_message_links_single(self):
+        """Message posted on the SO links the single FSM order created"""
+        self.sale_order_1.action_confirm()
+        self.assertEqual(len(self.sale_order_1.fsm_order_ids), 1)
+        self._assert_fsm_links_in_so_message(self.sale_order_1)
+
+    def test_sale_order_message_links_multiple(self):
+        """Message posted on the SO links every FSM order created"""
+        self.sale_order_3.action_confirm()
+        self.assertEqual(len(self.sale_order_3.fsm_order_ids), 2)
+        self._assert_fsm_links_in_so_message(self.sale_order_3)
