@@ -10,4 +10,7 @@
             eval="[(4, ref('fieldservice_vehicle.group_fsm_vehicle'))]"
         />
     </record>
+    <record id="fieldservice.group_fsm_user_own" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_fsm_vehicle'))]" />
+    </record>
 </odoo>
