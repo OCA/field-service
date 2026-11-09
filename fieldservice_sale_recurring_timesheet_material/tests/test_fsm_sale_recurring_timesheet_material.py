@@ -16,21 +16,23 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
                 "generic_coa", company=cls.env.company, install_demo=False
             )
         cls.customer = cls.env["res.partner"].create({"name": "FSM Customer"})
-        cls.analytic_plan = cls.env["account.analytic.plan"].create(
-            {"name": "FSM Plan"}
-        )
-        cls.analytic_account = cls.env["account.analytic.account"].create(
-            {"name": "FSM Account", "plan_id": cls.analytic_plan.id}
-        )
+        # The time is recorded as timesheets of the order's project, which the
+        # generated orders get from the team of the recurring order.
+        cls.project = cls.env["project.project"].create({"name": "Field Service"})
+        cls.team = cls.env["fsm.recurring"]._default_team_id()
+        cls.team.project_id = cls.project
         cls.location = cls.env["fsm.location"].create(
             {
                 "name": "FSM Location",
                 "partner_id": cls.customer.id,
                 "owner_id": cls.customer.id,
-                "customer_id": cls.customer.id,
-                "analytic_account_id": cls.analytic_account.id,
             }
         )
+        if not cls.env.user.employee_id:
+            # timesheets are recorded by an employee
+            cls.env["hr.employee"].create(
+                {"name": "Technician", "user_id": cls.env.user.id}
+            )
         cls.time_product = cls.env["product.product"].create(
             {
                 "name": "Labor",
@@ -84,11 +86,13 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         cls.recurring.action_start()
         cls.order = cls.recurring.fsm_order_ids[0]
 
-    def _add_timesheet(self, hours):
+    def _add_timesheet(self, hours, order=None):
+        order = order or self.order
         return self.env["account.analytic.line"].create(
             {
                 "name": "Work done",
-                "fsm_order_id": self.order.id,
+                "fsm_order_id": order.id,
+                "project_id": order.project_id.id,
                 "product_id": self.time_product.id,
                 "unit_amount": hours,
             }
@@ -131,6 +135,13 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         for order in self.recurring.fsm_order_ids:
             self.assertFalse(order.sale_id)
             self.assertEqual(order.sale_line_id, self.sale.order_line)
+
+    def test_orders_get_the_team_project(self):
+        """The generated orders get the project of their team, on which the
+        time is recorded."""
+        for order in self.recurring.fsm_order_ids:
+            self.assertEqual(order.team_id, self.team)
+            self.assertEqual(order.project_id, self.project)
 
     def test_create_sale_lines_timesheet_and_material(self):
         """Time and materials are added to the sale order that sold the
@@ -176,14 +187,7 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         """Every order of the recurring order bills on the same sale order."""
         other_order = self.recurring.fsm_order_ids[1]
         self._add_timesheet(3.0)
-        self.env["account.analytic.line"].create(
-            {
-                "name": "Work done",
-                "fsm_order_id": other_order.id,
-                "product_id": self.time_product.id,
-                "unit_amount": 1.5,
-            }
-        )
+        self._add_timesheet(1.5, other_order)
 
         (self.order | other_order).action_create_sale_lines()
 
@@ -197,14 +201,7 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         nothing to bill.
         """
         order = self.env["fsm.order"].create({"location_id": self.location.id})
-        self.env["account.analytic.line"].create(
-            {
-                "name": "Work done",
-                "fsm_order_id": order.id,
-                "product_id": self.time_product.id,
-                "unit_amount": 1.0,
-            }
-        )
+        self._add_timesheet(1.0, order)
 
         order.action_create_sale_lines()
 
@@ -230,14 +227,7 @@ class TestFSMSaleRecurringTimesheetMaterial(TransactionCase):
         """The recurring order's button bills the work of all its orders."""
         other_order = self.recurring.fsm_order_ids[1]
         self._add_timesheet(3.0)
-        self.env["account.analytic.line"].create(
-            {
-                "name": "Work done",
-                "fsm_order_id": other_order.id,
-                "product_id": self.time_product.id,
-                "unit_amount": 1.5,
-            }
-        )
+        self._add_timesheet(1.5, other_order)
 
         action = self.recurring.action_create_sale_lines()
 
