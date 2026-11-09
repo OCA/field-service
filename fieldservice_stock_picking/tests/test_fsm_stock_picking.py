@@ -186,3 +186,30 @@ class TestFSMStockPicking(TransactionCase):
         new_picking = order.picking_ids - first_picking
         self.assertEqual(len(new_picking), 1)
         self.assertEqual(order.outgoing_line_ids.move_id, new_picking.move_ids)
+
+    def test_auto_validate_transfers_on_complete(self):
+        # Field Service - Stock validates the order's transfers on completion
+        # when "auto validate pickings" is enabled: the draft transfers created
+        # from the material lines are validated too
+        self.env["ir.config_parameter"].sudo().set_param(
+            "fieldservice_stock.auto_validate_pickings", True
+        )
+        order = self.env["fsm.order"].create(
+            {
+                "location_id": self.test_location.id,
+                "outgoing_line_ids": [
+                    (0, 0, {"product_id": self.product_1.id, "product_uom_qty": 1}),
+                ],
+                "incoming_line_ids": [
+                    (0, 0, {"product_id": self.product_2.id, "product_uom_qty": 1}),
+                ],
+            }
+        )
+        self.env["stock.quant"]._update_available_quantity(
+            self.product_1, order.warehouse_id.lot_stock_id, 1
+        )
+        order.action_create_transfers()
+        self.assertEqual(set(order.picking_ids.mapped("state")), {"draft"})
+        order.action_complete()
+        self.assertEqual(len(order.picking_ids), 2)
+        self.assertEqual(set(order.picking_ids.mapped("state")), {"done"})

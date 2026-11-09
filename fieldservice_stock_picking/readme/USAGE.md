@@ -9,6 +9,8 @@
     for the outgoing products and an incoming transfer for the incoming
     products, when there is something to transfer.
 5.  Process each transfer with the standard flow (validate it from its
-    own form view).
+    own form view). When *Auto Validate FSM Pickings* is enabled in the
+    Field Service settings (*Field Service - Stock*), completing the
+    order also validates the transfers that are still in draft.
 6.  Use the *Deliveries* and *Returns* smart buttons to navigate to the
     related transfers.

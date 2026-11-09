@@ -180,3 +180,19 @@ class FSMOrder(models.Model):
         else:
             action["domain"] = [("id", "in", pickings.ids)]
         return action
+
+    def action_complete(self):
+        """When Field Service - Stock validates the order's transfers on
+        completion, it skips the draft ones: confirm first the draft transfers
+        created from the material lines, so they are validated too."""
+        auto_validate = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("fieldservice_stock.auto_validate_pickings", default=False)
+        )
+        if auto_validate:
+            lines = self.outgoing_line_ids | self.incoming_line_ids
+            lines.move_id.picking_id.filtered(
+                lambda picking: picking.state == "draft"
+            ).action_confirm()
+        return super().action_complete()
