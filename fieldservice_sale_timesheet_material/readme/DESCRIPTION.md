@@ -6,10 +6,11 @@ It applies to field service orders that were **generated from a sale
 order** (see *Field Service - Sale*): the recorded work is pushed back
 to that same sale order. It builds on `fsm.order`:
 
-- timesheets are the `account.analytic.line` records linked to the order,
-  grouped by their *Time Type* product. They are recorded in the
-  **Timesheets** tab of *Field Service - Timesheet*, which this module
-  shows on every order, not only on orders with a project;
+- timesheets are the timesheets linked to the order, grouped by their
+  *Time Type* product. They are recorded in the **Timesheets** tab of
+  *Field Service - Timesheet*, on the order's project: an order created
+  without a project (e.g. generated from a sale order) gets the project
+  of its team;
 - materials are the consumed stock moves of the order (from *Field
   Service - Stock*), grouped by product. `fieldservice_stock` only
   displays these moves read-only, so creating them requires a companion

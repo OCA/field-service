@@ -19,10 +19,6 @@
                     help="Add the recorded timesheets and consumed materials as lines on the order's sale order."
                 />
             </header>
-            <!-- Time is recorded on any order, not only on project ones -->
-            <page name="timesheets" position="attributes">
-                <attribute name="invisible" />
-            </page>
             <field name="timesheet_ids" position="inside">
                 <list editable="bottom" default_order="date">
                     <field name="date" />
@@ -35,7 +31,9 @@
                     <field name="name" />
                     <field name="unit_amount" string="Duration" widget="float_time" />
                     <field name="company_id" column_invisible="1" />
-                    <field name="account_id" column_invisible="1" />
+                    <!-- keep the order's project and task given by the context -->
+                    <field name="project_id" column_invisible="1" />
+                    <field name="task_id" column_invisible="1" />
                     <field name="fsm_sale_line_id" readonly="1" optional="hide" />
                 </list>
             </field>

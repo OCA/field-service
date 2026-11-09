@@ -4,7 +4,8 @@
 from datetime import timedelta
 
 from odoo import fields
-from odoo.tests import Form
+from odoo.exceptions import UserError
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import TransactionCase
 
 
@@ -13,21 +14,25 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.customer = cls.env["res.partner"].create({"name": "FSM Customer"})
-        cls.analytic_plan = cls.env["account.analytic.plan"].create(
-            {"name": "FSM Plan"}
-        )
-        cls.analytic_account = cls.env["account.analytic.account"].create(
-            {"name": "FSM Account", "plan_id": cls.analytic_plan.id}
+        # The time is recorded as timesheets of the order's project, which the
+        # orders generated from the sale order get from their team.
+        cls.project = cls.env["project.project"].create({"name": "Field Service"})
+        cls.team = cls.env["fsm.team"].create(
+            {"name": "FSM Team", "project_id": cls.project.id}
         )
         cls.location = cls.env["fsm.location"].create(
             {
                 "name": "FSM Location",
                 "partner_id": cls.customer.id,
                 "owner_id": cls.customer.id,
-                "customer_id": cls.customer.id,
-                "analytic_account_id": cls.analytic_account.id,
+                "team_id": cls.team.id,
             }
         )
+        if not cls.env.user.employee_id:
+            # timesheets are recorded by an employee
+            cls.env["hr.employee"].create(
+                {"name": "Technician", "user_id": cls.env.user.id}
+            )
         cls.time_product = cls.env["product.product"].create(
             {
                 "name": "Labor",
@@ -67,6 +72,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         vals = {
             "name": "Work done",
             "fsm_order_id": self.order.id,
+            "project_id": self.order.project_id.id,
             "product_id": self.time_product.id,
             "unit_amount": hours,
         }
@@ -74,17 +80,29 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             vals["product_uom_id"] = uom.id
         return self.env["account.analytic.line"].create(vals)
 
-    def test_timesheet_from_form_without_project(self):
-        # Time is recorded from the order form even when the order has no
-        # project: the timesheets list must not require one.
-        self.assertFalse(self.order.project_id)
+    def test_order_project_from_team(self):
+        # The order generated from the sale order has no project of its own:
+        # it gets the one of its team
+        self.assertEqual(self.order.team_id, self.team)
+        self.assertEqual(self.order.project_id, self.project)
+
+    def test_order_keeps_its_project(self):
+        other_project = self.env["project.project"].create({"name": "Other"})
+        order = self.env["fsm.order"].create(
+            {"location_id": self.location.id, "project_id": other_project.id}
+        )
+        self.assertEqual(order.project_id, other_project)
+
+    def test_timesheet_from_form(self):
+        # Time recorded from the order form is a timesheet of the order's
+        # project
         with Form(self.order) as order_form:
             with order_form.timesheet_ids.new() as line:
                 line.name = "Travel"
                 line.product_id = self.time_product
                 line.unit_amount = 1.0
         self.assertEqual(self.order.timesheet_ids.name, "Travel")
-        self.assertFalse(self.order.timesheet_ids.project_id)
+        self.assertEqual(self.order.timesheet_ids.project_id, self.project)
 
     def _add_consumed_move(self, qty, uom=None):
         warehouse = self.env["stock.warehouse"].search(
@@ -256,6 +274,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             {
                 "name": "Work done",
                 "fsm_order_id": order.id,
+                "project_id": order.project_id.id,
                 "product_id": self.time_product.id,
                 "unit_amount": 1.0,
             }
@@ -321,3 +340,92 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
         self.assertEqual(self._material_lines(), sold_line)
         self.assertEqual(move.sale_line_id, sold_line)
         self.assertFalse(move.fsm_sale_line_id)
+
+    def test_skip_timesheets_billed_by_sale_line(self):
+        # Time recorded on a billable project, whose sale order item is
+        # invoiced based on timesheets, is already delivered on that item by
+        # sale_timesheet: it is not added a second time
+        hour = self.env.ref("uom.product_uom_hour")
+        ts_product = self.env["product.product"].create(
+            {
+                "name": "Assistance",
+                "type": "service",
+                "invoice_policy": "delivery",
+                "service_type": "timesheet",
+                "uom_id": hour.id,
+                "uom_po_id": hour.id,
+            }
+        )
+        ts_sale_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale.id,
+                "product_id": ts_product.id,
+                "product_uom_qty": 10.0,
+            }
+        )
+        project = self.env["project.project"].create(
+            {
+                "name": "Billable project",
+                "allow_billable": True,
+                "partner_id": self.customer.id,
+            }
+        )
+        timesheet = self.env["account.analytic.line"].create(
+            {
+                "name": "Work done",
+                "fsm_order_id": self.order.id,
+                "project_id": project.id,
+                "employee_id": self.env["hr.employee"].create({"name": "Tech"}).id,
+                "product_id": self.time_product.id,
+                "unit_amount": 2.0,
+                "so_line": ts_sale_line.id,
+            }
+        )
+        self.assertEqual(ts_sale_line.qty_delivered, 2.0)
+        self.order.action_create_sale_lines()
+        self.assertFalse(self._time_lines())
+        self.assertFalse(timesheet.fsm_sale_line_id)
+        self.assertEqual(ts_sale_line.qty_delivered, 2.0)
+
+    def test_time_product_with_computed_delivery_refused(self):
+        # The delivered quantity of a time line is set from the recorded hours:
+        # a Time Type product whose sale order item computes it (here based on
+        # timesheets) would overwrite it, so the action refuses it
+        self.time_product.write(
+            {"service_type": "timesheet", "invoice_policy": "delivery"}
+        )
+        self._add_timesheet(3.0)
+        with self.assertRaises(UserError):
+            self.order.action_create_sale_lines()
+
+    def test_prepaid_time_product(self):
+        # A "Prepaid/Fixed Price" Time Type product is timesheet-based with
+        # sale_timesheet, but its line invoices the ordered quantity, which is
+        # the recorded hours: the delivered quantity does not matter
+        self.time_product.service_policy = "ordered_prepaid"
+        self.assertEqual(self.time_product.service_type, "timesheet")
+        self._add_timesheet(3.0)
+        self.order.action_create_sale_lines()
+        time_line = self._time_lines()
+        self.assertEqual(time_line.qty_delivered_method, "timesheet")
+        self.assertEqual(time_line.product_uom_qty, 3.0)
+        self.assertEqual(time_line.qty_to_invoice, 3.0)
+
+    def test_salesman_bills_work_of_other_users(self):
+        # The salesperson adding the work to the sale order bills the time
+        # recorded by the technicians and the materials they used, even if the
+        # record rules do not let them read those records
+        salesman = new_test_user(
+            self.env,
+            login="fsm_salesman",
+            groups="base.group_user,sales_team.group_sale_salesman,"
+            "fieldservice.group_fsm_user",
+        )
+        self.sale.user_id = salesman
+        timesheet = self._add_timesheet(3.0)
+        move = self._add_consumed_move(2.0)
+        self.order.with_user(salesman).action_create_sale_lines()
+        self.assertEqual(self._time_lines().product_uom_qty, 3.0)
+        self.assertEqual(self._material_lines().product_uom_qty, 2.0)
+        self.assertEqual(timesheet.fsm_sale_line_id, self._time_lines())
+        self.assertEqual(move.fsm_sale_line_id, self._material_lines())

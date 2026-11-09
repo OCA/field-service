@@ -3,12 +3,24 @@
 
 from collections import defaultdict
 
-from odoo import models
+from odoo import api, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
 
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
+
+    # Time is recorded as timesheets, which need a project: orders created
+    # without one (e.g. generated from a sale order) get the team's project.
+    project_id = fields.Many2one(
+        compute="_compute_project_id", store=True, readonly=False
+    )
+
+    @api.depends("team_id")
+    def _compute_project_id(self):
+        for order in self:
+            order.project_id = order.project_id or order.team_id.project_id
 
     # ------------------------------------------------------------------
     # Sale order
@@ -29,10 +41,16 @@ class FSMOrder(models.Model):
     def _create_sale_lines_from_timesheets(self):
         self.ensure_one()
         SaleLine = self.env["sale.order.line"]
-        lines = self.timesheet_ids.filtered(
-            lambda t: t.product_id and not t.fsm_sale_line_id
+        # The timesheet record rules may hide the technicians' time from the
+        # salesperson who bills it, so all the order's timesheets are read and
+        # linked as superuser. Time already delivered on its sale order item by
+        # sale_timesheet is billed there.
+        lines = self.sudo().timesheet_ids.filtered(
+            lambda t: t.product_id
+            and not t.fsm_sale_line_id
+            and not t._fsm_is_billed_by_sale_line()
         )
-        grouped = defaultdict(lambda: self.env["account.analytic.line"])
+        grouped = defaultdict(lines.browse)
         for line in lines:
             grouped[line.product_id] |= line
         for product, ts_lines in grouped.items():
@@ -52,7 +70,35 @@ class FSMOrder(models.Model):
             # method).
             vals["qty_delivered"] = qty
             sol = SaleLine.create(vals)
+            self._check_time_sale_line_delivery(sol)
             ts_lines.write({"fsm_sale_line_id": sol.id})
+
+    def _check_time_sale_line_delivery(self, sale_line):
+        """Refuse a time line invoiced on delivered quantities whose delivered
+        quantity is computed by the sale order item (e.g. based on timesheets
+        or milestones): the computation would replace the recorded hours at
+        its next update. A line invoicing the ordered quantity is not
+        affected, e.g. a "Prepaid/Fixed Price" product, which sale_timesheet
+        makes timesheet-based."""
+        if (
+            sale_line.product_id.invoice_policy == "delivery"
+            and sale_line.qty_delivered_method != "manual"
+        ):
+            methods = dict(
+                sale_line._fields["qty_delivered_method"]._description_selection(
+                    self.env
+                )
+            )
+            raise UserError(
+                self.env._(
+                    "The delivered quantity of %(product)s is computed by the sale "
+                    "order (%(method)s) and would replace the recorded hours. Use "
+                    "a Time Type product invoiced at a fixed price or on manually "
+                    "delivered quantities, without field service tracking.",
+                    product=sale_line.product_id.display_name,
+                    method=methods.get(sale_line.qty_delivered_method),
+                )
+            )
 
     # ------------------------------------------------------------------
     # Consumed materials (stock moves) -> sale order lines
