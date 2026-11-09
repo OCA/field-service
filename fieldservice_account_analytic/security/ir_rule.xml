@@ -1,8 +1,12 @@
 <odoo>
     <!--
         Users with Analytic Accounting already read every analytic line (that
-        group has full access and no record rule): the rules below keep the
-        lines not linked to an FSM order visible to them.
+        group has full access and no record rule): the manager and dispatcher
+        rules keep the lines not linked to an FSM order visible to them.
+        The FSM user rule only grants the user's own FSM lines: group rules
+        are ORed, so granting more would add lines to users that another rule
+        restricts (e.g. timesheet users, who only see their own timesheets).
+        Every internal user gets Analytic Accounting when it is enabled.
     -->
     <record id="analytic_account_fsm_manager" model="ir.rule">
         <field name="name">account.analytic.line.fsm.manager</field>
@@ -39,7 +43,7 @@
         <field name="model_id" ref="model_account_analytic_line" />
         <field
             name="domain_force"
-        >['|', ('fsm_order_id', '=', False), ('user_id', '=', user.id)] if user.has_group('analytic.group_analytic_accounting') else [('fsm_order_id', '!=', False), ('user_id', '=', user.id)]</field>
+        >[('fsm_order_id', '!=', False), ('user_id', '=', user.id)]</field>
         <field
             name="groups"
             eval="[Command.link(ref('fieldservice.group_fsm_user'))]"

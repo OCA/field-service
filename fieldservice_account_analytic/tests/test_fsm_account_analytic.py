@@ -259,8 +259,9 @@ class FSMAccountAnalyticCase(TransactionCase):
         )
 
     def test_analytic_line_rules(self):
-        """FSM users see their own FSM lines, and keep seeing the lines not
-        linked to an FSM order when Analytic Accounting gives them access."""
+        """FSM users only get their own FSM lines from the FSM user rule, also
+        with Analytic Accounting: the rule must not add lines that another
+        group rule (e.g. timesheet users) hides from them."""
         user = self.env["res.users"].create(
             {
                 "name": "FSM Worker",
@@ -288,4 +289,4 @@ class FSMAccountAnalyticCase(TransactionCase):
             fields.Command.link(self.env.ref("analytic.group_analytic_accounting").id)
         ]
         visible = self.AnalyticLine.with_user(user).search([("id", "in", lines.ids)])
-        self.assertEqual(visible, own_line | free_line)
+        self.assertEqual(visible, own_line)
