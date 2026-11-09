@@ -11,9 +11,9 @@
     "website": "https://github.com/OCA/field-service",
     "depends": [
         "fieldservice_sale",
-        "fieldservice_account_analytic",
         "fieldservice_stock",
         "fieldservice_timesheet",
+        "sale_timesheet",
     ],
     "data": [
         "views/fsm_order.xml",

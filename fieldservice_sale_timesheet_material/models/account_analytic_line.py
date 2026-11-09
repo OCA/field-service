@@ -15,3 +15,11 @@ class AccountAnalyticLine(models.Model):
         help="Sale order line on which this field service timesheet has been "
         "billed.",
     )
+
+    def _fsm_is_billed_by_sale_line(self):
+        """Whether sale_timesheet already counts this timesheet in the
+        delivered quantity of its sale order item."""
+        self.ensure_one()
+        return bool(
+            self.project_id and self.so_line.qty_delivered_method == "timesheet"
+        )
