@@ -65,10 +65,12 @@ Usage
    button and click **Start**: the field service orders are generated
    from the frequency rules.
 3. On a generated field service order, record the time spent in the
-   **Timesheets** tab and the materials consumed on site, then click
-   **Add to Sale Order**. To do it for all the orders of the recurring
-   order at once, click **Add to Sale Order** on the recurring order
-   instead.
+   **Timesheets** tab and the materials consumed on site. The generated
+   orders get the project of the recurring order's team (see *Field
+   Service - Sale Timesheet & Material*): set a project on that team, as
+   the time is recorded as timesheets of that project. Then click **Add
+   to Sale Order**. To do it for all the orders of the recurring order
+   at once, click **Add to Sale Order** on the recurring order instead.
 4. The lines are added to the sale order that sold the recurring order,
    where they can be invoiced as usual. Each invoice line is linked to
    the field service order it bills.
