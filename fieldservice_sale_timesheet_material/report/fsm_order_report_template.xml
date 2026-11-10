@@ -78,7 +78,7 @@
                     <tbody>
                         <tr t-foreach="material_lines" t-as="material">
                             <td>
-                                <span t-esc="material['product'].display_name" />
+                                <span t-out="material['product'].display_name" />
                             </td>
                             <td>
                                 <span t-if="material['direction'] == 'out'">Used</span>
@@ -86,12 +86,12 @@
                             </td>
                             <td class="text-end">
                                 <span
-                                    t-esc="material['qty']"
+                                    t-out="material['qty']"
                                     t-options='{"widget": "float", "decimal_precision": "Product Unit of Measure"}'
                                 />
                             </td>
                             <td>
-                                <span t-esc="material['uom'].name" />
+                                <span t-out="material['uom'].name" />
                             </td>
                         </tr>
                     </tbody>
