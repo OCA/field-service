@@ -10,7 +10,7 @@ class StockPicking(models.Model):
     fsm_vehicle_id = fields.Many2one("fsm.vehicle", string="Vehicle")
 
     def _check_and_update_vehicle_storage(self):
-        """Ensure a vehicle is assigned for the picking type and update its storage location"""
+        """Ensure a vehicle is set for the picking type and update its storage."""
         for rec in self:
             if (
                 rec.picking_type_id.fsm_vehicle_in
@@ -43,14 +43,7 @@ class StockPicking(models.Model):
         return super()._action_done()
 
     def prepare_fsm_values(self, fsm_order):
-        res = {}
-        if fsm_order:
-            res.update(
-                {
-                    "fsm_vehicle_id": fsm_order.vehicle_id.id or False,
-                }
-            )
-        return res
+        return {"fsm_vehicle_id": fsm_order.vehicle_id.id or False}
 
     def write(self, vals):
         if vals.get("fsm_order_id", False):
@@ -96,7 +89,7 @@ class StockPicking(models.Model):
                 picking.move_line_ids.write({"location_dest_id": vehicle_location.id})
 
             # Handle fsm_vehicle_out: Transferring from vehicle
-            elif picking.picking_type_id.fsm_vehicle_out:
+            else:
                 if vehicle_location == picking.location_id:
                     continue
                 picking.write({"location_id": vehicle_location.id})

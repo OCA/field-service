@@ -37,37 +37,19 @@ class TestFSMVehicleStock(TransactionCase):
             }
         )
 
-        # Fleet model (required when fieldservice_fleet is installed)
-        cls.fleet_model = cls.env.ref("fleet.vehicle_1")
-
         # Set up FSM Vehicles with inventory locations
-        cls.fsm_veh_1 = cls.env["fsm.vehicle"].create(
-            {
-                "name": "Vehicle 1",
-                "inventory_location_id": cls.veh_1_loc.id,
-                "fleet_vehicle_id": cls.fleet_model.id,
-            }
-        )
-        cls.fsm_veh_2 = cls.env["fsm.vehicle"].create(
-            {
-                "name": "Vehicle 2",
-                "inventory_location_id": cls.veh_2_loc.id,
-                "fleet_vehicle_id": cls.fleet_model.id,
-            }
-        )
-        cls.fsm_veh_bad_loc = cls.env["fsm.vehicle"].create(
-            {
-                "name": "Vehicle with Incorrect Location",
-                "inventory_location_id": cls.non_vehicle_stock_loc.id,
-                "fleet_vehicle_id": cls.fleet_model.id,
-            }
+        cls.fsm_veh_1 = cls._create_vehicle("Vehicle 1", cls.veh_1_loc)
+        cls.fsm_veh_2 = cls._create_vehicle("Vehicle 2", cls.veh_2_loc)
+        cls.fsm_veh_bad_loc = cls._create_vehicle(
+            "Vehicle with Incorrect Location", cls.non_vehicle_stock_loc
         )
 
         # Set up product and stock it to use for a transfer
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Product A",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "categ_id": cls.env.ref("product.product_category_all").id,
             }
         )
@@ -127,6 +109,23 @@ class TestFSMVehicleStock(TransactionCase):
                 "location_id": cls.fsm_location.id,
             }
         )
+        cls.group = cls.env["procurement.group"].create(
+            {"name": "FSM Order 1", "fsm_order_id": cls.fsm_order_1.id}
+        )
+
+    @classmethod
+    def _create_vehicle(cls, name, location):
+        # fieldservice_fleet makes the fleet vehicle mandatory
+        needs_fleet = "fleet_vehicle_id" in cls.env["fsm.vehicle"]._fields
+        fleet_vals = needs_fleet and {"fleet_vehicle_id": cls._create_fleet().id} or {}
+        return cls.env["fsm.vehicle"].create(
+            dict(fleet_vals, name=name, inventory_location_id=location.id)
+        )
+
+    @classmethod
+    def _create_fleet(cls):
+        fleet_model = cls.env["fleet.vehicle.model"].search([], limit=1)
+        return cls.env["fleet.vehicle"].create({"model_id": fleet_model.id})
 
     def test_fsm_vehicle_stock_loc_to_veh(self):
         # 1. Test trasnfer from stock location to vehicle location
@@ -137,7 +136,9 @@ class TestFSMVehicleStock(TransactionCase):
         with self.assertRaises(UserError):
             self.picking_out._action_done()
         # Write FSM Order to the Transfer
-        self.picking_out.write({"fsm_order_id": self.fsm_order_1.id})
+        self.picking_out.write(
+            {"group_id": self.group.id, "fsm_order_id": self.fsm_order_1.id}
+        )
         # Test no vehicle is on the transfer
         self.assertFalse(self.picking_out.fsm_vehicle_id)
         # Write the bad vehicle to the FSM Order
@@ -152,7 +153,7 @@ class TestFSMVehicleStock(TransactionCase):
         move_line = self.move_out.move_line_ids
         self.assertEqual(move_line.location_dest_id, self.veh_1_loc)
         # confirm the transfer
-        move_line.qty_done = 8.0
+        move_line.write({"quantity": 8.0, "picked": True})
         self.picking_out._action_done()
         # test moves are done
         self.assertEqual(move_line.state, "done")
@@ -165,7 +166,9 @@ class TestFSMVehicleStock(TransactionCase):
         with self.assertRaises(UserError):
             self.picking_in._action_done()
         # Write FSM Order to the Transfer
-        self.picking_in.write({"fsm_order_id": self.fsm_order_1.id})
+        self.picking_in.write(
+            {"group_id": self.group.id, "fsm_order_id": self.fsm_order_1.id}
+        )
         # Test vehicle is on the transfer, as we updated earlier the FSM order's vehicle
         self.assertTrue(self.picking_in.fsm_vehicle_id)
         # Test same vehicle is on the transfer
@@ -175,7 +178,55 @@ class TestFSMVehicleStock(TransactionCase):
         move_line = self.move_in.move_line_ids
         self.assertEqual(move_line.location_id, self.veh_1_loc)
         # confirm the transfer
-        move_line.qty_done = 8.0
+        move_line.write({"quantity": 8.0, "picked": True})
         self.picking_in._action_done()
         # test moves are done
         self.assertEqual(move_line.state, "done")
+
+    def test_regular_picking_not_affected(self):
+        picking_type = self.env.ref("stock.picking_type_internal")
+        picking = self.env["stock.picking"].create(
+            {
+                "picking_type_id": picking_type.id,
+                "location_id": self.stock_location.id,
+                "location_dest_id": self.non_vehicle_stock_loc.id,
+                "fsm_vehicle_id": self.fsm_veh_1.id,
+            }
+        )
+        self.env["stock.move"].create(
+            {
+                "name": "Regular Move",
+                "location_id": self.stock_location.id,
+                "location_dest_id": self.non_vehicle_stock_loc.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 2.0,
+                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "picking_id": picking.id,
+            }
+        )
+        picking.action_assign()
+        self.assertEqual(picking.location_dest_id, self.non_vehicle_stock_loc)
+
+    def test_fsm_order_vehicle_skips_closed_pickings(self):
+        self.picking_out.write(
+            {"group_id": self.group.id, "fsm_order_id": self.fsm_order_1.id}
+        )
+        self.picking_out.action_cancel()
+        self.fsm_order_1.write({"description": "No vehicle change"})
+        self.assertFalse(self.picking_out.fsm_vehicle_id)
+        self.fsm_order_1.write({"vehicle_id": self.fsm_veh_2.id})
+        self.assertFalse(self.picking_out.fsm_vehicle_id)
+
+    def test_vehicle_storage_already_set(self):
+        self.picking_out.write(
+            {
+                "fsm_vehicle_id": self.fsm_veh_2.id,
+            }
+        )
+        self.assertEqual(self.picking_out.location_dest_id, self.veh_2_loc)
+        self.picking_out.update_vehicle_storage()
+        self.assertEqual(self.picking_out.location_dest_id, self.veh_2_loc)
+        self.picking_in.write({"fsm_vehicle_id": self.fsm_veh_2.id})
+        self.assertEqual(self.picking_in.location_id, self.veh_2_loc)
+        self.picking_in.update_vehicle_storage()
+        self.assertEqual(self.picking_in.location_id, self.veh_2_loc)

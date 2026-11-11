@@ -145,6 +145,8 @@ Contributors
 
    -  Patryk Pyczko <ppyczko@apsl.net>
 
+-  Marcos Mendez <m@pop.coop>
+
 Other credits
 -------------
 
@@ -174,10 +176,13 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-marcos-mendez| image:: https://github.com/marcos-mendez.png?size=40px
+    :target: https://github.com/marcos-mendez
+    :alt: marcos-mendez
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| 
+|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| |maintainer-marcos-mendez| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_vehicle_stock>`_ project on GitHub.
 

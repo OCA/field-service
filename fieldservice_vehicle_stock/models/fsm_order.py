@@ -10,7 +10,7 @@ class FSMOrder(models.Model):
         for rec in self:
             for picking in rec.picking_ids:
                 if picking.state in ("draft", "waiting", "confirmed", "assigned"):
-                    picking.fsm_vehicle_id = self.vehicle_id.id or False
+                    picking.fsm_vehicle_id = rec.vehicle_id.id or False
 
     def write(self, vals):
         res = super().write(vals)
