@@ -16,7 +16,7 @@ class TestFSMOrderRunAction(TransactionCase):
         cls.location_1 = cls.env.ref("fieldservice.location_1")
         cls.create_action = cls.env["ir.actions.server"].create(
             {
-                "model_id": cls.env["ir.model"]._get_id("fsm.tag"),
+                "model_id": cls.env["ir.model"]._get_id("fsm.order"),
                 "crud_model_id": cls.env["ir.model"]._get_id("fsm.tag"),
                 "name": "Create new tag",
                 "value": "New test tag",
