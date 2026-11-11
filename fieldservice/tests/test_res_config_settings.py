@@ -36,6 +36,12 @@ class TestResConfigSettings(BaseCommon):
             "fieldservice_web_timeline_view",
             classified["module"].mapped("name"),
         )
+        # Same labels fail the OCA log check on res.config.settings.
+        fields_ = type(settings)._fields
+        self.assertNotEqual(
+            fields_["module_fieldservice_web_timeline_view"].string,
+            fields_["module_fieldservice_timeline"].string,
+        )
 
     def test_stale_timeline_settings_arch_still_loads(self):
         """Views saved before the module rename must not break Settings."""

@@ -75,9 +75,11 @@ class ResConfigSettings(models.TransientModel):
     )
     # Databases created before the technical rename still store this field
     # name in the settings view. Keep it so Settings can open, and make the
-    # checkbox install fieldservice_timeline.
+    # checkbox install fieldservice_timeline. The label must differ from
+    # module_fieldservice_timeline; the text shown in Settings is the
+    # <setting> string in the view.
     module_fieldservice_web_timeline_view = fields.Boolean(
-        string="Allow Field Service Web Timeline View",
+        string="Field Service Timeline",
         related="module_fieldservice_timeline",
         readonly=False,
     )
