@@ -27,6 +27,19 @@ class TestFsmCategory(test_fsm_order.TestFSMOrder):
         )
 
     def test_fsm_category_recursion(self):
-        self.assertTrue(self.fsm_category_c._check_recursion())
+        self.assertFalse(self.fsm_category_c._has_cycle())
         with self.assertRaises(UserError):
             self.fsm_category_a.write({"parent_id": self.fsm_category_c.id})
+
+    def test_fsm_category_self_parent(self):
+        with self.assertRaises(UserError):
+            self.fsm_category_a.write({"parent_id": self.fsm_category_a.id})
+
+    def test_fsm_category_child_created_before_parent(self):
+        fsm_category = self.env["fsm.category"]
+        child = fsm_category.create({"name": "Child"})
+        parent = fsm_category.create({"name": "Parent"})
+        child.parent_id = parent
+        self.env.invalidate_all()
+        records = fsm_category.browse([child.id, parent.id])
+        self.assertEqual(records.mapped("full_name"), ["Parent / Child", "Parent"])
