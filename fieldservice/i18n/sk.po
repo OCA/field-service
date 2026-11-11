@@ -266,8 +266,8 @@ msgstr "Všetky zásahy"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__lang
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__lang
 msgid ""
-"All the emails and documents sent to this contact will be translated in this"
-" language."
+"All the emails and documents sent to this contact will be translated in this "
+"language."
 msgstr ""
 "Všetky emaily a dokumenty zaslané na tento kontakt budú preložené do tohto "
 "jazyka."
@@ -349,8 +349,7 @@ msgstr "Automaticky naplniť zariadenia zásahu podľa lokality"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
-msgid ""
-"Auto-populate the equipments on the order based on the location content"
+msgid "Auto-populate the equipments on the order based on the location content"
 msgstr "Automaticky naplniť zariadenia zásahu podľa obsahu lokality"
 
 #. module: fieldservice
@@ -584,6 +583,11 @@ msgstr "Skontrolovať sumu vybranú počas trasy"
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Check the inventory of the vehicle at the end of the route"
 msgstr "Na konci trasy skontrolovať zásoby vo vozidle"
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__child_id
+msgid "Child Categories"
+msgstr ""
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
@@ -1647,8 +1651,8 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid ""
-"If the sanitized phone number is on the blacklist, the contact won't receive"
-" mass mailing sms anymore, from any list"
+"If the sanitized phone number is on the blacklist, the contact won't receive "
+"mass mailing sms anymore, from any list"
 msgstr ""
 "Ak je upravené číslo na čiernej listine, kontakt už nebude dostávať hromadné "
 "správy SMS zo žiadneho zoznamu"
@@ -2681,6 +2685,7 @@ msgid "Parent"
 msgstr "Nadradené"
 
 #. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_fsm_category__parent_path
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_path
 msgid "Parent Path"
 msgstr "Nadradená cesta"
@@ -3490,8 +3495,8 @@ msgstr "Táto mena sa bude používať na nákupy od aktuálneho partnera"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__email_normalized
 msgid ""
-"This field is used to search on email address as the primary email field can"
-" contain more than strictly an email address."
+"This field is used to search on email address as the primary email field can "
+"contain more than strictly an email address."
 msgstr ""
 "Toto pole sa používa na vyhľadávanie e-mailovej adresy, pretože e-mailové "
 "pole môže obsahovať viac ako len striktne e-mailovú adresu."
@@ -3719,14 +3724,16 @@ msgstr "História komunikácie webstránok"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Pri tlači dokumentov a exporte / importe údajov sa časové hodnoty počítajú "
 "podľa tohto časového pásma.\n"
-"Ak nie je nastavené časové pásmo, použije sa UTC (Coordinated Universal Time)"
-".\n"
+"Ak nie je nastavené časové pásmo, použije sa UTC (Coordinated Universal "
+"Time).\n"
 "Kdekoľvek inde sa časové hodnoty počítajú podľa časového posunu vášho "
 "webového klienta."
 
