@@ -59,7 +59,8 @@ To configure this module, you need to:
 1. Obtain a Google Maps API key with **Maps JavaScript API** (and
    ideally Geocoding / Places) enabled in Google Cloud Console.
 2. Go to **Settings > General Settings**, open the **Google Maps View**
-   section, and set **API key**. Without a valid key the map view opens
+   section, and set **API key**. The **Configure API key** button on an
+   empty map opens that section. Without a valid key the map view opens
    but Google shows "This page didn't load Google Maps correctly".
 3. Optionally set map theme, language and region in the same section.
 4. Go to **Field Service > Configuration > Stages** and set stage names
@@ -72,7 +73,9 @@ Usage
 To use this module, you need to:
 
 1. Go to **Field Service > Master Data > Locations**.
-2. Provide full address information and geolocalize the location.
+2. Provide full address information and geolocalize the location. Demo
+   locations are already placed around Bangkok, so the sample orders
+   show on the map after install.
 3. Go to **Field Service > Dashboard**.
 4. Open the map view to show orders on a Google Map, colored by stage.
 

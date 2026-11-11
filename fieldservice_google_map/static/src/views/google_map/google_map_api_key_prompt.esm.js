@@ -1,8 +1,31 @@
 import {onMounted, onPatched, onWillStart, useRef} from "@odoo/owl";
 import {GoogleMapRenderer} from "@web_view_google_map/views/google_map/google_map_renderer.esm";
 import {loadGoogleMaps} from "@web_view_google_map/views/google_map/google_maps_loader.esm";
+import {browser} from "@web/core/browser/browser";
 import {patch} from "@web/core/utils/patch";
 import {useService} from "@web/core/utils/hooks";
+
+const GOOGLE_MAPS_API_KEY_FIELD = "google_maps_view_api_key";
+
+function revealGoogleMapsSetting() {
+    const started = Date.now();
+    const tick = () => {
+        const field = document.querySelector(`[name="${GOOGLE_MAPS_API_KEY_FIELD}"]`);
+        const setting = field?.closest(".o_setting_box");
+        if (setting) {
+            setting.scrollIntoView({block: "center"});
+            setting.classList.add("o_setting_highlight");
+            browser.setTimeout(() => {
+                setting.classList.remove("o_setting_highlight");
+            }, 5000);
+            return;
+        }
+        if (Date.now() - started < 4000) {
+            browser.setTimeout(tick, 50);
+        }
+    };
+    tick();
+}
 
 const UNUSABLE_API_KEYS = new Set(["", "YOUR_GOOGLE_MAPS_API_KEY"]);
 
@@ -103,12 +126,11 @@ patch(GoogleMapRenderer.prototype, {
     },
 
     openGoogleMapsSettings() {
-        this.action.doAction({
-            type: "ir.actions.act_window",
-            res_model: "res.config.settings",
-            views: [[false, "form"]],
-            target: "current",
-            context: {module: "base_google_map"},
-        });
+        // Google Maps settings live in the General Settings app
+        // (block "Google Maps View"), not in an app named base_google_map.
+        // A module key that matches no app hides every settings block.
+        this.action
+            .doAction("base_setup.action_general_configuration")
+            .then(() => revealGoogleMapsSetting());
     },
 });
