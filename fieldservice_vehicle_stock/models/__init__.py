@@ -4,6 +4,7 @@
 from . import (
     fsm_vehicle,
     fsm_order,
+    res_users,
     stock_picking,
     stock_picking_type,
 )

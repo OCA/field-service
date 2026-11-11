@@ -4,7 +4,7 @@
 {
     "name": "Field Service Vehicles - Stock",
     "summary": "Track inventory of Field Service vehicles",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Field Service",
     "author": "Open Source Integrators, "
     "Brian McMaster, "
@@ -16,6 +16,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/stock_security.xml",
         "data/fsm_stock_data.xml",
         "views/fsm_vehicle.xml",
         "views/stock_picking.xml",
@@ -29,5 +30,6 @@
         "brian10048",
         "wolfhall",
         "max3903",
+        "marcos-mendez",
     ],
 }

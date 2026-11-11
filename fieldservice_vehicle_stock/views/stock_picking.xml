@@ -5,18 +5,15 @@
         <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_form" />
         <field name="arch" type="xml">
             <field name="fsm_order_id" position="after">
-                <field
-                    name="fsm_vehicle_id"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                />
+                <field name="fsm_vehicle_id" readonly="state in ('done', 'cancel')" />
             </field>
         </field>
     </record>
 
-    <record id="fsm_vehicle_stock_picking_tree" model="ir.ui.view">
-        <field name="name">stock.picking.fsm_vehicle_id.tree</field>
+    <record id="fsm_vehicle_stock_picking_list" model="ir.ui.view">
+        <field name="name">stock.picking.fsm_vehicle_id.list</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_tree" />
+        <field name="inherit_id" ref="fieldservice_stock.fsm_stock_picking_list" />
         <field name="arch" type="xml">
             <field name="fsm_order_id" position="after">
                 <field name="fsm_vehicle_id" />

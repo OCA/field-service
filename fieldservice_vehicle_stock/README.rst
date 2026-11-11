@@ -50,66 +50,97 @@ Configuration
 
 To configure this module, you need to:
 
-# Configure Operation Types for Loading FSM Vehicles Specific stock
-operation types can be configured for moving inventory to the storage
-locations of FSM Vehicles. Moves will not be processed if the FSM
-Vehicle is not set on the transfers of these operation types. #. Go to
-Inventory > Configuration > Operation Types #. Select or Create an
-Operation Type #. Check the box "Used to Load a Field Service Vehicle"
+Configure Operation Types for Loading FSM Vehicles
+--------------------------------------------------
 
-# Verify procurement routes Some new procurement routes are added with
-this module. Check that these routes fit your individual business needs
-or you can create new ones.
+Specific stock operation types can be configured for moving inventory to
+the storage locations of FSM Vehicles. Moves will not be processed if
+the FSM Vehicle is not set on the transfers of these operation types.
 
-Be sure to have a rule that utilizes an Operation Type that is
-configured for FSM Vehicle Loading and the rule has a Destination
-Location which is a parent of the FSM Vehicle inventory location
+1. Go to Inventory > Configuration > Operation Types.
+2. Select or create an Operation Type.
+3. Check the box "Used to load a Field Service Vehicle" (or "Used to
+   unload a Field Service Vehicle").
 
-# Configure FSM Vehicles Each FSM Vehicle that will carry inventory
-needs to have a stock inventory location. Individual vehicle inventory
-locations should be a descendant location of a procurement rule's
-Destination Location. #. Go to Field Service > Master Data > Vehicles #.
-Select or Create a Field Service Vehicle #. Set the desired Inventory
-Location for that vehicle
+Verify procurement routes
+-------------------------
+
+Some new procurement routes are added with this module. Check that these
+routes fit your individual business needs or create new ones.
+
+Be sure to have a rule that uses an Operation Type configured for FSM
+Vehicle loading, and that the rule has a Destination Location which is a
+parent of the FSM Vehicle inventory location.
+
+Configure FSM Vehicles
+----------------------
+
+Each FSM Vehicle that will carry inventory needs a stock inventory
+location. Individual vehicle inventory locations must be descendants of
+the Vehicles location.
+
+1. Go to Field Service > Master Data > Vehicles.
+2. Select or create a Field Service Vehicle.
+3. Set the desired Inventory Location for that vehicle.
+
+Access rights
+-------------
+
+Field Service users can create and change the transfers of the operation
+types that load or unload a vehicle. Other transfers stay read-only for
+them, unless another access right (Inventory, Sales, Purchase...) lets
+them change transfers.
 
 Usage
 =====
 
-1. **Create a Location for the Vehicle** - Navigate to Inventory >
-Configuration > Locations and create a new location. - Set a name. - Set
-the Parent Location to Vehicles. - Set the location type to Internal
-Location. - Save the location.
+1. **Create a Location for the Vehicle**
 
-2. **Create an FSM Vehicle** - Navigate to Field Service > Master Data >
-Vehicles and create a new vehicle. - Set a name. - Assign a driver. -
-Assign the location you created in step 1. - Save the vehicle. - Enter
-the driver's record and set the Default Vehicle field to the vehicle you
-just created.
+   -  Navigate to Inventory > Configuration > Locations and create a new
+      location.
+   -  Set a name.
+   -  Set the Parent Location to Vehicles.
+   -  Set the location type to Internal Location.
+   -  Save the location.
 
-3. **Generate Stock Moves** - Navigate to Inventory > Operations >
-Transfers and create a new transfer. - On the Operation Type field,
-select an operation type that supports FSM vehicle loading or unloading.
-Examples of this include Vehicle Loading, to load a vehicle from stock,
-and Location Delivery, to unload a vehicle to a customer location. - Add
-the products you want to transfer and save the transfer. - By default,
-the Source Location or Destination Location (depending on the selected
-operation type) will be set to the default Vehicles location.
+2. **Create an FSM Vehicle**
 
-4. **Validate the Transfer** - In the Additional Info tab, set the FSM
-Vehicle on the transfer. - If you link an FSM order to the transfer, and
-the FSM order has a vehicle assigned with a storage location that is a
-child of the Vehicles location, the vehicle and its corresponding
-location will be automatically set on the transfer. - When validating
-the picking, the destination location of the picking and it's move lines
-will be updated to the vehicle's storage location. The assigned products
-will be moved from or to the vehicle location, depending on the selected
-operation type. - If you try to confirm a transfer without setting the
-FSM Vehicle, an error will be raised. - If you try to set a vehicle or
-link an FSM order with a vehicle whose storage location is not a child
-of the Vehicles location, an error will be raised.
+   -  Navigate to Field Service > Master Data > Vehicles and create a
+      new vehicle.
+   -  Set a name.
+   -  Assign a driver.
+   -  Assign the location you created in step 1.
+   -  Save the vehicle.
+   -  Open the driver's record and set the Default Vehicle field to the
+      vehicle you just created.
 
-Useful groups to manage this module: - Technical / Manage Multiple Stock
-Locations
+3. **Generate Stock Moves**
+
+   -  Navigate to Inventory > Operations > Transfers and create a new
+      transfer.
+   -  On the Operation Type field, select an operation type that
+      supports FSM vehicle loading or unloading, for example Vehicle
+      Loading (from stock to a vehicle) or Location Delivery (from a
+      vehicle to a customer location).
+   -  Add the products you want to transfer and save the transfer.
+   -  By default, the Source Location or Destination Location (depending
+      on the operation type) is the Vehicles location.
+
+4. **Validate the Transfer**
+
+   -  In the Additional Info tab, set the FSM Vehicle on the transfer.
+   -  A transfer linked to an FSM order takes the vehicle of that order,
+      and follows it when the vehicle of the order changes.
+   -  When reserving or validating the transfer, its destination
+      (loading) or source (unloading) location and its move lines are
+      set to the vehicle storage location.
+   -  Reserving or validating a transfer of these operation types
+      without a vehicle raises an error, as does a vehicle whose storage
+      location is not a descendant of the Vehicles location.
+
+Useful groups to manage this module:
+
+-  Technical / Manage Multiple Stock Locations
 
 Known issues / Roadmap
 ======================
@@ -145,6 +176,8 @@ Contributors
 
    -  Patryk Pyczko <ppyczko@apsl.net>
 
+-  Marcos Mendez <m@pop.coop>
+
 Other credits
 -------------
 
@@ -174,10 +207,13 @@ promote its widespread use.
 .. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
     :target: https://github.com/max3903
     :alt: max3903
+.. |maintainer-marcos-mendez| image:: https://github.com/marcos-mendez.png?size=40px
+    :target: https://github.com/marcos-mendez
+    :alt: marcos-mendez
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| 
+|maintainer-brian10048| |maintainer-wolfhall| |maintainer-max3903| |maintainer-marcos-mendez| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/18.0/fieldservice_vehicle_stock>`_ project on GitHub.
 

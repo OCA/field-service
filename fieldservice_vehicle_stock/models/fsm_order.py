@@ -6,15 +6,10 @@ from odoo import models
 class FSMOrder(models.Model):
     _inherit = "fsm.order"
 
-    def assign_vehicle_to_pickings(self):
-        for rec in self:
-            for picking in rec.picking_ids:
-                if picking.state in ("draft", "waiting", "confirmed", "assigned"):
-                    picking.fsm_vehicle_id = self.vehicle_id.id or False
-
     def write(self, vals):
         res = super().write(vals)
-        for rec in self:
-            if vals.get("vehicle_id", False):
-                rec.assign_vehicle_to_pickings()
+        if vals.get("vehicle_id"):
+            # the transfers take the vehicle of the order (computed field):
+            # move their source or destination to its storage location now
+            self.picking_ids.update_vehicle_storage()
         return res
