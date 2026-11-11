@@ -191,7 +191,7 @@ class TestFSMOrderRunAction(TransactionCase):
         stage2 = self.env.ref("fieldservice.fsm_stage_cancelled")
         create_action = self.env["ir.actions.server"].create(
             {
-                "model_id": self.env["ir.model"]._get_id("fsm.tag"),
+                "model_id": self.env["ir.model"]._get_id("fsm.order"),
                 "crud_model_id": self.env["ir.model"]._get_id("fsm.tag"),
                 "name": "Create new tag",
                 "value": "New test tag",
