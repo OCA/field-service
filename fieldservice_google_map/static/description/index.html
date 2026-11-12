@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>Field Service Google Map</title>
+<title>README.rst</title>
 <style type="text/css">
 
 /*
@@ -410,7 +410,8 @@ using the Google Map View module (<tt class="docutils literal">web_view_google_m
 <li>Obtain a Google Maps API key with <strong>Maps JavaScript API</strong> (and
 ideally Geocoding / Places) enabled in Google Cloud Console.</li>
 <li>Go to <strong>Settings &gt; General Settings</strong>, open the <strong>Google Maps View</strong>
-section, and set <strong>API key</strong>. Without a valid key the map view opens
+section, and set <strong>API key</strong>. The <strong>Configure API key</strong> button on an
+empty map opens that section. Without a valid key the map view opens
 but Google shows “This page didn’t load Google Maps correctly”.</li>
 <li>Optionally set map theme, language and region in the same section.</li>
 <li>Go to <strong>Field Service &gt; Configuration &gt; Stages</strong> and set stage names
@@ -423,9 +424,15 @@ by default).</li>
 <p>To use this module, you need to:</p>
 <ol class="arabic simple">
 <li>Go to <strong>Field Service &gt; Master Data &gt; Locations</strong>.</li>
-<li>Provide full address information and geolocalize the location.</li>
+<li>Provide full address information and geolocalize the location. Demo
+locations are already placed around Bangkok, so the sample orders
+show on the map after install.</li>
 <li>Go to <strong>Field Service &gt; Dashboard</strong>.</li>
-<li>Open the map view to show orders on a Google Map, colored by stage.</li>
+<li>Open the map view. A colored pin is the service location (blue New,
+green Completed, grey Cancelled) and a person icon is the assigned
+worker. The same icons are drawn on the Google roadmap and on the
+OpenStreetMap base map (map type switcher). Locations and workers
+also have their own map under Field Service &gt; Master Data.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">

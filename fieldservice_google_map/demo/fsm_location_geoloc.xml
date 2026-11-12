@@ -23,4 +23,20 @@
         <value eval="[ref('fieldservice.location_partner_3')]" />
         <value eval="{'partner_latitude': 13.7200, 'partner_longitude': 100.4500}" />
     </function>
+    <!--
+        Workers sit near the demo locations, offset so the person icon
+        does not cover the location pin.
+    -->
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_1')]" />
+        <value eval="{'partner_latitude': 13.7700, 'partner_longitude': 100.4900}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_2')]" />
+        <value eval="{'partner_latitude': 13.7400, 'partner_longitude': 100.5800}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_3')]" />
+        <value eval="{'partner_latitude': 13.7900, 'partner_longitude': 100.5200}" />
+    </function>
 </odoo>

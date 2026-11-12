@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_ui_view_fsm_person_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.person.map</field>
+        <field name="model">fsm.person</field>
+        <field name="arch" type="xml">
+            <google_map
+                string="Map"
+                lat="partner_latitude"
+                lng="partner_longitude"
+                marker="worker"
+            >
+                <field name="name" />
+                <field name="display_name" />
+                <field name="partner_latitude" />
+                <field name="partner_longitude" />
+                <field name="mobile" />
+                <field name="email" />
+                <field name="city" />
+            </google_map>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_person" model="ir.actions.act_window">
+        <field name="view_mode">list,form,google_map</field>
+    </record>
+    <record id="action_fsm_person_view_google_map" model="ir.actions.act_window.view">
+        <field name="sequence" eval="5" />
+        <field name="view_mode">google_map</field>
+        <field name="view_id" ref="ir_ui_view_fsm_person_map" />
+        <field name="act_window_id" ref="fieldservice.action_fsm_person" />
+    </record>
+</odoo>

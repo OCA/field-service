@@ -56,16 +56,37 @@ class TestFSMGoogleMap(BaseCommon):
             self.order.stage_id.custom_color,
         )
 
+    def test_order_worker_coordinates(self):
+        person = self.env["fsm.person"].create({"name": "Map Worker"})
+        person.write(
+            {
+                "partner_latitude": 45.51,
+                "partner_longitude": -73.57,
+            }
+        )
+        self.order.person_id = person
+        self.assertEqual(self.order.person_latitude, 45.51)
+        self.assertEqual(self.order.person_longitude, -73.57)
+
     def test_map_views_and_actions(self):
         location_map = self.env.ref(
             "fieldservice_google_map.ir_ui_view_fsm_location_map"
         )
         order_map = self.env.ref("fieldservice_google_map.ir_ui_view_fsm_order_map")
+        person_map = self.env.ref("fieldservice_google_map.ir_ui_view_fsm_person_map")
         self.assertEqual(location_map.type, "google_map")
         self.assertEqual(order_map.type, "google_map")
+        self.assertEqual(person_map.type, "google_map")
+        self.assertIn('marker="location"', location_map.arch)
+        self.assertIn('marker="location"', order_map.arch)
+        self.assertIn("person_latitude", order_map.arch)
+        self.assertIn('marker="worker"', person_map.arch)
         location_action = self.env.ref("fieldservice.action_fsm_location")
         order_action = self.env.ref("fieldservice.action_fsm_dash_order")
+        person_action = self.env.ref("fieldservice.action_fsm_person")
         self.assertIn("google_map", location_action.view_mode)
         self.assertIn("google_map", order_action.view_mode)
+        self.assertIn("google_map", person_action.view_mode)
         self.assertIn("list", location_action.view_mode)
         self.assertIn("list", order_action.view_mode)
+        self.assertIn("list", person_action.view_mode)
