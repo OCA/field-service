@@ -42,6 +42,7 @@
         "demo/fsm_demo.xml",
         "demo/fsm_location.xml",
         "demo/fsm_person.xml",
+        "demo/fsm_equipment.xml",
     ],
     "application": True,
     "development_status": "Production/Stable",

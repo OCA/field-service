@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="equipment_01" model="fsm.equipment">
+        <field name="name">Equipment 01</field>
+        <field name="location_id" ref="test_location" />
+        <field name="current_location_id" ref="test_location" />
+        <field name="person_id" ref="test_person" />
+        <field name="owned_by_id" ref="test_loc_partner" />
+        <field name="managed_by_id" ref="test_loc_partner" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_02" model="fsm.equipment">
+        <field name="name">Equipment 02</field>
+        <field name="location_id" ref="location_1" />
+        <field name="current_location_id" ref="location_1" />
+        <field name="person_id" ref="person_1" />
+        <field name="owned_by_id" ref="location_partner_1" />
+        <field name="managed_by_id" ref="location_partner_1" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_03" model="fsm.equipment">
+        <field name="name">Equipment 03</field>
+        <field name="location_id" ref="location_2" />
+        <field name="current_location_id" ref="location_2" />
+        <field name="person_id" ref="person_2" />
+        <field name="owned_by_id" ref="location_partner_2" />
+        <field name="managed_by_id" ref="location_partner_2" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_04" model="fsm.equipment">
+        <field name="name">Equipment 04</field>
+        <field name="location_id" ref="location_3" />
+        <field name="current_location_id" ref="location_3" />
+        <field name="person_id" ref="person_3" />
+        <field name="owned_by_id" ref="location_partner_3" />
+        <field name="managed_by_id" ref="location_partner_3" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_05" model="fsm.equipment">
+        <field name="name">Equipment 05</field>
+        <field name="location_id" ref="test_location" />
+        <field name="current_location_id" ref="test_location" />
+        <field name="person_id" ref="person_1" />
+        <field name="owned_by_id" ref="test_loc_partner" />
+        <field name="managed_by_id" ref="test_loc_partner" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_06" model="fsm.equipment">
+        <field name="name">Equipment 06</field>
+        <field name="location_id" ref="location_1" />
+        <field name="current_location_id" ref="location_1" />
+        <field name="person_id" ref="person_2" />
+        <field name="owned_by_id" ref="location_partner_1" />
+        <field name="managed_by_id" ref="location_partner_1" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_07" model="fsm.equipment">
+        <field name="name">Equipment 07</field>
+        <field name="location_id" ref="location_2" />
+        <field name="current_location_id" ref="location_2" />
+        <field name="person_id" ref="person_3" />
+        <field name="owned_by_id" ref="location_partner_2" />
+        <field name="managed_by_id" ref="location_partner_2" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_08" model="fsm.equipment">
+        <field name="name">Equipment 08</field>
+        <field name="location_id" ref="location_3" />
+        <field name="current_location_id" ref="location_3" />
+        <field name="person_id" ref="test_person" />
+        <field name="owned_by_id" ref="location_partner_3" />
+        <field name="managed_by_id" ref="location_partner_3" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_09" model="fsm.equipment">
+        <field name="name">Equipment 09</field>
+        <field name="location_id" ref="test_location" />
+        <field name="current_location_id" ref="test_location" />
+        <field name="person_id" ref="person_2" />
+        <field name="owned_by_id" ref="test_loc_partner" />
+        <field name="managed_by_id" ref="test_loc_partner" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_10" model="fsm.equipment">
+        <field name="name">Equipment 10</field>
+        <field name="location_id" ref="location_1" />
+        <field name="current_location_id" ref="location_1" />
+        <field name="person_id" ref="person_3" />
+        <field name="owned_by_id" ref="location_partner_1" />
+        <field name="managed_by_id" ref="location_partner_1" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_11" model="fsm.equipment">
+        <field name="name">Equipment 11</field>
+        <field name="location_id" ref="location_2" />
+        <field name="current_location_id" ref="location_2" />
+        <field name="person_id" ref="test_person" />
+        <field name="owned_by_id" ref="location_partner_2" />
+        <field name="managed_by_id" ref="location_partner_2" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_12" model="fsm.equipment">
+        <field name="name">Equipment 12</field>
+        <field name="location_id" ref="location_3" />
+        <field name="current_location_id" ref="location_3" />
+        <field name="person_id" ref="person_1" />
+        <field name="owned_by_id" ref="location_partner_3" />
+        <field name="managed_by_id" ref="location_partner_3" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_13" model="fsm.equipment">
+        <field name="name">Equipment 13</field>
+        <field name="location_id" ref="test_location" />
+        <field name="current_location_id" ref="test_location" />
+        <field name="person_id" ref="person_3" />
+        <field name="owned_by_id" ref="test_loc_partner" />
+        <field name="managed_by_id" ref="test_loc_partner" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_14" model="fsm.equipment">
+        <field name="name">Equipment 14</field>
+        <field name="location_id" ref="location_1" />
+        <field name="current_location_id" ref="location_1" />
+        <field name="person_id" ref="test_person" />
+        <field name="owned_by_id" ref="location_partner_1" />
+        <field name="managed_by_id" ref="location_partner_1" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_15" model="fsm.equipment">
+        <field name="name">Equipment 15</field>
+        <field name="location_id" ref="location_2" />
+        <field name="current_location_id" ref="location_2" />
+        <field name="person_id" ref="person_1" />
+        <field name="owned_by_id" ref="location_partner_2" />
+        <field name="managed_by_id" ref="location_partner_2" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_16" model="fsm.equipment">
+        <field name="name">Equipment 16</field>
+        <field name="location_id" ref="location_3" />
+        <field name="current_location_id" ref="location_3" />
+        <field name="person_id" ref="person_2" />
+        <field name="owned_by_id" ref="location_partner_3" />
+        <field name="managed_by_id" ref="location_partner_3" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_17" model="fsm.equipment">
+        <field name="name">Equipment 17</field>
+        <field name="location_id" ref="test_location" />
+        <field name="current_location_id" ref="test_location" />
+        <field name="person_id" ref="test_person" />
+        <field name="owned_by_id" ref="test_loc_partner" />
+        <field name="managed_by_id" ref="test_loc_partner" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_18" model="fsm.equipment">
+        <field name="name">Equipment 18</field>
+        <field name="location_id" ref="location_1" />
+        <field name="current_location_id" ref="location_1" />
+        <field name="person_id" ref="person_1" />
+        <field name="owned_by_id" ref="location_partner_1" />
+        <field name="managed_by_id" ref="location_partner_1" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_19" model="fsm.equipment">
+        <field name="name">Equipment 19</field>
+        <field name="location_id" ref="location_2" />
+        <field name="current_location_id" ref="location_2" />
+        <field name="person_id" ref="person_2" />
+        <field name="owned_by_id" ref="location_partner_2" />
+        <field name="managed_by_id" ref="location_partner_2" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+    <record id="equipment_20" model="fsm.equipment">
+        <field name="name">Equipment 20</field>
+        <field name="location_id" ref="location_3" />
+        <field name="current_location_id" ref="location_3" />
+        <field name="person_id" ref="person_3" />
+        <field name="owned_by_id" ref="location_partner_3" />
+        <field name="managed_by_id" ref="location_partner_3" />
+        <field name="stage_id" ref="fsm_stage_equipment_new" />
+    </record>
+</odoo>
