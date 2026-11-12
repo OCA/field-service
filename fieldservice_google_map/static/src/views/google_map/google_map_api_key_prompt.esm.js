@@ -328,6 +328,65 @@ patch(GoogleMapRenderer.prototype, {
                 this.gmap.fitBounds(bounds);
             }
         }
+        this.guardClusterBounds();
+    },
+
+    /**
+     * MarkerClusterer deletes a cluster's marker list when the cluster is
+     * removed, but the icon can still receive a click. getBounds then reads
+     * the missing list and throws. Clusters are only created once the map is
+     * ready, so the guard also runs after each clusterer redraw.
+     */
+    guardClusterBounds() {
+        const clusterer = this.markerCluster;
+        if (!clusterer) {
+            return;
+        }
+        if (!clusterer.__fsmRedrawGuarded) {
+            const redraw = clusterer.redraw;
+            clusterer.redraw = () => {
+                const result = redraw.call(clusterer);
+                this.patchClusterBounds();
+                return result;
+            };
+            clusterer.__fsmRedrawGuarded = true;
+        }
+        this.patchClusterBounds();
+    },
+
+    patchClusterBounds() {
+        const clusters = this.markerCluster && this.markerCluster.clusters_;
+        const sample = clusters && clusters.length ? clusters[0] : null;
+        if (!sample) {
+            return;
+        }
+        const proto = Object.getPrototypeOf(sample);
+        if (proto.__fsmClusterGuarded) {
+            return;
+        }
+        proto.getBounds = function () {
+            const markers = this.getMarkers();
+            const center = this.center_;
+            const bounds = new window.google.maps.LatLngBounds(center, center);
+            if (!markers) {
+                return bounds;
+            }
+            for (const marker of markers) {
+                const position = marker.getPosition && marker.getPosition();
+                if (position) {
+                    bounds.extend(position);
+                }
+            }
+            return bounds;
+        };
+        const originalRemove = proto.remove;
+        proto.remove = function () {
+            if (!this.markers_) {
+                this.markers_ = [];
+            }
+            return originalRemove.call(this);
+        };
+        proto.__fsmClusterGuarded = true;
     },
 
     onMarkerClick(marker, record) {
