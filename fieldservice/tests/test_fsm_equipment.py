@@ -40,8 +40,15 @@ class FSMEquipment(FSMCommon):
         self.assertEqual(equipment.stage_id, self.equipment_stage_2)
         equipment.stage_id = self.equipment_stage_3
         equipment.next_stage()
-        self.assertEqual(equipment.stage_id, self.equipment_stage_3)
-        self.assertFalse(equipment.hide)  # hide as max stage
+        self.assertEqual(
+            equipment.stage_id,
+            self.env.ref("fieldservice.fsm_stage_equipment_new"),
+        )
+        self.assertFalse(equipment.hide)
+        closed = self.env.ref("fieldservice.fsm_stage_equipment_closed")
+        equipment.stage_id = closed
+        equipment.next_stage()
+        self.assertEqual(equipment.stage_id, closed)
         equipment.stage_id = self.equipment_stage_2
         equipment.previous_stage()
         self.assertEqual(equipment.stage_id, self.equipment_stage_1)
