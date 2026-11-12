@@ -5,6 +5,8 @@
 
 from datetime import datetime
 
+import pytz
+
 from odoo.tests import Form, common
 
 
@@ -45,5 +47,9 @@ class FSMOrderRouteCase(common.TransactionCase):
         self.assertEqual(order.person_id, self.test_person)
         self.assertEqual(order.fsm_route_id, self.test_location.fsm_route_id)
         self.assertEqual(order.dayroute_id.person_id, order.person_id)
-        self.assertEqual(order.dayroute_id.date, order.scheduled_date_start.date())
+        tz = pytz.timezone(order.env.user.tz or "UTC")
+        expected_date = (
+            pytz.utc.localize(order.scheduled_date_start).astimezone(tz).date()
+        )
+        self.assertEqual(order.dayroute_id.date, expected_date)
         self.assertEqual(order.dayroute_id.route_id, order.fsm_route_id)
