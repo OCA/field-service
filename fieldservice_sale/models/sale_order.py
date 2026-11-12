@@ -39,7 +39,7 @@ class SaleOrder(models.Model):
             sale.fsm_order_ids = fsm
             sale.fsm_order_count = len(sale.fsm_order_ids)
 
-    @api.depends("partner_id", "partner_shipping_id", "partner_id.service_location_id")
+    @api.depends("partner_id", "partner_shipping_id")
     def _compute_fsm_location_id(self):
         """
         Autofill the Sale Order's FS location with the partner_id,
