@@ -5,7 +5,7 @@
     "name": "Field Service Google Map",
     "summary": "Display map views on Field Service orders and locations",
     "license": "AGPL-3",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.1",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
