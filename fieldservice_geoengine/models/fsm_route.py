@@ -57,9 +57,7 @@ class FSMRoute(models.Model):
                 released.write({"fsm_route_id": False})
                 released._sync_route_from_areas()
                 continue
-            inside = locations.search(
-                [("shape", "geo_intersect", route.area_shape)]
-            )
+            inside = locations.search([("shape", "geo_intersect", route.area_shape)])
             current = route.location_ids
             (inside - current).write({"fsm_route_id": route.id})
             released = current - inside

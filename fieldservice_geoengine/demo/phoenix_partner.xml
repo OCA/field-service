@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="phoenix_customer_01" model="res.partner">
+        <field name="name">Sonoran Facilities</field>
+        <field name="street">2 N Central Ave</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85004</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4489</field>
+        <field name="partner_longitude">-112.0742</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0100</field>
+        <field name="email">sonoran.facilities@example.com</field>
+        <field name="is_company" eval="True" />
+    </record>
+    <record id="phoenix_customer_02" model="res.partner">
+        <field name="name">Camelback Property Group</field>
+        <field name="street">7373 E Doubletree Ranch Rd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85258</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5652</field>
+        <field name="partner_longitude">-111.9224</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0101</field>
+        <field name="email">camelback.property.group@example.com</field>
+        <field name="is_company" eval="True" />
+    </record>
+    <record id="phoenix_customer_03" model="res.partner">
+        <field name="name">Salt River Services</field>
+        <field name="street">455 N Mill Ave</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4294</field>
+        <field name="partner_longitude">-111.9401</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0102</field>
+        <field name="email">salt.river.services@example.com</field>
+        <field name="is_company" eval="True" />
+    </record>
+    <record id="phoenix_customer_04" model="res.partner">
+        <field name="name">West Valley Maintenance</field>
+        <field name="street">7550 W Glendale Ave</field>
+        <field name="city">Glendale</field>
+        <field name="zip">85303</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5386</field>
+        <field name="partner_longitude">-112.2204</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0103</field>
+        <field name="email">west.valley.maintenance@example.com</field>
+        <field name="is_company" eval="True" />
+    </record>
+    <record id="phoenix_customer_05" model="res.partner">
+        <field name="name">Desert Commercial Care</field>
+        <field name="street">100 N Center St</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85201</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4156</field>
+        <field name="partner_longitude">-111.8312</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0104</field>
+        <field name="email">desert.commercial.care@example.com</field>
+        <field name="is_company" eval="True" />
+    </record>
+    <record id="phoenix_contact_01" model="res.partner">
+        <field name="name">Alex Rivera</field>
+        <field name="parent_id" ref="phoenix_customer_01" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0200</field>
+        <field name="email">alex.rivera@example.com</field>
+    </record>
+    <record id="phoenix_contact_02" model="res.partner">
+        <field name="name">Jordan Blake</field>
+        <field name="parent_id" ref="phoenix_customer_01" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0201</field>
+        <field name="email">jordan.blake@example.com</field>
+    </record>
+    <record id="phoenix_contact_03" model="res.partner">
+        <field name="name">Sam Patel</field>
+        <field name="parent_id" ref="phoenix_customer_01" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0202</field>
+        <field name="email">sam.patel@example.com</field>
+    </record>
+    <record id="phoenix_contact_04" model="res.partner">
+        <field name="name">Riley Chen</field>
+        <field name="parent_id" ref="phoenix_customer_01" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0203</field>
+        <field name="email">riley.chen@example.com</field>
+    </record>
+    <record id="phoenix_contact_05" model="res.partner">
+        <field name="name">Casey Morgan</field>
+        <field name="parent_id" ref="phoenix_customer_01" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0204</field>
+        <field name="email">casey.morgan@example.com</field>
+    </record>
+    <record id="phoenix_contact_06" model="res.partner">
+        <field name="name">Taylor Brooks</field>
+        <field name="parent_id" ref="phoenix_customer_02" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0205</field>
+        <field name="email">taylor.brooks@example.com</field>
+    </record>
+    <record id="phoenix_contact_07" model="res.partner">
+        <field name="name">Quinn Adams</field>
+        <field name="parent_id" ref="phoenix_customer_02" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0206</field>
+        <field name="email">quinn.adams@example.com</field>
+    </record>
+    <record id="phoenix_contact_08" model="res.partner">
+        <field name="name">Avery Diaz</field>
+        <field name="parent_id" ref="phoenix_customer_02" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0207</field>
+        <field name="email">avery.diaz@example.com</field>
+    </record>
+    <record id="phoenix_contact_09" model="res.partner">
+        <field name="name">Reese Cooper</field>
+        <field name="parent_id" ref="phoenix_customer_02" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0208</field>
+        <field name="email">reese.cooper@example.com</field>
+    </record>
+    <record id="phoenix_contact_10" model="res.partner">
+        <field name="name">Drew Sanders</field>
+        <field name="parent_id" ref="phoenix_customer_02" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0209</field>
+        <field name="email">drew.sanders@example.com</field>
+    </record>
+    <record id="phoenix_contact_11" model="res.partner">
+        <field name="name">Skyler Nguyen</field>
+        <field name="parent_id" ref="phoenix_customer_03" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0210</field>
+        <field name="email">skyler.nguyen@example.com</field>
+    </record>
+    <record id="phoenix_contact_12" model="res.partner">
+        <field name="name">Parker Hayes</field>
+        <field name="parent_id" ref="phoenix_customer_03" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0211</field>
+        <field name="email">parker.hayes@example.com</field>
+    </record>
+    <record id="phoenix_contact_13" model="res.partner">
+        <field name="name">Rowan Price</field>
+        <field name="parent_id" ref="phoenix_customer_03" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0212</field>
+        <field name="email">rowan.price@example.com</field>
+    </record>
+    <record id="phoenix_contact_14" model="res.partner">
+        <field name="name">Emerson Ward</field>
+        <field name="parent_id" ref="phoenix_customer_03" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0213</field>
+        <field name="email">emerson.ward@example.com</field>
+    </record>
+    <record id="phoenix_contact_15" model="res.partner">
+        <field name="name">Finley Ross</field>
+        <field name="parent_id" ref="phoenix_customer_03" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0214</field>
+        <field name="email">finley.ross@example.com</field>
+    </record>
+    <record id="phoenix_contact_16" model="res.partner">
+        <field name="name">Sawyer Bennett</field>
+        <field name="parent_id" ref="phoenix_customer_04" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0215</field>
+        <field name="email">sawyer.bennett@example.com</field>
+    </record>
+    <record id="phoenix_contact_17" model="res.partner">
+        <field name="name">Harper Cole</field>
+        <field name="parent_id" ref="phoenix_customer_04" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0216</field>
+        <field name="email">harper.cole@example.com</field>
+    </record>
+    <record id="phoenix_contact_18" model="res.partner">
+        <field name="name">Blake Foster</field>
+        <field name="parent_id" ref="phoenix_customer_04" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0217</field>
+        <field name="email">blake.foster@example.com</field>
+    </record>
+    <record id="phoenix_contact_19" model="res.partner">
+        <field name="name">Cameron Reyes</field>
+        <field name="parent_id" ref="phoenix_customer_04" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0218</field>
+        <field name="email">cameron.reyes@example.com</field>
+    </record>
+    <record id="phoenix_contact_20" model="res.partner">
+        <field name="name">Dakota Hughes</field>
+        <field name="parent_id" ref="phoenix_customer_04" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0219</field>
+        <field name="email">dakota.hughes@example.com</field>
+    </record>
+    <record id="phoenix_contact_21" model="res.partner">
+        <field name="name">Elliot Gray</field>
+        <field name="parent_id" ref="phoenix_customer_05" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0220</field>
+        <field name="email">elliot.gray@example.com</field>
+    </record>
+    <record id="phoenix_contact_22" model="res.partner">
+        <field name="name">Frankie Long</field>
+        <field name="parent_id" ref="phoenix_customer_05" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0221</field>
+        <field name="email">frankie.long@example.com</field>
+    </record>
+    <record id="phoenix_contact_23" model="res.partner">
+        <field name="name">Glen Powell</field>
+        <field name="parent_id" ref="phoenix_customer_05" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0222</field>
+        <field name="email">glen.powell@example.com</field>
+    </record>
+    <record id="phoenix_contact_24" model="res.partner">
+        <field name="name">Hayden Cruz</field>
+        <field name="parent_id" ref="phoenix_customer_05" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0223</field>
+        <field name="email">hayden.cruz@example.com</field>
+    </record>
+    <record id="phoenix_contact_25" model="res.partner">
+        <field name="name">Indigo Walsh</field>
+        <field name="parent_id" ref="phoenix_customer_05" />
+        <field name="is_company" eval="False" />
+        <field name="type">contact</field>
+        <field name="phone">602-555-0224</field>
+        <field name="email">indigo.walsh@example.com</field>
+    </record>
+</odoo>

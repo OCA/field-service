@@ -112,7 +112,9 @@ class FsmMap extends Component {
         this.fit();
     }
 
-    drawFeatures() {}
+    drawFeatures() {
+        // Subclasses add the markers for the current record.
+    }
 
     addGeoPoint(geojson, style) {
         if (!geojson) {
@@ -129,9 +131,7 @@ class FsmMap extends Component {
             return;
         }
         const feature = new this.ol.Feature({
-            geometry: new this.ol.geom.Point(
-                this.ol.proj.fromLonLat([lon, lat])
-            ),
+            geometry: new this.ol.geom.Point(this.ol.proj.fromLonLat([lon, lat])),
         });
         feature.set("markerStyle", style);
         this.source.addFeature(feature);

@@ -46,11 +46,11 @@
                                 <br />
                                 <span invisible="not date_localization">Updated on:
                                     <field
-                                        name="date_localization"
-                                        nolabel="1"
-                                        readonly="1"
-                                        class="oe_inline"
-                                    />
+                                    name="date_localization"
+                                    nolabel="1"
+                                    readonly="1"
+                                    class="oe_inline"
+                                />
                                     <br />
                                 </span>
                                 <button
@@ -168,7 +168,10 @@
         </field>
     </record>
     <record id="person_geoengine_vector_layer" model="geoengine.vector.layer">
-        <field name="geo_field_id" ref="fieldservice_geoengine.field_fsm_person__shape" />
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_person__shape"
+        />
         <field name="name">FSM Worker</field>
         <field name="classification">unique</field>
         <field name="sequence" eval="6" />
@@ -182,7 +185,10 @@
         <field name="begin_color">#1A56DB</field>
     </record>
     <record id="person_geoengine_vector_layer_color" model="geoengine.vector.layer">
-        <field name="geo_field_id" ref="fieldservice_geoengine.field_fsm_person__shape" />
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_person__shape"
+        />
         <field name="name">FSM Worker Stage</field>
         <field name="classification">custom</field>
         <field name="sequence" eval="6" />

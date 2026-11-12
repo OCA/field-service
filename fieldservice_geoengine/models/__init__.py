@@ -6,6 +6,5 @@ from . import ir_ui_view
 from . import fsm_order
 from . import fsm_person
 from . import fsm_route
-from . import phoenix_demo
 from . import fsm_route_dayroute
 from . import vector_layer

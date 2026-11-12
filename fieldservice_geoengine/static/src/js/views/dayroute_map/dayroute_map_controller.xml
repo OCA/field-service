@@ -5,7 +5,11 @@
             <t t-set-slot="layout-actions">
                 <SearchBar t-if="searchBarToggler.state.showSearchBar" />
             </t>
-            <t t-component="props.Renderer" list="model.root" openDayroute.bind="openDayroute" />
+            <t
+                t-component="props.Renderer"
+                list="model.root"
+                openDayroute.bind="openDayroute"
+            />
         </Layout>
     </t>
 </templates>

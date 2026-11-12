@@ -10,14 +10,7 @@ import {
     personStyle,
 } from "../../map_style.esm";
 
-const ROUTE_COLORS = [
-    "#1A56DB",
-    "#059669",
-    "#D97706",
-    "#E11D48",
-    "#7C3AED",
-    "#0891B2",
-];
+const ROUTE_COLORS = ["#1A56DB", "#059669", "#D97706", "#E11D48", "#7C3AED", "#0891B2"];
 
 let mapSeq = 0;
 
@@ -91,10 +84,7 @@ export class DayrouteMapRenderer extends Component {
             view: new ol.View({center: [0, 0], zoom: 2}),
         });
         this.map.on("click", (event) => {
-            const feature = this.map.forEachFeatureAtPixel(
-                event.pixel,
-                (item) => item
-            );
+            const feature = this.map.forEachFeatureAtPixel(event.pixel, (item) => item);
             const resId = feature && feature.get("resId");
             if (resId) {
                 this.props.openDayroute(resId);
@@ -106,13 +96,9 @@ export class DayrouteMapRenderer extends Component {
         if (!this.map) {
             return;
         }
-        const ol = this.ol;
         this.source.clear();
         (this.props.list.records || []).forEach((record, index) => {
-            this.drawRoute(
-                record,
-                ROUTE_COLORS[index % ROUTE_COLORS.length]
-            );
+            this.drawRoute(record, ROUTE_COLORS[index % ROUTE_COLORS.length]);
         });
         this.fit();
     }

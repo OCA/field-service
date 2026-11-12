@@ -25,8 +25,12 @@
         <div class="fsm_map">
             <div class="ol_map" t-att-id="mapId" />
             <div class="fsm_map_legend">
-                <span t-if="props.record.data.area_shape">Drag the outline to adjust the area.</span>
-                <span t-else="">Click the map to draw the area. Double-click to finish.</span>
+                <span
+                    t-if="props.record.data.area_shape"
+                >Drag the outline to adjust the area.</span>
+                <span
+                    t-else=""
+                >Click the map to draw the area. Double-click to finish.</span>
             </div>
         </div>
     </t>
@@ -34,8 +38,12 @@
         <div class="fsm_map">
             <div class="ol_map" t-att-id="mapId" />
             <div class="fsm_map_legend">
-                <span t-if="isArea and props.record.data.area_shape">Drag the outline to adjust the area.</span>
-                <span t-elif="isArea">Click the map to draw the area. Double-click to finish.</span>
+                <span
+                    t-if="isArea and props.record.data.area_shape"
+                >Drag the outline to adjust the area.</span>
+                <span
+                    t-elif="isArea"
+                >Click the map to draw the area. Double-click to finish.</span>
                 <span t-else="">Location</span>
             </div>
         </div>

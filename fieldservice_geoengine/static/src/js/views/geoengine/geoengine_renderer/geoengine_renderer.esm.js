@@ -57,10 +57,7 @@ patch(GeoengineRenderer.prototype, {
             }
             const source = layer.getSource && layer.getSource();
             const layerExtent = source && source.getExtent && source.getExtent();
-            if (
-                layerExtent &&
-                layerExtent.every((value) => Number.isFinite(value))
-            ) {
+            if (layerExtent && layerExtent.every((value) => Number.isFinite(value))) {
                 ol.extent.extend(extent, layerExtent);
             }
         }
@@ -69,8 +66,7 @@ patch(GeoengineRenderer.prototype, {
     createBackgroundLayers(backgrounds) {
         const layers = super.createBackgroundLayers(backgrounds);
         const rest = layers.filter(
-            (layer) =>
-                !(layer.getSource && layer.getSource() instanceof ol.source.OSM)
+            (layer) => !(layer.getSource && layer.getSource() instanceof ol.source.OSM)
         );
         if (rest.length === layers.length) {
             return layers;
@@ -127,8 +123,9 @@ patch(GeoengineRenderer.prototype, {
         );
         let path = [];
         try {
-            path = (await this.orm.call("fsm.order", "get_worker_path", [[resId]])) || [];
-        } catch (error) {
+            path =
+                (await this.orm.call("fsm.order", "get_worker_path", [[resId]])) || [];
+        } catch {
             path = [];
         }
         if (token !== this._pathToken || !this.orderPathSource) {
@@ -140,7 +137,9 @@ patch(GeoengineRenderer.prototype, {
                 : [record && record.data.worker_shape, record && record.data.shape]
                       .filter(Boolean)
                       .map((geojson) => {
-                          const geometry = new ol.format.GeoJSON().readGeometry(geojson);
+                          const geometry = new ol.format.GeoJSON().readGeometry(
+                              geojson
+                          );
                           return geometry.getCoordinates();
                       });
         if (line.length > 1) {

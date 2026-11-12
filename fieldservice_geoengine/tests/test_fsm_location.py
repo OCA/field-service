@@ -100,8 +100,9 @@ class TestFsmLocation(TransactionCase):
         self.assertEqual(order_map.type, "geoengine")
         self.assertEqual(location_map.type, "geoengine")
         self.assertTrue(
-            self.env.ref("fieldservice.action_fsm_dash_order")
-            .view_mode.startswith("geoengine")
+            self.env.ref("fieldservice.action_fsm_dash_order").view_mode.startswith(
+                "geoengine"
+            )
         )
         self.assertIn(
             "geoengine",

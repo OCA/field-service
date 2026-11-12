@@ -1,0 +1,2253 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="phoenix_order_01" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_02" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_03" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_04" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_05" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_06" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_02" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_07" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_02" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_08" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_02" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_09" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_02" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_10" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_02" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_11" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_03" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_12" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_03" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_13" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_03" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_14" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_03" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_15" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_03" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_16" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_17" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_18" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_19" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_20" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_21" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_05" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_22" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_05" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_23" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_05" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_24" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_05" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_25" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_05" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_26" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_01" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_06" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Chase Field.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_27" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_02" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_06" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Washington Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_28" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_03" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_06" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Heard Museum.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_29" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_04" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_06" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at State Capitol Complex.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_30" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_05" />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="dayroute_id" ref="phoenix_dayroute_06" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Encanto Park Office.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_31" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_32" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_33" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_34" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_35" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_36" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_08" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_37" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_08" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_38" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_08" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_39" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_08" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_40" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_08" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_41" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_09" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_42" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_09" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_43" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_09" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_44" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_09" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_45" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_09" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_46" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_47" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_48" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_49" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_50" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_51" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_11" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_52" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_11" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_53" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_11" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_54" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_11" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_55" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_11" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_56" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_06" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_12" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Fashion Square.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_57" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_07" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_12" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Old Town Scottsdale.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_58" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_08" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_12" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Civic Center.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_59" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_09" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_12" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Indian Bend Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_60" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_10" />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="dayroute_id" ref="phoenix_dayroute_12" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Hayden Road Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_61" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_62" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_63" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_64" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_65" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_66" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_14" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_67" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_14" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_68" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_14" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_69" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_14" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_70" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_14" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_71" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_15" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_72" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_15" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_73" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_15" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_74" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_15" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_75" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_15" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_76" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_16" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_77" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_16" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_78" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_16" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_79" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_16" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_80" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_16" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_81" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_17" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_82" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_17" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_83" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_17" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_84" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_17" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_85" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_17" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_86" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_11" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_18" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Sun Devil Stadium.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_87" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_12" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_18" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Rio Salado Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_88" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_13" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_18" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Tempe Town Lake.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_89" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_14" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_18" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at University Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_90" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_15" />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="dayroute_id" ref="phoenix_dayroute_18" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Apache Boulevard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_91" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_19" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_92" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_19" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_93" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_19" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_94" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_19" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_95" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_19" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_96" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_20" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_97" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_20" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_98" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_20" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_99" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_20" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_100" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_20" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_101" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_21" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_102" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_21" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_103" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_21" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_104" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_21" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_105" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_21" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_106" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_22" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_107" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_22" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_108" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_22" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_109" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_22" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_110" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_22" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_111" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_23" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_112" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_23" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_113" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_23" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_114" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_23" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_115" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_23" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_116" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_16" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_24" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Glendale Avenue Shop.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_117" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_17" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_24" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Northern Avenue Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_118" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_18" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_24" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at 55th Avenue Warehouse.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_119" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_19" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_24" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Thunderbird Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_120" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_20" />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="dayroute_id" ref="phoenix_dayroute_24" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Olive Avenue Yard.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_121" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_25" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_122" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_25" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_123" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_25" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_124" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_25" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_125" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_25" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Country Club Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_126" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_26" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_127" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_26" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_128" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_26" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_129" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_26" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Country Club Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_130" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_26" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_131" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_27" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_132" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_27" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_133" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_27" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Country Club Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_134" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_27" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_135" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_27" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_136" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_28" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_137" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_28" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Country Club Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_138" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_28" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_139" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_28" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_140" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_28" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_141" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_29" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Country Club Drive.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_142" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_29" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_143" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_29" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_144" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_29" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_145" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_29" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_146" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_21" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_30" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('08:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">10</field>
+        <field name="description" type="html">
+            <p>HVAC inspection at Mesa Main Street.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_147" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_22" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_30" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('09:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">20</field>
+        <field name="description" type="html">
+            <p>Filter replacement at Center Street Plant.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_148" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_23" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_30" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('11:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">30</field>
+        <field name="description" type="html">
+            <p>Electrical safety check at University Drive Mesa.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_149" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_24" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_30" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('13:00', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">40</field>
+        <field name="description" type="html">
+            <p>Plumbing service at Greenfield Road.</p>
+        </field>
+    </record>
+    <record id="phoenix_order_150" model="fsm.order">
+        <field name="location_id" ref="phoenix_location_25" />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="dayroute_id" ref="phoenix_dayroute_30" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+        <field
+            name="scheduled_date_start"
+            eval="pytz.timezone('America/Phoenix').localize(datetime.combine([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13], datetime.strptime('14:30', '%H:%M').time())).astimezone(pytz.utc).replace(tzinfo=None)"
+        />
+        <field name="scheduled_duration">1.0</field>
+        <field name="sequence">50</field>
+        <field name="description" type="html">
+            <p>Preventive maintenance at Country Club Drive.</p>
+        </field>
+    </record>
+</odoo>

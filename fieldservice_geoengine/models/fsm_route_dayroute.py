@@ -154,7 +154,7 @@ class FSMRouteDayroute(models.Model):
             raise UserError(self.env._("OSRM could not optimize this day route."))
         order_indexes = indexes[1:-1] if end else indexes[1:]
         ranked = sorted(
-            zip(located, order_indexes),
+            zip(located, order_indexes, strict=False),
             key=lambda item: (item[1], item[0].id),
         )
         base = max(closed.mapped("sequence") or [0])

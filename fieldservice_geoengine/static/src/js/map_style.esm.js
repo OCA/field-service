@@ -10,10 +10,10 @@ const MAP_ATTRIBUTION =
 const TILEJSON_URL = "https://tiles.openfreemap.org/planet";
 const RELIEF_URL = "https://tiles.openfreemap.org/natural_earth/ne2sr/{z}/{x}/{y}.png";
 
-let tileUrlPromise;
+let tileUrlPromise = null;
 
 /**
- * user.lang is a JS locale (en-US), not the Odoo code (en_US).
+ * User.lang is a JS locale (en-US), not the Odoo code (en_US).
  * OpenMapTiles stores that language as name_en, name_fr, name_th, ...
  */
 export function mapLanguage() {
@@ -51,10 +51,7 @@ const strokeCache = new Map();
 
 function fillStyle(ol, color) {
     if (!fillCache.has(color)) {
-        fillCache.set(
-            color,
-            new ol.style.Style({fill: new ol.style.Fill({color})})
-        );
+        fillCache.set(color, new ol.style.Style({fill: new ol.style.Fill({color})}));
     }
     return fillCache.get(color);
 }
@@ -117,7 +114,13 @@ function localizedStyle(ol, feature, resolution) {
         }
         return strokeStyle(ol, road[0], road[1]);
     }
-    const labeled = ["place", "transportation_name", "water_name", "poi", "aerodrome_label"];
+    const labeled = [
+        "place",
+        "transportation_name",
+        "water_name",
+        "poi",
+        "aerodrome_label",
+    ];
     if (!labeled.includes(layer)) {
         return undefined;
     }

@@ -21,7 +21,13 @@
         "views/fsm_route_dayroute.xml",
     ],
     "demo": [
-        "demo/fsm_person_geoloc.xml",
+        "demo/phoenix_partner.xml",
+        "demo/phoenix_worker.xml",
+        "demo/phoenix_route.xml",
+        "demo/phoenix_location.xml",
+        "demo/phoenix_location_person.xml",
+        "demo/phoenix_dayroute.xml",
+        "demo/phoenix_order.xml",
     ],
     "assets": {
         "web.assets_backend": [
