@@ -6,9 +6,9 @@
     "name": "Field Service Geoengine",
     "summary": "Display Field Service locations on a map with Open Street Map",
     "license": "AGPL-3",
-    "version": "18.0.1.0.3",
+    "version": "19.0.1.0.0",
     "category": "Field Service",
-    "author": "Open Source Integrators, Odoo Community Association (OCA), Pytech SRL",
+    "author": "Gray Matter Logic, Odoo Community Association (OCA), Pytech SRL",
     "website": "https://github.com/OCA/field-service",
     "depends": ["base_geoengine", "fieldservice"],
     "data": [

@@ -34,7 +34,6 @@
                 <field name="display_name" />
                 <field name="name" />
                 <field name="phone" />
-                <field name="mobile" />
                 <field name="street" />
                 <field name="street2" />
                 <field name="city" />
@@ -52,10 +51,6 @@
                         <ul>
                             <t t-if="record.phone.value">
                                 <li>Phone: <field name="phone" />
-                                </li>
-                            </t>
-                            <t t-if="record.mobile.value">
-                                <li>Mobile: <field name="mobile" />
                                 </li>
                             </t>
                             <t t-if="record.street.value">

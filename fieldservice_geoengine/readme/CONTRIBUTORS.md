@@ -1,6 +1,6 @@
-- Open Source Integrators  
+- [Gray Matter Logic](https://www.graymatterlogic.com):
   - Wolfgang Hall \<<whall@opensourceintegrators.com>\>
-  - Maxime Chambreuil \<<mchambreuil@opensourceintegrators.com>\>
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
   - Steve Campbell \<<scampbell@opensourceintegrators.com>\>
   - Bhavesh Odedra \<<bodedra@opensourceintegrators.com>\>
   - Michael Allen \<<mallen@opensourceintegrators.com>\>
@@ -13,4 +13,3 @@
 
 - \[APSL-Nagarro\](<https://apsl.tech>):
   - Antoni Marroig \<<amarroig@apsl.net>\>
-

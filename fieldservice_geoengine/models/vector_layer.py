@@ -3,7 +3,7 @@
 # Copyright 2023 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 NUMBER_ATT = ["float", "integer", "integer_big"]
@@ -39,9 +39,7 @@ class GeoVectorLayer(models.Model):
                     or rec.geo_repr == "proportion"
                 ):
                     raise ValidationError(
-                        _(
-                            "You need to select a numeric field",
-                        )
+                        self.env._("You need to select a numeric field")
                     )
 
     @api.depends("geo_field_id", "classification", "geo_repr")
