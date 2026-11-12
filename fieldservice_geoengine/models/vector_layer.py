@@ -30,8 +30,9 @@ class GeoVectorLayer(models.Model):
             if (
                 rec.attribute_field_id
                 and rec.attribute_field_id.ttype not in NUMBER_ATT
-                and rec.model_id.name not in ["fsm.order", "fsm.location"]
-                and rec.geo_field_id.model not in ["fsm.order", "fsm.location"]
+                and rec.model_id.name not in ["fsm.order", "fsm.location", "fsm.person"]
+                and rec.geo_field_id.model
+                not in ["fsm.order", "fsm.location", "fsm.person"]
             ):
                 if (
                     rec.geo_repr == "colored"

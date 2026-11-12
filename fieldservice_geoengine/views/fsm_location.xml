@@ -5,8 +5,13 @@
         <field name="model">fsm.location</field>
         <field name="inherit_id" ref="fieldservice.fsm_location_form_view" />
         <field name="arch" type="xml">
+            <page name="geo_location" position="attributes">
+                <attribute name="string">Map</attribute>
+            </page>
             <group id="get_locate" position="before">
-                <field name="shape" />
+                <field name="shape_kind" widget="radio" />
+                <field name="shape" invisible="1" widget="fsm_hidden_geo" />
+                <field name="area_shape" widget="fsm_location_map" nolabel="1" />
             </group>
             <xpath expr="//sheet/label" position="before">
                 <field name="partner_latitude" invisible="1" />
@@ -23,6 +28,9 @@
                 </div>
             </xpath>
         </field>
+    </record>
+    <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
+        <field name="view_mode">list,form,geoengine</field>
     </record>
     <!-- GeoEngine views -->
     <record id="ir_ui_view_fsm_location_map" model="ir.ui.view">
@@ -42,6 +50,8 @@
                 <field name="zip" />
                 <field name="stage_name" />
                 <field name="shape" />
+                <field name="shape_kind" />
+                <field name="area_shape" />
                 <field name="custom_color" />
                 <templates>
                     <t t-name="info_box">
@@ -121,6 +131,23 @@
             ref="fieldservice_geoengine.field_fsm_location__custom_color"
         />
         <field name="begin_color">#FFFFFF</field>
+    </record>
+    <record id="loc_geoengine_vector_layer_area" model="geoengine.vector.layer">
+        <field
+            name="geo_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__area_shape"
+        />
+        <field name="name">FSM Location Area</field>
+        <field name="classification">unique</field>
+        <field name="sequence" eval="5" />
+        <field name="view_id" ref="ir_ui_view_fsm_location_map" />
+        <field name="geo_repr">colored</field>
+        <field name="active_on_startup">True</field>
+        <field
+            name="attribute_field_id"
+            ref="fieldservice_geoengine.field_fsm_location__stage_name"
+        />
+        <field name="begin_color">#0AFF68</field>
     </record>
     <record id="loc_geoengine_raster_layer_osm" model="geoengine.raster.layer">
         <field name="raster_type">osm</field>

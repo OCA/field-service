@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fsm_route_dayroute_dashboard_map" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.dashboard.map</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="type">dayroute_map</field>
+        <field name="arch" type="xml">
+            <dayroute_map limit="80">
+                <field name="name" />
+                <field name="person_id" />
+                <field name="map_payload" />
+            </dayroute_map>
+        </field>
+    </record>
+    <record id="fsm_route_dayroute_search" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.search</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="person_id" />
+                <field name="route_id" />
+                <filter
+                    string="Today"
+                    name="today"
+                    domain="[('date', '=', context_today())]"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="fieldservice_route.action_fsm_route_dayroute_dash" model="ir.actions.act_window">
+        <field name="view_mode">dayroute_map,calendar,list,form</field>
+        <field name="search_view_id" ref="fsm_route_dayroute_search" />
+        <field name="context">{'search_default_today': 1}</field>
+    </record>
+    <record id="fsm_route_dayroute_form_map" model="ir.ui.view">
+        <field name="name">fsm.route.dayroute.form.map</field>
+        <field name="model">fsm.route.dayroute</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_dayroute_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='stage_id']" position="before">
+                <button
+                    name="action_optimize_orders"
+                    type="object"
+                    string="Optimize"
+                    confirm="Reorder the open orders to minimize driving time from the worker?"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Map" name="map">
+                    <field name="map_payload" widget="fsm_route_map" nolabel="1" />
+                </page>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <chatter />
+            </xpath>
+        </field>
+    </record>
+</odoo>
