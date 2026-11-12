@@ -232,30 +232,6 @@ CONTACTS = [
     "Indigo Walsh",
 ]
 
-# name, location index. Four assets on each route.
-EQUIPMENT = [
-    ("Chase Field RTU-1", 0),
-    ("Washington Street AHU-2", 1),
-    ("Heard Museum Chiller", 2),
-    ("Capitol Panel A", 3),
-    ("Fashion Square RTU-3", 5),
-    ("Old Town Split System", 6),
-    ("Civic Center Boiler", 7),
-    ("Indian Bend Pump", 8),
-    ("Sun Devil AHU-1", 10),
-    ("Rio Salado Condenser", 11),
-    ("Town Lake Exhaust Fan", 12),
-    ("University Drive Panel", 13),
-    ("Glendale Avenue RTU-4", 15),
-    ("Northern Avenue Chiller", 16),
-    ("55th Avenue Panel", 17),
-    ("Thunderbird Pump", 18),
-    ("Mesa Main AHU-3", 20),
-    ("Center Street Boiler", 21),
-    ("University Mesa RTU-5", 22),
-    ("Greenfield Panel", 23),
-]
-
 TASKS = [
     "HVAC inspection",
     "Filter replacement",
@@ -403,37 +379,7 @@ class FSMRoute(models.Model):
             route.write({"area_shape": self._phoenix_area_wkt(*box)})
         self._phoenix_preferred_locations(workers, locations)
         self._phoenix_orders(routes, workers, locations, dates, team)
-        self._phoenix_equipment(locations, workers, customers)
         return True
-
-    @api.model
-    def _phoenix_equipment(self, locations, workers, customers):
-        """Twenty assets, four on each route, owned by that route's customer."""
-        stage = self.env.ref(
-            "fieldservice.fsm_stage_equipment_new", raise_if_not_found=False
-        )
-        vals_list = []
-        for index, (name, location_index) in enumerate(EQUIPMENT):
-            route_index = location_index // LOCATIONS_PER_ROUTE
-            location = locations[location_index]
-            vals = {
-                "name": name,
-                "location_id": location.id,
-                "current_location_id": location.id,
-                "person_id": workers[route_index * WORKERS_PER_ROUTE].id,
-                "owned_by_id": customers[route_index].id,
-                "managed_by_id": customers[route_index].id,
-                "notes": (
-                    f"<p>Asset PHX-EQ-{index + 1:02d}. "
-                    "Check in at the front desk.</p>"
-                ),
-            }
-            if stage:
-                vals["stage_id"] = stage.id
-            vals_list.append(vals)
-        return self._ensure_records(
-            "fsm.equipment", [], "phoenix_equipment", vals_list
-        )
 
     @api.model
     def _phoenix_dates(self):
