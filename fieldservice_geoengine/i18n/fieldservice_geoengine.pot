@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260606\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-12 17:53+0000\n"
+"PO-Revision-Date: 2026-11-12 17:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,6 +51,12 @@ msgid "Country:"
 msgstr ""
 
 #. module: fieldservice_geoengine
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__display_name
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_geoengine_vector_layer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: fieldservice_geoengine
 #: model:geoengine.vector.layer,name:fieldservice_geoengine.loc_geoengine_vector_layer_fsm0
 msgid "FSM Location Point"
 msgstr ""
@@ -84,14 +92,15 @@ msgid "GeoCode Location"
 msgstr ""
 
 #. module: fieldservice_geoengine
-#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.fsm_order_form
-msgid "Map"
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_location__id
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__id
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_geoengine_vector_layer__id
+msgid "ID"
 msgstr ""
 
 #. module: fieldservice_geoengine
-#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_location_map
-#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.ir_ui_view_fsm_order_map
-msgid "Mobile:"
+#: model_terms:ir.ui.view,arch_db:fieldservice_geoengine.fsm_order_form
+msgid "Map"
 msgstr ""
 
 #. module: fieldservice_geoengine
@@ -104,6 +113,11 @@ msgstr ""
 #: model:geoengine.raster.layer,name:fieldservice_geoengine.geoengine_raster_layer_retailmachineosm
 #: model:geoengine.raster.layer,name:fieldservice_geoengine.loc_geoengine_raster_layer_osm
 msgid "Open Street Map"
+msgstr ""
+
+#. module: fieldservice_geoengine
+#: model:ir.model.fields,field_description:fieldservice_geoengine.field_fsm_order__display_name
+msgid "Order"
 msgstr ""
 
 #. module: fieldservice_geoengine
