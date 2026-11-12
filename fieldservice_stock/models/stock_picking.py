@@ -7,5 +7,5 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     fsm_order_id = fields.Many2one(
-        related="group_id.fsm_order_id", string="Field Service Order", store=True
+        "fsm.order", string="Field Service Order", store=True
     )
