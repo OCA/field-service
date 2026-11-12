@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Six weekdays spread across the 20 days that follow installation. -->
+    <record id="phoenix_dayroute_01" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_02" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_03" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_04" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_05" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_06" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Central Phoenix %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_01" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13]"
+        />
+        <field name="person_id" ref="phoenix_worker_01" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_07" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_08" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_09" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_10" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_11" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_12" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Scottsdale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_02" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13]"
+        />
+        <field name="person_id" ref="phoenix_worker_04" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_13" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_14" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_15" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_16" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_17" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_18" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Tempe %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_03" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13]"
+        />
+        <field name="person_id" ref="phoenix_worker_07" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_19" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_20" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_21" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_22" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_23" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_24" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Glendale %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_04" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13]"
+        />
+        <field name="person_id" ref="phoenix_worker_10" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_25" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][0]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_26" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][3]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_27" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][5]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_28" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][8]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_29" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][10]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+    <record id="phoenix_dayroute_30" model="fsm.route.dayroute">
+        <field
+            name="name"
+            eval="'Mesa %s' % ([datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13].isoformat())"
+        />
+        <field name="route_id" ref="phoenix_route_05" />
+        <field
+            name="date"
+            eval="[datetime.today().date() + timedelta(days=i) for i in range(20) if (datetime.today().date() + timedelta(days=i)).weekday() &lt; 5][13]"
+        />
+        <field name="person_id" ref="phoenix_worker_13" />
+        <field name="team_id" ref="fieldservice.fsm_team_default" />
+    </record>
+</odoo>

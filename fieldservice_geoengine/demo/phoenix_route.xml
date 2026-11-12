@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="phoenix_route_01" model="fsm.route">
+        <field name="name">Central Phoenix</field>
+        <field name="fsm_person_id" ref="phoenix_worker_01" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [ref('fieldservice_route.fsm_route_day_0'), ref('fieldservice_route.fsm_route_day_1'), ref('fieldservice_route.fsm_route_day_2'), ref('fieldservice_route.fsm_route_day_3'), ref('fieldservice_route.fsm_route_day_4')])]"
+        />
+        <field
+            name="area_shape"
+        >POLYGON((-12480028.1128339 3952519.3494849056,-12471122.553570438 3952519.3494849056,-12471122.553570438 3961860.2174457465,-12480028.1128339 3961860.2174457465,-12480028.1128339 3952519.3494849056))</field>
+    </record>
+    <record id="phoenix_route_02" model="fsm.route">
+        <field name="name">Scottsdale</field>
+        <field name="fsm_person_id" ref="phoenix_worker_04" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [ref('fieldservice_route.fsm_route_day_0'), ref('fieldservice_route.fsm_route_day_1'), ref('fieldservice_route.fsm_route_day_2'), ref('fieldservice_route.fsm_route_day_3'), ref('fieldservice_route.fsm_route_day_4')])]"
+        />
+        <field
+            name="area_shape"
+        >POLYGON((-12463330.189214908 3959190.628099844,-12452198.240135582 3959190.628099844,-12452198.240135582 3968536.8908984526,-12463330.189214908 3968536.8908984526,-12463330.189214908 3959190.628099844))</field>
+    </record>
+    <record id="phoenix_route_03" model="fsm.route">
+        <field name="name">Tempe</field>
+        <field name="fsm_person_id" ref="phoenix_worker_07" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [ref('fieldservice_route.fsm_route_day_0'), ref('fieldservice_route.fsm_route_day_1'), ref('fieldservice_route.fsm_route_day_2'), ref('fieldservice_route.fsm_route_day_3'), ref('fieldservice_route.fsm_route_day_4')])]"
+        />
+        <field
+            name="area_shape"
+        >POLYGON((-12464443.384122843 3947185.093311968,-12455537.824859379 3947185.093311968,-12455537.824859379 3955187.399354618,-12464443.384122843 3955187.399354618,-12464443.384122843 3947185.093311968))</field>
+    </record>
+    <record id="phoenix_route_04" model="fsm.route">
+        <field name="name">Glendale</field>
+        <field name="fsm_person_id" ref="phoenix_worker_10" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [ref('fieldservice_route.fsm_route_day_0'), ref('fieldservice_route.fsm_route_day_1'), ref('fieldservice_route.fsm_route_day_2'), ref('fieldservice_route.fsm_route_day_3'), ref('fieldservice_route.fsm_route_day_4')])]"
+        />
+        <field
+            name="area_shape"
+        >POLYGON((-12494499.646637026 3964530.4236492505,-12485594.087373562 3964530.4236492505,-12485594.087373562 3975217.42926081,-12494499.646637026 3975217.42926081,-12494499.646637026 3964530.4236492505))</field>
+    </record>
+    <record id="phoenix_route_05" model="fsm.route">
+        <field name="name">Mesa</field>
+        <field name="fsm_person_id" ref="phoenix_worker_13" />
+        <field name="max_order">10</field>
+        <field
+            name="day_ids"
+            eval="[(6, 0, [ref('fieldservice_route.fsm_route_day_0'), ref('fieldservice_route.fsm_route_day_1'), ref('fieldservice_route.fsm_route_day_2'), ref('fieldservice_route.fsm_route_day_3'), ref('fieldservice_route.fsm_route_day_4')])]"
+        />
+        <field
+            name="area_shape"
+        >POLYGON((-12454424.629951447 3945851.912901854,-12441066.291056255 3945851.912901854,-12441066.291056255 3956521.655001471,-12454424.629951447 3956521.655001471,-12454424.629951447 3945851.912901854))</field>
+    </record>
+    <function model="fsm.person" name="write">
+        <value
+            eval="[ref('phoenix_worker_01'), ref('phoenix_worker_02'), ref('phoenix_worker_03')]"
+        />
+        <value eval="{'preferred_route_id': ref('phoenix_route_01')}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value
+            eval="[ref('phoenix_worker_04'), ref('phoenix_worker_05'), ref('phoenix_worker_06')]"
+        />
+        <value eval="{'preferred_route_id': ref('phoenix_route_02')}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value
+            eval="[ref('phoenix_worker_07'), ref('phoenix_worker_08'), ref('phoenix_worker_09')]"
+        />
+        <value eval="{'preferred_route_id': ref('phoenix_route_03')}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value
+            eval="[ref('phoenix_worker_10'), ref('phoenix_worker_11'), ref('phoenix_worker_12')]"
+        />
+        <value eval="{'preferred_route_id': ref('phoenix_route_04')}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value
+            eval="[ref('phoenix_worker_13'), ref('phoenix_worker_14'), ref('phoenix_worker_15')]"
+        />
+        <value eval="{'preferred_route_id': ref('phoenix_route_05')}" />
+    </function>
+</odoo>
