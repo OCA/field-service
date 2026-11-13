@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
@@ -10,12 +10,20 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
                 <div invisible="not schedule_time_range">
-                    <i class="fa fa-clock-o text-dark me-1" title="Scheduled time" />
+                    <i
+                        class="oi text-dark me-1"
+                        data-icon="schedule"
+                        title="Scheduled time"
+                    />
                     <field name="schedule_time_range" />
                 </div>
 
                 <div invisible="not street and not city and not zip">
-                    <i class="fa fa-map-marker text-danger me-2" title="Address" />
+                    <i
+                        class="oi text-danger me-2"
+                        data-icon="location_on"
+                        title="Address"
+                    />
                     <field name="street" class="o_address_street" />
                     <span
                         t-if="record.street.raw_value and (record.street2.raw_value or record.city.raw_value or record.state_name.raw_value or record.zip.raw_value or record.country_name.raw_value)"
@@ -40,7 +48,11 @@
                 </div>
 
                 <div invisible="not phone">
-                    <i class="fa fa-phone text-info me-1" title="Phone" />
+                    <i
+                        class="oi oi-filled text-info me-1"
+                        data-icon="phone"
+                        title="Phone"
+                    />
                     <field name="phone" />
                 </div>
             </xpath>
