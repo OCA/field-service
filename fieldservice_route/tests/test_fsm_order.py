@@ -16,8 +16,6 @@ class FSMOrderRouteCase(common.TransactionCase):
         self.fsm_route_obj = self.env["fsm.route"]
         self.test_person = self.env.ref("fieldservice.test_person")
         self.test_location = self.env.ref("fieldservice.test_location")
-        date = datetime.now()
-        self.date = date.replace(microsecond=0)
         self.days = [
             self.env.ref("fieldservice_route.fsm_route_day_0").id,
             self.env.ref("fieldservice_route.fsm_route_day_1").id,
@@ -38,12 +36,19 @@ class FSMOrderRouteCase(common.TransactionCase):
         self.test_location.fsm_route_id = self.fsm_route_id.id
 
     def test_create_day_route(self):
+        # 23:30 UTC is the next calendar day in Europe/Brussels. The day route
+        # stores that user-timezone date, so compare both sides the same way.
+        self.env.user.tz = "Europe/Brussels"
+        scheduled_start = datetime(2026, 11, 12, 23, 30, 0)
         order_form = Form(self.fsm_order_obj)
         order_form.location_id = self.test_location
-        order_form.scheduled_date_start = self.date
+        order_form.scheduled_date_start = scheduled_start
         order = order_form.save()
         self.assertEqual(order.person_id, self.test_person)
         self.assertEqual(order.fsm_route_id, self.test_location.fsm_route_id)
         self.assertEqual(order.dayroute_id.person_id, order.person_id)
-        self.assertEqual(order.dayroute_id.date, order.scheduled_date_start.date())
+        self.assertEqual(
+            order.dayroute_id.date,
+            order.get_utc_date(order.scheduled_date_start).date(),
+        )
         self.assertEqual(order.dayroute_id.route_id, order.fsm_route_id)
