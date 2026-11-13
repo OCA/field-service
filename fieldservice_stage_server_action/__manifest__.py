@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Stage Server Action",
     "summary": "Execute server actions when reaching a Field Service stage",
-    "version": "17.0.1.3.0",
+    "version": "17.0.1.3.1",
     "category": "Field Service",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
