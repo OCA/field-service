@@ -165,7 +165,7 @@ class FSMLocation(FSMCommon):
             for i in range(num_eq):
                 self.Equipment.create(
                     {
-                        "name": f"Eq-{str(loc_id)}-{str(i + 1)}",
+                        "name": f"Eq-{loc_id!s}-{i + 1!s}",
                         "location_id": loc_id,
                         "current_location_id": loc_id,
                     }

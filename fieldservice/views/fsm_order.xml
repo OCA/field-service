@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Operations -->
     <record id="fsm_order_form" model="ir.ui.view">
@@ -10,19 +10,19 @@
                     <field name="team_id" invisible="1" />
                     <button
                         id="action_complete"
+                        class="oe_highlight"
                         name="action_complete"
                         string="Complete"
-                        class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_user"
                         invisible="is_closed"
                     />
                     <button
-                        string="Sign"
                         id="action_sign_1"
+                        class="oe_highlight"
+                        string="Sign"
                         type="action"
                         name="%(fsm_order_sign_wizard_action)d"
-                        class="oe_highlight"
                         invisible="not require_signature or signature"
                     />
                     <button
