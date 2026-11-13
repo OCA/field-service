@@ -3,9 +3,9 @@
 
 {
     "name": "Field Service Activity",
-    "summary": """Field Service Activities are a set of actions
-     that need to be performed on a service order""",
-    "version": "19.0.1.0.1",
+    "summary": "Field Service Activities are a set of actions that need to be "
+    "performed on a service order",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
@@ -14,7 +14,7 @@
     "data": [
         "views/fsm_order.xml",
         "views/fsm_template.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "development_status": "Beta",
     "maintainers": ["max3903"],

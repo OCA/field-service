@@ -1,8 +1,8 @@
 # Copyright (C) 2019, Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 
@@ -85,7 +85,7 @@ class TestFSMActivity(FSMCommon):
         order.order_activity_ids[0].action_done()
         self.assertEqual(
             order.order_activity_ids[0].completed_on.replace(microsecond=0),
-            datetime.now().replace(microsecond=0),
+            fields.Datetime.now().replace(microsecond=0),
         )
         self.assertEqual(order.order_activity_ids[0].completed_by, self.env.user)
         self.assertEqual(order.order_activity_ids[0].state, "done")
@@ -94,7 +94,7 @@ class TestFSMActivity(FSMCommon):
         self.assertEqual(order.order_activity_ids[1].state, "cancel")
 
         # As per FSM order needs, end date may not be set
-        order.date_end = datetime.now()
+        order.date_end = fields.Datetime.now()
 
         # Test required Activity
         with self.assertRaises(ValidationError):
