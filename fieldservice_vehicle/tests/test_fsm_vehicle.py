@@ -1,7 +1,9 @@
 # Copyright (C) 2022 - TODAY, Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from odoo import fields
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -36,9 +38,9 @@ class FSMVehicleCase(BaseCommon):
         test_order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
-                "date_start": datetime.today(),
-                "date_end": datetime.today() + timedelta(hours=2),
-                "request_early": datetime.today(),
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=2),
+                "request_early": fields.Datetime.now(),
                 "person_id": self.test_worker.id,
             }
         )
