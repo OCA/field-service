@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Field Service demo locations have addresses but no coordinates.
+        The map skips a marker when latitude or longitude is missing,
+        so the sample orders never show up.
+    -->
+    <function model="res.partner" name="write">
+        <value eval="[ref('fieldservice.test_loc_partner')]" />
+        <value
+            eval="{'partner_latitude': 13.756331, 'partner_longitude': 100.501765}"
+        />
+    </function>
+    <function model="res.partner" name="write">
+        <value eval="[ref('fieldservice.location_partner_1')]" />
+        <value eval="{'partner_latitude': 13.7300, 'partner_longitude': 100.5600}" />
+    </function>
+    <function model="res.partner" name="write">
+        <value eval="[ref('fieldservice.location_partner_2')]" />
+        <value eval="{'partner_latitude': 13.8000, 'partner_longitude': 100.5400}" />
+    </function>
+    <function model="res.partner" name="write">
+        <value eval="[ref('fieldservice.location_partner_3')]" />
+        <value eval="{'partner_latitude': 13.7200, 'partner_longitude': 100.4500}" />
+    </function>
+    <!--
+        Workers sit near the demo locations, offset so the person icon
+        does not cover the location pin.
+    -->
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_1')]" />
+        <value eval="{'partner_latitude': 13.7700, 'partner_longitude': 100.4900}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_2')]" />
+        <value eval="{'partner_latitude': 13.7400, 'partner_longitude': 100.5800}" />
+    </function>
+    <function model="fsm.person" name="write">
+        <value eval="[ref('fieldservice.person_3')]" />
+        <value eval="{'partner_latitude': 13.7900, 'partner_longitude': 100.5200}" />
+    </function>
+</odoo>
