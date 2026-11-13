@@ -134,6 +134,16 @@ class TestFSMOrderBase(TransactionCase):
             )
             self.assertRegex(str(res[0]), order.name)
 
+        order.company_id.fsm_order_enable_leave_check = False
+        order.write(
+            {
+                "scheduled_date_start": order.request_early.replace(
+                    hour=0, minute=0, second=0
+                ),
+                "scheduled_date_end": order.scheduled_date_start + timedelta(hours=100),
+            }
+        )
+
 
 class TestFSMOrder(TestFSMOrderBase):
     @freeze_time("2023-02-01")
