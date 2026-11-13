@@ -73,6 +73,16 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_timeline = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
+    # Databases created before the technical rename still store this field
+    # name in the settings view. Keep it so Settings can open, and make the
+    # checkbox install fieldservice_timeline. The label must differ from
+    # module_fieldservice_timeline; the text shown in Settings is the
+    # <setting> string in the view.
+    module_fieldservice_web_timeline_view = fields.Boolean(
+        string="Field Service Timeline",
+        related="module_fieldservice_timeline",
+        readonly=False,
+    )
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
@@ -121,3 +131,28 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_repair(self):
         if self.module_fieldservice_repair:
             self.group_fsm_equipment = True
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        if "module_fieldservice_web_timeline_view" in fields_list:
+            module = self.env["ir.module.module"]._get("fieldservice_timeline")
+            installed = bool(module) and module.state in (
+                "installed",
+                "to install",
+                "to upgrade",
+            )
+            res["module_fieldservice_web_timeline_view"] = res.get(
+                "module_fieldservice_timeline", installed
+            )
+        return res
+
+    @api.model
+    def _get_classified_fields(self, fnames=None):
+        classified = super()._get_classified_fields(fnames)
+        # The legacy checkbox is an alias, not a module named
+        # fieldservice_web_timeline_view.
+        classified["module"] = classified["module"].filtered(
+            lambda module: module.name != "fieldservice_web_timeline_view"
+        )
+        return classified
