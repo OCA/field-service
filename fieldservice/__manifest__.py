@@ -3,7 +3,7 @@
 {
     "name": "Field Service",
     "summary": "Manage Field Service Locations, Workers and Orders",
-    "version": "19.0.1.2.4",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
@@ -16,8 +16,7 @@
         "data/fsm_stage.xml",
         "data/fsm_team.xml",
         "security/res_groups.xml",
-        "security/ir.model.access.csv",
-        "security/ir_rule.xml",
+        "security/ir.access.csv",
         "report/fsm_order_report_template.xml",
         "views/res_config_settings.xml",
         "views/res_territory.xml",

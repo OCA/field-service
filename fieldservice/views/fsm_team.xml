@@ -78,7 +78,7 @@
                                     <div class="o_kanban_card_header_title">
                                         <div class="o_primary">
                                             <span>
-                                                <t t-esc="record.name.value" />
+                                                <t t-out="record.name.value" />
                                             </span>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                                 type="action"
                                                 context="{'search_default_todo': 1}"
                                             >
-                                                <t t-esc="record.order_count.value" />
+                                                <t t-out="record.order_count.value" />
                                                 To Do
                                             </button>
                                         </div>
@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="col-3">
                                                     <t
-                                                        t-esc="record.order_need_assign_count.value"
+                                                        t-out="record.order_need_assign_count.value"
                                                     />
                                                 </div>
                                             </div>
@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="col-3">
                                                     <t
-                                                        t-esc="record.order_need_schedule_count.value"
+                                                        t-out="record.order_need_schedule_count.value"
                                                     />
                                                 </div>
                                             </div>

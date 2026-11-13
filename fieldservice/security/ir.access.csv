@@ -1,0 +1,33 @@
+id,name,model_id,group_id/id,operation,domain
+access_fsm_stage_fsm_user,fsm.stage.user,fsm.stage,fieldservice.group_fsm_user_own,r,
+access_fsm_stage_fsm_manager,fsm.stage.manager,fsm.stage,fieldservice.group_fsm_manager,crud,
+access_fsm_tag_fsm_user,fsm.tag.user,fsm.tag,fieldservice.group_fsm_user_own,r,
+access_fsm_tag_fsm_manager,fsm.tag.manager,fsm.tag,fieldservice.group_fsm_manager,crud,
+access_fsm_person_user,fsm.person.user,fsm.person,fieldservice.group_fsm_user_own,ru,
+access_fsm_person_manager,fsm.person.manager,fsm.person,fieldservice.group_fsm_manager,crud,
+access_fsm_location_user,fsm.location.user,fsm.location,fieldservice.group_fsm_user_own,ru,
+access_fsm_location_dispatcher,fsm.location.dispatcher,fsm.location,fieldservice.group_fsm_dispatcher,cru,
+access_fsm_order_user,fsm.order.user,fsm.order,fieldservice.group_fsm_user_own,ru,
+access_fsm_order_dispatcher,fsm.order.dispatcher,fsm.order,fieldservice.group_fsm_dispatcher,crud,
+access_fsm_equipment_fsm_user,fsm.equipment.user,fsm.equipment,fieldservice.group_fsm_user_own,r,
+access_fsm_equipment_fsm_manager,fsm.equipment.manager,fsm.equipment,fieldservice.group_fsm_manager,crud,
+access_fsm_category_user,fsm.category.user,fsm.category,fieldservice.group_fsm_user_own,r,
+access_fsm_category_manager,fsm.category.manager,fsm.category,fieldservice.group_fsm_manager,crud,
+access_fsm_template_user,fsm.template.user,fsm.template,fieldservice.group_fsm_user_own,r,
+access_fsm_template_manager,fsm.template.manager,fsm.template,fieldservice.group_fsm_manager,crud,
+access_fsm_team_user,fsm.team.user,fsm.team,fieldservice.group_fsm_user_own,r,
+access_fsm_team_manager,fsm.team.manager,fsm.team,fieldservice.group_fsm_manager,crud,
+access_fsm_location_person_user,fsm.location.person.user,fsm.location.person,fieldservice.group_fsm_user_own,ru,
+access_fsm_location_person_manager,fsm.location.person.manager,fsm.location.person,fieldservice.group_fsm_manager,crud,
+access_fsm_order_type_user,fsm.order.type.user,fsm.order.type,fieldservice.group_fsm_user_own,ru,
+access_fsm_order_type_manager,fsm.order.type.manager,fsm.order.type,fieldservice.group_fsm_manager,crud,
+access_fsm_calendar_filter,fsm.calendar.filter.user,fsm.person.calendar.filter,fieldservice.group_fsm_user_own,crud,
+access_fsm_wizard,access_fsm_wizard,fsm.wizard,fieldservice.group_fsm_dispatcher,cru,
+access_fsm_order_sign_wizard,access_fsm_order_sign_wizard,fsm.order.sign.wizard,fieldservice.group_fsm_user_own,cru,
+fsm_order_comp_rule,FSM Orders Entry,fsm.order,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_template_comp_rule,FSM Templates Entry,fsm.template,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_team_comp_rule,FSM Teams Entry,fsm.team,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_tag_comp_rule,FSM Tags Entry,fsm.tag,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_category_comp_rule,FSM Categories Entry,fsm.category,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_equipment_comp_rule,FSM Equipments Entry,fsm.equipment,,crud,"[('company_id', 'in', company_ids + [False])]"
+fsm_stage_comp_rule,FSM Stage Entry,fsm.stage,,crud,"[('company_id', 'in', company_ids + [False])]"

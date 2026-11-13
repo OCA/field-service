@@ -7,10 +7,12 @@ from odoo.fields import Domain
 
 class FSMPerson(models.Model):
     _name = "fsm.person"
-    _inherits = {"res.partner": "partner_id"}
-    _inherit = ["mail.thread.blacklist", "fsm.model.mixin"]
+    _inherits = {"res.partner": "partner_id"}  # noqa: RUF012
+    _inherit = ["mail.thread.blacklist", "fsm.model.mixin"]  # noqa: RUF012
     _description = "Field Service Worker"
     _stage_type = "worker"
+
+    stage_id = fields.Many2one(tracking=True)
 
     partner_id = fields.Many2one(
         "res.partner",
@@ -35,7 +37,7 @@ class FSMPerson(models.Model):
     active_partner = fields.Boolean(
         related="partner_id.active", readonly=True, string="Partner is Active"
     )
-    team_id = fields.Many2one("fsm.team", string="Team")
+    team_id = fields.Many2one("fsm.team")
 
     def action_unarchive(self):
         self.with_context(active_test=False).partner_id.action_unarchive()
@@ -62,7 +64,7 @@ class FSMPerson(models.Model):
         )
         # Check for args first having location_ids as default filter
         for arg in domain:
-            if isinstance(domain, (list, Domain)):
+            if isinstance(domain, (list, Domain)):  # noqa: SIM102
                 if arg[0] == "location_ids":
                     # If given int search ID, else search name
                     if isinstance(arg[2], int):

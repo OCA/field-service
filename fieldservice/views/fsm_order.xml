@@ -426,7 +426,7 @@
             <calendar
                 string="FSM Orders"
                 date_start="scheduled_date_start"
-                date_delay="scheduled_duration"
+                date_stop="scheduled_date_end"
                 color="stage_id"
             >
                 <field name="name" />
@@ -492,7 +492,6 @@
         <field name="model">fsm.order</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">fieldservice.report_fsm_order</field>
-        <field name="report_file">fieldservice.report_fsm_order</field>
         <field name="print_report_name">'Service Order - %s' % (object.name)</field>
         <field name="binding_model_id" ref="model_fsm_order" />
     </record>
