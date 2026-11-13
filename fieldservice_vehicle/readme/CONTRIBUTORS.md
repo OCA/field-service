@@ -1,0 +1,12 @@
+- Wolfgang Hall \<<whall@graymatterlogic.com>\>
+- Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Steve Campbell \<<scampbell@graymatterlogic.com>\>
+- Bhavesh Odedra \<<bodedra@graymatterlogic.com>\>
+- Michael Allen \<<mallen@graymatterlogic.com>\>
+- Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
+- Brian McMaster \<<brian@mcmpest.com>\>
+- Vandan Pandeji \<<vpandeji@graymatterlogic.com>\>
+- [APSL](https://apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
