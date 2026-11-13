@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Stage Server Action",
     "summary": "Execute server actions when reaching a Field Service stage",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
