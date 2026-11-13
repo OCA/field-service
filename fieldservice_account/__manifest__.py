@@ -4,13 +4,13 @@
 {
     "name": "Field Service - Accounting",
     "summary": "Track invoices linked to Field Service orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
     "depends": ["fieldservice", "account"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/account_move.xml",
         "views/fsm_order.xml",
         "views/fsm_stage.xml",

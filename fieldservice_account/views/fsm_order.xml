@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_fsm_order_form_inherit_account" model="ir.ui.view">
         <field name="model">fsm.order</field>
@@ -8,7 +9,7 @@
                     name="action_view_invoices"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-pencil-square-o"
+                    icon="edit_square"
                     invisible="not invoice_count"
                     groups="account.group_account_invoice"
                 >

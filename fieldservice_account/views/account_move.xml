@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="account_invoice_form" model="ir.ui.view">
         <field name="name">FSM order.invoice.form</field>
@@ -9,7 +10,7 @@
                     name="action_view_fsm_orders"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-map"
+                    icon="map"
                     invisible="fsm_order_count == 0"
                     groups="fieldservice.group_fsm_user"
                 >

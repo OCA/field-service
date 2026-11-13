@@ -1,8 +1,9 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -37,17 +38,17 @@ class FSMAccountCase(TransactionCase):
         self.test_order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
-                "date_start": datetime.today(),
-                "date_end": datetime.today() + timedelta(hours=2),
-                "request_early": datetime.today(),
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=2),
+                "request_early": fields.Datetime.now(),
             }
         )
         self.test_order2 = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
-                "date_start": datetime.today(),
-                "date_end": datetime.today() + timedelta(hours=2),
-                "request_early": datetime.today(),
+                "date_start": fields.Datetime.now(),
+                "date_end": fields.Datetime.now() + timedelta(hours=2),
+                "request_early": fields.Datetime.now(),
             }
         )
         company = self.env.user.company_id
@@ -69,7 +70,7 @@ class FSMAccountCase(TransactionCase):
             {
                 "partner_id": self.test_partner.id,
                 "move_type": "out_invoice",
-                "invoice_date": datetime.today().date(),
+                "invoice_date": fields.Date.today(),
                 "invoice_line_ids": [
                     (
                         0,
@@ -105,7 +106,7 @@ class FSMAccountCase(TransactionCase):
             {
                 "partner_id": self.test_partner.id,
                 "move_type": "out_invoice",
-                "invoice_date": datetime.today().date(),
+                "invoice_date": fields.Date.today(),
                 "invoice_line_ids": [
                     (
                         0,
