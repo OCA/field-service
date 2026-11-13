@@ -10,9 +10,7 @@ class FSMLocationPerson(models.Model):
     _rec_name = "location_id"
     _order = "sequence"
 
-    location_id = fields.Many2one(
-        "fsm.location", string="Location", required=True, index=True
-    )
+    location_id = fields.Many2one("fsm.location", required=True, index=True)
     person_id = fields.Many2one(
         "fsm.person", string="Worker", required=True, index=True
     )

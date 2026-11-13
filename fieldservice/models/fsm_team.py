@@ -8,7 +8,7 @@ from odoo.fields import Domain
 class FSMTeam(models.Model):
     _name = "fsm.team"
     _description = "Field Service Team"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
 
     def _default_stages(self):
         return self.env["fsm.stage"].search(Domain("is_default", "=", True))
@@ -88,7 +88,6 @@ class FSMTeam(models.Model):
     sequence = fields.Integer(default=1, help="Used to sort teams. Lower is better.")
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         required=True,
         index=True,
         default=lambda self: self.env.company,

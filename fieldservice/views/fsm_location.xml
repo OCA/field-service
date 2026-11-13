@@ -59,7 +59,7 @@
                             type="object"
                             name="action_view_sublocation"
                             class="oe_stat_button"
-                            icon="fa-location-arrow"
+                            icon="map"
                         >
                             <field
                                 name="sublocation_count"
@@ -71,7 +71,7 @@
                             type="object"
                             name="action_view_equipment"
                             class="oe_stat_button"
-                            icon="fa-briefcase"
+                            icon="work"
                             groups="fieldservice.group_fsm_equipment"
                         >
                             <field
@@ -84,7 +84,7 @@
                             type="object"
                             name="action_view_contacts"
                             class="oe_stat_button"
-                            icon="fa-user-circle-o"
+                            icon="account_circle"
                             groups="base.group_user"
                             context="{'default_street': street, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}"
                         >
@@ -241,7 +241,7 @@
                                         </span>
                                         <button
                                             invisible="(partner_latitude != 0) or (partner_longitude != 0)"
-                                            icon="fa-gear"
+                                            icon="settings"
                                             string="Compute based on address"
                                             title="Compute Localization"
                                             name="geo_localize"
@@ -250,7 +250,7 @@
                                         />
                                         <button
                                             invisible="partner_latitude == partner_longitude == 0"
-                                            icon="fa-refresh"
+                                            icon="refresh"
                                             string="Refresh"
                                             title="Refresh Localization"
                                             name="geo_localize"

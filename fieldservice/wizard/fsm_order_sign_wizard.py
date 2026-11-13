@@ -12,7 +12,6 @@ class FSMOrderSignWizard(models.TransientModel):
 
     order_id = fields.Many2one(
         comodel_name="fsm.order",
-        string="Order",
         required=True,
         ondelete="cascade",
     )
