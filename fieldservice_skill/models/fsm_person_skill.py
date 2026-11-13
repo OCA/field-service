@@ -14,7 +14,7 @@ class FSMPersonSkill(models.Model):
     person_id = fields.Many2one(
         "fsm.person", string="Field Service Worker", required=True
     )
-    skill_id = fields.Many2one("hr.skill", string="Skill", required=True)
+    skill_id = fields.Many2one("hr.skill", required=True)
     skill_level_id = fields.Many2one("hr.skill.level", required=True)
     skill_type_id = fields.Many2one("hr.skill.type", required=True)
     level_progress = fields.Integer(related="skill_level_id.level_progress", store=True)
