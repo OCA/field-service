@@ -7,4 +7,4 @@ from odoo import fields, models
 class FSMTeam(models.Model):
     _inherit = "fsm.team"
 
-    project_id = fields.Many2one("project.project", string="Project")
+    project_id = fields.Many2one("project.project")

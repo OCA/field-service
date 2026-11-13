@@ -8,7 +8,7 @@ class Project(models.Model):
     _inherit = "project.project"
 
     fsm_order_ids = fields.One2many("fsm.order", "project_id", string="Service Orders")
-    fsm_location_id = fields.Many2one("fsm.location", string="FSM Location")
+    fsm_location_id = fields.Many2one("fsm.location")
 
     def action_create_order(self):
         """
