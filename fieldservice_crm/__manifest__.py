@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - CRM",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "summary": "Create Field Service orders from the CRM",
     "category": "Field Service",
     "author": "Patrick Wilson, Odoo Community Association (OCA)",
@@ -13,7 +13,7 @@
         "views/crm_lead.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "license": "AGPL-3",
     "development_status": "Beta",

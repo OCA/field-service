@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2019 Patrick Wilson <patrickraymondwilson@gmail.com
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -23,7 +24,7 @@
                     type="action"
                     invisible="type == 'lead'"
                     name="%(fieldservice.action_fsm_dash_order)d"
-                    icon="fa-truck"
+                    icon="local_shipping"
                     groups="fieldservice.group_fsm_user"
                     context="{'search_default_opportunity_id': id,
                               'default_location_id': fsm_location_id}"
