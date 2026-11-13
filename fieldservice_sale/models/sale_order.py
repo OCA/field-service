@@ -46,7 +46,8 @@ class SaleOrder(models.Model):
         """
         Autofill the Sale Order's FS location with the partner_id,
         the partner_shipping_id or the partner_id.commercial_partner_id if
-        they are FS locations.
+        they are FS locations. As a last resort, fall back to the customer's
+        primary service location (res.partner.service_location_id).
         """
         for so in self:
             if so.partner_id.fsm_location:
@@ -59,7 +60,8 @@ class SaleOrder(models.Model):
                     ("partner_id", "=", so.partner_shipping_id.id),
                     ("partner_id", "=", so.partner_id.commercial_partner_id.id),
                 ]
-            so.fsm_location_id = self.env["fsm.location"].search(domain, limit=1)
+            location = self.env["fsm.location"].search(domain, limit=1)
+            so.fsm_location_id = location or so.partner_id.service_location_id
 
     def _prepare_line_fsm_values(self, line):
         """
