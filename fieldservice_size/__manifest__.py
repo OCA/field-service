@@ -3,7 +3,7 @@
 {
     "name": "Field Service Sizes",
     "summary": "Manage Sizes for Field Service Locations and Orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Brian McMaster, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -12,7 +12,7 @@
         "uom",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/fsm_size.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",

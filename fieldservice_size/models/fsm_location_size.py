@@ -11,9 +11,7 @@ class FSMLocationSize(models.Model):
     type_id = fields.Many2one("fsm.order.type", index=True, related="size_id.type_id")
     quantity = fields.Float(required=True)
     uom_id = fields.Many2one("uom.uom", index=True, related="size_id.uom_id")
-    location_id = fields.Many2one(
-        "fsm.location", string="Location", required=True, index=True
-    )
+    location_id = fields.Many2one("fsm.location", required=True, index=True)
 
     _one_size_per_location = models.Constraint(
         "unique(location_id, size_id)",
