@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="fsm_order_form_sale_recurring_timesheet_material" model="ir.ui.view">
+        <field name="name">fsm.order.form.sale.recurring.timesheet.material</field>
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_sale_timesheet_material.fsm_order_form_sale_timesheet_material"
+        />
+        <field name="arch" type="xml">
+            <button name="action_create_sale_lines" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('sale_id', '=', False), ('sale_line_id', '=', False)]}</attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>
