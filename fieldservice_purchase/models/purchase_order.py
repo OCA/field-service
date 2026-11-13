@@ -7,7 +7,7 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    fsm_order_id = fields.Many2one("fsm.order", string="FSM Order")
+    fsm_order_id = fields.Many2one("fsm.order")
 
     def action_view_fsm_order(self):
         self.ensure_one()
