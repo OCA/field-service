@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_fsm_order_form_inherit_stock" model="ir.ui.view">
         <field name="name">fsm.order.form.stock</field>
@@ -10,7 +11,7 @@
                     type="object"
                     name="action_view_delivery"
                     class="oe_stat_button"
-                    icon="fa-truck"
+                    icon="local_shipping"
                     invisible="delivery_count == 0"
                     groups="base.group_user"
                 >
@@ -24,7 +25,7 @@
                     type="object"
                     name="action_view_returns"
                     class="oe_stat_button"
-                    icon="fa-truck"
+                    icon="local_shipping"
                     invisible="return_count == 0"
                     groups="base.group_user"
                 >
