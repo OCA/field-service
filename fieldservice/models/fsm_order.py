@@ -431,6 +431,8 @@ class FSMOrder(models.Model):
         for rec in self:
             if not rec.scheduled_date_start:
                 continue
+            if not rec.company_id.fsm_order_enable_leave_check:
+                continue
 
             holidays = self.env["resource.calendar.leaves"].search(
                 [

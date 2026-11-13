@@ -30,3 +30,6 @@ class ResCompany(models.Model):
     fsm_order_request_late_high = fields.Float(
         string="Hours of Buffer for High Priority FS Orders", default=8
     )
+    fsm_order_enable_leave_check = fields.Boolean(
+        string="Enable holiday check for FS Orders", default=True
+    )

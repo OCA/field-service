@@ -110,6 +110,10 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.fsm_order_request_late_high",
         readonly=False,
     )
+    fsm_order_enable_leave_check = fields.Boolean(
+        related="company_id.fsm_order_enable_leave_check",
+        readonly=False,
+    )
 
     # Dependencies
     @api.onchange("group_fsm_equipment")
