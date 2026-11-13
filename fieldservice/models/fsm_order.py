@@ -453,10 +453,12 @@ class FSMOrder(models.Model):
         if self.person_id and self.person_id.team_id:
             self.team_id = self.person_id.team_id
 
-    @api.constrains("scheduled_date_start")
+    @api.constrains("scheduled_date_start", "company_id")
     def check_day(self):
         for rec in self:
             if not rec.scheduled_date_start:
+                continue
+            if rec.company_id.fsm_order_allow_schedule_on_leave:
                 continue
 
             holidays = self.env["resource.calendar.leaves"].search(
