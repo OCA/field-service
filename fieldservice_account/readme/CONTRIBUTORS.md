@@ -1,0 +1,8 @@
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Michael Allen \<<mallen@graymatterlogic.com>\>
+- Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
+- Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
+- Brian McMaster \<<brian@mcmpest.com>\>
+- [Komit](https://komit-consulting.com):
+  - Vang Nguyen Phu
