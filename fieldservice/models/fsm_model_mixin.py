@@ -12,7 +12,6 @@ class FsmModelMixin(models.AbstractModel):
 
     stage_id = fields.Many2one(
         "fsm.stage",
-        string="Stage",
         tracking=True,
         index=True,
         copy=False,

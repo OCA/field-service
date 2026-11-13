@@ -14,13 +14,11 @@ class FSMTemplate(models.Model):
     duration = fields.Float(help="Default duration in hours")
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         index=True,
         help="Company related to this template",
     )
-    type_id = fields.Many2one("fsm.order.type", string="Type")
+    type_id = fields.Many2one("fsm.order.type")
     team_id = fields.Many2one(
         "fsm.team",
-        string="Team",
         help="Choose a team to be set on orders of this template",
     )

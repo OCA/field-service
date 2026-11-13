@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class FSMEquipment(models.Model):
     _name = "fsm.equipment"
     _description = "Field Service Equipment"
-    _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "fsm.model.mixin"]  # noqa: RUF012
     _stage_type = "equipment"
 
     name = fields.Char(required=True)
@@ -16,41 +16,36 @@ class FSMEquipment(models.Model):
     notes = fields.Html()
     territory_id = fields.Many2one(
         "res.territory",
-        string="Territory",
         compute="_compute_territory_id",
         store=True,
         readonly=False,
     )
     branch_id = fields.Many2one(
         "res.branch",
-        string="Branch",
         compute="_compute_branch_id",
         store=True,
         readonly=False,
     )
     district_id = fields.Many2one(
         "res.district",
-        string="District",
         compute="_compute_district_id",
         store=True,
         readonly=False,
     )
     region_id = fields.Many2one(
         "res.region",
-        string="Region",
         compute="_compute_region_id",
         store=True,
         readonly=False,
     )
-    current_location_id = fields.Many2one("fsm.location", string="Current Location")
-    managed_by_id = fields.Many2one("res.partner", string="Managed By")
-    owned_by_id = fields.Many2one("res.partner", string="Owned By")
-    parent_id = fields.Many2one("fsm.equipment", string="Parent")
+    current_location_id = fields.Many2one("fsm.location")
+    managed_by_id = fields.Many2one("res.partner")
+    owned_by_id = fields.Many2one("res.partner")
+    parent_id = fields.Many2one("fsm.equipment")
     child_ids = fields.One2many("fsm.equipment", "parent_id", string="Children")
     color = fields.Integer("Color Index")
     company_id = fields.Many2one(
         "res.company",
-        string="Company",
         required=True,
         index=True,
         default=lambda self: self.env.company,
