@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <!-- Order related subtypes for messaging / Chatter -->
     <record id="mt_order_new" model="mail.message.subtype">
         <field name="name">Order Created</field>
-        <field name="sequence">0</field>
+        <field name="sequence" eval="0" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="hidden" eval="True" />
@@ -10,7 +11,7 @@
     </record>
     <record id="mt_order_confirmed" model="mail.message.subtype">
         <field name="name">Order Confirmed</field>
-        <field name="sequence">10</field>
+        <field name="sequence" eval="10" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -18,7 +19,7 @@
     </record>
     <record id="mt_order_scheduled" model="mail.message.subtype">
         <field name="name">Order Scheduled</field>
-        <field name="sequence">20</field>
+        <field name="sequence" eval="20" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -26,7 +27,7 @@
     </record>
     <record id="mt_order_assigned" model="mail.message.subtype">
         <field name="name">Order Assigned</field>
-        <field name="sequence">30</field>
+        <field name="sequence" eval="30" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -34,7 +35,7 @@
     </record>
     <record id="mt_order_enroute" model="mail.message.subtype">
         <field name="name">Order En Route</field>
-        <field name="sequence">40</field>
+        <field name="sequence" eval="40" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -42,7 +43,7 @@
     </record>
     <record id="mt_order_started" model="mail.message.subtype">
         <field name="name">Order Started</field>
-        <field name="sequence">50</field>
+        <field name="sequence" eval="50" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -50,7 +51,7 @@
     </record>
     <record id="mt_order_completed" model="mail.message.subtype">
         <field name="name">Order Completed</field>
-        <field name="sequence">60</field>
+        <field name="sequence" eval="60" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />
@@ -58,7 +59,7 @@
     </record>
     <record id="mt_order_cancelled" model="mail.message.subtype">
         <field name="name">Order Cancelled</field>
-        <field name="sequence">100</field>
+        <field name="sequence" eval="100" />
         <field name="res_model">fsm.order</field>
         <field name="default" eval="False" />
         <field name="internal" eval="True" />

@@ -296,7 +296,7 @@ class TestFSMOrder(FSMCommon):
         order2.location_id.parent_id = self.location_1.id
         data = (
             self.env["fsm.order"]
-            .with_context(**{"default_team_id": self.test_team.id})
+            .with_context(default_team_id=self.test_team.id)
             .with_user(self.env.user)
             ._read_group(
                 domain=Domain("id", "=", order.id),

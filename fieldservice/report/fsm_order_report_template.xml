@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_fsm_order_document">
         <t t-call="web.external_layout">
@@ -12,7 +13,7 @@
                 <p t-field="doc.date_end" />
             </div>
             <div class="page">
-                <div class="oe_structure" id="oe_structure_1" />
+                <div id="oe_structure_1" class="oe_structure" />
                 <hr />
                 <h2>
                     FS Order #
@@ -47,7 +48,7 @@
                     <h3>Resolution Notes</h3>
                     <p t-field="doc.resolution" />
                 </div>
-                <div class="oe_structure" id="oe_structure_1" />
+                <div id="oe_structure_1" class="oe_structure" />
             </div>
         </t>
     </template>

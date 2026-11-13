@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Privileges -->
-    <record model="res.groups.privilege" id="privilege_fsm">
+    <record id="privilege_fsm" model="res.groups.privilege">
         <field name="name">Field Service Management</field>
-        <field name="sequence">50</field>
+        <field name="sequence" eval="50" />
     </record>
     <!-- FSM groups -->
     <record id="group_fsm_user_own" model="res.groups">
