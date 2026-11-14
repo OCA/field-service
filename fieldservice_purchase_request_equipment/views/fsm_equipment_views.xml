@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_form_view" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.purchase.request</field>
+        <field name="model">fsm.equipment</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_equipment_order_history.fsm_equipment_form_view"
+        />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_purchase_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                    groups="purchase_request.group_purchase_request_user"
+                >
+                    <field
+                        name="purchase_request_count"
+                        widget="statinfo"
+                        string="Purchase Requests"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
