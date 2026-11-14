@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_form_view_location_history" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.location.history</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button
+                        name="action_create_location_history"
+                        type="object"
+                        string="Transfer Stock"
+                        class="btn-primary"
+                    />
+                </header>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Location History" name="location_history">
+                    <field name="location_history_ids" readonly="1">
+                        <list>
+                            <field name="date" />
+                            <field name="from_location_id" />
+                            <field name="to_location_id" />
+                            <field name="picking_id" />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
