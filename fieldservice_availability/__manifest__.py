@@ -3,9 +3,9 @@
 
 {
     "name": "Fieldservice Availability",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "summary": "Provides models for defining blackout days, stress days, "
-    "and delivery time ranges for FSM availability management.",
+    "and delivery schedule management for FSM locations and routes.",
     "category": "Field Service",
     "website": "https://github.com/OCA/field-service",
     "author": "APSL-Nagarro, Odoo Community Association (OCA)",
@@ -19,6 +19,9 @@
         "views/fsm_blackout_day_templates.xml",
         "views/fsm_delivery_time_range_templates.xml",
         "views/fsm_stress_day_templates.xml",
+        "views/fsm_location_views.xml",
+        "views/fsm_route_views.xml",
         "views/menu.xml",
+        "views/res_config_settings_views.xml",
     ],
 }

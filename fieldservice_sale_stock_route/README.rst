@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ================================
 Field Service - Sale Stock Route
 ================================
@@ -17,7 +13,7 @@ Field Service - Sale Stock Route
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -32,37 +28,78 @@ Field Service - Sale Stock Route
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module integrates the fieldservice_sale_stock and
-fieldservice_route modules, enabling automatic generation of FSM order
-day routes from sales orders.
+Field Service - Sale Stock Route
+================================
 
-Requirements for Confirming a Sales Order
------------------------------------------
+This module integrates ``fieldservice_sale_stock``,
+``fieldservice_route``, and ``fieldservice_availability``, enabling
+automatic creation and scheduling of FSM orders from sales orders with
+flexible route assignment and delivery time slot management.
 
-If a sales order contains a product that generates an FSM order, the
-following conditions must be met before confirmation:
+Confirmation of Sales Orders
+----------------------------
 
-- An FSM location must be set.
-- The FSM location must have an assigned route.
-- The FSM route must have a designated FSM person.
-- The FSM route must have assigned working days.
+When a sales order contains a product that generates an FSM order:
 
-Automatic Scheduling of FSM Orders
-----------------------------------
+- An FSM location must be set on the sales order.
+- Route assignment, FSM person, and route days are optional upon
+  confirmation. If no route or driver is assigned, the order confirms
+  flexibly and creates an unassigned FSM order in the pending orders
+  pool.
 
-- If the commitment_date and commitment_date_end fields **are not set**
-  on the sale order upon confirmation, they will be automatically
-  assigned to the next available route day based on the FSM location’s
-  schedule.
-- If these fields **are set**, the FSM order will be scheduled
-  accordingly, with validation ensuring that the commitment_date falls
-  on a valid route day. This validation can be overridden by enabling
-  the **"Force Schedule"** option on the FSM route to allow scheduling
-  on any day.
+Operational Delivery Days Resolution
+------------------------------------
 
-This module also introduces a **"Postpone Delivery"** button in the FSM
-order form view, allowing users to reschedule the order to the next
-available route day based on the FSM location’s schedule.
+Operational days (allowed days of the week) are resolved dynamically via
+the 4-tier hierarchy in ``get_allowed_route_days()``:
+
+1. **Location Override**: Days selected directly on ``fsm.location``.
+2. **Route Default**: Days selected on the assigned ``fsm.route``.
+3. **Company Default**: Days configured in Field Service Settings
+   (``res.company``).
+4. **System Fallback**: All active ``fsm.route.day`` records in the
+   system (Monday–Sunday).
+
+Automatic Scheduling and Delivery Time Ranges
+---------------------------------------------
+
+The active delivery time range for any sale order is resolved using a
+5-tier hierarchy from ``fieldservice_availability``:
+
+1. **Location Seasonal Schedule**: Active seasonal schedule on the
+   location (day-specific grid or general seasonal hours).
+2. **Location Default Schedule**: Default schedule on the location
+   (day-specific grid or general default hours).
+3. **Route Seasonal Schedule**: Active seasonal schedule on the assigned
+   route (day-specific grid or general seasonal hours).
+4. **Route Default Schedule**: Default schedule on the assigned route
+   (day-specific grid or general default hours).
+5. **Global Fallback**: Highest-priority global delivery time range
+   (``fsm.delivery.time.range``).
+
+This logic is applied universally upon order confirmation:
+
+- **Unset Delivery Dates:** If ``commitment_date`` is empty, the system
+  calculates the next valid operational day starting from tomorrow
+  (evaluating Location ⟶ Route ⟶ Company Default Settings ⟶ All Active
+  Days) and sets the start and end hours resolved from the schedule
+  hierarchy.
+- **Manual Delivery Dates:** If delivery dates are set manually, the
+  system preserves the selected calendar day and standardizes start and
+  end hours using the schedule hierarchy.
+- **Route Validation & Force Schedule:** If a route is assigned, the
+  delivery date is validated against the route's operational days. This
+  validation can be overridden by enabling **Force Schedule** on the
+  route.
+
+FSM Order Management
+--------------------
+
+- **Postpone Delivery:** Users can postpone an FSM order to the next
+  available operational delivery day directly from the FSM order header.
+- **Bidirectional Date Synchronization:** Updating dates on an FSM order
+  automatically synchronizes the corresponding sales order commitment
+  dates and active stock pickings.
 
 **Table of contents**
 
@@ -72,35 +109,70 @@ available route day based on the FSM location’s schedule.
 Usage
 =====
 
-To use this module, you need to:
+Field Service - Sale Stock Route Usage
+======================================
 
-1. Navigate to Sales > Orders.
-2. Create a new sales order.
-3. Add a product that generates an FSM order (Field Service Tracking set
-   to "Create one FSM order per sale order" on the product form).
-4. Set the Customer and FSM Location.
-5. Make sure the FSM Location has a route set and this route has a
-   person assigned and route days set.
-6. In the sale order, navigate to the 'Other Info' tab and set the
-   'Delivery Date' and 'Delivery End Date' fields. You can also leave
-   them empty to have the system automatically assign the next available
-   route day.
-7. Confirm the sale order.
-8. If the 'Delivery Date' and 'Delivery End Date' fields were empty, the
-   system will automatically assign the next available route day based
-   on the FSM location's schedule. If they were set, the FSM order will
-   be scheduled accordingly. In case the 'Delivery Date' falls on a day
-   that is not part of the route, the system will show an error message.
+Configuration
+-------------
 
-If you navigate to the FSM order, you will see that the Schedule Details
-are based on the 'Delivery Date' and 'Delivery End Date' fields from the
-sale order.
+Before creating sales orders, configure delivery schedules and
+operational days:
 
-Additionally, you will find a 'Postpone Delivery' button in the FSM
-order form view, allowing you to reschedule the order to the next
-available route day based on the FSM location's schedule. You can also
-manually reschedule the order by changing the 'Delivery Date' and
-'Delivery End Date' fields in the sale order.
+1. **Company Default Operational Days:** Navigate to **Field Service >
+   Configuration > Settings**. Scroll to the **Routes** section and
+   select your standard company operational days (e.g., Monday through
+   Friday). These apply as the baseline when no route or location
+   overrides are defined.
+2. **Global Fallback Schedules:** Navigate to **Field Service >
+   Configuration > Availability > Global Delivery Time Ranges** to
+   configure fallback hours (e.g., ``07:00`` to ``15:00``).
+3. **Route Delivery Schedules:** Navigate to **Field Service > Master
+   Data > Routes**. Select a route to configure its allowed operational
+   days, default schedule hours (``has_default_schedule``), or seasonal
+   schedule hours (``has_seasonal_schedule``).
+4. **Location Delivery Schedules:** Navigate to **Field Service > Master
+   Data > Locations**. Select a location and navigate to the **Delivery
+   Schedule** tab to configure location-specific operational days or
+   custom default/seasonal schedule hours.
+
+--------------
+
+Operating Flow
+--------------
+
+1. Navigate to **Sales > Orders** and create a new sales order.
+2. Select the **Customer** and **FSM Location**.
+3. Add a product configured with Field Service tracking
+   (``field_service_tracking`` set to create an FSM order).
+4. In the **Other Info** tab, set the **Delivery Date**
+   (``commitment_date``), or leave it empty:
+
+   - If left empty, the system automatically finds the next valid
+     operational delivery day starting from tomorrow, resolving
+     operational days through the hierarchy (Location Override ⟶ Route
+     Default ⟶ Company Default Settings ⟶ All Active Days).
+   - If set manually, the system preserves the selected calendar date.
+   - In both cases, start and end hours are standardized using the
+     5-tier delivery schedule hierarchy (Location Seasonal ⟶ Location
+     Default ⟶ Route Seasonal ⟶ Route Default ⟶ Global Fallback).
+
+5. Click **Confirm**.
+
+   - If an assigned route has restricted operational days, the system
+     validates the selected date against allowed route days unless
+     **Force Schedule** is enabled on the route.
+   - If no route nor person is assigned, the order confirms and creates
+     an unassigned FSM order in the pending orders pool.
+
+6. Open the generated **FSM Order**:
+
+   - Schedule details (``scheduled_date_start`` and
+     ``scheduled_date_end``) reflect the delivery dates computed from
+     the sales order.
+   - Click **Postpone Delivery** in the header to reschedule the order
+     to the next available operational delivery day.
+   - Updating schedule dates on the FSM order automatically updates the
+     sales order commitment dates and open stock pickings.
 
 Bug Tracker
 ===========

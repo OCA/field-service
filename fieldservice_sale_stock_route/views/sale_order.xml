@@ -6,13 +6,10 @@
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale_shipping']" position="inside">
-                <field
-                    name="commitment_date_end"
-                    readonly="state in ('done', 'cancel')"
-                />
+            <xpath expr="//field[@name='delivery_status']" position="before">
+                <field name="commitment_date_end" readonly="1" />
             </xpath>
         </field>
     </record>

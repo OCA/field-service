@@ -13,6 +13,7 @@
     "application": False,
     "installable": True,
     "depends": [
+        "fieldservice_availability",
         "fieldservice_sale_stock",
         "fieldservice_route",
     ],

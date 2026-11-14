@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Copyright 2026 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <!-- Route Form Inherit for Delivery Schedules -->
+    <record id="fsm_route_form_inherit_availability" model="ir.ui.view">
+        <field name="name">fsm.route.form.inherit.availability</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Route Delivery Schedule">
+                    <group string="Default Schedule">
+                        <group>
+                            <field name="has_default_schedule" />
+                        </group>
+                    </group>
+                    <group invisible="not has_default_schedule">
+                        <group string="Default Hours">
+                            <field
+                                name="default_start_time"
+                                widget="float_time"
+                                required="has_default_schedule"
+                            />
+                            <field
+                                name="default_end_time"
+                                widget="float_time"
+                                required="has_default_schedule"
+                            />
+                            <field name="has_day_schedule" />
+                        </group>
+                    </group>
+                    <field
+                        name="default_schedule_line_ids"
+                        invisible="not has_default_schedule or not has_day_schedule"
+                        context="{'default_is_seasonal': False}"
+                    >
+                        <list editable="bottom">
+                            <field name="is_seasonal" column_invisible="1" />
+                            <field name="day_of_week" />
+                            <field name="start_time" widget="float_time" />
+                            <field name="end_time" widget="float_time" />
+                        </list>
+                    </field>
+
+                    <group string="Seasonal Schedule">
+                        <group>
+                            <field name="has_seasonal_schedule" />
+                        </group>
+                    </group>
+                    <group invisible="not has_seasonal_schedule">
+                        <group string="Season Window">
+                            <field
+                                name="seasonal_month_start"
+                                required="has_seasonal_schedule"
+                            />
+                            <field
+                                name="seasonal_day_start"
+                                required="has_seasonal_schedule"
+                            />
+                            <field
+                                name="seasonal_month_end"
+                                required="has_seasonal_schedule"
+                            />
+                            <field
+                                name="seasonal_day_end"
+                                required="has_seasonal_schedule"
+                            />
+                        </group>
+                        <group string="Seasonal Hours">
+                            <field
+                                name="seasonal_start_time"
+                                widget="float_time"
+                                required="has_seasonal_schedule"
+                            />
+                            <field
+                                name="seasonal_end_time"
+                                widget="float_time"
+                                required="has_seasonal_schedule"
+                            />
+                            <field name="has_seasonal_day_schedule" />
+                        </group>
+                    </group>
+                    <field
+                        name="seasonal_schedule_line_ids"
+                        invisible="not has_seasonal_schedule or not has_seasonal_day_schedule"
+                        context="{'default_is_seasonal': True}"
+                    >
+                        <list editable="bottom">
+                            <field name="is_seasonal" column_invisible="1" />
+                            <field name="day_of_week" />
+                            <field name="start_time" widget="float_time" />
+                            <field name="end_time" widget="float_time" />
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
