@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="relation_type_provides" model="fsm.equipment.relation.type">
+        <field name="name">Provides</field>
+        <field name="inverse_name">Provided by</field>
+        <field name="code">provides</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="relation_type_uses" model="fsm.equipment.relation.type">
+        <field name="name">Uses</field>
+        <field name="inverse_name">Used by</field>
+        <field name="code">uses</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="relation_type_depends_on" model="fsm.equipment.relation.type">
+        <field name="name">Depends on</field>
+        <field name="inverse_name">Required by</field>
+        <field name="code">depends_on</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="relation_type_connected_to" model="fsm.equipment.relation.type">
+        <field name="name">Connected to</field>
+        <field name="inverse_name">Connected to</field>
+        <field name="code">connected_to</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="relation_type_installed_on" model="fsm.equipment.relation.type">
+        <field name="name">Installed on</field>
+        <field name="inverse_name">Hosts</field>
+        <field name="code">installed_on</field>
+        <field name="sequence">50</field>
+    </record>
+</odoo>
