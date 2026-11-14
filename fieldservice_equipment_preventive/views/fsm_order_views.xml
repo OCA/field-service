@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_order_form" model="ir.ui.view">
+        <field name="name">fsm.order.form.preventive</field>
+        <field name="model">fsm.order</field>
+        <field
+            name="inherit_id"
+            ref="fieldservice_order_equipment_line.fsm_order_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='equipment_line_ids']/list/field[@name='equipment_id']"
+                position="after"
+            >
+                <field name="preventive_id" optional="hide" />
+                <field name="preventive_type_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
