@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Also show the timesheet lines that are not linked to a project -->
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="domain">[('user_id', '=', uid)]</field>
+    </record>
+    <!-- Overwrite User Record Rule-->
+    <record id="hr_timesheet.timesheet_line_rule_user" model="ir.rule">
+        <field name="active" eval="0" />
+    </record>
+</odoo>
