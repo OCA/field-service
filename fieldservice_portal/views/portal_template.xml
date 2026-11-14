@@ -30,7 +30,10 @@
         customize_show="True"
         priority="50"
     >
-        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True" />
+        </xpath>
+        <div id="portal_service_category" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t
                     t-set="icon"
@@ -41,6 +44,6 @@
                 <t t-set="url" t-value="'/my/fsm_orders'" />
                 <t t-set="placeholder_count" t-value="'fsm_order_count'" />
             </t>
-        </xpath>
+        </div>
     </template>
 </odoo>
