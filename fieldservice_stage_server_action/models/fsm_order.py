@@ -27,5 +27,6 @@ class FSMOrder(models.Model):
             ctx = {
                 "active_model": self._name,
                 "active_id": order.id,
+                "active_ids": [order.id],
             }
             action_id.with_context(**ctx).run()
