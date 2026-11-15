@@ -48,7 +48,7 @@
                                 </a>
                             </div>
                             <div class="col-3">
-                                <t t-esc="record.recurring_draft_count.value" />
+                                <t t-out="record.recurring_draft_count.value" />
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,6 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import WEEKLY, rrule
@@ -56,6 +55,29 @@ class FSMRecurringCase(TransactionCase):
             {"name": "Test Template"}
         )
         cls.test_equipment = cls.Equipment.create({"name": "Equipment"})
+
+    def test_rrule_keeps_local_time_across_dst(self):
+        rule = self.Frequency.create(
+            {"name": "Weekly", "interval": 1, "interval_type": "weekly"}
+        )
+        to_dt = fields.Datetime.to_datetime
+        # 15:00 in Brussels, before and after the 2022-03-27 clock change
+        dates = list(
+            rule._get_rrule(
+                dtstart=to_dt("2022-03-21 14:00:00"),
+                until=to_dt("2022-04-11 13:30:00"),
+                tz="Europe/Brussels",
+            )
+        )
+        self.assertEqual(
+            dates,
+            [
+                to_dt("2022-03-21 14:00:00"),
+                to_dt("2022-03-28 13:00:00"),
+                to_dt("2022-04-04 13:00:00"),
+                to_dt("2022-04-11 13:00:00"),
+            ],
+        )
 
     def test_fsm_recurring_change_states(self):
         recurring = self.Recurring.create(
@@ -186,8 +208,8 @@ class FSMRecurringCase(TransactionCase):
             }
         )
         # Create Recurring Order link to this rule set
-        expire_date = datetime.today() + relativedelta(days=-22)
-        expire_date1 = datetime.today() + relativedelta(days=+22)
+        expire_date = fields.Datetime.now() + relativedelta(days=-22)
+        expire_date1 = fields.Datetime.now() + relativedelta(days=+22)
         recurring = self.Recurring.create(
             {
                 "fsm_frequency_set_id": fr_set.id,

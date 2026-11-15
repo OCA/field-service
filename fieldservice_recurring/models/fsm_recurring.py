@@ -1,7 +1,6 @@
 # Copyright (C) 2019 Brian McMaster, Gray Matter Logic
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import rruleset
@@ -13,7 +12,7 @@ from odoo.fields import Domain
 class FSMRecurringOrder(models.Model):
     _name = "fsm.recurring"
     _description = "Recurring Field Service Order"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
 
     def _default_team_id(self):
         return self.env["fsm.team"].search(
@@ -43,9 +42,7 @@ class FSMRecurringOrder(models.Model):
         "fsm.recurring.template",
         "Recurring Template",
     )
-    location_id = fields.Many2one(
-        "fsm.location", string="Location", index=True, required=True
-    )
+    location_id = fields.Many2one("fsm.location", index=True, required=True)
     description = fields.Text()
     fsm_frequency_set_id = fields.Many2one(
         "fsm.frequency.set",
@@ -64,7 +61,7 @@ class FSMRecurringOrder(models.Model):
         help="This is the order template that will be recurring",
     )
     company_id = fields.Many2one(
-        "res.company", "Company", default=lambda self: self.env.company, required=True
+        "res.company", default=lambda self: self.env.company, required=True
     )
     fsm_order_ids = fields.One2many(
         "fsm.order", "fsm_recurring_id", string="Orders", copy=False
@@ -72,7 +69,6 @@ class FSMRecurringOrder(models.Model):
     fsm_order_count = fields.Integer("Orders Count", compute="_compute_order_count")
     team_id = fields.Many2one(
         "fsm.team",
-        string="Team",
         default=lambda self: self._default_team_id(),
         index=True,
         required=True,
@@ -133,7 +129,7 @@ class FSMRecurringOrder(models.Model):
     def action_start(self):
         for rec in self:
             if not rec.start_date:
-                rec.start_date = datetime.now()
+                rec.start_date = fields.Datetime.now()
             rec.write({"state": "progress"})
             rec._generate_orders()
 
@@ -160,7 +156,7 @@ class FSMRecurringOrder(models.Model):
     def _get_thru_date(self):
         """Get thru_date to use as rrule 'until' parameter"""
         days_ahead = self.fsm_frequency_set_id.schedule_days
-        request_thru_date = datetime.now() + relativedelta(days=+days_ahead)
+        request_thru_date = fields.Datetime.now() + relativedelta(days=+days_ahead)
         if self.end_date and (self.end_date < request_thru_date):
             thru_date = self.end_date
         else:
@@ -185,7 +181,7 @@ class FSMRecurringOrder(models.Model):
 
     def _prepare_order_values(self, date=None):
         self.ensure_one()
-        schedule_date = date if date else datetime.now()
+        schedule_date = date if date else fields.Datetime.now()
         days_early = self.fsm_frequency_set_id.buffer_early
         earliest_date = schedule_date + relativedelta(days=-days_early)
         scheduled_duration = (
@@ -261,7 +257,7 @@ class FSMRecurringOrder(models.Model):
             domain=Domain("state", "=", "progress")
         )
         for rec in open_rec:
-            if rec.end_date and rec.end_date <= datetime.today():
+            if rec.end_date and rec.end_date <= fields.Datetime.now():
                 to_close += rec
                 continue
             if rec.max_orders > 0 and rec.fsm_order_count >= rec.max_orders:

@@ -21,4 +21,4 @@ class FSMRecurringTemplate(models.Model):
         string="Order Template",
         help="This is the order template that will be recurring",
     )
-    company_id = fields.Many2one("res.company", "Company")
+    company_id = fields.Many2one("res.company")

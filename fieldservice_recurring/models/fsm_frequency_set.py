@@ -9,7 +9,7 @@ from odoo import fields, models
 class FSMFrequencySet(models.Model):
     _name = "fsm.frequency.set"
     _description = "Frequency Rule Set for Field Service Orders"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread"]  # noqa: RUF012
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)

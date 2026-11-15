@@ -4,7 +4,7 @@
 {
     "name": "Field Service Recurring Work Orders",
     "summary": "Manage recurring Field Service orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Brian McMaster, Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -12,8 +12,7 @@
     "data": [
         "data/ir_sequence.xml",
         "security/res_groups.xml",
-        "security/ir.model.access.csv",
-        "security/recurring_security.xml",
+        "security/ir.access.csv",
         "views/fsm_frequency.xml",
         "views/fsm_frequency_set.xml",
         "views/fsm_order.xml",
