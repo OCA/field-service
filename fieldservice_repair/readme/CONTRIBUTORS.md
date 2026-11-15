@@ -1,0 +1,8 @@
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<maxime.chambreuil@graymatterlogic.com\>
+- Sandip Mangukiya \<smangukiya@graymatterlogic.com\>
+- Serpent Consulting Services Pvt. Ltd. \<support@serpentcs.com\>
+- Marcel Savegnago - Escodoo \<marcel.savegnago@escodoo.com.br\>
+- Freni Patel \<fpatel@graymatterlogic.com\>
+- Italo LOPES \<italo.lopes@camptocamp.com\>
+- Iván Todorovich \<ivan.todorovich@camptocamp.com\>
