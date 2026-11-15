@@ -8,6 +8,11 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestFSMSkill(BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "fieldservice.group_fsm_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
