@@ -74,14 +74,16 @@
                                         name="action_complete"
                                         string="Complete order"
                                         type="object"
-                                        icon="fa-check text-success"
+                                        icon="check"
+                                        icon_class="text-success"
                                         invisible="stage_id in [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]"
                                     />
                                     <button
                                         name="action_cancel"
                                         string="Cancel order"
                                         type="object"
-                                        icon="fa-times-circle text-danger"
+                                        icon="cancel"
+                                        icon_class="text-danger"
                                         invisible="stage_id in [%(fieldservice.fsm_stage_completed)d, %(fieldservice.fsm_stage_cancelled)d]"
                                     />
                                 </list>
@@ -128,7 +130,6 @@
             <calendar
                 string="Day Routes"
                 date_start="date_start_planned"
-                date_delay="max_allow_time"
                 color="route_id"
             >
                 <field name="name" />

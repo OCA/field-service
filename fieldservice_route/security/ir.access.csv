@@ -1,0 +1,8 @@
+id,name,model_id,group_id/id,operation,domain
+access_fsm_route_dispatcher,fsm.route.dispatcher,fsm.route,fieldservice.group_fsm_dispatcher,crud,
+access_fsm_route_user,fsm.route.user,fsm.route,fieldservice.group_fsm_user,r,
+access_fsm_route_day_dispatcher,fsm.route.day.dispatcher,fsm.route.day,fieldservice.group_fsm_manager,ru,
+access_fsm_route_day_user,fsm.route.day.user,fsm.route.day,fieldservice.group_fsm_user,r,
+fsm_route_dayroute_portal_rule,FSM Route DayRoutes Entry (portal own),fsm.route.dayroute,base.group_portal,r,"[('person_id.partner_id', '=', user.partner_id.id)]"
+access_fsm_route_dayroute_dispatcher,fsm.route.dayroute.dispatcher,fsm.route.dayroute,fieldservice.group_fsm_dispatcher,crud,
+access_fsm_route_dayroute_user,fsm.route.dayroute.user,fsm.route.dayroute,fieldservice.group_fsm_user,cru,

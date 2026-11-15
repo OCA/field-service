@@ -5,7 +5,7 @@
 {
     "name": "Field Service Route",
     "summary": "Organize the routes of each day.",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "license": "AGPL-3",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
@@ -15,8 +15,7 @@
         "data/ir_sequence.xml",
         "data/fsm_route_day_data.xml",
         "data/fsm_stage_data.xml",
-        "security/ir_rule.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/fsm_route_day.xml",
         "views/fsm_route.xml",
         "views/fsm_location.xml",

@@ -4,6 +4,7 @@
 
 from datetime import datetime, timedelta
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 
 from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
@@ -28,7 +29,7 @@ class TestFSMRoute(FSMCommon):
         )
 
     def _next_weekday(self, weekday):
-        date = datetime.now().date()
+        date = fields.Date.today()
         while date.weekday() != weekday:
             date += timedelta(days=1)
         return date

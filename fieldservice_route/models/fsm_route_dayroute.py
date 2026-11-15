@@ -1,22 +1,21 @@
 # Copyright (C) 2026 Gray Matter Logic
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import datetime, time, timedelta
-
-from pytz import timezone, utc
+from datetime import UTC, datetime, time, timedelta
+from zoneinfo import ZoneInfo
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 _CALENDAR_DEPENDS = (
-    "tz",
-    "two_weeks_calendar",
+    "company_id.tz",
     "attendance_ids.hour_from",
     "attendance_ids.hour_to",
     "attendance_ids.dayofweek",
-    "attendance_ids.week_type",
     "attendance_ids.day_period",
-    "attendance_ids.display_type",
+    "attendance_ids.date",
+    "attendance_ids.duration_based",
+    "attendance_ids.duration_hours",
 )
 
 
@@ -33,21 +32,18 @@ class FSMRouteDayRoute(models.Model):
     )
     person_id = fields.Many2one(
         comodel_name="fsm.person",
-        string="Person",
         compute="_compute_person_id",
         store=True,
         readonly=False,
     )
-    route_id = fields.Many2one(comodel_name="fsm.route", string="Route")
+    route_id = fields.Many2one(comodel_name="fsm.route")
     date = fields.Date(required=True)
     team_id = fields.Many2one(
         comodel_name="fsm.team",
-        string="Team",
         default=lambda self: self._default_team_id(),
     )
     stage_id = fields.Many2one(
         comodel_name="fsm.stage",
-        string="Stage",
         domain="[('stage_type', '=', 'route')]",
         index=True,
         copy=False,
@@ -55,21 +51,15 @@ class FSMRouteDayRoute(models.Model):
     )
     longitude = fields.Float()
     latitude = fields.Float()
-    last_location_id = fields.Many2one(
-        comodel_name="fsm.location", string="Last Location"
-    )
+    last_location_id = fields.Many2one(comodel_name="fsm.location")
     date_start_planned = fields.Datetime(
         string="Planned Start Time",
         compute="_compute_date_start_planned",
         store=True,
         readonly=False,
     )
-    start_location_id = fields.Many2one(
-        comodel_name="fsm.location", string="Start Location"
-    )
-    end_location_id = fields.Many2one(
-        comodel_name="fsm.location", string="End Location"
-    )
+    start_location_id = fields.Many2one(comodel_name="fsm.location")
+    end_location_id = fields.Many2one(comodel_name="fsm.location")
     work_time = fields.Float(string="Time before overtime (in hours)", default=8.0)
     max_allow_time = fields.Float(
         string="Maximal Allowable Time (in hours)", default=10.0
@@ -115,15 +105,15 @@ class FSMRouteDayRoute(models.Model):
         calendar = (person and person.calendar_id) or company.resource_calendar_id
         tz_name = (
             (person and person.partner_id.tz)
-            or (calendar and calendar.tz)
+            or (calendar and calendar.company_id.tz)
             or self.env.user.tz
             or "UTC"
         )
-        tzinfo = timezone(tz_name)
-        day_start = tzinfo.localize(datetime.combine(route_date, time.min))
+        tzinfo = ZoneInfo(tz_name)
+        day_start = datetime.combine(route_date, time.min, tzinfo=tzinfo)
         # Localize next midnight so DST transitions get the correct offset.
-        day_end = tzinfo.localize(
-            datetime.combine(route_date + timedelta(days=1), time.min)
+        day_end = datetime.combine(
+            route_date + timedelta(days=1), time.min, tzinfo=tzinfo
         )
         if calendar:
             work_time = calendar._get_closest_work_time(
@@ -133,9 +123,9 @@ class FSMRouteDayRoute(models.Model):
                 compute_leaves=False,
             )
             if work_time:
-                return work_time.astimezone(utc).replace(tzinfo=None)
-        fallback = tzinfo.localize(datetime.combine(route_date, time(8, 0)))
-        return fallback.astimezone(utc).replace(tzinfo=None)
+                return work_time.astimezone(UTC).replace(tzinfo=None)
+        fallback = datetime.combine(route_date, time(8, 0), tzinfo=tzinfo)
+        return fallback.astimezone(UTC).replace(tzinfo=None)
 
     @api.depends("route_id", "route_id.max_order", "max_order", "order_ids")
     def _compute_order_count(self):

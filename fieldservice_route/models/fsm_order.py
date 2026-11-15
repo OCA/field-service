@@ -1,9 +1,8 @@
 # Copyright (C) 2026 Gray Matter Logic
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import datetime, time, timedelta
-
-from pytz import timezone, utc
+from datetime import UTC, datetime, time, timedelta
+from zoneinfo import ZoneInfo
 
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
@@ -104,10 +103,14 @@ class FSMOrder(models.Model):
         route_person = route.fsm_person_id if route else self.env["fsm.person"]
         return (
             (person.partner_id.tz if person else False)
-            or (person.calendar_id.tz if person and person.calendar_id else False)
+            or (
+                person.calendar_id.company_id.tz
+                if person and person.calendar_id
+                else False
+            )
             or (route_person.partner_id.tz if route_person else False)
             or (
-                route_person.calendar_id.tz
+                route_person.calendar_id.company_id.tz
                 if route_person and route_person.calendar_id
                 else False
             )
@@ -122,18 +125,20 @@ class FSMOrder(models.Model):
         start = fields.Datetime.to_datetime(scheduled_start)
         if not start:
             return False
-        tzinfo = timezone(self._tz_name_for_route_day(person=person, route=route))
-        return utc.localize(start).astimezone(tzinfo).date()
+        tzinfo = ZoneInfo(self._tz_name_for_route_day(person=person, route=route))
+        return start.replace(tzinfo=UTC).astimezone(tzinfo).date()
 
     def _scheduled_start_on_dayroute_date(self, current_start, dayroute, person=None):
         """Move a UTC-naive start onto the dayroute date in the worker timezone."""
         person = person or dayroute.person_id
-        tzinfo = timezone(
+        tzinfo = ZoneInfo(
             self._tz_name_for_route_day(person=person, route=dayroute.route_id)
         )
         if current_start:
-            local = utc.localize(fields.Datetime.to_datetime(current_start)).astimezone(
-                tzinfo
+            local = (
+                fields.Datetime.to_datetime(current_start)
+                .replace(tzinfo=UTC)
+                .astimezone(tzinfo)
             )
             # Re-localize on the target date so DST offset is recalculated.
             naive_local = local.replace(tzinfo=None).replace(
@@ -141,11 +146,13 @@ class FSMOrder(models.Model):
                 month=dayroute.date.month,
                 day=dayroute.date.day,
             )
-            return tzinfo.localize(naive_local).astimezone(utc).replace(tzinfo=None)
+            return (
+                naive_local.replace(tzinfo=tzinfo).astimezone(UTC).replace(tzinfo=None)
+            )
         if dayroute.date_start_planned:
             return dayroute.date_start_planned
-        local = tzinfo.localize(datetime.combine(dayroute.date, time(8, 0)))
-        return local.astimezone(utc).replace(tzinfo=None)
+        local = datetime.combine(dayroute.date, time(8, 0), tzinfo=tzinfo)
+        return local.astimezone(UTC).replace(tzinfo=None)
 
     def _capture_duration_from_start_end(self, write_vals):
         """Store duration from supplied start/end before the start date is moved."""

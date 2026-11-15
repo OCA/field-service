@@ -2,11 +2,11 @@
 # Copyright (C) 2019 Serpent consulting Services
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, time, timedelta
+from datetime import UTC, date, datetime, time, timedelta
 from unittest.mock import patch
+from zoneinfo import ZoneInfo
 
-from pytz import timezone, utc
-
+from odoo import fields
 from odoo.exceptions import AccessError, ValidationError
 from odoo.tools import mute_logger
 
@@ -31,7 +31,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         )
 
     def _next_weekday(self, weekday):
-        date = datetime.now().date()
+        date = fields.Date.today()
         while date.weekday() != weekday:
             date += timedelta(days=1)
         return date
@@ -91,7 +91,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         route_date = self._next_weekday(0)
         self.test_person.partner_id.tz = False
         self.test_person.calendar_id = False
-        self.env.company.resource_calendar_id.tz = "UTC"
+        self.env.company.tz = "UTC"
         planned = self.DayRoute._planned_start_from_date(
             route_date,
             person=self.test_person,
@@ -106,7 +106,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         calendar = self.env.company.resource_calendar_id
         with (
             patch.object(type(calendar), "_get_closest_work_time", return_value=None),
-            patch.object(type(calendar), "tz", False),
+            patch.object(type(self.env.company), "tz", False),
             patch.object(type(self.env.user), "tz", False),
         ):
             planned = self.DayRoute._planned_start_from_date(
@@ -137,10 +137,10 @@ class TestFSMRouteDayRoute(FSMCommon):
 
     def test_planned_start_without_work_interval(self):
         route_date = self._next_weekday(0)
+        self.env.company.tz = "UTC"
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "No Attendance",
-                "tz": "UTC",
                 "attendance_ids": [],
             }
         )
@@ -235,21 +235,18 @@ class TestFSMRouteDayRoute(FSMCommon):
         with self.assertRaises(AccessError):
             own_dayroute.with_user(portal_user).write({"name": "Portal edit"})
 
-    def test_planned_start_recomputes_on_two_week_calendar(self):
+    def test_planned_start_recomputes_on_attendance_change(self):
         route_date = self._next_weekday(0)
+        self.env.company.tz = "UTC"
         calendar = self.env["resource.calendar"].create(
             {
-                "name": "Two Week Shift",
-                "tz": "UTC",
-                "two_weeks_calendar": True,
+                "name": "Monday Shift",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Week 1 Monday",
                             "dayofweek": "0",
-                            "week_type": "0",
                             "hour_from": 7.0,
                             "hour_to": 15.0,
                             "day_period": "morning",
@@ -266,22 +263,23 @@ class TestFSMRouteDayRoute(FSMCommon):
             }
         )
         before = dayroute.date_start_planned
-        calendar.attendance_ids.write({"week_type": "1"})
+        calendar.attendance_ids.write({"hour_from": 9.0})
         self.assertNotEqual(dayroute.date_start_planned, before)
 
     def test_planned_start_uses_team_company_calendar(self):
         route_date = self._next_weekday(0)
-        other_company = self.env["res.company"].create({"name": "Other Company"})
+        other_company = self.env["res.company"].create(
+            {"name": "Other Company", "tz": "UTC"}
+        )
         other_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Other Company Calendar",
-                "tz": "UTC",
+                "company_id": other_company.id,
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Other Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 5.0,
                             "hour_to": 13.0,
@@ -359,17 +357,18 @@ class TestFSMRouteDayRoute(FSMCommon):
 
     def test_create_without_team_uses_default_team_calendar(self):
         route_date = self._next_weekday(0)
-        other_company = self.env["res.company"].create({"name": "Default Team Co"})
+        other_company = self.env["res.company"].create(
+            {"name": "Default Team Co", "tz": "UTC"}
+        )
         other_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Default Team Calendar",
-                "tz": "UTC",
+                "company_id": other_company.id,
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Early",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 4.0,
                             "hour_to": 12.0,
@@ -498,21 +497,20 @@ class TestFSMRouteDayRoute(FSMCommon):
     def _assert_planned_start_search_range_uses_local_midnights(
         self, route_date, tz_name
     ):
-        tzinfo = timezone(tz_name)
-        expected_start = tzinfo.localize(datetime.combine(route_date, time.min))
-        expected_end = tzinfo.localize(
-            datetime.combine(route_date + timedelta(days=1), time.min)
-        )
+        tzinfo = ZoneInfo(tz_name)
+        expected_start = datetime.combine(route_date, time.min).replace(tzinfo=tzinfo)
+        expected_end = datetime.combine(
+            route_date + timedelta(days=1), time.min
+        ).replace(tzinfo=tzinfo)
+        self.env.company.tz = tz_name
         calendar = self.env["resource.calendar"].create(
             {
                 "name": f"DST {tz_name} {route_date}",
-                "tz": tz_name,
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 9.0,
                             "hour_to": 17.0,
@@ -526,7 +524,7 @@ class TestFSMRouteDayRoute(FSMCommon):
         self.test_person.calendar_id = calendar
         captured = {}
 
-        work_time = tzinfo.localize(datetime.combine(route_date, time(9, 0)))
+        work_time = datetime.combine(route_date, time(9, 0)).replace(tzinfo=tzinfo)
 
         def _capture_closest_work_time(
             _self, start, match_end=False, search_range=None, compute_leaves=True
@@ -546,16 +544,16 @@ class TestFSMRouteDayRoute(FSMCommon):
                 route=self.route,
             )
         self.assertEqual(captured["search_range"], (expected_start, expected_end))
-        self.assertEqual(planned, work_time.astimezone(utc).replace(tzinfo=None))
+        self.assertEqual(planned, work_time.astimezone(UTC).replace(tzinfo=None))
 
     def test_planned_start_search_range_spring_forward_dst(self):
-        # US/Eastern spring forward 2026-03-08 (EST -> EDT).
+        # America/New_York spring forward 2026-03-08 (EST -> EDT).
         self._assert_planned_start_search_range_uses_local_midnights(
-            datetime(2026, 3, 8).date(), "US/Eastern"
+            date(2026, 3, 8), "America/New_York"
         )
 
     def test_planned_start_search_range_fall_back_dst(self):
-        # US/Eastern fall back 2026-11-01 (EDT -> EST).
+        # America/New_York fall back 2026-11-01 (EDT -> EST).
         self._assert_planned_start_search_range_uses_local_midnights(
-            datetime(2026, 11, 1).date(), "US/Eastern"
+            date(2026, 11, 1), "America/New_York"
         )

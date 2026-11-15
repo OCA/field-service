@@ -3,10 +3,10 @@
 # Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
+from zoneinfo import ZoneInfo
 
-from pytz import timezone, utc
-
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -20,7 +20,7 @@ class TestFSMOrderRoute(FSMCommon):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.fsm_route_obj = cls.env["fsm.route"]
-        date = datetime.now()
+        date = fields.Datetime.now()
         cls.date = date.replace(microsecond=0)
         cls.days = [
             cls.env.ref("fieldservice_route.fsm_route_day_0").id,
@@ -57,13 +57,11 @@ class TestFSMOrderRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "Early Shift",
-                "tz": "US/Eastern",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 6.0,
                             "hour_to": 14.0,
@@ -73,7 +71,7 @@ class TestFSMOrderRoute(FSMCommon):
                 ],
             }
         )
-        self.test_person.partner_id.tz = "US/Eastern"
+        self.test_person.partner_id.tz = "America/New_York"
         self.test_person.calendar_id = calendar
         dayroute = self.env["fsm.route.dayroute"].create(
             {
@@ -81,8 +79,8 @@ class TestFSMOrderRoute(FSMCommon):
                 "date": route_date,
             }
         )
-        actual_local = utc.localize(dayroute.date_start_planned).astimezone(
-            timezone("US/Eastern")
+        actual_local = dayroute.date_start_planned.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("America/New_York")
         )
         self.assertEqual(actual_local.hour, 6)
         self.assertEqual(actual_local.minute, 0)
@@ -92,13 +90,11 @@ class TestFSMOrderRoute(FSMCommon):
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "Morning Shift",
-                "tz": "US/Eastern",
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Shift",
                             "dayofweek": str(route_date.weekday()),
                             "hour_from": 7.0,
                             "hour_to": 15.0,
@@ -108,7 +104,7 @@ class TestFSMOrderRoute(FSMCommon):
                 ],
             }
         )
-        self.test_person.partner_id.tz = "US/Eastern"
+        self.test_person.partner_id.tz = "America/New_York"
         self.test_person.calendar_id = calendar
         dayroute = self.env["fsm.route.dayroute"].create(
             {
@@ -116,13 +112,13 @@ class TestFSMOrderRoute(FSMCommon):
                 "date": route_date,
             }
         )
-        before = utc.localize(dayroute.date_start_planned).astimezone(
-            timezone("US/Eastern")
+        before = dayroute.date_start_planned.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("America/New_York")
         )
         self.assertEqual(before.hour, 7)
         calendar.attendance_ids.write({"hour_from": 9.0})
-        after = utc.localize(dayroute.date_start_planned).astimezone(
-            timezone("US/Eastern")
+        after = dayroute.date_start_planned.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("America/New_York")
         )
         self.assertEqual(after.hour, 9)
 
@@ -131,20 +127,19 @@ class TestFSMOrderRoute(FSMCommon):
         empty_calendar = self.env["resource.calendar"].create(
             {
                 "name": "Empty Schedule",
-                "tz": "US/Eastern",
                 "attendance_ids": [],
             }
         )
         self.test_person.calendar_id = empty_calendar
-        self.test_person.partner_id.tz = "US/Eastern"
+        self.test_person.partner_id.tz = "America/New_York"
         dayroute = self.env["fsm.route.dayroute"].create(
             {
                 "route_id": self.fsm_route_id.id,
                 "date": route_date,
             }
         )
-        actual_local = utc.localize(dayroute.date_start_planned).astimezone(
-            timezone("US/Eastern")
+        actual_local = dayroute.date_start_planned.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("America/New_York")
         )
         self.assertEqual(actual_local.hour, 8)
         self.assertEqual(actual_local.minute, 0)
@@ -520,8 +515,8 @@ class TestFSMOrderRoute(FSMCommon):
             }
         )
         old_dayroute = order.dayroute_id
-        original_local = utc.localize(order.scheduled_date_start).astimezone(
-            timezone("UTC")
+        original_local = order.scheduled_date_start.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("UTC")
         )
         new_date = self.date + timedelta(days=7)
         while new_date.weekday() > 4:
@@ -534,8 +529,8 @@ class TestFSMOrderRoute(FSMCommon):
         )
         order.write({"dayroute_id": new_dayroute.id})
         self.assertEqual(order.dayroute_id, new_dayroute)
-        local_after = utc.localize(order.scheduled_date_start).astimezone(
-            timezone("UTC")
+        local_after = order.scheduled_date_start.replace(tzinfo=UTC).astimezone(
+            ZoneInfo("UTC")
         )
         self.assertEqual(local_after.date(), new_dayroute.date)
         self.assertEqual(local_after.time(), original_local.time())
@@ -855,12 +850,10 @@ class TestFSMOrderRoute(FSMCommon):
         route_date = self.date.date()
         while route_date.weekday() != 1:
             route_date += timedelta(days=1)
-        local_start = timezone("America/Toronto").localize(
-            datetime.combine(
-                route_date, datetime.min.time().replace(hour=23, minute=30)
-            )
-        )
-        utc_start = local_start.astimezone(utc).replace(tzinfo=None)
+        local_start = datetime.combine(
+            route_date, datetime.min.time().replace(hour=23, minute=30)
+        ).replace(tzinfo=ZoneInfo("America/Toronto"))
+        utc_start = local_start.astimezone(UTC).replace(tzinfo=None)
         self.assertNotEqual(utc_start.date(), route_date)
         order = self.env["fsm.order"].create(
             {
@@ -952,13 +945,13 @@ class TestFSMOrderRoute(FSMCommon):
 
     def test_dayroute_move_preserves_local_time_across_dst(self):
         self.test_person.partner_id.tz = "America/Toronto"
-        tzinfo = timezone("America/Toronto")
-        july_date = datetime(2026, 7, 14).date()
-        january_date = datetime(2026, 1, 13).date()
-        local_start = tzinfo.localize(
-            datetime.combine(july_date, datetime.min.time().replace(hour=10))
-        )
-        utc_start = local_start.astimezone(utc).replace(tzinfo=None)
+        tzinfo = ZoneInfo("America/Toronto")
+        july_date = date(2026, 7, 14)
+        january_date = date(2026, 1, 13)
+        local_start = datetime.combine(
+            july_date, datetime.min.time().replace(hour=10)
+        ).replace(tzinfo=tzinfo)
+        utc_start = local_start.astimezone(UTC).replace(tzinfo=None)
         order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
@@ -974,11 +967,11 @@ class TestFSMOrderRoute(FSMCommon):
             }
         )
         order.write({"dayroute_id": january_dayroute.id})
-        local_after = utc.localize(order.scheduled_date_start).astimezone(tzinfo)
+        local_after = order.scheduled_date_start.replace(tzinfo=UTC).astimezone(tzinfo)
         self.assertEqual(local_after.date(), january_date)
         self.assertEqual(local_after.hour, 10)
         self.assertEqual(order.scheduled_duration, 2.0)
-        local_end = utc.localize(order.scheduled_date_end).astimezone(tzinfo)
+        local_end = order.scheduled_date_end.replace(tzinfo=UTC).astimezone(tzinfo)
         self.assertEqual(local_end.hour, 12)
 
     def test_reject_routed_order_on_routeless_dayroute(self):
@@ -1027,10 +1020,10 @@ class TestFSMOrderRoute(FSMCommon):
         tuesday = self.date.date()
         while tuesday.weekday() != 1:
             tuesday += timedelta(days=1)
-        local_start = timezone("America/Toronto").localize(
-            datetime.combine(tuesday, datetime.min.time().replace(hour=0, minute=30))
-        )
-        utc_start = local_start.astimezone(utc).replace(tzinfo=None)
+        local_start = datetime.combine(
+            tuesday, datetime.min.time().replace(hour=0, minute=30)
+        ).replace(tzinfo=ZoneInfo("America/Toronto"))
+        utc_start = local_start.astimezone(UTC).replace(tzinfo=None)
         order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
@@ -1054,7 +1047,7 @@ class TestFSMOrderRoute(FSMCommon):
 
     def test_write_dayroute_with_duration_keeps_positive_end(self):
         self.test_person.partner_id.tz = "UTC"
-        start = datetime(2026, 1, 15, 9, 0, 0)
+        start = fields.Datetime.to_datetime("2026-01-15 09:00:00")
         order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
@@ -1066,7 +1059,7 @@ class TestFSMOrderRoute(FSMCommon):
         new_dayroute = self.env["fsm.route.dayroute"].create(
             {
                 "route_id": self.fsm_route_id.id,
-                "date": datetime(2026, 1, 22).date(),
+                "date": date(2026, 1, 22),
             }
         )
         order.write(
@@ -1084,7 +1077,7 @@ class TestFSMOrderRoute(FSMCommon):
 
     def test_write_dayroute_keeps_end_aligned_with_duration(self):
         self.test_person.partner_id.tz = "UTC"
-        start = datetime(2026, 1, 15, 9, 0, 0)
+        start = fields.Datetime.to_datetime("2026-01-15 09:00:00")
         order = self.env["fsm.order"].create(
             {
                 "location_id": self.test_location.id,
@@ -1097,7 +1090,7 @@ class TestFSMOrderRoute(FSMCommon):
         new_dayroute = self.env["fsm.route.dayroute"].create(
             {
                 "route_id": self.fsm_route_id.id,
-                "date": datetime(2026, 1, 22).date(),
+                "date": date(2026, 1, 22),
             }
         )
         order.write({"dayroute_id": new_dayroute.id})
@@ -1504,12 +1497,15 @@ class TestFSMOrderRoute(FSMCommon):
             self.env.user.tz = old_tz
 
     def test_tz_name_uses_worker_calendar_before_user(self):
-        """Partner without tz must use the worker calendar tz, not the user."""
+        """Partner without tz must use the worker calendar company tz, not the user."""
         order = self.env["fsm.order"].new({})
+        la_company = self.env["res.company"].create(
+            {"name": "LA Company", "tz": "America/Los_Angeles"}
+        )
         calendar = self.env["resource.calendar"].create(
             {
                 "name": "LA Calendar",
-                "tz": "America/Los_Angeles",
+                "company_id": la_company.id,
             }
         )
         person = self.env["fsm.person"].create({"name": "Calendar TZ Worker"})
@@ -1525,12 +1521,12 @@ class TestFSMOrderRoute(FSMCommon):
                 "America/Los_Angeles",
             )
             # Near midnight: UTC morning is still the previous day in LA.
-            utc_start = datetime(2026, 7, 28, 2, 0, 0)
+            utc_start = fields.Datetime.to_datetime("2026-07-28 02:00:00")
             self.assertEqual(
                 order._local_date_from_scheduled_start(
                     utc_start, person=person, route=self.env["fsm.route"]
                 ),
-                datetime(2026, 7, 27).date(),
+                date(2026, 7, 27),
             )
         finally:
             self.env.user.tz = old_tz
@@ -1596,17 +1592,18 @@ class TestFSMOrderRoute(FSMCommon):
     def test_dayroute_uses_order_team_not_active_company(self):
         """Scheduling a Company B order must not reuse Company A's day route."""
         company_a = self.env.company
-        company_b = self.env["res.company"].create({"name": "Route Company B"})
+        company_b = self.env["res.company"].create(
+            {"name": "Route Company B", "tz": "UTC"}
+        )
         calendar_b = self.env["resource.calendar"].create(
             {
                 "name": "Company B Calendar",
-                "tz": "UTC",
+                "company_id": company_b.id,
                 "attendance_ids": [
                     (
                         0,
                         0,
                         {
-                            "name": "Early Shift",
                             "dayofweek": str(self.date.weekday()),
                             "hour_from": 5.0,
                             "hour_to": 13.0,
