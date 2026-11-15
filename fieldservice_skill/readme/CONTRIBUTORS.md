@@ -1,0 +1,11 @@
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
+- Wolfgang Hall \<whall@graymatterlogic.com\>
+- Maxime Chambreuil \<maxime.chambreuil@graymatterlogic.com\>
+- Steve Campbell \<scampbell@graymatterlogic.com\>
+- Serpent Consulting Services Pvt. Ltd. \<support@serpentcs.com\>
+- Brian McMaster \<brian@mcmpest.com\>
+- [Tecnativa](https://www.tecnativa.com):
+  - Stefan Ungureanu
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
