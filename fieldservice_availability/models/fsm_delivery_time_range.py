@@ -15,7 +15,6 @@ class FSMDeliveryTimeRange(models.Model):
     end_time = fields.Float(required=True)
     route_id = fields.Many2one(
         "fsm.route",
-        string="Route",
         help="Specific route this time range applies to. "
         "Leave empty for global time ranges.",
     )

@@ -3,7 +3,7 @@
 
 {
     "name": "Fieldservice Availability",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "summary": "Provides models for defining blackout days, stress days, "
     "and delivery time ranges for FSM availability management.",
     "category": "Field Service",
@@ -15,7 +15,7 @@
     "installable": True,
     "depends": ["fieldservice_route"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/fsm_blackout_day_templates.xml",
         "views/fsm_delivery_time_range_templates.xml",
         "views/fsm_stress_day_templates.xml",

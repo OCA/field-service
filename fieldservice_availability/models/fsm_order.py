@@ -18,8 +18,9 @@ class FSMRoute(models.Model):
                 order.fsm_route_id.fsm_blackout_group_ids.fsm_blackout_day_ids
             )
             match = blackout_days.filtered(
-                lambda x, d=order_date, z=order_zip: x.date == d
-                and (not x.zip or x.zip == z)
+                lambda x, d=order_date, z=order_zip: (
+                    x.date == d and (not x.zip or x.zip == z)
+                )
             )
             if match:
                 raise ValidationError(
