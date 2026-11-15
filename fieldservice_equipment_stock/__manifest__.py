@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Stock Equipment",
     "summary": "Integrate stock operations with your field service equipments",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Gray Matter Logic, Brian McMaster, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
@@ -12,7 +12,7 @@
         "fieldservice_stock",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/fsm_equipment.xml",
         "views/product_template.xml",
         "views/stock_picking_type.xml",

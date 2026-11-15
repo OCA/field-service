@@ -23,7 +23,6 @@ class TestStockMove(TransactionCase):
                 "uom_id": self.uom_unit.id,
                 "type": "consu",
                 "is_storable": True,
-                "tracking": "none",
             }
         )
 
@@ -34,7 +33,6 @@ class TestStockMove(TransactionCase):
                 "standard_price": 1,
                 "type": "consu",
                 "is_storable": True,
-                "tracking": "none",
                 "uom_id": self.uom_unit.id,
                 "default_code": "A",
                 "product_tmpl_id": templateAB.id,
@@ -47,7 +45,7 @@ class TestStockMove(TransactionCase):
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
                 "product_id": productA.id,
-                "product_uom": productA.uom_id.id,
+                "uom_id": productA.uom_id.id,
                 "product_uom_qty": 2,
             }
         )
