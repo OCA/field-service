@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.oppor.inherited.fsm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='lead_partner']/field[@name='partner_id'][2]"
+                position="after"
+            >
+                <field
+                    name="fsm_location_id"
+                    context="{'default_owner_id': partner_id}"
+                    invisible="type == 'lead' and probability == 0"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
