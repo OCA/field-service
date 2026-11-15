@@ -7,7 +7,7 @@ from odoo import Command, fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import DISABLED_MAIL_CREATE_CONTEXT
 from odoo.addons.fieldservice.tests.test_fsm_common import FSMCommon
 
 
@@ -15,7 +15,7 @@ class TestFSMRepairCommon(FSMCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CREATE_CONTEXT))
         cls.stock_location = cls.env.ref("stock.stock_location_customers")
         cls.repair_type = cls.env.ref("fieldservice_repair.fsm_order_type_repair")
         cls.fsm_type = cls.env["fsm.order.type"].create(
@@ -98,7 +98,7 @@ class TestFSMRepairCommon(FSMCommon):
         self.assertEqual(repair_order.state, "draft")
         self.assertEqual(repair_order.name, f"{order.name} - {self.equipment_1.name}")
         self.assertEqual(repair_order.product_id, self.equipment_1.product_id)
-        self.assertEqual(repair_order.product_uom, self.equipment_1.product_id.uom_id)
+        self.assertEqual(repair_order.uom_id, self.equipment_1.product_id.uom_id)
         self.assertEqual(repair_order.location_id, self.stock_location)
         self.assertEqual(repair_order.lot_id, self.equipment_1.lot_id)
         self.assertEqual(repair_order.product_qty, 1)

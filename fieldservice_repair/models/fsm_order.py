@@ -50,7 +50,7 @@ class FSMOrder(models.Model):
         return {
             "name": f"{self.name} - {equipment.name}",
             "product_id": equipment.product_id.id,
-            "product_uom": equipment.product_id.uom_id.id,
+            "uom_id": equipment.product_id.uom_id.id,
             "location_id": equipment.current_stock_location_id.id,
             "lot_id": equipment.lot_id.id,
             "product_qty": 1,
