@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="portal_breadcrumbs"
@@ -23,24 +23,15 @@
         </xpath>
     </template>
 
-    <template
-        id="portal_my_home_fsm_order"
-        name="Portal My Home : fsm order entries"
-        inherit_id="portal.portal_my_home"
-        customize_show="True"
-        priority="50"
-    >
-        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-call="portal.portal_docs_entry">
-                <t
-                    t-set="icon"
-                    t-value="'/fieldservice_portal/static/src/img/fsmorder.svg'"
-                />
-                <t t-set="title">FSM Orders</t>
-                <t t-set="text">View your fieldservice orders</t>
-                <t t-set="url" t-value="'/my/fsm_orders'" />
-                <t t-set="placeholder_count" t-value="'fsm_order_count'" />
-            </t>
-        </xpath>
-    </template>
+    <record id="portal_entry_fsm_order" model="portal.entry">
+        <field name="name">FSM Orders</field>
+        <field name="description">View your fieldservice orders</field>
+        <field name="url">/my/fsm_orders</field>
+        <field
+            name="image"
+            type="bytes"
+            file="fieldservice_portal/static/src/img/fsmorder.svg"
+        />
+        <field name="placeholder_count">fsm_order_count</field>
+    </record>
 </odoo>

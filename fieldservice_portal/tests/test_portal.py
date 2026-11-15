@@ -121,7 +121,9 @@ class TestUsersHttp(HttpCase, TransactionCase):
         self.authenticate(self.user_portal.login, self.user_portal.password)
         response = self.url_open(
             "/my/counters",
-            data=json.dumps({"params": {"counters": "fsm_order_count"}}).encode(),
+            data=json.dumps(
+                {"params": {"counters": {"fsm_order_count": "common_category"}}}
+            ).encode(),
             headers={"Content-Type": "application/json"},
         ).json()
         self.assertEqual(response["result"]["fsm_order_count"], 1)

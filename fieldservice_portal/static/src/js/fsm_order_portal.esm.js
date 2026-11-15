@@ -1,10 +1,10 @@
-import {PortalHomeCounters} from "@portal/js/portal";
+import {PortalHomeCounters} from "@portal/interactions/portal_home_counters";
+import {patch} from "@web/core/utils/patch";
 
-PortalHomeCounters.include({
-    /**
-     * @override
-     */
-    _getCountersAlwaysDisplayed() {
-        return this._super(...arguments).concat(["fsm_order_count"]);
+patch(PortalHomeCounters.prototype, {
+    getCountersAlwaysDisplayed() {
+        return super
+            .getCountersAlwaysDisplayed(...arguments)
+            .concat(["fsm_order_count"]);
     },
 });

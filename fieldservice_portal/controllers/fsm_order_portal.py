@@ -12,16 +12,10 @@ from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 
 class CustomerPortal(CustomerPortal):
-    def _prepare_home_portal_values(self, counters):
-        values = super()._prepare_home_portal_values(counters)
-        if "fsm_order_count" in counters:
-            fsm_order_count = (
-                request.env["fsm.order"]
-                .sudo()
-                .search_count(self._prepare_fsm_orders_domain())
-            )
-            values["fsm_order_count"] = fsm_order_count
-        return values
+    def _prepare_portal_counter_values(self, counter):
+        if counter == "fsm_order_count":
+            return "fsm.order", self._prepare_fsm_orders_domain(), "sudo"
+        return super()._prepare_portal_counter_values(counter)
 
     def _prepare_fsm_orders_domain(self):
         return [("stage_id.portal_visible", "=", True)]
@@ -29,16 +23,14 @@ class CustomerPortal(CustomerPortal):
     def _fsm_order_check_access(self, order_id):
         fsm_order = request.env["fsm.order"].browse([order_id])
 
-        try:
-            fsm_order.check_access("read")
-        except AccessError:
-            raise
+        fsm_order.check_access("read")
         return fsm_order.sudo()
 
     def fsm_order_get_page_view_values(self, fsm_order, **kwargs):
         values = {
             "page_name": "fsm_order",
             "fsm_order": fsm_order,
+            "object": fsm_order,
         }
 
         if kwargs.get("error"):

@@ -1,11 +1,12 @@
-<?xml version='1.0' encoding='utf-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="portal_my_fsm_orders" name="My Work Orders">
-        <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs_searchbar" t-value="True" />
-            <t t-call="portal.portal_searchbar">
-                <t t-set="title">Work Orders</t>
-            </t>
+        <t t-call="portal.portal_layout" breadcrumbs_searchbar="True">
+            <t
+                t-call="portal.portal_searchbar"
+                breadcrumbs_searchbar="True"
+                title.translate="Work Orders"
+            />
             <t t-if="not grouped_orders">
                 <p>There are no Work Orders in your account.</p>
             </t>
@@ -135,13 +136,11 @@
                         </t>
                     </div>
                     <h4 class="page-header">History</h4>
-                    <t t-call="portal.message_thread">
-                        <t t-set="object" t-value="fsm_order" />
-                    </t>
+                    <t t-call="portal.message_thread" object="fsm_order" />
                 </div>
             </div>
 
-            <div class="oe_structure mb32" id="oe_structure_1" />
+            <div id="oe_structure_1" class="oe_structure mb32" />
         </t>
     </template>
 </odoo>
