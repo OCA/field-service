@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="action_recurring_list" model="ir.actions.act_window">
         <field name="name">Recurring Orders</field>
@@ -6,7 +7,7 @@
         <field name="view_mode">list,form</field>
         <field name="domain">[('team_id', '=', active_id)]</field>
     </record>
-    <record model="ir.ui.view" id="view_team_kanban_recurring">
+    <record id="view_team_kanban_recurring" model="ir.ui.view">
         <field name="model">fsm.team</field>
         <field name="inherit_id" ref="fieldservice.view_team_kanban" />
         <field name="arch" type="xml">

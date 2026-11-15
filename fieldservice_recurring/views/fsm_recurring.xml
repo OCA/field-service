@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- Field Service Recurring Order -->
     <record id="fsm_recurring_list_view" model="ir.ui.view">
@@ -27,9 +27,9 @@
                 <header>
                     <button
                         id="action_start"
+                        class="oe_highlight"
                         name="action_start"
                         string="Start"
-                        class="oe_highlight"
                         type="object"
                         groups="fieldservice.group_fsm_dispatcher"
                         invisible="state in ['close', 'progress']"
