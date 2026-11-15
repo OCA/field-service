@@ -30,14 +30,14 @@ class TestFieldServiceKanbanInfo(FSMCommon):
         return order
 
     def test_schedule_time_range_time_only_same_day(self):
-        self.config_param.set_param(
+        self.config_param.set_str(
             "fieldservice.schedule_time_range_format", "time_only"
         )
         order = self._create_order(self.now, self.now + relativedelta(hours=2))
         self.assertIn("-", order.schedule_time_range)
 
     def test_schedule_time_range_date_and_time_same_day(self):
-        self.config_param.set_param(
+        self.config_param.set_str(
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
         order = self._create_order(self.now, self.now + relativedelta(hours=2))
@@ -55,7 +55,7 @@ class TestFieldServiceKanbanInfo(FSMCommon):
         self.env["res.lang"]._lang_get("en_US").write(
             {"date_format": "%m/%d/%Y", "time_format": "%I:%M:%S %p"}
         )
-        self.config_param.set_param(
+        self.config_param.set_str(
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 
@@ -75,7 +75,7 @@ class TestFieldServiceKanbanInfo(FSMCommon):
         self.env["res.lang"]._lang_get("es_ES").write(
             {"date_format": "%d/%m/%Y", "time_format": "%H:%M:%S"}
         )
-        self.config_param.set_param(
+        self.config_param.set_str(
             "fieldservice.schedule_time_range_format", "date_and_time"
         )
 

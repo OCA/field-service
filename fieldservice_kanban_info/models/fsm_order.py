@@ -14,7 +14,7 @@ class FSMOrder(models.Model):
         time_range_format = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("fieldservice.schedule_time_range_format", "time_only")
+            .get_str("fieldservice.schedule_time_range_format", "time_only")
         )
 
         lang = self.env.user.lang
