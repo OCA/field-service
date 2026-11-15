@@ -5,6 +5,13 @@ from odoo.addons.sale.tests.common import SaleCommon
 
 
 class TestFSMSale(SaleCommon):
+    # Odoo 20 runs SaleCommon tests as a restricted test user
+    _test_user_groups = (
+        "sales_team.group_sale_salesman_all_leads",
+        "product.group_product_manager",
+        "fieldservice.group_fsm_manager",
+    )
+
     @classmethod
     def setUpFSMTemplates(cls):
         # Create some templates to use on the FSM products

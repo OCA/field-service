@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Field Service - Sales",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "summary": "Sell field services.",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
@@ -13,7 +13,7 @@
         "fieldservice_account",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "security/res_groups.xml",
         "views/fsm_location.xml",
         "views/fsm_order.xml",
