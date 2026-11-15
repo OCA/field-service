@@ -7,6 +7,11 @@ from odoo.addons.fieldservice_sale.tests.test_fsm_sale_common import TestFSMSale
 
 
 class TestFSMSaleOrder(TestFSMSale):
+    _test_user_groups = TestFSMSale._test_user_groups + (
+        "account.group_account_invoice",
+        "stock.group_stock_user",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -39,7 +44,6 @@ class TestFSMSaleOrder(TestFSMSale):
                 "list_price": 90.0,
                 "type": "consu",
                 "is_storable": True,
-                "tracking": "none",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "invoice_policy": "order",
                 "field_service_tracking": "sale",
@@ -170,8 +174,10 @@ class TestFSMSaleOrder(TestFSMSale):
         :return Boolean indicating the installed status of the module
         """
         result = False
-        isp_account_module = self.env["ir.module.module"].search(
-            [("name", "=", "fieldservice_isp_account")]
+        isp_account_module = (
+            self.env["ir.module.module"]
+            .sudo()
+            .search([("name", "=", "fieldservice_isp_account")])
         )
         if isp_account_module and isp_account_module.state == "installed":
             result = True
