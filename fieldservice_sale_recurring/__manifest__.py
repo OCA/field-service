@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Sales - Recurring",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "summary": "Sell recurring field services.",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
@@ -14,7 +14,7 @@
         "fieldservice_account",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/fsm_recurring.xml",
         "views/product_template.xml",
         "views/sale_order.xml",

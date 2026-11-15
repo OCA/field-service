@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_order_form_inherit_sale_fieldservice" model="ir.ui.view">
         <field name="name">sale.order.form.sale.fieldservice</field>
@@ -9,7 +10,8 @@
                     type="object"
                     name="action_view_fsm_recurring"
                     class="oe_stat_button"
-                    icon="fa-calendar"
+                    icon="calendar_today"
+                    icon_class="oi-filled"
                     invisible="fsm_recurring_count == 0"
                     groups="fieldservice.group_fsm_user"
                 >

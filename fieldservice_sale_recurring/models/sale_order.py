@@ -46,7 +46,9 @@ class SaleOrder(models.Model):
         """On SO confirmation, some lines generate recurring field service."""
         result = super()._action_confirm()
         self.order_line.filtered(
-            lambda line: line.product_id.field_service_tracking == "recurring"
-            and not line.fsm_recurring_id
+            lambda line: (
+                line.product_id.field_service_tracking == "recurring"
+                and not line.fsm_recurring_id
+            )
         )._field_create_fsm_recurring()
         return result
