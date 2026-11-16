@@ -11,7 +11,9 @@
     <record id="fsm_order_own_rule" model="ir.rule">
         <field name="name">FSM Orders Entry (only own)</field>
         <field name="model_id" ref="model_fsm_order" />
-        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field
+            name="domain_force"
+        >['|', ('person_id.user_ids', '=', user.id), ('person_id', '=', False)]</field>
         <field name="groups" eval="[(4, ref('fieldservice.group_fsm_user_own'))]" />
     </record>
 
