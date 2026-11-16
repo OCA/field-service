@@ -101,6 +101,9 @@ class SaleOrder(models.Model):
             "scheduled_duration": hours,
             "sale_id": kwargs.get("so_id", False),
             "sale_line_id": kwargs.get("sol_id", False),
+            "description": self.env["sale.order.line"]
+            .browse(kwargs.get("sol_id"))
+            .name,
             "template_id": template_id,
             "company_id": self.company_id.id,
         }

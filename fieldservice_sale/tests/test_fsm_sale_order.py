@@ -311,6 +311,11 @@ class TestFSMSaleOrder(TestFSMSale):
             sol.fsm_order_id.id == fsm_order.id,
             "FSM Sale: Sale Order 2 Line not linked to FSM Order",
         )
+        self.assertEqual(
+            fsm_order.description,
+            sol.name,
+            "FSM Sale: FSM Order description should be the Sale Order Line one",
+        )
 
         # Complete the FSM order
         if self._isp_account_installed():
