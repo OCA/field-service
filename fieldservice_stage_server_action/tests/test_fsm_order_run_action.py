@@ -17,7 +17,7 @@ class TestFSMOrderRunAction(FSMCommon):
         cls.stage2 = cls.env.ref("fieldservice.fsm_stage_cancelled")
         cls.create_action = cls.env["ir.actions.server"].create(
             {
-                "model_id": cls.env["ir.model"]._get_id("fsm.tag"),
+                "model_id": cls.env["ir.model"]._get_id("fsm.order"),
                 "crud_model_id": cls.env["ir.model"]._get_id("fsm.tag"),
                 "name": "Create new tag",
                 "value": "New test tag",
@@ -81,3 +81,25 @@ class TestFSMOrderRunAction(FSMCommon):
             }
         )
         order.write({"description": "Updated description"})
+
+    def test_stage_server_action_ignores_stale_active_ids(self):
+        # e.g. "Create FSM Order" from another record leaves its active_ids
+        self.stage2.action_id = self.env["ir.actions.server"].create(
+            {
+                "name": "Post on the FSM order",
+                "model_id": self.env["ir.model"]._get_id("fsm.order"),
+                "state": "code",
+                "code": "records.message_post(body='Stage action executed')",
+            }
+        )
+        other_order = self.Order.create({"location_id": self.test_location.id})
+        order = self.Order.create(
+            {"location_id": self.test_location.id, "stage_id": self.stage1.id}
+        )
+        order.with_context(active_ids=other_order.ids).write(
+            {"stage_id": self.stage2.id}
+        )
+        messages = self.env["mail.message"].search(
+            [("model", "=", "fsm.order"), ("body", "ilike", "Stage action executed")]
+        )
+        self.assertEqual(messages.mapped("res_id"), order.ids)
