@@ -10,7 +10,11 @@
             <form>
                 <group>
                     <field name="signed_by" />
-                    <field name="signature" widget="signature" />
+                    <field
+                        name="signature"
+                        widget="signature"
+                        options="{'full_name': 'signed_by'}"
+                    />
                 </group>
                 <footer>
                     <button
