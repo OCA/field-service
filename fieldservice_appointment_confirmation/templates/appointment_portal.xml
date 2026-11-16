@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Binhex
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="appointment_confirm_page" name="FSM Appointment Confirm">
+        <t t-call="portal.frontend_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <h2>Confirm your appointment</h2>
+                        <p class="text-muted">Please review the details and confirm.</p>
+                        <table class="table">
+                            <tr>
+                                <th>Order</th>
+                                <td>
+                                    <t t-out="order.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Date &amp; time</th>
+                                <td>
+                                    <t t-out="order.scheduled_date_start" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Assigned worker</th>
+                                <td>
+                                    <t t-out="order.person_id.name" />
+                                </td>
+                            </tr>
+                        </table>
+                        <form
+                            t-attf-action="/fieldservice/appointment/#{order.id}/confirm"
+                            method="post"
+                        >
+                            <input
+                                type="hidden"
+                                name="access_token"
+                                t-att-value="access_token"
+                            />
+                            <div class="mb-3">
+                                <label class="form-label">Your name (optional)</label>
+                                <input
+                                    type="text"
+                                    name="confirmed_by"
+                                    class="form-control"
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg">
+                                Confirm Appointment
+                            </button>
+                            <a
+                                t-attf-href="/fieldservice/appointment/#{order.id}/reschedule?access_token=#{access_token}"
+                                class="btn btn-warning btn-lg"
+                            >Reschedule</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="appointment_confirmed" name="FSM Appointment Confirmed">
+        <t t-call="portal.frontend_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <h2 class="text-success">Appointment confirmed</h2>
+                        <p>Thank you! Your appointment <strong>
+                            <t t-out="order.name" />
+                        </strong> has been confirmed.</p>
+                        <a
+                            t-attf-href="/fieldservice/appointment/#{order.id}/ics?access_token=#{access_token}"
+                            class="btn btn-primary"
+                        >Add to my calendar (.ics)</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="appointment_reschedule_page" name="FSM Appointment Reschedule">
+        <t t-call="portal.frontend_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Reschedule your appointment</h2>
+                        <t t-if="appointment_past">
+                            <div class="alert alert-warning">
+                                Your original appointment date has already passed.
+                                Please pick a new date and time below.
+                            </div>
+                        </t>
+                        <t t-if="error">
+                            <div class="alert alert-danger">
+                                The selected slot is no longer available. Please pick another one.
+                            </div>
+                        </t>
+                        <t t-if="not slots_by_day">
+                            <div class="alert alert-info">
+                                There are no available slots at the moment. Please
+                                contact us to arrange a new date.
+                            </div>
+                        </t>
+                        <t t-if="slots_by_day">
+                            <form
+                                t-attf-action="/fieldservice/appointment/#{order.id}/reschedule"
+                                method="post"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="access_token"
+                                    t-att-value="access_token"
+                                />
+                                <t t-foreach="slots_by_day.items()" t-as="day">
+                                    <h5 class="mt-3">
+                                        <t t-out="day[0]" />
+                                    </h5>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <t t-foreach="day[1]" t-as="slot">
+                                            <input
+                                                type="radio"
+                                                name="slot"
+                                                class="btn-check"
+                                                autocomplete="off"
+                                                t-att-id="'slot_%s_%s' % (day_index, slot_index)"
+                                                t-att-value="slot['value']"
+                                            />
+                                            <label
+                                                class="btn btn-outline-primary"
+                                                t-att-for="'slot_%s_%s' % (day_index, slot_index)"
+                                            >
+                                                <t t-out="slot['label']" />
+                                            </label>
+                                        </t>
+                                    </div>
+                                </t>
+                                <div class="mt-4">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-warning btn-lg"
+                                    >
+                                        Confirm new date
+                                    </button>
+                                </div>
+                            </form>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="appointment_rescheduled" name="FSM Appointment Rescheduled">
+        <t t-call="portal.frontend_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <h2
+                            class="text-success"
+                        >Appointment rescheduled &amp; confirmed</h2>
+                        <p>Your appointment <strong>
+                            <t t-out="order.name" />
+                        </strong>
+                            has been moved to
+                            <strong>
+                            <t t-out="order.scheduled_date_start" />
+                        </strong> and confirmed.</p>
+                        <a
+                            t-attf-href="/fieldservice/appointment/#{order.id}/ics?access_token=#{access_token}"
+                            class="btn btn-primary"
+                        >Add to my calendar (.ics)</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="appointment_invalid" name="FSM Appointment Invalid Link">
+        <t t-call="portal.frontend_layout">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <h2>This link is no longer available</h2>
+                        <p>The appointment link has expired or the order can no
+                            longer be modified online.</p>
+                        <t t-if="company and company.email">
+                            <p class="text-muted">
+                                Please contact us: <t t-out="company.email" />
+                            </p>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
