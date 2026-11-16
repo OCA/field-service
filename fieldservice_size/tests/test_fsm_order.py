@@ -55,3 +55,27 @@ class TestFSMSize(TransactionCase):
         self.assertTrue(order.size_id, self.size_a.id)
         self.assertTrue(order.size_value, 24.5)
         self.assertTrue(order.size_uom, self.size_a.uom_id)
+
+    def test_order_size_value_multiple_orders(self):
+        other_location = self.env.ref("fieldservice.location_1")
+        self.Location_size.create(
+            [
+                {
+                    "size_id": self.size_a.id,
+                    "quantity": 24.5,
+                    "location_id": self.test_location.id,
+                },
+                {
+                    "size_id": self.size_a.id,
+                    "quantity": 12.0,
+                    "location_id": other_location.id,
+                },
+            ]
+        )
+        orders = self.Order.create(
+            [
+                {"type": self.type_a.id, "location_id": self.test_location.id},
+                {"type": self.type_a.id, "location_id": other_location.id},
+            ]
+        )
+        self.assertEqual(orders.mapped("size_value"), [24.5, 12.0])
