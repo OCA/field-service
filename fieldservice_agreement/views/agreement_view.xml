@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="agreement_form" model="ir.ui.view">
         <field name="model">agreement</field>
@@ -9,7 +9,7 @@
                     name="action_view_service_order"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-map"
+                    icon="map"
                     invisible="service_order_count == 0"
                 >
                     <field
@@ -22,7 +22,7 @@
                     name="action_view_fsm_equipment"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-laptop"
+                    icon="laptop"
                     invisible="equipment_count == 0"
                     context="{'default_agreement_id': id}"
                     groups="fieldservice.group_fsm_equipment"
