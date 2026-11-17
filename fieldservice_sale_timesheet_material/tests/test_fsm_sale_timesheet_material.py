@@ -28,6 +28,18 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
                 "team_id": cls.team.id,
             }
         )
+        if "fsm_route_id" in cls.location._fields:
+            # fieldservice_sale_stock_route only confirms sale orders whose
+            # location has a route with a person and days
+            cls.location.fsm_route_id = cls.env["fsm.route"].create(
+                {
+                    "name": "FSM Route",
+                    "fsm_person_id": cls.env["fsm.person"]
+                    .create({"name": "Technician"})
+                    .id,
+                    "day_ids": [(6, 0, cls.env["fsm.route.day"].search([]).ids)],
+                }
+            )
         if not cls.env.user.employee_id:
             # timesheets are recorded by an employee
             cls.env["hr.employee"].create(
@@ -66,7 +78,7 @@ class TestFSMSaleTimesheetMaterial(TransactionCase):
             }
         )
         cls.sale.action_confirm()
-        cls.order = cls.sale.fsm_order_ids
+        cls.order = cls.env["fsm.order"].search([("sale_id", "=", cls.sale.id)])
 
     def _add_timesheet(self, hours, uom=None):
         vals = {
