@@ -1,0 +1,4 @@
+- [Camptocamp](https://www.camptocamp.com):
+  - Iván Todorovich \<<ivan.todorovich@camptocamp.com>\>
+- [Gray Matter Logic](https://www.graymatterlogic.com):
+  - Maxime Chambreuil \<<maxime.chambreuil@graymatterlogic.com>\>
