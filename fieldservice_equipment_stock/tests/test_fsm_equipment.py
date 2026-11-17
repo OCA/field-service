@@ -86,3 +86,14 @@ class TestFSMEquipment(FSMCommon):
         equipment = f.save()
 
         self.assertEqual(f.id, equipment.lot_id.fsm_equipment_id.id)
+
+    def test_write_lot_links_equipment(self):
+        lot = self.env["stock.lot"].create(
+            {
+                "name": "serial2",
+                "product_id": self.product1.id,
+                "company_id": self.equipment.company_id.id,
+            }
+        )
+        self.equipment.write({"lot_id": lot.id})
+        self.assertEqual(lot.fsm_equipment_id, self.equipment)
