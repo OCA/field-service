@@ -1,13 +1,12 @@
-import requests
-
 from odoo.exceptions import UserError
 from odoo.tests import common
 
+from odoo.addons.fieldservice.tests.common import MockGeocoderCase
 
-class TestFieldserviceCrm(common.TransactionCase):
+
+class TestFieldserviceCrm(MockGeocoderCase, common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.location_1 = cls.env["fsm.location"].create(
             {
@@ -44,12 +43,6 @@ class TestFieldserviceCrm(common.TransactionCase):
 
         self.location_1._compute_opportunity_count()
         self.assertEqual(self.location_1.opportunity_count, 1)
-
-    # Needed to avoid conflicts with fieldservice_geoengine when it's installed
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def test_create_fs_order_from_lead(self):
         partner_1 = self.env["res.partner"].create(

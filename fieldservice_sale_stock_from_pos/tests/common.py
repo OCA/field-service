@@ -1,17 +1,15 @@
 # Copyright 2025 Bernat Obrador APSL-Nagarro (bobrador@apsl.net).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import requests
-
 from odoo.tests import tagged
 
+from odoo.addons.fieldservice.tests.common import MockGeocoderCase
 from odoo.addons.point_of_sale.tests.test_frontend import TestPointOfSaleHttpCommon
 
 
 @tagged("post_install", "-at_install")
-class CommonFsOrderFromPos(TestPointOfSaleHttpCommon):
+class CommonFsOrderFromPos(MockGeocoderCase, TestPointOfSaleHttpCommon):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.white_board_product = cls.env["product.product"].search(
             [("name", "ilike", "Whiteboard Pen")], limit=1
@@ -94,12 +92,6 @@ class CommonFsOrderFromPos(TestPointOfSaleHttpCommon):
                     "plan_id": cls.analytic_plan.id,
                 }
             )
-
-    # Needed to avoid conflicts with fieldservice_geoengine when it's installed
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def _start_tour(self, tour_name, login=None):
         self.config.open_ui()

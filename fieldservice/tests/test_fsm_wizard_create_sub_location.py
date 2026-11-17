@@ -1,15 +1,14 @@
 # Copyright (C) 2025 - TODAY, APSL - Nagarro (Bernat Obrador)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import requests
-
 from odoo.tests.common import TransactionCase, tagged
+
+from odoo.addons.fieldservice.tests.common import MockGeocoderCase
 
 
 @tagged("post_install", "-at_install")
-class TestCreateSubLocationWizard(TransactionCase):
+class TestCreateSubLocationWizard(MockGeocoderCase, TransactionCase):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
 
         location_vals = {
@@ -27,11 +26,6 @@ class TestCreateSubLocationWizard(TransactionCase):
         cls.location = cls.env["fsm.location"].create(
             location_vals,
         )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def test_create_sub_location(self):
         (
