@@ -8,6 +8,7 @@
                 string="Map"
                 lat="location_latitude"
                 lng="location_longitude"
+                marker="location"
                 colors="blue:stage_name=='New';green:stage_name=='Completed';grey:stage_name=='Cancelled';"
             >
                 <field name="name" />
@@ -20,6 +21,8 @@
                 <field name="stage_name" />
                 <field name="location_latitude" />
                 <field name="location_longitude" />
+                <field name="person_latitude" />
+                <field name="person_longitude" />
                 <field name="stage_id" />
             </google_map>
         </field>

@@ -13,4 +13,10 @@ class FSMOrder(models.Model):
     location_longitude = fields.Float(
         related="location_id.partner_longitude", string="Location Longitude"
     )
+    person_latitude = fields.Float(
+        related="person_id.partner_latitude", string="Worker Latitude"
+    )
+    person_longitude = fields.Float(
+        related="person_id.partner_longitude", string="Worker Longitude"
+    )
     marker_color = fields.Char(related="stage_id.custom_color", string="Marker Color")

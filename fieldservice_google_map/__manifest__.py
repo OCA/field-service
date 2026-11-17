@@ -16,6 +16,10 @@
     "data": [
         "views/fsm_order.xml",
         "views/fsm_location.xml",
+        "views/fsm_person.xml",
+    ],
+    "demo": [
+        "demo/fsm_location_geoloc.xml",
     ],
     "assets": {
         "web.assets_backend": [

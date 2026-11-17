@@ -6,3 +6,35 @@
     height: 100%;
     text-align: center;
 }
+
+.o_fsm_map_legend {
+    margin: 8px 0 0 8px;
+    padding: 6px 8px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+    }
+}
+
+.o_fsm_osm_attribution {
+    margin: 0 8px 4px 0;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 11px;
+
+    a {
+        color: inherit;
+    }
+}
