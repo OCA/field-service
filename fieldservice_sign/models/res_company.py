@@ -8,11 +8,9 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     fsm_signature_capture = fields.Boolean(
-        string="FSM Signature Capture",
         help="Enable on-site customer signature capture on Field Service orders.",
     )
     fsm_document_signing = fields.Boolean(
-        string="FSM Document Signing",
         help="Enable sign_oca document signing on Field Service orders.",
     )
     fsm_require_signature_to_complete = fields.Boolean(

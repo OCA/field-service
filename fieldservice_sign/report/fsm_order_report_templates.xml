@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2026 Gray Matter Logic (<https://www.graymatterlogic.com>).
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -9,8 +9,8 @@
         <xpath expr="//div[hasclass('page')]" position="inside">
             <div
                 t-if="doc.company_id.fsm_signature_capture and doc.signature"
-                class="mt32"
                 id="customer_signature"
+                class="mt32"
             >
                 <h3>Customer Signature</h3>
                 <p t-if="doc.signed_by">

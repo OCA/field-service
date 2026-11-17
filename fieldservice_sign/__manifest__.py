@@ -4,7 +4,7 @@
 {
     "name": "Field Service - Sign",
     "summary": "Customer signature capture and document signing on FSM orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Field Service",
     "author": "Gray Matter Logic, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/field-service",
