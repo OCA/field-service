@@ -7,4 +7,4 @@ from odoo import fields, models
 class FSMLocation(models.Model):
     _inherit = "fsm.location"
 
-    marker_color = fields.Char(related="stage_id.custom_color", string="Marker Color")
+    marker_color = fields.Char(related="stage_id.custom_color")
