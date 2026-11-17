@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="fsm_order_timeline_view" model="ir.ui.view">
         <field name="name">fsm.order.timeline</field>
@@ -23,7 +23,7 @@
         <field name="model">fsm.order</field>
         <field name="type">timeline</field>
         <field name="mode">primary</field>
-        <field name="priority">50</field>
+        <field name="priority" eval="50" />
         <field name="inherit_id" ref="fieldservice_timeline.fsm_order_timeline_view" />
         <field name="arch" type="xml">
             <timeline position="attributes">
