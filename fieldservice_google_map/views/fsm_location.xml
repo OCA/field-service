@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_ui_view_fsm_location_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.location.map</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <google_map string="Map" lat="partner_latitude" lng="partner_longitude">
+                <field name="name" />
+                <field name="display_name" />
+                <field name="contact_id" />
+                <field name="owner_id" />
+                <field name="parent_id" />
+                <field name="partner_latitude" />
+                <field name="partner_longitude" />
+                <field name="territory_id" />
+                <field name="branch_id" />
+                <field name="district_id" />
+                <field name="region_id" />
+                <field name="stage_id" />
+            </google_map>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_location" model="ir.actions.act_window">
+        <field name="view_mode">list,form,google_map</field>
+    </record>
+</odoo>

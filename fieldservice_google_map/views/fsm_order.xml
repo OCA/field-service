@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_ui_view_fsm_order_map" model="ir.ui.view">
+        <field name="name">ir.ui.view.fsm.order.map</field>
+        <field name="model">fsm.order</field>
+        <field name="arch" type="xml">
+            <google_map
+                string="Map"
+                lat="location_latitude"
+                lng="location_longitude"
+                colors="blue:stage_name=='New';green:stage_name=='Completed';grey:stage_name=='Cancelled';"
+            >
+                <field name="name" />
+                <field name="display_name" />
+                <field name="type" />
+                <field name="location_id" />
+                <field name="person_id" />
+                <field name="priority" />
+                <field name="country_name" />
+                <field name="stage_name" />
+                <field name="location_latitude" />
+                <field name="location_longitude" />
+                <field name="stage_id" />
+            </google_map>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_dash_order" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form,calendar,google_map</field>
+    </record>
+    <record
+        id="action_fsm_dash_order_view_google_map"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="5" />
+        <field name="view_mode">google_map</field>
+        <field name="view_id" ref="ir_ui_view_fsm_order_map" />
+        <field name="act_window_id" ref="fieldservice.action_fsm_dash_order" />
+    </record>
+</odoo>
