@@ -3,6 +3,7 @@
 
 from datetime import datetime, timedelta
 
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import TransactionCase
 
 
@@ -154,3 +155,14 @@ class FSMAccountCase(TransactionCase):
         # Verify action result to view two invoices from order
         action_view_inv = self.test_order.action_view_invoices()
         self.assertTrue(action_view_inv.get("domain"))
+
+    def test_invoice_form_without_field_service_access(self):
+        """A billing user without Field Service access opens an invoice"""
+        self.test_order.invoice_lines = [(6, 0, self.test_invoice.line_ids.ids)]
+        user = new_test_user(
+            self.env,
+            login="fsm-account-billing",
+            groups="base.group_user,account.group_account_invoice",
+        )
+        invoice_form = Form(self.test_invoice.with_user(user))
+        self.assertTrue(invoice_form.invoice_line_ids)
