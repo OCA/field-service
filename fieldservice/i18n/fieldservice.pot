@@ -45,6 +45,13 @@ msgid "# of Owned Locations"
 msgstr ""
 
 #. module: fieldservice
+#. odoo-python
+#: code:addons/fieldservice/models/fsm_order.py:0
+#, python-format
+msgid "%(date)s is a holiday %(holiday)s"
+msgstr ""
+
+#. module: fieldservice
 #: model:ir.actions.report,print_report_name:fieldservice.action_report_fsm_order
 msgid "'Service Order - %s' % (object.name)"
 msgstr ""
@@ -279,6 +286,12 @@ msgstr ""
 msgid ""
 "All the emails and documents sent to this contact will be translated in this"
 " language."
+msgstr ""
+
+#. module: fieldservice
+#: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_allow_schedule_on_leave
+#: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__fsm_order_allow_schedule_on_leave
+msgid "Allow FSM Orders to be scheduled during holidays"
 msgstr ""
 
 #. module: fieldservice
@@ -1208,6 +1221,11 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_calendar_view
 msgid "FSM Orders"
+msgstr ""
+
+#. module: fieldservice
+#: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
+msgid "FSM Orders can be scheduled on holidays."
 msgstr ""
 
 #. module: fieldservice
