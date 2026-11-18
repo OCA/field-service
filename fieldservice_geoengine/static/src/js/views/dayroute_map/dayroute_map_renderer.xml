@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="fieldservice_geoengine.DayrouteMapRenderer">
+        <div class="o_fsm_dayroute_map">
+            <div class="ol_map" t-att-id="mapId" />
+            <div class="fsm_map_legend" t-if="routes.length">
+                <t t-foreach="routes" t-as="route" t-key="route.id">
+                    <span class="fsm_dayroute_legend_item">
+                        <i t-att-style="'background:' + route.color" />
+                        <t t-esc="route.name" />
+                    </span>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

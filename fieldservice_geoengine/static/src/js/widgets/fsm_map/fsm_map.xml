@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="fieldservice_geoengine.FsmOrderMap">
+        <div class="fsm_map">
+            <div class="ol_map" t-att-id="mapId" />
+            <div class="fsm_map_legend">
+                <span class="fsm_map_legend_location">Location</span>
+                <span class="fsm_map_legend_worker">Worker</span>
+            </div>
+        </div>
+    </t>
+    <t t-name="fieldservice_geoengine.FsmRouteMap">
+        <div class="fsm_map">
+            <div class="ol_map" t-att-id="mapId" />
+            <div class="fsm_map_legend">
+                <span class="fsm_map_legend_location">Locations, in order</span>
+                <span class="fsm_map_legend_worker">Worker</span>
+            </div>
+        </div>
+    </t>
+    <t t-name="fieldservice_geoengine.FsmHiddenGeo">
+        <span class="d-none" />
+    </t>
+    <t t-name="fieldservice_geoengine.FsmRouteAreaMap">
+        <div class="fsm_map">
+            <div class="ol_map" t-att-id="mapId" />
+            <div class="fsm_map_legend">
+                <span
+                    t-if="props.record.data.area_shape"
+                >Drag the outline to adjust the area.</span>
+                <span
+                    t-else=""
+                >Click the map to draw the area. Double-click to finish.</span>
+            </div>
+        </div>
+    </t>
+    <t t-name="fieldservice_geoengine.FsmLocationMap">
+        <div class="fsm_map">
+            <div class="ol_map" t-att-id="mapId" />
+            <div class="fsm_map_legend">
+                <span
+                    t-if="isArea and props.record.data.area_shape"
+                >Drag the outline to adjust the area.</span>
+                <span
+                    t-elif="isArea"
+                >Click the map to draw the area. Double-click to finish.</span>
+                <span t-else="">Location</span>
+            </div>
+        </div>
+    </t>
+</templates>
