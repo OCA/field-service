@@ -307,3 +307,30 @@ class FSMRecurringCase(TransactionCase):
         fsm_order = self.env["fsm.order"].create(order_vals)
         self.env["fsm.order"].create(order_vals2)
         fsm_order.action_view_fsm_recurring()
+
+    def test_fsm_order_vals_from_template(self):
+        order_template = self.env["fsm.template"].create(
+            {
+                "name": "Order Template",
+                "instructions": "Instructions for the order template",
+                "duration": 1.5,
+                "team_id": self.env["fsm.team"].create({"name": "Template team"}).id,
+            }
+        )
+        recurring = self.Recurring.create(
+            {
+                "fsm_frequency_set_id": self.fr_set.id,
+                "location_id": self.test_location.id,
+                "start_date": fields.Datetime.now().replace(hour=12),
+                "fsm_order_template_id": order_template.id,
+                "scheduled_duration": 2.0,
+                "team_id": self.env["fsm.team"].create({"name": "Recurring team"}).id,
+            }
+        )
+        recurring.action_start()
+        order = recurring.fsm_order_ids[0]
+        # The template instructions are added on the order
+        self.assertEqual(order.todo, order_template.instructions)
+        # The duration and team of the recurring order win over the template
+        self.assertEqual(order.scheduled_duration, recurring.scheduled_duration)
+        self.assertEqual(order.team_id, recurring.team_id)
