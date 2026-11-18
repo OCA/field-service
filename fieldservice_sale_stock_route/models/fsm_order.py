@@ -4,6 +4,7 @@
 from datetime import timedelta
 
 from odoo import _, fields, models
+from odoo.tools import format_datetime
 
 
 class FSMOrder(models.Model):
@@ -14,60 +15,49 @@ class FSMOrder(models.Model):
     )
 
     def write(self, vals):
+        has_start_date = "scheduled_date_start" in vals
+        raw_start_date = vals.get("scheduled_date_start")
+
         res = super().write(vals)
 
-        if vals.get("scheduled_date_start") or vals.get("scheduled_date_end"):
+        sync_fields = {
+            "scheduled_date_start",
+            "scheduled_date_end",
+            "scheduled_duration",
+        }
+        if sync_fields.intersection(vals) and not self.env.context.get("skip_fsm_sync"):
             for record in self:
-                if record.sale_id:
-                    sale = record.sale_id
+                sale = record.sale_id
+                if not sale:
+                    continue
 
-                    old_start = sale.commitment_date
-                    old_end = sale.commitment_date_end
+                if has_start_date:
+                    if raw_start_date:
+                        new_start = fields.Datetime.to_datetime(raw_start_date)
+                        old_start = sale.commitment_date
+                        # Calendar day changed -> Re-evaluate schedule hierarchy hours
+                        if not old_start or old_start.date() != new_start.date():
+                            dt_start, dt_end = sale._apply_time_range_to_dates(
+                                new_start
+                            )
+                        else:
+                            # Same day edit -> Preserve dispatcher's manual hours
+                            dt_start = new_start
+                            dt_end = record.scheduled_date_end
+                    else:
+                        # Blank date on FSM Order -> Clear dates
+                        dt_start, dt_end = False, False
+                else:
+                    dt_start = record.scheduled_date_start
+                    dt_end = record.scheduled_date_end
 
-                    new_start = record.scheduled_date_start
-                    new_end = record.scheduled_date_end
-
-                    changes = []
-
-                    if old_start != new_start:
-                        sale.commitment_date = new_start
-                        changes.append(
-                            _("- Delivery Date: %(old)s → %(new)s")
-                            % {
-                                "old": old_start or "—",
-                                "new": new_start or "—",
-                            }
-                        )
-
-                    if old_end != new_end:
-                        sale.commitment_date_end = new_end
-                        changes.append(
-                            _("- Delivery End Date: %(old)s → %(new)s")
-                            % {
-                                "old": old_end or "—",
-                                "new": new_end or "—",
-                            }
-                        )
-
-                    if changes:
-                        body = _("<b>Updated Delivery Dates:</b><br/>") + "<br/>".join(
-                            changes
-                        )
-                        sale.message_post(
-                            body=body, subtype_id=self.env.ref("mail.mt_note").id
-                        )
+                # Delegate cross-model synchronization to SaleOrder helper
+                sale._sync_fsm_and_picking_dates(dt_start, dt_end)
 
         return res
 
     def _is_valid_fsm_order(self, fsm_order):
-        required_fields = [
-            fsm_order.sale_id,
-            fsm_order.sale_id.fsm_location_id,
-            fsm_order.sale_id.fsm_location_id.fsm_route_id,
-            fsm_order.sale_id.fsm_location_id.fsm_route_id.fsm_person_id,
-            fsm_order.sale_id.fsm_location_id.fsm_route_id.day_ids,
-        ]
-        return all(required_fields)
+        return bool(fsm_order.sale_id and fsm_order.sale_id.fsm_location_id)
 
     def _compute_postpone_button_visibility(self):
         for fsm_order in self:
@@ -81,22 +71,17 @@ class FSMOrder(models.Model):
     def action_postpone_delivery(self):
         for fsm_order in self.filtered(self._is_valid_fsm_order):
             sale_order = fsm_order.sale_id
-            new_commitment_date = sale_order._get_next_route_day(
-                from_date=sale_order.commitment_date + timedelta(days=1)
-            )
-            date_diff = (new_commitment_date - sale_order.commitment_date).days
-
-            sale_order.write(
-                {
-                    "commitment_date": new_commitment_date,
-                    "commitment_date_end": sale_order.commitment_date_end
-                    + timedelta(days=date_diff),
-                }
+            current_date = fsm_order.scheduled_date_start or fields.Datetime.now()
+            new_date = sale_order._get_next_route_day(
+                from_date=current_date + timedelta(days=1)
             )
 
+            # Triggers write(), which detects the day change and re-resolves hours
+            fsm_order.write({"scheduled_date_start": new_date})
+
+            date_str = format_datetime(self.env, fsm_order.scheduled_date_start)
             fsm_order.message_post(
-                body=_("Delivery postponed. New scheduled date: %s.")
-                % new_commitment_date.strftime("%d/%m/%Y"),
+                body=_("Delivery postponed. New scheduled date: %s.") % date_str,
                 message_type="comment",
                 subtype_xmlid="mail.mt_comment",
             )
