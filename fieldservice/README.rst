@@ -143,6 +143,12 @@ Order templates allow you to create standard templates for your orders.
 #. Set the name
 #. Set the standard order instructions
 
+Schedule Orders during holidays
+-------------------------------
+
+Go to *Field Service > Configuration > Settings, section Orders*
+The setting 'FSM Orders can be scheduled on holidays' is disabled by default.
+
 Usage
 =====
 
