@@ -161,7 +161,8 @@ class TestFSMStageValidation(tests.TransactionCase):
         with self.assertRaisesRegex(ValidationError, validate_message):
             self.equipment_01.next_stage()
 
-        # Update the Equipment notes field and validate it goes to next stage
+        # The constraint runs after the stage write, so put the record back.
+        self.equipment_01.stage_id = self.stage_equipment_default
         self.equipment_01.notes = "Equipment service note"
         self.equipment_01.next_stage()
         self.assertEqual(
@@ -174,7 +175,7 @@ class TestFSMStageValidation(tests.TransactionCase):
         with self.assertRaisesRegex(ValidationError, validate_message):
             self.location_01.next_stage()
 
-        # Update the Location directions field and validate it goes to next stage
+        self.location_01.stage_id = self.stage_location_default
         self.location_01.direction = "Location direction note"
         self.location_01.next_stage()
         self.assertEqual(
@@ -187,7 +188,7 @@ class TestFSMStageValidation(tests.TransactionCase):
         with self.assertRaisesRegex(ValidationError, validate_message):
             self.person_01.next_stage()
 
-        # Update the Person mobile field and validate it goes to next stage
+        self.person_01.stage_id = self.stage_person_default
         self.person_01.mobile = "1-888-888-8888"
         self.person_01.next_stage()
         self.assertEqual(

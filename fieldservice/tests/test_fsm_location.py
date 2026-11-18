@@ -60,8 +60,15 @@ class FSMLocation(FSMCommon):
         self.assertEqual(location.stage_id, self.location_stage_2)
         location.stage_id = self.location_stage_3
         location.next_stage()
-        self.assertEqual(location.stage_id, self.location_stage_3)
-        self.assertFalse(location.hide)  # hide as max stage
+        self.assertEqual(
+            location.stage_id,
+            self.env.ref("fieldservice.fsm_stage_location_new"),
+        )
+        self.assertFalse(location.hide)
+        closed = self.env.ref("fieldservice.fsm_stage_location_closed")
+        location.stage_id = closed
+        location.next_stage()
+        self.assertEqual(location.stage_id, closed)
         location.stage_id = self.location_stage_2
         location.previous_stage()
         self.assertEqual(location.stage_id, self.location_stage_1)
