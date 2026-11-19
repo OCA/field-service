@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Language: it\n"
+"PO-Revision-Date: 2026-11-19 16:46+0000\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,body_html:fieldservice_appointment_confirmation.mail_template_appointment_request
@@ -64,6 +66,72 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-"
+"serif;color:#333;\">\n"
+"                <p>Gentile <t t-out=\"object.location_id.partner_id.name or "
+"''\"/>,</p>\n"
+"                <p>desideriamo confermare i dettagli del prossimo\n"
+"                        intervento di assistenza. Controllare le "
+"informazioni riportate di seguito\n"
+"                        e comunicateci se sono corrette.</p>\n"
+"                <table style=\"border-collapse:collapse;margin:16px "
+"0;width:100%;max-width:520px;\">\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Ordine</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"object.name or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Data e ora</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"format_datetime"
+"(object.scheduled_date_start) or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Durata prevista</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                                <t t-out=\"object.scheduled_duration or "
+"0\"/> h\n"
+"                            </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Indirizzo</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"object.street or ''\"/>\n"
+"                            <t t-out=\"object.city and (', ' + object.city) "
+"or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Operatore assegnato</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"object.person_id.name or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"                <div style=\"margin:24px 0;\">\n"
+"                    <a t-att-href=\"object._get_appointment_url('confirm')\" "
+"style=\"background-color:#875A7B;color:#fff;text-"
+"decoration:none;padding:12px 22px;border-radius:4px;font-"
+"weight:bold;display:inline-block;margin-right:8px;\">Conferma appuntamento</"
+"a>\n"
+"                    <a t-att-href=\"object._get_appointment_url('reschedule')"
+"\" style=\"background-color:#E7E9ED;color:#374151;text-"
+"decoration:none;padding:12px 22px;border-radius:4px;font-"
+"weight:bold;display:inline-block;\">Riprogramma</a>\n"
+"                </div>\n"
+"                <p style=\"color:#888;font-size:12px;\">Se i pulsanti non "
+"funzionano,\n"
+"                        contattateci: saremo lieti di aiutarvi.</p>\n"
+"            </div>\n"
+"        "
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,body_html:fieldservice_appointment_confirmation.mail_template_appointment_rescheduled
@@ -100,6 +168,49 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-"
+"serif;color:#333;\">\n"
+"                <p>Gentile <t t-out=\"object.location_id.partner_id.name or "
+"''\"/>,</p>\n"
+"                <p>Il tuo intervento di assistenza è stato <strong>"
+"riprogrammato e\n"
+"                        confermato</strong>. Ecco i nuovi dettagli:</p>\n"
+"                <table style=\"border-collapse:collapse;margin:16px "
+"0;width:100%;max-width:520px;\">\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Ordine</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"object.name or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Nuova data e ora</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"format_datetime"
+"(object.scheduled_date_start) or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"padding:6px 12px;font-weight:bold;\">"
+"Operatore assegnato</td>\n"
+"                        <td style=\"padding:6px 12px;\">\n"
+"                            <t t-out=\"object.person_id.name or ''\"/>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"                <div style=\"margin:24px 0;\">\n"
+"                    <a t-att-href=\"object._get_appointment_url('reschedule')"
+"\" style=\"background-color:#E7E9ED;color:#374151;text-"
+"decoration:none;padding:12px 22px;border-radius:4px;font-"
+"weight:bold;display:inline-block;\">Modifica nuovamente la data</a>\n"
+"                </div>\n"
+"                <p style=\"color:#888;font-size:12px;\">Se non hai richiesto "
+"questa\n"
+"                        modifica, contattaci.</p>\n"
+"            </div>\n"
+"        "
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,body_html:fieldservice_appointment_confirmation.mail_template_appointment_confirmed
@@ -119,67 +230,86 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-"
+"serif;color:#333;\">\n"
+"                <p>Il cliente ha <strong>confermato</strong> "
+"l’appuntamento.</p>\n"
+"                <ul>\n"
+"                    <li>Ordine: <t t-out=\"object.name or ''\"/></li>\n"
+"                    <li>Confermato il:\n"
+"                            <t t-out=\"format_datetime"
+"(object.appointment_confirmed_date) or ''\"/>\n"
+"                        </li>\n"
+"                    <li>Programmato per:\n"
+"                            <t t-out=\"format_datetime"
+"(object.scheduled_date_start) or ''\"/>\n"
+"                        </li>\n"
+"                    <li>Operatore assegnato: <t t-"
+"out=\"object.person_id.name or ''\"/></li>\n"
+"                </ul>\n"
+"            </div>\n"
+"        "
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "<span class=\"text-muted\">days</span>"
-msgstr ""
+msgstr "<span class=\"text-muted\">giorni</span>"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "<span class=\"text-muted\">hours</span>"
-msgstr ""
+msgstr "<span class=\"text-muted\">ore</span>"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Avviso di accesso"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__res_domain
 msgid "Active domain"
-msgstr ""
+msgstr "Dominio attivo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__email_add_signature
 msgid "Add signature"
-msgstr ""
+msgstr "Aggiungi firma"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirmed
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_rescheduled
 msgid "Add to my calendar (.ics)"
-msgstr ""
+msgstr "Aggiungi al mio calendario (.ics)"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__partner_ids
 msgid "Additional Contacts"
-msgstr ""
+msgstr "Contatti aggiuntivi"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__record_alias_domain_id
 msgid "Alias Domain"
-msgstr ""
+msgstr "Dominio alias"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_stage__allow_confirmation_request
 msgid "Allow Appointment Confirmation Request"
-msgstr ""
+msgstr "Consenti la richiesta di conferma dell’appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Appointment Confirmation"
-msgstr ""
+msgstr "Conferma appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_confirmed_by
 msgid "Appointment Confirmed By"
-msgstr ""
+msgstr "Appuntamento confermato da"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_confirmed_date
 msgid "Appointment Confirmed On"
-msgstr ""
+msgstr "Appuntamento confermato il"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_state
@@ -187,48 +317,48 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_list_view
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_search_view
 msgid "Appointment Status"
-msgstr ""
+msgstr "Stato appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_state_label
 msgid "Appointment Status Label"
-msgstr ""
+msgstr "Etichetta dello stato dell’appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirmed
 msgid "Appointment confirmed"
-msgstr ""
+msgstr "Appuntamento confermato"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_rescheduled
 msgid "Appointment rescheduled &amp; confirmed"
-msgstr ""
+msgstr "Appuntamento riprogrammato e confermato"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,subject:fieldservice_appointment_confirmation.mail_template_appointment_confirmed
 msgid "Appointment {{ object.name }} confirmed"
-msgstr ""
+msgstr "Appuntamento {{ object.name }} confermato"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Assigned worker"
-msgstr ""
+msgstr "Operatore assegnato"
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
 #: code:addons/fieldservice_appointment_confirmation/models/fsm_order.py:0
 msgid "Assigned worker: %s"
-msgstr ""
+msgstr "Operatore assegnato: %s"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__attachment_ids
 msgid "Attachments"
-msgstr ""
+msgstr "Allegati"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__author_id
 msgid "Author"
-msgstr ""
+msgstr "Autore"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__author_id
@@ -236,138 +366,141 @@ msgid ""
 "Author of the message. If not set, email_from may hold an email address that"
 " did not match any partner."
 msgstr ""
+"Autore del messaggio. Se non impostato, email_from può contenere un "
+"indirizzo e-mail non associato ad alcun contatto."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__composition_batch
 msgid "Batch composition"
-msgstr ""
+msgstr "Composizione in batch"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__body_has_template_value
 msgid "Body content is the same as the template"
-msgstr ""
+msgstr "Il contenuto del corpo è uguale a quello del modello"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_calendar_label
 msgid "Calendar Label"
-msgstr ""
+msgstr "Etichetta calendario"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__can_edit_body
 msgid "Can Edit Body"
-msgstr ""
+msgstr "Può modificare il corpo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__can_request_confirmation
 msgid "Can Request Confirmation"
-msgstr ""
+msgstr "Può richiedere la conferma"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_appointment_confirmation_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__use_exclusion_list
 msgid "Check Exclusion List"
-msgstr ""
+msgstr "Controlla l’elenco di esclusione"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__record_company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__composition_mode
 msgid "Composition mode"
-msgstr ""
+msgstr "Modalità di composizione"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model,name:fieldservice_appointment_confirmation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Confirm Appointment"
-msgstr ""
+msgstr "Conferma appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_reschedule_page
 msgid "Confirm new date"
-msgstr ""
+msgstr "Conferma la nuova data"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Confirm your appointment"
-msgstr ""
+msgstr "Conferma il tuo appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields.selection,name:fieldservice_appointment_confirmation.selection__fsm_order__appointment_state__confirmed
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_form
 msgid "Confirmed"
-msgstr ""
+msgstr "Confermato"
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
 #: code:addons/fieldservice_appointment_confirmation/models/fsm_order.py:0
 msgid "Confirmed (rescheduled)"
-msgstr ""
+msgstr "Confermato (riprogrammato)"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_search_view
 msgid "Confirmed Appointments"
-msgstr ""
+msgstr "Appuntamenti confermati"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to_force_new
 msgid "Considers answers as new thread"
-msgstr ""
+msgstr "Considera le risposte come una nuova discussione"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__body
 msgid "Contents"
-msgstr ""
+msgstr "Contenuti"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_order__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL del portale cliente"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Date &amp; time"
-msgstr ""
+msgstr "Data e ora"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Days ahead offered to the customer when rescheduling."
 msgstr ""
+"Numero di giorni futuri proposti al cliente in caso di riprogrammazione."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__auto_delete
 msgid "Delete Emails"
-msgstr ""
+msgstr "Elimina e-mail"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__email_layout_xmlid
 msgid "Email Notification Layout"
-msgstr ""
+msgstr "Layout della notifica e-mail"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__email_from
@@ -375,51 +508,54 @@ msgid ""
 "Email address of the sender. This field is set when no matching partner is "
 "found and replaces the author_id field in the chatter."
 msgstr ""
+"Indirizzo e-mail del mittente. Questo campo viene impostato quando non viene "
+"trovato alcun contatto corrispondente e sostituisce il campo author_id nel "
+"chatter."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model,name:fieldservice_appointment_confirmation.model_fsm_appointment_confirmation_wizard
 msgid "FSM Appointment Confirmation Composer"
-msgstr ""
+msgstr "Compositore di conferma appuntamento FSM"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,name:fieldservice_appointment_confirmation.mail_template_appointment_request
 msgid "FSM Appointment: Confirmation Request"
-msgstr ""
+msgstr "FSM Appuntamento: richiesta di conferma"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,name:fieldservice_appointment_confirmation.mail_template_appointment_confirmed
 msgid "FSM Appointment: Confirmed Notification"
-msgstr ""
+msgstr "FSM Appuntamento: notifica di conferma"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,name:fieldservice_appointment_confirmation.mail_template_appointment_rescheduled
 msgid "FSM Appointment: Rescheduled (customer)"
-msgstr ""
+msgstr "FSM Appuntamento: riprogrammato (cliente)"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Field Service Appointments"
-msgstr ""
+msgstr "Appuntamenti assistenza sul campo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model,name:fieldservice_appointment_confirmation.model_fsm_order
 msgid "Field Service Order"
-msgstr ""
+msgstr "Ordine di assistenza sul campo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model,name:fieldservice_appointment_confirmation.model_fsm_stage
 msgid "Field Service Stage"
-msgstr ""
+msgstr "Fase assistenza sul campo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__email_from
 msgid "From"
-msgstr ""
+msgstr "Da"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Granularity of the time slots offered when rescheduling."
-msgstr ""
+msgstr "Granularità delle fasce orarie proposte in caso di riprogrammazione."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_res_config_settings__fsm_appointment_slot_duration_hours
@@ -427,11 +563,13 @@ msgid ""
 "Granularity, in hours, of the time slots offered to the customer when "
 "rescheduling an appointment."
 msgstr ""
+"Granularità, in ore, delle fasce orarie proposte al cliente per "
+"riprogrammare un appuntamento."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_stage__allow_confirmation_request
@@ -439,6 +577,8 @@ msgid ""
 "If enabled, field service orders in this stage display the button to request"
 " an appointment confirmation from the customer."
 msgstr ""
+"Se abilitata, gli ordini di assistenza sul campo in questa fase mostrano il "
+"pulsante per richiedere al cliente la conferma dell’appuntamento."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__scheduled_date
@@ -447,47 +587,52 @@ msgid ""
 "if sent, send emails after that date. This date is considered as being in "
 "UTC timezone."
 msgstr ""
+"In modalità commento: se impostata, posticipa l’invio delle notifiche. In "
+"modalità invio massivo: se impostata, invia le e-mail dopo questa data. La "
+"data è considerata nel fuso orario UTC."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__is_mail_template_editor
 msgid "Is Editor"
-msgstr ""
+msgstr "È un editor"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__subtype_is_log
 msgid "Is a log"
-msgstr ""
+msgstr "È un log"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__auto_delete_keep_log
 msgid "Keep Message Copy"
-msgstr ""
+msgstr "Conserva copia del messaggio"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__auto_delete_keep_log
 msgid ""
 "Keep a copy of the email content if emails are removed (mass mailing only)"
 msgstr ""
+"Conserva una copia del contenuto dell’e-mail se le e-mail vengono eliminate "
+"(solo invio massivo)"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__lang
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__mail_activity_type_id
 msgid "Mail Activity Type"
-msgstr ""
+msgstr "Tipo di attività e-mail"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to_force_new
@@ -495,6 +640,8 @@ msgid ""
 "Manage answers as new incoming emails instead of replies going to the same "
 "thread."
 msgstr ""
+"Gestisci le risposte come nuove e-mail in arrivo anziché come risposte nella "
+"stessa discussione."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__message_type
@@ -502,6 +649,9 @@ msgid ""
 "Message type: email for email message, notification for system message, "
 "comment for other messages such as user replies"
 msgstr ""
+"Tipo di messaggio: e-mail per i messaggi di posta elettronica, notifica per "
+"i messaggi di sistema, commento per altri messaggi come le risposte degli "
+"utenti"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_res_config_settings__fsm_appointment_reschedule_window_days
@@ -509,6 +659,8 @@ msgid ""
 "Number of days ahead offered to the customer when rescheduling an "
 "appointment."
 msgstr ""
+"Numero di giorni futuri proposti al cliente per riprogrammare un "
+"appuntamento."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__lang
@@ -518,11 +670,15 @@ msgid ""
 "a placeholder expression that provides the appropriate language, e.g. {{ "
 "object.partner_id.lang }}."
 msgstr ""
+"Lingua di traduzione facoltativa (codice ISO) da selezionare per l’invio di "
+"un’e-mail. Se non impostata, verrà utilizzata la versione inglese. Di norma "
+"dovrebbe essere un’espressione segnaposto che restituisce la lingua "
+"appropriata, ad es. {{ object.partner_id.lang }}."
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
@@ -531,6 +687,8 @@ msgid ""
 "Order %(name)s has no assigned worker, so its appointment cannot be "
 "confirmed or rescheduled."
 msgstr ""
+"L’ordine %(name)s non ha un operatore assegnato, quindi il relativo "
+"appuntamento non può essere confermato o riprogrammato."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_order__appointment_calendar_label
@@ -538,6 +696,8 @@ msgid ""
 "Order name shown in the calendar, prefixed with a mark when the appointment "
 "is confirmed."
 msgstr ""
+"Nome dell’ordine visualizzato nel calendario, preceduto da un simbolo quando "
+"l’appuntamento è confermato."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to_mode
@@ -546,76 +706,82 @@ msgid ""
 " Another Email Address: Answers go to the email address mentioned in the tracking message-id instead of original document discussion thread. \n"
 " This has an impact on the generated message-id."
 msgstr ""
+"Discussione originale: le risposte vengono inserite nella discussione del "
+"documento originale. \n"
+" Un altro indirizzo e-mail: le risposte vengono inviate all’indirizzo e-mail "
+"indicato nel message-id di tracciamento anziché nella discussione del "
+"documento originale. \n"
+" Questa impostazione influisce sul message-id generato."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__mail_server_id
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Server di posta in uscita"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__parent_id
 msgid "Parent Message"
-msgstr ""
+msgstr "Messaggio principale"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields.selection,name:fieldservice_appointment_confirmation.selection__fsm_order__appointment_state__pending
 msgid "Pending"
-msgstr ""
+msgstr "In attesa"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_search_view
 msgid "Pending Confirmation"
-msgstr ""
+msgstr "In attesa di conferma"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,subject:fieldservice_appointment_confirmation.mail_template_appointment_request
 msgid "Please confirm your appointment {{ object.name }}"
-msgstr ""
+msgstr "Conferma il tuo appuntamento {{ object.name }}"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_invalid
 msgid "Please contact us:"
-msgstr ""
+msgstr "Contattaci:"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Please review the details and confirm."
-msgstr ""
+msgstr "Controlla i dettagli e conferma."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "URL di accesso al portale"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__record_name
 msgid "Record Name"
-msgstr ""
+msgstr "Nome del record"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__res_ids
 msgid "Related Document IDs"
-msgstr ""
+msgstr "ID dei documenti correlati"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__model
 msgid "Related Document Model"
-msgstr ""
+msgstr "Modello del documento correlato"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__render_model
 msgid "Rendering Model"
-msgstr ""
+msgstr "Modello di rendering"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to_mode
 msgid "Replies"
-msgstr ""
+msgstr "Risposte"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to
 msgid "Reply To"
-msgstr ""
+msgstr "Rispondi a"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__reply_to
@@ -623,118 +789,120 @@ msgid ""
 "Reply email address. Setting the reply_to bypasses the automatic thread "
 "creation."
 msgstr ""
+"Indirizzo e-mail a cui rispondere. L’impostazione di reply_to evita la "
+"creazione automatica della discussione."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
 #: code:addons/fieldservice_appointment_confirmation/models/fsm_order.py:0
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_appointment_confirmation_wizard_form
 msgid "Request Appointment Confirmation"
-msgstr ""
+msgstr "Richiedi conferma appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_form
 msgid "Request Confirmation"
-msgstr ""
+msgstr "Richiedi conferma"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields.selection,name:fieldservice_appointment_confirmation.selection__fsm_order__appointment_state__requested
 msgid "Requested"
-msgstr ""
+msgstr "Richiesto"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Reschedule"
-msgstr ""
+msgstr "Riprogramma"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__appointment_reschedule_count
 msgid "Reschedule Count"
-msgstr ""
+msgstr "Numero di riprogrammazioni"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Reschedule Slot Duration"
-msgstr ""
+msgstr "Durata fascia di riprogrammazione"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_res_config_settings__fsm_appointment_slot_duration_hours
 msgid "Reschedule Slot Duration (hours)"
-msgstr ""
+msgstr "Durata fascia di riprogrammazione (ore)"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.res_config_settings_view_form
 msgid "Reschedule Window"
-msgstr ""
+msgstr "Intervallo di riprogrammazione"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_res_config_settings__fsm_appointment_reschedule_window_days
 msgid "Reschedule Window (days)"
-msgstr ""
+msgstr "Intervallo di riprogrammazione (giorni)"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_reschedule_page
 msgid "Reschedule your appointment"
-msgstr ""
+msgstr "Riprogramma il tuo appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields.selection,name:fieldservice_appointment_confirmation.selection__fsm_order__appointment_state__rescheduled
 msgid "Rescheduled"
-msgstr ""
+msgstr "Riprogrammato"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_order_search_view
 msgid "Rescheduled Appointments"
-msgstr ""
+msgstr "Appuntamenti riprogrammati"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__res_domain_user_id
 msgid "Responsible"
-msgstr ""
+msgstr "Responsabile"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__scheduled_date
 msgid "Scheduled Date"
-msgstr ""
+msgstr "Data programmata"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_order__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Token di sicurezza"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_appointment_confirmation_wizard_form
 msgid "Send"
-msgstr ""
+msgstr "Invia"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__force_send
 msgid "Send mailing or notifications directly"
-msgstr ""
+msgstr "Invia direttamente e-mail o notifiche"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__subject
 msgid "Subject"
-msgstr ""
+msgstr "Oggetto"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.fsm_appointment_confirmation_wizard_form
 msgid "Subject..."
-msgstr ""
+msgstr "Oggetto..."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__subtype_id
 msgid "Subtype"
-msgstr ""
+msgstr "Sottotipo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__template_name
 msgid "Template Name"
-msgstr ""
+msgstr "Nome modello"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirmed
 msgid "Thank you! Your appointment"
-msgstr ""
+msgstr "Grazie! Il tuo appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_invalid
@@ -742,6 +910,8 @@ msgid ""
 "The appointment link has expired or the order can no\n"
 "                            longer be modified online."
 msgstr ""
+"Il collegamento all’appuntamento è scaduto oppure \n"
+"                            l’ordine non può più essere modificato online."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
@@ -749,6 +919,7 @@ msgstr ""
 msgid ""
 "The customer %(name)s confirmed the appointment scheduled for %(date)s."
 msgstr ""
+"Il cliente %(name)s ha confermato l’appuntamento programmato per il %(date)s."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
@@ -757,17 +928,19 @@ msgid ""
 "The customer rescheduled and confirmed the appointment.<br/>Original date: "
 "%(old)s<br/>New date: %(new)s"
 msgstr ""
+"Il cliente ha riprogrammato e confermato l’appuntamento.<br/>Data originale: "
+"%(old)s<br/>Nuova data: %(new)s"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_reschedule_page
 msgid "The selected slot is no longer available. Please pick another one."
-msgstr ""
+msgstr "La fascia oraria selezionata non è più disponibile. Scegline un’altra."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
 #: code:addons/fieldservice_appointment_confirmation/models/fsm_order.py:0
 msgid "The selected time slot is no longer available."
-msgstr ""
+msgstr "La fascia oraria selezionata non è più disponibile."
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_reschedule_page
@@ -775,11 +948,13 @@ msgid ""
 "There are no available slots at the moment. Please\n"
 "                                contact us to arrange a new date."
 msgstr ""
+"Al momento non ci sono fasce orarie disponibili. Contattaci\n"
+"                                per concordare una nuova data."
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_invalid
 msgid "This link is no longer available"
-msgstr ""
+msgstr "Questo collegamento non è più disponibile"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__auto_delete
@@ -788,6 +963,9 @@ msgid ""
 "including from the Technical menu in the Settings, in order to preserve "
 "storage space of your Odoo database."
 msgstr ""
+"Questa opzione elimina definitivamente ogni traccia dell’e-mail dopo "
+"l’invio, anche dal menu Tecnico nelle Impostazioni, per preservare lo spazio "
+"di archiviazione del database Odoo."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
@@ -797,41 +975,45 @@ msgid ""
 "confirmation (enabled stage, assigned worker, scheduled date and customer "
 "email)."
 msgstr ""
+"Questo ordine non soddisfa i requisiti per richiedere la conferma "
+"dell’appuntamento (fase abilitata, operatore assegnato, data programmata ed "
+"e-mail del cliente)."
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__model_is_thread
 msgid "Thread-Enabled"
-msgstr ""
+msgstr "Con gestione delle discussioni"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__message_type
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,field_description:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__template_id
 msgid "Use template"
-msgstr ""
+msgstr "Usa modello"
 
 #. module: fieldservice_appointment_confirmation
 #: model:ir.model.fields,help:fieldservice_appointment_confirmation.field_fsm_appointment_confirmation_wizard__res_domain_user_id
 msgid "Used as context used to evaluate composer domain"
-msgstr ""
+msgstr "Utilizzato come contesto per valutare il dominio del compositore"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_rescheduled
 msgid "Your appointment"
-msgstr ""
+msgstr "Il tuo appuntamento"
 
 #. module: fieldservice_appointment_confirmation
 #: model:mail.template,subject:fieldservice_appointment_confirmation.mail_template_appointment_rescheduled
 msgid "Your appointment {{ object.name }} has been rescheduled and confirmed"
 msgstr ""
+"Il tuo appuntamento {{ object.name }} è stato riprogrammato e confermato"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirm_page
 msgid "Your name (optional)"
-msgstr ""
+msgstr "Il tuo nome (facoltativo)"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_reschedule_page
@@ -839,24 +1021,29 @@ msgid ""
 "Your original appointment date has already passed.\n"
 "                                Please pick a new date and time below."
 msgstr ""
+"La data originale dell’appuntamento è già trascorsa.\n"
+"                                Seleziona una nuova data e un nuovo orario "
+"qui sotto."
 
 #. module: fieldservice_appointment_confirmation
 #. odoo-python
 #: code:addons/fieldservice_appointment_confirmation/models/fsm_order.py:0
 msgid "\\nContact: %s"
 msgstr ""
+"\\n"
+"Contatto: %s"
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_rescheduled
 msgid "and confirmed."
-msgstr ""
+msgstr "ed è stato confermato."
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_confirmed
 msgid "has been confirmed."
-msgstr ""
+msgstr "è stato confermato."
 
 #. module: fieldservice_appointment_confirmation
 #: model_terms:ir.ui.view,arch_db:fieldservice_appointment_confirmation.appointment_rescheduled
 msgid "has been moved to"
-msgstr ""
+msgstr "è stato spostato al"
