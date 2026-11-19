@@ -1,0 +1,12 @@
+id,name,model_id,group_id/id,operation,domain
+rule_fsm_frequency_multi_company,FSM Frequency multi-company,fsm.frequency,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_fsm_frequency_fsm_manager,fsm.frequency.manager,fsm.frequency,fieldservice.group_fsm_manager,crud,
+access_fsm_frequency_fsm_user,fsm.frequency.user,fsm.frequency,fieldservice.group_fsm_user,cru,
+access_fsm_frequency_fsm_set_manager,fsm.frequency.set.manager,fsm.frequency.set,fieldservice.group_fsm_manager,crud,
+access_fsm_frequency_fsm_set_user,fsm.frequency.set.user,fsm.frequency.set,fieldservice.group_fsm_user,cru,
+rule_fsm_recurring_multi_company,FSM Recurring Order multi-company,fsm.recurring,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_fsm_recurring_fsm_manager,fsm.recurring.manager,fsm.recurring,fieldservice.group_fsm_manager,crud,
+access_fsm_recurring_fsm_user,fsm.recurring.user,fsm.recurring,fieldservice.group_fsm_user,cru,
+rule_fsm_recurring_template_multi_company,FSM Recurring Template multi-company,fsm.recurring.template,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
+access_fsm_recurring_template_fsm_manager,fsm.recurring.template.manager,fsm.recurring.template,fieldservice.group_fsm_manager,crud,
+access_fsm_recurring_template_fsm_user,fsm.recurring.template.user,fsm.recurring.template,fieldservice.group_fsm_user,r,
