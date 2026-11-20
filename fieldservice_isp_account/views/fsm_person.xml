@@ -1,0 +1,20 @@
+<odoo>
+    <record id="fsm_person_form_isp_account" model="ir.ui.view">
+        <field name="name">fsm.person.form.isp.account</field>
+        <field name="model">fsm.person</field>
+        <field name="inherit_id" ref="fieldservice.fsm_person_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_bills"
+                    class="oe_stat_button"
+                    icon="fa-credit-card"
+                    groups="base.group_user"
+                >
+                    <field name="bill_count" widget="statinfo" string="Vendor Bills" />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
