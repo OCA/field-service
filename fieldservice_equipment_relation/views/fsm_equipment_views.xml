@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="fsm_equipment_form_view_relation" model="ir.ui.view">
+        <field name="name">fsm.equipment.form.relation</field>
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_relations"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-link"
+                >
+                    <field name="relation_count" widget="statinfo" string="Relations" />
+                </button>
+            </div>
+            <xpath expr="//notebook" position="inside">
+                <page string="Relations" name="relations">
+                    <group string="Direct Relations">
+                        <field name="relation_ids" nolabel="1">
+                            <list editable="bottom">
+                                <field name="relation_type_id" />
+                                <field name="related_equipment_id" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="active" />
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Inverse Relations">
+                        <field name="inverse_relation_ids" nolabel="1">
+                            <list create="false" edit="false" delete="false">
+                                <field name="equipment_id" />
+                                <field name="relation_type_id" />
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="active" />
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
