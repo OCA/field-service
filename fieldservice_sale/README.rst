@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================
 Field Service - Sales
 =====================
@@ -17,7 +13,7 @@ Field Service - Sales
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Ffield--service-lightgray.png?logo=github
@@ -102,6 +98,16 @@ Usage
     its
   | linked sale order line will be updated to the quantity ordered,
     indicating this line is ready for invoicing.
+
+**Cancelling and re-confirming a Sale Order**
+
+- Cancel a confirmed Sale Order: its linked Field Service orders that
+  are still open are moved to the *Cancelled* stage. Field Service
+  orders that are already closed (e.g. *Completed*) keep their stage.
+- Set the Sale Order back to Quotation and confirm it again: new Field
+  Service orders are created for the lines whose Field Service order is
+  closed. The previous (cancelled) Field Service orders remain linked to
+  the Sale Order.
 
 Known issues / Roadmap
 ======================
