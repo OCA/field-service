@@ -1,0 +1,100 @@
+# Copyright (C) 2018 Brian McMaster
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
+from odoo.fields import Domain
+
+
+class FSMTeam(models.Model):
+    _name = "fsm.team"
+    _description = "Field Service Team"
+    _inherit = ["mail.thread", "mail.activity.mixin"]  # noqa: RUF012
+
+    def _default_stages(self):
+        return self.env["fsm.stage"].search(Domain("is_default", "=", True))
+
+    def _compute_order_count(self):
+        order_data = self.env["fsm.order"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("team_id", "in", self.ids),
+                    Domain("stage_id.is_closed", "=", False),
+                ]
+            ),
+            groupby=["team_id"],
+            aggregates=["__count"],
+        )
+        result = {team.id: count for team, count in order_data}
+        for team in self:
+            team.order_count = result.get(team.id, 0)
+
+    def _compute_order_need_assign_count(self):
+        order_data = self.env["fsm.order"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("team_id", "in", self.ids),
+                    Domain("person_id", "=", False),
+                    Domain("stage_id.is_closed", "=", False),
+                ]
+            ),
+            groupby=["team_id"],
+            aggregates=["__count"],
+        )
+        result = {team.id: count for team, count in order_data}
+        for team in self:
+            team.order_need_assign_count = result.get(team.id, 0)
+
+    def _compute_order_need_schedule_count(self):
+        order_data = self.env["fsm.order"]._read_group(
+            domain=Domain.AND(
+                [
+                    Domain("team_id", "in", self.ids),
+                    Domain("scheduled_date_start", "=", False),
+                    Domain("stage_id.is_closed", "=", False),
+                ]
+            ),
+            groupby=["team_id"],
+            aggregates=["__count"],
+        )
+        result = {team.id: count for team, count in order_data}
+        for team in self:
+            team.order_need_schedule_count = result.get(team.id, 0)
+
+    name = fields.Char(required=True, translate=True)
+    description = fields.Text(translate=True)
+    active = fields.Boolean(default=True)
+    color = fields.Integer("Color Index")
+    stage_ids = fields.Many2many(
+        "fsm.stage",
+        "order_team_stage_rel",
+        "team_id",
+        "stage_id",
+        string="Stages",
+        default=lambda self: self._default_stages(),
+    )
+    order_ids = fields.One2many(
+        "fsm.order",
+        "team_id",
+        string="Orders",
+        domain=Domain("stage_id.is_closed", "=", False),
+    )
+    order_count = fields.Integer(compute="_compute_order_count", string="Orders Count")
+    order_need_assign_count = fields.Integer(
+        compute="_compute_order_need_assign_count", string="Orders to Assign"
+    )
+    order_need_schedule_count = fields.Integer(
+        compute="_compute_order_need_schedule_count", string="Orders to Schedule"
+    )
+    sequence = fields.Integer(default=1, help="Used to sort teams. Lower is better.")
+    company_id = fields.Many2one(
+        "res.company",
+        required=True,
+        index=True,
+        default=lambda self: self.env.company,
+        help="Company related to this team",
+    )
+
+    _name_uniq = models.Constraint(
+        "unique (name)",
+        "Team name already exists!",
+    )
