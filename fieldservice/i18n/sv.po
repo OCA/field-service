@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Language: sv\n"
-"PO-Revision-Date: 2026-11-24 10:20+0000\n"
+"PO-Revision-Date: 2026-11-24 15:46+0000\n"
 "X-Generator: Weblate 2026.11.2\n"
 
 #. module: fieldservice
@@ -25,18 +25,18 @@ msgstr "# Möten"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_count
 msgid "# Opportunities"
-msgstr ""
+msgstr "Antal affärsmöjligheter"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__order_count
 msgid "# Orders"
-msgstr ""
+msgstr "Antal ordrar"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_invoice_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_invoice_count
 msgid "# Vendor Bills"
-msgstr ""
+msgstr "Antal leverantörsfakturor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__owned_location_count
@@ -79,7 +79,7 @@ msgstr "<strong>Beräknad ankomsttid:</strong>"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "<strong>Signature</strong>"
-msgstr ""
+msgstr "<strong>Signatur</strong>"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
@@ -91,25 +91,25 @@ msgstr ""
 #. odoo-python
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 msgid "A Field Service Location related to that partner already exists."
-msgstr ""
+msgstr "Det finns redan en fältserviceplats kopplad till den kontakten."
 
 #. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/wizard/fsm_wizard.py:0
 msgid "A Field Service Worker related to that partner already exists."
-msgstr ""
+msgstr "Det finns redan en fälttekniker kopplad till den kontakten."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_payable_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_payable_id
 msgid "Account Payable"
-msgstr ""
+msgstr "Leverantörsskuld"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_receivable_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_receivable_id
 msgid "Account Receivable"
-msgstr ""
+msgstr "Kundfordran"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_needaction
@@ -243,13 +243,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreement_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreement_ids
 msgid "Agreements"
-msgstr ""
+msgstr "Avtal"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__agreements_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__agreements_count
 msgid "Agreements Count"
-msgstr ""
+msgstr "Antal avtal"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_kanban
@@ -279,7 +279,7 @@ msgstr "Tillåt Field Service Google Map"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Allow Field Service Google Maps"
-msgstr ""
+msgstr "Tillåt Google Maps i fältservice"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_web_timeline_view
@@ -364,7 +364,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__autopost_bills
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__autopost_bills
 msgid "Auto-post bills"
-msgstr ""
+msgstr "Bokför leverantörsfakturor automatiskt"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -376,7 +376,7 @@ msgstr "Skapar automatiskt en dagsrutt när en order tilldelas och schemaläggs"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__autopost_bills
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__autopost_bills
 msgid "Automatically post bills for this trusted partner"
-msgstr ""
+msgstr "Bokför leverantörsfakturor automatiskt för den här betrodda kontakten"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__receipt_reminder_email
@@ -385,42 +385,44 @@ msgid ""
 "Automatically send a confirmation email to the vendor X days before the "
 "expected receipt date, asking him to confirm the exact date."
 msgstr ""
+"Skicka automatiskt ett bekräftelsemejl till leverantören X dagar före "
+"förväntat ankomstdatum och be om bekräftelse av exakt datum."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1920
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1920
 msgid "Avatar"
-msgstr ""
+msgstr "Profilbild"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_1024
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_1024
 msgid "Avatar 1024"
-msgstr ""
+msgstr "Profilbild 1024"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_128
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_128
 msgid "Avatar 128"
-msgstr ""
+msgstr "Profilbild 128"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_256
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_256
 msgid "Avatar 256"
-msgstr ""
+msgstr "Profilbild 256"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__avatar_512
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__avatar_512
 msgid "Avatar 512"
-msgstr ""
+msgstr "Profilbild 512"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_account_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__bank_account_count
 msgid "Bank"
-msgstr ""
+msgstr "Bank"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__bank_ids
@@ -444,13 +446,13 @@ msgstr "Svartlista"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__mobile_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__mobile_blacklisted
 msgid "Blacklisted Phone Is Mobile"
-msgstr ""
+msgstr "Spärrat telefonnummer är mobil"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_blacklisted
 msgid "Blacklisted Phone is Phone"
-msgstr ""
+msgstr "Spärrat telefonnummer är fast telefon"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__message_bounce
@@ -476,13 +478,13 @@ msgstr "Filialchef"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__buyer_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__buyer_id
 msgid "Buyer"
-msgstr ""
+msgstr "Inköpare"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_crm
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "CRM"
-msgstr ""
+msgstr "CRM"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
@@ -507,12 +509,14 @@ msgid ""
 "Cannot create FSM Stage because it has the same Type and Sequence of an "
 "existing FSM Stage."
 msgstr ""
+"Det går inte att skapa etappen eftersom den har samma typ och sekvens som en "
+"befintlig etapp."
 
 #. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "Cannot move to completed from Kanban"
-msgstr ""
+msgstr "Det går inte att flytta till slutförd från kanban"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__category_ids
@@ -586,7 +590,7 @@ msgstr "Markera denna ruta om kontakten är en anställd."
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__child_id
 msgid "Child Categories"
-msgstr ""
+msgstr "Underkategorier"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__child_ids
@@ -597,7 +601,7 @@ msgstr "Barn"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__child_ids
 msgid "Children Locations"
-msgstr ""
+msgstr "Underplatser"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_template__team_id
@@ -638,7 +642,7 @@ msgstr "Färgindex"
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_stage.py:0
 msgid "Color code should be Hex Code. Ex:-#FFFFFF"
-msgstr ""
+msgstr "Färgkoden ska vara en hex-kod, t.ex. #FFFFFF"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__commercial_partner_id
@@ -655,7 +659,7 @@ msgstr "Bolag"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ref_company_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ref_company_ids
 msgid "Companies that refers to partner"
-msgstr ""
+msgstr "Företag som refererar till kontakten"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__company_id
@@ -680,7 +684,7 @@ msgstr "Företags ID"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_registry_label
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__company_registry_label
 msgid "Company ID Label"
-msgstr ""
+msgstr "Etikett för organisationsnummer"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__company_name
@@ -744,7 +748,7 @@ msgstr "Fullständig adress"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__complete_direction
 msgid "Complete Direction"
-msgstr ""
+msgstr "Fullständig adress"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__complete_name
@@ -803,12 +807,12 @@ msgstr "Konvertera"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
 msgid "Convert to FS Location"
-msgstr ""
+msgstr "Konvertera till fältserviceplats"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_partner_fields
 msgid "Convert to FS Worker"
-msgstr ""
+msgstr "Konvertera till fälttekniker"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.partner_fsm_action
@@ -844,7 +848,7 @@ msgstr "Landskod"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Create FSM Orders from Opportunities"
-msgstr ""
+msgstr "Skapa arbetsorder från affärsmöjligheter"
 
 #. module: fieldservice
 #: model_terms:ir.actions.act_window,help:fieldservice.action_fsm_customer
@@ -896,7 +900,7 @@ msgstr "Skapa länkade Hissar för en HissTekniker."
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid ""
 "Create vendor bills and customer invoices when completing service orders."
-msgstr ""
+msgstr "Skapa leverantörsfakturor och kundfakturor när serviceorder slutförs."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__create_uid
@@ -938,25 +942,25 @@ msgstr "Skapad"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_limit
 msgid "Credit Limit"
-msgstr ""
+msgstr "Kreditgräns"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit_to_invoice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit_to_invoice
 msgid "Credit To Invoice"
-msgstr ""
+msgstr "Kredit att fakturera"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit_limit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit_limit
 msgid "Credit limit specific to this partner."
-msgstr ""
+msgstr "Kreditgräns specifik för den här kontakten."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__currency_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__current_date
@@ -972,25 +976,25 @@ msgstr "Nuvarande Hiss"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_customer
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_customer
 msgid "Customer Location"
-msgstr ""
+msgstr "Kundplats"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_payment_term_id
 msgid "Customer Payment Terms"
-msgstr ""
+msgstr "Kundens betalningsvillkor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__customer_rank
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__customer_rank
 msgid "Customer Rank"
-msgstr ""
+msgstr "Kundrankning"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.fsm_order_sign_wizard_action
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 msgid "Customer Signature"
-msgstr ""
+msgstr "Kundsignatur"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_customer
@@ -1001,19 +1005,19 @@ msgstr "Kunder"
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.dashboard
 msgid "Dashboard"
-msgstr ""
+msgstr "Instrumentpanel"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__reminder_date_before_receipt
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Days Before Receipt"
-msgstr ""
+msgstr "Dagar före ankomst"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__days_sales_outstanding
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__days_sales_outstanding
 msgid "Days Sales Outstanding (DSO)"
-msgstr ""
+msgstr "Genomsnittlig kredittid (DSO)"
 
 #. module: fieldservice
 #: model:fsm.team,name:fieldservice.fsm_team_default
@@ -1028,18 +1032,18 @@ msgstr "Standardvaraktighet i timmar"
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__team_id
 msgid "Default team assigned to orders in this location"
-msgstr ""
+msgstr "Standardteam för ordrar på den här platsen"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__trust
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__trust
 msgid "Degree of trust you have in this debtor"
-msgstr ""
+msgstr "Grad av förtroende för den här gäldenären"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fsm_parent_id
 msgid "Deprecated Parent"
-msgstr ""
+msgstr "Föråldrad förälder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__description
@@ -1071,13 +1075,13 @@ msgstr "Arbetsledare"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_edi_format
 msgid "Display Invoice Edi Format"
-msgstr ""
+msgstr "Visa EDI-format för faktura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__display_invoice_template_pdf_report_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__display_invoice_template_pdf_report_id
 msgid "Display Invoice Template Pdf Report"
-msgstr ""
+msgstr "Visa PDF-mall för faktura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__display_name
@@ -1099,7 +1103,7 @@ msgstr "Visningsnamn"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Display locations and orders on a map with Google Maps"
-msgstr ""
+msgstr "Visa platser och ordrar på en karta med Google Maps"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -1140,13 +1144,13 @@ msgstr "Förfaller inom 7 dagar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__duplicate_bank_partner_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__duplicate_bank_partner_ids
 msgid "Duplicate Bank Partner"
-msgstr ""
+msgstr "Dubblett av bankkontakt"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__duplicated_bank_account_partners_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__duplicated_bank_account_partners_count
 msgid "Duplicated Bank Account Partners Count"
-msgstr ""
+msgstr "Antal dubblerade bankkontakter"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_template__duration
@@ -1193,13 +1197,13 @@ msgstr "Anställd"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employee_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employee_ids
 msgid "Employees"
-msgstr ""
+msgstr "Anställda"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__employees_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__employees_count
 msgid "Employees Count"
-msgstr ""
+msgstr "Antal anställda"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -1223,17 +1227,17 @@ msgstr "Utrustningsnamnet finns redan!"
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.equipment_stage_1
 msgid "Equipment-1"
-msgstr ""
+msgstr "Utrustning-1"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.equipment_stage_2
 msgid "Equipment-2"
-msgstr ""
+msgstr "Utrustning-2"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.equipment_stage_3
 msgid "Equipment-3"
-msgstr ""
+msgstr "Utrustning-3"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_equipment
@@ -1302,7 +1306,7 @@ msgstr "FSM-ordernamn"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_order_sign_wizard
 msgid "FSM Order Sign Wizard"
-msgstr ""
+msgstr "Signeringsguide för arbetsorder"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_calendar_view
@@ -1352,7 +1356,7 @@ msgstr "Hiss"
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_location_person
 msgid "Field Service Location Person Info"
-msgstr ""
+msgstr "Kontaktuppgifter för fältserviceplats"
 
 #. module: fieldservice
 #: model:ir.model,name:fieldservice.model_fsm_order
@@ -1410,18 +1414,20 @@ msgid ""
 "Field used to store sanitized phone number. Helps speeding up searches and "
 "comparisons."
 msgstr ""
+"Fält för att lagra normaliserat telefonnummer. Snabbar upp sökningar och "
+"jämförelser."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__fiscal_country_codes
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__fiscal_country_codes
 msgid "Fiscal Country Codes"
-msgstr ""
+msgstr "Skattejurisdiktionens landskoder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_account_position_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_account_position_id
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Skatteposition"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__fold
@@ -1544,7 +1550,7 @@ msgstr "Dölj"
 #. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__2
 msgid "High"
-msgstr ""
+msgstr "Hög"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_company__fsm_order_request_late_high
@@ -1652,18 +1658,20 @@ msgid ""
 "If the sanitized phone number is on the blacklist, the contact won't receive"
 " mass mailing sms anymore, from any list"
 msgstr ""
+"Om det normaliserade telefonnumret finns på spärrlistan får kontakten inte "
+"längre SMS-utskick från någon lista"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_amount
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_amount
 msgid "Ignore Abnormal Invoice Amount"
-msgstr ""
+msgstr "Ignorera avvikande fakturabelopp"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__ignore_abnormal_invoice_date
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__ignore_abnormal_invoice_date
 msgid "Ignore Abnormal Invoice Date"
-msgstr ""
+msgstr "Ignorera avvikande fakturadatum"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__image_1920
@@ -1703,6 +1711,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
+"Anger om ett spärrat normaliserat telefonnummer är ett mobilnummer. Hjälper "
+"att avgöra vilket nummer som är spärrat             när modellen har både "
+"mobil- och telefonfält."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__phone_blacklisted
@@ -1712,6 +1723,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
+"Anger om ett spärrat normaliserat telefonnummer är ett fast telefonnummer. "
+"Hjälper att avgöra vilket nummer som är spärrat             när modellen har "
+"både mobil- och telefonfält."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__industry_id
@@ -1723,7 +1737,7 @@ msgstr "Bransch"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contact_address_inline
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contact_address_inline
 msgid "Inlined Complete Address"
-msgstr ""
+msgstr "Fullständig adress på en rad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__todo
@@ -1744,25 +1758,25 @@ msgstr "Intern typ"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format_store
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format_store
 msgid "Invoice Edi Format Store"
-msgstr ""
+msgstr "Lagring av EDI-format för faktura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_sending_method
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_sending_method
 msgid "Invoice sending"
-msgstr ""
+msgstr "Fakturautskick"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_template_pdf_report_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_template_pdf_report_id
 msgid "Invoice template"
-msgstr ""
+msgstr "Fakturamall"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_account
@@ -1778,13 +1792,13 @@ msgstr "Fakturera dina serviceorder"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_ids
 msgid "Invoices"
-msgstr ""
+msgstr "Fakturor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__is_coa_installed
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__is_coa_installed
 msgid "Is Coa Installed"
-msgstr ""
+msgstr "Kontoplan installerad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_is_follower
@@ -1848,7 +1862,7 @@ msgstr "Tjänst"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__journal_item_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__journal_item_count
 msgid "Journal Items"
-msgstr ""
+msgstr "Verifikationsrader"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__lang
@@ -1901,7 +1915,7 @@ msgstr "Senaste avisering markerad som läst från baskalender"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Lat:"
-msgstr ""
+msgstr "Lat:"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__request_late
@@ -2006,17 +2020,17 @@ msgstr "Lokala Tekniker"
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.location_stage_1
 msgid "Location-1"
-msgstr ""
+msgstr "Plats-1"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.location_stage_2
 msgid "Location-2"
-msgstr ""
+msgstr "Plats-2"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.location_stage_3
 msgid "Location-3"
-msgstr ""
+msgstr "Plats-3"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_report_location
@@ -2029,12 +2043,12 @@ msgstr "Hissar"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Long:"
-msgstr ""
+msgstr "Long:"
 
 #. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__1
 msgid "Low"
-msgstr ""
+msgstr "Låg"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2107,12 +2121,12 @@ msgstr "Hantera kategorier för Field Service-Tekniker"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Inventory Logistics"
-msgstr ""
+msgstr "Hantera lagerlogistik"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage Maintenance Requests"
-msgstr ""
+msgstr "Hantera underhållsärenden"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2216,11 +2230,13 @@ msgid ""
 "Manage materials and stock operations. Automatically activate Lots & Serial "
 "Numbers."
 msgstr ""
+"Hantera material och lageroperationer. Aktivera partier och serienummer "
+"automatiskt."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage recurrence of field service orders"
-msgstr ""
+msgstr "Hantera återkommande arbetsorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_route
@@ -2241,7 +2257,7 @@ msgstr "Hantera storlekar för Arbetsorder och Hissar"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage sub-status of orders"
-msgstr ""
+msgstr "Hantera understatus för ordrar"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_purchase
@@ -2266,12 +2282,12 @@ msgstr "Hantera mallar"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage territories, branches, districts and regions"
-msgstr ""
+msgstr "Hantera områden, filialer, distrikt och regioner"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Manage vehicles for Field Service operations"
-msgstr ""
+msgstr "Hantera fordon för fältserviceverksamhet"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
@@ -2322,25 +2338,25 @@ msgstr "Fel vid leverans av meddelande"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_warn_msg
 msgid "Message for Invoice"
-msgstr ""
+msgstr "Meddelande på faktura"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn_msg
 msgid "Message for Purchase Order"
-msgstr ""
+msgstr "Meddelande på inköpsorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn_msg
 msgid "Message for Sales Order"
-msgstr ""
+msgstr "Meddelande på säljorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn_msg
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn_msg
 msgid "Message for Stock Picking"
-msgstr ""
+msgstr "Meddelande på lageroperation"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_ids
@@ -2478,7 +2494,7 @@ msgstr "Antal åtgärder"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__reminder_date_before_receipt
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__reminder_date_before_receipt
 msgid "Number of days to send reminder email before the promised receipt date"
-msgstr ""
+msgstr "Antal dagar innan utlovat ankomstdatum som påminnelsemejl skickas"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__message_has_error_counter
@@ -2516,7 +2532,7 @@ msgstr "Öppettider"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__on_time_rate
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__on_time_rate
 msgid "On-Time Delivery Rate"
-msgstr ""
+msgstr "Leveransprecision"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.operations
@@ -2527,12 +2543,12 @@ msgstr "Arbetsordrar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__opportunity_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_ids
 msgid "Opportunities"
-msgstr ""
+msgstr "Affärsmöjligheter"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__opportunity_count
 msgid "Opportunity Count"
-msgstr ""
+msgstr "Antal affärsmöjligheter"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__display_name
@@ -2637,7 +2653,7 @@ msgstr "Order planerad"
 #. odoo-python
 #: code:addons/fieldservice/wizard/fsm_order_sign_wizard.py:0
 msgid "Order signed by %s"
-msgstr ""
+msgstr "Order signerad av %s"
 
 #. module: fieldservice
 #: model:mail.message.subtype,description:fieldservice.mt_order_started
@@ -2682,7 +2698,7 @@ msgstr "Arbetsorder att schemalägga"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
 msgid "Others"
-msgstr ""
+msgstr "Övriga"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__on_time_rate
@@ -2692,6 +2708,9 @@ msgid ""
 " number of ordered products.x is either the System Parameter "
 "purchase_stock.on_time_delivery_days or the default 365"
 msgstr ""
+"Under de senaste x dagarna: antalet produkter som anlänt i tid delat med "
+"antalet beställda produkter. x är antingen systemparametern "
+"purchase_stock.on_time_delivery_days eller standardvärdet 365"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__owned_by_id
@@ -2725,7 +2744,7 @@ msgstr "Överordnad"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_category__parent_path
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_path
 msgid "Parent Path"
-msgstr ""
+msgstr "Överordnad sökväg"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__parent_name
@@ -2737,25 +2756,25 @@ msgstr "Förälderns namn"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_company_registry_placeholder
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_company_registry_placeholder
 msgid "Partner Company Registry Placeholder"
-msgstr ""
+msgstr "Platshållare för företagsregister"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__contract_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__contract_ids
 msgid "Partner Contracts"
-msgstr ""
+msgstr "Kontraktsavtal"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__use_partner_credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__use_partner_credit_limit
 msgid "Partner Limit"
-msgstr ""
+msgstr "Kontaktgräns"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__partner_vat_placeholder
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__partner_vat_placeholder
 msgid "Partner Vat Placeholder"
-msgstr ""
+msgstr "Platshållare för momsregistreringsnummer"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__active_partner
@@ -2778,19 +2797,19 @@ msgstr "Partner med samma skatteregistreringsnummer"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit_limit
 msgid "Payable Limit"
-msgstr ""
+msgstr "Skuldgräns"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_count
 msgid "Payment Token Count"
-msgstr ""
+msgstr "Antal betalningstoken"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__payment_token_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__payment_token_ids
 msgid "Payment Tokens"
-msgstr ""
+msgstr "Betalningstoken"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person_calendar_filter__person_checked
@@ -2808,25 +2827,25 @@ msgstr "Telefon"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized_blacklisted
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized_blacklisted
 msgid "Phone Blacklisted"
-msgstr ""
+msgstr "Telefonnummer spärrat"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_mobile_search
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_mobile_search
 msgid "Phone/Mobile"
-msgstr ""
+msgstr "Telefon/mobil"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__plan_to_change_bike
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__plan_to_change_bike
 msgid "Plan To Change Bike"
-msgstr ""
+msgstr "Planerar att byta cykel"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__plan_to_change_car
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__plan_to_change_car
 msgid "Plan To Change Car"
-msgstr ""
+msgstr "Planerar att byta bil"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -2845,6 +2864,8 @@ msgid ""
 "Preferred payment method when buying from this vendor. This will be set by "
 "default on all outgoing payments created for this vendor"
 msgstr ""
+"Föredragen betalningsmetod vid köp från den här leverantören. Används som "
+"standard för alla utgående betalningar till leverantören"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_inbound_payment_method_line_id
@@ -2853,6 +2874,8 @@ msgid ""
 "Preferred payment method when selling to this customer. This will be set by "
 "default on all incoming payments created for this customer"
 msgstr ""
+"Föredragen betalningsmetod vid försäljning till den här kunden. Används som "
+"standard för alla inkommande betalningar från kunden"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_form_view
@@ -2889,7 +2912,7 @@ msgstr "Primär Hiss"
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__priority
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__legend_priority
@@ -2906,36 +2929,36 @@ msgstr "Projekt och uppgifter"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_inbound_payment_method_line_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_inbound_payment_method_line_id
 msgid "Property Inbound Payment Method Line"
-msgstr ""
+msgstr "Inkommande betalningsmetodrad"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_outbound_payment_method_line_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_outbound_payment_method_line_id
 msgid "Property Outbound Payment Method Line"
-msgstr ""
+msgstr "Utgående betalningsmetodrad"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Purchase Field Services"
-msgstr ""
+msgstr "Köp fältservicetjänster"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_line_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_line_ids
 msgid "Purchase Lines"
-msgstr ""
+msgstr "Inköpsrader"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_order_count
 msgid "Purchase Order Count"
-msgstr ""
+msgstr "Antal inköpsorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__purchase_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__purchase_warn
 msgid "Purchase Order Warning"
-msgstr ""
+msgstr "Varning för inköpsorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__rating_ids
@@ -2944,13 +2967,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__rating_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "Betyg"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__receipt_reminder_email
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__receipt_reminder_email
 msgid "Receipt Reminder"
-msgstr ""
+msgstr "Ankomstpåminnelse"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_wizard__fsm_record_type
@@ -2980,7 +3003,7 @@ msgstr "Uppdatera Position"
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_equipment_search_view
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_search_view
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__region_manager_id
@@ -3015,7 +3038,7 @@ msgstr "Relaterad partner"
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__employee_ids
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__employee_ids
 msgid "Related employees based on their private address"
-msgstr ""
+msgstr "Relaterade anställda utifrån deras privata adress"
 
 #. module: fieldservice
 #: model:ir.ui.menu,name:fieldservice.reporting
@@ -3031,7 +3054,7 @@ msgstr "Begär Tekniker"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__require_signature
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_stage__require_signature
 msgid "Require Signature"
-msgstr ""
+msgstr "Kräv signatur"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -3070,25 +3093,25 @@ msgstr "Rutter"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__message_has_sms_error
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "SMS-leveransfel"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_count
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_count
 msgid "Sale Order Count"
-msgstr ""
+msgstr "Antal säljorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_order_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_order_ids
 msgid "Sales Order"
-msgstr ""
+msgstr "Säljorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__sale_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__sale_warn
 msgid "Sales Warnings"
-msgstr ""
+msgstr "Säljvarningar"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__user_id
@@ -3100,7 +3123,7 @@ msgstr "Säljare"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__phone_sanitized
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__phone_sanitized
 msgid "Sanitized Number"
-msgstr ""
+msgstr "Normaliserat nummer"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
@@ -3135,7 +3158,7 @@ msgstr "Sök FSM Hiss"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.view_team_search
 msgid "Search FSM Teams"
-msgstr ""
+msgstr "Sök fältserviceteam"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_search_view
@@ -3183,6 +3206,9 @@ msgid ""
 "Selecting \"Blocking Message\" will throw an exception with the message and "
 "block the flow. The Message has to be written in the next field."
 msgstr ""
+"Alternativet Varning visar ett meddelande för användaren. Alternativet "
+"Blockerande meddelande kastar ett fel med meddelandet och stoppar flödet. "
+"Meddelandet skrivs i nästa fält."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__self
@@ -3198,12 +3224,12 @@ msgstr "Sälj FSM-arbetsorder"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell Field Service Orders"
-msgstr ""
+msgstr "Sälj arbetsorder"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.res_config_settings_view_form
 msgid "Sell products that generate field service orders"
-msgstr ""
+msgstr "Sälj produkter som genererar arbetsorder"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__sequence
@@ -3241,7 +3267,7 @@ msgstr "Tjänster i denna Etapp betraktas som stängda."
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__use_partner_credit_limit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__use_partner_credit_limit
 msgid "Set a value greater than 0.0 to activate a credit limit check"
-msgstr ""
+msgstr "Ange ett värde större än 0,0 för att aktivera kontroll av kreditgräns"
 
 #. module: fieldservice
 #: model:ir.actions.act_window,name:fieldservice.action_fsm_config
@@ -3259,31 +3285,31 @@ msgstr "Dela partner"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__show_credit_limit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__show_credit_limit
 msgid "Show Credit Limit"
-msgstr ""
+msgstr "Visa kreditgräns"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_form
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_order_sign_wizard_view_form
 msgid "Sign"
-msgstr ""
+msgstr "Signera"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signature
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signature
 #: model_terms:ir.ui.view,arch_db:fieldservice.report_fsm_order_document
 msgid "Signature"
-msgstr ""
+msgstr "Signatur"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_by
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order_sign_wizard__signed_by
 msgid "Signed By"
-msgstr ""
+msgstr "Signerad av"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__signed_on
 msgid "Signed On"
-msgstr ""
+msgstr "Signerad den"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__signup_type
@@ -3295,7 +3321,7 @@ msgstr "Registreringskodstyp"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__specific_property_product_pricelist
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__specific_property_product_pricelist
 msgid "Specific Property Product Pricelist"
-msgstr ""
+msgstr "Produktspecifik prislista"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_equipment__stage_id
@@ -3334,7 +3360,7 @@ msgstr "Etapper"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__starred_message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__starred_message_ids
 msgid "Starred Message"
-msgstr ""
+msgstr "Stjärnmärkt meddelande"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__state_id
@@ -3366,7 +3392,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__picking_warn
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__picking_warn
 msgid "Stock Picking"
-msgstr ""
+msgstr "Lageroperation"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__street
@@ -3408,13 +3434,13 @@ msgstr "Underordnade Hissar"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_purchase_currency_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_purchase_currency_id
 msgid "Supplier Currency"
-msgstr ""
+msgstr "Leverantörsvaluta"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__supplier_rank
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__supplier_rank
 msgid "Supplier Rank"
-msgstr ""
+msgstr "Leverantörsrankning"
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_tag_name_uniq
@@ -3440,7 +3466,7 @@ msgstr "Moms-ID"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__vat_label
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__vat_label
 msgid "Tax ID Label"
-msgstr ""
+msgstr "Etikett för skatteregistreringsnummer"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__team_id
@@ -3523,6 +3549,8 @@ msgstr ""
 msgid ""
 "The fiscal position determines the taxes/accounts used for this contact."
 msgstr ""
+"Skattepositionen avgör vilka skatter och konton som används för den här "
+"kontakten."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__user_id
@@ -3546,6 +3574,8 @@ msgstr ""
 msgid ""
 "The stock location used as destination when sending goods to this contact."
 msgstr ""
+"Den lagerplats som används som destination när varor skickas till den här "
+"kontakten."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_stock_supplier
@@ -3553,6 +3583,8 @@ msgstr ""
 msgid ""
 "The stock location used as source when receiving goods from this contact."
 msgstr ""
+"Den lagerplats som används som källa när varor tas emot från den här "
+"kontakten."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_location_person_location_person_uniq
@@ -3566,6 +3598,8 @@ msgid ""
 "This account will be used instead of the default one as the payable account "
 "for the current partner"
 msgstr ""
+"Det här kontot används i stället för standardkontot som "
+"leverantörsskuldskonto för aktuell kontakt"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_account_receivable_id
@@ -3574,6 +3608,8 @@ msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
 msgstr ""
+"Det här kontot används i stället för standardkontot som kundfordringskonto "
+"för aktuell kontakt"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_purchase_currency_id
@@ -3582,6 +3618,8 @@ msgid ""
 "This currency will be used, instead of the default one, for purchases from "
 "the current partner"
 msgstr ""
+"Den här valutan används i stället för standardvalutan vid inköp från aktuell "
+"kontakt"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__email_normalized
@@ -3600,6 +3638,8 @@ msgid ""
 "This payment term will be used instead of the default one for purchase "
 "orders and vendor bills"
 msgstr ""
+"Det här betalningsvillkoret används i stället för standardvillkoret för "
+"inköpsorder och leverantörsfakturor"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_payment_term_id
@@ -3608,6 +3648,8 @@ msgid ""
 "This payment term will be used instead of the default one for sales orders "
 "and customer invoices"
 msgstr ""
+"Det här betalningsvillkoret används i stället för standardvillkoret för "
+"säljorder och kundfakturor"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__property_product_pricelist
@@ -3616,6 +3658,8 @@ msgid ""
 "This pricelist will be used, instead of the default one, for sales to the "
 "current partner"
 msgstr ""
+"Den här prislistan används i stället för standardprislistan vid försäljning "
+"till den här kontakten"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__fold
@@ -3669,31 +3713,31 @@ msgstr "Idag arbetsorder"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__total_invoiced
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__total_invoiced
 msgid "Total Invoiced"
-msgstr ""
+msgstr "Totalt fakturerat"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__debit
 msgid "Total Payable"
-msgstr ""
+msgstr "Total skuld"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__credit
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__credit
 msgid "Total Receivable"
-msgstr ""
+msgstr "Total fordran"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__credit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__credit
 msgid "Total amount this customer owes you."
-msgstr ""
+msgstr "Totalt belopp som den här kunden är skyldig dig."
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__debit
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__debit
 msgid "Total amount you have to pay to this vendor."
-msgstr ""
+msgstr "Totalt belopp som du ska betala till den här leverantören."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_order__type
@@ -3731,7 +3775,7 @@ msgstr "Uppdaterad den:"
 #. module: fieldservice
 #: model:ir.model.fields.selection,name:fieldservice.selection__fsm_order__priority__3
 msgid "Urgent"
-msgstr ""
+msgstr "Brådskande"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_res_config_settings__module_fieldservice_location_builder
@@ -3805,13 +3849,13 @@ msgstr "Fordon"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_stock_supplier
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_stock_supplier
 msgid "Vendor Location"
-msgstr ""
+msgstr "Leverantörsplats"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__property_supplier_payment_term_id
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__property_supplier_payment_term_id
 msgid "Vendor Payment Terms"
-msgstr ""
+msgstr "Leverantörens betalningsvillkor"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__website
@@ -3826,7 +3870,7 @@ msgstr "Webbplatslänk"
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__website_message_ids
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_team__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Webbplatsmeddelanden"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_equipment__website_message_ids
@@ -3835,7 +3879,7 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_person__website_message_ids
 #: model:ir.model.fields,help:fieldservice.field_fsm_team__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Kommunikationshistorik på webbplatsen"
 
 #. module: fieldservice
 #: model:ir.model.fields,help:fieldservice.field_fsm_location__tz
@@ -3856,7 +3900,7 @@ msgstr ""
 #: model:ir.model.fields,help:fieldservice.field_fsm_stage__require_signature
 msgid ""
 "Whether to ask for a Customer Signature when the order is in this stage."
-msgstr ""
+msgstr "Om kundsignatur ska begäras när ordern är i den här etappen."
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location_person__person_id
@@ -3875,17 +3919,17 @@ msgstr "Telefon till Tekniker"
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.worker_stage_1
 msgid "Worker Stage 1"
-msgstr ""
+msgstr "Teknikeretapp 1"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.worker_stage_2
 msgid "Worker Stage 2"
-msgstr ""
+msgstr "Teknikeretapp 2"
 
 #. module: fieldservice
 #: model:fsm.stage,name:fieldservice.worker_stage_3
 msgid "Worker Stage 3"
-msgstr ""
+msgstr "Teknikeretapp 3"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__person_ids
@@ -3912,13 +3956,13 @@ msgstr ""
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "You can archive the contact from the partner form."
-msgstr ""
+msgstr "Du kan arkivera kontakten från kontaktformuläret."
 
 #. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "You cannot delete this order."
-msgstr ""
+msgstr "Du kan inte ta bort den här ordern."
 
 #. module: fieldservice
 #: model:ir.model.constraint,message:fieldservice.constraint_fsm_person_calendar_filter_user_id_fsm_person_id_unique
@@ -3929,13 +3973,13 @@ msgstr "Du kan inte ha samma Tekniker två gånger."
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "You must create an FSM order stage first."
-msgstr ""
+msgstr "Du måste först skapa en etapp för arbetsorder."
 
 #. module: fieldservice
 #. odoo-python
 #: code:addons/fieldservice/models/fsm_order.py:0
 msgid "You must create an FSM team first."
-msgstr ""
+msgstr "Du måste först skapa ett fältserviceteam."
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_location_form_view
@@ -3957,12 +4001,14 @@ msgid ""
 "[(Total Receivable/Total Revenue) * number of days since the first invoice] "
 "for this customer"
 msgstr ""
+"[(Total fordran/Total intäkt) * antal dagar sedan första fakturan] för den "
+"här kunden"
 
 #. module: fieldservice
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_location__invoice_edi_format
 #: model:ir.model.fields,field_description:fieldservice.field_fsm_person__invoice_edi_format
 msgid "eInvoice format"
-msgstr ""
+msgstr "E-fakturaformat"
 
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_tag_form_view
@@ -3977,4 +4023,4 @@ msgstr "mall"
 #. module: fieldservice
 #: model_terms:ir.ui.view,arch_db:fieldservice.fsm_person_form
 msgid "x"
-msgstr ""
+msgstr "x"
