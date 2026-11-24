@@ -3,7 +3,7 @@
 {
     "name": "Field Service - Base location",
     "summary": "Autocomplete address in field service locations",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "license": "AGPL-3",
     "category": "Field Service",
     "author": "Apsl - Nagarro, Odoo Community Association (OCA)",

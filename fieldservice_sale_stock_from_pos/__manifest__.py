@@ -3,7 +3,7 @@
 
 {
     "name": "Field Service - Sale Stock From POS",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "summary": "Create Field Service Orders from POS Orders",
     "category": "Field Service",
     "author": "APSL- Nagarro, Odoo Community Association (OCA)",
