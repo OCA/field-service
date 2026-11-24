@@ -1,12 +1,11 @@
-import requests
-
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.fieldservice.tests.common import MockGeocoderCase
 
-class TestFsmLocationZipSync(TransactionCase):
+
+class TestFsmLocationZipSync(MockGeocoderCase, TransactionCase):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.country = cls.env.ref("base.us")
         cls.state = cls.env.ref("base.state_us_1")
@@ -45,11 +44,6 @@ class TestFsmLocationZipSync(TransactionCase):
                 "owner_id": cls.res_partner.id,
             }
         )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def test_zip_id_mismatch_resets_zip_id(self):
         """Should reset zip_id if it doesn't match zip"""
