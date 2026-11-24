@@ -38,11 +38,15 @@ class SaleOrderLine(models.Model):
     @api.depends("fsm_order_id.stage_id")
     def _compute_qty_delivered(self):
         res = super()._compute_qty_delivered()
-        stage_complete = self.env.ref("fieldservice.fsm_stage_completed")
-        fsm_lines = self.filtered(lambda L: L.qty_delivered_method == "field_service")
-        for line in fsm_lines:
-            if line.fsm_order_id.stage_id == stage_complete:
-                line.qty_delivered = line.product_uom_qty
+        lines_by_fsm = self.filtered(
+            lambda sol: sol.qty_delivered_method == "field_service"
+        )
+        complete = self.env.ref("fieldservice.fsm_stage_completed")
+        for line in lines_by_fsm:
+            qty = 0
+            if line.fsm_order_id.stage_id == complete:
+                qty = line.product_uom_qty
+                line.qty_delivered = qty
         return res
 
     @api.model_create_multi
