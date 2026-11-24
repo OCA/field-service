@@ -135,6 +135,24 @@ class TestFSMOrderBase(TransactionCase):
             )
             self.assertRegex(str(res[0]), order.name)
 
+    def test_fsm_order_skip_scheduling(self):
+        company = self.env.company
+        order_vals = {
+            "request_early": fields.Datetime.today(),
+            "company_id": company.id,
+            "location_id": self.test_location.id,
+            "priority": "0",
+            "scheduled_date_start": self.p_leave.date_from - timedelta(minutes=1),
+            "scheduled_date_end": self.p_leave.date_to + timedelta(minutes=1),
+        }
+
+        company.fsm_order_allow_schedule_on_leave = False
+        with self.assertRaisesRegex(ValidationError, "is a holiday"):
+            self.env["fsm.order"].create(order_vals)
+
+        company.fsm_order_allow_schedule_on_leave = True
+        self.env["fsm.order"].create(order_vals)
+
 
 class TestFSMOrder(TestFSMOrderBase):
     @freeze_time("2023-02-01")

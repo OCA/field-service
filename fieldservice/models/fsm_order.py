@@ -462,11 +462,14 @@ class FSMOrder(models.Model):
             parent_location = parent_location.fsm_parent_id
         return s
 
-    @api.constrains("scheduled_date_start")
+    @api.constrains("scheduled_date_start", "company_id")
     def _check_scheduled_date_calendar_leaves(self):
         for rec in self:
             if not rec.scheduled_date_start:
                 continue
+            if rec.company_id.fsm_order_allow_schedule_on_leave:
+                continue
+
             holidays = self.env["resource.calendar.leaves"].search(
                 [
                     ("date_from", ">=", rec.scheduled_date_start),
