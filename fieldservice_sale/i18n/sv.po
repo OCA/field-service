@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Language: sv\n"
+"PO-Revision-Date: 2026-11-24 12:46+0000\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: fieldservice_sale
 #: model_terms:ir.ui.view,arch_db:fieldservice_sale.view_fsm_order_form_inherit_sale
@@ -28,6 +30,14 @@ msgid ""
 "  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"Enligt produktkonfigurationen kan den levererade kvantiteten beräknas "
+"automatiskt av en mekanism:\n"
+"  - Manuell: kvantiteten ställs in manuellt på linjen\n"
+"  - Analytisk Från kostnader: kvantiteten är kvantitetssumman från bokförda "
+"kostnader\n"
+"  - Timesheet: kvantiteten är summan av timmar som registrerats på uppgifter "
+"kopplade till denna försäljningsrad\n"
+"  - Lagerförflyttningar: kvantiteten kommer från bekräftade plockningar\n"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__product_template__field_service_tracking__sale
@@ -71,7 +81,7 @@ msgstr ""
 #: model:ir.model,name:fieldservice_sale.model_fsm_order
 #: model:ir.model.fields.selection,name:fieldservice_sale.selection__sale_order_line__qty_delivered_method__field_service
 msgid "Field Service Order"
-msgstr ""
+msgstr "ArbertsOrder"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_product__fsm_order_template_id
@@ -114,11 +124,17 @@ msgid ""
 "Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
 "Create a task and track hours: Create a task on the sales order validation and track the work hours."
 msgstr ""
+"Ställ in kvantiteter manuellt på order: Fakturera baserat på den manuellt "
+"inmatade kvantiteten, utan att skapa ett analytiskt konto.\n"
+"Tidrapporter på kontrakt: Fakturera baserat på de loggade timmarna på den "
+"relaterade tidrapporten.\n"
+"Skapa en uppgift och spåra timmar: Skapa en uppgift vid validering av "
+"försäljningsordern och spåra arbetstimmar."
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__qty_delivered_method
 msgid "Method to update delivered qty"
-msgstr ""
+msgstr "Sätt att uppdatera levererat antal"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,field_description:fieldservice_sale.field_sale_order_line__fsm_order_id
@@ -128,7 +144,7 @@ msgstr ""
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: fieldservice_sale
 #: model:ir.model.fields,help:fieldservice_sale.field_sale_order__fsm_location_id
@@ -153,12 +169,12 @@ msgstr ""
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Order"
 
 #. module: fieldservice_sale
 #: model:ir.model,name:fieldservice_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Orderrad"
 
 #. module: fieldservice_sale
 #. odoo-python
@@ -181,4 +197,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_product__service_type
 #: model:ir.model.fields,field_description:fieldservice_sale.field_product_template__service_type
 msgid "Track Service"
-msgstr ""
+msgstr "Spårtjänst"
