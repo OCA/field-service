@@ -16,7 +16,14 @@ class FSMLocation(models.Model):
     _parent_name = "parent_id"
     _parent_store = True
     _stage_type = "location"
-    _rec_names_search = ["complete_name"]
+    # Is overridden by search_on_complete_name (see `name_search`)
+    _rec_names_search = [
+        "email",
+        "name",
+        "partner_id.vat",
+        "ref",
+    ]
+    _rec_name = "complete_name"
 
     direction = fields.Html()
     partner_id = fields.Many2one(
@@ -92,6 +99,25 @@ class FSMLocation(models.Model):
         store=True,
         recursive=True,
     )
+
+    @api.model
+    def name_search(self, name="", domain=None, operator="ilike", limit=100):
+        locations = self.browse()
+        if self.env.company.search_on_complete_name:
+            locations = self.search(
+                Domain("complete_name", operator, name) & Domain(domain or Domain.TRUE),
+                limit=limit,
+            )
+
+        if locations:
+            result = [
+                (location.id, location.display_name) for location in locations.sudo()
+            ]
+        else:
+            result = super().name_search(
+                name=name, domain=domain, operator=operator, limit=limit
+            )
+        return result
 
     @api.model_create_multi
     def create(self, vals_list):
