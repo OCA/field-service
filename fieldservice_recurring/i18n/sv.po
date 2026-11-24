@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-24 12:46+0000\n"
+"PO-Revision-Date: 2026-11-24 15:46+0000\n"
 "Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: none\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
 msgid "'Day of Month must be between 1 and 31"
-msgstr ""
+msgstr "'Dag i månaden måste vara mellan 1 och 31"
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.view_fsm_order_form
@@ -75,7 +75,7 @@ msgstr "Lägg till återkommande ServiceOrderMall här."
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__apr
 msgid "April"
-msgstr ""
+msgstr "april"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__person_id
@@ -107,6 +107,9 @@ msgid ""
 "Checking this box will make this an exclusive rule. Exclusive\n"
 "            rules prevent the configured days from being a schedule option"
 msgstr ""
+"Om du markerar den här rutan blir regeln exkluderande. Exkluderande\n"
+"            regler hindrar de angivna dagarna från att vara ett "
+"schemaläggningsalternativ"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_recurring__state__close
@@ -155,7 +158,7 @@ msgstr "Dagar i förväg att schemalägga"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__dec
 msgid "December"
-msgstr ""
+msgstr "december"
 
 #. module: fieldservice_recurring
 #: model_terms:ir.actions.act_window,help:fieldservice_recurring.action_fsm_frequency_set
@@ -471,7 +474,7 @@ msgstr "Maximalt antal Arbetsorder"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_recurring__max_orders
 msgid "Maximum number of orders that will be created"
-msgstr ""
+msgstr "Högsta antal ordrar som skapas"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__may
@@ -521,7 +524,7 @@ msgstr "Namn"
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_recurring.py:0
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__activity_calendar_event_id
@@ -546,7 +549,7 @@ msgstr "Nästa aktivitetstyp"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__nov
 msgid "November"
-msgstr ""
+msgstr "november"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__message_needaction_counter
@@ -607,7 +610,7 @@ msgstr "Antal arbetsorder"
 #. odoo-python
 #: code:addons/fieldservice_recurring/models/fsm_frequency.py:0
 msgid "Position must be between -366 and 366"
-msgstr ""
+msgstr "Positionen måste vara mellan -366 och 366"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__rating_ids
@@ -615,7 +618,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__rating_ids
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "Betyg"
 
 #. module: fieldservice_recurring
 #: model:ir.model,name:fieldservice_recurring.model_fsm_recurring
@@ -679,7 +682,7 @@ msgstr "Ansvarig användare"
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__message_has_sms_error
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring_template__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "SMS-leveransfel"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sa
@@ -699,7 +702,7 @@ msgstr "Arbetets schemalagda varaktighet i timmar"
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_frequency__sep
 msgid "September"
-msgstr ""
+msgstr "september"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__set_pos
@@ -710,11 +713,15 @@ msgid ""
 "            'Monthly' frequency, and a weekday of (MO, TU, WE, TH, FR),\n"
 "            will result in the last work day of every month."
 msgstr ""
+"Ange ett förekomstnummer, positivt eller negativt, som motsvarar\n"
+"            regelns n:te förekomst inom frekvensperioden. Till exempel -1\n"
+"            tillsammans med frekvensen Månadsvis och veckodagarna\n"
+"            (MO, TU, WE, TH, FR) ger den sista arbetsdagen varje månad."
 
 #. module: fieldservice_recurring
 #: model_terms:ir.ui.view,arch_db:fieldservice_recurring.fsm_recurring_form_view
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,field_description:fieldservice_recurring.field_fsm_recurring__start_date
@@ -780,6 +787,8 @@ msgid ""
 "The allowed number of days after the computed schedule date\n"
 "           that an event can be done"
 msgstr ""
+"Antal dagar efter det beräknade schemadatumet som en händelse\n"
+"           får utföras"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__buffer_early
@@ -787,6 +796,8 @@ msgid ""
 "The allowed number of days before the computed schedule date\n"
 "            that an event can be done"
 msgstr ""
+"Antal dagar före det beräknade schemadatumet som en händelse\n"
+"            får utföras"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency_set__schedule_days
@@ -794,6 +805,8 @@ msgid ""
 "The number of days from today that the scheduler will generate\n"
 "            orders for this rule"
 msgstr ""
+"Antal dagar från idag som schemaläggaren genererar ordrar för\n"
+"            enligt den här regeln"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__interval
@@ -873,6 +886,8 @@ msgid ""
 "When selected you will be able to choose which days of the\n"
 "            week the scheduler will include (or exclude if Exclusive rule)"
 msgstr ""
+"När det här är valt kan du välja vilka veckodagar schemaläggaren\n"
+"            ska ta med (eller utesluta, om regeln är exkluderande)"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields,help:fieldservice_recurring.field_fsm_frequency__use_bymonthday
@@ -880,6 +895,8 @@ msgid ""
 "When selected you will be able to specify which calendar day\n"
 "            of the month the event occurs on"
 msgstr ""
+"När det här är valt kan du ange vilken kalenderdag i månaden\n"
+"            händelsen inträffar"
 
 #. module: fieldservice_recurring
 #: model:ir.model.fields.selection,name:fieldservice_recurring.selection__fsm_frequency__interval_type__yearly
