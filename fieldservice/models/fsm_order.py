@@ -114,7 +114,6 @@ class FSMOrder(models.Model):
         string="Tags",
         help="Classify and analyze your orders",
     )
-    color = fields.Integer("Color Index", default=0)
     team_id = fields.Many2one(
         "fsm.team",
         string="Team",
