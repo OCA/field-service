@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fsm_order_list_view_order_title" model="ir.ui.view">
+        <field name="name">fsm.order.list.order.title</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_list_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="order_title"
+                    string="Titre de l'ordre de service"
+                    optional="show"
+                />
+            </field>
+            <field name="location_id" position="after">
+                <field name="project_id" string="Projet" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="fsm_order_kanban_view_order_title" model="ir.ui.view">
+        <field name="name">fsm.order.kanban.order.title</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_kanban_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="after">
+                <div class="text-muted text-truncate">
+                    <field name="order_title" />
+                </div>
+                <div class="text-muted text-truncate" invisible="not project_id">
+                    <field name="project_id" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fsm_order_form_view_order_title" model="ir.ui.view">
+        <field name="name">fsm.order.form.order.title</field>
+        <field name="model">fsm.order</field>
+        <field name="inherit_id" ref="fieldservice.fsm_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' oe_title ')]/h1"
+                position="attributes"
+            >
+                <attribute name="class">d-flex align-items-baseline gap-2</attribute>
+            </xpath>
+            <xpath
+                expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' oe_title ')]/h1/field[@name='name']"
+                position="after"
+            >
+                <span class="text-muted">-</span>
+                <field
+                    name="order_title"
+                    string="Titre de l'ordre de service"
+                    readonly="1"
+                    class="text-muted"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fieldservice.action_fsm_operation_order" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form,calendar</field>
+    </record>
+</odoo>
