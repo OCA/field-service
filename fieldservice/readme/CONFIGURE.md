@@ -90,3 +90,11 @@ Order templates allow you to create standard templates for your orders.
 2.  Create or select a template
 3.  Set the name
 4.  Set the standard order instructions
+
+### Schedule Orders during holidays
+
+You can choose to allow or forbid the scheduling of field service orders
+during holidays. By default it's not allowed.
+
+1.  Go to *Field Service \> Configuration \> Settings, section Orders*
+2.  Check or uncheck the setting 'Allow FSM Orders to be scheduled during holidays'
