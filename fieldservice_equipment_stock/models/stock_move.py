@@ -19,7 +19,9 @@ class StockMove(models.Model):
 
     def _action_done(self, cancel_backorder=False):
         res = super()._action_done(cancel_backorder)
-        fsm_equipment_obj = self.env["fsm.equipment"]
+        # Warehouse users validate the delivery. They are not FSM managers,
+        # and equipment creation is only a side effect of this stock move.
+        fsm_equipment_obj = self.env["fsm.equipment"].sudo()
         for rec in self:
             if (
                 rec.state == "done"
