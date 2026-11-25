@@ -1,0 +1,19 @@
+<odoo>
+    <template
+        id="report_fsm_order_document_account"
+        inherit_id="fieldservice.report_fsm_order_document"
+    >
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <t t-if="doc.customer_id">
+                <t t-set="information_block">
+                    <t t-if="doc.customer_id">
+                        <div
+                            t-field="doc.customer_id"
+                            t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;]}"
+                        />
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
