@@ -98,3 +98,32 @@ class FSMSale(TransactionCase):
             so_form.partner_id = self.partner
         so = so_form.save()
         self.assertEqual(so.fsm_location_id, self.location1)
+
+    def test_04_autofill_so_fsm_location_from_service_location(self):
+        """Check location autofill falls back to service_location_id
+
+        Neither the SO partner, its shipping partner nor its commercial
+        partner backs an FSM location, but the partner's primary service
+        location points at location2 => expect location2.
+        """
+        self.partner.fsm_location = False
+        self.partner.service_location_id = self.location2
+        with Form(self.env["sale.order"]) as so_form:
+            so_form.partner_id = self.partner
+        so = so_form.save()
+        self.assertEqual(so.fsm_location_id, self.location2)
+
+    def test_05_autofill_so_fsm_location_service_location_is_fallback(self):
+        """Check the service_location_id is only a last resort
+
+        A location explicitly linked to the partner takes precedence over the
+        partner's primary service location: location1 backs the partner and
+        service_location_id points at location2 => expect location1.
+        """
+        self.partner.fsm_location = False
+        self.location1.partner_id = self.partner
+        self.partner.service_location_id = self.location2
+        with Form(self.env["sale.order"]) as so_form:
+            so_form.partner_id = self.partner
+        so = so_form.save()
+        self.assertEqual(so.fsm_location_id, self.location1)
