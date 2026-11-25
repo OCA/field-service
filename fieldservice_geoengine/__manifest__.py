@@ -23,5 +23,5 @@
         ]
     },
     "development_status": "Beta",
-    "maintainers": ["wolfhall", "max3903"],
+    "maintainers": ["max3903"],
 }
