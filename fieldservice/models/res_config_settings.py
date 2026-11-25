@@ -73,6 +73,17 @@ class ResConfigSettings(models.TransientModel):
     module_fieldservice_timeline = fields.Boolean(
         string="Allow Field Service Web Timeline View"
     )
+    # Databases created before the rename still store this name in the
+    # settings view. The related value installs fieldservice_timeline.
+    # The label must differ from module_fieldservice_timeline: equal labels
+    # log a WARNING in ir.model._reflect_fields, and checklog-odoo fails the
+    # OCA job on every level other than INFO and DEBUG. Settings shows the
+    # <setting> string, not this label.
+    module_fieldservice_web_timeline_view = fields.Boolean(
+        string="Field Service Timeline",
+        related="module_fieldservice_timeline",
+        readonly=False,
+    )
 
     # Companies
     auto_populate_persons_on_location = fields.Boolean(
@@ -121,3 +132,18 @@ class ResConfigSettings(models.TransientModel):
     def _onchange_module_fieldservice_repair(self):
         if self.module_fieldservice_repair:
             self.group_fsm_equipment = True
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        if "module_fieldservice_web_timeline_view" in fields_list:
+            module = self.env["ir.module.module"]._get("fieldservice_timeline")
+            installed = bool(module) and module.state in (
+                "installed",
+                "to install",
+                "to upgrade",
+            )
+            res["module_fieldservice_web_timeline_view"] = res.get(
+                "module_fieldservice_timeline", installed
+            )
+        return res
