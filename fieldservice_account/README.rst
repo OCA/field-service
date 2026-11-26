@@ -100,16 +100,16 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-osimallen| image:: https://github.com/osimallen.png?size=40px
-    :target: https://github.com/osimallen
-    :alt: osimallen
+.. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
+    :target: https://github.com/max3903
+    :alt: max3903
 .. |maintainer-brian10048| image:: https://github.com/brian10048.png?size=40px
     :target: https://github.com/brian10048
     :alt: brian10048
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-osimallen| |maintainer-brian10048| 
+|maintainer-max3903| |maintainer-brian10048| 
 
 This module is part of the `OCA/field-service <https://github.com/OCA/field-service/tree/19.0/fieldservice_account>`_ project on GitHub.
 
