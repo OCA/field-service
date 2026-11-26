@@ -2,26 +2,36 @@
 # Copyright (C) 2023 - TODAY Pytech SRL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import requests
+from unittest.mock import patch
 
 from odoo import fields
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.base_geolocalize.models.base_geocoder import GeoCoder
+
+GEOCODER_COORDINATES = (50.123_456, 4.123_456)
+
 
 class TestFsmLocation(TransactionCase):
+    @staticmethod
+    def _geocode(addr, **kw):
+        return GEOCODER_COORDINATES if addr else None
+
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
+        geocoder_patch = patch.object(
+            GeoCoder, "_call_openstreetmap", side_effect=cls._geocode
+        )
+        geocoder_patch.start()
+        cls.addClassCleanup(geocoder_patch.stop)
         cls.FSMLocation = cls.env["fsm.location"]
         cls.location_partner_1 = cls.env.ref("fieldservice.location_partner_1")
         cls.location_partner_2 = cls.env.ref("fieldservice.location_partner_2")
         cls.location_partner_3 = cls.env.ref("fieldservice.location_partner_3")
         cls.test_loc_partner = cls.env.ref("fieldservice.test_loc_partner")
-        # delta value of 0.00001 was chosen according to
-        # OpenStreetMap's decimal precision table
-        # https://wiki.openstreetmap.org/wiki/Precision_of_coordinates#Conversion_to_decimal
-        # 5 decimals are necessary for precision of about a metre
+        # delta absorbs the rounding of the stored float value, which comes
+        # from GEOCODER_COORDINATES
         cls.delta = 0.000_01
 
         cls.test_location = cls.FSMLocation.create(
@@ -33,11 +43,6 @@ class TestFsmLocation(TransactionCase):
                 "owner_id": cls.location_partner_2.id,
             }
         )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def test_fsm_location_creation(self):
         test_partner = self.env["res.partner"].create(
@@ -69,10 +74,14 @@ class TestFsmLocation(TransactionCase):
         self.assertTrue(test_location_1.partner_latitude)
         self.assertTrue(test_location_1.partner_longitude)
         self.assertAlmostEqual(
-            test_location_1.partner_latitude, 50.629980, delta=0.0002
+            test_location_1.partner_latitude,
+            GEOCODER_COORDINATES[0],
+            delta=self.delta,
         )
         self.assertAlmostEqual(
-            test_location_1.partner_longitude, 4.863370, delta=0.00012
+            test_location_1.partner_longitude,
+            GEOCODER_COORDINATES[1],
+            delta=self.delta,
         )
         # direct creation and same exit data
         partner_latitude = 1.0
