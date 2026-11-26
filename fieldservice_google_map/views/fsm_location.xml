@@ -4,7 +4,12 @@
         <field name="name">ir.ui.view.fsm.location.map</field>
         <field name="model">fsm.location</field>
         <field name="arch" type="xml">
-            <google_map string="Map" lat="partner_latitude" lng="partner_longitude">
+            <google_map
+                string="Map"
+                lat="partner_latitude"
+                lng="partner_longitude"
+                marker="location"
+            >
                 <field name="name" />
                 <field name="display_name" />
                 <field name="contact_id" />
