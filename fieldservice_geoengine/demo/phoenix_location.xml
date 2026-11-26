@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="phoenix_location_01" model="fsm.location">
+        <field name="name">Chase Field</field>
+        <field name="street">401 E Jefferson St</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85004</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4455</field>
+        <field name="partner_longitude">-112.0668</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0500</field>
+        <field name="email">chase.field@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_01" />
+        <field name="contact_id" ref="phoenix_contact_01" />
+        <field name="fsm_route_id" ref="phoenix_route_01" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-01</field>
+    </record>
+    <record id="phoenix_location_02" model="fsm.location">
+        <field name="name">Washington Street Plant</field>
+        <field name="street">201 E Washington St</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85004</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4486</field>
+        <field name="partner_longitude">-112.0715</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0501</field>
+        <field name="email">washington.street.plant@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_01" />
+        <field name="contact_id" ref="phoenix_contact_02" />
+        <field name="fsm_route_id" ref="phoenix_route_01" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-02</field>
+    </record>
+    <record id="phoenix_location_03" model="fsm.location">
+        <field name="name">Heard Museum</field>
+        <field name="street">2301 N Central Ave</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85004</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4732</field>
+        <field name="partner_longitude">-112.0736</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0502</field>
+        <field name="email">heard.museum@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_01" />
+        <field name="contact_id" ref="phoenix_contact_03" />
+        <field name="fsm_route_id" ref="phoenix_route_01" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-03</field>
+    </record>
+    <record id="phoenix_location_04" model="fsm.location">
+        <field name="name">State Capitol Complex</field>
+        <field name="street">1700 W Washington St</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85007</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4484</field>
+        <field name="partner_longitude">-112.0968</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0503</field>
+        <field name="email">state.capitol.complex@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_01" />
+        <field name="contact_id" ref="phoenix_contact_04" />
+        <field name="fsm_route_id" ref="phoenix_route_01" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-04</field>
+    </record>
+    <record id="phoenix_location_05" model="fsm.location">
+        <field name="name">Encanto Park Office</field>
+        <field name="street">2121 W Encanto Blvd</field>
+        <field name="city">Phoenix</field>
+        <field name="zip">85009</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4748</field>
+        <field name="partner_longitude">-112.1025</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0504</field>
+        <field name="email">encanto.park.office@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_01" />
+        <field name="contact_id" ref="phoenix_contact_05" />
+        <field name="fsm_route_id" ref="phoenix_route_01" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-05</field>
+    </record>
+    <record id="phoenix_location_06" model="fsm.location">
+        <field name="name">Fashion Square</field>
+        <field name="street">7014 E Camelback Rd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85251</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5022</field>
+        <field name="partner_longitude">-111.929</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0505</field>
+        <field name="email">fashion.square@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_02" />
+        <field name="contact_id" ref="phoenix_contact_06" />
+        <field name="fsm_route_id" ref="phoenix_route_02" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-06</field>
+    </record>
+    <record id="phoenix_location_07" model="fsm.location">
+        <field name="name">Old Town Scottsdale</field>
+        <field name="street">4248 N Scottsdale Rd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85251</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4968</field>
+        <field name="partner_longitude">-111.9262</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0506</field>
+        <field name="email">old.town.scottsdale@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_02" />
+        <field name="contact_id" ref="phoenix_contact_07" />
+        <field name="fsm_route_id" ref="phoenix_route_02" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-07</field>
+    </record>
+    <record id="phoenix_location_08" model="fsm.location">
+        <field name="name">Civic Center</field>
+        <field name="street">3939 N Drinkwater Blvd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85251</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4936</field>
+        <field name="partner_longitude">-111.9208</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0507</field>
+        <field name="email">civic.center@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_02" />
+        <field name="contact_id" ref="phoenix_contact_08" />
+        <field name="fsm_route_id" ref="phoenix_route_02" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-08</field>
+    </record>
+    <record id="phoenix_location_09" model="fsm.location">
+        <field name="name">Indian Bend Yard</field>
+        <field name="street">7301 E Indian Bend Rd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85250</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.538</field>
+        <field name="partner_longitude">-111.923</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0508</field>
+        <field name="email">indian.bend.yard@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_02" />
+        <field name="contact_id" ref="phoenix_contact_09" />
+        <field name="fsm_route_id" ref="phoenix_route_02" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-09</field>
+    </record>
+    <record id="phoenix_location_10" model="fsm.location">
+        <field name="name">Hayden Road Shop</field>
+        <field name="street">4800 N Hayden Rd</field>
+        <field name="city">Scottsdale</field>
+        <field name="zip">85251</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5088</field>
+        <field name="partner_longitude">-111.9095</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0509</field>
+        <field name="email">hayden.road.shop@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_02" />
+        <field name="contact_id" ref="phoenix_contact_10" />
+        <field name="fsm_route_id" ref="phoenix_route_02" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-10</field>
+    </record>
+    <record id="phoenix_location_11" model="fsm.location">
+        <field name="name">Sun Devil Stadium</field>
+        <field name="street">500 E Veterans Way</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4262</field>
+        <field name="partner_longitude">-111.9335</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0510</field>
+        <field name="email">sun.devil.stadium@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_03" />
+        <field name="contact_id" ref="phoenix_contact_11" />
+        <field name="fsm_route_id" ref="phoenix_route_03" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-11</field>
+    </record>
+    <record id="phoenix_location_12" model="fsm.location">
+        <field name="name">Rio Salado Plant</field>
+        <field name="street">60 E Rio Salado Pkwy</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4318</field>
+        <field name="partner_longitude">-111.9398</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0511</field>
+        <field name="email">rio.salado.plant@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_03" />
+        <field name="contact_id" ref="phoenix_contact_12" />
+        <field name="fsm_route_id" ref="phoenix_route_03" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-12</field>
+    </record>
+    <record id="phoenix_location_13" model="fsm.location">
+        <field name="name">Tempe Town Lake</field>
+        <field name="street">2000 E Rio Salado Pkwy</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4302</field>
+        <field name="partner_longitude">-111.9042</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0512</field>
+        <field name="email">tempe.town.lake@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_03" />
+        <field name="contact_id" ref="phoenix_contact_13" />
+        <field name="fsm_route_id" ref="phoenix_route_03" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-13</field>
+    </record>
+    <record id="phoenix_location_14" model="fsm.location">
+        <field name="name">University Drive</field>
+        <field name="street">120 W University Dr</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4216</field>
+        <field name="partner_longitude">-111.9412</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0513</field>
+        <field name="email">university.drive@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_03" />
+        <field name="contact_id" ref="phoenix_contact_14" />
+        <field name="fsm_route_id" ref="phoenix_route_03" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-14</field>
+    </record>
+    <record id="phoenix_location_15" model="fsm.location">
+        <field name="name">Apache Boulevard</field>
+        <field name="street">1900 E Apache Blvd</field>
+        <field name="city">Tempe</field>
+        <field name="zip">85281</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4148</field>
+        <field name="partner_longitude">-111.907</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0514</field>
+        <field name="email">apache.boulevard@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_03" />
+        <field name="contact_id" ref="phoenix_contact_15" />
+        <field name="fsm_route_id" ref="phoenix_route_03" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-15</field>
+    </record>
+    <record id="phoenix_location_16" model="fsm.location">
+        <field name="name">Glendale Avenue Shop</field>
+        <field name="street">5850 W Glendale Ave</field>
+        <field name="city">Glendale</field>
+        <field name="zip">85301</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5387</field>
+        <field name="partner_longitude">-112.1862</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0515</field>
+        <field name="email">glendale.avenue.shop@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_04" />
+        <field name="contact_id" ref="phoenix_contact_16" />
+        <field name="fsm_route_id" ref="phoenix_route_04" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-16</field>
+    </record>
+    <record id="phoenix_location_17" model="fsm.location">
+        <field name="name">Northern Avenue Plant</field>
+        <field name="street">5605 W Northern Ave</field>
+        <field name="city">Glendale</field>
+        <field name="zip">85301</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5528</field>
+        <field name="partner_longitude">-112.1805</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0516</field>
+        <field name="email">northern.avenue.plant@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_04" />
+        <field name="contact_id" ref="phoenix_contact_17" />
+        <field name="fsm_route_id" ref="phoenix_route_04" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-17</field>
+    </record>
+    <record id="phoenix_location_18" model="fsm.location">
+        <field name="name">55th Avenue Warehouse</field>
+        <field name="street">6670 N 55th Ave</field>
+        <field name="city">Glendale</field>
+        <field name="zip">85301</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5345</field>
+        <field name="partner_longitude">-112.174</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0517</field>
+        <field name="email">55th.avenue.warehouse@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_04" />
+        <field name="contact_id" ref="phoenix_contact_18" />
+        <field name="fsm_route_id" ref="phoenix_route_04" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-18</field>
+    </record>
+    <record id="phoenix_location_19" model="fsm.location">
+        <field name="name">Thunderbird Road</field>
+        <field name="street">4960 W Thunderbird Rd</field>
+        <field name="city">Glendale</field>
+        <field name="zip">85306</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5755</field>
+        <field name="partner_longitude">-112.1685</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0518</field>
+        <field name="email">thunderbird.road@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_04" />
+        <field name="contact_id" ref="phoenix_contact_19" />
+        <field name="fsm_route_id" ref="phoenix_route_04" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-19</field>
+    </record>
+    <record id="phoenix_location_20" model="fsm.location">
+        <field name="name">Olive Avenue Yard</field>
+        <field name="street">7700 W Olive Ave</field>
+        <field name="city">Peoria</field>
+        <field name="zip">85345</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.5675</field>
+        <field name="partner_longitude">-112.221</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0519</field>
+        <field name="email">olive.avenue.yard@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_04" />
+        <field name="contact_id" ref="phoenix_contact_20" />
+        <field name="fsm_route_id" ref="phoenix_route_04" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-20</field>
+    </record>
+    <record id="phoenix_location_21" model="fsm.location">
+        <field name="name">Mesa Main Street</field>
+        <field name="street">20 E Main St</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85201</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4152</field>
+        <field name="partner_longitude">-111.831</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0520</field>
+        <field name="email">mesa.main.street@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_05" />
+        <field name="contact_id" ref="phoenix_contact_21" />
+        <field name="fsm_route_id" ref="phoenix_route_05" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-21</field>
+    </record>
+    <record id="phoenix_location_22" model="fsm.location">
+        <field name="name">Center Street Plant</field>
+        <field name="street">120 N Center St</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85201</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4188</field>
+        <field name="partner_longitude">-111.8302</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0521</field>
+        <field name="email">center.street.plant@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_05" />
+        <field name="contact_id" ref="phoenix_contact_22" />
+        <field name="fsm_route_id" ref="phoenix_route_05" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-22</field>
+    </record>
+    <record id="phoenix_location_23" model="fsm.location">
+        <field name="name">University Drive Mesa</field>
+        <field name="street">535 W University Dr</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85201</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.4225</field>
+        <field name="partner_longitude">-111.8455</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0522</field>
+        <field name="email">university.drive.mesa@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_05" />
+        <field name="contact_id" ref="phoenix_contact_23" />
+        <field name="fsm_route_id" ref="phoenix_route_05" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-23</field>
+    </record>
+    <record id="phoenix_location_24" model="fsm.location">
+        <field name="name">Greenfield Road</field>
+        <field name="street">1445 S Greenfield Rd</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85206</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.398</field>
+        <field name="partner_longitude">-111.788</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0523</field>
+        <field name="email">greenfield.road@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_05" />
+        <field name="contact_id" ref="phoenix_contact_24" />
+        <field name="fsm_route_id" ref="phoenix_route_05" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-24</field>
+    </record>
+    <record id="phoenix_location_25" model="fsm.location">
+        <field name="name">Country Club Drive</field>
+        <field name="street">1855 N Country Club Dr</field>
+        <field name="city">Mesa</field>
+        <field name="zip">85201</field>
+        <field name="state_id" ref="base.state_us_3" />
+        <field name="country_id" ref="base.us" />
+        <field name="partner_latitude">33.451</field>
+        <field name="partner_longitude">-111.8395</field>
+        <field name="tz">America/Phoenix</field>
+        <field name="phone">602-555-0524</field>
+        <field name="email">country.club.drive@example.com</field>
+        <field name="owner_id" ref="phoenix_customer_05" />
+        <field name="contact_id" ref="phoenix_contact_25" />
+        <field name="fsm_route_id" ref="phoenix_route_05" />
+        <field name="direction" type="html">
+            <p>Check in at the front desk.</p>
+        </field>
+        <field name="ref">PHX-25</field>
+    </record>
+</odoo>

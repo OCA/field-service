@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="fsm_route_form_map" model="ir.ui.view">
+        <field name="name">fsm.route.form.map</field>
+        <field name="model">fsm.route</field>
+        <field name="inherit_id" ref="fieldservice_route.fsm_route_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        name="action_view_locations"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-map-marker"
+                    >
+                        <field
+                            name="location_count"
+                            widget="statinfo"
+                            string="Locations"
+                        />
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Map" name="map">
+                    <field name="area_shape" widget="fsm_route_area_map" nolabel="1" />
+                </page>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <chatter />
+            </xpath>
+        </field>
+    </record>
+    <record id="ir_ui_view_fsm_route_map" model="ir.ui.view">
+        <field name="name">fsm.route.map</field>
+        <field name="model">fsm.route</field>
+        <field name="arch" type="xml">
+            <geoengine>
+                <field name="name" />
+                <field name="area_shape" />
+            </geoengine>
+        </field>
+    </record>
+    <record id="route_geoengine_raster_layer_osm" model="geoengine.raster.layer">
+        <field name="raster_type">osm</field>
+        <field name="name">Open Street Map</field>
+        <field name="view_id" ref="ir_ui_view_fsm_route_map" />
+        <field name="overlay" eval="0" />
+    </record>
+</odoo>

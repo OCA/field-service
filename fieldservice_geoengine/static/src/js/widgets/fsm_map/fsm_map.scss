@@ -1,0 +1,104 @@
+.o_field_fsm_order_map,
+.o_field_fsm_route_map,
+.o_field_fsm_location_map,
+.o_field_fsm_route_area_map {
+    width: 100%;
+
+    .fsm_map {
+        position: relative;
+        width: 100%;
+        height: 550px;
+    }
+
+    .ol_map {
+        width: 100%;
+        height: 100%;
+    }
+
+    .fsm_map_legend {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        z-index: 2;
+        display: flex;
+        gap: 12px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.92);
+        font-size: 12px;
+    }
+
+    .fsm_map_legend_location::before,
+    .fsm_map_legend_worker::before {
+        content: "";
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+        vertical-align: -1px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #9aa5b1;
+    }
+
+    .fsm_map_legend_location::before {
+        background: #0aff68;
+    }
+
+    .fsm_map_legend_worker::before {
+        background: #1a56db;
+    }
+}
+
+.o_action_manager:has(.o_fsm_dayroute_map) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    > .o_content {
+        position: relative;
+        flex: 1 1 auto;
+        height: auto !important;
+        min-height: 0;
+        overflow: hidden;
+    }
+}
+
+.o_fsm_dayroute_map {
+    position: absolute;
+    inset: 0;
+
+    .ol_map {
+        width: 100%;
+        height: 100%;
+    }
+
+    .fsm_map_legend {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 240px;
+        padding: 6px 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.92);
+        font-size: 12px;
+    }
+
+    .fsm_dayroute_legend_item i {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 6px;
+        border-radius: 50%;
+        vertical-align: -1px;
+    }
+}
+
+#olmap,
+.ol_map {
+    background: #f4f1ea;
+}
