@@ -123,3 +123,19 @@ class TestFSMFleetWizard(BaseCommon):
             "active_ids": [self.fleet_vehicle_3.id],
         }
         self.Wizard.with_context(**self.context).action_convert()
+
+    def test_create_fsm_vehicle_with_worker(self):
+        worker = self.env["fsm.person"].create({"name": "Vehicle Worker"})
+        self.assertNotEqual(worker.id, worker.partner_id.id)
+        fleet_vehicle = self.env["fleet.vehicle"].create(
+            {"model_id": self.fleet_vehicle_1.model_id.id}
+        )
+        fsm_vehicle = self.env["fsm.vehicle"].create(
+            {
+                "name": "Vehicle with worker",
+                "person_id": worker.id,
+                "fleet_vehicle_id": fleet_vehicle.id,
+            }
+        )
+        self.assertEqual(fsm_vehicle.driver_id, worker.partner_id)
+        self.assertEqual(fleet_vehicle.driver_id, worker.partner_id)

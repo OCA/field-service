@@ -30,7 +30,8 @@ class FSMVehicle(models.Model):
             fleet_id = vals.get("fleet_vehicle_id")
             if fleet_id:
                 if vals.get("person_id", False):
-                    vals["driver_id"] = vals.get("person_id")
+                    worker = self.env["fsm.person"].browse(vals["person_id"])
+                    vals["driver_id"] = worker.partner_id.id
                 vals["is_fsm_vehicle"] = True
         return super().create(vals_list)
 
